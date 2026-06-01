@@ -7,6 +7,10 @@ const supabasePublishableKey =
   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
+export function hasSupabaseUserConfig() {
+  return Boolean(supabaseUrl && supabasePublishableKey);
+}
+
 export async function createSupabaseUserClient() {
   if (!supabaseUrl || !supabasePublishableKey) {
     throw new Error("Brakuje NEXT_PUBLIC_SUPABASE_URL lub NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY.");

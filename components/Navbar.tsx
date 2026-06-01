@@ -1,7 +1,11 @@
 import NavbarClient from "@/components/NavbarClient";
-import { createSupabaseUserClient } from "@/lib/supabase-user";
+import { createSupabaseUserClient, hasSupabaseUserConfig } from "@/lib/supabase-user";
 
 export default async function Navbar() {
+  if (!hasSupabaseUserConfig()) {
+    return <NavbarClient auth={{ isLoggedIn: false }} />;
+  }
+
   const supabase = await createSupabaseUserClient();
   const { data } = await supabase.auth.getUser();
 
