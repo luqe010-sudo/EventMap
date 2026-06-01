@@ -32,7 +32,7 @@ Najważniejsza tabela domenowa to `events`, a publiczny frontend pokazuje tylko 
 - `lib/filters.ts` - filtrowanie client-side.
 - `lib/supabase.ts` - publiczny klient Supabase bez sesji.
 - `lib/supabase-user.ts` - klient Supabase SSR z cookies.
-- `middleware.ts` - odświeżanie sesji Supabase.
+- Sesja Supabase jest obsługiwana przez `lib/supabase-user.ts` w server components, server actions i route handlers; globalny `middleware.ts` nie jest obecnie używany.
 - `database.types.ts` - wygenerowane typy z Supabase.
 
 ## Struktura bazy danych

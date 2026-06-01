@@ -64,7 +64,7 @@ Zapytania Supabase są wydzielone poza UI:
 - czyta i ustawia cookies przez `next/headers`;
 - jest używany w ścieżkach wymagających sesji użytkownika.
 
-`middleware.ts` odświeża sesję Supabase dla wszystkich ścieżek poza statycznymi assetami i obrazami.
+Globalny middleware nie jest obecnie używany. Ścieżki wymagające sesji korzystają z `createSupabaseUserClient()` bezpośrednio w server components, server actions i route handlers.
 
 ## Przepływ danych publicznych
 

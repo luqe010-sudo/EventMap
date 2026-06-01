@@ -17,11 +17,7 @@ W kodzie nie ma formularza rejestracji ani resetowania hasła.
 
 `lib/supabase-user.ts` tworzy klienta Supabase przez `createServerClient` z `@supabase/ssr`. Klient korzysta z cookies Next.js.
 
-`middleware.ts`:
-
-- tworzy Supabase SSR client;
-- wywołuje `supabase.auth.getUser()`;
-- synchronizuje cookies odpowiedzi;
+Globalny `middleware.ts` nie jest obecnie używany. Sesja jest odczytywana w server components, server actions i route handlers przez `createSupabaseUserClient()`. Dzięki temu aplikacja nie ładuje klienta Supabase w Vercel Edge Middleware.
 - działa dla ścieżek innych niż statyczne assety i obrazy.
 
 ## Profil użytkownika
