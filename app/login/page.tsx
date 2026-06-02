@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { signInAction } from "@/lib/auth-actions";
 
+export const dynamic = "force-dynamic";
+
 type LoginPageProps = {
   searchParams: Promise<{ signup?: string }>;
 };
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
-  const params = await searchParams;
-  const isSignupSuccess = params.signup === "success";
+  const resolvedParams = searchParams && typeof (searchParams as any).then === "function"
+    ? await searchParams
+    : (searchParams as any);
+  const isSignupSuccess = resolvedParams?.signup === "success";
 
   return (
     <main className="appShell managementShell">
