@@ -2454,6 +2454,10 @@ select:focus {
   gap: 32px;
 }
 
+.eventDetailDescriptionBlock {
+  align-self: start;
+}
+
 .eventDetailHeroBlock {
   display: grid;
   gap: 18px;
@@ -2466,11 +2470,7 @@ select:focus {
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  border: 1px solid rgba(39, 35, 34, 0.08);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: var(--shadow-sm);
-  padding: 18px;
+  padding: 6px 0 0;
 }
 
 .eventDetailCategoryBadge {
@@ -2836,7 +2836,7 @@ select:focus {
 }
 
 .eventDetailMapPlain .detailMapContainer {
-  height: 430px;
+  height: 320px;
   border-radius: 14px;
   box-shadow: var(--shadow-sm);
 }

@@ -50,7 +50,7 @@ Szczegóły pokazują:
 - sekcję źródeł, jeśli wydarzenie ma `event_sources`.
 
 - przyciski `Udostepnij` i `Zapisz`; zapis dziala lokalnie w przegladarce;
-- mapa jest wyswietlana jako duzy blok przy opisie wydarzenia;
+- mapa jest wyswietlana jako blok obok opisu wydarzenia;
 - podobne wydarzenia z tej samej kategorii, jesli publiczne zapytanie je zwroci.
 
 ## Strony miast
