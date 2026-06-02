@@ -55,7 +55,8 @@ export async function signUpAction(formData: FormData): Promise<{ success: boole
       options: {
         data: {
           display_name: displayName,
-          role: role
+          role: role,
+          organizer_name: (typeof organizerName === "string" && organizerName.trim()) || displayName
         }
       }
     });
@@ -116,8 +117,15 @@ export async function signUpAction(formData: FormData): Promise<{ success: boole
         }
       }
 
-      // Create organizer if they selected "organizer" role
-      if (role === "organizer") {
+      // Check if they are already mapped to an organizer (created by the trigger!)
+      const { data: existingMember } = await supabase
+        .from("organizer_users")
+        .select("id")
+        .eq("user_id", authUser.id)
+        .limit(1);
+
+      // Create organizer if they selected "organizer" role and no trigger did it
+      if (role === "organizer" && (!existingMember || existingMember.length === 0)) {
         const orgName = (typeof organizerName === "string" && organizerName.trim()) || displayName;
         const orgSlug = createSlug(orgName);
 
@@ -133,7 +141,7 @@ export async function signUpAction(formData: FormData): Promise<{ success: boole
           .single();
 
         if (orgError) {
-          return { success: false, error: `Nie udalo sie utworzyc profilu organizatora: ${orgError.message}` };
+          return { success: false, error: `Nie udalo sie utworzyc profilu organizatora: ${orgError.message}. Uruchom skrypt SQL dla wyzwalacza (Trigger) w Supabase.` };
         }
 
         const { error: memberError } = await supabase
