@@ -5351,7 +5351,8 @@ select {
 
   .homePage {
     width: 100%;
-    max-width: calc(100vw - 28px);
+    max-width: calc(100vw - 36px);
+    margin-inline: auto;
   }
 
   .homePage,
@@ -5397,6 +5398,22 @@ select {
   .heroQuickTiles,
   .featuredScroll {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .featuredScroll {
+    gap: 12px;
+  }
+
+  .featuredCardTitle {
+    min-height: 0;
+  }
+
+  .mainColumn {
+    gap: 30px;
+  }
+
+  .mainColumn .featuredSection {
+    margin-bottom: 4px;
   }
 
   .valueGrid {
@@ -5452,9 +5469,26 @@ select {
 }
 
 @media (max-width: 520px) {
-  .featuredScroll,
   .heroQuickTiles {
     grid-template-columns: 1fr;
+  }
+
+  .featuredScroll {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .featuredCardBody {
+    padding: 11px 10px 12px;
+  }
+
+  .featuredCardTitle {
+    font-size: 0.78rem;
+    line-height: 1.22;
+  }
+
+  .featuredCardInfo {
+    font-size: 0.66rem;
   }
 
   .mainEventsHeader,
