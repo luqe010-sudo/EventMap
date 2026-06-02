@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { signInAction } from "@/lib/auth-actions";
+import LoginForm from "@/components/LoginForm";
 
 export const dynamic = "force-dynamic";
 
@@ -33,24 +32,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           </div>
         )}
 
-        <form action={signInAction} className="managementForm">
-          <label>
-            Email
-            <input name="email" type="email" required autoComplete="email" />
-          </label>
-          <label>
-            Haslo
-            <input name="password" type="password" required autoComplete="current-password" />
-          </label>
-          <button type="submit" className="primaryButton">Zaloguj</button>
-        </form>
-
-        <p style={{ marginTop: "1.5rem", textAlign: "center", fontSize: "0.9rem", color: "#64748b" }}>
-          Nie masz konta?{" "}
-          <Link href="/register" style={{ color: "#d95d39", fontWeight: 600, textDecoration: "underline" }}>
-            Zarejestruj sie
-          </Link>
-        </p>
+        <LoginForm />
       </section>
     </main>
   );

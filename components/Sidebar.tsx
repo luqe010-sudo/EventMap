@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { type EventCategory, type EventItem, type KnownLocation } from "@/lib/events";
+import { formatPolishDate } from "@/lib/date-format";
 
 const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
   ssr: false,
@@ -76,10 +77,10 @@ export default function Sidebar({
               <div key={event.id} className="sidebarUpcomingItem">
                 <div className="sidebarUpcomingDate">
                   <span className="sidebarUpcomingDay">
-                    {new Intl.DateTimeFormat("pl-PL", { day: "numeric" }).format(new Date(event.startDate))}
+                    {formatPolishDate(event.startDate, { day: "numeric" })}
                   </span>
                   <span className="sidebarUpcomingMonth">
-                    {new Intl.DateTimeFormat("pl-PL", { month: "short" }).format(new Date(event.startDate))}
+                    {formatPolishDate(event.startDate, { month: "short" })}
                   </span>
                 </div>
                 <div className="sidebarUpcomingInfo">

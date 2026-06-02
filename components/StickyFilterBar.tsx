@@ -1,6 +1,7 @@
 "use client";
 
 import { categoryEmojis, type EventCategory } from "@/lib/events";
+import { formatPolishDate } from "@/lib/date-format";
 import { type DateFilter } from "@/lib/filters";
 
 type StickyFilterBarProps = {
@@ -73,8 +74,8 @@ function formatShortDate(value: string) {
   const date = new Date(`${value}T00:00:00`);
   if (Number.isNaN(date.getTime())) return value;
 
-  return new Intl.DateTimeFormat("pl-PL", {
+  return formatPolishDate(date, {
     day: "2-digit",
     month: "2-digit"
-  }).format(date);
+  });
 }

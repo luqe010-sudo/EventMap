@@ -176,6 +176,16 @@
   padding: 8px 12px;
 }
 
+.formError {
+  border: 1px solid rgba(220, 38, 38, 0.22);
+  border-radius: 7px;
+  background: #fef2f2;
+  color: #b91c1c;
+  padding: 12px 14px;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
 .formGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

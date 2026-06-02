@@ -4,6 +4,7 @@ import {
   adminSetEventStatusAction,
   listAdminEvents
 } from "@/lib/admin-events";
+import { formatPolishDate } from "@/lib/date-format";
 
 export const dynamic = "force-dynamic";
 
@@ -74,5 +75,5 @@ export default async function AdminEventsPage() {
 }
 
 function formatDate(value: string) {
-  return new Intl.DateTimeFormat("pl-PL", { dateStyle: "medium", timeStyle: "short" }).format(new Date(value));
+  return formatPolishDate(value, { dateStyle: "medium", timeStyle: "short" });
 }

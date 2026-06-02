@@ -81,6 +81,7 @@ Strona:
 
 ## Login, rejestracja i sesja
 
+- `/login` obsluguje bledy Supabase Auth w formularzu, bez wywolywania 500 w Server Components.
 - `/login` ma formularz email/hasło i link do rejestracji.
 - `/register` ma formularz rejestracji użytkowników z wyborem roli: Widz (rola `user`) lub Organizator (rola `organizer`). Dla organizatorów automatycznie tworzy profil organizacyjny (`organizers` i `organizer_users`).
 - `signInAction()` oraz `signUpAction()` używają Supabase Auth.

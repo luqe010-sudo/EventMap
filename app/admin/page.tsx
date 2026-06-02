@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAdminDashboard } from "@/lib/admin-events";
+import { formatPolishDate } from "@/lib/date-format";
 
 export const dynamic = "force-dynamic";
 
@@ -67,5 +68,5 @@ function StatCard({ label, value }: { label: string; value: number }) {
 }
 
 function formatDate(value: string) {
-  return new Intl.DateTimeFormat("pl-PL", { dateStyle: "medium", timeStyle: "short" }).format(new Date(value));
+  return formatPolishDate(value, { dateStyle: "medium", timeStyle: "short" });
 }
