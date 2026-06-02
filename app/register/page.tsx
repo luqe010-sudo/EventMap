@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { signUpAction } from "@/lib/auth-actions";
 
 export default function RegisterPage() {
+  const router = useRouter();
   const [role, setRole] = useState("user");
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
@@ -16,7 +18,13 @@ export default function RegisterPage() {
 
     const formData = new FormData(e.currentTarget);
     try {
-      await signUpAction(formData);
+      const res = await signUpAction(formData);
+      if (res.success) {
+        router.push("/login?signup=success");
+      } else {
+        setError(res.error || "Wystapil blad podczas rejestracji.");
+        setPending(false);
+      }
     } catch (err: any) {
       setError(err.message || "Wystapil nieznany blad podczas rejestracji.");
       setPending(false);
