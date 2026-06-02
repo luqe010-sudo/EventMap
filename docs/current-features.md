@@ -5,7 +5,7 @@
 Strona główna `/`:
 
 - pobiera wydarzenia z Supabase przez `getHomeData()`;
-- pokazuje hero, panel wyszukiwania, sticky filter bar oraz układ 70/30 z lewą kolumną wydarzeń i prawym sidebarem;
+- pokazuje hero, panel wyszukiwania oraz układ 70/30 z lewą kolumną wydarzeń i prawym sidebarem;
 - w lewej kolumnie pokazuje wyróżnione wydarzenia nad listą wydarzeń;
 - w prawym sidebarze pokazuje jeden spójny panel z mapą MapLibre, powiadomieniami, nadchodzącymi wydarzeniami i popularnymi kategoriami;
 - mapa w sidebarze jest osadzona bezpośrednio w dużym panelu, ma wewnętrzny margines, zaokrąglenie i przycisk `Pokaż listę` na mapie;
@@ -15,8 +15,10 @@ Strona główna `/`:
 - filtruje po presetach daty, niestandardowym zakresie dat, promieniu, kategorii i opcji darmowych wydarzeń;
 - pozwala wybrać lokalizację z autouzupełniania albo GPS;
 - sortuje po odległości albo dacie.
-- na widoku mobilnym układa hero i blok informacyjny w pojedynczej, czytelnej kolumnie.
-- na małych ekranach ogranicza szerokość sekcji strony głównej do viewportu, aby nagłówki, listy, panele i mapa nie były ucinane poziomo; polecane wydarzenia zachowują kompaktową siatkę dwóch kolumn.
+- na widoku mobilnym zachowuje estetyczne marginesy od krawędzi (18px), a kafelki klimatu w sekcji hero układają się w układ trójkolumnowy o zmniejszonych wymiarach;
+- kafelki kategorii w panelu wyszukiwania zawijają się na urządzeniach mobilnych do wielu wierszy, co zapobiega ich ucinaniu;
+- panel wyszukiwania posiada przycisk "Znajdź" umieszczony pod przyciskami kategorii, który na urządzeniach mobilnych zajmuje pełną szerokość i po kliknięciu przewija stronę do listy wyników;
+- tło strony (`background.png`) na komputerach oraz na smartfonach jest dopasowane za pomocą `background-size: cover` oraz wypozycjonowane `center top`, dzięki czemu nie tworzy ostrych krawędzi i płynnie rozmywa się na dolnym odcinku (od wysokości 65% z 35-procentowym obszarem całkowitego zanikania).
 
 Widok `EventExplorer`:
 

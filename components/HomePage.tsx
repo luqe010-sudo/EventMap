@@ -5,7 +5,7 @@ import { type CategoryOption, type EventCategory, type EventItem, type KnownLoca
 import { filterEvents, type DateFilter } from "@/lib/filters";
 import HeroSection from "@/components/HeroSection";
 import SearchPanel from "@/components/SearchPanel";
-import StickyFilterBar from "@/components/StickyFilterBar";
+
 import FeaturedEvents from "@/components/FeaturedEvents";
 import EventCard from "@/components/EventCard";
 import Sidebar from "@/components/Sidebar";
@@ -29,19 +29,7 @@ export default function HomePage({ initialEvents, categoryOptions }: HomePagePro
   const [sortBy, setSortBy] = useState<"nearest" | "date">("nearest");
   const categoryNames = useMemo(() => categoryOptions.map((item) => item.name), [categoryOptions]);
 
-  // Sticky bar
-  const [stickyVisible, setStickyVisible] = useState(false);
 
-  useEffect(() => {
-    const el = document.getElementById("search-panel");
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setStickyVisible(!entry.isIntersecting),
-      { threshold: 0, rootMargin: "-80px 0px 0px 0px" }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   // Filtered events
   const filteredEvents = useMemo(
@@ -111,9 +99,7 @@ export default function HomePage({ initialEvents, categoryOptions }: HomePagePro
     );
   }
 
-  function scrollToSearch() {
-    document.getElementById("search-panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+
 
   return (
     <main className="homePage">
@@ -141,15 +127,7 @@ export default function HomePage({ initialEvents, categoryOptions }: HomePagePro
         onCategoryChange={(cat) => { setCategory(cat); setIsFree(false); }}
       />
 
-      <StickyFilterBar
-        visible={stickyVisible}
-        locationLabel={locationInput}
-        dateFilter={dateFilter}
-        customDate={customDate}
-        radiusKm={radiusKm}
-        category={category}
-        onScrollToSearch={scrollToSearch}
-      />
+
 
       {/* Main 70/30 layout: events list + sidebar */}
       <div className="mainLayout">

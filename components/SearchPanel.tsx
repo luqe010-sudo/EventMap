@@ -151,19 +151,6 @@ export default function SearchPanel({
           )}
         </div>
 
-        <div className="searchGroup searchGroupCat">
-          <label className="searchLabel">Kategorie</label>
-          <select
-            className="searchCatSelect"
-            value={category}
-            onChange={(e) => onCategoryChange(e.target.value as EventCategory | "Wszystkie")}
-          >
-            <option value="Wszystkie">Wszystkie kategorie</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
-        </div>
       </div>
 
       {/* Bottom row: horizontal scrolling category pills */}
@@ -185,11 +172,17 @@ export default function SearchPanel({
             <CategoryIcon name={cat} /> {cat}
           </button>
         ))}
-        <button type="button" className="catPill catPillMore">
-          Więcej filtrów
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
+      </div>
+
+      <div className="searchSubmitRow">
+        <button
+          type="button"
+          className="searchSubmitBtn"
+          onClick={() => {
+            document.getElementById("events-list")?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+        >
+          Znajdź
         </button>
       </div>
     </section>
