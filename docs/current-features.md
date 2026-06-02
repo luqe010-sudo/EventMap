@@ -94,6 +94,7 @@ Strona:
 
 - liczniki `pending_review`, `published`, `rejected`;
 - ostatnio dodane wydarzenia;
+- wspolny pasek nawigacji admina z przejsciem do `Wydarzenia`, `Organizatorzy`, `Dodaj wydarzenie` i `Dodaj organizatora`;
 - linki do wydarzeń i organizatorów.
 
 `/admin/events`:

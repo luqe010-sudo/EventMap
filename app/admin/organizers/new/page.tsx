@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AdminSectionNav from "@/components/AdminSectionNav";
 import OrganizerEditorForm from "@/components/OrganizerEditorForm";
 import { adminCreateOrganizerAction } from "@/lib/admin-organizers";
 import { requireAdmin } from "@/lib/auth";
@@ -17,6 +18,8 @@ export default async function AdminNewOrganizerPage() {
         </div>
         <Link href="/admin/organizers" className="secondaryButton">Wroc do listy</Link>
       </div>
+
+      <AdminSectionNav active="organizers" />
 
       <section className="managementPanel">
         <OrganizerEditorForm

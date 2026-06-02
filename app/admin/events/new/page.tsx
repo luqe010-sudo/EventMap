@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AdminSectionNav from "@/components/AdminSectionNav";
 import EventEditorForm from "@/components/EventEditorForm";
 import { adminCreateEventAction, getAdminEventEditorOptions } from "@/lib/admin-events";
 
@@ -16,6 +17,8 @@ export default async function AdminNewEventPage() {
         </div>
         <Link href="/admin/events" className="secondaryButton">Wroc do listy</Link>
       </div>
+
+      <AdminSectionNav active="events" />
 
       <section className="managementPanel">
         <EventEditorForm

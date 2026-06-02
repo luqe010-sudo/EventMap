@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import AdminSectionNav from "@/components/AdminSectionNav";
 import OrganizerEditorForm from "@/components/OrganizerEditorForm";
 import {
   adminUpdateOrganizerAction,
@@ -24,6 +25,8 @@ export default async function AdminEditOrganizerPage({ params }: { params: Promi
         </div>
         <Link href="/admin/organizers" className="secondaryButton">Wroc do listy</Link>
       </div>
+
+      <AdminSectionNav active="organizers" />
 
       <section className="managementPanel">
         <OrganizerEditorForm

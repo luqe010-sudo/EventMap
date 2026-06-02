@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AdminSectionNav from "@/components/AdminSectionNav";
 import {
   adminDeleteEventAction,
   adminSetEventStatusAction,
@@ -19,10 +20,11 @@ export default async function AdminEventsPage() {
           <h1>Wydarzenia</h1>
         </div>
         <div className="managementActions">
-          <Link href="/admin/organizers/new" className="secondaryButton">Dodaj organizatora</Link>
           <Link href="/admin/events/new" className="primaryButton">Dodaj wydarzenie</Link>
         </div>
       </div>
+
+      <AdminSectionNav active="events" />
 
       <section className="managementPanel">
         <div className="managementTableWrap">

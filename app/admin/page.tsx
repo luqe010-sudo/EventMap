@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AdminSectionNav from "@/components/AdminSectionNav";
 import { getAdminDashboard } from "@/lib/admin-events";
 import { formatPolishDate } from "@/lib/date-format";
 
@@ -15,10 +16,12 @@ export default async function AdminDashboardPage() {
           <h1>Moderacja wydarzen</h1>
         </div>
         <div className="managementActions">
-          <Link href="/admin/organizers" className="secondaryButton">Organizatorzy</Link>
+          <Link href="/admin/events" className="secondaryButton">Wszystkie wydarzenia</Link>
           <Link href="/admin/events/new" className="primaryButton">Dodaj wydarzenie</Link>
         </div>
       </div>
+
+      <AdminSectionNav active="events" />
 
       <section className="managementStats">
         <StatCard label="Do akceptacji" value={dashboard.pendingReview} />
