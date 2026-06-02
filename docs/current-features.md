@@ -79,10 +79,11 @@ Strona:
 - generuje metadata i JSON-LD `CollectionPage`;
 - renderuje `EventExplorer`.
 
-## Login i sesja
+## Login, rejestracja i sesja
 
-- `/login` ma formularz email/hasło.
-- `signInAction()` używa Supabase Auth.
+- `/login` ma formularz email/hasło i link do rejestracji.
+- `/register` ma formularz rejestracji użytkowników z wyborem roli: Widz (rola `user`) lub Organizator (rola `organizer`). Dla organizatorów automatycznie tworzy profil organizacyjny (`organizers` i `organizer_users`).
+- `signInAction()` oraz `signUpAction()` używają Supabase Auth.
 - Wylogowanie idzie przez `POST /auth/sign-out`.
 - Navbar pokazuje link do panelu dla roli `admin` albo `organizer`.
 

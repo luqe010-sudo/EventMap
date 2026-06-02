@@ -26,6 +26,7 @@ Route'y w `app/` są server components tam, gdzie pobierają dane z Supabase:
 - `app/wydarzenia/[city]/page.tsx` renderuje stronę miasta; dla starego sluga wydarzenia przekierowuje na `/wydarzenie/[slug]`.
 - `app/kategoria/[slug]/page.tsx` pobiera kategorię i wydarzenia z tej kategorii.
 - `app/admin/**` oraz `app/organizer/**` renderują panele po stronie serwera i korzystają z server actions.
+- `app/login/page.tsx` oraz `app/register/page.tsx` obsługują logowanie i rejestrację użytkowników.
 
 Client components odpowiadają za interakcję UI:
 
@@ -45,7 +46,7 @@ Zapytania Supabase są wydzielone poza UI:
 
 - `lib/events.ts` - publiczne odczyty wydarzeń, kategorii i stron miast.
 - `lib/auth.ts` - kontekst użytkownika i guardy ról.
-- `lib/auth-actions.ts` - logowanie i wylogowanie.
+- `lib/auth-actions.ts` - logowanie, rejestracja (wraz z automatyczną konfiguracją organizatora) i wylogowanie.
 - `lib/admin-events.ts` - dashboard admina, lista wydarzeń, CRUD i zmiana statusu.
 - `lib/organizer-events.ts` - dashboard organizatora, lista i zapis wydarzeń organizatora.
 - `lib/admin-organizers.ts` - CRUD organizatorów.
