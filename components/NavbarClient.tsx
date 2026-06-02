@@ -30,19 +30,6 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
           <Link href="/" className="navLogo">
             Event<span>Map</span>
           </Link>
-          <div className="navLocationSelector">
-            <span className="navLocationLabel">Twoja lokalizacja</span>
-            <button className="navLocationBtn" type="button">
-              <span className="navLocationPin" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 21s6-5.2 6-11a6 6 0 0 0-12 0c0 5.8 6 11 6 11Z" />
-                  <circle cx="12" cy="10" r="2.2" />
-                </svg>
-              </span>
-              <span className="navLocationName">Lodz</span>
-              <span className="navLocationArrow">v</span>
-            </button>
-          </div>
         </div>
 
         <div className="navLinks">

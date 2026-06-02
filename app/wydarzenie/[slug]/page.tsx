@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import EventDetailView from "@/components/EventDetailView";
-import { getEventBySlug } from "@/lib/events";
+import { getEventBySlug, listEvents } from "@/lib/events";
 
 type Params = { slug: string };
 
@@ -32,5 +32,21 @@ export default async function EventPage({ params }: { params: Promise<Params> })
   const event = await getEventBySlug(slug);
   if (!event) notFound();
 
-  return <EventDetailView event={event} />;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const relatedEvents = await getRelatedEvents(event.id, event.category, today.toISOString());
+
+  return <EventDetailView event={event} relatedEvents={relatedEvents} />;
+}
+
+async function getRelatedEvents(eventId: string, category: string, dateFrom: string) {
+  try {
+    return (await listEvents({ dateFrom, limit: 24 }))
+      .filter((item) => item.id !== eventId && item.category === category)
+      .slice(0, 3);
+  } catch (error) {
+    console.error("[events] Failed to load related events", error);
+    return [];
+  }
 }

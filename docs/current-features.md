@@ -37,7 +37,7 @@ Technicznie obsługiwane przez `app/wydarzenie/[slug]/page.tsx`. Stary format `/
 
 Szczegóły pokazują:
 
-- obraz;
+- duzy pojedynczy obraz wydarzenia bez galerii;
 - kategorię;
 - tytuł;
 - organizatora;
@@ -48,6 +48,9 @@ Szczegóły pokazują:
 - mapę;
 - link Google Maps, jeśli `locations.google_maps_url` istnieje;
 - sekcję źródeł, jeśli wydarzenie ma `event_sources`.
+
+- przyciski `Udostepnij` i `Zapisz`; zapis dziala lokalnie w przegladarce;
+- podobne wydarzenia z tej samej kategorii, jesli publiczne zapytanie je zwroci.
 
 ## Strony miast
 
@@ -87,6 +90,7 @@ Strona:
 - `signInAction()` oraz `signUpAction()` używają Supabase Auth.
 - Wylogowanie idzie przez `POST /auth/sign-out`.
 - Navbar pokazuje link do panelu dla roli `admin` albo `organizer`.
+- Navbar nie pokazuje statycznego selektora lokalizacji, zeby nie sugerowac aktywnej lokalizacji uzytkownika.
 
 ## Panel admina
 

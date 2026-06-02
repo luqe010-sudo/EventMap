@@ -1,12 +1,20 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import EventDetailActions from "@/components/EventDetailActions";
 import EventDetailMap from "@/components/EventDetailMap";
-import type { EventItem } from "@/lib/events";
-import { categoryPath, toSlug } from "@/lib/slugs";
+import { type EventItem, isFreeEvent } from "@/lib/events";
+import { formatPolishDate } from "@/lib/date-format";
+import { categoryPath, eventPath, toSlug } from "@/lib/slugs";
 
-export default function EventDetailView({ event }: { event: EventItem }) {
+type EventDetailViewProps = {
+  event: EventItem;
+  relatedEvents?: EventItem[];
+};
+
+export default function EventDetailView({ event, relatedEvents = [] }: EventDetailViewProps) {
   const cityPath = event.city ? `/wydarzenia/${toSlug(event.city)}` : "/";
   const eventUrl = `https://eventmap.pl/wydarzenie/${event.slug}`;
+  const mapTargetId = "event-detail-map";
   const eventLocation = {
     label: event.city || event.location?.name || event.title,
     aliases: event.city ? [toSlug(event.city)] : [],
@@ -15,8 +23,8 @@ export default function EventDetailView({ event }: { event: EventItem }) {
   };
 
   return (
-    <main className="appShell">
-      <nav className="breadcrumbs" aria-label="Sciezka powrotu">
+    <main className="appShell eventDetailPage">
+      <nav className="breadcrumbs eventDetailBreadcrumbs" aria-label="Sciezka powrotu">
         <Link href="/">Strona glowna</Link>
         <span className="separator">/</span>
         <Link href={categoryPath(event.category)}>{event.category}</Link>
@@ -81,110 +89,198 @@ export default function EventDetailView({ event }: { event: EventItem }) {
         }}
       />
 
-      <article className="eventDetailContainer">
-        <header className="eventDetailHeader">
-          <div className="eventDetailImageWrap">
-            <img src={event.imageUrl} alt={event.title} className="eventDetailImage" />
-            <span className="eventDetailCategory" style={{ backgroundColor: event.categoryColor }}>
-              {event.category}
-            </span>
-          </div>
-          <div className="eventDetailTitleSection">
-            <h1>{event.title}</h1>
-            <p className="eventDetailOrganizer">
-              Organizator:{" "}
-              {event.organizerUrl ? (
-                <a href={event.organizerUrl} target="_blank" rel="noopener noreferrer">{event.organizerName}</a>
-              ) : (
-                event.organizerName
-              )}
-            </p>
-          </div>
-        </header>
-
-        <div className="eventDetailContent">
-          <section className="eventDetailInfo">
-            <h2>Szczegoly wydarzenia</h2>
-            <p className="eventDescription">{event.description ?? event.short_description}</p>
-
-            <div className="eventDetailGrid">
-              <DetailCard label="Kiedy" value={formatDateRange(event.start_at, event.end_at)} />
-              <DetailCard
-                label="Gdzie"
-                value={event.address || "Lokalizacja nieznana"}
-                extra={event.city ? <Link href={cityPath} className="inlineCityLink">Inne wydarzenia w {event.city}</Link> : null}
-              />
-              <DetailCard label="Kategoria" value={event.category} />
-              <DetailCard label="Cena" value={event.price} />
+      <article className="eventDetailShell">
+        <div className="eventDetailMain">
+          <header className="eventDetailHeroBlock">
+            <div className="eventDetailTitleRow">
+              <div>
+                <span className="eventDetailCategoryBadge" style={{ backgroundColor: event.categoryColor }}>
+                  {event.category}
+                </span>
+                <h1>{event.title}</h1>
+                <div className="eventDetailMetaLine">
+                  <span>{event.city || "Polska"}</span>
+                  <span>{isFreeEvent(event) ? "Bezplatne" : event.price}</span>
+                </div>
+              </div>
+              <EventDetailActions eventId={event.id} title={event.title} url={eventUrl} />
             </div>
 
-            {event.sources.length ? (
-              <section className="eventSources" aria-label="Zrodla wydarzenia">
-                <h2>Zrodla wydarzenia</h2>
-                <div className="detailsActions">
-                  {event.sources.map((source) => (
-                    source.source_url ? (
-                      <a key={`${source.source_type}-${source.source_url}`} href={source.source_url} target="_blank" rel="noopener noreferrer" className="secondaryButton">
-                        {source.source_name ?? source.source_type}
-                      </a>
-                    ) : (
-                      <span key={`${source.source_type}-${source.source_name}`} className="priceNotice">
-                        {source.source_name ?? source.source_type}
-                      </span>
-                    )
-                  ))}
-                </div>
-              </section>
-            ) : null}
+            <div className="eventDetailLeadImageWrap">
+              <img src={event.imageUrl} alt={event.title} className="eventDetailLeadImage" />
+            </div>
+          </header>
+
+          <section className="eventDetailSection">
+            <h2>Opis wydarzenia</h2>
+            <div className="eventDescription">
+              {splitDescription(event.description ?? event.short_description).map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
           </section>
 
-          <aside className="eventDetailMapWrap">
-            <h2>Lokalizacja na mapie</h2>
+          <section className="eventDetailSection eventOrganizerPanel">
+            <h2>Organizator</h2>
+            <div className="eventOrganizerRow">
+              <div className="eventOrganizerAvatar" aria-hidden="true">
+                {event.organizerName.charAt(0).toUpperCase()}
+              </div>
+              <div className="eventOrganizerInfo">
+                <strong>{event.organizerName}</strong>
+                <span>{event.organizerRelation?.is_verified ? "Organizator zweryfikowany" : "Organizator wydarzenia"}</span>
+              </div>
+              {event.organizerUrl ? (
+                <a href={event.organizerUrl} target="_blank" rel="noopener noreferrer" className="secondaryButton eventOrganizerLink">
+                  Zobacz profil
+                </a>
+              ) : null}
+            </div>
+          </section>
+
+          {event.sources.length ? (
+            <section className="eventDetailSection">
+              <h2>Zrodla wydarzenia</h2>
+              <div className="eventSourceList">
+                {event.sources.map((source) => (
+                  source.source_url ? (
+                    <a
+                      key={`${source.source_type}-${source.source_url}`}
+                      href={source.source_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="eventSourceItem"
+                    >
+                      <span className="eventSourceIcon" aria-hidden="true">{source.source_type?.charAt(0).toUpperCase() ?? "Z"}</span>
+                      <span>
+                        <strong>{source.source_name ?? source.source_type ?? "Zrodlo wydarzenia"}</strong>
+                        <small>{formatSourceUrl(source.source_url)}</small>
+                      </span>
+                      <span className="eventSourceArrow" aria-hidden="true">Otworz</span>
+                    </a>
+                  ) : (
+                    <div key={`${source.source_type}-${source.source_name}`} className="eventSourceItem">
+                      <span className="eventSourceIcon" aria-hidden="true">{source.source_type?.charAt(0).toUpperCase() ?? "Z"}</span>
+                      <span>
+                        <strong>{source.source_name ?? source.source_type ?? "Zrodlo wydarzenia"}</strong>
+                      </span>
+                    </div>
+                  )
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          {relatedEvents.length ? (
+            <section className="eventDetailSection">
+              <div className="eventDetailSectionHeader">
+                <h2>Podobne wydarzenia</h2>
+                <Link href={categoryPath(event.category)}>Zobacz kategorie</Link>
+              </div>
+              <div className="relatedEventsGrid">
+                {relatedEvents.map((relatedEvent) => (
+                  <Link key={relatedEvent.id} href={eventPath(relatedEvent)} className="relatedEventCard">
+                    <img src={relatedEvent.imageUrl} alt={relatedEvent.title} />
+                    <div className="relatedEventBody">
+                      <div className="relatedEventDate">
+                        <strong>{formatPolishDate(relatedEvent.start_at, { day: "2-digit" })}</strong>
+                        <span>{formatPolishDate(relatedEvent.start_at, { month: "short" })}</span>
+                      </div>
+                      <div>
+                        <h3>{relatedEvent.title}</h3>
+                        <p>{relatedEvent.city || relatedEvent.address}</p>
+                        <span className={isFreeEvent(relatedEvent) ? "relatedEventFree" : ""}>
+                          {isFreeEvent(relatedEvent) ? "Bezplatne" : relatedEvent.price}
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
+        </div>
+
+        <aside className="eventDetailSidebar">
+          <section className="eventDetailSummaryCard" aria-label="Szczegoly wydarzenia">
+            <h2>Szczegoly wydarzenia</h2>
+            <SummaryItem label="Kiedy" value={formatDateRange(event.start_at, event.end_at)} />
+            <SummaryItem
+              label="Gdzie"
+              value={event.address || "Lokalizacja nieznana"}
+              extra={
+                <>
+                  <a href={`#${mapTargetId}`}>Pokaz na mapie</a>
+                  {event.city ? <Link href={cityPath}>Inne wydarzenia w {event.city}</Link> : null}
+                </>
+              }
+            />
+            <SummaryItem label="Kategoria" value={event.category} />
+            <SummaryItem label="Cena" value={event.price} />
+          </section>
+
+          <section className="eventDetailMapCard" id={mapTargetId}>
+            <div className="eventDetailSectionHeader">
+              <h2>Mapa</h2>
+              {event.location?.google_maps_url ? (
+                <a href={event.location.google_maps_url} target="_blank" rel="noopener noreferrer">
+                  Google Maps
+                </a>
+              ) : null}
+            </div>
             <div className="detailMapContainer">
               <EventDetailMap event={event} location={eventLocation} />
             </div>
-            {event.location?.google_maps_url ? (
-              <a href={event.location.google_maps_url} target="_blank" rel="noopener noreferrer" className="inlineCityLink">
-                Otworz w Google Maps
-              </a>
-            ) : null}
-          </aside>
-        </div>
+          </section>
+        </aside>
       </article>
     </main>
   );
 }
 
-function DetailCard({ label, value, extra }: { label: string; value: string; extra?: ReactNode }) {
+function SummaryItem({
+  label,
+  value,
+  extra
+}: {
+  label: string;
+  value: string;
+  extra?: ReactNode;
+}) {
   return (
-    <div className="detailCard">
-      <div className="detailText">
-        <h3>{label}</h3>
-        <p>{value}</p>
-        {extra}
-      </div>
+    <div className="eventSummaryItem">
+      <span>{label}</span>
+      <strong>{value}</strong>
+      {extra ? <small>{extra}</small> : null}
     </div>
   );
 }
 
 function formatDateRange(start: string, end: string | null) {
-  const formattedStart = new Intl.DateTimeFormat("pl-PL", {
+  const startLabel = formatPolishDate(start, {
     weekday: "long",
     day: "2-digit",
     month: "long",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit"
-  }).format(new Date(start));
+    year: "numeric"
+  });
+  const startTime = formatPolishDate(start, { hour: "2-digit", minute: "2-digit" });
 
-  if (!end) return formattedStart;
+  if (!end) return `${startLabel}, ${startTime}`;
 
-  const formattedEnd = new Intl.DateTimeFormat("pl-PL", {
-    day: "2-digit",
-    month: "long",
-    hour: "2-digit",
-    minute: "2-digit"
-  }).format(new Date(end));
+  const endTime = formatPolishDate(end, { hour: "2-digit", minute: "2-digit" });
+  return `${startLabel}, ${startTime} - ${endTime}`;
+}
 
-  return `${formattedStart} - ${formattedEnd}`;
+function splitDescription(value?: string | null) {
+  const paragraphs = value?.split(/\n{2,}/).map((paragraph) => paragraph.trim()).filter(Boolean) ?? [];
+  return paragraphs.length ? paragraphs : ["Brak szczegolowego opisu wydarzenia."];
+}
+
+function formatSourceUrl(value: string) {
+  try {
+    const url = new URL(value);
+    return url.hostname.replace(/^www\./, "");
+  } catch {
+    return value;
+  }
 }
