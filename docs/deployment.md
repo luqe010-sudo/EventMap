@@ -55,6 +55,14 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 
 W `.env.local` obecne są publiczne zmienne Supabase. Nie należy dodawać service role key do kodu klienta ani do zmiennych `NEXT_PUBLIC_*`.
 
+`NEXT_PUBLIC_SUPABASE_URL` powinien mieć format samego originu projektu Supabase:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://PROJECT_ID.supabase.co
+```
+
+Nie ustawiaj tu endpointu REST, np. `https://PROJECT_ID.supabase.co/rest/v1`. Kod normalizuje URL do originu, ale poprawna wartość zmiennej środowiskowej ułatwia diagnozę logów Vercel i Supabase.
+
 ## Supabase
 
 Projekt jest połączony z Supabase CLI lokalnie przez katalog `supabase/.temp`, ale repozytorium nie zawiera migracji SQL.

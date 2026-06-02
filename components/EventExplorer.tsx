@@ -8,7 +8,7 @@ import { filterEvents, type DateFilter } from "@/lib/filters";
 import { eventPath } from "@/lib/slugs";
 import CityAutocomplete from "@/components/CityAutocomplete";
 
-const LeafletMap = dynamic(() => import("@/components/LeafletMap"), {
+const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
   ssr: false,
   loading: () => <div className="mapLoading">Ładowanie mapy…</div>
 });
@@ -68,6 +68,7 @@ export default function EventExplorer({
 
   // Reset selection when the selected event is no longer in the filtered list
   const selectedEvent = filteredEvents.find(({ event }) => event.id === selectedEventId)?.event ?? null;
+  const customDateRange = parseCustomDateRangeValue(customDate);
 
   function handleLocationSelect(loc: KnownLocation) {
     setLocation(loc);
@@ -103,6 +104,20 @@ export default function EventExplorer({
 
   function selectEvent(eventId: string) {
     setSelectedEventId(eventId);
+  }
+
+  function handleCustomDateFromChange(value: string) {
+    const nextTo = customDateRange.to && value && customDateRange.to < value
+      ? value
+      : customDateRange.to;
+    setCustomDate(serializeCustomDateRange(value, nextTo));
+  }
+
+  function handleCustomDateToChange(value: string) {
+    const nextFrom = customDateRange.from && value && customDateRange.from > value
+      ? value
+      : customDateRange.from;
+    setCustomDate(serializeCustomDateRange(nextFrom, value));
   }
 
   return (
@@ -157,12 +172,28 @@ export default function EventExplorer({
             ))}
           </div>
           {dateFilter === "custom" ? (
-            <input
-              className="dateInput"
-              type="date"
-              value={customDate}
-              onChange={(event) => setCustomDate(event.target.value)}
-            />
+            <div className="dateRangeFields dateRangeFieldsCompact">
+              <label className="dateRangeField">
+                <span>Od</span>
+                <input
+                  className="dateInput"
+                  type="date"
+                  value={customDateRange.from}
+                  max={customDateRange.to || undefined}
+                  onChange={(event) => handleCustomDateFromChange(event.target.value)}
+                />
+              </label>
+              <label className="dateRangeField">
+                <span>Do</span>
+                <input
+                  className="dateInput"
+                  type="date"
+                  value={customDateRange.to}
+                  min={customDateRange.from || undefined}
+                  onChange={(event) => handleCustomDateToChange(event.target.value)}
+                />
+              </label>
+            </div>
           ) : null}
         </div>
 
@@ -255,7 +286,7 @@ export default function EventExplorer({
         </aside>
 
         <div className="mapPanel">
-          <LeafletMap
+          <MapLibreMap
             events={filteredEvents.map(({ event }) => event)}
             selectedEventId={selectedEvent?.id}
             location={location}
@@ -309,4 +340,15 @@ function formatDate(value: string) {
     hour: "2-digit",
     minute: "2-digit"
   }).format(new Date(value));
+}
+
+function parseCustomDateRangeValue(value: string) {
+  const [from = "", to = ""] = value.split("/");
+  return { from, to };
+}
+
+function serializeCustomDateRange(from: string, to: string) {
+  if (from && to) return `${from}/${to}`;
+  if (to) return `/${to}`;
+  return from;
 }

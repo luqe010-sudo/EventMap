@@ -1,10 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/database.types";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
-const supabasePublishableKey =
-  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY?.trim() ??
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
+import { supabasePublishableKey, supabaseUrl } from "@/lib/supabase-config";
 
 export function createSupabaseServerClient() {
   if (!supabaseUrl || !supabasePublishableKey) {

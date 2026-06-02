@@ -7,6 +7,7 @@ type StickyFilterBarProps = {
   visible: boolean;
   locationLabel: string;
   dateFilter: DateFilter;
+  customDate?: string;
   radiusKm: number;
   category: EventCategory | "Wszystkie";
   onScrollToSearch: () => void;
@@ -24,6 +25,7 @@ export default function StickyFilterBar({
   visible,
   locationLabel,
   dateFilter,
+  customDate = "",
   radiusKm,
   category,
   onScrollToSearch
@@ -38,7 +40,7 @@ export default function StickyFilterBar({
         <span className="stickyFilterDivider" />
         <button className="stickyFilterChip" onClick={onScrollToSearch} type="button">
           <span className="stickyFilterIcon">📅</span>
-          <span className="stickyFilterValue">{dateLabels[dateFilter]}</span>
+          <span className="stickyFilterValue">{getDateFilterLabel(dateFilter, customDate)}</span>
         </button>
         <span className="stickyFilterDivider" />
         <button className="stickyFilterChip" onClick={onScrollToSearch} type="button">
@@ -55,4 +57,24 @@ export default function StickyFilterBar({
       </div>
     </div>
   );
+}
+
+function getDateFilterLabel(dateFilter: DateFilter, customDate: string) {
+  if (dateFilter !== "custom") return dateLabels[dateFilter];
+
+  const [from = "", to = ""] = customDate.split("/");
+  if (from && to) return `${formatShortDate(from)} - ${formatShortDate(to)}`;
+  if (from) return formatShortDate(from);
+  if (to) return `do ${formatShortDate(to)}`;
+  return dateLabels.custom;
+}
+
+function formatShortDate(value: string) {
+  const date = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return value;
+
+  return new Intl.DateTimeFormat("pl-PL", {
+    day: "2-digit",
+    month: "2-digit"
+  }).format(date);
 }

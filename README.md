@@ -8,7 +8,7 @@ Portal lokalnych wydarzen w Polsce z publicznym przegladaniem wydarzen oraz pane
 - React 19
 - TypeScript strict
 - Supabase JS v2 i @supabase/ssr
-- Leaflet, React Leaflet i OpenStreetMap
+- MapLibre GL JS
 
 ## Uruchomienie lokalne
 

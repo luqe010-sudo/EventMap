@@ -145,6 +145,7 @@ export default function HomePage({ initialEvents, categoryOptions }: HomePagePro
         visible={stickyVisible}
         locationLabel={locationInput}
         dateFilter={dateFilter}
+        customDate={customDate}
         radiusKm={radiusKm}
         category={category}
         onScrollToSearch={scrollToSearch}

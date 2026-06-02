@@ -6,7 +6,7 @@
 - React 19.
 - TypeScript w trybie `strict`.
 - Supabase JS v2 oraz `@supabase/ssr`.
-- Leaflet, React Leaflet i OpenStreetMap dla map.
+- MapLibre GL JS dla map.
 - Globalny CSS w `app/globals.css`.
 
 Konfiguracja projektu:
@@ -31,7 +31,8 @@ Client components odpowiadają za interakcję UI:
 
 - `components/HomePage.tsx` - stan filtrów na stronie głównej oraz układ 70/30: lewa kolumna z wyróżnionymi wydarzeniami i listą, prawa kolumna z sidebarem.
 - `components/FeaturedEvents.tsx` - karuzela wyróżnionych wydarzeń; nie renderuje mapy.
-- `components/Sidebar.tsx` - prawa kolumna strony głównej z pojedynczą mapą Leaflet, CTA powiadomień, nadchodzącymi wydarzeniami i kategoriami.
+- `components/Sidebar.tsx` - prawa kolumna strony głównej z pojedynczą mapą MapLibre, CTA powiadomień, nadchodzącymi wydarzeniami i kategoriami.
+- `components/MapLibreMap.tsx` - wspólny komponent mapy dla strony głównej, eksploratora i szczegółów; używa GeoJSON source z `cluster: true`, warstw klastrów, warstw pojedynczych pinesek oraz ikon kategorii.
 - `components/EventExplorer.tsx` - filtry, lista i mapa dla widoków kategorii/miasta.
 - `components/NavbarClient.tsx` - menu, panel użytkownika i formularz wylogowania.
 - Komponenty map są ładowane dynamicznie bez SSR.
@@ -49,8 +50,11 @@ Zapytania Supabase są wydzielone poza UI:
 - `lib/event-editor.ts` - wspólne typy, statusy i parsowanie formularza wydarzenia.
 - `lib/filters.ts` - filtrowanie daty, promienia, kategorii i ceny po stronie klienta.
 - `lib/slugs.ts` - budowanie slugów i ścieżek.
+- `lib/supabase-config.ts` - wspólna konfiguracja publicznego URL i klucza Supabase; normalizuje `NEXT_PUBLIC_SUPABASE_URL` do samego originu.
 
 ## Klienci Supabase
+
+`lib/supabase-config.ts` czyta `NEXT_PUBLIC_SUPABASE_URL` oraz `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` albo fallback `NEXT_PUBLIC_SUPABASE_ANON_KEY`. URL Supabase jest normalizowany do originu, aby wartość z przypadkowym pathem typu `/rest/v1` nie psuła zapytań Supabase JS.
 
 `lib/supabase.ts` tworzy klienta publicznego bez sesji:
 
@@ -70,11 +74,14 @@ Globalny middleware nie jest obecnie używany. Ścieżki wymagające sesji korzy
 
 1. `app/page.tsx` wywołuje `getHomeData()`.
 2. `getHomeData()` pobiera wydarzenia od początku bieżącego dnia i kategorie.
-3. `HomePage` dostaje dane jako propsy.
-4. Filtrowanie po dacie, promieniu, kategorii, darmowe/płatne i sortowanie odbywa się w przeglądarce przez `filterEvents()`.
-5. `FeaturedEvents` pokazuje wyróżnione wydarzenia w lewej kolumnie, a `Sidebar` pokazuje mapę dla aktualnie przefiltrowanych wydarzeń.
+3. Jeśli publiczne zapytanie Supabase dla strony głównej zwróci błąd, `getHomeData()` loguje błąd i zwraca pusty zestaw wydarzeń oraz fallbackowe kategorie zamiast wywracać Server Component.
+4. `HomePage` dostaje dane jako propsy.
+5. Filtrowanie po dacie, promieniu, kategorii, darmowe/płatne i sortowanie odbywa się w przeglądarce przez `filterEvents()`.
+6. `FeaturedEvents` pokazuje wyróżnione wydarzenia w lewej kolumnie, a `Sidebar` pokazuje mapę dla aktualnie przefiltrowanych wydarzeń.
 
 W widokach `/kategoria/[slug]` i `/wydarzenia/[city]` początkowy zestaw danych też jest pobierany na serwerze, a dalsze filtrowanie robi client component `EventExplorer`.
+
+MapLibre używa stylu wektorowego i po załadowaniu stylu próbuje preferować pola `name:pl`, a potem `name`, `name:latin` i `name:nonlatin` dla warstw etykiet. Dzięki temu etykiety mapy są możliwie polskie bez dodatkowego klucza API.
 
 ## Routing i SEO
 
@@ -93,6 +100,7 @@ Strony szczegółów wydarzeń i kolekcji generują JSON-LD:
 
 - `app/loading.tsx` pokazuje globalny stan ładowania wydarzeń.
 - `app/error.tsx` pokazuje globalny błąd i przycisk ponowienia.
+- `components/Navbar.tsx` łapie błędy Supabase Auth/profilu i renderuje stan niezalogowany; wewnętrzne sygnały Next.js są przepuszczane przez `unstable_rethrow`.
 - Dla braku organizatora w panelu organizatora istnieje osobny empty state w `app/organizer/page.tsx`.
 
 ## Elementy wymagające potwierdzenia

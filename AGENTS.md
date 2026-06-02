@@ -15,7 +15,7 @@ Najważniejsza tabela domenowa to `events`, a publiczny frontend pokazuje tylko 
 - `@supabase/ssr` dla sesji SSR.
 - PostgreSQL/Supabase z typami w `database.types.ts`.
 - PostGIS jest obecny w typach bazy, ale kod aplikacji liczy odległość w JavaScripcie.
-- Leaflet, React Leaflet i OpenStreetMap.
+- MapLibre GL JS dla map; markery wydarzeń są renderowane jako GeoJSON source z włączonym clusteringiem.
 - CSS globalny w `app/globals.css`.
 
 ## Struktura aplikacji
@@ -30,6 +30,7 @@ Najważniejsza tabela domenowa to `events`, a publiczny frontend pokazuje tylko 
 - `lib/organizer-events.ts` - logika panelu organizatora.
 - `lib/event-editor.ts` - wspólne typy/statusy/pomocniki formularzy wydarzeń.
 - `lib/filters.ts` - filtrowanie client-side.
+- `lib/supabase-config.ts` - wspólna konfiguracja URL i klucza Supabase; normalizuje `NEXT_PUBLIC_SUPABASE_URL` do originu.
 - `lib/supabase.ts` - publiczny klient Supabase bez sesji.
 - `lib/supabase-user.ts` - klient Supabase SSR z cookies.
 - Sesja Supabase jest obsługiwana przez `lib/supabase-user.ts` w server components, server actions i route handlers; globalny `middleware.ts` nie jest obecnie używany.
@@ -70,6 +71,9 @@ Najważniejsze relacje:
 ## Najważniejsze reguły biznesowe
 
 - Publiczne strony pokazują tylko `events.status = 'published'`, `events.visibility = 'public'` i `is_cancelled` różne od `true`.
+- Strona główna ma fallback dla błędów publicznych zapytań Supabase: zamiast wywracać render, loguje błąd i pokazuje pusty stan/fallbackowe kategorie.
+- Globalny navbar nie powinien wywracać layoutu przy błędzie Supabase Auth albo profilu; renderuje wtedy stan niezalogowany i loguje błąd po stronie serwera.
+- Mapy powinny zachować polskie etykiety, clustering markerów i ikony kategorii na pineskach.
 - Admin może widzieć i edytować wszystkie wydarzenia.
 - Admin może ustawiać statusy: `draft`, `pending_review`, `published`, `rejected`, `archived`.
 - Organizator widzi tylko wydarzenia z `submitted_by_organizer_id` powiązanym z jego kontem przez `organizer_users`.
@@ -94,3 +98,4 @@ Najważniejsze relacje:
 10. Nie zapisuj sekretów Supabase service role w kodzie ani w zmiennych `NEXT_PUBLIC_*`.
 11. RLS policies nie są w repozytorium; ich aktualny stan zawsze wymaga potwierdzenia w Supabase.
 12. Dokumentację techniczną utrzymuj w `docs/`.
+13. Przy zmianach publicznego UI aktualizuj `docs/current-features.md`; przy zmianach konfiguracji/runtime aktualizuj `docs/architecture.md` i `docs/deployment.md`.

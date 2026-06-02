@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import type { EventItem, KnownLocation } from "@/lib/events";
 
-const LeafletMap = dynamic(() => import("@/components/LeafletMap"), {
+const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
   ssr: false,
   loading: () => <div className="mapLoading">Ładowanie mapy szczegółów…</div>
 });
@@ -15,7 +15,7 @@ type EventDetailMapProps = {
 
 export default function EventDetailMap({ event, location }: EventDetailMapProps) {
   return (
-    <LeafletMap
+    <MapLibreMap
       events={[event]}
       selectedEventId={event.id}
       location={location}

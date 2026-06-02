@@ -46,6 +46,22 @@ export default function SearchPanel({
   categories,
   onCategoryChange,
 }: SearchPanelProps) {
+  const customDateRange = parseCustomDateRangeValue(customDate);
+
+  function handleCustomDateFromChange(value: string) {
+    const nextTo = customDateRange.to && value && customDateRange.to < value
+      ? value
+      : customDateRange.to;
+    onCustomDateChange(serializeCustomDateRange(value, nextTo));
+  }
+
+  function handleCustomDateToChange(value: string) {
+    const nextFrom = customDateRange.from && value && customDateRange.from > value
+      ? value
+      : customDateRange.from;
+    onCustomDateChange(serializeCustomDateRange(nextFrom, value));
+  }
+
   return (
     <section className="searchPanel" id="search-panel" aria-label="Szukaj wydarzeń">
       {/* Top row: Location | Radius | Date | Category dropdown — all in one line */}
@@ -110,12 +126,28 @@ export default function SearchPanel({
             ))}
           </div>
           {dateFilter === "custom" && (
-            <input
-              className="searchCustomDate"
-              type="date"
-              value={customDate}
-              onChange={(e) => onCustomDateChange(e.target.value)}
-            />
+            <div className="dateRangeFields">
+              <label className="dateRangeField">
+                <span>Od</span>
+                <input
+                  className="searchCustomDate"
+                  type="date"
+                  value={customDateRange.from}
+                  max={customDateRange.to || undefined}
+                  onChange={(e) => handleCustomDateFromChange(e.target.value)}
+                />
+              </label>
+              <label className="dateRangeField">
+                <span>Do</span>
+                <input
+                  className="searchCustomDate"
+                  type="date"
+                  value={customDateRange.to}
+                  min={customDateRange.from || undefined}
+                  onChange={(e) => handleCustomDateToChange(e.target.value)}
+                />
+              </label>
+            </div>
           )}
         </div>
 
@@ -162,6 +194,17 @@ export default function SearchPanel({
       </div>
     </section>
   );
+}
+
+function parseCustomDateRangeValue(value: string) {
+  const [from = "", to = ""] = value.split("/");
+  return { from, to };
+}
+
+function serializeCustomDateRange(from: string, to: string) {
+  if (from && to) return `${from}/${to}`;
+  if (to) return `/${to}`;
+  return from;
 }
 
 function CategoryIcon({ name }: { name: EventCategory | "Wszystkie" }) {

@@ -28,7 +28,7 @@ Pierwsza wersja ma udowodnić wartość produktu, dlatego nie zawiera jeszcze cr
 
 - Frontend: Next.js 15, React 19, TypeScript.
 - UI: CSS/Tailwind-ready, docelowo shadcn/ui.
-- Mapa: Leaflet + OpenStreetMap.
+- Mapa: MapLibre GL JS.
 - Backend: Supabase.
 - Baza: PostgreSQL + PostGIS.
 - Auth: Supabase Auth.

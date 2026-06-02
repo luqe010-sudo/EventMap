@@ -7,15 +7,22 @@ Strona główna `/`:
 - pobiera wydarzenia z Supabase przez `getHomeData()`;
 - pokazuje hero, panel wyszukiwania, sticky filter bar oraz układ 70/30 z lewą kolumną wydarzeń i prawym sidebarem;
 - w lewej kolumnie pokazuje wyróżnione wydarzenia nad listą wydarzeń;
-- w prawym sidebarze pokazuje jedną mapę Leaflet, powiadomienia, nadchodzące wydarzenia i popularne kategorie;
-- filtruje po dacie, promieniu, kategorii i opcji darmowych wydarzeń;
+- w prawym sidebarze pokazuje jeden spójny panel z mapą MapLibre, powiadomieniami, nadchodzącymi wydarzeniami i popularnymi kategoriami;
+- mapa w sidebarze jest osadzona bezpośrednio w dużym panelu, ma wewnętrzny margines, zaokrąglenie i przycisk `Pokaż listę` na mapie;
+- mapa grupuje blisko położone wydarzenia w klastry; kliknięcie klastra przybliża widok.
+- pojedyncze pineski używają koloru i ikony kategorii wydarzenia.
+- etykiety mapy są preferowane w języku polskim, jeśli styl kafelków udostępnia pole `name:pl`.
+- filtruje po presetach daty, niestandardowym zakresie dat, promieniu, kategorii i opcji darmowych wydarzeń;
 - pozwala wybrać lokalizację z autouzupełniania albo GPS;
 - sortuje po odległości albo dacie.
+- na widoku mobilnym układa hero i blok informacyjny w pojedynczej, czytelnej kolumnie.
 
 Widok `EventExplorer`:
 
 - jest używany na stronach kategorii i miasta;
-- pokazuje listę i mapę Leaflet;
+- pokazuje listę i mapę MapLibre;
+- grupuje markery wydarzeń w klastry i pozwala wybierać pojedyncze wydarzenia z mapy;
+- pozwala filtrować po presetach daty albo niestandardowym zakresie dat;
 - pozwala wybrać wydarzenie i zobaczyć szczegóły w panelu.
 
 ## Szczegóły wydarzenia
@@ -131,6 +138,8 @@ Strona:
 ## Stany techniczne
 
 - Globalne `loading.tsx` i `error.tsx`.
+- Strona główna ma fallback dla błędów publicznego pobierania wydarzeń/kategorii z Supabase: renderuje pusty stan i fallbackowe kategorie oraz loguje błąd po stronie serwera.
+- Navbar ma fallback dla błędów Supabase Auth/profilu i pokazuje stan niezalogowany zamiast wywracać cały layout.
 - Dynamiczne ładowanie map bez SSR.
 - JSON-LD dla wydarzenia, strony miasta i kategorii.
 - Przykładowe wydarzenia demo można dodać przez `supabase/seed-demo-events.sql`; seed używa slugów `demo-*` i jest idempotentny.

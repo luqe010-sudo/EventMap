@@ -56,15 +56,39 @@ export function resolveDateRange(dateFilter: DateFilter, customDate: string, now
     return { start, end };
   }
 
-  if (customDate) {
-    const selected = new Date(`${customDate}T00:00:00`);
-    const selectedEnd = new Date(selected);
-    selectedEnd.setDate(selected.getDate() + 1);
-    return { start: selected, end: selectedEnd };
+  const customRange = parseCustomDateRange(customDate);
+
+  if (customRange) {
+    const selectedStart = new Date(`${customRange.from}T00:00:00`);
+    const selectedEnd = new Date(`${customRange.to}T00:00:00`);
+    selectedEnd.setDate(selectedEnd.getDate() + 1);
+    return { start: selectedStart, end: selectedEnd };
   }
 
   end.setDate(start.getDate() + 1);
   return { start, end };
+}
+
+function parseCustomDateRange(customDate: string) {
+  const [rawFrom, rawTo] = customDate.split("/");
+  const from = normalizeDateInput(rawFrom);
+  const to = normalizeDateInput(rawTo);
+
+  if (!from && !to) return null;
+
+  const rangeFrom = from ?? to;
+  const rangeTo = to ?? from;
+
+  if (!rangeFrom || !rangeTo) return null;
+
+  return rangeFrom <= rangeTo
+    ? { from: rangeFrom, to: rangeTo }
+    : { from: rangeTo, to: rangeFrom };
+}
+
+function normalizeDateInput(value?: string) {
+  const trimmed = value?.trim();
+  return trimmed && /^\d{4}-\d{2}-\d{2}$/.test(trimmed) ? trimmed : null;
 }
 
 export function distanceInKm(origin: KnownLocation, event: Pick<EventItem, "latitude" | "longitude">) {

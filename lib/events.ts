@@ -287,20 +287,46 @@ export async function getHomeData() {
   today.setHours(0, 0, 0, 0);
 
   const [events, categoryRows] = await Promise.all([
-    listEvents({ dateFrom: today.toISOString(), limit: 120 }),
-    listCategories()
+    getHomeEvents(today.toISOString()),
+    getHomeCategories()
   ]);
 
   return {
     events,
-    categories: categoryRows.length ? categoryRows : categories.map((name) => ({
-      id: name,
-      name,
-      slug: createSlug(name),
-      icon: null,
-      color: categoryColors[name] ?? DEFAULT_CATEGORY_COLOR
-    }))
+    categories: categoryRows.length ? categoryRows : getFallbackCategoryOptions()
   };
+}
+
+async function getHomeEvents(dateFrom: string) {
+  try {
+    return await listEvents({ dateFrom, limit: 120 });
+  } catch (error) {
+    logPublicDataError("home events", error);
+    return [];
+  }
+}
+
+async function getHomeCategories() {
+  try {
+    return await listCategories();
+  } catch (error) {
+    logPublicDataError("home categories", error);
+    return getFallbackCategoryOptions();
+  }
+}
+
+function getFallbackCategoryOptions(): CategoryOption[] {
+  return categories.map((name) => ({
+    id: name,
+    name,
+    slug: createSlug(name),
+    icon: null,
+    color: categoryColors[name] ?? DEFAULT_CATEGORY_COLOR
+  }));
+}
+
+function logPublicDataError(context: string, error: unknown) {
+  console.error(`[events] Failed to load ${context}`, error);
 }
 
 export function getDefaultLocation(): KnownLocation {
