@@ -51,7 +51,13 @@ export async function signUpAction(formData: FormData): Promise<{ success: boole
     const supabase = await createSupabaseUserClient();
     const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
       email,
-      password
+      password,
+      options: {
+        data: {
+          display_name: displayName,
+          role: role
+        }
+      }
     });
 
     if (signUpError || !signUpData.user) {
@@ -64,83 +70,83 @@ export async function signUpAction(formData: FormData): Promise<{ success: boole
         access_token: signUpData.session.access_token,
         refresh_token: signUpData.session.refresh_token
       });
-    }
 
-    const authUser = signUpData.user;
+      const authUser = signUpData.user;
 
-    // Safe insert/update profile: triggers might create profiles automatically in some Supabase projects
-    const { data: existingProfile, error: profileSelectError } = await supabase
-      .from("profiles")
-      .select("id")
-      .eq("id", authUser.id)
-      .maybeSingle();
-
-    if (profileSelectError) {
-      // If select fails (e.g. RLS blocks select for unconfirmed user), attempt direct insert
-      const { error: profileError } = await supabase
+      // Safe insert/update profile: triggers might create profiles automatically in some Supabase projects
+      const { data: existingProfile, error: profileSelectError } = await supabase
         .from("profiles")
-        .insert({
-          id: authUser.id,
-          display_name: displayName,
-          role: role
-        });
-      if (profileError) {
-        return { success: false, error: `Nie udalo sie utworzyc profilu uzytkownika: ${profileError.message}` };
-      }
-    } else if (!existingProfile) {
-      const { error: profileError } = await supabase
-        .from("profiles")
-        .insert({
-          id: authUser.id,
-          display_name: displayName,
-          role: role
-        });
-      if (profileError) {
-        return { success: false, error: `Nie udalo sie utworzyc profilu uzytkownika: ${profileError.message}` };
-      }
-    } else {
-      const { error: updateError } = await supabase
-        .from("profiles")
-        .update({
-          display_name: displayName,
-          role: role
-        })
-        .eq("id", authUser.id);
-      if (updateError) {
-        return { success: false, error: `Nie udalo sie zaktualizowac profilu uzytkownika: ${updateError.message}` };
-      }
-    }
-
-    // Create organizer if they selected "organizer" role
-    if (role === "organizer") {
-      const orgName = (typeof organizerName === "string" && organizerName.trim()) || displayName;
-      const orgSlug = createSlug(orgName);
-
-      const { data: orgData, error: orgError } = await supabase
-        .from("organizers")
-        .insert({
-          name: orgName,
-          slug: orgSlug,
-          email: email,
-          is_verified: false
-        })
         .select("id")
-        .single();
+        .eq("id", authUser.id)
+        .maybeSingle();
 
-      if (orgError) {
-        return { success: false, error: `Nie udalo sie utworzyc profilu organizatora: ${orgError.message}` };
+      if (profileSelectError) {
+        // If select fails (e.g. RLS blocks select for unconfirmed user), attempt direct insert
+        const { error: profileError } = await supabase
+          .from("profiles")
+          .insert({
+            id: authUser.id,
+            display_name: displayName,
+            role: role
+          });
+        if (profileError) {
+          return { success: false, error: `Nie udalo sie utworzyc profilu uzytkownika: ${profileError.message}` };
+        }
+      } else if (!existingProfile) {
+        const { error: profileError } = await supabase
+          .from("profiles")
+          .insert({
+            id: authUser.id,
+            display_name: displayName,
+            role: role
+          });
+        if (profileError) {
+          return { success: false, error: `Nie udalo sie utworzyc profilu uzytkownika: ${profileError.message}` };
+        }
+      } else {
+        const { error: updateError } = await supabase
+          .from("profiles")
+          .update({
+            display_name: displayName,
+            role: role
+          })
+          .eq("id", authUser.id);
+        if (updateError) {
+          return { success: false, error: `Nie udalo sie zaktualizowac profilu uzytkownika: ${updateError.message}` };
+        }
       }
 
-      const { error: memberError } = await supabase
-        .from("organizer_users")
-        .insert({
-          organizer_id: orgData.id,
-          user_id: authUser.id,
-          role: "owner"
-        });
+      // Create organizer if they selected "organizer" role
+      if (role === "organizer") {
+        const orgName = (typeof organizerName === "string" && organizerName.trim()) || displayName;
+        const orgSlug = createSlug(orgName);
 
-      if (memberError) {
-        return { success: false, error: `Nie udalo sie powiazac uzytkownika z organizatorem: ${memberError.message}` };
+        const { data: orgData, error: orgError } = await supabase
+          .from("organizers")
+          .insert({
+            name: orgName,
+            slug: orgSlug,
+            email: email,
+            is_verified: false
+          })
+          .select("id")
+          .single();
+
+        if (orgError) {
+          return { success: false, error: `Nie udalo sie utworzyc profilu organizatora: ${orgError.message}` };
+        }
+
+        const { error: memberError } = await supabase
+          .from("organizer_users")
+          .insert({
+            organizer_id: orgData.id,
+            user_id: authUser.id,
+            role: "owner"
+          });
+
+        if (memberError) {
+          return { success: false, error: `Nie udalo sie powiazac uzytkownika z organizatorem: ${memberError.message}` };
+        }
       }
     }
 
