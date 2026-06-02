@@ -2440,12 +2440,20 @@ select:focus {
   gap: 32px;
 }
 
-.eventDetailTopGrid,
+.eventDetailMediaGrid,
 .eventDetailBodyGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
   gap: 28px;
   align-items: start;
+}
+
+.eventDetailMediaGrid {
+  align-items: stretch;
+}
+
+.eventDetailBodyGrid {
+  grid-template-columns: minmax(0, 0.95fr) minmax(430px, 0.8fr);
 }
 
 .eventDetailMain {
@@ -2456,11 +2464,6 @@ select:focus {
 
 .eventDetailDescriptionBlock {
   align-self: start;
-}
-
-.eventDetailHeroBlock {
-  display: grid;
-  gap: 18px;
 }
 
 .eventDetailIntroCard {
@@ -2790,6 +2793,7 @@ select:focus {
 .eventDetailSummaryCard {
   display: grid;
   gap: 14px;
+  height: 100%;
 }
 
 .eventSummaryItem {
@@ -3575,7 +3579,7 @@ select:focus {
 }
 
 @media (max-width: 980px) {
-  .eventDetailTopGrid,
+  .eventDetailMediaGrid,
   .eventDetailBodyGrid {
     grid-template-columns: 1fr;
   }
