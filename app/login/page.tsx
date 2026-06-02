@@ -8,10 +8,8 @@ type LoginPageProps = {
 };
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
-  const resolvedParams = searchParams && typeof (searchParams as any).then === "function"
-    ? await searchParams
-    : (searchParams as any);
-  const isSignupSuccess = resolvedParams?.signup === "success";
+  const params = await searchParams;
+  const isSignupSuccess = params?.signup === "success";
 
   return (
     <main className="appShell managementShell">
