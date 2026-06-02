@@ -90,9 +90,9 @@ export default function EventDetailView({ event, relatedEvents = [] }: EventDeta
       />
 
       <article className="eventDetailShell">
-        <div className="eventDetailMain">
+        <div className="eventDetailTopGrid">
           <header className="eventDetailHeroBlock">
-            <div className="eventDetailTitleRow">
+            <div className="eventDetailIntroCard">
               <div>
                 <span className="eventDetailCategoryBadge" style={{ backgroundColor: event.categoryColor }}>
                   {event.category}
@@ -111,12 +111,40 @@ export default function EventDetailView({ event, relatedEvents = [] }: EventDeta
             </div>
           </header>
 
+          <aside className="eventDetailSummaryColumn">
+            <section className="eventDetailSummaryCard" aria-label="Szczegoly wydarzenia">
+              <h2>Szczegoly wydarzenia</h2>
+              <SummaryItem label="Kiedy" value={formatDateRange(event.start_at, event.end_at)} />
+              <SummaryItem
+                label="Gdzie"
+                value={event.address || "Lokalizacja nieznana"}
+                extra={
+                  <>
+                    <a href={`#${mapTargetId}`}>Pokaz na mapie</a>
+                    {event.city ? <Link href={cityPath}>Inne wydarzenia w {event.city}</Link> : null}
+                  </>
+                }
+              />
+              <SummaryItem label="Kategoria" value={event.category} />
+              <SummaryItem label="Cena" value={event.price} />
+            </section>
+          </aside>
+        </div>
+
+        <div className="eventDetailBodyGrid">
+          <div className="eventDetailMain">
           <section className="eventDetailSection">
             <h2>Opis wydarzenia</h2>
             <div className="eventDescription">
               {splitDescription(event.description ?? event.short_description).map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
+            </div>
+          </section>
+
+          <section className="eventDetailMapPlain" id={mapTargetId} aria-label="Mapa wydarzenia">
+            <div className="detailMapContainer">
+              <EventDetailMap event={event} location={eventLocation} />
             </div>
           </section>
 
@@ -199,40 +227,8 @@ export default function EventDetailView({ event, relatedEvents = [] }: EventDeta
               </div>
             </section>
           ) : null}
+          </div>
         </div>
-
-        <aside className="eventDetailSidebar">
-          <section className="eventDetailSummaryCard" aria-label="Szczegoly wydarzenia">
-            <h2>Szczegoly wydarzenia</h2>
-            <SummaryItem label="Kiedy" value={formatDateRange(event.start_at, event.end_at)} />
-            <SummaryItem
-              label="Gdzie"
-              value={event.address || "Lokalizacja nieznana"}
-              extra={
-                <>
-                  <a href={`#${mapTargetId}`}>Pokaz na mapie</a>
-                  {event.city ? <Link href={cityPath}>Inne wydarzenia w {event.city}</Link> : null}
-                </>
-              }
-            />
-            <SummaryItem label="Kategoria" value={event.category} />
-            <SummaryItem label="Cena" value={event.price} />
-          </section>
-
-          <section className="eventDetailMapCard" id={mapTargetId}>
-            <div className="eventDetailSectionHeader">
-              <h2>Mapa</h2>
-              {event.location?.google_maps_url ? (
-                <a href={event.location.google_maps_url} target="_blank" rel="noopener noreferrer">
-                  Google Maps
-                </a>
-              ) : null}
-            </div>
-            <div className="detailMapContainer">
-              <EventDetailMap event={event} location={eventLocation} />
-            </div>
-          </section>
-        </aside>
       </article>
     </main>
   );
