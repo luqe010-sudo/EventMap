@@ -2425,6 +2425,8 @@ select:focus {
 
 /* Modern event detail page */
 .eventDetailPage {
+  position: relative;
+  z-index: 1;
   padding-top: 22px;
 }
 
@@ -2434,6 +2436,12 @@ select:focus {
 }
 
 .eventDetailShell {
+  display: grid;
+  gap: 32px;
+}
+
+.eventDetailTopGrid,
+.eventDetailBodyGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
   gap: 28px;
@@ -2451,11 +2459,18 @@ select:focus {
   gap: 18px;
 }
 
-.eventDetailTitleRow {
+.eventDetailIntroCard {
+  position: relative;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
+  border: 1px solid rgba(39, 35, 34, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-sm);
+  padding: 18px;
 }
 
 .eventDetailCategoryBadge {
@@ -2471,7 +2486,7 @@ select:focus {
   text-transform: uppercase;
 }
 
-.eventDetailTitleRow h1 {
+.eventDetailIntroCard h1 {
   max-width: 760px;
   margin: 12px 0 10px;
   color: #171413;
@@ -2562,8 +2577,7 @@ select:focus {
 }
 
 .eventDetailSection h2,
-.eventDetailSummaryCard h2,
-.eventDetailMapCard h2 {
+.eventDetailSummaryCard h2 {
   margin: 0;
   color: #171413;
   font-family: var(--font-title);
@@ -2765,15 +2779,7 @@ select:focus {
   color: #157f48;
 }
 
-.eventDetailSidebar {
-  position: sticky;
-  top: 88px;
-  display: grid;
-  gap: 18px;
-}
-
-.eventDetailSummaryCard,
-.eventDetailMapCard {
+.eventDetailSummaryCard {
   border: 1px solid rgba(39, 35, 34, 0.09);
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.94);
@@ -2829,14 +2835,10 @@ select:focus {
   text-decoration: underline;
 }
 
-.eventDetailMapCard {
-  display: grid;
-  gap: 14px;
-}
-
-.eventDetailMapCard .detailMapContainer {
-  height: 300px;
-  border-radius: 12px;
+.eventDetailMapPlain .detailMapContainer {
+  height: 430px;
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
 }
 
 /* Old detail panel (used in EventExplorer for /wydarzenia routes) */
@@ -3573,15 +3575,12 @@ select:focus {
 }
 
 @media (max-width: 980px) {
-  .eventDetailShell {
+  .eventDetailTopGrid,
+  .eventDetailBodyGrid {
     grid-template-columns: 1fr;
   }
 
-  .eventDetailSidebar {
-    position: static;
-  }
-
-  .eventDetailTitleRow {
+  .eventDetailIntroCard {
     flex-direction: column;
   }
 
