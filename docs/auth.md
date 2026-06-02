@@ -2,92 +2,98 @@
 
 ## Mechanizm logowania
 
-Aplikacja używa Supabase Auth. Formularz `/login` wysyła dane do server action `signInAction()` z `lib/auth-actions.ts`.
+Aplikacja uzywa Supabase Auth. Formularz `/login` renderuje `components/LoginForm.tsx`, ktory wywoluje `signInFormAction()` z `lib/auth-actions.ts` przez `useActionState()`.
 
-`signInAction()`:
+`signInFormAction()`:
 
 1. Odczytuje `email` i `password` z `FormData`.
-2. Wywołuje `supabase.auth.signInWithPassword()`.
+2. Wywoluje `supabase.auth.signInWithPassword()`.
 3. Po sukcesie przekierowuje na `/`.
-4. Po błędzie rzuca wyjątek z komunikatem Supabase.
+4. Po bledzie zwraca stan formularza z komunikatem, zeby zwykly blad logowania nie powodowal 500 w Server Components.
 
-W kodzie nie ma formularza rejestracji ani resetowania hasła.
+`signInAction(formData)` zostaje dostepna jako prosty wariant tej samej logiki.
+
+## Rejestracja
+
+Aplikacja ma formularz `/register`, ktory wywoluje `signUpAction()` z `lib/auth-actions.ts`.
+
+`signUpAction()`:
+
+1. Tworzy uzytkownika przez `supabase.auth.signUp()`.
+2. Zapisuje `display_name`, `role` i opcjonalna nazwe organizatora w metadanych Auth.
+3. Gdy Supabase zwroci sesje, zapisuje/aktualizuje rekord w `profiles`.
+4. Dla roli `organizer` tworzy rekord w `organizers` i powiazanie w `organizer_users`, jesli nie istnieje.
+
+Jesli logowanie zwroci blad `Email not confirmed`, kod pokazuje komunikat w formularzu. Przy rejestracji bez weryfikacji email trzeba potwierdzic konfiguracje Supabase Auth, bo repozytorium nie zawiera ustawien panelu Supabase.
 
 ## Sesja SSR
 
 `lib/supabase-user.ts` tworzy klienta Supabase przez `createServerClient` z `@supabase/ssr`. Klient korzysta z cookies Next.js.
 
-Globalny `middleware.ts` nie jest obecnie używany. Sesja jest odczytywana w server components, server actions i route handlers przez `createSupabaseUserClient()`. Dzięki temu aplikacja nie ładuje klienta Supabase w Vercel Edge Middleware.
-- działa dla ścieżek innych niż statyczne assety i obrazy.
+Globalny `middleware.ts` nie jest obecnie uzywany. Sesja jest odczytywana w server components, server actions i route handlers przez `createSupabaseUserClient()`.
 
-## Profil użytkownika
+## Profil uzytkownika
 
 `getCurrentUserContext()` w `lib/auth.ts`:
 
-1. Pobiera aktualnego użytkownika przez `supabase.auth.getUser()`.
-2. Jeśli nie ma użytkownika, zwraca `null`.
+1. Pobiera aktualnego uzytkownika przez `supabase.auth.getUser()`.
+2. Jesli nie ma uzytkownika, zwraca `null`.
 3. Pobiera rekord z `profiles` po `id = auth.users.id`.
 4. Zwraca `{ userId, profile }`.
 
-Kod zakłada role w `profiles.role`:
+Kod zaklada role w `profiles.role`:
 
 - `admin`
 - `organizer`
 - `user`
 
-## Dostęp admina
+## Dostep admina
 
 `requireAdmin()`:
 
 - przekierowuje niezalogowanych na `/login`;
-- przekierowuje użytkowników bez `profile.role === "admin"` na `/`;
-- zwraca kontekst admina dla dalszych zapytań.
+- przekierowuje uzytkownikow bez `profile.role === "admin"` na `/`;
+- zwraca kontekst admina dla dalszych zapytan.
 
-Użycie:
-
-- `getAdminDashboard()`
-- `listAdminEvents()`
-- `getAdminEventEditorOptions()`
-- `getAdminEventForEdit()`
-- akcje tworzenia/edycji/statusu/usuwania wydarzeń;
-- akcje i listy organizatorów.
-
-## Dostęp organizatora
+## Dostep organizatora
 
 `requireOrganizerAccess()`:
 
 - przekierowuje niezalogowanych na `/login`;
 - dla admina zwraca `isAdmin: true`, ale bez memberships;
-- dla roli innej niż `organizer` przekierowuje na `/`;
+- dla roli innej niz `organizer` przekierowuje na `/`;
 - dla organizatora pobiera `organizer_users` przez `listOrganizerMemberships(userId)`;
-- jeśli konto organizatora nie ma memberships, panel pokazuje empty state "Brakuje organizatora".
+- jesli konto organizatora nie ma memberships, panel pokazuje empty state "Brakuje organizatora".
 
-W praktyce funkcje organizatora wymagają memberships, bo operują na `submitted_by_organizer_id`.
+W praktyce funkcje organizatora wymagaja memberships, bo operuja na `submitted_by_organizer_id`.
 
 ## Navbar
 
 `components/Navbar.tsx` jest server componentem:
 
-- pobiera użytkownika przez Supabase;
-- jeśli nie ma użytkownika, przekazuje `isLoggedIn: false`;
-- jeśli użytkownik jest zalogowany, pobiera `profiles.display_name` i `profiles.role`;
+- pobiera uzytkownika przez Supabase;
+- jesli nie ma uzytkownika, przekazuje `isLoggedIn: false`;
+- jesli uzytkownik jest zalogowany, pobiera `profiles.display_name` i `profiles.role`;
 - `NavbarClient` pokazuje link `Panel` dla `admin` albo `organizer`;
-- wylogowanie odbywa się formularzem `POST /auth/sign-out`.
+- wylogowanie odbywa sie formularzem `POST /auth/sign-out`.
 
 ## Wymagane RLS policies
 
-Repozytorium nie zawiera definicji RLS, więc faktyczny stan wymaga potwierdzenia. Kod wymaga przynajmniej:
+Repozytorium nie zawiera definicji RLS, wiec faktyczny stan wymaga potwierdzenia. Kod wymaga przynajmniej:
 
-- użytkownik może odczytać swój rekord `profiles`;
-- admin może odczytywać i zapisywać tabele zarządcze;
-- organizator może odczytywać swoje `organizer_users`;
-- organizator może tworzyć i edytować wydarzenia tylko dla powiązanych `organizer_id`;
-- publiczny klient może czytać opublikowane publiczne wydarzenia i relacje potrzebne na frontendzie;
-- akcje admina/organizatora mogą tworzyć `locations` i `event_sources`.
+- uzytkownik moze odczytac swoj rekord `profiles`;
+- uzytkownik moze utworzyc lub zaktualizowac swoj rekord `profiles` podczas rejestracji;
+- organizator moze odczytywac swoje `organizer_users`;
+- organizator moze tworzyc powiazanie `organizer_users` dla siebie podczas rejestracji albo istnieje trigger/service flow, ktory robi to za aplikacje;
+- admin moze odczytywac i zapisywac tabele zarzadcze;
+- organizator moze tworzyc i edytowac wydarzenia tylko dla powiazanych `organizer_id`;
+- publiczny klient moze czytac opublikowane publiczne wydarzenia i relacje potrzebne na frontendzie;
+- akcje admina/organizatora moga tworzyc `locations` i `event_sources`.
 
-## Elementy wymagające potwierdzenia
+## Elementy wymagajace potwierdzenia
 
-- Czy istnieje trigger tworzący `profiles` po utworzeniu użytkownika.
+- Czy Supabase Auth ma wylaczone potwierdzanie email dla scenariusza rejestracji bez weryfikacji.
+- Czy istnieje trigger tworzacy `profiles` po utworzeniu uzytkownika.
 - Czy `profiles.id` ma FK do `auth.users.id`.
 - Czy `organizer_users.user_id` ma FK do `auth.users.id`.
-- Czy w Supabase włączone są wyłącznie logowania email/hasło, czy także inni providerzy.
+- Czy w Supabase wlaczone sa wylacznie logowania email/haslo, czy takze inni providerzy.

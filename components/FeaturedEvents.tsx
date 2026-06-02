@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { EventItem } from "@/lib/events";
 import { isFreeEvent } from "@/lib/events";
 import { eventPath } from "@/lib/slugs";
+import { addDaysToDateKey, formatPolishDate, getDateKeyInAppTimeZone } from "@/lib/date-format";
 
 type FeaturedEventsProps = {
   events: Array<{ event: EventItem; distanceKm: number }>;
@@ -35,7 +36,6 @@ export default function FeaturedEvents({ events }: FeaturedEventsProps) {
   return (
     <section className="featuredSection">
       <div className="featuredLayout featuredLayoutSingle">
-        {/* Left: carousel */}
         <div className="featuredLeft">
           <div className="featuredHeader">
             <div className="featuredHeaderLeft">
@@ -44,10 +44,10 @@ export default function FeaturedEvents({ events }: FeaturedEventsProps) {
             <div className="featuredHeaderRight">
               <Link href="#events-list" className="featuredSeeAll">Zobacz liste</Link>
               <div className="featuredNav">
-                <button type="button" className="featuredNavBtn" onClick={() => scroll("left")} disabled={!canScrollLeft} aria-label="Przewiń w lewo">
+                <button type="button" className="featuredNavBtn" onClick={() => scroll("left")} disabled={!canScrollLeft} aria-label="Przewin w lewo">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6" /></svg>
                 </button>
-                <button type="button" className="featuredNavBtn" onClick={() => scroll("right")} disabled={!canScrollRight} aria-label="Przewiń w prawo">
+                <button type="button" className="featuredNavBtn" onClick={() => scroll("right")} disabled={!canScrollRight} aria-label="Przewin w prawo">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
                 </button>
               </div>
@@ -74,11 +74,11 @@ export default function FeaturedEvents({ events }: FeaturedEventsProps) {
                     <h3 className="featuredCardTitle">{event.title}</h3>
                     <div className="featuredCardInfo">
                       <span>{event.city}</span>
-                      <span>•</span>
+                      <span>-</span>
                       <span>{Number.isFinite(distanceKm) ? `${distanceKm.toFixed(1)} km` : ""}</span>
-                      <span>•</span>
+                      <span>-</span>
                       <span className={isFree ? "featuredCardFree" : ""}>
-                        {isFree ? "Bezpłatne" : event.price}
+                        {isFree ? "Bezplatne" : event.price}
                       </span>
                     </div>
                   </div>
@@ -94,14 +94,14 @@ export default function FeaturedEvents({ events }: FeaturedEventsProps) {
 
 function formatFeaturedDate(value: string) {
   const date = new Date(value);
-  const now = new Date();
-  const today = new Date(now); today.setHours(0, 0, 0, 0);
-  const tomorrow = new Date(today); tomorrow.setDate(tomorrow.getDate() + 1);
-  const eventDay = new Date(date); eventDay.setHours(0, 0, 0, 0);
-  const timeStr = new Intl.DateTimeFormat("pl-PL", { hour: "2-digit", minute: "2-digit" }).format(date);
+  const todayKey = getDateKeyInAppTimeZone(new Date());
+  const tomorrowKey = addDaysToDateKey(todayKey, 1);
+  const eventKey = getDateKeyInAppTimeZone(date);
+  const timeStr = formatPolishDate(date, { hour: "2-digit", minute: "2-digit" });
 
-  if (eventDay.getTime() === today.getTime()) return `DZIŚ • ${timeStr}`;
-  if (eventDay.getTime() === tomorrow.getTime()) return `JUTRO • ${timeStr}`;
-  const dayStr = new Intl.DateTimeFormat("pl-PL", { weekday: "short" }).format(date).toUpperCase();
-  return `${dayStr} • ${timeStr}`;
+  if (eventKey === todayKey) return `DZIS - ${timeStr}`;
+  if (eventKey === tomorrowKey) return `JUTRO - ${timeStr}`;
+
+  const dayStr = formatPolishDate(date, { weekday: "short" }).toUpperCase();
+  return `${dayStr} - ${timeStr}`;
 }

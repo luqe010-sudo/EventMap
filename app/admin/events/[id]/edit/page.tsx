@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import AdminSectionNav from "@/components/AdminSectionNav";
 import EventEditorForm from "@/components/EventEditorForm";
 import {
   adminUpdateEventAction,
@@ -29,6 +30,8 @@ export default async function AdminEditEventPage({ params }: { params: Promise<P
         </div>
         <Link href="/admin/events" className="secondaryButton">Wroc do listy</Link>
       </div>
+
+      <AdminSectionNav active="events" />
 
       <section className="managementPanel">
         <EventEditorForm

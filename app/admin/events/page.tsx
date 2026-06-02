@@ -1,9 +1,11 @@
 import Link from "next/link";
+import AdminSectionNav from "@/components/AdminSectionNav";
 import {
   adminDeleteEventAction,
   adminSetEventStatusAction,
   listAdminEvents
 } from "@/lib/admin-events";
+import { formatPolishDate } from "@/lib/date-format";
 
 export const dynamic = "force-dynamic";
 
@@ -18,10 +20,11 @@ export default async function AdminEventsPage() {
           <h1>Wydarzenia</h1>
         </div>
         <div className="managementActions">
-          <Link href="/admin/organizers/new" className="secondaryButton">Dodaj organizatora</Link>
           <Link href="/admin/events/new" className="primaryButton">Dodaj wydarzenie</Link>
         </div>
       </div>
+
+      <AdminSectionNav active="events" />
 
       <section className="managementPanel">
         <div className="managementTableWrap">
@@ -74,5 +77,5 @@ export default async function AdminEventsPage() {
 }
 
 function formatDate(value: string) {
-  return new Intl.DateTimeFormat("pl-PL", { dateStyle: "medium", timeStyle: "short" }).format(new Date(value));
+  return formatPolishDate(value, { dateStyle: "medium", timeStyle: "short" });
 }

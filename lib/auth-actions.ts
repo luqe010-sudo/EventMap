@@ -4,21 +4,61 @@ import { redirect } from "next/navigation";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
 import { createSlug } from "@/lib/event-editor";
 
-export async function signInAction(formData: FormData) {
+export type SignInFormState = {
+  error: string | null;
+};
+
+export async function signInAction(formData: FormData): Promise<SignInFormState> {
+  return signInWithFormData(formData);
+}
+
+export async function signInFormAction(
+  _previousState: SignInFormState,
+  formData: FormData
+): Promise<SignInFormState> {
+  return signInWithFormData(formData);
+}
+
+async function signInWithFormData(formData: FormData): Promise<SignInFormState> {
   const email = formData.get("email");
   const password = formData.get("password");
   if (typeof email !== "string" || typeof password !== "string") {
-    throw new Error("Email i haslo sa wymagane.");
+    return { error: "Email i haslo sa wymagane." };
   }
 
-  const supabase = await createSupabaseUserClient();
+  let supabase: Awaited<ReturnType<typeof createSupabaseUserClient>>;
+  try {
+    supabase = await createSupabaseUserClient();
+  } catch (error) {
+    console.error("[auth] Failed to create Supabase user client", error);
+    return { error: "Nie udalo sie polaczyc z usluga logowania." };
+  }
+
   const { error } = await supabase.auth.signInWithPassword({
     email,
     password
   });
 
-  if (error) throw new Error(`Nie udalo sie zalogowac: ${error.message}`);
+  if (error) {
+    console.error("[auth] Failed to sign in", error);
+    return { error: mapSignInError(error.message) };
+  }
+
   redirect("/");
+}
+
+function mapSignInError(message: string) {
+  const normalized = message.toLowerCase();
+
+  if (normalized.includes("email not confirmed")) {
+    return "Konto nie jest jeszcze aktywne. Jesli rejestracja ma pomijac weryfikacje email, wylacz potwierdzanie email w Supabase Auth albo potwierdz konto w panelu Supabase.";
+  }
+
+  if (normalized.includes("invalid login credentials")) {
+    return "Nieprawidlowy email lub haslo.";
+  }
+
+  return `Nie udalo sie zalogowac: ${message}`;
 }
 
 export async function signUpAction(formData: FormData): Promise<{ success: boolean; error?: string }> {

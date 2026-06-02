@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import { categories, knownLocations, type EventCategory, type EventItem, type KnownLocation } from "@/lib/events";
 import { filterEvents, type DateFilter } from "@/lib/filters";
 import { eventPath } from "@/lib/slugs";
+import { formatPolishDate } from "@/lib/date-format";
 import CityAutocomplete from "@/components/CityAutocomplete";
 
 const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
@@ -333,13 +334,13 @@ export default function EventExplorer({
 }
 
 function formatDate(value: string) {
-  return new Intl.DateTimeFormat("pl-PL", {
+  return formatPolishDate(value, {
     weekday: "short",
     day: "2-digit",
     month: "long",
     hour: "2-digit",
     minute: "2-digit"
-  }).format(new Date(value));
+  });
 }
 
 function parseCustomDateRangeValue(value: string) {

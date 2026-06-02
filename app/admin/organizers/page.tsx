@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AdminSectionNav from "@/components/AdminSectionNav";
 import { listAdminOrganizers } from "@/lib/admin-organizers";
 
 export const dynamic = "force-dynamic";
@@ -15,6 +16,8 @@ export default async function AdminOrganizersPage() {
         </div>
         <Link href="/admin/organizers/new" className="primaryButton">Dodaj organizatora</Link>
       </div>
+
+      <AdminSectionNav active="organizers" />
 
       <section className="managementPanel">
         <div className="managementTableWrap">

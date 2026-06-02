@@ -1,5 +1,7 @@
 import Link from "next/link";
+import AdminSectionNav from "@/components/AdminSectionNav";
 import { getAdminDashboard } from "@/lib/admin-events";
+import { formatPolishDate } from "@/lib/date-format";
 
 export const dynamic = "force-dynamic";
 
@@ -13,11 +15,9 @@ export default async function AdminDashboardPage() {
           <p className="eyebrow">Panel admina</p>
           <h1>Moderacja wydarzen</h1>
         </div>
-        <div className="managementActions">
-          <Link href="/admin/organizers" className="secondaryButton">Organizatorzy</Link>
-          <Link href="/admin/events/new" className="primaryButton">Dodaj wydarzenie</Link>
-        </div>
       </div>
+
+      <AdminSectionNav active="events" />
 
       <section className="managementStats">
         <StatCard label="Do akceptacji" value={dashboard.pendingReview} />
@@ -67,5 +67,5 @@ function StatCard({ label, value }: { label: string; value: number }) {
 }
 
 function formatDate(value: string) {
-  return new Intl.DateTimeFormat("pl-PL", { dateStyle: "medium", timeStyle: "short" }).format(new Date(value));
+  return formatPolishDate(value, { dateStyle: "medium", timeStyle: "short" });
 }

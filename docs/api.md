@@ -22,8 +22,10 @@ Navbar wysyła formularz `POST` do tej ścieżki.
 
 Plik: `lib/auth-actions.ts`
 
-- `signInAction(formData)` - loguje przez `supabase.auth.signInWithPassword({ email, password })` i przekierowuje na `/`.
-- `signOutAction()` - wykonuje `supabase.auth.signOut()` i przekierowuje na `/`. W aktualnym UI używany jest route handler `/auth/sign-out`.
+- `signInAction(formData)` - loguje przez `supabase.auth.signInWithPassword({ email, password })`, po sukcesie przekierowuje na `/`, a po bledzie zwraca stan formularza zamiast rzucac wyjatek RSC.
+- `signInFormAction(previousState, formData)` - wariant dla formularza `/login` opartego o `useActionState()`.
+- `signUpAction(formData)` - rejestruje uzytkownika przez Supabase Auth, tworzy/aktualizuje `profiles`, a dla roli `organizer` tworzy `organizers` i `organizer_users`.
+- Wylogowanie jest obslugiwane przez route handler `/auth/sign-out`.
 
 ### Admin events
 
