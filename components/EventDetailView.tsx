@@ -132,8 +132,7 @@ export default function EventDetailView({ event, relatedEvents = [] }: EventDeta
         </div>
 
         <div className="eventDetailBodyGrid">
-          <div className="eventDetailMain">
-          <section className="eventDetailSection">
+          <section className="eventDetailSection eventDetailDescriptionBlock">
             <h2>Opis wydarzenia</h2>
             <div className="eventDescription">
               {splitDescription(event.description ?? event.short_description).map((paragraph) => (
@@ -148,23 +147,24 @@ export default function EventDetailView({ event, relatedEvents = [] }: EventDeta
             </div>
           </section>
 
-          <section className="eventDetailSection eventOrganizerPanel">
-            <h2>Organizator</h2>
-            <div className="eventOrganizerRow">
-              <div className="eventOrganizerAvatar" aria-hidden="true">
-                {event.organizerName.charAt(0).toUpperCase()}
+          <div className="eventDetailMain">
+            <section className="eventDetailSection eventOrganizerPanel">
+              <h2>Organizator</h2>
+              <div className="eventOrganizerRow">
+                <div className="eventOrganizerAvatar" aria-hidden="true">
+                  {event.organizerName.charAt(0).toUpperCase()}
+                </div>
+                <div className="eventOrganizerInfo">
+                  <strong>{event.organizerName}</strong>
+                  <span>{event.organizerRelation?.is_verified ? "Organizator zweryfikowany" : "Organizator wydarzenia"}</span>
+                </div>
+                {event.organizerUrl ? (
+                  <a href={event.organizerUrl} target="_blank" rel="noopener noreferrer" className="secondaryButton eventOrganizerLink">
+                    Zobacz profil
+                  </a>
+                ) : null}
               </div>
-              <div className="eventOrganizerInfo">
-                <strong>{event.organizerName}</strong>
-                <span>{event.organizerRelation?.is_verified ? "Organizator zweryfikowany" : "Organizator wydarzenia"}</span>
-              </div>
-              {event.organizerUrl ? (
-                <a href={event.organizerUrl} target="_blank" rel="noopener noreferrer" className="secondaryButton eventOrganizerLink">
-                  Zobacz profil
-                </a>
-              ) : null}
-            </div>
-          </section>
+            </section>
 
           {event.sources.length ? (
             <section className="eventDetailSection">
