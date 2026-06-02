@@ -15,10 +15,6 @@ export default async function AdminDashboardPage() {
           <p className="eyebrow">Panel admina</p>
           <h1>Moderacja wydarzen</h1>
         </div>
-        <div className="managementActions">
-          <Link href="/admin/events" className="secondaryButton">Wszystkie wydarzenia</Link>
-          <Link href="/admin/events/new" className="primaryButton">Dodaj wydarzenie</Link>
-        </div>
       </div>
 
       <AdminSectionNav active="events" />

@@ -26,11 +26,6 @@ export default function AdminSectionNav({ active }: AdminSectionNavProps) {
           </Link>
         ))}
       </div>
-
-      <div className="adminSectionActions">
-        <Link href="/admin/events/new" className="secondaryButton">Dodaj wydarzenie</Link>
-        <Link href="/admin/organizers/new" className="secondaryButton">Dodaj organizatora</Link>
-      </div>
     </nav>
   );
 }

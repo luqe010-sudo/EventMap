@@ -56,15 +56,14 @@
 .adminSectionNav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 16px;
   margin: -8px 0 24px;
   border-bottom: 1px solid rgba(15, 23, 42, 0.1);
   padding-bottom: 14px;
 }
 
-.adminSectionTabs,
-.adminSectionActions {
+.adminSectionTabs {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
