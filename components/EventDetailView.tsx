@@ -90,26 +90,24 @@ export default function EventDetailView({ event, relatedEvents = [] }: EventDeta
       />
 
       <article className="eventDetailShell">
-        <div className="eventDetailTopGrid">
-          <header className="eventDetailHeroBlock">
-            <div className="eventDetailIntroCard">
-              <div>
-                <span className="eventDetailCategoryBadge" style={{ backgroundColor: event.categoryColor }}>
-                  {event.category}
-                </span>
-                <h1>{event.title}</h1>
-                <div className="eventDetailMetaLine">
-                  <span>{event.city || "Polska"}</span>
-                  <span>{isFreeEvent(event) ? "Bezplatne" : event.price}</span>
-                </div>
-              </div>
-              <EventDetailActions eventId={event.id} title={event.title} url={eventUrl} />
+        <header className="eventDetailIntroCard">
+          <div>
+            <span className="eventDetailCategoryBadge" style={{ backgroundColor: event.categoryColor }}>
+              {event.category}
+            </span>
+            <h1>{event.title}</h1>
+            <div className="eventDetailMetaLine">
+              <span>{event.city || "Polska"}</span>
+              <span>{isFreeEvent(event) ? "Bezplatne" : event.price}</span>
             </div>
+          </div>
+          <EventDetailActions eventId={event.id} title={event.title} url={eventUrl} />
+        </header>
 
-            <div className="eventDetailLeadImageWrap">
-              <img src={event.imageUrl} alt={event.title} className="eventDetailLeadImage" />
-            </div>
-          </header>
+        <div className="eventDetailMediaGrid">
+          <div className="eventDetailLeadImageWrap">
+            <img src={event.imageUrl} alt={event.title} className="eventDetailLeadImage" />
+          </div>
 
           <aside className="eventDetailSummaryColumn">
             <section className="eventDetailSummaryCard" aria-label="Szczegoly wydarzenia">
