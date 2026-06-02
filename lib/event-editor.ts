@@ -12,7 +12,19 @@ export type EventEditorOptions = {
 
 export type EditableEvent = Tables["events"]["Row"] & {
   category: Pick<Tables["categories"]["Row"], "id" | "name"> | null;
-  location: Pick<Tables["locations"]["Row"], "id" | "name" | "address" | "city"> | null;
+  location: Pick<
+    Tables["locations"]["Row"],
+    | "id"
+    | "name"
+    | "address"
+    | "city"
+    | "latitude"
+    | "longitude"
+    | "postal_code"
+    | "voivodeship"
+    | "county"
+    | "municipality"
+  > | null;
   organizer: Pick<Tables["organizers"]["Row"], "id" | "name"> | null;
   sources: Array<Pick<Tables["event_sources"]["Row"], "id" | "source_name" | "source_url" | "source_type">>;
 };
@@ -91,7 +103,7 @@ export function editableEventSelect() {
     submitted_by_organizer_id,
     published_at,
     category:categories(id, name),
-    location:locations(id, name, address, city),
+    location:locations(id, name, address, city, latitude, longitude, postal_code, voivodeship, county, municipality),
     organizer:organizers!events_organizer_id_fkey(id, name),
     sources:event_sources(id, source_name, source_url, source_type)
   `;

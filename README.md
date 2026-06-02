@@ -22,6 +22,10 @@ Aplikacja wymaga zmiennych srodowiskowych:
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+CLOUDINARY_URL=
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
 ```
 
 Mozna skopiowac .env.example do .env.local i uzupelnic wartosci z Supabase.
@@ -32,6 +36,10 @@ Po imporcie repozytorium w Vercel ustaw te same zmienne srodowiskowe:
 
 - NEXT_PUBLIC_SUPABASE_URL
 - NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+- CLOUDINARY_URL
+- CLOUDINARY_CLOUD_NAME
+- CLOUDINARY_API_KEY
+- CLOUDINARY_API_SECRET
 
 Nie dodawaj service role key do zmiennych NEXT_PUBLIC_*.
 

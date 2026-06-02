@@ -1,5 +1,6 @@
 import type { EditableEvent, EventEditorOptions } from "@/lib/event-editor";
 import { eventStatuses, toDateTimeLocal } from "@/lib/event-editor";
+import LocationSection from "@/components/LocationSection";
 
 type EventEditorFormProps = {
   action: (formData: FormData) => Promise<void>;
@@ -19,7 +20,7 @@ export default function EventEditorForm({
   const source = event?.sources?.[0];
 
   return (
-    <form action={action} className="managementForm">
+    <form action={action} className="managementForm" encType="multipart/form-data">
       <div className="formGrid">
         <label>
           Tytul
@@ -88,42 +89,9 @@ export default function EventEditorForm({
         ) : null}
       </div>
 
-      <section className="managementSubsection">
-        <h2>Lokalizacja</h2>
-        <label>
-          Istniejaca lokalizacja
-          <select name="location_id" defaultValue={event?.location_id ?? ""}>
-            <option value="">Utworz z pol ponizej</option>
-            {options.locations.map((location) => (
-              <option key={location.id} value={location.id}>
-                {[location.name, location.address, location.city].filter(Boolean).join(", ")}
-              </option>
-            ))}
-          </select>
-        </label>
-        <div className="formGrid">
-          <label>
-            Nazwa miejsca
-            <input name="location_name" placeholder="np. Dom Kultury" />
-          </label>
-          <label>
-            Adres
-            <input name="location_address" />
-          </label>
-          <label>
-            Miasto
-            <input name="location_city" />
-          </label>
-          <label>
-            Szerokosc
-            <input name="location_latitude" type="number" step="any" />
-          </label>
-          <label>
-            Dlugosc
-            <input name="location_longitude" type="number" step="any" />
-          </label>
-        </div>
-      </section>
+      <LocationSection
+        defaultLocation={event?.location}
+      />
 
       <div className="formGrid">
         <label>
@@ -149,10 +117,23 @@ export default function EventEditorForm({
         </label>
       </div>
 
-      <label>
-        Glowny obraz
-        <input name="main_image_url" type="url" defaultValue={event?.main_image_url ?? ""} />
-      </label>
+      <section className="managementSubsection">
+        <h2>Obraz wydarzenia</h2>
+        {event?.main_image_url ? (
+          <img className="eventEditorImagePreview" src={event.main_image_url} alt="" />
+        ) : null}
+        <div className="formGrid">
+          <label>
+            Wgraj obraz
+            <input name="main_image_file" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/avif" />
+          </label>
+          <label>
+            Albo podaj link
+            <input name="main_image_url" type="url" defaultValue={event?.main_image_url ?? ""} />
+          </label>
+        </div>
+        <p className="formHint">Plik zostanie wgrany do Cloudinary. Maksymalny rozmiar: 5 MB.</p>
+      </section>
 
       <div className="formGrid">
         <label>

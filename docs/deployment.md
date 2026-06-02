@@ -45,6 +45,10 @@ Kod wymaga:
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+CLOUDINARY_URL=
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
 ```
 
 Alternatywnie dla klucza publicznego kod obsługuje:
@@ -62,6 +66,28 @@ NEXT_PUBLIC_SUPABASE_URL=https://PROJECT_ID.supabase.co
 ```
 
 Nie ustawiaj tu endpointu REST, np. `https://PROJECT_ID.supabase.co/rest/v1`. Kod normalizuje URL do originu, ale poprawna wartość zmiennej środowiskowej ułatwia diagnozę logów Vercel i Supabase.
+
+Upload obrazów wydarzeń używa Cloudinary po stronie serwera. Wymagane są:
+
+```bash
+CLOUDINARY_URL=
+```
+
+Alternatywnie można ustawić konfigurację Cloudinary jako osobne zmienne:
+
+```bash
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+```
+
+Opcjonalnie można ustawić folder dla obrazów wydarzeń:
+
+```bash
+CLOUDINARY_EVENT_FOLDER=eventmap/events
+```
+
+`CLOUDINARY_URL` i `CLOUDINARY_API_SECRET` nie mogą być ustawione jako zmienne `NEXT_PUBLIC_*`, bo zawierają sekret używany do podpisywania uploadu.
 
 ## Supabase
 

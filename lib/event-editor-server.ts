@@ -7,6 +7,7 @@ import {
   formString,
   normalizeDateTimeLocal
 } from "@/lib/event-editor";
+import { uploadEventImageToCloudinary } from "@/lib/cloudinary";
 
 type Tables = Database["public"]["Tables"];
 type EventInsert = Tables["events"]["Insert"];
@@ -30,6 +31,8 @@ export async function buildEventWritePayload(
   if (!categoryId) throw new Error("Kategoria wydarzenia jest wymagana.");
   if (!options.organizerId) throw new Error("Organizator wydarzenia jest wymagany.");
 
+  const uploadedImageUrl = await uploadEventImageToCloudinary(getEventImageFile(formData));
+
   return {
     title,
     slug: formString(formData, "slug") ?? createSlug(title),
@@ -46,12 +49,17 @@ export async function buildEventWritePayload(
     price_min: formNumber(formData, "price_min"),
     price_max: formNumber(formData, "price_max"),
     currency: formString(formData, "currency") ?? "PLN",
-    main_image_url: formString(formData, "main_image_url"),
+    main_image_url: uploadedImageUrl ?? formString(formData, "main_image_url"),
     status: options.status,
     visibility: "public",
     published_at: options.status === "published" ? new Date().toISOString() : null,
     created_by: options.createdBy ?? undefined
   };
+}
+
+function getEventImageFile(formData: FormData) {
+  const value = formData.get("main_image_file");
+  return typeof value === "string" ? null : value;
 }
 
 export async function saveEventSource(
@@ -110,17 +118,55 @@ async function resolveEventLocationId(formData: FormData) {
   const name = formString(formData, "location_name");
   const city = formString(formData, "location_city");
   const address = formString(formData, "location_address");
+  const latitude = formNumber(formData, "location_latitude");
+  const longitude = formNumber(formData, "location_longitude");
+
   if (!name && !city && !address) return null;
 
   const supabase = await createSupabaseUserClient();
+
+  // Try to find a matching existing location by coordinates first (very precise match)
+  if (latitude !== null && longitude !== null) {
+    const { data: matchedCoords, error: coordsError } = await supabase
+      .from("locations")
+      .select("id")
+      .eq("latitude", latitude)
+      .eq("longitude", longitude)
+      .limit(1);
+
+    if (!coordsError && matchedCoords && matchedCoords.length > 0) {
+      return matchedCoords[0].id;
+    }
+  }
+
+  // Or try by name, city, and address
+  if (city && address) {
+    const { data: matchedFields, error: fieldsError } = await supabase
+      .from("locations")
+      .select("id")
+      .eq("city", city)
+      .eq("address", address)
+      .eq("name", name ?? "")
+      .limit(1);
+
+    if (!fieldsError && matchedFields && matchedFields.length > 0) {
+      return matchedFields[0].id;
+    }
+  }
+
+  // Otherwise, create a new location record
   const { data, error } = await supabase
     .from("locations")
     .insert({
       name,
       city,
       address,
-      latitude: formNumber(formData, "location_latitude"),
-      longitude: formNumber(formData, "location_longitude")
+      latitude,
+      longitude,
+      postal_code: formString(formData, "location_postal_code"),
+      voivodeship: formString(formData, "location_voivodeship"),
+      county: formString(formData, "location_county"),
+      municipality: formString(formData, "location_municipality")
     })
     .select("id")
     .single();

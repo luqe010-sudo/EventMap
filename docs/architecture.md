@@ -33,6 +33,8 @@ Client components odpowiadają za interakcję UI:
 - `components/FeaturedEvents.tsx` - karuzela wyróżnionych wydarzeń; nie renderuje mapy.
 - `components/Sidebar.tsx` - prawa kolumna strony głównej z pojedynczą mapą MapLibre, CTA powiadomień, nadchodzącymi wydarzeniami i kategoriami.
 - `components/MapLibreMap.tsx` - wspólny komponent mapy dla strony głównej, eksploratora i szczegółów; używa GeoJSON source z `cluster: true`, warstw klastrów, warstw pojedynczych pinesek oraz ikon kategorii.
+- `components/LocationPickerMap.tsx` - interaktywny picker lokalizacji z mini-mapą MapLibre, wyszukiwaniem adresów przez Nominatim i przesuwalną pinezką; renderuje ukryte inputy formularza.
+- `components/LocationSection.tsx` - wrapper obsługujący przełączanie między wyborem istniejącej lokalizacji a tworzeniem nowej przez LocationPickerMap.
 - `components/EventExplorer.tsx` - filtry, lista i mapa dla widoków kategorii/miasta.
 - `components/NavbarClient.tsx` - menu, panel użytkownika i formularz wylogowania.
 - Komponenty map są ładowane dynamicznie bez SSR.
@@ -48,6 +50,9 @@ Zapytania Supabase są wydzielone poza UI:
 - `lib/organizer-events.ts` - dashboard organizatora, lista i zapis wydarzeń organizatora.
 - `lib/admin-organizers.ts` - CRUD organizatorów.
 - `lib/event-editor.ts` - wspólne typy, statusy i parsowanie formularza wydarzenia.
+- `lib/event-editor-server.ts` - budowanie payloadu wydarzenia, tworzenie lokalizacji, zapis źródła i upload obrazu wydarzenia.
+- `lib/cloudinary.ts` - signed upload obrazów wydarzeń do Cloudinary po stronie serwera.
+- `lib/geocoding.ts` - geokodowanie adresów i reverse geocoding przez Nominatim (OpenStreetMap); używany client-side w LocationPickerMap.
 - `lib/filters.ts` - filtrowanie daty, promienia, kategorii i ceny po stronie klienta.
 - `lib/slugs.ts` - budowanie slugów i ścieżek.
 - `lib/supabase-config.ts` - wspólna konfiguracja publicznego URL i klucza Supabase; normalizuje `NEXT_PUBLIC_SUPABASE_URL` do samego originu.
@@ -69,6 +74,20 @@ Zapytania Supabase są wydzielone poza UI:
 - jest używany w ścieżkach wymagających sesji użytkownika.
 
 Globalny middleware nie jest obecnie używany. Ścieżki wymagające sesji korzystają z `createSupabaseUserClient()` bezpośrednio w server components, server actions i route handlers.
+
+## Upload obrazów
+
+Formularze wydarzeń w panelu admina i organizatora przyjmują plik `main_image_file` albo ręczny `main_image_url`. Jeśli użytkownik wybierze plik, `buildEventWritePayload()` wysyła go do Cloudinary przez `uploadEventImageToCloudinary()` i zapisuje zwrócony `secure_url` w `events.main_image_url`.
+
+Upload Cloudinary jest podpisywany po stronie serwera na podstawie `CLOUDINARY_URL` albo zestawu `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` oraz opcjonalnego `CLOUDINARY_EVENT_FOLDER`. Sekret API nie trafia do klienta.
+
+## Wybór lokalizacji
+
+Formularz wydarzenia pozwala wybrać istniejącą lokalizację z dropdown albo utworzyć nową przez interaktywny picker (`LocationPickerMap`).
+
+Picker zawiera pole wyszukiwania adresów z autouzupełnianiem (Nominatim/OSM, ograniczone do Polski), mini-mapę MapLibre z przesuwalną pinezką oraz klikanie na mapę. Po wyborze lokalizacji pola `latitude`, `longitude`, `city`, `address`, `postal_code`, `voivodeship`, `county` i `municipality` są automatycznie wypełniane przez reverse geocoding.
+
+Geokodowanie odbywa się po stronie klienta; API Nominatim nie wymaga klucza, ale respektuje limit 1 req/s (debounce 350ms w kodzie). Użytkownik może ręcznie skorygować wypełnione pola.
 
 ## Przepływ danych publicznych
 

@@ -104,7 +104,8 @@ Strona:
 - formularz wydarzenia;
 - status dostępny tylko dla admina;
 - wybór kategorii, organizatora i lokalizacji;
-- możliwość utworzenia lokalizacji z formularza;
+- interaktywny picker lokalizacji z mini-mapa MapLibre, wyszukiwaniem adresow przez Nominatim i przesuwalna pinezka; automatycznie wypelnia wspolrzedne, miasto, adres, kod pocztowy, wojewodztwo, powiat i gmine;
+- możliwość wgrania obrazu wydarzenia do Cloudinary albo podania zewnętrznego linku;
 - zapis źródła wydarzenia.
 
 `/admin/organizers`:
@@ -128,12 +129,15 @@ Strona:
 `/organizer/events/new`:
 
 - dodaje wydarzenie ze statusem `pending_review`;
-- przypisuje wydarzenie do organizatora użytkownika.
+- przypisuje wydarzenie do organizatora użytkownika;
+- interaktywny picker lokalizacji z mini-mapa, wyszukiwaniem adresow i automatycznym geokodowaniem;
+- pozwala wgrać obraz wydarzenia do Cloudinary albo podać zewnętrzny link.
 
 `/organizer/events/[id]/edit`:
 
 - edytuje tylko własne wydarzenie;
 - po edycji opublikowanego wydarzenia ustawia `pending_review`.
+- pozwala zmienić obraz wydarzenia przez upload do Cloudinary albo zewnętrzny link.
 
 ## Stany techniczne
 

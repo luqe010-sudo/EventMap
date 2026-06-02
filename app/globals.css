@@ -171,6 +171,11 @@
   font-weight: 500;
 }
 
+.managementForm input[type="file"] {
+  min-height: 46px;
+  padding: 8px 12px;
+}
+
 .formGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -197,6 +202,119 @@
 .managementSubsection h2 {
   margin: 0;
   font-size: 1.1rem;
+}
+
+.eventEditorImagePreview {
+  width: min(100%, 360px);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.formHint {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+/* ===================================================
+   Location Picker — Map-based location selection
+   =================================================== */
+.locationPickerWrap {
+  display: grid;
+  gap: 14px;
+}
+
+.locationPickerSearchWrap {
+  position: relative;
+}
+
+.locationPickerSearchBox {
+  position: relative;
+}
+
+.locationPickerSearchInput {
+  width: 100%;
+  padding-right: 38px !important;
+}
+
+.locationPickerSpinner {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(15, 23, 42, 0.12);
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: locationPickerSpin 0.6s linear infinite;
+}
+
+@keyframes locationPickerSpin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+.locationPickerSuggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.16);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.locationPickerSuggestionItem {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  background: none;
+  text-align: left;
+  font: inherit;
+  font-size: 0.88rem;
+  color: #1e293b;
+  cursor: pointer;
+  line-height: 1.45;
+  transition: background 0.15s;
+}
+
+.locationPickerSuggestionItem:hover {
+  background: rgba(37, 99, 235, 0.06);
+}
+
+.locationPickerSuggestions li:not(:last-child) .locationPickerSuggestionItem {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.locationPickerMap {
+  width: 100%;
+  height: 260px;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.16);
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.locationPickerHint {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.84rem;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .loginPanel {
