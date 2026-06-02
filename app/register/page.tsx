@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { signUpAction } from "@/lib/auth-actions";
 
@@ -10,6 +10,25 @@ export default function RegisterPage() {
   const [role, setRole] = useState("user");
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <main className="appShell managementShell">
+        <section className="managementPanel loginPanel">
+          <p className="eyebrow">EventMap</p>
+          <h1>Rejestracja</h1>
+          <div style={{ minHeight: "350px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <span className="locationPickerSpinner" />
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
