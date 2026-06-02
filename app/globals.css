@@ -5325,6 +5325,16 @@ select {
 }
 
 @media (max-width: 760px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .mainContent {
+    overflow-x: clip;
+  }
+
   .mainContent::before {
     height: 430px;
     background-position: center -92px;
@@ -5340,7 +5350,40 @@ select {
   }
 
   .homePage {
-    width: calc(100% - 28px);
+    width: 100%;
+    max-width: calc(100vw - 28px);
+  }
+
+  .homePage,
+  .appShell,
+  .heroSection,
+  .featuredSection,
+  .featuredLayout,
+  .featuredScroll,
+  .mainLayout,
+  .mainColumn,
+  .mainEvents,
+  .eventsList,
+  .sidebar,
+  .sidebarSection,
+  .sidebarMapWrap,
+  .valueGrid {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .featuredHeader,
+  .mainEventsHeader,
+  .sidebarSectionHeader {
+    min-width: 0;
+    gap: 12px;
+  }
+
+  .featuredTitle,
+  .mainEventsHeader h2,
+  .sidebarSectionHeader h3 {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .heroSection {
@@ -5405,5 +5448,26 @@ select {
   .footerInner {
     grid-template-columns: 1fr;
     gap: 26px;
+  }
+}
+
+@media (max-width: 520px) {
+  .featuredScroll,
+  .heroQuickTiles {
+    grid-template-columns: 1fr;
+  }
+
+  .mainEventsHeader,
+  .featuredHeader,
+  .sidebarSectionHeader {
+    align-items: flex-start;
+  }
+
+  .mainEventsSort {
+    max-width: 100%;
+  }
+
+  .mainEventsSortSelect {
+    width: min(140px, 100%);
   }
 }

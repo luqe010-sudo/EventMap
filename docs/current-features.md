@@ -16,6 +16,7 @@ Strona główna `/`:
 - pozwala wybrać lokalizację z autouzupełniania albo GPS;
 - sortuje po odległości albo dacie.
 - na widoku mobilnym układa hero i blok informacyjny w pojedynczej, czytelnej kolumnie.
+- na małych ekranach ogranicza szerokość sekcji strony głównej do viewportu, aby nagłówki, listy, panele i mapa nie były ucinane poziomo.
 
 Widok `EventExplorer`:
 
