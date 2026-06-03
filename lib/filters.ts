@@ -6,7 +6,7 @@ export type DateFilter = "today" | "tomorrow" | "weekend" | "week" | "custom";
 export type EventFilters = {
   dateFilter: DateFilter;
   customDate: string;
-  radiusKm: number;
+  radiusKm: number | null;
   category: EventCategory | "Wszystkie";
   location: KnownLocation;
   isFree?: boolean;
@@ -121,7 +121,7 @@ export function filterEvents(events: EventItem[], filters: EventFilters, now = n
     .filter(({ event, distanceKm }) => {
       const eventDate = new Date(event.startDate);
       const matchesDate = eventDate >= start && eventDate < end;
-      const matchesRadius = !Number.isFinite(distanceKm) || distanceKm <= filters.radiusKm;
+      const matchesRadius = filters.radiusKm == null || !Number.isFinite(distanceKm) || distanceKm <= filters.radiusKm;
       const matchesCategory = filters.category === "Wszystkie" || event.category === filters.category;
       const matchesFree = !filters.isFree || isFreeEvent(event);
       return matchesDate && matchesRadius && matchesCategory && matchesFree;

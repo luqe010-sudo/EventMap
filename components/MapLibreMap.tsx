@@ -2,14 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
-import type { ExpressionSpecification } from "maplibre-gl";
+import type { ExpressionSpecification, FilterSpecification } from "maplibre-gl";
 import type { MutableRefObject } from "react";
 import type { EventItem, KnownLocation } from "@/lib/events";
 
 type MapLibreMapProps = {
   events: EventItem[];
   selectedEventId?: string;
-  location: KnownLocation;
+  location?: KnownLocation;
   onSelectEvent: (eventId: string) => void;
 };
 
@@ -24,8 +24,14 @@ type EventFeatureProperties = {
 
 const STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
 const EVENT_SOURCE_ID = "eventmap-events";
+const VOIVODESHIP_SOURCE_ID = "eventmap-voivodeships";
 const LOCATION_MARKER_CLASS = "locationMarker";
 const NO_SELECTED_EVENT_ID = "__none__";
+const POLAND_CENTER: [number, number] = [19.1451, 51.9194];
+const POLAND_BOUNDS: [[number, number], [number, number]] = [
+  [14.07, 49.0],
+  [24.15, 54.84]
+];
 
 const MAP_LOCALE = {
   "NavigationControl.ZoomIn": "Powiększ",
@@ -68,7 +74,9 @@ export default function MapLibreMap({
   const mapRef = useRef<maplibregl.Map | null>(null);
   const locationMarkerRef = useRef<maplibregl.Marker | null>(null);
   const onSelectEventRef = useRef(onSelectEvent);
-  const initialCenterRef = useRef<[number, number]>([location.longitude, location.latitude]);
+  const initialCenterRef = useRef<[number, number]>(
+    location ? [location.longitude, location.latitude] : POLAND_CENTER
+  );
   const [mapReady, setMapReady] = useState(false);
 
   useEffect(() => {
@@ -82,7 +90,7 @@ export default function MapLibreMap({
       container: containerRef.current,
       style: STYLE_URL,
       center: initialCenterRef.current,
-      zoom: 6,
+      zoom: location ? 6 : 4.8,
       attributionControl: false,
       locale: MAP_LOCALE
     });
@@ -94,6 +102,8 @@ export default function MapLibreMap({
     map.on("load", async () => {
       applyPolishLabels(map);
       await addCategoryImages(map);
+      addAdministrativeBoundaryLayers(map);
+      addHouseNumberLayer(map);
       addEventSourceAndLayers(map, onSelectEventRef);
       setMapReady(true);
     });
@@ -279,9 +289,15 @@ function buildEventFeatureCollection(events: EventItem[]): GeoJSON.FeatureCollec
 
 function updateLocationMarker(
   map: maplibregl.Map,
-  location: KnownLocation,
+  location: KnownLocation | undefined,
   markerRef: React.MutableRefObject<maplibregl.Marker | null>
 ) {
+  if (!location) {
+    markerRef.current?.remove();
+    markerRef.current = null;
+    return;
+  }
+
   if (!markerRef.current) {
     const element = document.createElement("div");
     element.className = LOCATION_MARKER_CLASS;
@@ -292,13 +308,23 @@ function updateLocationMarker(
   markerRef.current.setLngLat([location.longitude, location.latitude]).addTo(map);
 }
 
-function fitMapToPoints(map: maplibregl.Map, location: KnownLocation, events: EventItem[]) {
-  const points: Array<[number, number]> = [[location.longitude, location.latitude]];
+function fitMapToPoints(map: maplibregl.Map, location: KnownLocation | undefined, events: EventItem[]) {
+  if (!location) {
+    fitMapToPoland(map);
+    return;
+  }
+
+  const points: Array<[number, number]> = location ? [[location.longitude, location.latitude]] : [];
   events.forEach((event) => {
     if (event.latitude != null && event.longitude != null) {
       points.push([event.longitude, event.latitude]);
     }
   });
+
+  if (!points.length) {
+    fitMapToPoland(map);
+    return;
+  }
 
   if (points.length === 1) {
     map.easeTo({ center: points[0], zoom: 6, duration: 400 });
@@ -308,6 +334,10 @@ function fitMapToPoints(map: maplibregl.Map, location: KnownLocation, events: Ev
   const bounds = new maplibregl.LngLatBounds(points[0], points[0]);
   points.slice(1).forEach((point) => bounds.extend(point));
   map.fitBounds(bounds, { padding: 32, maxZoom: 12, duration: 500 });
+}
+
+function fitMapToPoland(map: maplibregl.Map) {
+  map.fitBounds(POLAND_BOUNDS, { padding: 18, duration: 500 });
 }
 
 function updateSelectedPaint(map: maplibregl.Map, selectedEventId?: string) {
@@ -323,6 +353,213 @@ function selectedCircleRadius(selectedEventId: string): ExpressionSpecification 
 
 function selectedStrokeWidth(selectedEventId: string): ExpressionSpecification {
   return ["case", ["==", ["get", "id"], selectedEventId], 4, 2];
+}
+
+function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
+  const sourceId = getVectorTileSourceId(map);
+
+  if (!map.getSource(VOIVODESHIP_SOURCE_ID)) {
+    map.addSource(VOIVODESHIP_SOURCE_ID, {
+      type: "geojson",
+      data: "/data/wojewodztwa-min.geojson"
+    });
+  }
+
+  const beforeId = findFirstSymbolLayerId(map);
+
+  if (!map.getLayer("eventmap-voivodeship-fill")) {
+    map.addLayer(
+      {
+        id: "eventmap-voivodeship-fill",
+        type: "fill",
+        source: VOIVODESHIP_SOURCE_ID,
+        paint: {
+          "fill-color": [
+            "match",
+            ["get", "nazwa"],
+            "dolnośląskie",
+            "#fef3c7",
+            "kujawsko-pomorskie",
+            "#dcfce7",
+            "lubelskie",
+            "#dbeafe",
+            "lubuskie",
+            "#fce7f3",
+            "łódzkie",
+            "#ede9fe",
+            "małopolskie",
+            "#ccfbf1",
+            "mazowieckie",
+            "#fee2e2",
+            "opolskie",
+            "#e0f2fe",
+            "podkarpackie",
+            "#fef9c3",
+            "podlaskie",
+            "#dcfce7",
+            "pomorskie",
+            "#dbeafe",
+            "śląskie",
+            "#fae8ff",
+            "świętokrzyskie",
+            "#ffedd5",
+            "warmińsko-mazurskie",
+            "#cffafe",
+            "wielkopolskie",
+            "#ecfccb",
+            "zachodniopomorskie",
+            "#e0e7ff",
+            "#fef3c7"
+          ],
+          "fill-opacity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            4,
+            0.16,
+            7,
+            0.22,
+            10,
+            0.18
+          ]
+        }
+      },
+      beforeId
+    );
+  }
+
+  if (!map.getLayer("eventmap-voivodeship-boundaries")) {
+    map.addLayer(
+      {
+        id: "eventmap-voivodeship-boundaries",
+        type: "line",
+        source: VOIVODESHIP_SOURCE_ID,
+        paint: {
+          "line-color": "#dc2626",
+          "line-opacity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            5,
+            0.5,
+            8,
+            0.68,
+            11,
+            0.78
+          ],
+          "line-width": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            5,
+            1.4,
+            8,
+            2.4,
+            11,
+            3.4
+          ],
+          "line-blur": 0.12
+        }
+      },
+      beforeId
+    );
+  }
+
+  if (sourceId && !map.getLayer("eventmap-county-boundaries")) {
+    map.addLayer(
+      {
+        id: "eventmap-county-boundaries",
+        type: "line",
+        source: sourceId,
+        "source-layer": "boundary",
+        minzoom: 6,
+        filter: adminLevelFilter("6"),
+        paint: {
+          "line-color": "#1d4ed8",
+          "line-opacity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            6,
+            0.42,
+            10,
+            0.62,
+            13,
+            0.78
+          ],
+          "line-width": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            6,
+            1,
+            10,
+            1.8,
+            13,
+            2.6
+          ],
+          "line-dasharray": [3, 1.5]
+        }
+      },
+      beforeId
+    );
+  }
+}
+
+function addHouseNumberLayer(map: maplibregl.Map) {
+  const sourceId = getVectorTileSourceId(map);
+  if (!sourceId || map.getLayer("eventmap-house-numbers")) return;
+
+  map.addLayer({
+    id: "eventmap-house-numbers",
+    type: "symbol",
+    source: sourceId,
+    "source-layer": "housenumber",
+    minzoom: 17,
+    layout: {
+      "text-field": ["get", "housenumber"],
+      "text-font": ["Noto Sans Regular"],
+      "text-size": [
+        "interpolate",
+        ["linear"],
+        ["zoom"],
+        17,
+        10,
+        19,
+        12
+      ],
+      "text-allow-overlap": false,
+      "text-ignore-placement": false
+    },
+    paint: {
+      "text-color": "#4b5563",
+      "text-halo-color": "rgba(255, 255, 255, 0.88)",
+      "text-halo-width": 1
+    }
+  });
+}
+
+function getVectorTileSourceId(map: maplibregl.Map) {
+  const sources = map.getStyle().sources ?? {};
+  const preferredSourceIds = [
+    "openmaptiles",
+    "openfreemap",
+    "openstreetmap",
+    "openstreetmap-openmaptiles"
+  ];
+
+  const preferredSourceId = preferredSourceIds.find((sourceId) => sources[sourceId]?.type === "vector");
+  if (preferredSourceId) return preferredSourceId;
+
+  return Object.entries(sources).find(([, source]) => source.type === "vector")?.[0] ?? null;
+}
+
+function findFirstSymbolLayerId(map: maplibregl.Map) {
+  return map.getStyle().layers?.find((layer) => layer.type === "symbol")?.id;
+}
+
+function adminLevelFilter(adminLevel: string): FilterSpecification {
+  return ["==", ["to-string", ["get", "admin_level"]], adminLevel];
 }
 
 async function addCategoryImages(map: maplibregl.Map) {

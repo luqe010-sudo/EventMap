@@ -8,11 +8,13 @@ Strona główna `/`:
 - pokazuje hero, panel wyszukiwania oraz układ 70/30 z lewą kolumną wydarzeń i prawym sidebarem;
 - w lewej kolumnie pokazuje wyróżnione wydarzenia nad listą wydarzeń;
 - w prawym sidebarze pokazuje jeden spójny panel z mapą MapLibre, powiadomieniami, nadchodzącymi wydarzeniami i popularnymi kategoriami;
-- mapa w sidebarze jest osadzona bezpośrednio w dużym panelu, ma wewnętrzny margines, zaokrąglenie i przycisk `Pokaż listę` na mapie;
+- mapa w sidebarze jest osadzona bezpośrednio w dużym panelu, ma wewnętrzny margines i zaokrąglenie;
+- mapa na starcie używa zasięgu `Cała Polska`, obejmuje kadrem całą Polskę i pokazuje wydarzenia bez ograniczenia promieniem;
 - mapa grupuje blisko położone wydarzenia w klastry; kliknięcie klastra przybliża widok.
 - pojedyncze pineski używają koloru i ikony kategorii wydarzenia.
+- mapa pokazuje lekko kolorowane województwa, wyraźne granice powiatów na bazie warstwy `boundary` oraz numery budynków przy dużym przybliżeniu.
 - etykiety mapy są preferowane w języku polskim, jeśli styl kafelków udostępnia pole `name:pl`.
-- filtruje po presetach daty, niestandardowym zakresie dat, promieniu, kategorii i opcji darmowych wydarzeń;
+- filtruje po presetach daty, niestandardowym zakresie dat, promieniu albo zasięgu `Cała Polska`, kategorii i opcji darmowych wydarzeń;
 - pozwala wybrać lokalizację z autouzupełniania albo GPS;
 - sortuje po odległości albo dacie.
 - na widoku mobilnym zachowuje estetyczne marginesy od krawędzi (18px), a kafelki klimatu w sekcji hero układają się w układ trójkolumnowy o zmniejszonych wymiarach;

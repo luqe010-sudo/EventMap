@@ -30,6 +30,8 @@ Odległość jest liczona funkcją Haversine w `distanceInKm()`.
 
 Jeśli wydarzenie nie ma `latitude` lub `longitude`, funkcja zwraca `Infinity`. Aktualnie `filterEvents()` traktuje brak dystansu jako dopasowanie do promienia, ale sortuje takie wydarzenia na końcu.
 
+Na stronie głównej domyślny zasięg to `Cała Polska`. W tym trybie `filterEvents()` dostaje `radiusKm: null`, więc nie ogranicza wyników promieniem; wybór miasta, GPS albo zmiana suwaka włącza lokalny filtr promienia.
+
 Strony miast:
 
 - korzystają z `city_pages`;

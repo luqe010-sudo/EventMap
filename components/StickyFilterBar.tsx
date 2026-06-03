@@ -10,6 +10,7 @@ type StickyFilterBarProps = {
   dateFilter: DateFilter;
   customDate?: string;
   radiusKm: number;
+  isAllPoland: boolean;
   category: EventCategory | "Wszystkie";
   onScrollToSearch: () => void;
 };
@@ -28,6 +29,7 @@ export default function StickyFilterBar({
   dateFilter,
   customDate = "",
   radiusKm,
+  isAllPoland,
   category,
   onScrollToSearch
 }: StickyFilterBarProps) {
@@ -46,7 +48,7 @@ export default function StickyFilterBar({
         <span className="stickyFilterDivider" />
         <button className="stickyFilterChip" onClick={onScrollToSearch} type="button">
           <span className="stickyFilterIcon">📏</span>
-          <span className="stickyFilterValue">{radiusKm} km</span>
+          <span className="stickyFilterValue">{isAllPoland ? "Cała Polska" : `${radiusKm} km`}</span>
         </button>
         <span className="stickyFilterDivider" />
         <button className="stickyFilterChip" onClick={onScrollToSearch} type="button">

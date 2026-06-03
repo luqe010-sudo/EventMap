@@ -16,7 +16,9 @@ type SearchPanelProps = {
   customDate: string;
   onCustomDateChange: (date: string) => void;
   radiusKm: number;
+  isAllPoland: boolean;
   onRadiusChange: (radius: number) => void;
+  onAllPolandSelect: () => void;
   category: EventCategory | "Wszystkie";
   categories: EventCategory[];
   onCategoryChange: (category: EventCategory | "Wszystkie") => void;
@@ -41,7 +43,9 @@ export default function SearchPanel({
   customDate,
   onCustomDateChange,
   radiusKm,
+  isAllPoland,
   onRadiusChange,
+  onAllPolandSelect,
   category,
   categories,
   onCategoryChange,
@@ -81,7 +85,17 @@ export default function SearchPanel({
         <div className="searchGroup searchGroupRadius">
           <div className="searchRadiusHeader">
             <label className="searchLabel">Promień</label>
-            <span className="searchRadiusValue">{radiusKm} km</span>
+            <div className="searchRadiusActions">
+              <button
+                type="button"
+                className={`searchScopeButton ${isAllPoland ? "searchScopeButtonActive" : ""}`}
+                aria-pressed={isAllPoland}
+                onClick={onAllPolandSelect}
+              >
+                Cała Polska
+              </button>
+              <span className="searchRadiusValue">{isAllPoland ? "bez limitu" : `${radiusKm} km`}</span>
+            </div>
           </div>
           <div className="searchRadiusWrap">
             <input
@@ -93,7 +107,7 @@ export default function SearchPanel({
               value={radiusKm}
               onChange={(e) => onRadiusChange(Number(e.target.value))}
               style={{
-                background: `linear-gradient(to right, var(--brand) 0%, var(--brand) ${((radiusKm - 5) / (100 - 5)) * 100}%, rgba(0, 0, 0, 0.08) ${((radiusKm - 5) / (100 - 5)) * 100}%, rgba(0, 0, 0, 0.08) 100%)`
+                background: `linear-gradient(to right, var(--brand) 0%, var(--brand) ${isAllPoland ? 100 : ((radiusKm - 5) / (100 - 5)) * 100}%, rgba(0, 0, 0, 0.08) ${isAllPoland ? 100 : ((radiusKm - 5) / (100 - 5)) * 100}%, rgba(0, 0, 0, 0.08) 100%)`
               }}
             />
             <div className="searchRadiusLabels">

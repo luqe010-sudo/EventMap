@@ -33,7 +33,7 @@ Client components odpowiadają za interakcję UI:
 - `components/HomePage.tsx` - stan filtrów na stronie głównej oraz układ 70/30: lewa kolumna z wyróżnionymi wydarzeniami i listą, prawa kolumna z sidebarem.
 - `components/FeaturedEvents.tsx` - karuzela wyróżnionych wydarzeń; nie renderuje mapy.
 - `components/Sidebar.tsx` - prawa kolumna strony głównej z pojedynczą mapą MapLibre, CTA powiadomień, nadchodzącymi wydarzeniami i kategoriami.
-- `components/MapLibreMap.tsx` - wspólny komponent mapy dla strony głównej, eksploratora i szczegółów; używa GeoJSON source z `cluster: true`, warstw klastrów, warstw pojedynczych pinesek oraz ikon kategorii.
+- `components/MapLibreMap.tsx` - wspólny komponent mapy dla strony głównej, eksploratora i szczegółów; używa GeoJSON source z `cluster: true`, warstw klastrów, warstw pojedynczych pinesek oraz ikon kategorii. Po załadowaniu stylu dokłada kolorowane województwa i ich granice z lokalnego `public/data/wojewodztwa-min.geojson`, wyraźne granice powiatów z wektorowych kafelków OpenMapTiles (`boundary`, `admin_level=6`) oraz numery budynków (`housenumber`). Gdy mapa nie dostaje lokalizacji, kadruje stałe bounds całej Polski.
 - `components/LocationPickerMap.tsx` - interaktywny picker lokalizacji z mini-mapą MapLibre, wyszukiwaniem adresów przez Nominatim i przesuwalną pinezką; renderuje ukryte inputy formularza.
 - `components/LocationSection.tsx` - wrapper obsługujący przełączanie między wyborem istniejącej lokalizacji a tworzeniem nowej przez LocationPickerMap.
 - `components/EventExplorer.tsx` - filtry, lista i mapa dla widoków kategorii/miasta.

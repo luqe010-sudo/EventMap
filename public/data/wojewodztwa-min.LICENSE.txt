@@ -1,0 +1,8 @@
+MIT License
+
+Copyright (c) 2019 Piotr Patrzyk
+
+Source: https://github.com/ppatrzyk/polska-geojson
+
+The file wojewodztwa-min.geojson is distributed under the MIT License by
+the polska-geojson project.

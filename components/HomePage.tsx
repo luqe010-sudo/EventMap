@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { type CategoryOption, type EventCategory, type EventItem, type KnownLocation, getDefaultLocation } from "@/lib/events";
 import { filterEvents, type DateFilter } from "@/lib/filters";
 import HeroSection from "@/components/HeroSection";
@@ -21,6 +21,7 @@ export default function HomePage({ initialEvents, categoryOptions }: HomePagePro
   const [dateFilter, setDateFilter] = useState<DateFilter>("week");
   const [customDate, setCustomDate] = useState("");
   const [radiusKm, setRadiusKm] = useState(100);
+  const [isAllPoland, setIsAllPoland] = useState(true);
   const [category, setCategory] = useState<EventCategory | "Wszystkie">("Wszystkie");
   const [isFree, setIsFree] = useState(false);
   const [locationInput, setLocationInput] = useState("");
@@ -35,7 +36,7 @@ export default function HomePage({ initialEvents, categoryOptions }: HomePagePro
   const filteredEvents = useMemo(
     () => {
       let results = filterEvents(initialEvents, {
-        dateFilter, customDate, radiusKm, category, location, isFree
+        dateFilter, customDate, radiusKm: isAllPoland ? null : radiusKm, category, location, isFree
       });
       if (sortBy === "nearest") {
         results = [...results].sort((a, b) => {
@@ -46,13 +47,13 @@ export default function HomePage({ initialEvents, categoryOptions }: HomePagePro
       }
       return results;
     },
-    [initialEvents, dateFilter, customDate, radiusKm, category, location, isFree, sortBy]
+    [initialEvents, dateFilter, customDate, radiusKm, isAllPoland, category, location, isFree, sortBy]
   );
 
   // Featured events
   const featuredEvents = useMemo(
     () => filterEvents(initialEvents, {
-      dateFilter: "week", customDate: "", radiusKm: 100, category: "Wszystkie", location
+      dateFilter: "week", customDate: "", radiusKm: null, category: "Wszystkie", location
     }).filter(({ event }) => event.isFeatured),
     [initialEvents, location]
   );
@@ -71,6 +72,7 @@ export default function HomePage({ initialEvents, categoryOptions }: HomePagePro
 
   // Handlers
   function handleLocationSelect(loc: KnownLocation) {
+    setIsAllPoland(false);
     setLocation(loc);
     setLocationInput(loc.label);
     setLocationStatus(`Szukam wydarzeń w pobliżu: ${loc.label}.`);
@@ -90,6 +92,7 @@ export default function HomePage({ initialEvents, categoryOptions }: HomePagePro
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
         };
+        setIsAllPoland(false);
         setLocation(gpsLocation);
         setLocationInput(gpsLocation.label);
         setLocationStatus("Używam Twojej aktualnej lokalizacji.");
@@ -99,7 +102,17 @@ export default function HomePage({ initialEvents, categoryOptions }: HomePagePro
     );
   }
 
+  function handleRadiusChange(radius: number) {
+    setIsAllPoland(false);
+    setRadiusKm(radius);
+  }
 
+  function handleAllPolandSelect() {
+    setIsAllPoland(true);
+    setLocation(getDefaultLocation());
+    setLocationInput("");
+    setLocationStatus("Pokazuję wydarzenia z całej Polski.");
+  }
 
   return (
     <main className="homePage">
@@ -121,13 +134,13 @@ export default function HomePage({ initialEvents, categoryOptions }: HomePagePro
         customDate={customDate}
         onCustomDateChange={setCustomDate}
         radiusKm={radiusKm}
-        onRadiusChange={setRadiusKm}
+        isAllPoland={isAllPoland}
+        onRadiusChange={handleRadiusChange}
+        onAllPolandSelect={handleAllPolandSelect}
         category={category}
         categories={categoryNames}
         onCategoryChange={(cat) => { setCategory(cat); setIsFree(false); }}
       />
-
-
 
       {/* Main 70/30 layout: events list + sidebar */}
       <div className="mainLayout">
@@ -180,6 +193,7 @@ export default function HomePage({ initialEvents, categoryOptions }: HomePagePro
           onCategorySelect={(cat) => { setCategory(cat); setIsFree(false); }}
           selectedCategory={category}
           location={location}
+          isAllPoland={isAllPoland}
         />
       </div>
 

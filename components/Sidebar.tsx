@@ -16,6 +16,7 @@ type SidebarProps = {
   onCategorySelect: (category: EventCategory | "Wszystkie") => void;
   selectedCategory: EventCategory | "Wszystkie";
   location: KnownLocation;
+  isAllPoland: boolean;
 };
 
 export default function Sidebar({
@@ -23,7 +24,8 @@ export default function Sidebar({
   categoryCounts,
   onCategorySelect,
   selectedCategory,
-  location
+  location,
+  isAllPoland
 }: SidebarProps) {
   return (
     <aside className="sidebar" aria-label="Panel boczny">
@@ -34,20 +36,9 @@ export default function Sidebar({
         <div className="sidebarMapWrap">
           <MapLibreMap
             events={events.map(({ event }) => event)}
-            location={location}
+            location={isAllPoland ? undefined : location}
             onSelectEvent={() => {}}
           />
-          <Link href="#events-list" className="sidebarMapAction">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <line x1="8" y1="6" x2="21" y2="6" />
-              <line x1="8" y1="12" x2="21" y2="12" />
-              <line x1="8" y1="18" x2="21" y2="18" />
-              <line x1="3" y1="6" x2="3.01" y2="6" />
-              <line x1="3" y1="12" x2="3.01" y2="12" />
-              <line x1="3" y1="18" x2="3.01" y2="18" />
-            </svg>
-            Pokaż listę
-          </Link>
         </div>
       </div>
 

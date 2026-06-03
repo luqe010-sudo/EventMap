@@ -4472,7 +4472,38 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   width: 100%;
+}
+
+.searchRadiusActions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+}
+
+.searchScopeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border: 1px solid rgba(64, 52, 44, 0.12);
+  border-radius: 999px;
+  background: #fffefb;
+  color: #2d2926;
+  font-size: 0.7rem;
+  font-weight: 850;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.searchScopeButtonActive {
+  border-color: rgba(239, 63, 24, 0.34);
+  background: rgba(239, 63, 24, 0.1);
+  color: var(--brand);
 }
 
 .searchRadiusValue {
@@ -5088,28 +5119,6 @@ select {
 .sidebarMapWrap .mapLibreCanvas,
 .sidebarMapWrap .mapLoading {
   border-radius: 12px;
-}
-
-.sidebarMapAction {
-  position: absolute;
-  right: 14px;
-  bottom: 14px;
-  z-index: 500;
-  display: inline-flex;
-  min-height: 34px;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  padding: 8px 12px;
-  border: 1px solid rgba(39, 35, 34, 0.08);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.94);
-  color: #252120;
-  font-size: 0.76rem;
-  font-weight: 800;
-  text-decoration: none;
-  box-shadow: 0 8px 24px rgba(39, 35, 34, 0.12);
-  backdrop-filter: blur(8px);
 }
 
 .sidebarNotifSection {
