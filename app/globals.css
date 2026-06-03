@@ -6583,3 +6583,62 @@ select {
 .seoTextCard strong {
   color: var(--ink);
 }
+
+/* ===================================================
+   Subpage Breadcrumbs & Event More Links Cards
+   =================================================== */
+.subpageBreadcrumbs {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.edMoreLinksSection {
+  margin: 40px 0;
+  padding: 0 4px;
+}
+
+.edMoreLinksSection h2 {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.edMoreLinksGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.edMoreLinkCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.edMoreLinkCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--brand);
+  color: var(--brand);
+  box-shadow: var(--shadow-md);
+}
+
+.edMoreLinkCard svg {
+  color: var(--ink-muted);
+  transition: var(--transition);
+}
+
+.edMoreLinkCard:hover svg {
+  color: var(--brand);
+  transform: translateX(4px);
+}

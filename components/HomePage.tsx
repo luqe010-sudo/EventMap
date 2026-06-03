@@ -266,6 +266,47 @@ export default function HomePage({
 
   return (
     <main className="homePage">
+      {!isHomePage && (
+        <nav className="breadcrumbs subpageBreadcrumbs" aria-label="Ścieżka powrotu">
+          <Link href="/" aria-label="Strona główna">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: "-2px" }}><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+          </Link>
+          {initialCategory && (
+            <>
+              <span className="separator">›</span>
+              {initialLocation || initialDateFilter ? (
+                <Link href={`/${toPluralCategorySlug(toSlug(initialCategory))}`}>{toPluralCategoryName(initialCategory)}</Link>
+              ) : (
+                <span className="current">{toPluralCategoryName(initialCategory)}</span>
+              )}
+            </>
+          )}
+          {initialLocation && (
+            <>
+              <span className="separator">›</span>
+              {initialDateFilter ? (
+                <Link href={initialCategory 
+                  ? `/${toPluralCategorySlug(toSlug(initialCategory))}/${toSlug(initialLocation.label)}`
+                  : `/${toSlug(initialLocation.label)}`
+                }>
+                  {initialLocation.label}
+                </Link>
+              ) : (
+                <span className="current">{initialLocation.label}</span>
+              )}
+            </>
+          )}
+          {initialDateFilter && (
+            <>
+              <span className="separator">›</span>
+              <span className="current">
+                {initialDateFilter === "today" ? "Dzisiaj" : initialDateFilter === "weekend" ? "Weekend" : "Ten tydzień"}
+              </span>
+            </>
+          )}
+        </nav>
+      )}
+
       <HeroSection
         eventCount={filteredEvents.length}
         onSelectCategory={(cat) => { setCategory(cat); setIsFree(false); }}
