@@ -7,6 +7,8 @@ type HeroSectionProps = {
   onSelectCategory: (category: EventCategory | "Wszystkie") => void;
   onSelectFree: () => void;
   onSelectDateFilter: (filter: "today" | "weekend") => void;
+  title?: string;
+  subtitle?: string;
 };
 
 const quickTiles = [
@@ -17,17 +19,25 @@ const quickTiles = [
   { icon: "bolt", label: "Na dziś", action: "date" as const, value: "today" },
 ];
 
-export default function HeroSection({ eventCount, onSelectCategory, onSelectFree, onSelectDateFilter }: HeroSectionProps) {
+export default function HeroSection({ eventCount, onSelectCategory, onSelectFree, onSelectDateFilter, title, subtitle }: HeroSectionProps) {
   return (
     <section className="heroSection">
       <div className="heroLeft">
         <h1 className="heroTitle">
-          Odkrywaj wydarzenia<br />
-          w swojej okolicy.
+          {title || (
+            <>
+              Odkrywaj wydarzenia<br />
+              w swojej okolicy.
+            </>
+          )}
         </h1>
         <p className="heroSubtitle">
-          Koncerty, festyny, dożynki, sport i kultura w jednej mapie.<br />
-          Wybierz miasto, kategorię i znajdź coś dla siebie.
+          {subtitle || (
+            <>
+              Koncerty, festyny, dożynki, sport i kultura w jednej mapie.<br />
+              Wybierz miasto, kategorię i znajdź coś dla siebie.
+            </>
+          )}
         </p>
       </div>
       <div className="heroRight">
