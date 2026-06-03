@@ -46,24 +46,24 @@ export async function GET() {
   citySlugs.forEach((slug) => {
     // Base city page
     xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/miasto/${slug}</loc>
+    <loc>https://mapaimprez.pl/${slug}</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>`);
 
     // Time variants
     xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/miasto/${slug}/dzis</loc>
+    <loc>https://mapaimprez.pl/${slug}/dzis</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>`);
     xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/miasto/${slug}/weekend</loc>
+    <loc>https://mapaimprez.pl/${slug}/weekend</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>`);
     xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/miasto/${slug}/ten-tydzien</loc>
+    <loc>https://mapaimprez.pl/${slug}/ten-tydzien</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>`);

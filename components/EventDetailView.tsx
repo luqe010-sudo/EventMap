@@ -18,7 +18,7 @@ export default function EventDetailView({
   const categoryPlural = toPluralCategoryName(event.category);
   const categorySlug = toPluralCategorySlug(event.categorySlug || toSlug(event.category || "inne"));
   const citySlug = toSlug(event.city || "polska");
-  const cityHref = event.city ? `/miasto/${citySlug}` : "/";
+  const cityHref = event.city ? `/${citySlug}` : "/";
   const eventUrl = `https://mapaimprez.pl${eventPath(event)}`;
   const mapTargetId = "event-detail-map";
   const eventLocation = {
@@ -337,7 +337,7 @@ export default function EventDetailView({
                 <span>Więcej z kategorii <strong>{categoryPlural}</strong> {formatInCity(event.city || "Polska")}</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
               </Link>
-              <Link href={`/miasto/${citySlug}`} className="edMoreLinkCard">
+              <Link href={`/${citySlug}`} className="edMoreLinkCard">
                 <span>Więcej wydarzeń <strong>{formatInCity(event.city || "Polska")}</strong></span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
               </Link>
