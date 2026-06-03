@@ -41,23 +41,34 @@ URL:
 
 Technicznie obsługiwane przez `app/wydarzenie/[slug]/page.tsx`. Stary format `/wydarzenia/[slug]` przekierowuje na nowy adres, jeśli slug odpowiada wydarzeniu.
 
-Szczegóły pokazują:
+Szczegóły pokazują (redesigned premium layout):
 
-- duzy pojedynczy obraz wydarzenia bez galerii;
-- kategorię;
-- tytuł;
-- organizatora;
-- opis;
-- datę;
-- lokalizację;
-- cenę;
-- mapę;
-- link Google Maps, jeśli `locations.google_maps_url` istnieje;
-- sekcję źródeł, jeśli wydarzenie ma `event_sources`.
+**Hero section** (grid 2-kolumnowy):
+- duży obraz wydarzenia zachowujący oryginalne proporcje (bez przycinania);
+- badge kategorii na obrazie;
+- tytuł, meta-chipy (miasto, data, dzień tygodnia, godzina);
+- krótki opis (`short_description`);
+- zielony przycisk CTA „Zobacz bilety / strona wydarzenia" (link z `ticketUrl` / pierwszego `event_sources.source_url`);
+- przycisk „Udostępnij" (Web Share API / schowek);
+- przycisk „Zapisz" z ikoną serca (zapis lokalny w przeglądarce);
+- pasek podsumowania: Cena, Kategoria, Organizator.
 
-- przyciski `Udostepnij` i `Zapisz`; zapis dziala lokalnie w przegladarce;
-- mapa jest wyswietlana jako blok obok opisu wydarzenia;
-- podobne wydarzenia z tej samej kategorii, jesli publiczne zapytanie je zwroci.
+**Nawigacja sekcji** — linki kotwicowe: Szczegóły, Organizator, Źródła.
+
+**Pasek informacji** — 4 elementy z ikonami w zielonych kółkach:
+- KIEDY (data i godzina, obsługa zakresu dat);
+- GDZIE (pełny adres z lokalizacji);
+- CENA (sformatowana cena + „Bezpłatne" / „Bilety płatne");
+- KATEGORIA.
+
+**Sekcja treści** (grid 2-kolumnowy):
+- opis wydarzenia z funkcją „Pokaż więcej / Pokaż mniej" (collapsible z gradientem);
+- mapa MapLibre z adresem i linkiem „Otwórz w Google Maps" (generowany z `google_maps_url` lub współrzędnych).
+
+**Sekcja dolna** (grid 2-kolumnowy):
+- organizator z awatarem (logo lub inicjał), nazwą, statusem weryfikacji i linkiem do profilu;
+- źródła wydarzenia z ikonami, nazwami i URL-ami;
+- do 6 podobnych wydarzeń z tej samej kategorii w siatce kart z obrazkami, badge kategorii, datą, miastem i ceną.
 
 ## Strony miast
 

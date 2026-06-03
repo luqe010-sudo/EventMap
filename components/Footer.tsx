@@ -6,7 +6,8 @@ export default function Footer() {
       <div className="footerInner">
         <div className="footerBrand">
           <Link href="/" className="footerLogo">
-            Mapa<span>Imprez.pl</span>
+            <img src="/mapaimprez_logo.svg" alt="" className="brandLogoMark" aria-hidden="true" />
+            <span className="brandLogoText">Mapa<span>Imprez.pl</span></span>
           </Link>
           <p>
             Przewodnik po lokalnych wydarzeniach w Polsce.<br />

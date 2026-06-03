@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
 import Link from "next/link";
-import EventDetailActions from "@/components/EventDetailActions";
+import EventHeroCta, { EventSaveButton } from "@/components/EventDetailActions";
 import EventDetailMap from "@/components/EventDetailMap";
+import ExpandableDescription from "@/components/ExpandableDescription";
 import { type EventItem, isFreeEvent } from "@/lib/events";
 import { formatPolishDate } from "@/lib/date-format";
 import { categoryPath, eventPath, toSlug } from "@/lib/slugs";
@@ -11,33 +11,63 @@ type EventDetailViewProps = {
   relatedEvents?: EventItem[];
 };
 
-export default function EventDetailView({ event, relatedEvents = [] }: EventDetailViewProps) {
-  const cityPath = event.city ? `/wydarzenia/${toSlug(event.city)}` : "/";
+export default function EventDetailView({
+  event,
+  relatedEvents = [],
+}: EventDetailViewProps) {
+  const cityHref = event.city ? `/wydarzenia/${toSlug(event.city)}` : "/";
   const eventUrl = `https://mapaimprez.pl/wydarzenie/${event.slug}`;
   const mapTargetId = "event-detail-map";
   const eventLocation = {
     label: event.city || event.location?.name || event.title,
     aliases: event.city ? [toSlug(event.city)] : [],
     latitude: event.latitude ?? 52.2297,
-    longitude: event.longitude ?? 21.0122
+    longitude: event.longitude ?? 21.0122,
   };
+
+  const dateFormatted = formatPolishDate(event.start_at, {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+  const dayOfWeek = formatPolishDate(event.start_at, { weekday: "short" });
+  const timeFormatted = formatPolishDate(event.start_at, {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  const fullDate = formatDateRange(event.start_at, event.end_at);
+  const isFree = isFreeEvent(event);
+  const googleMapsUrl =
+    event.location?.google_maps_url ||
+    (event.latitude != null && event.longitude != null
+      ? `https://www.google.com/maps/search/?api=1&query=${event.latitude},${event.longitude}`
+      : null);
 
   return (
     <main className="appShell eventDetailPage">
-      <nav className="breadcrumbs eventDetailBreadcrumbs" aria-label="Sciezka powrotu">
-        <Link href="/">Strona glowna</Link>
-        <span className="separator">/</span>
+      {/* Breadcrumbs */}
+      <nav
+        className="breadcrumbs edBreadcrumbs"
+        aria-label="Ścieżka powrotu"
+      >
+        <Link href="/" aria-label="Strona główna">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+        </Link>
+        <span className="separator">›</span>
+        <Link href="/">Wydarzenia</Link>
+        <span className="separator">›</span>
         <Link href={categoryPath(event.category)}>{event.category}</Link>
         {event.city ? (
           <>
-            <span className="separator">/</span>
-            <Link href={cityPath}>{event.city}</Link>
+            <span className="separator">›</span>
+            <Link href={cityHref}>{event.city}</Link>
           </>
         ) : null}
-        <span className="separator">/</span>
+        <span className="separator">›</span>
         <span className="current">{event.title}</span>
       </nav>
 
+      {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -52,7 +82,8 @@ export default function EventDetailView({ event, relatedEvents = [] }: EventDeta
             eventStatus: event.is_cancelled
               ? "https://schema.org/EventCancelled"
               : "https://schema.org/EventScheduled",
-            eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+            eventAttendanceMode:
+              "https://schema.org/OfflineEventAttendanceMode",
             location: {
               "@type": "Place",
               name: event.location?.name ?? event.address,
@@ -61,213 +92,340 @@ export default function EventDetailView({ event, relatedEvents = [] }: EventDeta
                 streetAddress: event.location?.address,
                 addressLocality: event.city,
                 addressRegion: event.location?.voivodeship,
-                addressCountry: "PL"
+                addressCountry: "PL",
               },
-              geo: event.latitude != null && event.longitude != null
-                ? {
-                    "@type": "GeoCoordinates",
-                    latitude: event.latitude,
-                    longitude: event.longitude
-                  }
-                : undefined
+              geo:
+                event.latitude != null && event.longitude != null
+                  ? {
+                      "@type": "GeoCoordinates",
+                      latitude: event.latitude,
+                      longitude: event.longitude,
+                    }
+                  : undefined,
             },
             offers: {
               "@type": "Offer",
               price: event.price_min ?? 0,
               priceCurrency: event.currency ?? "PLN",
               url: event.sources[0]?.source_url ?? eventUrl,
-              availability: "https://schema.org/InStock"
+              availability: "https://schema.org/InStock",
             },
             organizer: event.organizerRelation
               ? {
                   "@type": "Organization",
                   name: event.organizerRelation.name,
-                  url: event.organizerRelation.website ?? event.organizerRelation.facebook_url
+                  url:
+                    event.organizerRelation.website ??
+                    event.organizerRelation.facebook_url,
                 }
-              : undefined
-          })
+              : undefined,
+          }),
         }}
       />
 
-      <article className="eventDetailShell">
-        <header className="eventDetailIntroCard">
-          <div>
-            <span className="eventDetailCategoryBadge" style={{ backgroundColor: event.categoryColor }}>
-              {event.category}
-            </span>
-            <h1>{event.title}</h1>
-            <div className="eventDetailMetaLine">
-              <span>{event.city || "Polska"}</span>
-              <span>{isFreeEvent(event) ? "Bezplatne" : event.price}</span>
-            </div>
-          </div>
-          <EventDetailActions eventId={event.id} title={event.title} url={eventUrl} />
-        </header>
-
-        <div className="eventDetailMediaGrid">
-          <div className="eventDetailLeadImageWrap">
-            <img src={event.imageUrl} alt={event.title} className="eventDetailLeadImage" />
-          </div>
-
-          <aside className="eventDetailSummaryColumn">
-            <section className="eventDetailSummaryCard" aria-label="Szczegoly wydarzenia">
-              <h2>Szczegoly wydarzenia</h2>
-              <SummaryItem label="Kiedy" value={formatDateRange(event.start_at, event.end_at)} />
-              <SummaryItem
-                label="Gdzie"
-                value={event.address || "Lokalizacja nieznana"}
-                extra={
-                  <>
-                    <a href={`#${mapTargetId}`}>Pokaz na mapie</a>
-                    {event.city ? <Link href={cityPath}>Inne wydarzenia w {event.city}</Link> : null}
-                  </>
-                }
+      <article className="edShell">
+        {/* ====== HERO SECTION ====== */}
+        <section className="edHero">
+          <div className="edHeroImageCol">
+            <div className="edHeroImageWrap">
+              <span
+                className="edCategoryBadge"
+                style={{ backgroundColor: event.categoryColor }}
+              >
+                {event.category}
+              </span>
+              <img
+                src={event.imageUrl}
+                alt={event.title}
+                className="edHeroImage"
               />
-              <SummaryItem label="Kategoria" value={event.category} />
-              <SummaryItem label="Cena" value={event.price} />
-            </section>
-          </aside>
-        </div>
-
-        <div className="eventDetailBodyGrid">
-          <section className="eventDetailSection eventDetailDescriptionBlock">
-            <h2>Opis wydarzenia</h2>
-            <div className="eventDescription">
-              {splitDescription(event.description ?? event.short_description).map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
             </div>
+            <div className="edImageActions">
+              <EventSaveButton eventId={event.id} />
+            </div>
+          </div>
+
+          <div className="edHeroInfo">
+            <h1>{event.title}</h1>
+
+            <div className="edHeroMeta">
+              <span className="edMetaChip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                {event.city || "Polska"}
+              </span>
+              <span className="edMetaChip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+                {dateFormatted} ({dayOfWeek})
+              </span>
+              <span className="edMetaChip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                {timeFormatted}
+              </span>
+            </div>
+
+            {event.short_description ? (
+              <p className="edHeroDesc">{event.short_description}</p>
+            ) : null}
+
+            <EventHeroCta
+              title={event.title}
+              url={eventUrl}
+              ticketUrl={event.ticketUrl}
+            />
+
+            {/* ====== INFO BAR ====== */}
+            <section className="edInfoBar" aria-label="Szczegóły wydarzenia">
+              <div className="edInfoBarHeader">
+                <h2>Szczegóły wydarzenia</h2>
+              </div>
+
+              <div className="edInfoItem">
+                <div className="edInfoIcon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+                </div>
+                <div className="edInfoText">
+                  <span className="edInfoLabel">Kiedy</span>
+                  <strong>{fullDate}</strong>
+                </div>
+              </div>
+
+              <div className="edInfoItem">
+                <div className="edInfoIcon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                </div>
+                <div className="edInfoText">
+                  <span className="edInfoLabel">Gdzie</span>
+                  <strong>{event.address || "Lokalizacja nieznana"}</strong>
+                </div>
+              </div>
+
+              <div className="edInfoItem">
+                <div className="edInfoIcon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" /></svg>
+                </div>
+                <div className="edInfoText">
+                  <span className="edInfoLabel">Cena</span>
+                  <strong>{event.price}</strong>
+                  <span className="edInfoSub">{isFree ? "Bezpłatne" : "Bilety płatne"}</span>
+                </div>
+              </div>
+
+              <div className="edInfoItem">
+                <div className="edInfoIcon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" /><line x1="7" y1="7" x2="7.01" y2="7" /></svg>
+                </div>
+                <div className="edInfoText">
+                  <span className="edInfoLabel">Kategoria</span>
+                  <strong>{event.category}</strong>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+
+        {/* ====== CONTENT GRID: Description + Map ====== */}
+        <div className="edContentGrid" id="opis">
+          <section className="edDescSection">
+            <h2>Opis wydarzenia</h2>
+            <ExpandableDescription text={event.description ?? event.short_description} />
           </section>
 
-          <section className="eventDetailMapPlain" id={mapTargetId} aria-label="Mapa wydarzenia">
-            <div className="detailMapContainer">
+          <section className="edMapSection" id={mapTargetId}>
+            <h2>Lokalizacja</h2>
+            <div className="edMapContainer">
               <EventDetailMap event={event} location={eventLocation} />
             </div>
+            <p className="edMapAddress">{event.address || "Lokalizacja nieznana"}</p>
+            {googleMapsUrl ? (
+              <a
+                href={googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="edGoogleMapsLink"
+              >
+                Otwórz w Google Maps
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+              </a>
+            ) : null}
           </section>
+        </div>
 
-          <div className="eventDetailMain">
-            <section className="eventDetailSection eventOrganizerPanel">
+        {/* ====== BOTTOM GRID: Organizer + Sources | Related ====== */}
+        <div className="edBottomGrid">
+          <div className="edBottomLeft">
+            {/* Organizer */}
+            <section className="edOrgSection" id="organizator">
               <h2>Organizator</h2>
-              <div className="eventOrganizerRow">
-                <div className="eventOrganizerAvatar" aria-hidden="true">
-                  {event.organizerName.charAt(0).toUpperCase()}
+              <div className="edOrgRow">
+                <div className="edOrgAvatar" aria-hidden="true">
+                  {event.organizerRelation?.logo_url ? (
+                    <img src={event.organizerRelation.logo_url} alt={event.organizerName} />
+                  ) : (
+                    event.organizerName.charAt(0).toUpperCase()
+                  )}
                 </div>
-                <div className="eventOrganizerInfo">
+                <div className="edOrgInfo">
                   <strong>{event.organizerName}</strong>
-                  <span>{event.organizerRelation?.is_verified ? "Organizator zweryfikowany" : "Organizator wydarzenia"}</span>
+                  <span>
+                    {event.organizerRelation?.is_verified
+                      ? "✓ Zweryfikowany organizator"
+                      : "Organizator wydarzenia"}
+                  </span>
                 </div>
                 {event.organizerUrl ? (
-                  <a href={event.organizerUrl} target="_blank" rel="noopener noreferrer" className="secondaryButton eventOrganizerLink">
+                  <a
+                    href={event.organizerUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="edOrgLink"
+                  >
                     Zobacz profil
                   </a>
                 ) : null}
               </div>
             </section>
 
-          {event.sources.length ? (
-            <section className="eventDetailSection">
-              <h2>Zrodla wydarzenia</h2>
-              <div className="eventSourceList">
-                {event.sources.map((source) => (
-                  source.source_url ? (
-                    <a
-                      key={`${source.source_type}-${source.source_url}`}
-                      href={source.source_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="eventSourceItem"
-                    >
-                      <span className="eventSourceIcon" aria-hidden="true">{source.source_type?.charAt(0).toUpperCase() ?? "Z"}</span>
-                      <span>
-                        <strong>{source.source_name ?? source.source_type ?? "Zrodlo wydarzenia"}</strong>
-                        <small>{formatSourceUrl(source.source_url)}</small>
-                      </span>
-                      <span className="eventSourceArrow" aria-hidden="true">Otworz</span>
-                    </a>
-                  ) : (
-                    <div key={`${source.source_type}-${source.source_name}`} className="eventSourceItem">
-                      <span className="eventSourceIcon" aria-hidden="true">{source.source_type?.charAt(0).toUpperCase() ?? "Z"}</span>
-                      <span>
-                        <strong>{source.source_name ?? source.source_type ?? "Zrodlo wydarzenia"}</strong>
-                      </span>
-                    </div>
-                  )
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          {relatedEvents.length ? (
-            <section className="eventDetailSection">
-              <div className="eventDetailSectionHeader">
-                <h2>Podobne wydarzenia</h2>
-                <Link href={categoryPath(event.category)}>Zobacz kategorie</Link>
-              </div>
-              <div className="relatedEventsGrid">
-                {relatedEvents.map((relatedEvent) => (
-                  <Link key={relatedEvent.id} href={eventPath(relatedEvent)} className="relatedEventCard">
-                    <img src={relatedEvent.imageUrl} alt={relatedEvent.title} />
-                    <div className="relatedEventBody">
-                      <div className="relatedEventDate">
-                        <strong>{formatPolishDate(relatedEvent.start_at, { day: "2-digit" })}</strong>
-                        <span>{formatPolishDate(relatedEvent.start_at, { month: "short" })}</span>
-                      </div>
-                      <div>
-                        <h3>{relatedEvent.title}</h3>
-                        <p>{relatedEvent.city || relatedEvent.address}</p>
-                        <span className={isFreeEvent(relatedEvent) ? "relatedEventFree" : ""}>
-                          {isFreeEvent(relatedEvent) ? "Bezplatne" : relatedEvent.price}
+            {/* Sources */}
+            {event.sources.length ? (
+              <section className="edSourcesSection" id="zrodla">
+                <h2>Źródła wydarzenia</h2>
+                <div className="edSourceList">
+                  {event.sources.map((source) =>
+                    source.source_url ? (
+                      <a
+                        key={`${source.source_type}-${source.source_url}`}
+                        href={source.source_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="edSourceItem"
+                      >
+                        <span className="edSourceIcon" aria-hidden="true">
+                          {getSourceInitial(source.source_type)}
+                        </span>
+                        <span className="edSourceText">
+                          <strong>{source.source_name ?? source.source_type ?? "Źródło wydarzenia"}</strong>
+                          <small>{formatSourceUrl(source.source_url)}</small>
+                        </span>
+                        <span className="edSourceArrow" aria-hidden="true">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+                        </span>
+                      </a>
+                    ) : (
+                      <div
+                        key={`${source.source_type}-${source.source_name}`}
+                        className="edSourceItem"
+                      >
+                        <span className="edSourceIcon" aria-hidden="true">
+                          {getSourceInitial(source.source_type)}
+                        </span>
+                        <span className="edSourceText">
+                          <strong>{source.source_name ?? source.source_type ?? "Źródło wydarzenia"}</strong>
                         </span>
                       </div>
+                    )
+                  )}
+                </div>
+              </section>
+            ) : null}
+          </div>
+
+          {/* Related Events */}
+          {relatedEvents.length ? (
+            <section className="edRelatedSection">
+              <div className="edRelatedHeader">
+                <h2>Podobne wydarzenia</h2>
+                <Link href={categoryPath(event.category)} className="edRelatedLink">
+                  Zobacz wszystkie
+                </Link>
+              </div>
+              <div className="edRelatedGrid">
+                {relatedEvents.map((re) => (
+                  <Link key={re.id} href={eventPath(re)} className="edRelatedCard">
+                    <div className="edRelatedCardImageWrap">
+                      <img src={re.imageUrl} alt={re.title} />
+                      <span
+                        className="edRelatedCardBadge"
+                        style={{ backgroundColor: re.categoryColor }}
+                      >
+                        {re.category}
+                      </span>
+                    </div>
+                    <div className="edRelatedCardBody">
+                      <h3>{re.title}</h3>
+                      <span className="edRelatedCardDate">
+                        {formatCompactDate(re.start_at, re.end_at)}
+                      </span>
+                      <span className="edRelatedCardLocation">{re.city || re.address}</span>
+                      <span className={`edRelatedCardPrice ${isFreeEvent(re) ? "edRelatedCardPriceFree" : ""}`}>
+                        {isFreeEvent(re)
+                          ? "Bezpłatne"
+                          : re.price_min != null
+                            ? `od ${re.price_min} ${re.currency ?? "PLN"}`
+                            : re.price}
+                      </span>
                     </div>
                   </Link>
                 ))}
               </div>
             </section>
           ) : null}
-          </div>
         </div>
       </article>
     </main>
   );
 }
 
-function SummaryItem({
-  label,
-  value,
-  extra
-}: {
-  label: string;
-  value: string;
-  extra?: ReactNode;
-}) {
-  return (
-    <div className="eventSummaryItem">
-      <span>{label}</span>
-      <strong>{value}</strong>
-      {extra ? <small>{extra}</small> : null}
-    </div>
-  );
-}
+/* ---- Helpers ---- */
 
 function formatDateRange(start: string, end: string | null) {
   const startLabel = formatPolishDate(start, {
     weekday: "long",
     day: "2-digit",
     month: "long",
-    year: "numeric"
+    year: "numeric",
   });
-  const startTime = formatPolishDate(start, { hour: "2-digit", minute: "2-digit" });
+  const startTime = formatPolishDate(start, {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
   if (!end) return `${startLabel}, ${startTime}`;
 
+  const startDay = new Date(start).toDateString();
+  const endDay = new Date(end).toDateString();
   const endTime = formatPolishDate(end, { hour: "2-digit", minute: "2-digit" });
-  return `${startLabel}, ${startTime} - ${endTime}`;
+
+  if (startDay === endDay) {
+    return `${startLabel}, ${startTime} \u2013 ${endTime}`;
+  }
+
+  const endLabel = formatPolishDate(end, {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+  return `${startLabel}, ${startTime} \u2013 ${endLabel}, ${endTime}`;
 }
 
-function splitDescription(value?: string | null) {
-  const paragraphs = value?.split(/\n{2,}/).map((paragraph) => paragraph.trim()).filter(Boolean) ?? [];
-  return paragraphs.length ? paragraphs : ["Brak szczegolowego opisu wydarzenia."];
+function formatCompactDate(start: string, end?: string | null) {
+  const startDate = formatPolishDate(start, {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+  if (!end) return startDate;
+
+  const startDay = new Date(start).toDateString();
+  const endDay = new Date(end).toDateString();
+  if (startDay === endDay) return startDate;
+
+  const endDate = formatPolishDate(end, {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+  return `${startDate} \u2013 ${endDate}`;
 }
 
 function formatSourceUrl(value: string) {
@@ -277,4 +435,12 @@ function formatSourceUrl(value: string) {
   } catch {
     return value;
   }
+}
+
+function getSourceInitial(sourceType?: string | null) {
+  const type = sourceType?.toLowerCase() ?? "";
+  if (type.includes("facebook")) return "f";
+  if (type.includes("instagram")) return "📷";
+  if (type.includes("twitter") || type.includes("x.com")) return "𝕏";
+  return (sourceType?.charAt(0) ?? "Z").toUpperCase();
 }

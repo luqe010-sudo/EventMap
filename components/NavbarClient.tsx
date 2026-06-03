@@ -28,7 +28,8 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
       <div className="navbarInner">
         <div className="navLeft">
           <Link href="/" className="navLogo">
-            Mapa<span>Imprez.pl</span>
+            <img src="/mapaimprez_logo.svg" alt="" className="brandLogoMark" aria-hidden="true" />
+            <span className="brandLogoText">Mapa<span>Imprez.pl</span></span>
           </Link>
         </div>
 

@@ -44,7 +44,7 @@ async function getRelatedEvents(eventId: string, category: string, dateFrom: str
   try {
     return (await listEvents({ dateFrom, limit: 24 }))
       .filter((item) => item.id !== eventId && item.category === category)
-      .slice(0, 3);
+      .slice(0, 6);
   } catch (error) {
     console.error("[events] Failed to load related events", error);
     return [];
