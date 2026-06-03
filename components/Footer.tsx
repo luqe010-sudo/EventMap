@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="footerInner">
         <div className="footerBrand">
           <Link href="/" className="footerLogo">
-            Event<span>Map</span>
+            Mapa<span>Imprez.pl</span>
           </Link>
           <p>
             Przewodnik po lokalnych wydarzeniach w Polsce.<br />
@@ -49,7 +49,7 @@ export default function Footer() {
       </div>
 
       <div className="footerBottom">
-        <p>(c) {new Date().getFullYear()} EventMap.pl</p>
+        <p>(c) {new Date().getFullYear()} MapaImprez.pl</p>
       </div>
     </footer>
   );

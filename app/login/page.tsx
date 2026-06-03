@@ -13,7 +13,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   return (
     <main className="appShell managementShell">
       <section className="managementPanel loginPanel">
-        <p className="eyebrow">EventMap</p>
+        <p className="eyebrow">MapaImprez.pl</p>
         <h1>Logowanie</h1>
 
         {isSignupSuccess && (

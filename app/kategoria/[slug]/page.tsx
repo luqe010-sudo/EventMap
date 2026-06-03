@@ -22,10 +22,10 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   if (!category) return {};
 
   return {
-    title: `${category.name} - wydarzenia | EventMap`,
+    title: `${category.name} - wydarzenia | MapaImprez.pl`,
     description: `Nadchodzace wydarzenia z kategorii ${category.name}. Filtruj po dacie, miescie i odleglosci.`,
     openGraph: {
-      title: `${category.name} - wydarzenia | EventMap`,
+      title: `${category.name} - wydarzenia | MapaImprez.pl`,
       description: `Znajdz wydarzenia z kategorii ${category.name} blisko siebie.`
     }
   };
@@ -69,8 +69,8 @@ export default async function CategoryPage({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             name: `${category.name} - wydarzenia`,
-            description: `Wydarzenia z kategorii ${category.name} na EventMap.`,
-            url: `https://eventmap.pl/kategoria/${category.slug}`
+            description: `Wydarzenia z kategorii ${category.name} na MapaImprez.pl.`,
+            url: `https://mapaimprez.pl/kategoria/${category.slug}`
           })
         }}
       />

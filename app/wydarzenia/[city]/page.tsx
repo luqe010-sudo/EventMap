@@ -21,12 +21,12 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
   if (cityPage) {
     return {
-      title: cityPage.meta_title ?? `Wydarzenia ${cityPage.city} | EventMap`,
+      title: cityPage.meta_title ?? `Wydarzenia ${cityPage.city} | MapaImprez.pl`,
       description: cityPage.meta_description ?? `Nadchodzace wydarzenia w miescie ${cityPage.city} i okolicy.`,
       openGraph: {
         title: cityPage.meta_title ?? `Wydarzenia ${cityPage.city}`,
         description: cityPage.meta_description ?? undefined,
-        url: `https://eventmap.pl/wydarzenia/${cityPage.slug}`
+        url: `https://mapaimprez.pl/wydarzenia/${cityPage.slug}`
       }
     };
   }
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   if (!event) return {};
 
   return {
-    title: `${event.title} - ${event.city} | EventMap`,
+    title: `${event.title} - ${event.city} | MapaImprez.pl`,
     description: event.short_description ?? event.description ?? `Szczegoly wydarzenia ${event.title}.`,
     alternates: {
       canonical: `/wydarzenie/${event.slug}`
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
       title: `${event.title} - ${event.city}`,
       description: event.short_description ?? event.description ?? undefined,
       images: event.imageUrl ? [{ url: event.imageUrl }] : undefined,
-      url: `https://eventmap.pl/wydarzenie/${event.slug}`
+      url: `https://mapaimprez.pl/wydarzenie/${event.slug}`
     }
   };
 }
@@ -84,7 +84,7 @@ export default async function CityPage({ params }: { params: Promise<Params> }) 
             "@type": "CollectionPage",
             name: cityPage.meta_title ?? `Wydarzenia ${cityPage.city}`,
             description: cityPage.meta_description ?? cityPage.intro_text,
-            url: `https://eventmap.pl/wydarzenia/${cityPage.slug}`
+            url: `https://mapaimprez.pl/wydarzenia/${cityPage.slug}`
           })
         }}
       />

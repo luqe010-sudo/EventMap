@@ -49,7 +49,7 @@ export default function CityAutocomplete({ value, onChange, onSelect, onUseGPS }
           )}&format=json&limit=6&countrycodes=pl&addressdetails=1`,
           {
             headers: {
-              "User-Agent": "EventMapPolska-WebAgent/1.0"
+              "User-Agent": "MapaImprez-WebAgent/1.0"
             }
           }
         );

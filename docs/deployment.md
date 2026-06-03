@@ -118,7 +118,7 @@ Ta komenda wymaga dostępu sieciowego i zalogowanego Supabase CLI albo tokena Su
 
 ## Hosting
 
-`PROJECT_BRIEF.md` wskazuje docelowo Vercel, a `app/layout.tsx` używa domeny `https://eventmap.pl` w metadanych. W repozytorium nie ma jednak plików konfiguracyjnych Vercel, GitHub Actions ani innego pipeline'u.
+`PROJECT_BRIEF.md` wskazuje docelowo Vercel, a `app/layout.tsx` używa domeny `https://mapaimprez.pl` w metadanych. W repozytorium nie ma jednak plików konfiguracyjnych Vercel, GitHub Actions ani innego pipeline'u.
 
 Docelowa platforma deploymentu wymaga potwierdzenia.
 

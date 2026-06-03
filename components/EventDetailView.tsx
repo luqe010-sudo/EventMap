@@ -13,7 +13,7 @@ type EventDetailViewProps = {
 
 export default function EventDetailView({ event, relatedEvents = [] }: EventDetailViewProps) {
   const cityPath = event.city ? `/wydarzenia/${toSlug(event.city)}` : "/";
-  const eventUrl = `https://eventmap.pl/wydarzenie/${event.slug}`;
+  const eventUrl = `https://mapaimprez.pl/wydarzenie/${event.slug}`;
   const mapTargetId = "event-detail-map";
   const eventLocation = {
     label: event.city || event.location?.name || event.title,

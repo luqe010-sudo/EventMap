@@ -5,6 +5,7 @@
 Strona główna `/`:
 
 - pobiera wydarzenia z Supabase przez `getHomeData()`;
+- używa publicznej nazwy i domeny `MapaImprez.pl` w logo, metadanych i publicznych URL-ach;
 - pokazuje hero, panel wyszukiwania oraz układ 70/30 z lewą kolumną wydarzeń i prawym sidebarem;
 - w lewej kolumnie pokazuje wyróżnione wydarzenia nad listą wydarzeń;
 - w prawym sidebarze pokazuje jeden spójny panel z mapą MapLibre, powiadomieniami, nadchodzącymi wydarzeniami i popularnymi kategoriami;

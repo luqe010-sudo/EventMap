@@ -40,7 +40,7 @@ type NominatimResult = {
 };
 
 const NOMINATIM_BASE = "https://nominatim.openstreetmap.org";
-const USER_AGENT = "EventMap-Polska/1.0 (event-location-picker)";
+const USER_AGENT = "MapaImprez.pl/1.0 (event-location-picker)";
 const MIN_QUERY_LENGTH = 3;
 const MAX_RESULTS = 5;
 

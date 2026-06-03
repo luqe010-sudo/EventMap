@@ -4597,7 +4597,7 @@ select {
 
 .searchDatePills {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
 }
 
@@ -4606,23 +4606,22 @@ select {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  min-height: 42px;
-  padding: 0 11px;
-  border: 1px solid rgba(64, 52, 44, 0.12);
-  border-radius: 8px;
+  min-height: 36px;
+  padding: 0 10px;
+  border: 1px solid rgba(64, 52, 44, 0.095);
+  border-radius: 10px;
   background: #fffefb;
-  color: #2d2926;
-  font-size: 0.74rem;
-  font-weight: 800;
+  color: #403b38;
+  font-size: 0.72rem;
+  font-weight: 700;
   white-space: nowrap;
   box-shadow: none;
 }
 
 .datePillActive {
-  border-color: var(--brand);
-  background: linear-gradient(180deg, #fa5d2c, #e94117);
-  color: #fff;
-  box-shadow: 0 8px 18px rgba(238, 75, 34, 0.24);
+  border-color: rgba(238, 75, 34, 0.16);
+  background: #fff3ed;
+  color: var(--brand);
 }
 
 .searchCustomDate { max-width: 100%; }

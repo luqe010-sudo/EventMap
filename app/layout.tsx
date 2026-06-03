@@ -5,11 +5,11 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "EventMap Polska — Odkryj lokalne wydarzenia w swojej okolicy",
+  title: "MapaImprez.pl — Odkryj lokalne wydarzenia w swojej okolicy",
   description: "Co robisz w ten weekend? Znajdź koncerty, festyny, targi, sport i wydarzenia rodzinne w swojej okolicy. Wszystkie lokalne wydarzenia w jednym miejscu.",
-  metadataBase: new URL("https://eventmap.pl"),
+  metadataBase: new URL("https://mapaimprez.pl"),
   openGraph: {
-    title: "EventMap Polska — Odkryj lokalne wydarzenia w swojej okolicy",
+    title: "MapaImprez.pl — Odkryj lokalne wydarzenia w swojej okolicy",
     description: "Co robisz w ten weekend? Znajdź koncerty, festyny, targi, sport i wydarzenia rodzinne w swojej okolicy.",
     locale: "pl_PL",
     type: "website",

@@ -20,7 +20,7 @@ export default function RegisterPage() {
     return (
       <main className="appShell managementShell">
         <section className="managementPanel loginPanel">
-          <p className="eyebrow">EventMap</p>
+          <p className="eyebrow">MapaImprez.pl</p>
           <h1>Rejestracja</h1>
           <div style={{ minHeight: "350px", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <span className="locationPickerSpinner" />
@@ -53,7 +53,7 @@ export default function RegisterPage() {
   return (
     <main className="appShell managementShell">
       <section className="managementPanel loginPanel">
-        <p className="eyebrow">EventMap</p>
+        <p className="eyebrow">MapaImprez.pl</p>
         <h1>Rejestracja</h1>
 
         {error && (

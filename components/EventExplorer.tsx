@@ -125,7 +125,7 @@ export default function EventExplorer({
     <main className="appShell">
       <section className="hero">
         <div>
-          <p className="eyebrow">EventMap Polska</p>
+          <p className="eyebrow">MapaImprez.pl</p>
           <h1>Znajdź lokalne wydarzenia zanim przemkną bokiem.</h1>
           <p className="heroCopy">
             Koncerty, festyny, dożynki, sport i kultura w jednej mapie.

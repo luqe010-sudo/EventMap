@@ -28,7 +28,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
       <div className="navbarInner">
         <div className="navLeft">
           <Link href="/" className="navLogo">
-            Event<span>Map</span>
+            Mapa<span>Imprez.pl</span>
           </Link>
         </div>
 
