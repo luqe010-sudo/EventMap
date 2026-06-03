@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
-import { type CategoryOption, type EventCategory, type EventItem, type KnownLocation, getDefaultLocation } from "@/lib/events";
+import { useRouter } from "next/navigation";
+import { useCallback, useMemo, useState } from "react";
+import { type CategoryOption, type EventCategory, type EventItem, type KnownLocation, getDefaultLocation, knownLocations } from "@/lib/events";
 import { filterEvents, type DateFilter } from "@/lib/filters";
 import HeroSection from "@/components/HeroSection";
 import SearchPanel from "@/components/SearchPanel";
@@ -11,7 +12,7 @@ import FeaturedEvents from "@/components/FeaturedEvents";
 import EventCard from "@/components/EventCard";
 import Sidebar from "@/components/Sidebar";
 import ValueProps from "@/components/ValueProps";
-import { toSlug, toPluralCategoryName, toPluralCategorySlug, formatInCity } from "@/lib/slugs";
+import { toSlug, toPluralCategoryName, toPluralCategorySlug, formatInCity, buildSearchUrl } from "@/lib/slugs";
 import { generateSeoText } from "@/lib/seo-texts";
 
 type HomePageProps = {
@@ -20,6 +21,7 @@ type HomePageProps = {
   initialLocation?: KnownLocation;
   initialCategory?: EventCategory;
   initialDateFilter?: DateFilter;
+  activeCitySlugs?: string[];
 };
 
 const POPULAR_CITIES = [
@@ -109,8 +111,11 @@ export default function HomePage({
   categoryOptions,
   initialLocation,
   initialCategory,
-  initialDateFilter
+  initialDateFilter,
+  activeCitySlugs = []
 }: HomePageProps) {
+  const router = useRouter();
+
   // Filter state
   const [dateFilter, setDateFilter] = useState<DateFilter>(initialDateFilter ?? "all");
   const [customDate, setCustomDate] = useState("");
@@ -264,6 +269,54 @@ export default function HomePage({
     setLocationStatus("Pokazuję wydarzenia z całej Polski.");
   }
 
+  // Combine hardcoded known cities and database active city slugs
+  const allKnownSlugs = useMemo(() => {
+    const hardcoded = knownLocations.flatMap(loc => loc.aliases);
+    return Array.from(new Set([...hardcoded, ...(activeCitySlugs ?? [])]));
+  }, [activeCitySlugs]);
+
+  // Determine if location is a known city (has a slug-able name from city_pages/knownLocations)
+  // GPS locations and geo points use empty aliases or ["gps"]
+  const isKnownCity = useCallback((loc: KnownLocation) => {
+    const label = loc.label.toLowerCase();
+    if (label === "moja lokalizacja" || label === "polska" || label === "wybrana lokalizacja") {
+      return false;
+    }
+    // A city is known if its slug or one of its aliases is in allKnownSlugs
+    const slug = toSlug(loc.label);
+    return allKnownSlugs.includes(slug) || loc.aliases.some(a => allKnownSlugs.includes(a));
+  }, [allKnownSlugs]);
+
+  /**
+   * "Znajdź" button handler — builds a URL from current filter state and navigates.
+   */
+  const handleFindSubmit = useCallback(() => {
+    // Resolve category slug (or undefined if "Wszystkie")
+    const catSlug = category !== "Wszystkie"
+      ? toPluralCategorySlug(toSlug(category))
+      : undefined;
+
+    // Resolve location
+    let citySlug: string | undefined;
+    let geoLocation: { lat: number; lng: number; radius: number } | undefined;
+
+    if (!isAllPoland && isKnownCity(location)) {
+      // Known city — use slug
+      citySlug = toSlug(location.label);
+    } else if (!isAllPoland && location.label !== "Polska") {
+      // GPS or unknown point — use lat/lng params
+      geoLocation = {
+        lat: Math.round(location.latitude * 1000) / 1000,
+        lng: Math.round(location.longitude * 1000) / 1000,
+        radius: radiusKm
+      };
+    }
+    // If isAllPoland and no category → stay on home, just scroll
+
+    const url = buildSearchUrl({ categorySlug: catSlug, citySlug, geoLocation });
+    router.push(url);
+  }, [category, location, isAllPoland, radiusKm, isKnownCity, router]);
+
   return (
     <main className="homePage">
       {!isHomePage && (
@@ -316,26 +369,25 @@ export default function HomePage({
         subtitle={pageSubtitle}
       />
 
-      {isHomePage && (
-        <SearchPanel
-          locationInput={locationInput}
-          onLocationInputChange={setLocationInput}
-          onLocationSelect={handleLocationSelect}
-          onUseGPS={handleUseGPS}
-          locationStatus={locationStatus}
-          dateFilter={dateFilter}
-          onDateFilterChange={setDateFilter}
-          customDate={customDate}
-          onCustomDateChange={setCustomDate}
-          radiusKm={radiusKm}
-          isAllPoland={isAllPoland}
-          onRadiusChange={handleRadiusChange}
-          onAllPolandSelect={handleAllPolandSelect}
-          category={category}
-          categories={categoryNames}
-          onCategoryChange={(cat) => { setCategory(cat); setIsFree(false); }}
-        />
-      )}
+      <SearchPanel
+        locationInput={locationInput}
+        onLocationInputChange={setLocationInput}
+        onLocationSelect={handleLocationSelect}
+        onUseGPS={handleUseGPS}
+        locationStatus={locationStatus}
+        dateFilter={dateFilter}
+        onDateFilterChange={setDateFilter}
+        customDate={customDate}
+        onCustomDateChange={setCustomDate}
+        radiusKm={radiusKm}
+        isAllPoland={isAllPoland}
+        onRadiusChange={handleRadiusChange}
+        onAllPolandSelect={handleAllPolandSelect}
+        category={category}
+        categories={categoryNames}
+        onCategoryChange={(cat) => { setCategory(cat); setIsFree(false); }}
+        onSubmit={handleFindSubmit}
+      />
 
       {/* City categories tiles grid and quick timing links */}
       {isCityPage && (

@@ -8,8 +8,10 @@ import {
   listEvents,
   resolveCityLocation,
   getEventBySlug,
+  getActiveCitySlugs,
 } from "@/lib/events";
 import { toPluralCategorySlug, toPluralCategoryName, formatInCity, toSlug, eventPath } from "@/lib/slugs";
+import { searchAddress } from "@/lib/geocoding";
 
 type Params = { category: string; city: string; event: string };
 
@@ -68,16 +70,34 @@ export default async function EventOrTimePage({ params }: { params: Promise<Para
       resolveCityLocation(citySlug),
     ]);
 
-    if (!category || !cityLocation) {
+    if (!category) {
+      notFound();
+    }
+
+    if (!cityLocation) {
+      // Try to geocode the citySlug as a fallback
+      try {
+        const query = citySlug.replace(/-/g, " ");
+        const geocoded = await searchAddress(query);
+        if (geocoded && geocoded.length > 0) {
+          const best = geocoded[0];
+          const lat = Math.round(best.latitude * 1000) / 1000;
+          const lng = Math.round(best.longitude * 1000) / 1000;
+          redirect(`/${pluralCategorySlug}/lokalizacja?lat=${lat}&lng=${lng}&radius=30`);
+        }
+      } catch (err) {
+        console.error("Failed to geocode fallback city for event or time page:", err);
+      }
       notFound();
     }
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows] = await Promise.all([
+    const [events, categoryRows, activeCitySlugs] = await Promise.all([
       listEvents({ categoryId: category.id, dateFrom: today.toISOString(), limit: 250 }),
-      listCategories()
+      listCategories(),
+      getActiveCitySlugs(),
     ]);
 
     const dateFilterMap = {
@@ -106,6 +126,7 @@ export default async function EventOrTimePage({ params }: { params: Promise<Para
           initialLocation={cityLocation}
           initialDateFilter={dateFilterMap[eventOrTime]}
           categoryOptions={categoryRows}
+          activeCitySlugs={activeCitySlugs}
         />
       </>
     );

@@ -6,8 +6,10 @@ import {
   listCategories,
   listEvents,
   resolveCityLocation,
+  getActiveCitySlugs,
 } from "@/lib/events";
 import { toPluralCategorySlug, toPluralCategoryName, toSlug, formatInCity } from "@/lib/slugs";
+import { searchAddress } from "@/lib/geocoding";
 
 type Params = { category: string };
 
@@ -59,9 +61,10 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows] = await Promise.all([
+    const [events, categoryRows, activeCitySlugs] = await Promise.all([
       listEvents({ categoryId: category.id, dateFrom: today.toISOString(), limit: 250 }),
-      listCategories()
+      listCategories(),
+      getActiveCitySlugs(),
     ]);
 
     return (
@@ -82,6 +85,7 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
           initialEvents={events}
           initialCategory={category.name}
           categoryOptions={categoryRows}
+          activeCitySlugs={activeCitySlugs}
         />
       </>
     );
@@ -98,9 +102,10 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows] = await Promise.all([
+    const [events, categoryRows, activeCitySlugs] = await Promise.all([
       listEvents({ dateFrom: today.toISOString(), limit: 250 }),
-      listCategories()
+      listCategories(),
+      getActiveCitySlugs(),
     ]);
 
     return (
@@ -121,9 +126,24 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
           initialEvents={events}
           initialLocation={cityLocation}
           categoryOptions={categoryRows}
+          activeCitySlugs={activeCitySlugs}
         />
       </>
     );
+  }
+
+  // Try to geocode categorySlug as a fallback city
+  try {
+    const query = categorySlug.replace(/-/g, " ");
+    const geocoded = await searchAddress(query);
+    if (geocoded && geocoded.length > 0) {
+      const best = geocoded[0];
+      const lat = Math.round(best.latitude * 1000) / 1000;
+      const lng = Math.round(best.longitude * 1000) / 1000;
+      redirect(`/lokalizacja?lat=${lat}&lng=${lng}&radius=30`);
+    }
+  } catch (err) {
+    console.error("Failed to geocode single segment city page fallback:", err);
   }
 
   // 3. Fallback to 404

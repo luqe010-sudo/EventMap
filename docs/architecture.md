@@ -27,6 +27,8 @@ Route'y w `app/` są server components tam, gdzie pobierają dane z Supabase:
 - `app/kategoria/[slug]/page.tsx` pobiera kategorię i wydarzenia z tej kategorii.
 - `app/admin/**` oraz `app/organizer/**` renderują panele po stronie serwera i korzystają z server actions.
 - `app/login/page.tsx` oraz `app/register/page.tsx` obsługują logowanie i rejestrację użytkowników.
+- `app/lokalizacja/page.tsx` renderuje stronę geolokalizacji z `lat`, `lng`, `radius` w query params; ma `noindex, nofollow`.
+- `app/[category]/[city]/page.tsx` rozpoznaje `city === "lokalizacja"` jako specjalny przypadek geolokalizacji z kategorią.
 
 Client components odpowiadają za interakcję UI:
 

@@ -22,6 +22,7 @@ type SearchPanelProps = {
   category: EventCategory | "Wszystkie";
   categories: EventCategory[];
   onCategoryChange: (category: EventCategory | "Wszystkie") => void;
+  onSubmit?: () => void;
 };
 
 const dateOptions: Array<{ label: string; value: DateFilter; icon: string }> = [
@@ -50,6 +51,7 @@ export default function SearchPanel({
   category,
   categories,
   onCategoryChange,
+  onSubmit,
 }: SearchPanelProps) {
   const customDateRange = parseCustomDateRangeValue(customDate);
 
@@ -194,7 +196,11 @@ export default function SearchPanel({
           type="button"
           className="searchSubmitBtn"
           onClick={() => {
-            document.getElementById("events-list")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            if (onSubmit) {
+              onSubmit();
+            } else {
+              document.getElementById("events-list")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
           }}
         >
           Znajdź

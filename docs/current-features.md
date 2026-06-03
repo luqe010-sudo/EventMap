@@ -20,7 +20,8 @@ Strona główna `/`:
 - sortuje po odległości albo dacie.
 - na widoku mobilnym zachowuje estetyczne marginesy od krawędzi (18px), a kafelki klimatu w sekcji hero układają się w układ trójkolumnowy o zmniejszonych wymiarach;
 - kafelki kategorii w panelu wyszukiwania zawijają się na urządzeniach mobilnych do wielu wierszy, co zapobiega ich ucinaniu;
-- panel wyszukiwania posiada przycisk "Znajdź" umieszczony pod przyciskami kategorii, który na urządzeniach mobilnych zajmuje pełną szerokość i po kliknięciu przewija stronę do listy wyników;
+- panel wyszukiwania posiada przycisk "Znajdź" umieszczony pod przyciskami kategorii, który na urządzeniach mobilnych zajmuje pełną szerokość; kliknięcie "Znajdź" buduje URL z wybranych filtrów (kategoria, miasto/lokalizacja) i nawiguje do odpowiedniej podstrony (np. `/koncerty/wroclaw` lub `/lokalizacja?lat=...&lng=...&radius=...`);
+- panel wyszukiwania (SearchPanel) jest widoczny na wszystkich stronach (strona główna, podstrony kategorii, miast i kategorii+miasto); na podstronach data filtruje dynamicznie, a zmiana kategorii lub miasta nawiguje dopiero po kliknięciu "Znajdź";
 - tło strony (`background.png`) na komputerach oraz na smartfonach jest dopasowane za pomocą `background-size: cover` oraz wypozycjonowane `center top`, dzięki czemu nie tworzy ostrych krawędzi i płynnie rozmywa się na dolnym odcinku (od wysokości 65% z 35-procentowym obszarem całkowitego zanikania).
 
 Widok `EventExplorer`:
@@ -99,6 +100,40 @@ Strona:
 - pobiera wydarzenia przez `category_id`;
 - generuje metadata i JSON-LD `CollectionPage`;
 - renderuje `EventExplorer`.
+
+## Geolokalizacja
+
+URL:
+
+```text
+/lokalizacja?lat=50.589&lng=16.812&radius=30
+```
+
+Strona:
+
+- czyta współrzędne i promień z query params;
+- pobiera wydarzenia z `listEvents()` na serwerze;
+- renderuje `HomePage` z `initialLocation` zbudowaną z parametrów;
+- meta `robots: noindex, nofollow` — nieskończona liczba kombinacji;
+- tytuł: "Wydarzenia w okolicy | MapaImprez".
+
+URL z kategorią:
+
+```text
+/koncerty/lokalizacja?lat=50.589&lng=16.812&radius=30
+```
+
+- obsługiwane przez `app/[category]/[city]/page.tsx` gdy `city === "lokalizacja"`;
+- filtruje wydarzenia po kategorii;
+- również `noindex, nofollow`.
+
+## Fallback dla nieistniejących miast
+
+Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych ani jako znane miasto (np. `/koncerty/budzow-woj-dolnoslaskie` lub `/budzow-woj-dolnoslaskie`):
+- Serwer automatycznie próbuje zgeokodować slug (podmieniając myślniki na spacje) za pomocą API Nominatim (OpenStreetMap).
+- Jeśli API zwróci współrzędne geograficzne, serwer wykonuje przekierowanie tymczasowe (HTTP 307) na stronę geolokalizacji z odpowiednimi parametrami `lat`/`lng` oraz promieniem 30 km (np. `/koncerty/lokalizacja?lat=50.589&lng=16.812&radius=30` lub `/lokalizacja?lat=50.589&lng=16.812&radius=30`).
+- Jeśli geokodowanie nie powiedzie się (np. dla losowego ciągu znaków), serwer zwraca standardowy błąd 404 (NotFound).
+- Taki mechanizm chroni przed błędami 404 dla mniejszych miejscowości wpisanych w wyszukiwarkę i jednocześnie zapobiega indeksowaniu niepotrzebnych dynamicznych podstron (ponieważ strona docelowa posiada tag `noindex`).
 
 ## Login, rejestracja i sesja
 

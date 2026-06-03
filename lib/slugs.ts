@@ -140,3 +140,47 @@ export function formatInCity(city: string): string {
 
   return `${preposition} ${locative}`;
 }
+
+export type SearchUrlParams = {
+  categorySlug?: string;       // plural slug, e.g. "koncerty"
+  citySlug?: string;           // e.g. "wroclaw"
+  geoLocation?: { lat: number; lng: number; radius: number };
+};
+
+/**
+ * Builds a navigation URL from the current search filter state.
+ * Used by the "Znajdź" button on all pages.
+ */
+export function buildSearchUrl(params: SearchUrlParams): string {
+  const { categorySlug, citySlug, geoLocation } = params;
+
+  // category + city
+  if (categorySlug && citySlug) {
+    return `/${categorySlug}/${citySlug}`;
+  }
+
+  // category + geolocation (non-known city)
+  if (categorySlug && geoLocation) {
+    const qs = `lat=${geoLocation.lat}&lng=${geoLocation.lng}&radius=${geoLocation.radius}`;
+    return `/${categorySlug}/lokalizacja?${qs}`;
+  }
+
+  // category only
+  if (categorySlug) {
+    return `/${categorySlug}`;
+  }
+
+  // city only
+  if (citySlug) {
+    return `/${citySlug}`;
+  }
+
+  // geolocation only
+  if (geoLocation) {
+    const qs = `lat=${geoLocation.lat}&lng=${geoLocation.lng}&radius=${geoLocation.radius}`;
+    return `/lokalizacja?${qs}`;
+  }
+
+  // nothing selected → stay home
+  return `/`;
+}

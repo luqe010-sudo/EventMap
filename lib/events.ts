@@ -281,18 +281,34 @@ export async function getCityPageBySlug(slug: string): Promise<CityPage | null> 
   return data;
 }
 
+export async function getActiveCitySlugs(): Promise<string[]> {
+  const supabase = createSupabaseServerClient();
+  try {
+    const { data } = await supabase
+      .from("city_pages")
+      .select("slug")
+      .eq("is_active", true);
+    return (data ?? []).map(item => item.slug);
+  } catch (err) {
+    console.error("getActiveCitySlugs error:", err);
+    return [];
+  }
+}
+
 export async function getHomeData() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const [events, categoryRows] = await Promise.all([
+  const [events, categoryRows, activeCitySlugs] = await Promise.all([
     getHomeEvents(today.toISOString()),
-    getHomeCategories()
+    getHomeCategories(),
+    getActiveCitySlugs()
   ]);
 
   return {
     events,
-    categories: categoryRows.length ? categoryRows : getFallbackCategoryOptions()
+    categories: categoryRows.length ? categoryRows : getFallbackCategoryOptions(),
+    activeCitySlugs
   };
 }
 
@@ -458,30 +474,6 @@ export async function resolveCityLocation(citySlug: string): Promise<KnownLocati
     }
   } catch (err) {
     console.error("resolveCityLocation city_pages error:", err);
-  }
-
-  // 3. Query locations matching this city name
-  try {
-    const { data: locs } = await supabase
-      .from("locations")
-      .select("city, latitude, longitude")
-      .not("city", "is", null)
-      .not("latitude", "is", null)
-      .limit(1000);
-
-    if (locs) {
-      const match = locs.find(l => l.city && createSlug(l.city) === normSlug);
-      if (match && match.city && match.latitude && match.longitude) {
-        return {
-          label: match.city,
-          aliases: [normSlug],
-          latitude: match.latitude,
-          longitude: match.longitude
-        };
-      }
-    }
-  } catch (err) {
-    console.error("resolveCityLocation locations error:", err);
   }
 
   return null;
