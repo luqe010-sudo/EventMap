@@ -1,7 +1,7 @@
 import type { EventCategory, EventItem, KnownLocation } from "./events";
 import { isFreeEvent } from "./events";
 
-export type DateFilter = "today" | "tomorrow" | "weekend" | "week" | "custom";
+export type DateFilter = "today" | "tomorrow" | "weekend" | "week" | "custom" | "all";
 
 export type EventFilters = {
   dateFilter: DateFilter;
@@ -20,10 +20,14 @@ export function normalizeText(value: string) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-export function resolveDateRange(dateFilter: DateFilter, customDate: string, now = new Date()) {
+export function resolveDateRange(dateFilter: DateFilter, customDate: string, now = new Date()): { start: Date; end: Date | null } {
   const start = new Date(now);
   start.setHours(0, 0, 0, 0);
   const end = new Date(start);
+
+  if (dateFilter === "all") {
+    return { start, end: null };
+  }
 
   if (dateFilter === "today") {
     end.setDate(start.getDate() + 1);
@@ -120,7 +124,7 @@ export function filterEvents(events: EventItem[], filters: EventFilters, now = n
     }))
     .filter(({ event, distanceKm }) => {
       const eventDate = new Date(event.startDate);
-      const matchesDate = eventDate >= start && eventDate < end;
+      const matchesDate = eventDate >= start && (end === null || eventDate < end);
       const matchesRadius = filters.radiusKm == null || !Number.isFinite(distanceKm) || distanceKm <= filters.radiusKm;
       const matchesCategory = filters.category === "Wszystkie" || event.category === filters.category;
       const matchesFree = !filters.isFree || isFreeEvent(event);

@@ -25,6 +25,7 @@ type SearchPanelProps = {
 };
 
 const dateOptions: Array<{ label: string; value: DateFilter; icon: string }> = [
+  { label: "Wszystkie", value: "all", icon: "🌍" },
   { label: "Dziś", value: "today", icon: "📅" },
   { label: "Jutro", value: "tomorrow", icon: "📆" },
   { label: "Weekend", value: "weekend", icon: "🎉" },

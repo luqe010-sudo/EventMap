@@ -112,7 +112,7 @@ export default function HomePage({
   initialDateFilter
 }: HomePageProps) {
   // Filter state
-  const [dateFilter, setDateFilter] = useState<DateFilter>(initialDateFilter ?? "week");
+  const [dateFilter, setDateFilter] = useState<DateFilter>(initialDateFilter ?? "all");
   const [customDate, setCustomDate] = useState("");
   const [radiusKm, setRadiusKm] = useState(100);
   const [isAllPoland, setIsAllPoland] = useState(!initialLocation);

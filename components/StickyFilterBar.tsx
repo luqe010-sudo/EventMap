@@ -20,7 +20,8 @@ const dateLabels: Record<DateFilter, string> = {
   tomorrow: "Jutro",
   weekend: "Weekend",
   week: "Ten tydzień",
-  custom: "Wybrana data"
+  custom: "Wybrana data",
+  all: "Wszystkie"
 };
 
 export default function StickyFilterBar({
