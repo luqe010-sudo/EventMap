@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
-import EventExplorer from "@/components/EventExplorer";
+import HomePage from "@/components/HomePage";
 import {
   listCategories,
   listEvents,
@@ -62,10 +62,10 @@ export default async function CityPage({ params }: { params: Promise<Params> }) 
           })
         }}
       />
-      <EventExplorer
+      <HomePage
         initialEvents={events}
         initialLocation={cityLocation}
-        categoryOptions={categoryRows.map((item) => item.name)}
+        categoryOptions={categoryRows}
       />
     </>
   );

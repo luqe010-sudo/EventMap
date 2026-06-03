@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
-import EventExplorer from "@/components/EventExplorer";
+import HomePage from "@/components/HomePage";
 import {
   getCategoryBySlugFromDb,
   listCategories,
   listEvents,
+  resolveCityLocation,
 } from "@/lib/events";
-import { toPluralCategorySlug, toPluralCategoryName } from "@/lib/slugs";
+import { toPluralCategorySlug, toPluralCategoryName, toSlug } from "@/lib/slugs";
 
 type Params = { category: string };
 
@@ -30,14 +31,19 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 export default async function CategoryPage({ params }: { params: Promise<Params> }) {
   const { category: categorySlug } = await params;
   
-  // Przekierowanie z liczby pojedynczej na liczbę mnogą w URL
   const pluralSlug = toPluralCategorySlug(categorySlug);
   if (categorySlug !== pluralSlug) {
     redirect(`/${pluralSlug}`);
   }
 
   const category = await getCategoryBySlugFromDb(categorySlug);
-  if (!category) notFound();
+  if (!category) {
+    const cityLocation = await resolveCityLocation(categorySlug);
+    if (cityLocation) {
+      redirect(`/miasto/${toSlug(cityLocation.label)}`);
+    }
+    notFound();
+  }
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -61,10 +67,10 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
           })
         }}
       />
-      <EventExplorer
+      <HomePage
         initialEvents={events}
         initialCategory={category.name}
-        categoryOptions={categoryRows.map((item) => item.name)}
+        categoryOptions={categoryRows}
       />
     </>
   );

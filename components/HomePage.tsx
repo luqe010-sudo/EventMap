@@ -14,19 +14,34 @@ import ValueProps from "@/components/ValueProps";
 type HomePageProps = {
   initialEvents: EventItem[];
   categoryOptions: CategoryOption[];
+  initialLocation?: KnownLocation;
+  initialCategory?: EventCategory;
+  initialDateFilter?: DateFilter;
 };
 
-export default function HomePage({ initialEvents, categoryOptions }: HomePageProps) {
+export default function HomePage({
+  initialEvents,
+  categoryOptions,
+  initialLocation,
+  initialCategory,
+  initialDateFilter
+}: HomePageProps) {
   // Filter state
-  const [dateFilter, setDateFilter] = useState<DateFilter>("week");
+  const [dateFilter, setDateFilter] = useState<DateFilter>(initialDateFilter ?? "week");
   const [customDate, setCustomDate] = useState("");
   const [radiusKm, setRadiusKm] = useState(100);
-  const [isAllPoland, setIsAllPoland] = useState(true);
-  const [category, setCategory] = useState<EventCategory | "Wszystkie">("Wszystkie");
+  const [isAllPoland, setIsAllPoland] = useState(!initialLocation);
+  const [category, setCategory] = useState<EventCategory | "Wszystkie">(
+    initialCategory ?? "Wszystkie"
+  );
   const [isFree, setIsFree] = useState(false);
-  const [locationInput, setLocationInput] = useState("");
-  const [location, setLocation] = useState<KnownLocation>(getDefaultLocation());
-  const [locationStatus, setLocationStatus] = useState("");
+  const [locationInput, setLocationInput] = useState(initialLocation?.label ?? "");
+  const [location, setLocation] = useState<KnownLocation>(initialLocation ?? getDefaultLocation());
+  const [locationStatus, setLocationStatus] = useState(
+    initialLocation
+      ? `Szukam wydarzeń w pobliżu: ${initialLocation.label}.`
+      : ""
+  );
   const [sortBy, setSortBy] = useState<"nearest" | "date">("nearest");
   const categoryNames = useMemo(() => categoryOptions.map((item) => item.name), [categoryOptions]);
 

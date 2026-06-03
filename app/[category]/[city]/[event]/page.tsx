@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
-import EventExplorer from "@/components/EventExplorer";
+import HomePage from "@/components/HomePage";
 import EventDetailView from "@/components/EventDetailView";
 import {
   getCategoryBySlugFromDb,
@@ -100,12 +100,12 @@ export default async function EventOrTimePage({ params }: { params: Promise<Para
             })
           }}
         />
-        <EventExplorer
+        <HomePage
           initialEvents={events}
           initialCategory={category.name}
           initialLocation={cityLocation}
           initialDateFilter={dateFilterMap[eventOrTime]}
-          categoryOptions={categoryRows.map((item) => item.name)}
+          categoryOptions={categoryRows}
         />
       </>
     );
