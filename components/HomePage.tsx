@@ -134,6 +134,7 @@ export default function HomePage({
   const isCategoryPage = !!initialCategory && !initialLocation;
   const isCityPage = !initialCategory && !!initialLocation;
   const isCategoryCityPage = !!initialCategory && !!initialLocation;
+  const isHomePage = !initialCategory && !initialLocation;
 
   // SEO copywriting & Headings
   const pageTitle = useMemo(() => {
@@ -255,6 +256,7 @@ export default function HomePage({
     setRadiusKm(radius);
   }
 
+  // filter radius to default location or specific city
   function handleAllPolandSelect() {
     setIsAllPoland(true);
     setLocation(getDefaultLocation());
@@ -273,24 +275,26 @@ export default function HomePage({
         subtitle={pageSubtitle}
       />
 
-      <SearchPanel
-        locationInput={locationInput}
-        onLocationInputChange={setLocationInput}
-        onLocationSelect={handleLocationSelect}
-        onUseGPS={handleUseGPS}
-        locationStatus={locationStatus}
-        dateFilter={dateFilter}
-        onDateFilterChange={setDateFilter}
-        customDate={customDate}
-        onCustomDateChange={setCustomDate}
-        radiusKm={radiusKm}
-        isAllPoland={isAllPoland}
-        onRadiusChange={handleRadiusChange}
-        onAllPolandSelect={handleAllPolandSelect}
-        category={category}
-        categories={categoryNames}
-        onCategoryChange={(cat) => { setCategory(cat); setIsFree(false); }}
-      />
+      {isHomePage && (
+        <SearchPanel
+          locationInput={locationInput}
+          onLocationInputChange={setLocationInput}
+          onLocationSelect={handleLocationSelect}
+          onUseGPS={handleUseGPS}
+          locationStatus={locationStatus}
+          dateFilter={dateFilter}
+          onDateFilterChange={setDateFilter}
+          customDate={customDate}
+          onCustomDateChange={setCustomDate}
+          radiusKm={radiusKm}
+          isAllPoland={isAllPoland}
+          onRadiusChange={handleRadiusChange}
+          onAllPolandSelect={handleAllPolandSelect}
+          category={category}
+          categories={categoryNames}
+          onCategoryChange={(cat) => { setCategory(cat); setIsFree(false); }}
+        />
+      )}
 
       {/* City categories tiles grid and quick timing links */}
       {isCityPage && (
