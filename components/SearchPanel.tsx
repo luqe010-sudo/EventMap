@@ -217,19 +217,19 @@ function serializeCustomDateRange(from: string, to: string) {
 function CategoryIcon({ name }: { name: EventCategory | "Wszystkie" }) {
   const common = { width: 17, height: 17, viewBox: "0 0 24 24", "aria-hidden": true } as const;
 
-  if (name === "Koncert") {
+  if (name === "Koncerty") {
     return <svg {...common} className="catIcon catIconConcert"><path d="M9 18V5l10-2v13" /><circle cx="7" cy="18" r="3" /><circle cx="17" cy="16" r="3" /></svg>;
   }
-  if (name === "Festyn") {
+  if (name === "Festyny") {
     return <svg {...common} className="catIcon catIconFestyn"><path d="M4 19h16L12 5 4 19Z" /><path d="M12 5v14M7 14h10" /></svg>;
   }
-  if (name === "Dożynki") {
+  if (name === "Dożynki" || name === "Dozynki") {
     return <svg {...common} className="catIcon catIconDozynki"><path d="M12 21V5" /><path d="M12 9C8 8 6 6 5 3c4 0 6 2 7 6ZM12 14c4-1 6-3 7-6-4 0-6 2-7 6ZM12 18c-4-1-6-3-7-6 4 0 6 2 7 6Z" /></svg>;
   }
   if (name === "Sport") {
     return <svg {...common} className="catIcon catIconSport"><circle cx="12" cy="12" r="8" /><path d="m8 6 4 4 4-4M4.5 13h5L8 18M19.5 13h-5l1.5 5" /></svg>;
   }
-  if (name === "Rodzina") {
+  if (name === "Rodzinne" || name === "Rodzina") {
     return <svg {...common} className="catIcon catIconRodzina"><circle cx="9" cy="8" r="3" /><circle cx="16.5" cy="9" r="2.5" /><path d="M4 20c.7-3.8 3-6 6-6s5.3 2.2 6 6M14 19c.5-2.5 2-4 4-4 1.7 0 3 1.1 3.6 3" /></svg>;
   }
   if (name === "Targi") {

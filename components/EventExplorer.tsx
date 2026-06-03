@@ -27,16 +27,18 @@ type EventExplorerProps = {
   initialLocation?: KnownLocation;
   initialCategory?: EventCategory;
   categoryOptions?: EventCategory[];
+  initialDateFilter?: DateFilter;
 };
 
 export default function EventExplorer({
   initialEvents,
   initialLocation,
   initialCategory,
-  categoryOptions
+  categoryOptions,
+  initialDateFilter
 }: EventExplorerProps) {
   const availableCategories = categoryOptions?.length ? categoryOptions : categories;
-  const [dateFilter, setDateFilter] = useState<DateFilter>("week");
+  const [dateFilter, setDateFilter] = useState<DateFilter>(initialDateFilter ?? "week");
   const [customDate, setCustomDate] = useState("");
   const [radiusKm, setRadiusKm] = useState(100);
   const [category, setCategory] = useState<EventCategory | "Wszystkie">(

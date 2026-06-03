@@ -4,7 +4,7 @@ import EventDetailMap from "@/components/EventDetailMap";
 import ExpandableDescription from "@/components/ExpandableDescription";
 import { type EventItem, isFreeEvent } from "@/lib/events";
 import { formatPolishDate } from "@/lib/date-format";
-import { categoryPath, eventPath, toSlug } from "@/lib/slugs";
+import { categoryPath, eventPath, toSlug, toPluralCategoryName, toPluralCategorySlug, formatInCity } from "@/lib/slugs";
 
 type EventDetailViewProps = {
   event: EventItem;
@@ -15,8 +15,11 @@ export default function EventDetailView({
   event,
   relatedEvents = [],
 }: EventDetailViewProps) {
-  const cityHref = event.city ? `/wydarzenia/${toSlug(event.city)}` : "/";
-  const eventUrl = `https://mapaimprez.pl/wydarzenie/${event.slug}`;
+  const categoryPlural = toPluralCategoryName(event.category);
+  const categorySlug = toPluralCategorySlug(event.categorySlug || toSlug(event.category || "inne"));
+  const citySlug = toSlug(event.city || "polska");
+  const cityHref = event.city ? `/miasto/${citySlug}` : "/";
+  const eventUrl = `https://mapaimprez.pl${eventPath(event)}`;
   const mapTargetId = "event-detail-map";
   const eventLocation = {
     label: event.city || event.location?.name || event.title,
@@ -54,13 +57,11 @@ export default function EventDetailView({
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
         </Link>
         <span className="separator">›</span>
-        <Link href="/">Wydarzenia</Link>
-        <span className="separator">›</span>
-        <Link href={categoryPath(event.category)}>{event.category}</Link>
+        <Link href={`/${categorySlug}`}>{categoryPlural}</Link>
         {event.city ? (
           <>
             <span className="separator">›</span>
-            <Link href={cityHref}>{event.city}</Link>
+            <Link href={`/${categorySlug}/${citySlug}`}>{event.city}</Link>
           </>
         ) : null}
         <span className="separator">›</span>
@@ -328,7 +329,20 @@ export default function EventDetailView({
                 </div>
               </section>
             ) : null}
-          </div>
+          </div>          {/* Więcej wydarzeń links */}
+          <section className="edMoreLinksSection">
+            <h2>Więcej ciekawych wydarzeń</h2>
+            <div className="edMoreLinksGrid">
+              <Link href={`/${categorySlug}/${citySlug}`} className="edMoreLinkCard">
+                <span>Więcej z kategorii <strong>{categoryPlural}</strong> {formatInCity(event.city || "Polska")}</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+              </Link>
+              <Link href={`/miasto/${citySlug}`} className="edMoreLinkCard">
+                <span>Więcej wydarzeń <strong>{formatInCity(event.city || "Polska")}</strong></span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+              </Link>
+            </div>
+          </section>
 
           {/* Related Events */}
           {relatedEvents.length ? (
