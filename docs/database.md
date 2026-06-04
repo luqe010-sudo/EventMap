@@ -88,8 +88,28 @@ Pola:
 - `created_at`
 - `updated_at`
 
+Relacja:
+
+- `locations.city_id -> cities.id`
+
 Kod aplikacji filtruje odległość w JavaScripcie na podstawie `latitude` i `longitude`; nie używa obecnie RPC/PostGIS do zapytań promienia.
 
+### `cities`
+
+Kanoniczny slownik miast uzywany przez lokalizacje, strony SEO i slugi URL.
+
+Pola:
+
+- `id`
+- `name`
+- `slug`
+- `county`
+- `voivodeship`
+- `latitude`
+- `longitude`
+- `is_active`
+- `created_at`
+- `updated_at`
 ### `organizers`
 
 Organizator wydarzenia.
@@ -197,18 +217,16 @@ Strony SEO dla miast.
 Pola:
 
 - `id`
-- `city`
-- `slug`
-- `county`
-- `voivodeship`
-- `latitude`
-- `longitude`
+- `city_id`
 - `meta_title`
 - `meta_description`
 - `intro_text`
-- `is_active`
 - `created_at`
 - `updated_at`
+
+Relacja:
+
+- `city_pages.city_id -> cities.id`
 
 ### `scraping_sources`
 

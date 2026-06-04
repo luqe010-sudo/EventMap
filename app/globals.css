@@ -158,6 +158,38 @@
   font-weight: 700;
 }
 
+.successPill {
+  display: inline-flex;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: #166534;
+  padding: 4px 9px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.warningPill {
+  display: inline-flex;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #92400e;
+  padding: 4px 9px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.tableSubtext {
+  margin: 3px 0 0;
+  color: #64748b;
+  font-size: 0.82rem;
+}
+
+.emptyTableCell {
+  padding: 32px !important;
+  text-align: center !important;
+  color: #64748b;
+}
+
 .tableActions {
   display: flex;
   flex-wrap: wrap;
@@ -5432,15 +5464,10 @@ select {
 
 .searchCategoryRow {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
   align-items: center;
   margin-top: 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.searchCategoryRow::-webkit-scrollbar {
-  display: none;
 }
 
 .catPill {
@@ -6265,11 +6292,6 @@ select {
 
   .searchDatePills {
     flex-wrap: wrap;
-  }
-
-  .searchCategoryRow {
-    flex-wrap: wrap;
-    overflow-x: visible;
   }
 
   .catPillMore {

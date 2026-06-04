@@ -19,7 +19,7 @@ const ORGANIZER_EVENT_LIST_SELECT = `
   status,
   visibility,
   category:categories(name),
-  location:locations(city),
+  location:locations(city:cities(name)),
   organizer:organizers!events_organizer_id_fkey(name)
 `;
 
@@ -30,7 +30,7 @@ export type OrganizerEventListItem = {
   status: string | null;
   visibility: string | null;
   category: { name: string } | null;
-  location: { city: string | null } | null;
+  location: { city: { name: string } | null } | null;
   organizer: { name: string } | null;
 };
 
@@ -83,7 +83,11 @@ export async function getOrganizerEventEditorOptions() {
   const supabase = await createSupabaseUserClient();
   const [categories, locations] = await Promise.all([
     supabase.from("categories").select("id, name").order("name", { ascending: true }),
-    supabase.from("locations").select("id, name, address, city").order("city", { ascending: true }).limit(500)
+    supabase
+      .from("locations")
+      .select("id, name, address, city_id, city:cities(name)")
+      .order("name", { ascending: true })
+      .limit(500)
   ]);
 
   if (categories.error) throw new Error(`Nie udalo sie pobrac kategorii: ${categories.error.message}`);

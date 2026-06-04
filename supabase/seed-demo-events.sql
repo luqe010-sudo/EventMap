@@ -12,8 +12,8 @@ begin
     raise exception 'Cannot seed demo events: organizers table is empty.';
   end if;
 
-  insert into locations (name, address, city, voivodeship, latitude, longitude, google_maps_url)
-  select *
+  insert into cities (name, slug, voivodeship, latitude, longitude, is_active)
+  select seed.city, public.city_slugify(seed.city), seed.voivodeship, seed.latitude, seed.longitude, true
   from (
     values
       ('Plac przed Lodz Fabryczna', 'pl. Bronislawa Salacinskiego 1', 'Lodz', 'lodzkie', 51.7687, 19.4690, 'https://www.google.com/maps/search/?api=1&query=51.7687%2C19.469'),
@@ -24,11 +24,26 @@ begin
       ('Rynek w Sieradzu', 'Rynek', 'Sieradz', 'lodzkie', 51.5958, 18.7302, 'https://www.google.com/maps/search/?api=1&query=51.5958%2C18.7302'),
       ('Amfiteatr nad Wisla', 'Rybaki 15', 'Plock', 'mazowieckie', 52.5463, 19.6855, 'https://www.google.com/maps/search/?api=1&query=52.5463%2C19.6855')
   ) as seed(name, address, city, voivodeship, latitude, longitude, google_maps_url)
+  on conflict (slug) do nothing;
+
+  insert into locations (name, address, city_id, voivodeship, latitude, longitude, google_maps_url)
+  select seed.name, seed.address, cities.id, seed.voivodeship, seed.latitude, seed.longitude, seed.google_maps_url
+  from (
+    values
+      ('Plac przed Lodz Fabryczna', 'pl. Bronislawa Salacinskiego 1', 'Lodz', 'lodzkie', 51.7687, 19.4690, 'https://www.google.com/maps/search/?api=1&query=51.7687%2C19.469'),
+      ('Rynek Trybunalski', 'Rynek Trybunalski', 'Piotrkow Trybunalski', 'lodzkie', 51.4052, 19.7038, 'https://www.google.com/maps/search/?api=1&query=51.4052%2C19.7038'),
+      ('Nowy Rynek', 'Nowy Rynek', 'Lowicz', 'lodzkie', 52.1071, 19.9447, 'https://www.google.com/maps/search/?api=1&query=52.1071%2C19.9447'),
+      ('Park Traugutta', 'Park im. Romualda Traugutta', 'Kutno', 'lodzkie', 52.2323, 19.3576, 'https://www.google.com/maps/search/?api=1&query=52.2323%2C19.3576'),
+      ('Park Miejski', 'ul. Sienkiewicza', 'Skierniewice', 'lodzkie', 51.9572, 20.1464, 'https://www.google.com/maps/search/?api=1&query=51.9572%2C20.1464'),
+      ('Rynek w Sieradzu', 'Rynek', 'Sieradz', 'lodzkie', 51.5958, 18.7302, 'https://www.google.com/maps/search/?api=1&query=51.5958%2C18.7302'),
+      ('Amfiteatr nad Wisla', 'Rybaki 15', 'Plock', 'mazowieckie', 52.5463, 19.6855, 'https://www.google.com/maps/search/?api=1&query=52.5463%2C19.6855')
+  ) as seed(name, address, city, voivodeship, latitude, longitude, google_maps_url)
+  join cities on cities.slug = public.city_slugify(seed.city)
   where not exists (
     select 1
     from locations
     where locations.name = seed.name
-      and locations.city = seed.city
+      and locations.city_id = cities.id
   );
 
   insert into events (
@@ -93,7 +108,8 @@ begin
       ('Festyn nad Wisla', 'demo-festyn-nad-wisla', 'Festyn miejski nad rzeka z koncertami, strefa gastronomiczna i aktywnosciami dla mieszkancow. Wydarzenie demonstracyjne dodane do EventMap.', 'Popoludnie z muzyka, food truckami i pokazem swiatel.', '2026-06-20T15:00:00+02:00', '2026-06-20T22:00:00+02:00', 'Festyn', 'Amfiteatr nad Wisla', 'Plock', false, 'free', null::numeric, null::numeric)
   ) as seed(title, slug, description, short_description, start_at, end_at, category_name, location_name, location_city, is_featured, price_type, price_min, price_max)
   join categories on categories.name = seed.category_name
-  join locations on locations.name = seed.location_name and locations.city = seed.location_city
+  join cities on cities.slug = public.city_slugify(seed.location_city)
+  join locations on locations.name = seed.location_name and locations.city_id = cities.id
   where not exists (
     select 1
     from events

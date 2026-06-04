@@ -7,7 +7,9 @@ export type EventStatus = "draft" | "pending_review" | "published" | "rejected" 
 export type EventEditorOptions = {
   categories: Array<Pick<Tables["categories"]["Row"], "id" | "name">>;
   organizers: Array<Pick<Tables["organizers"]["Row"], "id" | "name">>;
-  locations: Array<Pick<Tables["locations"]["Row"], "id" | "name" | "address" | "city">>;
+  locations: Array<Pick<Tables["locations"]["Row"], "id" | "name" | "address" | "city_id"> & {
+    city: Pick<Tables["cities"]["Row"], "name"> | null;
+  }>;
 };
 
 export type EditableEvent = Tables["events"]["Row"] & {
@@ -17,14 +19,16 @@ export type EditableEvent = Tables["events"]["Row"] & {
     | "id"
     | "name"
     | "address"
-    | "city"
+    | "city_id"
     | "latitude"
     | "longitude"
     | "postal_code"
     | "voivodeship"
     | "county"
     | "municipality"
-  > | null;
+  > & {
+    city: Pick<Tables["cities"]["Row"], "id" | "name" | "slug" | "latitude" | "longitude" | "county" | "voivodeship" | "is_active"> | null;
+  } | null;
   organizer: Pick<Tables["organizers"]["Row"], "id" | "name"> | null;
   sources: Array<Pick<Tables["event_sources"]["Row"], "id" | "source_name" | "source_url" | "source_type">>;
 };
@@ -103,7 +107,7 @@ export function editableEventSelect() {
     submitted_by_organizer_id,
     published_at,
     category:categories(id, name),
-    location:locations(id, name, address, city, latitude, longitude, postal_code, voivodeship, county, municipality),
+    location:locations(id, name, address, city_id, latitude, longitude, postal_code, voivodeship, county, municipality, city:cities(id, name, slug, latitude, longitude, county, voivodeship, is_active)),
     organizer:organizers!events_organizer_id_fkey(id, name),
     sources:event_sources(id, source_name, source_url, source_type)
   `;

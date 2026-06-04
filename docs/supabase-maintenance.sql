@@ -31,8 +31,8 @@ on public.events (slug);
 create unique index if not exists categories_slug_unique_idx
 on public.categories (slug);
 
-create unique index if not exists city_pages_slug_unique_idx
-on public.city_pages (slug);
+create unique index if not exists cities_slug_unique_idx
+on public.cities (slug);
 
 create unique index if not exists organizers_slug_unique_idx
 on public.organizers (slug);
@@ -41,14 +41,18 @@ on public.organizers (slug);
 create index if not exists categories_sort_name_idx
 on public.categories (sort_order, name);
 
-create index if not exists city_pages_active_slug_idx
-on public.city_pages (is_active, slug);
+create index if not exists cities_active_slug_idx
+on public.cities (is_active, slug);
 
 create index if not exists organizers_name_idx
 on public.organizers (name);
 
-create index if not exists locations_city_idx
-on public.locations (city);
+create index if not exists locations_city_id_idx
+on public.locations (city_id);
+
+create unique index if not exists city_pages_city_id_unique_idx
+on public.city_pages (city_id)
+where city_id is not null;
 
 -- Organizer access and relation cleanup.
 create index if not exists organizer_users_user_id_idx

@@ -1,30 +1,26 @@
 import Link from "next/link";
 import AdminSectionNav from "@/components/AdminSectionNav";
 import {
-  adminDeleteEventAction,
   adminSetEventStatusAction,
-  listAdminEvents
+  listAdminReviewEvents
 } from "@/lib/admin-events";
 import { formatPolishDate } from "@/lib/date-format";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminEventsPage() {
-  const events = await listAdminEvents();
+export default async function AdminReviewPage() {
+  const events = await listAdminReviewEvents();
 
   return (
     <main className="appShell managementShell">
       <div className="managementHeader">
         <div>
           <p className="eyebrow">Panel admina</p>
-          <h1>Wydarzenia</h1>
-        </div>
-        <div className="managementActions">
-          <Link href="/admin/events/new" className="primaryButton">Dodaj wydarzenie</Link>
+          <h1>Do zatwierdzenia</h1>
         </div>
       </div>
 
-      <AdminSectionNav active="events" />
+      <AdminSectionNav active="review" />
 
       <section className="managementPanel">
         <div className="managementTableWrap">
@@ -32,7 +28,8 @@ export default async function AdminEventsPage() {
             <thead>
               <tr>
                 <th>Tytul</th>
-                <th>Data</th>
+                <th>Dodano</th>
+                <th>Data wydarzenia</th>
                 <th>Miasto</th>
                 <th>Kategoria</th>
                 <th>Organizator</th>
@@ -43,7 +40,8 @@ export default async function AdminEventsPage() {
             <tbody>
               {events.map((event) => (
                 <tr key={event.id}>
-                  <td>{event.title}</td>
+                  <td><strong>{event.title}</strong></td>
+                  <td>{event.created_at ? formatDate(event.created_at) : "-"}</td>
                   <td>{formatDate(event.start_at)}</td>
                   <td>{event.location?.city?.name ?? "-"}</td>
                   <td>{event.category?.name ?? "-"}</td>
@@ -51,23 +49,24 @@ export default async function AdminEventsPage() {
                   <td><span className="statusPill">{event.status ?? "draft"}</span></td>
                   <td>
                     <div className="tableActions">
-                      <Link href={`/admin/events/${event.id}/edit`}>Edytuj</Link>
+                      <Link href={`/admin/events/${event.id}/edit`}>Sprawdz</Link>
                       <form action={adminSetEventStatusAction.bind(null, event.id, "published")}>
                         <button type="submit">Opublikuj</button>
                       </form>
                       <form action={adminSetEventStatusAction.bind(null, event.id, "rejected")}>
                         <button type="submit">Odrzuc</button>
                       </form>
-                      <form action={adminSetEventStatusAction.bind(null, event.id, "archived")}>
-                        <button type="submit">Archiwizuj</button>
-                      </form>
-                      <form action={adminDeleteEventAction.bind(null, event.id)}>
-                        <button type="submit" className="dangerButton">Usun</button>
-                      </form>
                     </div>
                   </td>
                 </tr>
               ))}
+              {events.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="emptyTableCell">
+                    Brak wydarzen oczekujacych na zatwierdzenie.
+                  </td>
+                </tr>
+              ) : null}
             </tbody>
           </table>
         </div>

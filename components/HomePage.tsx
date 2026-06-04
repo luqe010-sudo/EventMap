@@ -214,7 +214,7 @@ export default function HomePage({
       return false;
     }
     // A city is known if its slug or one of its aliases is in allKnownSlugs
-    const slug = toSlug(loc.label);
+    const slug = loc.slug ?? toSlug(loc.label);
     return allKnownSlugs.includes(slug) || loc.aliases.some(a => allKnownSlugs.includes(a));
   }, [allKnownSlugs]);
 
@@ -233,7 +233,7 @@ export default function HomePage({
 
     if (!isAllPoland && isKnownCity(location)) {
       // Known city — use slug
-      citySlug = toSlug(location.label);
+      citySlug = location.slug ?? toSlug(location.label);
     } else if (!isAllPoland && location.label !== "Polska") {
       // GPS or unknown point — use lat/lng params
       geoLocation = {
@@ -270,8 +270,8 @@ export default function HomePage({
               <span className="separator">›</span>
               {initialDateFilter ? (
                 <Link href={initialCategory 
-                  ? `/${toPluralCategorySlug(toSlug(initialCategory))}/${toSlug(initialLocation.label)}`
-                  : `/${toSlug(initialLocation.label)}`
+                  ? `/${toPluralCategorySlug(toSlug(initialCategory))}/${initialLocation.slug ?? toSlug(initialLocation.label)}`
+                  : `/${initialLocation.slug ?? toSlug(initialLocation.label)}`
                 }>
                   {initialLocation.label}
                 </Link>
@@ -379,7 +379,7 @@ export default function HomePage({
                   return (
                     <Link
                       key={cat.id}
-                      href={`/${toPluralCategorySlug(cat.slug)}/${toSlug(initialLocation!.label)}`}
+                      href={`/${toPluralCategorySlug(cat.slug)}/${initialLocation!.slug ?? toSlug(initialLocation!.label)}`}
                       className="cityTileCard"
                       style={{ "--hover-color": catColor } as React.CSSProperties}
                     >
@@ -399,10 +399,10 @@ export default function HomePage({
               </div>
               
               <div className="cityQuickTimeLinks">
-                <Link href={`/${toSlug(initialLocation!.label)}/dzis`} className="cityTimeBtn">
+                <Link href={`/${initialLocation!.slug ?? toSlug(initialLocation!.label)}/dzis`} className="cityTimeBtn">
                   📅 Wydarzenia dzisiaj {formatInCity(initialLocation!.label)}
                 </Link>
-                <Link href={`/${toSlug(initialLocation!.label)}/weekend`} className="cityTimeBtn">
+                <Link href={`/${initialLocation!.slug ?? toSlug(initialLocation!.label)}/weekend`} className="cityTimeBtn">
                   🎉 Wydarzenia w weekend {formatInCity(initialLocation!.label)}
                 </Link>
               </div>
@@ -438,7 +438,7 @@ export default function HomePage({
                   .map((cat) => (
                     <Link
                       key={cat.id}
-                      href={`/${toPluralCategorySlug(cat.slug)}/${toSlug(initialLocation.label)}`}
+                      href={`/${toPluralCategorySlug(cat.slug)}/${initialLocation.slug ?? toSlug(initialLocation.label)}`}
                       className="internalLinkCard"
                     >
                       <span>{cat.name} {formatInCity(initialLocation.label)}</span>

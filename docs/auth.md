@@ -88,7 +88,10 @@ Repozytorium nie zawiera definicji RLS, wiec faktyczny stan wymaga potwierdzenia
 - admin moze odczytywac i zapisywac tabele zarzadcze;
 - organizator moze tworzyc i edytowac wydarzenia tylko dla powiazanych `organizer_id`;
 - publiczny klient moze czytac opublikowane publiczne wydarzenia i relacje potrzebne na frontendzie;
-- akcje admina/organizatora moga tworzyc `locations` i `event_sources`.
+- publiczny klient moze czytac `cities`;
+- admin moze tworzyc, edytowac i usuwac `cities`;
+- organizator moze tworzyc nowe `cities` podczas dodawania lokalizacji wydarzenia;
+- akcje admina/organizatora moga tworzyc `locations`, `cities` i `event_sources`.
 
 ## Elementy wymagajace potwierdzenia
 

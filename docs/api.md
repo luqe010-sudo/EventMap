@@ -36,6 +36,21 @@ Plik: `lib/admin-events.ts`
 - `adminSetEventStatusAction(eventId, status)` - zmienia status i ustawia `published_at` przy publikacji.
 - `adminDeleteEventAction(eventId)` - usuwa powiązane `event_sources`, `event_tags`, `saved_events`, a potem `events`.
 
+### Admin locations
+
+Plik: `lib/admin-locations.ts`
+
+- `adminCreateLocationAction(formData)` - tworzy lokalizacje.
+- `adminUpdateLocationAction(locationId, formData)` - aktualizuje lokalizacje, w tym pinezke i dane administracyjne.
+- `adminDeleteLocationAction(locationId)` - usuwa lokalizacje tylko wtedy, gdy nie ma przypisanych wydarzen.
+
+### Admin city pages
+
+Plik: `lib/admin-city-pages.ts`
+
+- `adminCreateCityPageAction(formData)` - tworzy strone lokalna SEO.
+- `adminUpdateCityPageAction(cityPageId, formData)` - aktualizuje aktywnosc, slug, metadata, tekst wstepny i centrum miasta.
+
 ### Organizer events
 
 Plik: `lib/organizer-events.ts`
@@ -85,6 +100,7 @@ Plik: `lib/admin-events.ts`
 
 - `getAdminDashboard()` - liczy `pending_review`, `published`, `rejected` i pobiera ostatnie wydarzenia.
 - `listAdminEvents()` - pobiera do 250 wydarzeń dla tabeli admina.
+- `listAdminReviewEvents()` - pobiera wydarzenia ze statusem `draft` albo `pending_review`.
 - `getAdminEventEditorOptions()` - pobiera kategorie, organizatorów i lokalizacje do formularza.
 - `getAdminEventForEdit(id)` - pobiera wydarzenie z relacjami do edycji.
 
@@ -92,6 +108,16 @@ Plik: `lib/admin-organizers.ts`
 
 - `listAdminOrganizers()`.
 - `getAdminOrganizerForEdit(id)`.
+
+Plik: `lib/admin-locations.ts`
+
+- `listAdminLocations()` - pobiera lokalizacje, liczy przypisane wydarzenia i oznacza potencjalne duplikaty.
+- `getAdminLocationForEdit(id)` - pobiera lokalizacje do formularza edycji.
+
+Plik: `lib/admin-city-pages.ts`
+
+- `listAdminCityPages()` - pobiera strony miast i liczy wydarzenia przez `locations.city_id`.
+- `getAdminCityPageForEdit(id)` - pobiera strone miasta do formularza edycji.
 
 ### Organizator
 

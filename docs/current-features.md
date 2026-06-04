@@ -19,7 +19,7 @@ Strona główna `/`:
 - pozwala wybrać lokalizację z autouzupełniania albo GPS;
 - sortuje po odległości albo dacie.
 - na widoku mobilnym zachowuje estetyczne marginesy od krawędzi (18px), a kafelki klimatu w sekcji hero układają się w układ trójkolumnowy o zmniejszonych wymiarach;
-- kafelki kategorii w panelu wyszukiwania zawijają się na urządzeniach mobilnych do wielu wierszy, co zapobiega ich ucinaniu;
+- kafelki kategorii w panelu wyszukiwania zawijają się na wszystkich urządzeniach (zarówno mobilnych, jak i desktopowych) do wielu wierszy, co zapobiega ich ucinaniu;
 - panel wyszukiwania posiada przycisk "Znajdź" umieszczony pod przyciskami kategorii, który na urządzeniach mobilnych zajmuje pełną szerokość; kliknięcie "Znajdź" buduje URL z wybranych filtrów (kategoria, miasto/lokalizacja) i nawiguje do odpowiedniej podstrony (np. `/koncerty/wroclaw` lub `/lokalizacja?lat=...&lng=...&radius=...`);
 - panel wyszukiwania (SearchPanel) jest widoczny na wszystkich stronach (strona główna, podstrony kategorii, miast i kategorii+miasto); na podstronach data filtruje dynamicznie, a zmiana kategorii lub miasta nawiguje dopiero po kliknięciu "Znajdź";
 - tło strony (`background.png`) na komputerach oraz na smartfonach jest dopasowane za pomocą `background-size: cover` oraz wypozycjonowane `center top`, dzięki czemu nie tworzy ostrych krawędzi i płynnie rozmywa się na dolnym odcinku (od wysokości 65% z 35-procentowym obszarem całkowitego zanikania).
@@ -186,6 +186,32 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 `/admin/categories/new` i `/admin/categories/[id]/edit`:
 
 - formularz kategorii z polami: nazwa, slug (opcjonalny, generowany automatycznie z nazwy), kolor (wygodny color picker wraz z polem tekstowym), ikona, kolejność sortowania.
+
+### Rozszerzone sekcje panelu admina
+
+`/admin/review`:
+
+- kolejka wydarzen ze statusem `draft` albo `pending_review`;
+- akcje: sprawdz, opublikuj, odrzuc.
+
+`/admin/locations`:
+
+- tabela lokalizacji z nazwa, adresem, miastem, danymi administracyjnymi, liczba wydarzen i sygnalem potencjalnych duplikatow;
+- link do edycji;
+- usuwanie jest dostepne tylko dla lokalizacji bez przypisanych wydarzen.
+
+`/admin/locations/new` i `/admin/locations/[id]/edit`:
+
+- formularz lokalizacji z mini-mapa MapLibre, wyszukiwaniem adresu i przesuwalna pinezka;
+- pola: nazwa miejsca, adres, miasto, kod pocztowy, gmina, powiat, wojewodztwo, Google Maps URL i Place ID.
+
+`/admin/cities`:
+
+- tabela stron lokalnych SEO z miastem, slugiem, statusem aktywnosci, wojewodztwem, wspolrzednymi centrum i liczba wydarzen liczona przez `locations.city_id`.
+
+`/admin/cities/new` i `/admin/cities/[id]/edit`:
+
+- formularz strony miasta z aktywacja/dezaktywacja, `meta_title`, `meta_description`, tekstem wstepnym, slugiem, centrum miasta, powiatem i wojewodztwem.
 
 ## Panel organizatora
 

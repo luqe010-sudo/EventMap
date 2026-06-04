@@ -7,7 +7,7 @@ type LocationSectionProps = {
     id: string;
     name: string | null;
     address: string | null;
-    city: string | null;
+    city: { name: string } | null;
     latitude: number | null;
     longitude: number | null;
     postal_code: string | null;
@@ -27,7 +27,7 @@ export default function LocationSection({
         initialLocationId={defaultLocation?.id}
         initialLatitude={defaultLocation?.latitude}
         initialLongitude={defaultLocation?.longitude}
-        initialCity={defaultLocation?.city}
+        initialCity={defaultLocation?.city?.name}
         initialAddress={defaultLocation?.address}
         initialName={defaultLocation?.name}
         initialPostalCode={defaultLocation?.postal_code}

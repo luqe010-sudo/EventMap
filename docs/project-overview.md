@@ -16,7 +16,7 @@ Główne dane aplikacji pochodzą z Supabase/PostgreSQL. Warstwa publiczna pobie
 
 - `/` - strona główna z hero, wyszukiwarką, filtrami, wyróżnionymi wydarzeniami i listą.
 - `/wydarzenie/[slug]` - szczegóły wydarzenia po `events.slug`.
-- `/wydarzenia/[city]` - strona miasta po `city_pages.slug`; stare adresy wydarzeń w tym formacie przekierowują na `/wydarzenie/[slug]`.
+- `/wydarzenia/[city]` - strona miasta po `cities.slug`; stare adresy wydarzeń w tym formacie przekierowują na `/wydarzenie/[slug]`.
 - `/kategoria/[slug]` - lista wydarzeń dla kategorii.
 - `/login` - logowanie przez Supabase Auth email/hasło.
 - `/admin` - dashboard admina.

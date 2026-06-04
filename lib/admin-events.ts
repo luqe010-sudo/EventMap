@@ -15,22 +15,24 @@ type EventUpdate = Tables["events"]["Update"];
 const ADMIN_EVENT_LIST_SELECT = `
   id,
   title,
+  created_at,
   start_at,
   status,
   visibility,
   category:categories(name),
-  location:locations(city),
+  location:locations(city:cities(name)),
   organizer:organizers!events_organizer_id_fkey(name)
 `;
 
 export type AdminEventListItem = {
   id: string;
   title: string;
+  created_at: string | null;
   start_at: string;
   status: string | null;
   visibility: string | null;
   category: { name: string } | null;
-  location: { city: string | null } | null;
+  location: { city: { name: string } | null } | null;
   organizer: { name: string } | null;
 };
 
@@ -74,13 +76,32 @@ export async function listAdminEvents() {
   return data ?? [];
 }
 
+export async function listAdminReviewEvents() {
+  await requireAdmin();
+  const supabase = await createSupabaseUserClient();
+  const { data, error } = await supabase
+    .from("events")
+    .select(ADMIN_EVENT_LIST_SELECT)
+    .in("status", ["draft", "pending_review"])
+    .order("created_at", { ascending: false })
+    .limit(250)
+    .returns<AdminEventListItem[]>();
+
+  if (error) throw new Error(`Nie udalo sie pobrac wydarzen do zatwierdzenia: ${error.message}`);
+  return data ?? [];
+}
+
 export async function getAdminEventEditorOptions() {
   await requireAdmin();
   const supabase = await createSupabaseUserClient();
   const [categories, organizers, locations] = await Promise.all([
     supabase.from("categories").select("id, name").order("name", { ascending: true }),
     supabase.from("organizers").select("id, name").order("name", { ascending: true }),
-    supabase.from("locations").select("id, name, address, city").order("city", { ascending: true }).limit(500)
+    supabase
+      .from("locations")
+      .select("id, name, address, city_id, city:cities(name)")
+      .order("name", { ascending: true })
+      .limit(500)
   ]);
 
   if (categories.error) throw new Error(`Nie udalo sie pobrac kategorii: ${categories.error.message}`);
@@ -196,5 +217,6 @@ async function countEventsByStatus(status: EventStatus) {
 function revalidateAdminPaths() {
   revalidatePath("/admin");
   revalidatePath("/admin/events");
+  revalidatePath("/admin/review");
   revalidatePath("/");
 }

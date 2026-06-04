@@ -58,7 +58,7 @@ export default async function OrganizerDashboardPage() {
                 <tr key={event.id}>
                   <td>{event.title}</td>
                   <td>{formatDate(event.start_at)}</td>
-                  <td>{event.location?.city ?? "-"}</td>
+                  <td>{event.location?.city?.name ?? "-"}</td>
                   <td>{event.category?.name ?? "-"}</td>
                   <td><span className="statusPill">{event.status ?? "draft"}</span></td>
                   <td><Link href={`/organizer/events/${event.id}/edit`}>Edytuj</Link></td>

@@ -56,7 +56,7 @@ export async function generateMetadata({
       title: `${pluralCategory} ${locationText} | MapaImprez`,
       description: `Nadchodzące wydarzenia z kategorii ${pluralCategory} ${locationText}. Filtruj po dacie, odległości i cenie.`,
       alternates: {
-        canonical: `/${toPluralCategorySlug(category.slug)}/${toSlug(cityLocation.label)}`
+        canonical: `/${toPluralCategorySlug(category.slug)}/${cityLocation.slug ?? toSlug(cityLocation.label)}`
       }
     };
   }
@@ -74,7 +74,7 @@ export async function generateMetadata({
       title: `Wydarzenia ${locationText} ${timeLabel} | MapaImprez`,
       description: `Imprezy i wydarzenia ${locationText} zaplanowane ${timeLabel}. Koncerty, teatr, sport. Sprawdź co robić ${timeLabel}!`,
       alternates: {
-        canonical: `/${toSlug(cityLocation.label)}/${citySlug}`
+        canonical: `/${cityLocation.slug ?? toSlug(cityLocation.label)}/${citySlug}`
       }
     };
   }
@@ -213,7 +213,7 @@ export default async function CategoryCityPage({
       notFound();
     }
 
-    const normalizedCitySlug = toSlug(cityLocation.label);
+    const normalizedCitySlug = cityLocation.slug ?? toSlug(cityLocation.label);
     if (categorySlug !== normalizedCitySlug) {
       redirect(`/${normalizedCitySlug}/${citySlug}`);
     }

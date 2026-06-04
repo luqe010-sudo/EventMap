@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
       title: `${pluralCategory} ${locationText} - wydarzenia ${timeLabel} | MapaImprez`,
       description: `Wydarzenia z kategorii ${pluralCategory} ${locationText} zaplanowane ${timeLabel}. Sprawdź kalendarz i mapę.`,
       alternates: {
-        canonical: `/${toPluralCategorySlug(category.slug)}/${toSlug(cityLocation.label)}/${eventOrTime}`
+        canonical: `/${toPluralCategorySlug(category.slug)}/${cityLocation.slug ?? toSlug(cityLocation.label)}/${eventOrTime}`
       }
     };
   }

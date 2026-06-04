@@ -19,6 +19,7 @@ type LocationPickerMapProps = {
   initialVoivodeship?: string | null;
   initialCounty?: string | null;
   initialMunicipality?: string | null;
+  showAdministrativeFields?: boolean;
 };
 
 const STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
@@ -37,7 +38,8 @@ export default function LocationPickerMap({
   initialPostalCode,
   initialVoivodeship,
   initialCounty,
-  initialMunicipality
+  initialMunicipality,
+  showAdministrativeFields = false
 }: LocationPickerMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
@@ -342,10 +344,49 @@ export default function LocationPickerMap({
       <input type="hidden" name="location_id" value={locationId} />
       <input type="hidden" name="location_latitude" value={latitude ?? ""} />
       <input type="hidden" name="location_longitude" value={longitude ?? ""} />
-      <input type="hidden" name="location_postal_code" value={postalCode} />
-      <input type="hidden" name="location_voivodeship" value={voivodeship} />
-      <input type="hidden" name="location_county" value={county} />
-      <input type="hidden" name="location_municipality" value={municipality} />
+      {showAdministrativeFields ? (
+        <div className="formGrid">
+          <label>
+            Kod pocztowy
+            <input
+              name="location_postal_code"
+              value={postalCode}
+              onChange={(e) => setPostalCode(e.target.value)}
+            />
+          </label>
+          <label>
+            Gmina
+            <input
+              name="location_municipality"
+              value={municipality}
+              onChange={(e) => setMunicipality(e.target.value)}
+            />
+          </label>
+          <label>
+            Powiat
+            <input
+              name="location_county"
+              value={county}
+              onChange={(e) => setCounty(e.target.value)}
+            />
+          </label>
+          <label>
+            Wojewodztwo
+            <input
+              name="location_voivodeship"
+              value={voivodeship}
+              onChange={(e) => setVoivodeship(e.target.value)}
+            />
+          </label>
+        </div>
+      ) : (
+        <>
+          <input type="hidden" name="location_postal_code" value={postalCode} />
+          <input type="hidden" name="location_voivodeship" value={voivodeship} />
+          <input type="hidden" name="location_county" value={county} />
+          <input type="hidden" name="location_municipality" value={municipality} />
+        </>
+      )}
     </div>
   );
 }

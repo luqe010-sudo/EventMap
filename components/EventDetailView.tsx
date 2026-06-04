@@ -17,7 +17,7 @@ export default function EventDetailView({
 }: EventDetailViewProps) {
   const categoryPlural = toPluralCategoryName(event.category);
   const categorySlug = toPluralCategorySlug(event.categorySlug || toSlug(event.category || "inne"));
-  const citySlug = toSlug(event.city || "polska");
+  const citySlug = event.citySlug || toSlug(event.city || "polska");
   const cityHref = event.city ? `/${citySlug}` : "/";
   const eventUrl = `https://mapaimprez.pl${eventPath(event)}`;
   const mapTargetId = "event-detail-map";

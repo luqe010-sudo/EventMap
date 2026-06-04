@@ -1,69 +1,37 @@
 import { createSupabaseServerClient } from "@/lib/supabase";
-import { toSlug } from "@/lib/slugs";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   const supabase = createSupabaseServerClient();
 
-  // Fetch active city pages
-  const { data: cityPages } = await supabase
-    .from("city_pages")
-    .select("city, slug")
-    .eq("is_active", true);
-
-  // Fetch cities from locations table
-  const { data: locations } = await supabase
-    .from("locations")
-    .select("city")
-    .not("city", "is", null);
-
-  const citySet = new Set<string>();
-  const citySlugToLabel: Record<string, string> = {};
-
-  (cityPages ?? []).forEach((cp) => {
-    if (cp.city && cp.slug) {
-      const slug = cp.slug.trim().toLowerCase();
-      citySet.add(slug);
-      citySlugToLabel[slug] = cp.city;
-    }
-  });
-
-  (locations ?? []).forEach((loc) => {
-    if (loc.city) {
-      const slug = toSlug(loc.city);
-      citySet.add(slug);
-      if (!citySlugToLabel[slug]) {
-        citySlugToLabel[slug] = loc.city;
-      }
-    }
-  });
-
-  const citySlugs = Array.from(citySet).sort();
+  const { data: cities } = await supabase
+    .from("cities")
+    .select("slug")
+    .eq("is_active", true)
+    .order("slug", { ascending: true });
 
   const xmlUrls: string[] = [];
 
-  citySlugs.forEach((slug) => {
-    // Base city page
+  (cities ?? []).forEach((city) => {
     xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/${slug}</loc>
+    <loc>https://mapaimprez.pl/${city.slug}</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>`);
 
-    // Time variants
     xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/${slug}/dzis</loc>
+    <loc>https://mapaimprez.pl/${city.slug}/dzis</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>`);
     xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/${slug}/weekend</loc>
+    <loc>https://mapaimprez.pl/${city.slug}/weekend</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>`);
     xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/${slug}/ten-tydzien</loc>
+    <loc>https://mapaimprez.pl/${city.slug}/ten-tydzien</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>`);

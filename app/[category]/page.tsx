@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
       title: `Wydarzenia ${locationText} | MapaImprez`,
       description: `Najciekawsze wydarzenia i imprezy ${locationText}. Koncerty, sport, festiwale i kultura. Sprawdź na mapie!`,
       alternates: {
-        canonical: `/${toSlug(cityLocation.label)}`
+        canonical: `/${cityLocation.slug ?? toSlug(cityLocation.label)}`
       }
     };
   }
@@ -94,7 +94,7 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
   // 2. Try to resolve as city
   const cityLocation = await resolveCityLocation(categorySlug);
   if (cityLocation) {
-    const normalizedCitySlug = toSlug(cityLocation.label);
+    const normalizedCitySlug = cityLocation.slug ?? toSlug(cityLocation.label);
     if (categorySlug !== normalizedCitySlug) {
       redirect(`/${normalizedCitySlug}`);
     }
@@ -149,4 +149,3 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
   // 3. Fallback to 404
   notFound();
 }
-

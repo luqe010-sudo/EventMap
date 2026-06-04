@@ -8,6 +8,7 @@ import {
   normalizeDateTimeLocal
 } from "@/lib/event-editor";
 import { uploadEventImageToCloudinary } from "@/lib/cloudinary";
+import { resolveCityIdFromForm } from "@/lib/cities";
 
 type Tables = Database["public"]["Tables"];
 type EventInsert = Tables["events"]["Insert"];
@@ -124,6 +125,14 @@ async function resolveEventLocationId(formData: FormData) {
   if (!name && !city && !address) return null;
 
   const supabase = await createSupabaseUserClient();
+  const cityId = await resolveCityIdFromForm(supabase, formData, {
+    nameKey: "location_city",
+    countyKey: "location_county",
+    voivodeshipKey: "location_voivodeship",
+    latitudeKey: "location_latitude",
+    longitudeKey: "location_longitude",
+    defaultActive: true
+  });
 
   // Try to find a matching existing location by coordinates first (very precise match)
   if (latitude !== null && longitude !== null) {
@@ -139,12 +148,12 @@ async function resolveEventLocationId(formData: FormData) {
     }
   }
 
-  // Or try by name, city, and address
-  if (city && address) {
+  // Or try by name, city id, and address
+  if (cityId && address) {
     const { data: matchedFields, error: fieldsError } = await supabase
       .from("locations")
       .select("id")
-      .eq("city", city)
+      .eq("city_id", cityId)
       .eq("address", address)
       .eq("name", name ?? "")
       .limit(1);
@@ -159,7 +168,7 @@ async function resolveEventLocationId(formData: FormData) {
     .from("locations")
     .insert({
       name,
-      city,
+      city_id: cityId,
       address,
       latitude,
       longitude,

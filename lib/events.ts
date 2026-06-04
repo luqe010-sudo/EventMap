@@ -5,6 +5,7 @@ import { toPluralCategoryName, toPluralCategorySlug, toSlug } from "@/lib/slugs"
 type Tables = Database["public"]["Tables"];
 type EventRow = Tables["events"]["Row"];
 type CategoryRow = Tables["categories"]["Row"];
+type CityRow = Tables["cities"]["Row"];
 type LocationRow = Tables["locations"]["Row"];
 type OrganizerRow = Tables["organizers"]["Row"];
 type EventSourceRow = Tables["event_sources"]["Row"];
@@ -43,14 +44,16 @@ export type EventWithRelations = Pick<
     LocationRow,
     | "name"
     | "address"
-    | "city"
+    | "city_id"
     | "municipality"
     | "county"
     | "voivodeship"
     | "latitude"
     | "longitude"
     | "google_maps_url"
-  > | null;
+  > & {
+    city: Pick<CityRow, "id" | "name" | "slug" | "latitude" | "longitude" | "county" | "voivodeship" | "is_active"> | null;
+  } | null;
   organizer: Pick<
     OrganizerRow,
     "name" | "slug" | "website" | "facebook_url" | "phone" | "email" | "logo_url" | "type" | "is_verified"
@@ -64,6 +67,7 @@ export type EventItem = Omit<EventWithRelations, "category" | "organizer"> & {
   endDate?: string;
   address: string;
   city: string;
+  citySlug: string;
   latitude: number | null;
   longitude: number | null;
   categoryName: EventCategory;
@@ -85,12 +89,15 @@ export type EventItem = Omit<EventWithRelations, "category" | "organizer"> & {
 export type KnownLocation = {
   label: string;
   aliases: string[];
+  slug?: string;
   latitude: number;
   longitude: number;
 };
 
 export type CategoryOption = Pick<CategoryRow, "id" | "name" | "slug" | "icon" | "color">;
-export type CityPage = CityPageRow;
+export type CityPage = CityPageRow & {
+  city: Pick<CityRow, "id" | "name" | "slug" | "latitude" | "longitude" | "county" | "voivodeship" | "is_active"> | null;
+};
 
 type SupabaseEventRecord = EventRow & {
   category: Pick<CategoryRow, "id" | "name" | "slug" | "icon" | "color"> | null;
@@ -98,14 +105,16 @@ type SupabaseEventRecord = EventRow & {
     LocationRow,
     | "name"
     | "address"
-    | "city"
+    | "city_id"
     | "municipality"
     | "county"
     | "voivodeship"
     | "latitude"
     | "longitude"
     | "google_maps_url"
-  > | null;
+  > & {
+    city: Pick<CityRow, "id" | "name" | "slug" | "latitude" | "longitude" | "county" | "voivodeship" | "is_active"> | null;
+  } | null;
   organizer: Pick<
     OrganizerRow,
     "name" | "slug" | "website" | "facebook_url" | "phone" | "email" | "logo_url" | "type" | "is_verified"
@@ -136,7 +145,7 @@ const EVENT_SELECT = `
   is_verified,
   is_cancelled,
   category:categories(id, name, slug, icon, color),
-  location:locations(name, address, city, municipality, county, voivodeship, latitude, longitude, google_maps_url),
+  location:locations(name, address, city_id, municipality, county, voivodeship, latitude, longitude, google_maps_url, city:cities(id, name, slug, latitude, longitude, county, voivodeship, is_active)),
   organizer:organizers!events_organizer_id_fkey(name, slug, website, facebook_url, phone, email, logo_url, type, is_verified),
   sources:event_sources(source_name, source_url, source_type, last_seen_at)
 `;
@@ -270,12 +279,22 @@ export async function getCategoryBySlugFromDb(slug: string): Promise<CategoryOpt
 
 export async function getCityPageBySlug(slug: string): Promise<CityPage | null> {
   const supabase = createSupabaseServerClient();
-  const { data, error } = await supabase
-    .from("city_pages")
-    .select("*")
+  const { data: city, error: cityError } = await supabase
+    .from("cities")
+    .select("id, name, slug, latitude, longitude, county, voivodeship, is_active")
     .eq("slug", slug)
     .eq("is_active", true)
     .maybeSingle();
+
+  if (cityError) throw new Error(`Nie udalo sie pobrac miasta: ${cityError.message}`);
+  if (!city) return null;
+
+  const { data, error } = await supabase
+    .from("city_pages")
+    .select("*, city:cities(id, name, slug, latitude, longitude, county, voivodeship, is_active)")
+    .eq("city_id", city.id)
+    .maybeSingle()
+    .returns<CityPage | null>();
 
   if (error) throw new Error(`Nie udalo sie pobrac strony miasta: ${error.message}`);
   return data;
@@ -285,7 +304,7 @@ export async function getActiveCitySlugs(): Promise<string[]> {
   const supabase = createSupabaseServerClient();
   try {
     const { data } = await supabase
-      .from("city_pages")
+      .from("cities")
       .select("slug")
       .eq("is_active", true);
     return (data ?? []).map(item => item.slug);
@@ -348,6 +367,7 @@ export function getDefaultLocation(): KnownLocation {
   return {
     label: "Polska",
     aliases: ["polska", "poland"],
+    slug: "polska",
     latitude: 51.9194,
     longitude: 19.1451
   };
@@ -364,11 +384,13 @@ export function getCategoryColor(category: EventCategory, fallback?: string | nu
 }
 
 export function mapCityPageToLocation(cityPage: CityPage): KnownLocation {
+  const city = cityPage.city;
   return {
-    label: cityPage.city,
-    aliases: [cityPage.slug, createSlug(cityPage.city)],
-    latitude: cityPage.latitude ?? getDefaultLocation().latitude,
-    longitude: cityPage.longitude ?? getDefaultLocation().longitude
+    label: city?.name ?? "Polska",
+    aliases: city ? [city.slug, createSlug(city.name)] : [],
+    slug: city?.slug,
+    latitude: city?.latitude ?? getDefaultLocation().latitude,
+    longitude: city?.longitude ?? getDefaultLocation().longitude
   };
 }
 
@@ -376,7 +398,8 @@ function mapEventRecord(record: SupabaseEventRecord): EventItem {
   const categoryName = toPluralCategoryName(record.category?.name ?? "Inne");
   const categorySlug = toPluralCategorySlug(record.category?.slug ?? createSlug(categoryName));
   const locationName = record.location?.name ?? "";
-  const city = record.location?.city ?? "";
+  const city = record.location?.city?.name ?? "";
+  const citySlug = record.location?.city?.slug ?? createSlug(city || "polska");
   const address = [locationName, record.location?.address, city].filter(Boolean).join(", ");
   const organizerName = record.organizer?.name ?? "Organizator nieznany";
   const organizerUrl = record.organizer?.website ?? record.organizer?.facebook_url ?? "";
@@ -413,6 +436,7 @@ function mapEventRecord(record: SupabaseEventRecord): EventItem {
     endDate: record.end_at ?? undefined,
     address,
     city,
+    citySlug,
     latitude: record.location?.latitude ?? null,
     longitude: record.location?.longitude ?? null,
     categoryName,
@@ -455,25 +479,26 @@ export async function resolveCityLocation(citySlug: string): Promise<KnownLocati
 
   const supabase = createSupabaseServerClient();
 
-  // 2. Query city_pages
+  // 2. Query canonical cities
   try {
-    const { data: cityPage } = await supabase
-      .from("city_pages")
-      .select("*")
+    const { data: city } = await supabase
+      .from("cities")
+      .select("id, name, slug, latitude, longitude, county, voivodeship, is_active")
       .eq("slug", normSlug)
       .eq("is_active", true)
       .maybeSingle();
 
-    if (cityPage) {
+    if (city) {
       return {
-        label: cityPage.city,
-        aliases: [cityPage.slug],
-        latitude: cityPage.latitude ?? getDefaultLocation().latitude,
-        longitude: cityPage.longitude ?? getDefaultLocation().longitude
+        label: city.name,
+        aliases: [city.slug],
+        slug: city.slug,
+        latitude: city.latitude ?? getDefaultLocation().latitude,
+        longitude: city.longitude ?? getDefaultLocation().longitude
       };
     }
   } catch (err) {
-    console.error("resolveCityLocation city_pages error:", err);
+    console.error("resolveCityLocation cities error:", err);
   }
 
   return null;

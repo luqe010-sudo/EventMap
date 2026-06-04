@@ -110,7 +110,7 @@ MapLibre używa stylu wektorowego i po załadowaniu stylu próbuje preferować p
 `app/layout.tsx` definiuje globalne metadane i Open Graph. Strony dynamiczne generują metadata:
 
 - `/wydarzenie/[slug]` dla wydarzenia używa tytułu, miasta, opisu i obrazu wydarzenia.
-- `/wydarzenia/[city]` dla strony miasta używa `city_pages.meta_title` i `city_pages.meta_description`.
+- `/wydarzenia/[city]` dla strony miasta używa `cities.slug` oraz metadanych SEO z `city_pages`.
 - `/kategoria/[slug]` używa nazwy kategorii.
 
 Strony szczegółów wydarzeń i kolekcji generują JSON-LD:

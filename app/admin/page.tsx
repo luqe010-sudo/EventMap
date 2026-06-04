@@ -17,7 +17,7 @@ export default async function AdminDashboardPage() {
         </div>
       </div>
 
-      <AdminSectionNav active="events" />
+      <AdminSectionNav active="dashboard" />
 
       <section className="managementStats">
         <StatCard label="Do akceptacji" value={dashboard.pendingReview} />
@@ -45,7 +45,7 @@ export default async function AdminDashboardPage() {
                 <tr key={event.id}>
                   <td><Link href={`/admin/events/${event.id}/edit`}>{event.title}</Link></td>
                   <td>{formatDate(event.start_at)}</td>
-                  <td>{event.location?.city ?? "-"}</td>
+                  <td>{event.location?.city?.name ?? "-"}</td>
                   <td><span className="statusPill">{event.status ?? "draft"}</span></td>
                 </tr>
               ))}
