@@ -12,7 +12,7 @@ const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
 
 type SidebarProps = {
   events: Array<{ event: EventItem; distanceKm: number }>;
-  categoryCounts: Array<{ category: EventCategory; count: number }>;
+  categoryCounts: Array<{ category: EventCategory; count: number; color?: string | null }>;
   onCategorySelect: (category: EventCategory | "Wszystkie") => void;
   selectedCategory: EventCategory | "Wszystkie";
   location: KnownLocation;
@@ -100,16 +100,37 @@ export default function Sidebar({
           <h3>Popularne kategorie</h3>
         </div>
         <div className="sidebarCategories">
-          {categoryCounts.map(({ category, count }) => (
-            <button
-              key={category}
-              type="button"
-              className={`sidebarCategoryChip ${selectedCategory === category ? "sidebarCategoryActive" : ""}`}
-              onClick={() => onCategorySelect(selectedCategory === category ? "Wszystkie" : category)}
-            >
-              {category} <span className="sidebarCategoryCount">({count})</span>
-            </button>
-          ))}
+          {categoryCounts.map(({ category, count, color }) => {
+            const isActive = selectedCategory === category;
+            const chipColor = color || "var(--ink)";
+            return (
+              <button
+                key={category}
+                type="button"
+                className={`sidebarCategoryChip ${isActive ? "sidebarCategoryActive" : ""}`}
+                style={
+                  isActive
+                    ? {
+                        background: chipColor,
+                        borderColor: chipColor,
+                        color: "white"
+                      }
+                    : ({
+                        "--hover-border": chipColor
+                      } as React.CSSProperties)
+                }
+                onClick={() => onCategorySelect(isActive ? "Wszystkie" : category)}
+              >
+                {category}{" "}
+                <span
+                  className="sidebarCategoryCount"
+                  style={isActive ? { color: "rgba(255,255,255,0.7)" } : undefined}
+                >
+                  ({count})
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
     </aside>

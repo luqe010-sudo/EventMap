@@ -5,6 +5,9 @@ import maplibregl from "maplibre-gl";
 import type { ExpressionSpecification, FilterSpecification } from "maplibre-gl";
 import type { MutableRefObject } from "react";
 import type { EventItem, KnownLocation } from "@/lib/events";
+import * as LucideIcons from "lucide-react";
+import { createRoot } from "react-dom/client";
+import { flushSync } from "react-dom";
 
 type MapLibreMapProps = {
   events: EventItem[];
@@ -40,29 +43,7 @@ const MAP_LOCALE = {
   "AttributionControl.ToggleAttribution": "Pokaż atrybucję"
 };
 
-const CATEGORY_ICONS: Record<string, string> = {
-  Koncert: "event-icon-koncert",
-  Festyn: "event-icon-festyn",
-  Dozynki: "event-icon-dozynki",
-  Sport: "event-icon-sport",
-  Rodzina: "event-icon-rodzina",
-  Targi: "event-icon-targi",
-  Motoryzacja: "event-icon-motoryzacja",
-  Kultura: "event-icon-kultura",
-  Inne: "event-icon-inne"
-};
 
-const CATEGORY_ICON_SVGS: Record<string, string> = {
-  "event-icon-koncert": '<path d="M9 18V5l10-2v13" /><circle cx="7" cy="18" r="3" /><circle cx="17" cy="16" r="3" />',
-  "event-icon-festyn": '<path d="M4 19h16L12 5 4 19Z" /><path d="M12 5v14M7 14h10" />',
-  "event-icon-dozynki": '<path d="M12 21V5" /><path d="M12 9C8 8 6 6 5 3c4 0 6 2 7 6ZM12 14c4-1 6-3 7-6-4 0-6 2-7 6ZM12 18c-4-1-6-3-7-6 4 0 6 2 7 6Z" />',
-  "event-icon-sport": '<circle cx="12" cy="12" r="8" /><path d="m8 6 4 4 4-4M4.5 13h5L8 18M19.5 13h-5l1.5 5" />',
-  "event-icon-rodzina": '<circle cx="9" cy="8" r="3" /><circle cx="16.5" cy="9" r="2.5" /><path d="M4 20c.7-3.8 3-6 6-6s5.3 2.2 6 6M14 19c.5-2.5 2-4 4-4 1.7 0 3 1.1 3.6 3" />',
-  "event-icon-targi": '<path d="M6 8h12l-1 12H7L6 8Z" /><path d="M9 8a3 3 0 0 1 6 0M5 8h14" />',
-  "event-icon-motoryzacja": '<path d="M5 15h14l-2-5H7l-2 5Z" /><path d="M7 15v3M17 15v3" /><circle cx="8" cy="18" r="2" /><circle cx="16" cy="18" r="2" />',
-  "event-icon-kultura": '<path d="M6 5c4 0 6 2 6 5 0-3 2-5 6-5v13c-4 0-6 1.2-6 3 0-1.8-2-3-6-3V5Z" /><path d="M12 10v11" />',
-  "event-icon-inne": '<path d="M12 3v18M5 8l14 8M19 8 5 16" />'
-};
 
 export default function MapLibreMap({
   events,
@@ -101,7 +82,7 @@ export default function MapLibreMap({
 
     map.on("load", async () => {
       applyPolishLabels(map);
-      await addCategoryImages(map);
+      await addCategoryImages(map, events);
       addAdministrativeBoundaryLayers(map);
       addHouseNumberLayer(map);
       addEventSourceAndLayers(map, onSelectEventRef);
@@ -121,8 +102,10 @@ export default function MapLibreMap({
     const map = mapRef.current;
     if (!map || !mapReady) return;
 
-    const source = map.getSource(EVENT_SOURCE_ID) as maplibregl.GeoJSONSource | undefined;
-    source?.setData(buildEventFeatureCollection(events));
+    void addCategoryImages(map, events).then(() => {
+      const source = map.getSource(EVENT_SOURCE_ID) as maplibregl.GeoJSONSource | undefined;
+      source?.setData(buildEventFeatureCollection(events));
+    });
     updateSelectedPaint(map, selectedEventId);
     updateLocationMarker(map, location, locationMarkerRef);
     fitMapToPoints(map, location, events);
@@ -281,7 +264,7 @@ function buildEventFeatureCollection(events: EventItem[]): GeoJSON.FeatureCollec
         address: event.address,
         category: event.category,
         color: event.categoryColor,
-        icon: getCategoryIconId(event.category)
+        icon: event.categoryRelation?.icon || "CircleHelp"
       }
     }))
   };
@@ -562,25 +545,66 @@ function adminLevelFilter(adminLevel: string): FilterSpecification {
   return ["==", ["to-string", ["get", "admin_level"]], adminLevel];
 }
 
-async function addCategoryImages(map: maplibregl.Map) {
+async function addCategoryImages(map: maplibregl.Map, events: EventItem[]) {
+  const uniqueIcons = Array.from(
+    new Set(events.map((e) => e.categoryRelation?.icon || "CircleHelp"))
+  );
+
   await Promise.all(
-    Object.entries(CATEGORY_ICON_SVGS).map(async ([id, paths]) => {
-      if (map.hasImage(id)) return;
-      const image = await loadSvgImage(buildIconSvg(paths));
-      map.addImage(id, image);
+    uniqueIcons.map(async (iconName) => {
+      if (map.hasImage(iconName)) return;
+
+      try {
+        const svgString = getLucideIconSvgString(iconName);
+        if (svgString) {
+          const image = await loadSvgImage(svgString);
+          map.addImage(iconName, image);
+        }
+      } catch (err) {
+        console.error(`Failed to load map icon ${iconName}:`, err);
+      }
     })
   );
 }
 
-function buildIconSvg(paths: string) {
-  return `
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-      <g fill="none" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-        ${paths}
-      </g>
-    </svg>
-  `;
+// Build a case-insensitive map of Lucide icon names for backward compatibility
+const LOWERCASE_TO_PASCAL_MAP = new Map<string, string>();
+Object.keys(LucideIcons).forEach((key) => {
+  LOWERCASE_TO_PASCAL_MAP.set(key.toLowerCase(), key);
+});
+
+function getLucideIconSvgString(iconName: string): string {
+  let resolvedKey: string | undefined;
+  if (iconName) {
+    if (iconName in LucideIcons) {
+      resolvedKey = iconName;
+    } else {
+      resolvedKey = LOWERCASE_TO_PASCAL_MAP.get(iconName.toLowerCase());
+    }
+  }
+
+  const IconComponent = resolvedKey
+    ? (LucideIcons[resolvedKey as keyof typeof LucideIcons] as React.ComponentType<any>)
+    : LucideIcons.CircleHelp;
+
+  const tempDiv = document.createElement("div");
+  const root = createRoot(tempDiv);
+  
+  flushSync(() => {
+    root.render(
+      <IconComponent 
+        color="#ffffff" 
+        size={32} 
+        strokeWidth={2.3}
+      />
+    );
+  });
+  
+  const svgHtml = tempDiv.querySelector("svg")?.outerHTML || "";
+  root.unmount();
+  return svgHtml;
 }
+
 
 function loadSvgImage(svg: string) {
   return new Promise<HTMLImageElement>((resolve, reject) => {
@@ -621,27 +645,7 @@ function hasCoordinates(event: EventItem): event is EventItem & { latitude: numb
   return event.latitude != null && event.longitude != null;
 }
 
-function getCategoryIconId(category: EventItem["category"]) {
-  const normalizedCategory = normalizeCategory(category);
-  return CATEGORY_ICONS[normalizedCategory] ?? CATEGORY_ICONS.Inne;
-}
 
-function normalizeCategory(category: string) {
-  const normalized = category
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
-
-  if (normalized.includes("koncert")) return "Koncert";
-  if (normalized.includes("festyn")) return "Festyn";
-  if (normalized.includes("dozynki")) return "Dozynki";
-  if (normalized.includes("sport")) return "Sport";
-  if (normalized.includes("rodzina")) return "Rodzina";
-  if (normalized.includes("targi")) return "Targi";
-  if (normalized.includes("motoryzacja")) return "Motoryzacja";
-  if (normalized.includes("kultura")) return "Kultura";
-  return "Inne";
-}
 
 function escapeHtml(value: string) {
   const replacements: Record<string, string> = {

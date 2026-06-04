@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-type AdminSection = "events" | "organizers";
+type AdminSection = "events" | "organizers" | "categories";
 
 type AdminSectionNavProps = {
   active: AdminSection;
@@ -8,7 +8,8 @@ type AdminSectionNavProps = {
 
 const sections: Array<{ key: AdminSection; href: string; label: string }> = [
   { key: "events", href: "/admin/events", label: "Wydarzenia" },
-  { key: "organizers", href: "/admin/organizers", label: "Organizatorzy" }
+  { key: "organizers", href: "/admin/organizers", label: "Organizatorzy" },
+  { key: "categories", href: "/admin/categories", label: "Kategorie" }
 ];
 
 export default function AdminSectionNav({ active }: AdminSectionNavProps) {

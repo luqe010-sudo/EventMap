@@ -151,8 +151,8 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 
 - liczniki `pending_review`, `published`, `rejected`;
 - ostatnio dodane wydarzenia;
-- wspolny pasek nawigacji admina z przejsciem do `Wydarzenia` i `Organizatorzy`;
-- linki do wydarzeń i organizatorów.
+- wspólny pasek nawigacji admina z przejściem do `Wydarzenia`, `Organizatorzy` i `Kategorie`;
+- linki do wydarzeń, organizatorów i kategorii.
 
 `/admin/events`:
 
@@ -177,6 +177,15 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 
 - formularz organizatora;
 - możliwość podania `owner_user_id` i utworzenia powiązania w `organizer_users`.
+
+`/admin/categories`:
+
+- tabela kategorii wydarzeń (kolor, nazwa, slug, ikona, kolejność sortowania);
+- przyciski edycji oraz bezpiecznego usuwania (wymaga potwierdzenia użytkownika i nie pozwala na usunięcie, jeśli kategoria posiada powiązane wydarzenia).
+
+`/admin/categories/new` i `/admin/categories/[id]/edit`:
+
+- formularz kategorii z polami: nazwa, slug (opcjonalny, generowany automatycznie z nazwy), kolor (wygodny color picker wraz z polem tekstowym), ikona, kolejność sortowania.
 
 ## Panel organizatora
 

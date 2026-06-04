@@ -1,9 +1,10 @@
 "use client";
 
-import { type EventCategory } from "@/lib/events";
+import { type EventCategory, type CategoryOption } from "@/lib/events";
 import { type DateFilter } from "@/lib/filters";
 import CityAutocomplete from "@/components/CityAutocomplete";
 import type { KnownLocation } from "@/lib/events";
+import CategoryIcon from "@/components/CategoryIcon";
 
 type SearchPanelProps = {
   locationInput: string;
@@ -20,7 +21,7 @@ type SearchPanelProps = {
   onRadiusChange: (radius: number) => void;
   onAllPolandSelect: () => void;
   category: EventCategory | "Wszystkie";
-  categories: EventCategory[];
+  categories: CategoryOption[];
   onCategoryChange: (category: EventCategory | "Wszystkie") => void;
   onSubmit?: () => void;
 };
@@ -175,20 +176,42 @@ export default function SearchPanel({
         <button
           type="button"
           className={`catPill ${category === "Wszystkie" ? "catPillActive" : ""}`}
+          style={
+            category === "Wszystkie"
+              ? {
+                  color: "var(--brand)",
+                  borderColor: "color-mix(in srgb, var(--brand) 30%, white)",
+                  background: "color-mix(in srgb, var(--brand) 10%, white)",
+                }
+              : undefined
+          }
           onClick={() => onCategoryChange("Wszystkie")}
         >
-          <CategoryIcon name="Wszystkie" /> Wszystkie
+          <CategoryIcon iconName="Compass" size={17} color="var(--brand)" /> Wszystkie
         </button>
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            type="button"
-            className={`catPill ${category === cat ? "catPillActive" : ""}`}
-            onClick={() => onCategoryChange(cat)}
-          >
-            <CategoryIcon name={cat} /> {cat}
-          </button>
-        ))}
+        {categories.map((cat) => {
+          const isActive = category === cat.name;
+          const catColor = cat.color || "var(--brand)";
+          return (
+            <button
+              key={cat.id}
+              type="button"
+              className={`catPill ${isActive ? "catPillActive" : ""}`}
+              style={
+                isActive
+                  ? {
+                      color: catColor,
+                      borderColor: `color-mix(in srgb, ${catColor} 30%, white)`,
+                      background: `color-mix(in srgb, ${catColor} 10%, white)`,
+                    }
+                  : undefined
+              }
+              onClick={() => onCategoryChange(cat.name)}
+            >
+              <CategoryIcon iconName={cat.icon} size={17} color={catColor} /> {cat.name}
+            </button>
+          );
+        })}
       </div>
 
       <div className="searchSubmitRow">
@@ -221,36 +244,4 @@ function serializeCustomDateRange(from: string, to: string) {
   return from;
 }
 
-function CategoryIcon({ name }: { name: EventCategory | "Wszystkie" }) {
-  const common = { width: 17, height: 17, viewBox: "0 0 24 24", "aria-hidden": true } as const;
 
-  if (name === "Koncerty") {
-    return <svg {...common} className="catIcon catIconConcert"><path d="M9 18V5l10-2v13" /><circle cx="7" cy="18" r="3" /><circle cx="17" cy="16" r="3" /></svg>;
-  }
-  if (name === "Festyny") {
-    return <svg {...common} className="catIcon catIconFestyn"><path d="M4 19h16L12 5 4 19Z" /><path d="M12 5v14M7 14h10" /></svg>;
-  }
-  if (name === "Dożynki" || name === "Dozynki") {
-    return <svg {...common} className="catIcon catIconDozynki"><path d="M12 21V5" /><path d="M12 9C8 8 6 6 5 3c4 0 6 2 7 6ZM12 14c4-1 6-3 7-6-4 0-6 2-7 6ZM12 18c-4-1-6-3-7-6 4 0 6 2 7 6Z" /></svg>;
-  }
-  if (name === "Sport") {
-    return <svg {...common} className="catIcon catIconSport"><circle cx="12" cy="12" r="8" /><path d="m8 6 4 4 4-4M4.5 13h5L8 18M19.5 13h-5l1.5 5" /></svg>;
-  }
-  if (name === "Rodzinne" || name === "Rodzina") {
-    return <svg {...common} className="catIcon catIconRodzina"><circle cx="9" cy="8" r="3" /><circle cx="16.5" cy="9" r="2.5" /><path d="M4 20c.7-3.8 3-6 6-6s5.3 2.2 6 6M14 19c.5-2.5 2-4 4-4 1.7 0 3 1.1 3.6 3" /></svg>;
-  }
-  if (name === "Targi") {
-    return <svg {...common} className="catIcon catIconTargi"><path d="M6 8h12l-1 12H7L6 8Z" /><path d="M9 8a3 3 0 0 1 6 0M5 8h14" /></svg>;
-  }
-  if (name === "Motoryzacja") {
-    return <svg {...common} className="catIcon catIconMoto"><path d="M5 15h14l-2-5H7l-2 5Z" /><path d="M7 15v3M17 15v3" /><circle cx="8" cy="18" r="2" /><circle cx="16" cy="18" r="2" /></svg>;
-  }
-  if (name === "Kultura") {
-    return <svg {...common} className="catIcon catIconKultura"><path d="M6 5c4 0 6 2 6 5 0-3 2-5 6-5v13c-4 0-6 1.2-6 3 0-1.8-2-3-6-3V5Z" /><path d="M12 10v11" /></svg>;
-  }
-  if (name === "Inne") {
-    return <svg {...common} className="catIcon catIconInne"><path d="M12 3v18M5 8l14 8M19 8 5 16" /></svg>;
-  }
-
-  return <svg {...common} className="catIcon catIconAll"><path d="M12 3 14.4 9.6 21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3Z" /></svg>;
-}
