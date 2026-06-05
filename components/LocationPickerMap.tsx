@@ -20,6 +20,18 @@ type LocationPickerMapProps = {
   initialCounty?: string | null;
   initialMunicipality?: string | null;
   showAdministrativeFields?: boolean;
+  savedLocations?: Array<{
+    id: string;
+    name: string | null;
+    address: string | null;
+    latitude: number | null;
+    longitude: number | null;
+    postal_code: string | null;
+    voivodeship: string | null;
+    county: string | null;
+    municipality: string | null;
+    city: { name: string } | null;
+  }>;
 };
 
 const STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
@@ -39,7 +51,8 @@ export default function LocationPickerMap({
   initialVoivodeship,
   initialCounty,
   initialMunicipality,
-  showAdministrativeFields = false
+  showAdministrativeFields = false,
+  savedLocations = []
 }: LocationPickerMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
@@ -167,6 +180,34 @@ export default function LocationPickerMap({
     [applyResult, placeMarker]
   );
 
+  const handleSavedLocationSelect = useCallback((id: string) => {
+    const selected = savedLocations.find((location) => location.id === id);
+    if (!selected) {
+      setLocationId("");
+      return;
+    }
+
+    setLocationId(selected.id);
+    setLocationName(selected.name ?? "");
+    setAddress(selected.address ?? "");
+    setCity(selected.city?.name ?? "");
+    setPostalCode(selected.postal_code ?? "");
+    setVoivodeship(selected.voivodeship ?? "");
+    setCounty(selected.county ?? "");
+    setMunicipality(selected.municipality ?? "");
+
+    if (selected.latitude != null && selected.longitude != null) {
+      setLatitude(selected.latitude);
+      setLongitude(selected.longitude);
+      placeMarker(selected.longitude, selected.latitude);
+      mapRef.current?.flyTo({
+        center: [selected.longitude, selected.latitude],
+        zoom: SELECTED_ZOOM,
+        duration: 700
+      });
+    }
+  }, [placeMarker, savedLocations]);
+
   const handleSearchChange = useCallback((value: string) => {
     setQuery(value);
     setLocationId("");
@@ -246,6 +287,20 @@ export default function LocationPickerMap({
 
   return (
     <div className="locationPickerWrap">
+      {savedLocations.length ? (
+        <label>
+          Wybierz znane miejsce
+          <select value={locationId} onChange={(e) => handleSavedLocationSelect(e.target.value)}>
+            <option value="">Wpisz nowe albo wybierz z listy</option>
+            {savedLocations.map((location) => (
+              <option key={location.id} value={location.id}>
+                {[location.name, location.city?.name, location.address].filter(Boolean).join(", ")}
+              </option>
+            ))}
+          </select>
+        </label>
+      ) : null}
+
       {/* Search */}
       <div
         className="locationPickerSearchWrap"

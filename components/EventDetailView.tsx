@@ -1,5 +1,6 @@
 import Link from "next/link";
 import EventHeroCta, { EventSaveButton } from "@/components/EventDetailActions";
+import EventAnalyticsTracker, { TrackedEventLink } from "@/components/EventAnalyticsTracker";
 import EventDetailMap from "@/components/EventDetailMap";
 import ExpandableDescription from "@/components/ExpandableDescription";
 import { type EventItem, isFreeEvent } from "@/lib/events";
@@ -48,6 +49,8 @@ export default function EventDetailView({
 
   return (
     <main className="appShell eventDetailPage">
+      <EventAnalyticsTracker eventId={event.id} />
+
       {/* Breadcrumbs */}
       <nav
         className="breadcrumbs edBreadcrumbs"
@@ -169,6 +172,7 @@ export default function EventDetailView({
             ) : null}
 
             <EventHeroCta
+              eventId={event.id}
               title={event.title}
               url={eventUrl}
               ticketUrl={event.ticketUrl}
@@ -239,7 +243,9 @@ export default function EventDetailView({
             </div>
             <p className="edMapAddress">{event.address || "Lokalizacja nieznana"}</p>
             {googleMapsUrl ? (
-              <a
+              <TrackedEventLink
+                eventId={event.id}
+                eventType="map_click"
                 href={googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -247,7 +253,7 @@ export default function EventDetailView({
               >
                 Otwórz w Google Maps
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-              </a>
+              </TrackedEventLink>
             ) : null}
           </section>
         </div>
@@ -275,14 +281,26 @@ export default function EventDetailView({
                   </span>
                 </div>
                 {event.organizerUrl ? (
-                  <a
+                  <TrackedEventLink
+                    eventId={event.id}
+                    eventType="website_click"
                     href={event.organizerUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="edOrgLink"
                   >
                     Zobacz profil
-                  </a>
+                  </TrackedEventLink>
+                ) : null}
+                {event.organizerRelation?.phone ? (
+                  <TrackedEventLink
+                    eventId={event.id}
+                    eventType="phone_click"
+                    href={`tel:${event.organizerRelation.phone}`}
+                    className="edOrgLink"
+                  >
+                    Zadzwon
+                  </TrackedEventLink>
                 ) : null}
               </div>
             </section>
@@ -294,7 +312,9 @@ export default function EventDetailView({
                 <div className="edSourceList">
                   {event.sources.map((source) =>
                     source.source_url ? (
-                      <a
+                      <TrackedEventLink
+                        eventId={event.id}
+                        eventType="website_click"
                         key={`${source.source_type}-${source.source_url}`}
                         href={source.source_url}
                         target="_blank"
@@ -311,7 +331,7 @@ export default function EventDetailView({
                         <span className="edSourceArrow" aria-hidden="true">
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                         </span>
-                      </a>
+                      </TrackedEventLink>
                     ) : (
                       <div
                         key={`${source.source_type}-${source.source_name}`}

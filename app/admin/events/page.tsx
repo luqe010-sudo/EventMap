@@ -56,6 +56,12 @@ export default async function AdminEventsPage() {
                         <button type="submit">Opublikuj</button>
                       </form>
                       <form action={adminSetEventStatusAction.bind(null, event.id, "rejected")}>
+                        <input
+                          name="review_note"
+                          placeholder="Powod odrzucenia"
+                          defaultValue={event.review_note ?? ""}
+                          className="tableActionInput"
+                        />
                         <button type="submit">Odrzuc</button>
                       </form>
                       <form action={adminSetEventStatusAction.bind(null, event.id, "archived")}>

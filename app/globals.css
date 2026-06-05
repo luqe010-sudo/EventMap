@@ -96,6 +96,10 @@
   margin-bottom: 20px;
 }
 
+.organizerStatsWide {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .managementStat,
 .managementPanel {
   border: 1px solid rgba(15, 23, 42, 0.1);
@@ -209,6 +213,21 @@
   cursor: pointer;
 }
 
+.tableActions form {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tableActionInput {
+  width: min(180px, 42vw);
+  min-height: 34px;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  border-radius: 7px;
+  padding: 6px 8px;
+  font-size: 0.8rem;
+}
+
 .tableActions .dangerButton {
   border-color: rgba(220, 38, 38, 0.25);
   color: #b91c1c;
@@ -296,6 +315,178 @@
   color: #64748b;
   font-size: 0.88rem;
   font-weight: 500;
+}
+
+.organizerDashboardGrid,
+.organizerSettingsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.organizerProfileStack {
+  display: grid;
+  gap: 18px;
+}
+
+.organizerEventList,
+.organizerPlainList {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.organizerEventList li,
+.organizerPlainList li {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  padding-top: 10px;
+}
+
+.organizerNotificationUnread {
+  border-left: 3px solid #d95d39;
+  padding-left: 10px;
+}
+
+.organizerEventList strong,
+.organizerPlainList strong {
+  display: block;
+  color: #0f172a;
+}
+
+.organizerEventList span,
+.organizerPlainList span,
+.panelMutedText {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.organizerMetricList {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0;
+  color: #334155;
+}
+
+.schemaNotice {
+  border: 1px solid rgba(217, 93, 57, 0.22);
+  border-radius: 7px;
+  background: #fef2ee;
+  color: #9a3412;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.organizerFilterPanel {
+  margin-bottom: 16px;
+}
+
+.organizerFilterActions {
+  align-self: end;
+  justify-content: flex-start;
+}
+
+.qualityMini {
+  display: grid;
+  min-width: 96px;
+  gap: 6px;
+}
+
+.qualityMini span {
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.qualityMini progress {
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.qualityMini progress::-webkit-progress-bar {
+  background: #e2e8f0;
+}
+
+.qualityMini progress::-webkit-progress-value {
+  background: #16a34a;
+}
+
+.organizerEditorLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 18px;
+  align-items: start;
+}
+
+.organizerEditorSide {
+  display: grid;
+  gap: 14px;
+}
+
+.qualityChecklist {
+  position: sticky;
+  top: 86px;
+  display: grid;
+  gap: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  padding: 18px;
+}
+
+.qualityChecklist ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.qualityChecklist li {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  gap: 8px;
+  color: #334155;
+  font-weight: 700;
+}
+
+.qualityChecklist li span {
+  display: inline-grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.qualityDone span {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.qualityWarning span {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.qualityChecklist p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.88rem;
 }
 
 /* ===================================================
@@ -403,6 +594,10 @@
 
 @media (max-width: 780px) {
   .managementStats,
+  .organizerStatsWide,
+  .organizerDashboardGrid,
+  .organizerSettingsGrid,
+  .organizerEditorLayout,
   .formGrid {
     grid-template-columns: 1fr;
   }
@@ -412,6 +607,10 @@
   .adminSectionNav {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .qualityChecklist {
+    position: static;
   }
 }
 

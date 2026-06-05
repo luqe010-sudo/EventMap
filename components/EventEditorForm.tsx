@@ -89,8 +89,21 @@ export default function EventEditorForm({
         ) : null}
       </div>
 
+      {mode === "admin" ? (
+        <label>
+          Uwaga dla organizatora
+          <textarea
+            name="review_note"
+            rows={3}
+            defaultValue={event?.review_note ?? ""}
+            placeholder="Widoczna przy odrzuceniu lub wymaganych poprawkach"
+          />
+        </label>
+      ) : null}
+
       <LocationSection
         defaultLocation={event?.location}
+        savedLocations={options.locations}
       />
 
       <div className="formGrid">

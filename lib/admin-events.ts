@@ -11,6 +11,8 @@ import { buildEventWritePayload, deleteEventRelations, saveEventSource } from "@
 type Tables = Database["public"]["Tables"];
 type EventInsert = Tables["events"]["Insert"];
 type EventUpdate = Tables["events"]["Update"];
+type ModerationLogInsert = Tables["event_moderation_logs"]["Insert"];
+type NotificationInsert = Tables["notifications"]["Insert"];
 
 const ADMIN_EVENT_LIST_SELECT = `
   id,
@@ -19,6 +21,8 @@ const ADMIN_EVENT_LIST_SELECT = `
   start_at,
   status,
   visibility,
+  review_note,
+  submitted_by_organizer_id,
   category:categories(name),
   location:locations(city:cities(name)),
   organizer:organizers!events_organizer_id_fkey(name)
@@ -31,6 +35,8 @@ export type AdminEventListItem = {
   start_at: string;
   status: string | null;
   visibility: string | null;
+  review_note: string | null;
+  submitted_by_organizer_id: string | null;
   category: { name: string } | null;
   location: { city: { name: string } | null } | null;
   organizer: { name: string } | null;
@@ -99,7 +105,7 @@ export async function getAdminEventEditorOptions() {
     supabase.from("organizers").select("id, name").order("name", { ascending: true }),
     supabase
       .from("locations")
-      .select("id, name, address, city_id, city:cities(name)")
+      .select("id, name, address, city_id, latitude, longitude, postal_code, voivodeship, county, municipality, city:cities(name)")
       .order("name", { ascending: true })
       .limit(500)
   ]);
@@ -139,6 +145,7 @@ export async function adminCreateEventAction(formData: FormData) {
     status,
     createdBy: admin.userId
   });
+  event.review_note = status === "rejected" ? formString(formData, "review_note") : null;
 
   const { data, error } = await supabase
     .from("events")
@@ -154,14 +161,17 @@ export async function adminCreateEventAction(formData: FormData) {
 }
 
 export async function adminUpdateEventAction(eventId: string, formData: FormData) {
-  await requireAdmin();
+  const admin = await requireAdmin();
   const supabase = await createSupabaseUserClient();
+  const existing = await getAdminEventStatusSnapshot(eventId);
   const status = formString(formData, "status") ?? "published";
   assertEventStatus(status);
+  const reviewNote = formString(formData, "review_note");
   const event = await buildEventWritePayload(formData, {
     organizerId: formString(formData, "organizer_id") ?? "",
     status
   });
+  event.review_note = status === "rejected" ? reviewNote : reviewNote ?? null;
 
   const { error } = await supabase
     .from("events")
@@ -171,23 +181,46 @@ export async function adminUpdateEventAction(eventId: string, formData: FormData
   if (error) throw new Error(`Nie udalo sie zapisac wydarzenia: ${error.message}`);
 
   await saveEventSource(eventId, formData, "manual");
+  if (existing?.status !== status || reviewNote) {
+    await recordModerationDecision({
+      eventId,
+      reviewedBy: admin.userId,
+      oldStatus: existing?.status ?? null,
+      newStatus: status,
+      note: reviewNote,
+      title: existing?.title ?? event.title ?? "Wydarzenie",
+      organizerId: existing?.submitted_by_organizer_id ?? null
+    });
+  }
   revalidateAdminPaths();
   redirect("/admin/events");
 }
 
-export async function adminSetEventStatusAction(eventId: string, status: EventStatus) {
-  await requireAdmin();
+export async function adminSetEventStatusAction(eventId: string, status: EventStatus, formData?: FormData) {
+  const admin = await requireAdmin();
   assertEventStatus(status);
   const supabase = await createSupabaseUserClient();
+  const existing = await getAdminEventStatusSnapshot(eventId);
+  const note = formData ? formString(formData, "review_note") : null;
   const { error } = await supabase
     .from("events")
     .update({
       status,
+      review_note: status === "rejected" ? note : null,
       published_at: status === "published" ? new Date().toISOString() : null
     })
     .eq("id", eventId);
 
   if (error) throw new Error(`Nie udalo sie zmienic statusu: ${error.message}`);
+  await recordModerationDecision({
+    eventId,
+    reviewedBy: admin.userId,
+    oldStatus: existing?.status ?? null,
+    newStatus: status,
+    note,
+    title: existing?.title ?? "Wydarzenie",
+    organizerId: existing?.submitted_by_organizer_id ?? null
+  });
   revalidateAdminPaths();
 }
 
@@ -218,5 +251,122 @@ function revalidateAdminPaths() {
   revalidatePath("/admin");
   revalidatePath("/admin/events");
   revalidatePath("/admin/review");
+  revalidatePath("/organizer");
+  revalidatePath("/organizer/events");
+  revalidatePath("/organizer/stats");
   revalidatePath("/");
+}
+
+async function getAdminEventStatusSnapshot(eventId: string) {
+  const supabase = await createSupabaseUserClient();
+  const { data, error } = await supabase
+    .from("events")
+    .select("id, title, status, submitted_by_organizer_id")
+    .eq("id", eventId)
+    .maybeSingle();
+
+  if (error) throw new Error(`Nie udalo sie pobrac statusu wydarzenia: ${error.message}`);
+  return data;
+}
+
+async function recordModerationDecision({
+  eventId,
+  reviewedBy,
+  oldStatus,
+  newStatus,
+  note,
+  title,
+  organizerId
+}: {
+  eventId: string;
+  reviewedBy: string;
+  oldStatus: string | null;
+  newStatus: EventStatus;
+  note: string | null;
+  title: string;
+  organizerId: string | null;
+}) {
+  const supabase = await createSupabaseUserClient();
+  const log: ModerationLogInsert = {
+    event_id: eventId,
+    reviewed_by: reviewedBy,
+    old_status: oldStatus,
+    new_status: newStatus,
+    note
+  };
+
+  const { error } = await supabase.from("event_moderation_logs").insert(log);
+  if (error) throw new Error(`Nie udalo sie zapisac historii moderacji: ${error.message}`);
+
+  if (!organizerId) return;
+  const recipients = await getOrganizerUserIds(organizerId);
+  if (!recipients.length) return;
+
+  const notification = buildModerationNotification({
+    eventId,
+    title,
+    status: newStatus,
+    note
+  });
+  const rows: NotificationInsert[] = recipients.map((userId) => ({
+    user_id: userId,
+    related_event_id: eventId,
+    ...notification
+  }));
+
+  const { error: notificationError } = await supabase.from("notifications").insert(rows);
+  if (notificationError) throw new Error(`Nie udalo sie zapisac powiadomienia: ${notificationError.message}`);
+}
+
+async function getOrganizerUserIds(organizerId: string) {
+  const supabase = await createSupabaseUserClient();
+  const { data, error } = await supabase
+    .from("organizer_users")
+    .select("user_id")
+    .eq("organizer_id", organizerId);
+
+  if (error) throw new Error(`Nie udalo sie pobrac uzytkownikow organizatora: ${error.message}`);
+  return (data ?? []).map((row) => row.user_id).filter(Boolean) as string[];
+}
+
+function buildModerationNotification({
+  eventId,
+  title,
+  status,
+  note
+}: {
+  eventId: string;
+  title: string;
+  status: EventStatus;
+  note: string | null;
+}) {
+  if (status === "published") {
+    return {
+      title: "Wydarzenie zatwierdzone",
+      message: `"${title}" jest juz widoczne publicznie.`,
+      type: "event_published"
+    };
+  }
+
+  if (status === "rejected") {
+    return {
+      title: "Wydarzenie odrzucone",
+      message: note ? `"${title}": ${note}` : `"${title}" wymaga poprawek przed publikacja.`,
+      type: "event_rejected"
+    };
+  }
+
+  if (status === "pending_review") {
+    return {
+      title: "Wydarzenie wymaga sprawdzenia",
+      message: `"${title}" czeka na ponowna weryfikacje.`,
+      type: "event_pending_review"
+    };
+  }
+
+  return {
+    title: "Status wydarzenia zmieniony",
+    message: `"${title}" ma teraz status ${status}.`,
+    type: `event_${status}`
+  };
 }

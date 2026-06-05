@@ -7,7 +7,10 @@ export type EventStatus = "draft" | "pending_review" | "published" | "rejected" 
 export type EventEditorOptions = {
   categories: Array<Pick<Tables["categories"]["Row"], "id" | "name">>;
   organizers: Array<Pick<Tables["organizers"]["Row"], "id" | "name">>;
-  locations: Array<Pick<Tables["locations"]["Row"], "id" | "name" | "address" | "city_id"> & {
+  locations: Array<Pick<
+    Tables["locations"]["Row"],
+    "id" | "name" | "address" | "city_id" | "latitude" | "longitude" | "postal_code" | "voivodeship" | "county" | "municipality"
+  > & {
     city: Pick<Tables["cities"]["Row"], "name"> | null;
   }>;
 };
@@ -97,6 +100,7 @@ export function editableEventSelect() {
     currency,
     status,
     visibility,
+    review_note,
     is_featured,
     is_verified,
     is_cancelled,

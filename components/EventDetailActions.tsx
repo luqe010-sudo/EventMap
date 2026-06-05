@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { trackEventAnalytics } from "@/components/EventAnalyticsTracker";
 
 const STORAGE_KEY = "eventmap.savedEvents";
 
@@ -9,12 +10,14 @@ const STORAGE_KEY = "eventmap.savedEvents";
    ================================================================ */
 
 type HeroCtaProps = {
+  eventId: string;
   title: string;
   url: string;
   ticketUrl?: string;
 };
 
 export default function EventHeroCta({
+  eventId,
   title,
   url,
   ticketUrl,
@@ -26,9 +29,11 @@ export default function EventHeroCta({
     try {
       if (navigator.share) {
         await navigator.share({ title, url });
+        trackEventAnalytics(eventId, "share_click");
         return;
       }
       await navigator.clipboard.writeText(url);
+      trackEventAnalytics(eventId, "share_click");
       setShareStatus("Skopiowano link!");
     } catch {
       setShareStatus("Nie udało się udostępnić");
@@ -43,6 +48,7 @@ export default function EventHeroCta({
           target="_blank"
           rel="noopener noreferrer"
           className="edTicketBtn"
+          onClick={() => trackEventAnalytics(eventId, "ticket_click")}
         >
           Zobacz bilety / strona wydarzenia
           <svg
@@ -107,6 +113,7 @@ export function EventSaveButton({ eventId }: SaveButtonProps) {
       : [...savedEvents, eventId];
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextSaved));
     setSaved(nextSaved.includes(eventId));
+    trackEventAnalytics(eventId, "save_click");
   }
 
   return (

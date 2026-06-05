@@ -15,10 +15,23 @@ type LocationSectionProps = {
     county: string | null;
     municipality: string | null;
   } | null;
+  savedLocations?: Array<{
+    id: string;
+    name: string | null;
+    address: string | null;
+    latitude: number | null;
+    longitude: number | null;
+    postal_code: string | null;
+    voivodeship: string | null;
+    county: string | null;
+    municipality: string | null;
+    city: { name: string } | null;
+  }>;
 };
 
 export default function LocationSection({
-  defaultLocation
+  defaultLocation,
+  savedLocations = []
 }: LocationSectionProps) {
   return (
     <section className="managementSubsection">
@@ -34,6 +47,7 @@ export default function LocationSection({
         initialVoivodeship={defaultLocation?.voivodeship}
         initialCounty={defaultLocation?.county}
         initialMunicipality={defaultLocation?.municipality}
+        savedLocations={savedLocations}
       />
     </section>
   );

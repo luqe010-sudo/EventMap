@@ -27,6 +27,7 @@ Route'y w `app/` są server components tam, gdzie pobierają dane z Supabase:
 - `app/kategoria/[slug]/page.tsx` pobiera kategorię i wydarzenia z tej kategorii.
 - `app/admin/**` oraz `app/organizer/**` renderują panele po stronie serwera i korzystają z server actions.
 - `app/login/page.tsx` oraz `app/register/page.tsx` obsługują logowanie i rejestrację użytkowników.
+- `app/api/events/[id]/analytics/route.ts` zapisuje publiczne zdarzenia analityczne wydarzenia.
 - `app/lokalizacja/page.tsx` renderuje stronę geolokalizacji z `lat`, `lng`, `radius` w query params; ma `noindex, nofollow`.
 - `app/[category]/[city]/page.tsx` rozpoznaje `city === "lokalizacja"` jako specjalny przypadek geolokalizacji z kategorią.
 
@@ -50,7 +51,7 @@ Zapytania Supabase są wydzielone poza UI:
 - `lib/auth.ts` - kontekst użytkownika i guardy ról.
 - `lib/auth-actions.ts` - logowanie, rejestracja (wraz z automatyczną konfiguracją organizatora) i wylogowanie.
 - `lib/admin-events.ts` - dashboard admina, lista wydarzeń, CRUD i zmiana statusu.
-- `lib/organizer-events.ts` - dashboard organizatora, lista i zapis wydarzeń organizatora.
+- `lib/organizer-events.ts` - dashboard organizatora, lista i zapis wydarzeń organizatora, powiadomienia oraz agregacja statystyk.
 - `lib/admin-organizers.ts` - CRUD organizatorów.
 - `lib/event-editor.ts` - wspólne typy, statusy i parsowanie formularza wydarzenia.
 - `lib/event-editor-server.ts` - budowanie payloadu wydarzenia, tworzenie lokalizacji, zapis źródła i upload obrazu wydarzenia.
@@ -130,4 +131,4 @@ Strony szczegółów wydarzeń i kolekcji generują JSON-LD:
 - Brak testów automatycznych w repozytorium.
 - Brak konfiguracji CI/CD.
 - Brak konfiguracji Vercel lub innego hostingu w repozytorium.
-- Brak własnych route handlers API poza `/auth/sign-out`.
+- Route handlery API obejmuja `/auth/sign-out` oraz `POST /api/events/[id]/analytics`.

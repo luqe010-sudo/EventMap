@@ -71,6 +71,11 @@ Szczegóły pokazują (redesigned premium layout):
 - źródła wydarzenia z ikonami, nazwami i URL-ami;
 - do 6 podobnych wydarzeń z tej samej kategorii w siatce kart z obrazkami, badge kategorii, datą, miastem i ceną.
 
+Analityka szczegolow wydarzenia:
+
+- route `POST /api/events/[id]/analytics` zapisuje zdarzenia w `event_analytics`;
+- strona szczegolow zapisuje `view`, klikniecie biletow, telefonu, strony WWW, mapy, udostepnienia i zapisu wydarzenia.
+
 ## Strony miast
 
 URL:
@@ -233,6 +238,59 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 - edytuje tylko własne wydarzenie;
 - po edycji opublikowanego wydarzenia ustawia `pending_review`.
 - pozwala zmienić obraz wydarzenia przez upload do Cloudinary albo zewnętrzny link.
+
+### Aktualny MVP panelu organizatora
+
+`/organizer`:
+
+- pelni role dashboardu organizatora;
+- pokazuje liczniki aktywnych wydarzen, wydarzen do zatwierdzenia, miesiecznych wyswietlen i klikniec kontaktu;
+- pokazuje najblizsze wydarzenia, powiadomienia panelowe / komunikaty wynikajace z odrzuconych wydarzen, miejsca uzywane w wydarzeniach oraz podstawowe statystyki;
+- zwykly zalogowany uzytkownik moze z tego miejsca rozszerzyc konto o konto organizatora, co tworzy `organizers`, `organizer_users` i zmienia role profilu na `organizer`;
+- pokazuje empty state, jesli konto ma role `organizer`, ale nie ma wpisu w `organizer_users`.
+
+`/organizer/events`:
+
+- lista wydarzen organizatora;
+- filtrowanie po statusie oraz zakresie dat;
+- statusy prezentowane jako: szkic, oczekuje, opublikowane, odrzucone, archiwalne;
+- szybkie akcje: edytuj, ukryj, anuluj, duplikuj;
+- podglad publiczny dostepny tylko dla wydarzen opublikowanych, publicznych i nieanulowanych;
+- przy odrzuconych wydarzeniach pokazuje ostatnia uwage admina z `events.review_note`;
+- mini-checklista jakosci wydarzenia.
+
+`/organizer/events/new`:
+
+- dodaje wydarzenie ze statusem `pending_review`;
+- przypisuje wydarzenie do organizatora uzytkownika;
+- interaktywny picker lokalizacji z mini-mapa, wyszukiwaniem adresow i automatycznym geokodowaniem;
+- pozwala wybrac znane miejsce z listy lokalizacji przed wpisywaniem nowej lokalizacji;
+- pozwala wgrac obraz wydarzenia do Cloudinary albo podac zewnetrzny link.
+
+`/organizer/events/[id]/edit`:
+
+- edytuje tylko wlasne wydarzenie;
+- po edycji opublikowanego wydarzenia ustawia `pending_review`;
+- pozwala zmienic obraz wydarzenia przez upload do Cloudinary albo zewnetrzny link;
+- pokazuje checkliste jakosci: tytul, data, lokalizacja, opis minimum 300 znakow, zdjecie glowne, kategoria, link do biletow / strony i cena.
+- pokazuje historie moderacji z `event_moderation_logs`.
+
+`/organizer/profile`:
+
+- pozwala organizatorowi edytowac istniejace pola profilu: nazwa, slug, typ, opis, telefon, email, WWW, Facebook, Instagram i logo URL;
+- informuje, ze zdjecie w tle, TikTok i stale miasto dzialania wymagaja migracji bazy.
+
+`/organizer/stats`:
+
+- pokazuje statystyki wydarzen;
+- liczy wyswietlenia i klikniecia z `event_analytics`;
+- zapisania liczy z `event_analytics` oraz dodatkowo z `saved_events`.
+
+`/organizer/settings`:
+
+- pozwala zaktualizowac nazwe kontaktowa profilu;
+- pokazuje powiazanych organizatorow;
+- dla zwyklego konta udostepnia rozszerzenie do konta organizatora.
 
 ## Stany techniczne
 

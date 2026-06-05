@@ -1,4 +1,4 @@
-# Database
+﻿# Database
 
 Źródłem prawdy dla struktury bazy w repozytorium jest wygenerowany plik `database.types.ts`. Typy wskazują na PostgreSQL/Supabase z PostGIS, bo w schemacie są m.in. `locations.geom`, widoki/funkcje geograficzne oraz tabela `spatial_ref_sys`.
 
@@ -34,6 +34,7 @@ Pola w typach:
 - `created_by`
 - `submitted_by_organizer_id`
 - `published_at`
+- `review_note`
 - `timezone`
 - `confidence_score`
 - `source_quality_score`
@@ -158,6 +159,53 @@ Relacja:
 
 - `event_sources.event_id -> events.id`
 
+### `event_moderation_logs`
+
+Historia decyzji moderacyjnych admina dla wydarzen.
+
+Pola:
+
+- `id`
+- `event_id`
+- `reviewed_by`
+- `old_status`
+- `new_status`
+- `note`
+- `created_at`
+
+Relacja:
+
+- `event_moderation_logs.event_id -> events.id`
+- `event_moderation_logs.reviewed_by -> auth.users.id` (potwierdzone w eksporcie SQL; niewidoczne w typach `public`)
+
+### `event_analytics`
+
+Surowe zdarzenia analityczne dla publicznych interakcji z wydarzeniem.
+
+Pola:
+
+- `id`
+- `event_id`
+- `event_type`
+- `user_id`
+- `session_id`
+- `created_at`
+
+Obslugiwane typy `event_type`:
+
+- `view`
+- `phone_click`
+- `website_click`
+- `ticket_click`
+- `map_click`
+- `share_click`
+- `save_click`
+
+Relacja:
+
+- `event_analytics.event_id -> events.id`
+- `event_analytics.user_id -> auth.users.id` (potwierdzone w eksporcie SQL; niewidoczne w typach `public`)
+
 ### `tags` i `event_tags`
 
 Tagi wydarzeń.
@@ -190,7 +238,7 @@ Pola:
 - `display_name`
 - `created_at`
 
-Kod zakłada, że `profiles.id` odpowiada `auth.users.id`, ale w `database.types.ts` nie ma relacji FK do `auth.users`, bo typy dotyczą schematu `public`.
+Eksport SQL potwierdza FK `profiles.id -> auth.users.id`. W `database.types.ts` relacja nie jest widoczna, bo typy sa generowane dla schematu `public`.
 
 ### `organizer_users`
 
@@ -207,8 +255,7 @@ Pola:
 Relacja:
 
 - `organizer_users.organizer_id -> organizers.id`
-
-W typach nie ma FK `user_id -> auth.users.id`; wymaga potwierdzenia w Supabase.
+- `organizer_users.user_id -> auth.users.id` (potwierdzone w eksporcie SQL; niewidoczne w typach `public`)
 
 ### `city_pages`
 
@@ -313,6 +360,26 @@ Pola:
 
 W UI nie ma jeszcze obsługi preferencji powiadomień.
 
+### `notifications`
+
+Powiadomienia panelowe dla uzytkownikow, w tym komunikaty o statusach wydarzen organizatora.
+
+Pola:
+
+- `id`
+- `user_id`
+- `title`
+- `message`
+- `type`
+- `is_read`
+- `related_event_id`
+- `created_at`
+
+Relacja:
+
+- `notifications.related_event_id -> events.id`
+- `notifications.user_id -> auth.users.id` (potwierdzone w eksporcie SQL; niewidoczne w typach `public`)
+
 ## Tabele lub elementy wspomniane w wymaganiach, ale niepotwierdzone w typach
 
 - `ai_extractions` - nie występuje w aktualnym `database.types.ts` i nie jest używane w kodzie. Wymaga potwierdzenia.
@@ -340,12 +407,16 @@ Role w `organizer_users.role` używane przez formularz organizatora:
 
 ## RLS i polityki
 
-Repozytorium nie zawiera migracji SQL ani definicji RLS policies. Kod zakłada, że polityki w Supabase pozwalają na:
+Repozytorium zawiera migracje SQL w `supabase/migrations`, w tym migracje dla `cities`, lokalizacji admina i fundamentu panelu organizatora. Kod nadal zaklada, ze aktualny stan polityk RLS w Supabase jest zgodny z repozytorium albo zostal potwierdzony po stronie projektu.
+
+Kod zakłada, że polityki w Supabase pozwalają na:
 
 - publiczny odczyt opublikowanych wydarzeń i powiązanych danych;
 - odczyt `profiles` własnego użytkownika;
 - odczyt i zapis panelu admina dla roli `admin`;
 - odczyt i zapis wydarzeń organizatora tylko dla powiązanych `organizer_users`;
 - zapis `locations` i `event_sources` w akcjach admina/organizatora.
+- zapis publicznych zdarzen analitycznych do `event_analytics`;
+- odczyt `event_analytics`, `event_moderation_logs` i `notifications` przez admina lub uprawnionego organizatora/uzytkownika.
 
 Faktyczny stan RLS w Supabase wymaga potwierdzenia.

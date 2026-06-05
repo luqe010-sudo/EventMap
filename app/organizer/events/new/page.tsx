@@ -1,5 +1,6 @@
 import Link from "next/link";
 import EventEditorForm from "@/components/EventEditorForm";
+import OrganizerSectionNav from "@/components/OrganizerSectionNav";
 import {
   getOrganizerEventEditorOptions,
   organizerCreateEventAction
@@ -28,8 +29,10 @@ export default async function OrganizerNewEventPage() {
           <p className="eyebrow">Panel organizatora</p>
           <h1>Dodaj wydarzenie</h1>
         </div>
-        <Link href="/organizer" className="secondaryButton">Wroc</Link>
+        <Link href="/organizer/events" className="secondaryButton">Wroc</Link>
       </div>
+
+      <OrganizerSectionNav active="events" />
 
       <section className="managementPanel">
         <EventEditorForm
