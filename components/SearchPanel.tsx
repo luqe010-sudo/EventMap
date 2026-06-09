@@ -171,7 +171,7 @@ export default function SearchPanel({
 
       </div>
 
-      {/* Bottom row: horizontal scrolling category pills */}
+      {/* Bottom row: wrapped category pills */}
       <div className="searchCategoryRow">
         <button
           type="button"

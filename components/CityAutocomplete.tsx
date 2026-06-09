@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { knownLocations, type KnownLocation } from "@/lib/events";
 import { normalizeText } from "@/lib/filters";
+import { toSlug } from "@/lib/slugs";
 
 type CityAutocompleteProps = {
   value: string;
@@ -72,12 +73,14 @@ export default function CityAutocomplete({ value, onChange, onSelect, onUseGPS }
 
           // Formats e.g. "Srebrna Góra (woj. dolnośląskie)"
           const label = state ? `${city} (${state})` : city;
+          const citySlug = toSlug(city);
 
           return {
             label,
             latitude: parseFloat(item.lat),
             longitude: parseFloat(item.lon),
-            aliases: [normalizeText(city)]
+            aliases: Array.from(new Set([citySlug, normalizeText(city)].filter(Boolean))),
+            slug: citySlug || undefined
           };
         });
 

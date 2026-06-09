@@ -24,6 +24,8 @@ Strona główna `/`:
 - panel wyszukiwania (SearchPanel) jest widoczny na wszystkich stronach (strona główna, podstrony kategorii, miast i kategorii+miasto); na podstronach data filtruje dynamicznie, a zmiana kategorii lub miasta nawiguje dopiero po kliknięciu "Znajdź";
 - tło strony (`background.png`) na komputerach oraz na smartfonach jest dopasowane za pomocą `background-size: cover` oraz wypozycjonowane `center top`, dzięki czemu nie tworzy ostrych krawędzi i płynnie rozmywa się na dolnym odcinku (od wysokości 65% z 35-procentowym obszarem całkowitego zanikania).
 
+- autouzupelnianie lokalizacji wyswietla doprecyzowane etykiety z wojewodztwem, ale po wyborze zachowuje kanoniczny slug miasta (np. `Wroclaw (woj. dolnoslaskie)` nawiguje jak `wroclaw`).
+
 Widok `EventExplorer`:
 
 - jest używany na stronach kategorii i miasta;
