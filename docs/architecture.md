@@ -119,6 +119,10 @@ Strony szczegółów wydarzeń i kolekcji generują JSON-LD:
 - `Event` dla szczegółów wydarzenia.
 - `CollectionPage` dla strony miasta i kategorii.
 
+## Zewnętrzne skrypty
+
+`app/layout.tsx` ładuje jeden globalny Google tag dla Google Analytics z identyfikatorem `G-60019N4V87`. Skrypt jest umieszczony w globalnym `<head>`, więc obejmuje wszystkie strony renderowane przez App Router.
+
 ## Stany ładowania i błędu
 
 - `app/loading.tsx` pokazuje globalny stan ładowania wydarzeń.
