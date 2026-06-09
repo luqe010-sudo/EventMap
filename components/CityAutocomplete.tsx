@@ -10,19 +10,110 @@ type CityAutocompleteProps = {
   onChange: (value: string) => void;
   onSelect: (location: KnownLocation) => void;
   onUseGPS?: () => void;
+  priorityLocations?: KnownLocation[];
+};
+
+type PhotonFeature = {
+  type: "Feature";
+  properties: {
+    name?: string;
+    city?: string;
+    county?: string;
+    state?: string;
+    countrycode?: string;
+    osm_key?: string;
+    osm_value?: string;
+    type?: string;
+  };
+  geometry?: {
+    type: "Point";
+    coordinates: [number, number];
+  };
+};
+
+type NominatimResult = {
+  lat: string;
+  lon: string;
+  name?: string;
+  address?: {
+    city?: string;
+    town?: string;
+    village?: string;
+    municipality?: string;
+    suburb?: string;
+    state?: string;
+  };
+};
+
+const MAX_SUGGESTIONS = 8;
+const PHOTON_API_URL = "https://photon.komoot.io/api";
+const VOIVODESHIP_NAME_MAP: Record<string, string> = {
+  "lower silesian": "dolnośląskie",
+  "lower silesian voivodeship": "dolnośląskie",
+  "dolnoslaskie": "dolnośląskie",
+  "kuyavian pomeranian": "kujawsko-pomorskie",
+  "kuyavian pomeranian voivodeship": "kujawsko-pomorskie",
+  "kujawsko pomorskie": "kujawsko-pomorskie",
+  "lublin": "lubelskie",
+  "lublin voivodeship": "lubelskie",
+  "lubelskie": "lubelskie",
+  "lubusz": "lubuskie",
+  "lubusz voivodeship": "lubuskie",
+  "lubuskie": "lubuskie",
+  "lodz": "łódzkie",
+  "lodz voivodeship": "łódzkie",
+  "lodzkie": "łódzkie",
+  "lesser poland": "małopolskie",
+  "lesser poland voivodeship": "małopolskie",
+  "malopolskie": "małopolskie",
+  "masovian": "mazowieckie",
+  "masovian voivodeship": "mazowieckie",
+  "mazowieckie": "mazowieckie",
+  "opole": "opolskie",
+  "opole voivodeship": "opolskie",
+  "opolskie": "opolskie",
+  "subcarpathian": "podkarpackie",
+  "subcarpathian voivodeship": "podkarpackie",
+  "podkarpackie": "podkarpackie",
+  "podlaskie": "podlaskie",
+  "podlaskie voivodeship": "podlaskie",
+  "pomeranian": "pomorskie",
+  "pomeranian voivodeship": "pomorskie",
+  "pomorskie": "pomorskie",
+  "silesian": "śląskie",
+  "silesian voivodeship": "śląskie",
+  "slaskie": "śląskie",
+  "holy cross": "świętokrzyskie",
+  "holy cross voivodeship": "świętokrzyskie",
+  "swietokrzyskie": "świętokrzyskie",
+  "warmian masurian": "warmińsko-mazurskie",
+  "warmian masurian voivodeship": "warmińsko-mazurskie",
+  "warminsko mazurskie": "warmińsko-mazurskie",
+  "greater poland": "wielkopolskie",
+  "greater poland voivodeship": "wielkopolskie",
+  "wielkopolskie": "wielkopolskie",
+  "west pomeranian": "zachodniopomorskie",
+  "west pomeranian voivodeship": "zachodniopomorskie",
+  "zachodniopomorskie": "zachodniopomorskie"
 };
 
 const popularCitiesList: KnownLocation[] = [
-  { label: "Warszawa", aliases: ["warszawa"], latitude: 52.2297, longitude: 21.0122 },
-  { label: "Kraków", aliases: ["krakow"], latitude: 50.0647, longitude: 19.945 },
-  { label: "Wrocław", aliases: ["wroclaw"], latitude: 51.1079, longitude: 17.0385 },
-  { label: "Poznań", aliases: ["poznan"], latitude: 52.4064, longitude: 16.9252 },
-  { label: "Gdańsk", aliases: ["gdansk"], latitude: 54.352, longitude: 18.6466 },
-  { label: "Łódź", aliases: ["lodz"], latitude: 51.7592, longitude: 19.456 },
-  { label: "Katowice", aliases: ["katowice"], latitude: 50.2649, longitude: 19.0238 },
+  { label: "Warszawa", aliases: ["warszawa"], slug: "warszawa", latitude: 52.2297, longitude: 21.0122 },
+  { label: "Kraków", aliases: ["krakow"], slug: "krakow", latitude: 50.0647, longitude: 19.945 },
+  { label: "Wrocław", aliases: ["wroclaw"], slug: "wroclaw", latitude: 51.1079, longitude: 17.0385 },
+  { label: "Poznań", aliases: ["poznan"], slug: "poznan", latitude: 52.4064, longitude: 16.9252 },
+  { label: "Gdańsk", aliases: ["gdansk"], slug: "gdansk", latitude: 54.352, longitude: 18.6466 },
+  { label: "Łódź", aliases: ["lodz"], slug: "lodz", latitude: 51.7592, longitude: 19.456 },
+  { label: "Katowice", aliases: ["katowice"], slug: "katowice", latitude: 50.2649, longitude: 19.0238 },
 ];
 
-export default function CityAutocomplete({ value, onChange, onSelect, onUseGPS }: CityAutocompleteProps) {
+export default function CityAutocomplete({
+  value,
+  onChange,
+  onSelect,
+  onUseGPS,
+  priorityLocations = []
+}: CityAutocompleteProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [suggestions, setSuggestions] = useState<KnownLocation[]>(popularCitiesList);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +123,7 @@ export default function CityAutocomplete({ value, onChange, onSelect, onUseGPS }
 
   const normalizedInput = normalizeText(value);
 
-  // Debounced Nominatim Geocoding search for all cities in Poland
+  // Debounced Photon search-as-you-type for Polish places.
   useEffect(() => {
     const trimmed = value.trim();
     if (trimmed.length < 2) {
@@ -42,76 +133,28 @@ export default function CityAutocomplete({ value, onChange, onSelect, onUseGPS }
     }
 
     setIsLoading(true);
+    const localMatches = findLocalLocationSuggestions(trimmed, priorityLocations);
+    if (localMatches.length > 0) {
+      setSuggestions(localMatches);
+    }
+
     const delayDebounce = setTimeout(async () => {
       try {
-        const response = await fetch(
-          `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-            trimmed
-          )}&format=json&limit=6&countrycodes=pl&addressdetails=1`,
-          {
-            headers: {
-              "User-Agent": "MapaImprez-WebAgent/1.0"
-            }
-          }
-        );
-        if (!response.ok) throw new Error("Nominatim error");
-        const data = await response.json();
-
-        const results = data.map((item: any) => {
-          const address = item.address || {};
-          const city =
-            address.city ||
-            address.town ||
-            address.village ||
-            address.municipality ||
-            address.suburb ||
-            item.name ||
-            "Miejscowość";
-          const state = address.state
-            ? `woj. ${address.state.replace("województwo ", "")}`
-            : "";
-
-          // Formats e.g. "Srebrna Góra (woj. dolnośląskie)"
-          const label = state ? `${city} (${state})` : city;
-          const citySlug = toSlug(city);
-
-          return {
-            label,
-            latitude: parseFloat(item.lat),
-            longitude: parseFloat(item.lon),
-            aliases: Array.from(new Set([citySlug, normalizeText(city)].filter(Boolean))),
-            slug: citySlug || undefined
-          };
-        });
-
-        // Filter duplicates
-        const uniqueResults: KnownLocation[] = [];
-        const seen = new Set();
-        for (const res of results) {
-          if (!seen.has(res.label)) {
-            seen.add(res.label);
-            uniqueResults.push(res);
-          }
-        }
-
-        setSuggestions(uniqueResults.length > 0 ? uniqueResults : popularCitiesList);
+        const photonResults = await searchPhotonLocations(trimmed);
+        const rankedResults = rankLocationSuggestions(trimmed, photonResults);
+        const mergedResults = mergeLocationSuggestions(localMatches, rankedResults).slice(0, MAX_SUGGESTIONS);
+        setSuggestions(mergedResults.length > 0 ? mergedResults : popularCitiesList);
       } catch (err) {
-        console.error("Failed to fetch coordinates", err);
-        // Fallback to local static locations list
-        const filtered = knownLocations
-          .filter((loc) => {
-            const targets = [loc.label, ...loc.aliases].map(normalizeText);
-            return targets.some((t) => t.includes(normalizeText(trimmed)));
-          })
-          .slice(0, 6);
-        setSuggestions(filtered.length > 0 ? filtered : popularCitiesList);
+        console.error("Failed to fetch Photon places", err);
+        const fallbackResults = await searchFallbackLocations(trimmed, localMatches);
+        setSuggestions(fallbackResults.length > 0 ? fallbackResults : popularCitiesList);
       } finally {
         setIsLoading(false);
       }
     }, 350);
 
     return () => clearTimeout(delayDebounce);
-  }, [value]);
+  }, [priorityLocations, value]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -245,7 +288,7 @@ export default function CityAutocomplete({ value, onChange, onSelect, onUseGPS }
           ) : (
             suggestions.map((loc, idx) => (
               <li
-                key={loc.label}
+                key={`${loc.label}-${loc.latitude}-${loc.longitude}`}
                 role="option"
                 aria-selected={idx === highlightIndex}
                 className={`autocompleteItem ${idx === highlightIndex ? "highlighted" : ""}`}
@@ -264,4 +307,185 @@ export default function CityAutocomplete({ value, onChange, onSelect, onUseGPS }
       )}
     </div>
   );
+}
+
+async function searchPhotonLocations(query: string): Promise<KnownLocation[]> {
+  const params = new URLSearchParams({
+    q: query,
+    countrycode: "PL",
+    limit: String(MAX_SUGGESTIONS * 2),
+    bbox: "14.07,49,24.15,54.84"
+  });
+  ["city", "locality", "district"].forEach((layer) => params.append("layer", layer));
+
+  const response = await fetch(`${PHOTON_API_URL}?${params.toString()}`, {
+    headers: {
+      "Accept-Language": "pl,en;q=0.7"
+    }
+  });
+  if (!response.ok) throw new Error("Photon error");
+
+  const data = (await response.json()) as { features?: PhotonFeature[] };
+  return (data.features ?? [])
+    .map(mapPhotonFeatureToLocation)
+    .filter((location): location is KnownLocation => Boolean(location));
+}
+
+async function searchFallbackLocations(query: string, localMatches: KnownLocation[]) {
+  if (localMatches.length > 0) return localMatches;
+
+  try {
+    const nominatimResults = await searchNominatimLocations(query);
+    return rankLocationSuggestions(query, nominatimResults);
+  } catch (err) {
+    console.error("Failed to fetch Nominatim places", err);
+    return findLocalLocationSuggestions(query, knownLocations);
+  }
+}
+
+async function searchNominatimLocations(query: string): Promise<KnownLocation[]> {
+  const params = new URLSearchParams({
+    q: `${query}, Polska`,
+    format: "json",
+    limit: String(MAX_SUGGESTIONS),
+    countrycodes: "pl",
+    addressdetails: "1"
+  });
+
+  const response = await fetch(`https://nominatim.openstreetmap.org/search?${params.toString()}`);
+  if (!response.ok) throw new Error("Nominatim error");
+
+  const data = (await response.json()) as NominatimResult[];
+  return data
+    .map(mapNominatimResultToLocation)
+    .filter((location): location is KnownLocation => Boolean(location));
+}
+
+function mapPhotonFeatureToLocation(feature: PhotonFeature): KnownLocation | null {
+  const coordinates = feature.geometry?.coordinates;
+  const name = feature.properties.name?.trim();
+
+  if (!name || !coordinates) {
+    return null;
+  }
+
+  const [longitude, latitude] = coordinates;
+  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+    return null;
+  }
+
+  const state = formatVoivodeship(feature.properties.state);
+  const label = state ? `${name} (${state})` : name;
+  const citySlug = toSlug(name);
+
+  return {
+    label,
+    latitude,
+    longitude,
+    aliases: Array.from(new Set([
+      citySlug,
+      normalizeText(name),
+      normalizeText(label),
+      feature.properties.city ? normalizeText(feature.properties.city) : null,
+      feature.properties.county ? normalizeText(feature.properties.county) : null
+    ].filter((value): value is string => Boolean(value)))),
+  };
+}
+
+function mapNominatimResultToLocation(item: NominatimResult): KnownLocation | null {
+  const address = item.address || {};
+  const city =
+    address.city ||
+    address.town ||
+    address.village ||
+    address.municipality ||
+    address.suburb ||
+    item.name;
+
+  if (!city) return null;
+
+  const latitude = parseFloat(item.lat);
+  const longitude = parseFloat(item.lon);
+  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return null;
+
+  const state = formatVoivodeship(address.state);
+  const label = state ? `${city} (${state})` : city;
+  const citySlug = toSlug(city);
+
+  return {
+    label,
+    latitude,
+    longitude,
+    aliases: Array.from(new Set([citySlug, normalizeText(city), normalizeText(label)].filter(Boolean))),
+  };
+}
+
+function formatVoivodeship(value?: string) {
+  if (!value) return "";
+  const normalized = value
+    .replace(/^wojew[oó]dztwo\s+/i, "")
+    .replace(/\s+voivodeship$/i, "")
+    .trim();
+  if (!normalized) return "";
+
+  const key = normalizeText(normalized).replace(/-/g, " ").replace(/\s+/g, " ");
+  const polishName = VOIVODESHIP_NAME_MAP[key] ?? normalized;
+  return `woj. ${polishName}`;
+}
+
+function findLocalLocationSuggestions(query: string, priorityLocations: KnownLocation[]) {
+  const queryNorm = normalizeText(query);
+  const querySlug = toSlug(query);
+  const pool = mergeLocationSuggestions(priorityLocations, knownLocations, popularCitiesList);
+
+  return pool
+    .map((location) => ({ location, score: scoreLocationMatch(location, queryNorm, querySlug) }))
+    .filter((item) => item.score < Number.POSITIVE_INFINITY)
+    .sort((a, b) => a.score - b.score || a.location.label.localeCompare(b.location.label, "pl"))
+    .map((item) => item.location)
+    .slice(0, MAX_SUGGESTIONS);
+}
+
+function rankLocationSuggestions(query: string, locations: KnownLocation[]) {
+  const queryNorm = normalizeText(query);
+  const querySlug = toSlug(query);
+
+  return locations
+    .map((location) => ({ location, score: scoreLocationMatch(location, queryNorm, querySlug) }))
+    .sort((a, b) => a.score - b.score || a.location.label.localeCompare(b.location.label, "pl"))
+    .map((item) => item.location);
+}
+
+function scoreLocationMatch(location: KnownLocation, queryNorm: string, querySlug: string) {
+  const targets = getLocationSearchTargets(location);
+
+  if (targets.some((target) => target === queryNorm || target === querySlug)) return 0;
+  if (targets.some((target) => target.startsWith(queryNorm) || target.startsWith(querySlug))) return 1;
+  if (targets.some((target) => target.split(/[-\s]/).some((part) => part.startsWith(queryNorm) || part.startsWith(querySlug)))) return 2;
+  if (targets.some((target) => target.includes(queryNorm) || target.includes(querySlug))) return 3;
+
+  return Number.POSITIVE_INFINITY;
+}
+
+function getLocationSearchTargets(location: KnownLocation) {
+  return Array.from(new Set([
+    normalizeText(location.label),
+    toSlug(location.label),
+    location.slug,
+    ...location.aliases
+  ].filter((value): value is string => Boolean(value))));
+}
+
+function mergeLocationSuggestions(...groups: KnownLocation[][]) {
+  const results: KnownLocation[] = [];
+  const seen = new Set<string>();
+
+  for (const location of groups.flat()) {
+    const key = location.slug || toSlug(location.label) || normalizeText(location.label);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    results.push(location);
+  }
+
+  return results;
 }

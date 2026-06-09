@@ -99,6 +99,11 @@ export function formatInCity(city: string): string {
     return dictionary[lower];
   }
 
+  const mountainCity = formatGoraCity(name, lower);
+  if (mountainCity) {
+    return mountainCity;
+  }
+
   let locative = name;
   let preposition = "w";
 
@@ -139,6 +144,20 @@ export function formatInCity(city: string): string {
   }
 
   return `${preposition} ${locative}`;
+}
+
+function formatGoraCity(name: string, lower: string) {
+  if (!lower.endsWith(" góra")) return null;
+
+  const mountainName = "Góra";
+  const prefix = name.slice(0, -mountainName.length).trim();
+  if (!prefix) return "w Górze";
+
+  const prefixLocative = prefix.endsWith("a")
+    ? `${prefix.slice(0, -1)}ej`
+    : prefix;
+
+  return `w ${prefixLocative} Górze`;
 }
 
 export type SearchUrlParams = {

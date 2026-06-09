@@ -11,8 +11,9 @@ Strona główna `/`:
 - w prawym sidebarze pokazuje jeden spójny panel z mapą MapLibre, powiadomieniami, nadchodzącymi wydarzeniami i popularnymi kategoriami;
 - mapa w sidebarze jest osadzona bezpośrednio w dużym panelu, ma wewnętrzny margines i zaokrąglenie;
 - mapa na starcie używa zasięgu `Cała Polska`, obejmuje kadrem całą Polskę i pokazuje wydarzenia bez ograniczenia promieniem;
-- mapa grupuje blisko położone wydarzenia w klastry; kliknięcie klastra przybliża widok.
-- pojedyncze pineski używają koloru i ikony kategorii wydarzenia.
+- mapa grupuje blisko położone wydarzenia w klastry; klastry mają ograniczony promień i rozbijają się na pojedyncze pineski przy średnim przybliżeniu, a kliknięcie klastra przybliża widok.
+- pojedyncze pineski używają koloru i ikony kategorii wydarzenia; wydarzenia z tymi samymi współrzędnymi są lekko rozsuwane wizualnie, żeby nie nachodziły idealnie na siebie.
+- popup pojedynczej pineski pokazuje zdjęcie wydarzenia, klikalny tytuł prowadzący do szczegółów, adres i krótki opis.
 - mapa pokazuje lekko kolorowane województwa, wyraźne granice powiatów na bazie warstwy `boundary` oraz numery budynków przy dużym przybliżeniu.
 - etykiety mapy są preferowane w języku polskim, jeśli styl kafelków udostępnia pole `name:pl`.
 - filtruje po presetach daty, niestandardowym zakresie dat, promieniu albo zasięgu `Cała Polska`, kategorii i opcji darmowych wydarzeń;
@@ -24,7 +25,10 @@ Strona główna `/`:
 - panel wyszukiwania (SearchPanel) jest widoczny na wszystkich stronach (strona główna, podstrony kategorii, miast i kategorii+miasto); na podstronach data filtruje dynamicznie, a zmiana kategorii lub miasta nawiguje dopiero po kliknięciu "Znajdź";
 - tło strony (`background.png`) na komputerach oraz na smartfonach jest dopasowane za pomocą `background-size: cover` oraz wypozycjonowane `center top`, dzięki czemu nie tworzy ostrych krawędzi i płynnie rozmywa się na dolnym odcinku (od wysokości 65% z 35-procentowym obszarem całkowitego zanikania).
 
+- autouzupelnianie lokalizacji najpierw dopasowuje aktywne miasta z tabeli `cities`, a potem scala je z wynikami Photon/OSM, czyli providera search-as-you-type dla miejsc; dzieki temu czesciowe wpisy typu `Srebrna Go`, `Stoszow` albo `Budzow` moga zwracac trafniejsze miejscowosci.
 - autouzupelnianie lokalizacji wyswietla doprecyzowane etykiety z wojewodztwem, ale po wyborze zachowuje kanoniczny slug miasta (np. `Wroclaw (woj. dolnoslaskie)` nawiguje jak `wroclaw`).
+- zewnetrzne wyniki miejscowosci bez aktywnej strony miasta przechodza do widoku geolokalizacji po wspolrzednych zamiast zgadywac slug dla niejednoznacznych nazw.
+- teksty lokalne uzywaja bezpiecznej odmiany dla nazw konczacych sie na `Gora`, np. `Srebrna Gora` jest prezentowana jako `w Srebrnej Gorze`.
 
 Widok `EventExplorer`:
 

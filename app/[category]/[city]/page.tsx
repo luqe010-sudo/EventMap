@@ -6,7 +6,7 @@ import {
   listCategories,
   listEvents,
   resolveCityLocation,
-  getActiveCitySlugs,
+  getActiveCityLocations,
   type KnownLocation,
 } from "@/lib/events";
 import { toPluralCategorySlug, toPluralCategoryName, formatInCity, toSlug } from "@/lib/slugs";
@@ -127,10 +127,10 @@ export default async function CategoryCityPage({
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows, activeCitySlugs] = await Promise.all([
+    const [events, categoryRows, activeCityLocations] = await Promise.all([
       listEvents({ categoryId: category.id, dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
-      getActiveCitySlugs(),
+      getActiveCityLocations(),
     ]);
 
     return (
@@ -139,7 +139,7 @@ export default async function CategoryCityPage({
         initialCategory={category.name}
         initialLocation={geoLocation}
         categoryOptions={categoryRows}
-        activeCitySlugs={activeCitySlugs}
+        activeCityLocations={activeCityLocations}
       />
     );
   }
@@ -174,10 +174,10 @@ export default async function CategoryCityPage({
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows, activeCitySlugs] = await Promise.all([
+    const [events, categoryRows, activeCityLocations] = await Promise.all([
       listEvents({ categoryId: category.id, dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
-      getActiveCitySlugs(),
+      getActiveCityLocations(),
     ]);
 
     return (
@@ -199,7 +199,7 @@ export default async function CategoryCityPage({
           initialCategory={category.name}
           initialLocation={cityLocation}
           categoryOptions={categoryRows}
-          activeCitySlugs={activeCitySlugs}
+          activeCityLocations={activeCityLocations}
         />
       </>
     );
@@ -221,10 +221,10 @@ export default async function CategoryCityPage({
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows, activeCitySlugs] = await Promise.all([
+    const [events, categoryRows, activeCityLocations] = await Promise.all([
       listEvents({ dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
-      getActiveCitySlugs(),
+      getActiveCityLocations(),
     ]);
 
     return (
@@ -246,7 +246,7 @@ export default async function CategoryCityPage({
           initialLocation={cityLocation}
           initialDateFilter={dateFilterMap[citySlug]}
           categoryOptions={categoryRows}
-          activeCitySlugs={activeCitySlugs}
+          activeCityLocations={activeCityLocations}
         />
       </>
     );

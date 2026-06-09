@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import HomePage from "@/components/HomePage";
-import { listCategories, listEvents, getActiveCitySlugs, type KnownLocation } from "@/lib/events";
+import { listCategories, listEvents, getActiveCityLocations, type KnownLocation } from "@/lib/events";
 
 export const dynamic = "force-dynamic";
 
@@ -49,10 +49,10 @@ export default async function LocationPage({ searchParams }: Props) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const [events, categoryRows, activeCitySlugs] = await Promise.all([
+  const [events, categoryRows, activeCityLocations] = await Promise.all([
     listEvents({ dateFrom: today.toISOString(), limit: 250 }),
     listCategories(),
-    getActiveCitySlugs(),
+    getActiveCityLocations(),
   ]);
 
   return (
@@ -72,7 +72,7 @@ export default async function LocationPage({ searchParams }: Props) {
         initialEvents={events}
         initialLocation={geoLocation}
         categoryOptions={categoryRows}
-        activeCitySlugs={activeCitySlugs}
+        activeCityLocations={activeCityLocations}
       />
     </>
   );

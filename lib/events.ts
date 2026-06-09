@@ -187,13 +187,13 @@ export const categoryEmojis: Record<EventCategory, string> = {
 };
 
 export const knownLocations: KnownLocation[] = [
-  { label: "Warszawa", aliases: ["warszawa"], latitude: 52.2297, longitude: 21.0122 },
-  { label: "Kraków", aliases: ["krakow"], latitude: 50.0647, longitude: 19.945 },
-  { label: "Wrocław", aliases: ["wroclaw"], latitude: 51.1079, longitude: 17.0385 },
-  { label: "Poznań", aliases: ["poznan"], latitude: 52.4064, longitude: 16.9252 },
-  { label: "Gdańsk", aliases: ["gdansk"], latitude: 54.352, longitude: 18.6466 },
-  { label: "Łódź", aliases: ["lodz"], latitude: 51.7592, longitude: 19.456 },
-  { label: "Katowice", aliases: ["katowice"], latitude: 50.2649, longitude: 19.0238 }
+  { label: "Warszawa", aliases: ["warszawa"], slug: "warszawa", latitude: 52.2297, longitude: 21.0122 },
+  { label: "Kraków", aliases: ["krakow"], slug: "krakow", latitude: 50.0647, longitude: 19.945 },
+  { label: "Wrocław", aliases: ["wroclaw"], slug: "wroclaw", latitude: 51.1079, longitude: 17.0385 },
+  { label: "Poznań", aliases: ["poznan"], slug: "poznan", latitude: 52.4064, longitude: 16.9252 },
+  { label: "Gdańsk", aliases: ["gdansk"], slug: "gdansk", latitude: 54.352, longitude: 18.6466 },
+  { label: "Łódź", aliases: ["lodz"], slug: "lodz", latitude: 51.7592, longitude: 19.456 },
+  { label: "Katowice", aliases: ["katowice"], slug: "katowice", latitude: 50.2649, longitude: 19.0238 }
 ];
 
 export type ListEventsOptions = {
@@ -314,20 +314,47 @@ export async function getActiveCitySlugs(): Promise<string[]> {
   }
 }
 
+export async function getActiveCityLocations(): Promise<KnownLocation[]> {
+  const supabase = createSupabaseServerClient();
+  try {
+    const { data } = await supabase
+      .from("cities")
+      .select("name, slug, latitude, longitude, voivodeship")
+      .eq("is_active", true)
+      .order("name", { ascending: true });
+
+    return (data ?? []).map((city) => {
+      const voivodeship = city.voivodeship?.replace(/^województwo\s+/i, "");
+      const label = voivodeship ? `${city.name} (woj. ${voivodeship})` : city.name;
+
+      return {
+        label,
+        aliases: Array.from(new Set([city.slug, createSlug(city.name)].filter(Boolean))),
+        slug: city.slug,
+        latitude: city.latitude ?? getDefaultLocation().latitude,
+        longitude: city.longitude ?? getDefaultLocation().longitude
+      };
+    });
+  } catch (err) {
+    console.error("getActiveCityLocations error:", err);
+    return [];
+  }
+}
+
 export async function getHomeData() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const [events, categoryRows, activeCitySlugs] = await Promise.all([
+  const [events, categoryRows, activeCityLocations] = await Promise.all([
     getHomeEvents(today.toISOString()),
     getHomeCategories(),
-    getActiveCitySlugs()
+    getActiveCityLocations()
   ]);
 
   return {
     events,
     categories: categoryRows.length ? categoryRows : getFallbackCategoryOptions(),
-    activeCitySlugs
+    activeCityLocations
   };
 }
 

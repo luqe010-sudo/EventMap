@@ -5,6 +5,7 @@ import maplibregl from "maplibre-gl";
 import type { ExpressionSpecification, FilterSpecification } from "maplibre-gl";
 import type { MutableRefObject } from "react";
 import type { EventItem, KnownLocation } from "@/lib/events";
+import { eventPath } from "@/lib/slugs";
 import * as LucideIcons from "lucide-react";
 import { createRoot } from "react-dom/client";
 import { flushSync } from "react-dom";
@@ -23,6 +24,9 @@ type EventFeatureProperties = {
   category: string;
   color: string;
   icon: string;
+  description: string;
+  imageUrl: string;
+  url: string;
 };
 
 const STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
@@ -30,6 +34,9 @@ const EVENT_SOURCE_ID = "eventmap-events";
 const VOIVODESHIP_SOURCE_ID = "eventmap-voivodeships";
 const LOCATION_MARKER_CLASS = "locationMarker";
 const NO_SELECTED_EVENT_ID = "__none__";
+const EVENT_CLUSTER_MAX_ZOOM = 11;
+const EVENT_CLUSTER_RADIUS = 34;
+const OVERLAPPING_MARKER_OFFSET_METERS = 28;
 const POLAND_CENTER: [number, number] = [19.1451, 51.9194];
 const POLAND_BOUNDS: [[number, number], [number, number]] = [
   [14.07, 49.0],
@@ -123,8 +130,8 @@ function addEventSourceAndLayers(
       type: "geojson",
       data: buildEventFeatureCollection([]),
       cluster: true,
-      clusterMaxZoom: 14,
-      clusterRadius: 54
+      clusterMaxZoom: EVENT_CLUSTER_MAX_ZOOM,
+      clusterRadius: EVENT_CLUSTER_RADIUS
     });
   }
 
@@ -235,7 +242,7 @@ function bindEventLayerInteractions(
 
     new maplibregl.Popup({ offset: 18 })
       .setLngLat(geometry.coordinates as [number, number])
-      .setHTML(`<strong>${escapeHtml(properties.title)}</strong><br />${escapeHtml(properties.address)}`)
+      .setHTML(renderEventPopup(properties))
       .addTo(map);
   });
 
@@ -250,13 +257,15 @@ function bindEventLayerInteractions(
 }
 
 function buildEventFeatureCollection(events: EventItem[]): GeoJSON.FeatureCollection<GeoJSON.Point, EventFeatureProperties> {
+  const positionedEvents = spreadOverlappingEventCoordinates(events.filter(hasCoordinates));
+
   return {
     type: "FeatureCollection",
-    features: events.filter(hasCoordinates).map((event) => ({
+    features: positionedEvents.map(({ event, coordinates }) => ({
       type: "Feature",
       geometry: {
         type: "Point",
-        coordinates: [event.longitude, event.latitude]
+        coordinates
       },
       properties: {
         id: event.id,
@@ -264,10 +273,51 @@ function buildEventFeatureCollection(events: EventItem[]): GeoJSON.FeatureCollec
         address: event.address,
         category: event.category,
         color: event.categoryColor,
-        icon: event.categoryRelation?.icon || "CircleHelp"
+        icon: event.categoryRelation?.icon || "CircleHelp",
+        description: event.short_description ?? event.description ?? "",
+        imageUrl: event.imageUrl,
+        url: eventPath(event)
       }
     }))
   };
+}
+
+function spreadOverlappingEventCoordinates(events: Array<EventItem & { latitude: number; longitude: number }>) {
+  const groups = new Map<string, Array<EventItem & { latitude: number; longitude: number }>>();
+
+  for (const event of events) {
+    const key = `${event.latitude.toFixed(5)}:${event.longitude.toFixed(5)}`;
+    const group = groups.get(key) ?? [];
+    group.push(event);
+    groups.set(key, group);
+  }
+
+  return Array.from(groups.values()).flatMap((group) => {
+    if (group.length === 1) {
+      const event = group[0];
+      return [{ event, coordinates: [event.longitude, event.latitude] as [number, number] }];
+    }
+
+    return group.map((event, index) => ({
+      event,
+      coordinates: offsetCoordinates(event.longitude, event.latitude, index, group.length)
+    }));
+  });
+}
+
+function offsetCoordinates(longitude: number, latitude: number, index: number, total: number): [number, number] {
+  const angle = (Math.PI * 2 * index) / total;
+  const ring = Math.floor(index / 8);
+  const radiusMeters = OVERLAPPING_MARKER_OFFSET_METERS * (1 + ring * 0.55);
+  const eastMeters = Math.cos(angle) * radiusMeters;
+  const northMeters = Math.sin(angle) * radiusMeters;
+  const metersPerDegreeLatitude = 111_320;
+  const metersPerDegreeLongitude = metersPerDegreeLatitude * Math.max(Math.cos(latitude * Math.PI / 180), 0.2);
+
+  return [
+    longitude + eastMeters / metersPerDegreeLongitude,
+    latitude + northMeters / metersPerDegreeLatitude
+  ];
 }
 
 function updateLocationMarker(
@@ -657,4 +707,31 @@ function escapeHtml(value: string) {
   };
 
   return value.replace(/[&<>"']/g, (char) => replacements[char]);
+}
+
+function renderEventPopup(properties: EventFeatureProperties) {
+  const url = escapeHtml(properties.url);
+  const title = escapeHtml(properties.title);
+  const address = escapeHtml(properties.address);
+  const imageUrl = escapeHtml(properties.imageUrl);
+  const description = truncateText(properties.description, 130);
+
+  return `
+    <article class="mapEventPopup">
+      <a class="mapEventPopupImageLink" href="${url}" aria-label="${title}">
+        <img class="mapEventPopupImage" src="${imageUrl}" alt="" loading="lazy" />
+      </a>
+      <div class="mapEventPopupBody">
+        <a class="mapEventPopupTitle" href="${url}">${title}</a>
+        <p class="mapEventPopupAddress">${address}</p>
+        ${description ? `<p class="mapEventPopupDescription">${escapeHtml(description)}</p>` : ""}
+      </div>
+    </article>
+  `;
+}
+
+function truncateText(value: string, maxLength: number) {
+  const compact = value.replace(/\s+/g, " ").trim();
+  if (compact.length <= maxLength) return compact;
+  return `${compact.slice(0, maxLength - 3).trim()}...`;
 }

@@ -8,7 +8,7 @@ import {
   listEvents,
   resolveCityLocation,
   getEventBySlug,
-  getActiveCitySlugs,
+  getActiveCityLocations,
 } from "@/lib/events";
 import { toPluralCategorySlug, toPluralCategoryName, formatInCity, toSlug, eventPath } from "@/lib/slugs";
 import { searchAddress } from "@/lib/geocoding";
@@ -94,10 +94,10 @@ export default async function EventOrTimePage({ params }: { params: Promise<Para
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows, activeCitySlugs] = await Promise.all([
+    const [events, categoryRows, activeCityLocations] = await Promise.all([
       listEvents({ categoryId: category.id, dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
-      getActiveCitySlugs(),
+      getActiveCityLocations(),
     ]);
 
     const dateFilterMap = {
@@ -126,7 +126,7 @@ export default async function EventOrTimePage({ params }: { params: Promise<Para
           initialLocation={cityLocation}
           initialDateFilter={dateFilterMap[eventOrTime]}
           categoryOptions={categoryRows}
-          activeCitySlugs={activeCitySlugs}
+          activeCityLocations={activeCityLocations}
         />
       </>
     );

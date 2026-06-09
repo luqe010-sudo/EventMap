@@ -6,7 +6,7 @@ import {
   listCategories,
   listEvents,
   resolveCityLocation,
-  getActiveCitySlugs,
+  getActiveCityLocations,
 } from "@/lib/events";
 import { toPluralCategorySlug, toPluralCategoryName, toSlug, formatInCity } from "@/lib/slugs";
 import { searchAddress } from "@/lib/geocoding";
@@ -61,10 +61,10 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows, activeCitySlugs] = await Promise.all([
+    const [events, categoryRows, activeCityLocations] = await Promise.all([
       listEvents({ categoryId: category.id, dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
-      getActiveCitySlugs(),
+      getActiveCityLocations(),
     ]);
 
     return (
@@ -85,7 +85,7 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
           initialEvents={events}
           initialCategory={category.name}
           categoryOptions={categoryRows}
-          activeCitySlugs={activeCitySlugs}
+          activeCityLocations={activeCityLocations}
         />
       </>
     );
@@ -102,10 +102,10 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows, activeCitySlugs] = await Promise.all([
+    const [events, categoryRows, activeCityLocations] = await Promise.all([
       listEvents({ dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
-      getActiveCitySlugs(),
+      getActiveCityLocations(),
     ]);
 
     return (
@@ -126,7 +126,7 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
           initialEvents={events}
           initialLocation={cityLocation}
           categoryOptions={categoryRows}
-          activeCitySlugs={activeCitySlugs}
+          activeCityLocations={activeCityLocations}
         />
       </>
     );

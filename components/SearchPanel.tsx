@@ -11,6 +11,7 @@ type SearchPanelProps = {
   onLocationInputChange: (value: string) => void;
   onLocationSelect: (location: KnownLocation) => void;
   onUseGPS: () => void;
+  citySuggestions?: KnownLocation[];
   locationStatus: string;
   dateFilter: DateFilter;
   onDateFilterChange: (filter: DateFilter) => void;
@@ -40,6 +41,7 @@ export default function SearchPanel({
   onLocationInputChange,
   onLocationSelect,
   onUseGPS,
+  citySuggestions,
   locationStatus,
   dateFilter,
   onDateFilterChange,
@@ -82,6 +84,7 @@ export default function SearchPanel({
               onChange={onLocationInputChange}
               onSelect={onLocationSelect}
               onUseGPS={onUseGPS}
+              priorityLocations={citySuggestions}
             />
           </div>
         </div>

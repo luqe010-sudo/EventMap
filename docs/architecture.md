@@ -42,6 +42,7 @@ Client components odpowiadają za interakcję UI:
 - `components/EventExplorer.tsx` - filtry, lista i mapa dla widoków kategorii/miasta.
 - `components/NavbarClient.tsx` - menu, panel użytkownika i formularz wylogowania.
 - Komponenty map są ładowane dynamicznie bez SSR.
+- `components/CityAutocomplete.tsx` - publiczne autouzupełnianie miejscowości; priorytetowo używa aktywnych miast z tabeli `cities`, a następnie publicznego Photon/OSM z filtrem `countrycode=PL`, warstwami miejscowości i bounding boxem Polski.
 
 ### Warstwa danych
 

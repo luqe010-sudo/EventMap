@@ -22,7 +22,7 @@ type HomePageProps = {
   initialLocation?: KnownLocation;
   initialCategory?: EventCategory;
   initialDateFilter?: DateFilter;
-  activeCitySlugs?: string[];
+  activeCityLocations?: KnownLocation[];
 };
 
 const POPULAR_CITIES = [
@@ -40,7 +40,7 @@ export default function HomePage({
   initialLocation,
   initialCategory,
   initialDateFilter,
-  activeCitySlugs = []
+  activeCityLocations = []
 }: HomePageProps) {
   const router = useRouter();
 
@@ -203,8 +203,13 @@ export default function HomePage({
   // Combine hardcoded known cities and database active city slugs
   const allKnownSlugs = useMemo(() => {
     const hardcoded = knownLocations.flatMap(loc => loc.aliases);
-    return Array.from(new Set([...hardcoded, ...(activeCitySlugs ?? [])]));
-  }, [activeCitySlugs]);
+    const active = activeCityLocations.flatMap((loc) => [
+      loc.slug,
+      ...loc.aliases,
+      toSlug(loc.label)
+    ]).filter((slug): slug is string => Boolean(slug));
+    return Array.from(new Set([...hardcoded, ...active]));
+  }, [activeCityLocations]);
 
   // Determine if location is a known city (has a slug-able name from city_pages/knownLocations)
   // GPS locations and geo points use empty aliases or ["gps"]
@@ -213,9 +218,7 @@ export default function HomePage({
     if (label === "moja lokalizacja" || label === "polska" || label === "wybrana lokalizacja") {
       return false;
     }
-    // A city is known if its slug or one of its aliases is in allKnownSlugs
-    const slug = loc.slug ?? toSlug(loc.label);
-    return allKnownSlugs.includes(slug) || loc.aliases.some(a => allKnownSlugs.includes(a));
+    return Boolean(loc.slug && allKnownSlugs.includes(loc.slug));
   }, [allKnownSlugs]);
 
   /**
@@ -305,6 +308,7 @@ export default function HomePage({
         onLocationInputChange={setLocationInput}
         onLocationSelect={handleLocationSelect}
         onUseGPS={handleUseGPS}
+        citySuggestions={activeCityLocations}
         locationStatus={locationStatus}
         dateFilter={dateFilter}
         onDateFilterChange={setDateFilter}
