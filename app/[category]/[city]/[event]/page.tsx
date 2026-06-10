@@ -12,8 +12,10 @@ import {
 } from "@/lib/events";
 import { toPluralCategorySlug, toPluralCategoryName, formatInCity, toSlug, eventPath } from "@/lib/slugs";
 import { searchAddress } from "@/lib/geocoding";
+import { parsePublicFilterParams } from "@/lib/filters";
 
 type Params = { category: string; city: string; event: string };
+type SearchParams = Record<string, string | string[] | undefined>;
 
 export const dynamic = "force-dynamic";
 
@@ -53,8 +55,15 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   };
 }
 
-export default async function EventOrTimePage({ params }: { params: Promise<Params> }) {
+export default async function EventOrTimePage({
+  params,
+  searchParams,
+}: {
+  params: Promise<Params>;
+  searchParams: Promise<SearchParams>;
+}) {
   const { category: categorySlug, city: citySlug, event: eventOrTime } = await params;
+  const initialFilters = parsePublicFilterParams(await searchParams);
 
   const isTimeKeyword = eventOrTime === "dzis" || eventOrTime === "weekend" || eventOrTime === "ten-tydzien";
 
@@ -126,6 +135,7 @@ export default async function EventOrTimePage({ params }: { params: Promise<Para
           initialLocation={cityLocation}
           initialDateFilter={dateFilterMap[eventOrTime]}
           categoryOptions={categoryRows}
+          initialFilters={initialFilters}
           activeCityLocations={activeCityLocations}
         />
       </>

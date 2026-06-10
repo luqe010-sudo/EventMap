@@ -1,5 +1,7 @@
 # Current Features
 
+Aktualizacja wyszukiwania: panel wyszukiwania zapisuje w URL filtry `Kiedy?`, `Cena` oraz `radius`. Cena obsluguje tryby `Za darmo`, `Bez limitu` i limit maksymalny ustawiany suwakiem lub polem kwoty, np. `?kiedy=weekend&cena=max&cenaMax=80`. Promien mozna ustawic suwakiem albo recznie w polu km. Zmiany filtrow aktualizuja pasek adresu przez `history.replaceState()` bez przeladowania, a dopiero przycisk `Znajdz` wykonuje nawigacje/przeladowanie pod aktualny URL.
+
 ## Publiczne przeglądanie wydarzeń
 
 Strona główna `/`:

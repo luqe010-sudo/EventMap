@@ -1,4 +1,5 @@
 import type { EventCategory, EventItem } from "./events";
+import type { DateFilter, PriceFilterMode } from "./filters";
 
 export function toSlug(text: string): string {
   return text
@@ -164,6 +165,11 @@ export type SearchUrlParams = {
   categorySlug?: string;       // plural slug, e.g. "koncerty"
   citySlug?: string;           // e.g. "wroclaw"
   geoLocation?: { lat: number; lng: number; radius: number };
+  dateFilter?: DateFilter;
+  customDate?: string;
+  priceMode?: PriceFilterMode;
+  maxPrice?: number | null;
+  radiusKm?: number | null;
 };
 
 /**
@@ -172,34 +178,70 @@ export type SearchUrlParams = {
  */
 export function buildSearchUrl(params: SearchUrlParams): string {
   const { categorySlug, citySlug, geoLocation } = params;
+  const query = buildFilterQuery(params);
 
   // category + city
   if (categorySlug && citySlug) {
-    return `/${categorySlug}/${citySlug}`;
+    return appendQuery(`/${categorySlug}/${citySlug}`, query);
   }
 
   // category + geolocation (non-known city)
   if (categorySlug && geoLocation) {
-    const qs = `lat=${geoLocation.lat}&lng=${geoLocation.lng}&radius=${geoLocation.radius}`;
-    return `/${categorySlug}/lokalizacja?${qs}`;
+    query.set("lat", String(geoLocation.lat));
+    query.set("lng", String(geoLocation.lng));
+    query.set("radius", String(geoLocation.radius));
+    return appendQuery(`/${categorySlug}/lokalizacja`, query);
   }
 
   // category only
   if (categorySlug) {
-    return `/${categorySlug}`;
+    return appendQuery(`/${categorySlug}`, query);
   }
 
   // city only
   if (citySlug) {
-    return `/${citySlug}`;
+    return appendQuery(`/${citySlug}`, query);
   }
 
   // geolocation only
   if (geoLocation) {
-    const qs = `lat=${geoLocation.lat}&lng=${geoLocation.lng}&radius=${geoLocation.radius}`;
-    return `/lokalizacja?${qs}`;
+    query.set("lat", String(geoLocation.lat));
+    query.set("lng", String(geoLocation.lng));
+    query.set("radius", String(geoLocation.radius));
+    return appendQuery(`/lokalizacja`, query);
   }
 
   // nothing selected → stay home
-  return `/`;
+  return appendQuery(`/`, query);
+}
+
+function buildFilterQuery(params: Pick<SearchUrlParams, "dateFilter" | "customDate" | "priceMode" | "maxPrice" | "radiusKm">) {
+  const query = new URLSearchParams();
+
+  if (params.dateFilter && params.dateFilter !== "all") {
+    query.set("kiedy", params.dateFilter);
+    if (params.dateFilter === "custom") {
+      const [from = "", to = ""] = (params.customDate ?? "").split("/");
+      if (from) query.set("dataOd", from);
+      if (to) query.set("dataDo", to);
+    }
+  }
+
+  if (params.priceMode === "free") {
+    query.set("cena", "free");
+  } else if (params.priceMode === "max" && params.maxPrice != null) {
+    query.set("cena", "max");
+    query.set("cenaMax", String(params.maxPrice));
+  }
+
+  if (params.radiusKm != null) {
+    query.set("radius", String(params.radiusKm));
+  }
+
+  return query;
+}
+
+function appendQuery(path: string, query: URLSearchParams) {
+  const queryString = query.toString();
+  return queryString ? `${path}?${queryString}` : path;
 }

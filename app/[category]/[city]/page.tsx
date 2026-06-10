@@ -11,9 +11,14 @@ import {
 } from "@/lib/events";
 import { toPluralCategorySlug, toPluralCategoryName, formatInCity, toSlug } from "@/lib/slugs";
 import { searchAddress } from "@/lib/geocoding";
+import { parsePublicFilterParams } from "@/lib/filters";
 
 type Params = { category: string; city: string };
-type SearchParams = { lat?: string; lng?: string; radius?: string };
+type SearchParams = {
+  lat?: string;
+  lng?: string;
+  radius?: string;
+} & Record<string, string | string[] | undefined>;
 
 export const dynamic = "force-dynamic";
 
@@ -90,6 +95,8 @@ export default async function CategoryCityPage({
   searchParams: Promise<SearchParams>;
 }) {
   const { category: categorySlug, city: citySlug } = await params;
+  const resolvedSearchParams = await searchParams;
+  const initialFilters = parsePublicFilterParams(resolvedSearchParams);
 
   // Handle /{category}/lokalizacja?lat=...&lng=...&radius=...
   if (citySlug === "lokalizacja") {
@@ -100,7 +107,7 @@ export default async function CategoryCityPage({
 
     const pluralCategorySlug = toPluralCategorySlug(categorySlug);
     if (categorySlug !== pluralCategorySlug) {
-      const sp = await searchParams;
+      const sp = resolvedSearchParams;
       const qs = new URLSearchParams();
       if (sp.lat) qs.set("lat", sp.lat);
       if (sp.lng) qs.set("lng", sp.lng);
@@ -108,7 +115,7 @@ export default async function CategoryCityPage({
       redirect(`/${pluralCategorySlug}/lokalizacja?${qs.toString()}`);
     }
 
-    const sp = await searchParams;
+    const sp = resolvedSearchParams;
     const lat = parseFloat(sp.lat ?? "");
     const lng = parseFloat(sp.lng ?? "");
     if (Number.isNaN(lat) || Number.isNaN(lng)) {
@@ -139,6 +146,7 @@ export default async function CategoryCityPage({
         initialCategory={category.name}
         initialLocation={geoLocation}
         categoryOptions={categoryRows}
+        initialFilters={initialFilters}
         activeCityLocations={activeCityLocations}
       />
     );
@@ -199,6 +207,7 @@ export default async function CategoryCityPage({
           initialCategory={category.name}
           initialLocation={cityLocation}
           categoryOptions={categoryRows}
+          initialFilters={initialFilters}
           activeCityLocations={activeCityLocations}
         />
       </>
@@ -246,6 +255,7 @@ export default async function CategoryCityPage({
           initialLocation={cityLocation}
           initialDateFilter={dateFilterMap[citySlug]}
           categoryOptions={categoryRows}
+          initialFilters={initialFilters}
           activeCityLocations={activeCityLocations}
         />
       </>

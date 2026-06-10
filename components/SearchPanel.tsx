@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { type EventCategory, type CategoryOption } from "@/lib/events";
-import { type DateFilter } from "@/lib/filters";
+import { MAX_PRICE_FILTER_LIMIT, type DateFilter, type PriceFilterMode } from "@/lib/filters";
 import CityAutocomplete from "@/components/CityAutocomplete";
 import type { KnownLocation } from "@/lib/events";
 import CategoryIcon from "@/components/CategoryIcon";
@@ -24,6 +25,10 @@ type SearchPanelProps = {
   category: EventCategory | "Wszystkie";
   categories: CategoryOption[];
   onCategoryChange: (category: EventCategory | "Wszystkie") => void;
+  priceMode: PriceFilterMode;
+  maxPrice: number;
+  onPriceModeChange: (mode: PriceFilterMode) => void;
+  onMaxPriceChange: (price: number) => void;
   onSubmit?: () => void;
 };
 
@@ -54,9 +59,25 @@ export default function SearchPanel({
   category,
   categories,
   onCategoryChange,
+  priceMode,
+  maxPrice,
+  onPriceModeChange,
+  onMaxPriceChange,
   onSubmit,
 }: SearchPanelProps) {
   const customDateRange = parseCustomDateRangeValue(customDate);
+  const [radiusInput, setRadiusInput] = useState(String(radiusKm));
+  const [maxPriceInput, setMaxPriceInput] = useState(String(maxPrice));
+  const priceProgress = (maxPrice / MAX_PRICE_FILTER_LIMIT) * 100;
+  const radiusProgress = ((radiusKm - 5) / (100 - 5)) * 100;
+
+  useEffect(() => {
+    setRadiusInput(String(radiusKm));
+  }, [radiusKm]);
+
+  useEffect(() => {
+    setMaxPriceInput(String(maxPrice));
+  }, [maxPrice]);
 
   function handleCustomDateFromChange(value: string) {
     const nextTo = customDateRange.to && value && customDateRange.to < value
@@ -70,6 +91,29 @@ export default function SearchPanel({
       ? value
       : customDateRange.from;
     onCustomDateChange(serializeCustomDateRange(nextFrom, value));
+  }
+
+  function handleMaxPriceInputChange(value: string) {
+    setMaxPriceInput(value);
+    onPriceModeChange("max");
+
+    if (!value.trim()) return;
+
+    const parsed = Number(value.replace(",", "."));
+    if (Number.isFinite(parsed)) {
+      onMaxPriceChange(parsed);
+    }
+  }
+
+  function handleRadiusInputChange(value: string) {
+    setRadiusInput(value);
+
+    if (!value.trim()) return;
+
+    const parsed = Number(value.replace(",", "."));
+    if (Number.isFinite(parsed)) {
+      onRadiusChange(parsed);
+    }
   }
 
   return (
@@ -114,9 +158,24 @@ export default function SearchPanel({
               value={radiusKm}
               onChange={(e) => onRadiusChange(Number(e.target.value))}
               style={{
-                background: `linear-gradient(to right, var(--brand) 0%, var(--brand) ${isAllPoland ? 100 : ((radiusKm - 5) / (100 - 5)) * 100}%, rgba(0, 0, 0, 0.08) ${isAllPoland ? 100 : ((radiusKm - 5) / (100 - 5)) * 100}%, rgba(0, 0, 0, 0.08) 100%)`
+                background: `linear-gradient(to right, var(--brand) 0%, var(--brand) ${isAllPoland ? 100 : radiusProgress}%, rgba(0, 0, 0, 0.08) ${isAllPoland ? 100 : radiusProgress}%, rgba(0, 0, 0, 0.08) 100%)`
               }}
             />
+            <label className="searchInlineInputLabel searchRadiusInputLabel">
+              <span>do</span>
+              <input
+                type="text"
+                inputMode="decimal"
+                pattern="[0-9]*"
+                value={radiusInput}
+                onFocus={(e) => e.currentTarget.select()}
+                onBlur={() => {
+                  if (!radiusInput.trim()) setRadiusInput(String(radiusKm));
+                }}
+                onChange={(e) => handleRadiusInputChange(e.target.value)}
+              />
+              <span>km</span>
+            </label>
             <div className="searchRadiusLabels">
               <span>5 km</span>
               <span>100 km</span>
@@ -170,6 +229,67 @@ export default function SearchPanel({
               </label>
             </div>
           )}
+        </div>
+
+        <div className="searchGroup searchGroupPrice">
+          <div className="searchPriceHeader">
+            <label className="searchLabel">Cena</label>
+            <div className="searchPriceActions">
+              <button
+                type="button"
+                className={`searchScopeButton ${priceMode === "free" ? "searchScopeButtonActive" : ""}`}
+                aria-pressed={priceMode === "free"}
+                onClick={() => onPriceModeChange("free")}
+              >
+                Za darmo
+              </button>
+              <button
+                type="button"
+                className={`searchScopeButton ${priceMode === "all" ? "searchScopeButtonActive" : ""}`}
+                aria-pressed={priceMode === "all"}
+                onClick={() => onPriceModeChange("all")}
+              >
+                Bez limitu
+              </button>
+              <span className="searchPriceValue">{getPriceLabel(priceMode, maxPrice)}</span>
+            </div>
+          </div>
+          <div className="searchPriceControls">
+            <input
+              type="range"
+              className="searchSlider searchPriceSlider"
+              min={0}
+              max={MAX_PRICE_FILTER_LIMIT}
+              step={10}
+              value={maxPrice}
+              onChange={(e) => {
+                onPriceModeChange("max");
+                onMaxPriceChange(Number(e.target.value));
+              }}
+              style={{
+                background: `linear-gradient(to right, var(--brand) 0%, var(--brand) ${priceProgress}%, rgba(0, 0, 0, 0.08) ${priceProgress}%, rgba(0, 0, 0, 0.08) 100%)`
+              }}
+              aria-label="Cena maksymalna"
+            />
+            <label className="searchInlineInputLabel searchPriceInputLabel">
+              <span>do</span>
+              <input
+                type="text"
+                inputMode="decimal"
+                pattern="[0-9]*"
+                value={maxPriceInput}
+                onFocus={(e) => {
+                  onPriceModeChange("max");
+                  e.currentTarget.select();
+                }}
+                onBlur={() => {
+                  if (!maxPriceInput.trim()) setMaxPriceInput(String(maxPrice));
+                }}
+                onChange={(e) => handleMaxPriceInputChange(e.target.value)}
+              />
+              <span>zł</span>
+            </label>
+          </div>
         </div>
 
       </div>
@@ -245,6 +365,12 @@ function serializeCustomDateRange(from: string, to: string) {
   if (from && to) return `${from}/${to}`;
   if (to) return `/${to}`;
   return from;
+}
+
+function getPriceLabel(priceMode: PriceFilterMode, maxPrice: number) {
+  if (priceMode === "free") return "tylko darmowe";
+  if (priceMode === "all") return "bez limitu";
+  return `do ${maxPrice} zł`;
 }
 
 

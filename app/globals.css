@@ -5436,9 +5436,9 @@ body {
 
 .searchTopRow {
   display: grid;
-  grid-template-columns: 280px 220px minmax(0, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
-  align-items: end;
+  align-items: start;
 }
 
 .searchSubmitRow {
@@ -5475,6 +5475,9 @@ body {
 .searchGroup {
   display: grid;
   gap: 8px;
+  align-content: start;
+  min-width: 0;
+  position: relative;
 }
 
 .searchLabel {
@@ -5573,12 +5576,12 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 28px;
-  padding: 0 10px;
+  padding: 0 8px;
   border: 1px solid rgba(64, 52, 44, 0.12);
   border-radius: 999px;
   background: #fffefb;
   color: #2d2926;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 850;
   white-space: nowrap;
   cursor: pointer;
@@ -5607,7 +5610,10 @@ select {
 .searchRadiusWrap {
   position: relative;
   display: grid;
+  grid-template-columns: minmax(120px, 1fr) auto;
   gap: 5px;
+  column-gap: 10px;
+  align-items: center;
   padding-top: 1px;
 }
 
@@ -5673,6 +5679,7 @@ select {
 }
 
 .searchRadiusLabels {
+  grid-column: 1;
   display: flex;
   justify-content: space-between;
   color: #8d8781;
@@ -5681,6 +5688,7 @@ select {
 
 .searchDatePills {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
   align-items: center;
 }
@@ -5709,6 +5717,62 @@ select {
 }
 
 .searchCustomDate { max-width: 100%; }
+
+.searchPriceHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.searchPriceValue {
+  color: #1a1a1a;
+  font-size: 0.78rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.searchPriceActions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  min-width: 0;
+}
+
+.searchPriceControls {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.searchPriceSlider {
+  margin: 12px 0 6px !important;
+}
+
+.searchInlineInputLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #4d4844;
+  font-size: 0.72rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.searchInlineInputLabel input {
+  width: 74px;
+  min-height: 36px;
+  padding: 0 8px;
+  text-align: right;
+  font-weight: 800;
+}
+
+.searchRadiusInputLabel {
+  grid-column: 2;
+}
 
 .searchCatSelect {
   color: #2d2926;
@@ -6417,6 +6481,18 @@ select {
   border-color: rgba(39, 35, 34, 0.08);
 }
 
+@media (min-width: 1181px) {
+  .searchTopRow > .searchGroup:nth-child(n + 3)::before {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(64, 52, 44, 0.1);
+  }
+}
+
 @media (max-width: 1180px) {
   .homePage {
     width: min(var(--max-width), calc(100% - 44px));
@@ -6434,6 +6510,16 @@ select {
 
   .searchTopRow {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .searchTopRow > .searchGroup {
+    border-top: 1px solid rgba(64, 52, 44, 0.09);
+    padding-top: 14px;
+  }
+
+  .searchTopRow > .searchGroup:nth-child(-n + 2) {
+    border-top: 0;
+    padding-top: 0;
   }
 
   .featuredRight,
@@ -6541,6 +6627,16 @@ select {
 
   .searchTopRow {
     grid-template-columns: 1fr;
+  }
+
+  .searchTopRow > .searchGroup:nth-child(-n + 2) {
+    border-top: 1px solid rgba(64, 52, 44, 0.09);
+    padding-top: 14px;
+  }
+
+  .searchTopRow > .searchGroup:first-child {
+    border-top: 0;
+    padding-top: 0;
   }
 
   .searchDatePills {

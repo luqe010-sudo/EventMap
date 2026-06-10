@@ -10,8 +10,10 @@ import {
 } from "@/lib/events";
 import { toPluralCategorySlug, toPluralCategoryName, toSlug, formatInCity } from "@/lib/slugs";
 import { searchAddress } from "@/lib/geocoding";
+import { parsePublicFilterParams } from "@/lib/filters";
 
 type Params = { category: string };
+type SearchParams = Record<string, string | string[] | undefined>;
 
 export const dynamic = "force-dynamic";
 
@@ -47,8 +49,15 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   return {};
 }
 
-export default async function CategoryPage({ params }: { params: Promise<Params> }) {
+export default async function CategoryPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<Params>;
+  searchParams: Promise<SearchParams>;
+}) {
   const { category: categorySlug } = await params;
+  const initialFilters = parsePublicFilterParams(await searchParams);
   
   // 1. Try to resolve as category
   const category = await getCategoryBySlugFromDb(categorySlug);
@@ -85,6 +94,7 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
           initialEvents={events}
           initialCategory={category.name}
           categoryOptions={categoryRows}
+          initialFilters={initialFilters}
           activeCityLocations={activeCityLocations}
         />
       </>
@@ -126,6 +136,7 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
           initialEvents={events}
           initialLocation={cityLocation}
           categoryOptions={categoryRows}
+          initialFilters={initialFilters}
           activeCityLocations={activeCityLocations}
         />
       </>

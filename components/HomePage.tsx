@@ -1,10 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { type CategoryOption, type EventCategory, type EventItem, type KnownLocation, getDefaultLocation, knownLocations } from "@/lib/events";
-import { filterEvents, type DateFilter } from "@/lib/filters";
+import {
+  DEFAULT_MAX_PRICE,
+  clampMaxPrice,
+  filterEvents,
+  type DateFilter,
+  type PriceFilterMode,
+  type PublicFilterParams
+} from "@/lib/filters";
 import HeroSection from "@/components/HeroSection";
 import SearchPanel from "@/components/SearchPanel";
 import CategoryIcon from "@/components/CategoryIcon";
@@ -22,6 +28,7 @@ type HomePageProps = {
   initialLocation?: KnownLocation;
   initialCategory?: EventCategory;
   initialDateFilter?: DateFilter;
+  initialFilters?: PublicFilterParams;
   activeCityLocations?: KnownLocation[];
 };
 
@@ -40,19 +47,21 @@ export default function HomePage({
   initialLocation,
   initialCategory,
   initialDateFilter,
+  initialFilters,
   activeCityLocations = []
 }: HomePageProps) {
-  const router = useRouter();
-
   // Filter state
-  const [dateFilter, setDateFilter] = useState<DateFilter>(initialDateFilter ?? "all");
-  const [customDate, setCustomDate] = useState("");
-  const [radiusKm, setRadiusKm] = useState(100);
-  const [isAllPoland, setIsAllPoland] = useState(!initialLocation);
+  const [dateFilter, setDateFilter] = useState<DateFilter>(
+    initialFilters?.dateFilter ?? initialDateFilter ?? "all"
+  );
+  const [customDate, setCustomDate] = useState(initialFilters?.customDate ?? "");
+  const [radiusKm, setRadiusKm] = useState(clampRadius(initialFilters?.radiusKm ?? 100));
+  const [isAllPoland, setIsAllPoland] = useState(!initialLocation && initialFilters?.radiusKm == null);
   const [category, setCategory] = useState<EventCategory | "Wszystkie">(
     initialCategory ?? "Wszystkie"
   );
-  const [isFree, setIsFree] = useState(false);
+  const [priceMode, setPriceMode] = useState<PriceFilterMode>(initialFilters?.priceMode ?? "all");
+  const [maxPrice, setMaxPrice] = useState(clampMaxPrice(initialFilters?.maxPrice ?? DEFAULT_MAX_PRICE));
   const [locationInput, setLocationInput] = useState(initialLocation?.label ?? "");
   const [location, setLocation] = useState<KnownLocation>(initialLocation ?? getDefaultLocation());
   const [locationStatus, setLocationStatus] = useState(
@@ -117,7 +126,13 @@ export default function HomePage({
   const filteredEvents = useMemo(
     () => {
       let results = filterEvents(initialEvents, {
-        dateFilter, customDate, radiusKm: isAllPoland ? null : radiusKm, category, location, isFree
+        dateFilter,
+        customDate,
+        radiusKm: isAllPoland ? null : radiusKm,
+        category,
+        location,
+        priceMode,
+        maxPrice
       });
       if (sortBy === "nearest") {
         results = [...results].sort((a, b) => {
@@ -128,13 +143,18 @@ export default function HomePage({
       }
       return results;
     },
-    [initialEvents, dateFilter, customDate, radiusKm, isAllPoland, category, location, isFree, sortBy]
+    [initialEvents, dateFilter, customDate, radiusKm, isAllPoland, category, location, priceMode, maxPrice, sortBy]
   );
 
   // Featured events
   const featuredEvents = useMemo(
     () => filterEvents(initialEvents, {
-      dateFilter: "week", customDate: "", radiusKm: null, category: "Wszystkie", location
+      dateFilter: "week",
+      customDate: "",
+      radiusKm: null,
+      category: "Wszystkie",
+      location,
+      priceMode: "all"
     }).filter(({ event }) => event.isFeatured),
     [initialEvents, location]
   );
@@ -189,7 +209,7 @@ export default function HomePage({
 
   function handleRadiusChange(radius: number) {
     setIsAllPoland(false);
-    setRadiusKm(radius);
+    setRadiusKm(clampRadius(radius));
   }
 
   // filter radius to default location or specific city
@@ -224,7 +244,7 @@ export default function HomePage({
   /**
    * "Znajdź" button handler — builds a URL from current filter state and navigates.
    */
-  const handleFindSubmit = useCallback(() => {
+  const currentSearchUrl = useCallback(() => {
     // Resolve category slug (or undefined if "Wszystkie")
     const catSlug = category !== "Wszystkie"
       ? toPluralCategorySlug(toSlug(category))
@@ -247,9 +267,39 @@ export default function HomePage({
     }
     // If isAllPoland and no category → stay on home, just scroll
 
-    const url = buildSearchUrl({ categorySlug: catSlug, citySlug, geoLocation });
-    router.push(url);
-  }, [category, location, isAllPoland, radiusKm, isKnownCity, router]);
+    const url = buildSearchUrl({
+      categorySlug: catSlug,
+      citySlug,
+      geoLocation,
+      dateFilter,
+      customDate,
+      priceMode,
+      maxPrice,
+      radiusKm: isAllPoland ? null : radiusKm
+    });
+    return url;
+  }, [category, location, isAllPoland, radiusKm, isKnownCity, dateFilter, customDate, priceMode, maxPrice]);
+
+  useEffect(() => {
+    const url = currentSearchUrl();
+    const currentUrl = `${window.location.pathname}${window.location.search}`;
+
+    if (url !== currentUrl) {
+      window.history.replaceState(window.history.state, "", url);
+    }
+  }, [currentSearchUrl]);
+
+  const handleFindSubmit = useCallback(() => {
+    const url = currentSearchUrl();
+    const target = new URL(url, window.location.origin);
+
+    if (target.href === window.location.href) {
+      window.location.reload();
+      return;
+    }
+
+    window.location.assign(url);
+  }, [currentSearchUrl]);
 
   return (
     <main className="homePage">
@@ -296,8 +346,8 @@ export default function HomePage({
 
       <HeroSection
         eventCount={filteredEvents.length}
-        onSelectCategory={(cat) => { setCategory(cat); setIsFree(false); }}
-        onSelectFree={() => { setIsFree(true); setCategory("Wszystkie"); }}
+        onSelectCategory={(cat) => setCategory(cat)}
+        onSelectFree={() => { setPriceMode("free"); setCategory("Wszystkie"); }}
         onSelectDateFilter={(f) => setDateFilter(f)}
         title={pageTitle}
         subtitle={pageSubtitle}
@@ -320,7 +370,11 @@ export default function HomePage({
         onAllPolandSelect={handleAllPolandSelect}
         category={category}
         categories={categoryOptions}
-        onCategoryChange={(cat) => { setCategory(cat); setIsFree(false); }}
+        onCategoryChange={setCategory}
+        priceMode={priceMode}
+        maxPrice={maxPrice}
+        onPriceModeChange={setPriceMode}
+        onMaxPriceChange={(price) => setMaxPrice(clampMaxPrice(price))}
         onSubmit={handleFindSubmit}
       />
 
@@ -462,7 +516,7 @@ export default function HomePage({
         <Sidebar
           events={filteredEvents}
           categoryCounts={categoryCounts}
-          onCategorySelect={(cat) => { setCategory(cat); setIsFree(false); }}
+          onCategorySelect={setCategory}
           selectedCategory={category}
           location={location}
           isAllPoland={isAllPoland}
@@ -474,3 +528,7 @@ export default function HomePage({
   );
 }
 
+function clampRadius(value: number) {
+  if (!Number.isFinite(value)) return 100;
+  return Math.min(Math.max(Math.round(value), 5), 100);
+}

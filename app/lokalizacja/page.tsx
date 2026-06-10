@@ -2,11 +2,17 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import HomePage from "@/components/HomePage";
 import { listCategories, listEvents, getActiveCityLocations, type KnownLocation } from "@/lib/events";
+import { parsePublicFilterParams } from "@/lib/filters";
 
 export const dynamic = "force-dynamic";
 
 type Props = {
-  searchParams: Promise<{ lat?: string; lng?: string; radius?: string; kategoria?: string }>;
+  searchParams: Promise<{
+    lat?: string;
+    lng?: string;
+    radius?: string;
+    kategoria?: string;
+  } & Record<string, string | string[] | undefined>>;
 };
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
@@ -30,6 +36,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
 export default async function LocationPage({ searchParams }: Props) {
   const params = await searchParams;
+  const initialFilters = parsePublicFilterParams(params);
   const lat = parseFloat(params.lat ?? "");
   const lng = parseFloat(params.lng ?? "");
 
@@ -72,6 +79,7 @@ export default async function LocationPage({ searchParams }: Props) {
         initialEvents={events}
         initialLocation={geoLocation}
         categoryOptions={categoryRows}
+        initialFilters={initialFilters}
         activeCityLocations={activeCityLocations}
       />
     </>
