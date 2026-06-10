@@ -177,7 +177,7 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 - formularz wydarzenia;
 - status dostępny tylko dla admina;
 - wybór kategorii, organizatora i lokalizacji;
-- interaktywny picker lokalizacji z mini-mapa MapLibre, wyszukiwaniem adresow przez Nominatim i przesuwalna pinezka; automatycznie wypelnia wspolrzedne, miasto, adres, kod pocztowy, wojewodztwo, powiat i gmine;
+- interaktywny picker lokalizacji z mini-mapa MapLibre, wyszukiwarka zapisanych miejsc, autocomplete miasta ograniczonym do Polski oraz autocomplete pola `Ulica i numer` ograniczonym do wybranego miasta; mini-mapa uzywa tych samych warstw administracyjnych i numerow budynkow co mapa publiczna; wybor podpowiedzi albo przesuniecie pinezki wypelnia wspolrzedne i dane administracyjne;
 - możliwość wgrania obrazu wydarzenia do Cloudinary albo podania zewnętrznego linku;
 - zapis źródła wydarzenia.
 
@@ -215,8 +215,8 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 
 `/admin/locations/new` i `/admin/locations/[id]/edit`:
 
-- formularz lokalizacji z mini-mapa MapLibre, wyszukiwaniem adresu i przesuwalna pinezka;
-- pola: nazwa miejsca, adres, miasto, kod pocztowy, gmina, powiat, wojewodztwo, Google Maps URL i Place ID.
+- formularz lokalizacji z mini-mapa MapLibre, warstwami wojewodztw/powiatow, numerami budynkow, autocomplete miasta, autocomplete pola `Ulica i numer` zaleznym od miasta i przesuwalna pinezka;
+- pola: nazwa miejsca, ulica i numer, miasto, kod pocztowy, gmina, powiat, wojewodztwo, Google Maps URL i Place ID.
 
 `/admin/cities`:
 
@@ -238,7 +238,7 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 
 - dodaje wydarzenie ze statusem `pending_review`;
 - przypisuje wydarzenie do organizatora użytkownika;
-- interaktywny picker lokalizacji z mini-mapa, wyszukiwaniem adresow i automatycznym geokodowaniem;
+- interaktywny picker lokalizacji z mini-mapa, warstwami wojewodztw/powiatow, numerami budynkow, wyszukiwarka zapisanych miejsc, autocomplete miasta oraz autocomplete pola `Ulica i numer` zaleznym od wybranego miasta;
 - pozwala wgrać obraz wydarzenia do Cloudinary albo podać zewnętrzny link.
 
 `/organizer/events/[id]/edit`:

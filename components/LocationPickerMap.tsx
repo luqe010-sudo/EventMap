@@ -1,12 +1,27 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
+import type { FilterSpecification } from "maplibre-gl";
 import {
-  searchAddress,
   reverseGeocode,
+  searchPolishCities,
+  searchStreetAddress,
   type GeocodingResult
 } from "@/lib/geocoding";
+
+type SavedLocation = {
+  id: string;
+  name: string | null;
+  address: string | null;
+  latitude: number | null;
+  longitude: number | null;
+  postal_code: string | null;
+  voivodeship: string | null;
+  county: string | null;
+  municipality: string | null;
+  city: { name: string } | null;
+};
 
 type LocationPickerMapProps = {
   initialLocationId?: string | null;
@@ -20,25 +35,17 @@ type LocationPickerMapProps = {
   initialCounty?: string | null;
   initialMunicipality?: string | null;
   showAdministrativeFields?: boolean;
-  savedLocations?: Array<{
-    id: string;
-    name: string | null;
-    address: string | null;
-    latitude: number | null;
-    longitude: number | null;
-    postal_code: string | null;
-    voivodeship: string | null;
-    county: string | null;
-    municipality: string | null;
-    city: { name: string } | null;
-  }>;
+  savedLocations?: SavedLocation[];
 };
 
 const STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
+const VOIVODESHIP_SOURCE_ID = "eventmap-voivodeships";
 const DEFAULT_CENTER: [number, number] = [19.0, 52.0];
 const DEFAULT_ZOOM = 5.5;
+const CITY_ZOOM = 11;
 const SELECTED_ZOOM = 15;
 const SEARCH_DEBOUNCE_MS = 350;
+const MAX_LOCAL_SUGGESTIONS = 8;
 
 export default function LocationPickerMap({
   initialLocationId,
@@ -54,25 +61,31 @@ export default function LocationPickerMap({
   showAdministrativeFields = false,
   savedLocations = []
 }: LocationPickerMapProps) {
+  const rootRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const markerRef = useRef<maplibregl.Marker | null>(null);
-  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cityDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const addressDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const handleSelectionRef = useRef<((lat: number, lng: number) => void) | undefined>(undefined);
-  const manualGeocodeDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const initialSavedLocation = savedLocations.find((location) => location.id === initialLocationId);
   const [locationId, setLocationId] = useState(initialLocationId ?? "");
-  const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState<GeocodingResult[]>([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [savedLocationQuery, setSavedLocationQuery] = useState(
+    initialSavedLocation ? formatSavedLocationLabel(initialSavedLocation) : ""
+  );
+  const [showSavedSuggestions, setShowSavedSuggestions] = useState(false);
 
-  const [latitude, setLatitude] = useState<number | null>(
-    initialLatitude ?? null
-  );
-  const [longitude, setLongitude] = useState<number | null>(
-    initialLongitude ?? null
-  );
+  const [citySuggestions, setCitySuggestions] = useState<GeocodingResult[]>([]);
+  const [showCitySuggestions, setShowCitySuggestions] = useState(false);
+  const [cityLoading, setCityLoading] = useState(false);
+
+  const [addressSuggestions, setAddressSuggestions] = useState<GeocodingResult[]>([]);
+  const [showAddressSuggestions, setShowAddressSuggestions] = useState(false);
+  const [addressLoading, setAddressLoading] = useState(false);
+
+  const [latitude, setLatitude] = useState<number | null>(initialLatitude ?? null);
+  const [longitude, setLongitude] = useState<number | null>(initialLongitude ?? null);
   const [city, setCity] = useState(initialCity ?? "");
   const [address, setAddress] = useState(initialAddress ?? "");
   const [locationName, setLocationName] = useState(initialName ?? "");
@@ -81,32 +94,59 @@ export default function LocationPickerMap({
   const [county, setCounty] = useState(initialCounty ?? "");
   const [municipality, setMunicipality] = useState(initialMunicipality ?? "");
 
-  const hasInitialLocation =
-    initialLatitude != null && initialLongitude != null;
+  const hasInitialLocation = initialLatitude != null && initialLongitude != null;
+  const savedLocationSuggestions = useMemo(() => {
+    const query = normalizeSearch(savedLocationQuery);
+    const ranked = savedLocations
+      .map((location) => ({
+        location,
+        label: formatSavedLocationLabel(location)
+      }))
+      .filter((item) => {
+        if (!query) return true;
+        return normalizeSearch(item.label).includes(query);
+      })
+      .sort((a, b) => a.label.localeCompare(b.label, "pl"));
 
-  const placeMarker = useCallback(
-    (lng: number, lat: number) => {
-      const map = mapRef.current;
-      if (!map) return;
+    return ranked.slice(0, MAX_LOCAL_SUGGESTIONS);
+  }, [savedLocationQuery, savedLocations]);
 
-      if (!markerRef.current) {
-        markerRef.current = new maplibregl.Marker({
-          color: "#d95d39",
-          draggable: true
-        })
-          .setLngLat([lng, lat])
-          .addTo(map);
+  const placeMarker = useCallback((lng: number, lat: number) => {
+    const map = mapRef.current;
+    if (!map) return;
 
-        markerRef.current.on("dragend", () => {
-          const pos = markerRef.current!.getLngLat();
-          handleSelectionRef.current?.(pos.lat, pos.lng);
-        });
-      } else {
-        markerRef.current.setLngLat([lng, lat]);
-      }
-    },
-    []
-  );
+    if (!markerRef.current) {
+      markerRef.current = new maplibregl.Marker({
+        color: "#d95d39",
+        draggable: true
+      })
+        .setLngLat([lng, lat])
+        .addTo(map);
+
+      markerRef.current.on("dragend", () => {
+        const pos = markerRef.current!.getLngLat();
+        handleSelectionRef.current?.(pos.lat, pos.lng);
+      });
+    } else {
+      markerRef.current.setLngLat([lng, lat]);
+    }
+  }, []);
+
+  const clearMarker = useCallback(() => {
+    markerRef.current?.remove();
+    markerRef.current = null;
+  }, []);
+
+  const clearDatabaseSelection = useCallback(() => {
+    setLocationId("");
+    setSavedLocationQuery("");
+  }, []);
+
+  const clearPrecisePosition = useCallback(() => {
+    setLatitude(null);
+    setLongitude(null);
+    clearMarker();
+  }, [clearMarker]);
 
   const applyResult = useCallback((result: GeocodingResult) => {
     setLatitude(result.latitude);
@@ -117,77 +157,12 @@ export default function LocationPickerMap({
     setVoivodeship(result.voivodeship ?? "");
     setCounty(result.county ?? "");
     setMunicipality(result.municipality ?? "");
-    setLocationId(""); // User edited/placed marker -> clear database ID
-  }, []);
+    clearDatabaseSelection();
+  }, [clearDatabaseSelection]);
 
-  const triggerManualAddressGeocode = useCallback((addrVal: string, cityVal: string) => {
-    if (manualGeocodeDebounceRef.current) {
-      clearTimeout(manualGeocodeDebounceRef.current);
-    }
-
-    const combinedQuery = [addrVal, cityVal].filter(Boolean).join(", ");
-    if (combinedQuery.trim().length < 5) return;
-
-    manualGeocodeDebounceRef.current = setTimeout(async () => {
-      const results = await searchAddress(combinedQuery);
-      if (results && results.length > 0) {
-        const topResult = results[0];
-        setLatitude(topResult.latitude);
-        setLongitude(topResult.longitude);
-        setPostalCode(topResult.postalCode ?? "");
-        setVoivodeship(topResult.voivodeship ?? "");
-        setCounty(topResult.county ?? "");
-        setMunicipality(topResult.municipality ?? "");
-        setLocationId(""); // Clear database ID when manual geocoding succeeds
-
-        placeMarker(topResult.longitude, topResult.latitude);
-
-        mapRef.current?.flyTo({
-          center: [topResult.longitude, topResult.latitude],
-          zoom: SELECTED_ZOOM,
-          duration: 800
-        });
-      }
-    }, 800);
-  }, [placeMarker]);
-
-  /* Keep the ref in sync so event handlers never go stale */
-  useEffect(() => {
-    handleSelectionRef.current = async (lat: number, lng: number) => {
-      setLatitude(lat);
-      setLongitude(lng);
-      placeMarker(lng, lat);
-
-      const result = await reverseGeocode(lat, lng);
-      if (result) applyResult(result);
-    };
-  }, [placeMarker, applyResult]);
-
-  const handleSuggestionSelect = useCallback(
-    (result: GeocodingResult) => {
-      applyResult(result);
-      placeMarker(result.longitude, result.latitude);
-      setQuery(result.displayName);
-      setSuggestions([]);
-      setShowSuggestions(false);
-
-      mapRef.current?.flyTo({
-        center: [result.longitude, result.latitude],
-        zoom: SELECTED_ZOOM,
-        duration: 800
-      });
-    },
-    [applyResult, placeMarker]
-  );
-
-  const handleSavedLocationSelect = useCallback((id: string) => {
-    const selected = savedLocations.find((location) => location.id === id);
-    if (!selected) {
-      setLocationId("");
-      return;
-    }
-
+  const handleSavedLocationSelect = useCallback((selected: SavedLocation) => {
     setLocationId(selected.id);
+    setSavedLocationQuery(formatSavedLocationLabel(selected));
     setLocationName(selected.name ?? "");
     setAddress(selected.address ?? "");
     setCity(selected.city?.name ?? "");
@@ -195,6 +170,9 @@ export default function LocationPickerMap({
     setVoivodeship(selected.voivodeship ?? "");
     setCounty(selected.county ?? "");
     setMunicipality(selected.municipality ?? "");
+    setShowSavedSuggestions(false);
+    setShowCitySuggestions(false);
+    setShowAddressSuggestions(false);
 
     if (selected.latitude != null && selected.longitude != null) {
       setLatitude(selected.latitude);
@@ -205,31 +183,138 @@ export default function LocationPickerMap({
         zoom: SELECTED_ZOOM,
         duration: 700
       });
+    } else {
+      clearPrecisePosition();
     }
-  }, [placeMarker, savedLocations]);
+  }, [clearPrecisePosition, placeMarker]);
 
-  const handleSearchChange = useCallback((value: string) => {
-    setQuery(value);
-    setLocationId("");
+  const handleCityChange = useCallback((value: string) => {
+    setCity(value);
+    setAddress("");
+    setPostalCode("");
+    setVoivodeship("");
+    setCounty("");
+    setMunicipality("");
+    clearDatabaseSelection();
+    clearPrecisePosition();
 
-    if (debounceRef.current) clearTimeout(debounceRef.current);
+    if (cityDebounceRef.current) clearTimeout(cityDebounceRef.current);
 
-    if (value.trim().length < 3) {
-      setSuggestions([]);
-      setShowSuggestions(false);
+    if (value.trim().length < 1) {
+      setCitySuggestions([]);
+      setShowCitySuggestions(false);
+      setCityLoading(false);
       return;
     }
 
-    debounceRef.current = setTimeout(async () => {
-      setLoading(true);
-      const results = await searchAddress(value);
-      setSuggestions(results);
-      setShowSuggestions(results.length > 0);
-      setLoading(false);
+    setCityLoading(true);
+    cityDebounceRef.current = setTimeout(async () => {
+      const results = await searchPolishCities(value);
+      setCitySuggestions(results);
+      setShowCitySuggestions(results.length > 0);
+      setCityLoading(false);
     }, SEARCH_DEBOUNCE_MS);
-  }, []);
+  }, [clearDatabaseSelection, clearPrecisePosition]);
 
-  /* Initialize map */
+  const handleCitySelect = useCallback((result: GeocodingResult) => {
+    setCity(result.city ?? result.displayName.split(",")[0] ?? "");
+    setAddress("");
+    setLatitude(result.latitude);
+    setLongitude(result.longitude);
+    setPostalCode("");
+    setVoivodeship(result.voivodeship ?? "");
+    setCounty(result.county ?? "");
+    setMunicipality(result.municipality ?? "");
+    clearDatabaseSelection();
+    setCitySuggestions([]);
+    setShowCitySuggestions(false);
+    setAddressSuggestions([]);
+    setShowAddressSuggestions(false);
+    placeMarker(result.longitude, result.latitude);
+    mapRef.current?.flyTo({
+      center: [result.longitude, result.latitude],
+      zoom: CITY_ZOOM,
+      duration: 700
+    });
+  }, [clearDatabaseSelection, placeMarker]);
+
+  const handleAddressChange = useCallback((value: string) => {
+    setAddress(value);
+    setPostalCode("");
+    clearDatabaseSelection();
+    clearPrecisePosition();
+
+    if (addressDebounceRef.current) clearTimeout(addressDebounceRef.current);
+
+    if (value.trim().length < 2 || city.trim().length < 2) {
+      setAddressSuggestions([]);
+      setShowAddressSuggestions(false);
+      setAddressLoading(false);
+      return;
+    }
+
+    setAddressLoading(true);
+    addressDebounceRef.current = setTimeout(async () => {
+      const results = await searchStreetAddress(value, city);
+      setAddressSuggestions(results);
+      setShowAddressSuggestions(results.length > 0);
+      setAddressLoading(false);
+    }, SEARCH_DEBOUNCE_MS);
+  }, [city, clearDatabaseSelection, clearPrecisePosition]);
+
+  const handleAddressSelect = useCallback((result: GeocodingResult) => {
+    setLatitude(result.latitude);
+    setLongitude(result.longitude);
+    setAddress(result.address ?? result.displayName);
+    if (result.city) setCity(result.city);
+    setPostalCode(result.postalCode ?? "");
+    setVoivodeship(result.voivodeship ?? voivodeship);
+    setCounty(result.county ?? county);
+    setMunicipality(result.municipality ?? municipality);
+    clearDatabaseSelection();
+    setAddressSuggestions([]);
+    setShowAddressSuggestions(false);
+    placeMarker(result.longitude, result.latitude);
+    mapRef.current?.flyTo({
+      center: [result.longitude, result.latitude],
+      zoom: SELECTED_ZOOM,
+      duration: 700
+    });
+  }, [clearDatabaseSelection, county, municipality, placeMarker, voivodeship]);
+
+  const handleAddressConfirm = useCallback(async () => {
+    const typedAddress = address.trim();
+    if (!typedAddress || !city.trim()) return;
+
+    const existingSuggestion = addressSuggestions[0];
+    if (existingSuggestion) {
+      handleAddressSelect(existingSuggestion);
+      return;
+    }
+
+    setAddressLoading(true);
+    const results = await searchStreetAddress(typedAddress, city);
+    setAddressLoading(false);
+    if (results[0]) {
+      handleAddressSelect(results[0]);
+      return;
+    }
+
+    setAddressSuggestions([]);
+    setShowAddressSuggestions(false);
+  }, [address, addressSuggestions, city, handleAddressSelect]);
+
+  useEffect(() => {
+    handleSelectionRef.current = async (lat: number, lng: number) => {
+      setLatitude(lat);
+      setLongitude(lng);
+      placeMarker(lng, lat);
+
+      const result = await reverseGeocode(lat, lng);
+      if (result) applyResult(result);
+    };
+  }, [applyResult, placeMarker]);
+
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
 
@@ -246,18 +331,14 @@ export default function LocationPickerMap({
       attributionControl: false
     });
 
-    map.addControl(
-      new maplibregl.NavigationControl({ showCompass: false }),
-      "top-left"
-    );
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-left");
     mapRef.current = map;
 
     map.on("load", () => {
       applyPolishLabels(map);
-
-      if (hasInitialLocation) {
-        placeMarker(initialLongitude!, initialLatitude!);
-      }
+      addAdministrativeBoundaryLayers(map);
+      addHouseNumberLayer(map);
+      if (hasInitialLocation) placeMarker(initialLongitude!, initialLatitude!);
     });
 
     map.on("click", (e) => {
@@ -278,83 +359,155 @@ export default function LocationPickerMap({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /* Close suggestions on outside click */
   useEffect(() => {
-    const close = () => setShowSuggestions(false);
-    document.addEventListener("click", close);
-    return () => document.removeEventListener("click", close);
+    function closeOnOutsideClick(event: MouseEvent) {
+      if (rootRef.current?.contains(event.target as Node)) return;
+      setShowSavedSuggestions(false);
+      setShowCitySuggestions(false);
+      setShowAddressSuggestions(false);
+    }
+
+    document.addEventListener("mousedown", closeOnOutsideClick);
+    return () => document.removeEventListener("mousedown", closeOnOutsideClick);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (cityDebounceRef.current) clearTimeout(cityDebounceRef.current);
+      if (addressDebounceRef.current) clearTimeout(addressDebounceRef.current);
+    };
   }, []);
 
   return (
-    <div className="locationPickerWrap">
+    <div className="locationPickerWrap" ref={rootRef}>
       {savedLocations.length ? (
-        <label>
-          Wybierz znane miejsce
-          <select value={locationId} onChange={(e) => handleSavedLocationSelect(e.target.value)}>
-            <option value="">Wpisz nowe albo wybierz z listy</option>
-            {savedLocations.map((location) => (
-              <option key={location.id} value={location.id}>
-                {[location.name, location.city?.name, location.address].filter(Boolean).join(", ")}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div className="locationPickerSearchWrap">
+          <label>
+            Wybierz znane miejsce lub wypełnij lokalizację poniżej
+            <div className="locationPickerSearchBox">
+              <input
+                type="text"
+                value={savedLocationQuery}
+                onChange={(e) => {
+                  setSavedLocationQuery(e.target.value);
+                  setLocationId("");
+                  setShowSavedSuggestions(true);
+                }}
+                onFocus={() => setShowSavedSuggestions(true)}
+                placeholder="Zacznij wpisywac nazwe miejsca, miasto albo adres"
+                className="locationPickerSearchInput"
+                autoComplete="off"
+              />
+            </div>
+          </label>
+
+          {showSavedSuggestions && savedLocationSuggestions.length > 0 ? (
+            <ul className="locationPickerSuggestions">
+              {savedLocationSuggestions.map(({ location, label }) => (
+                <li key={location.id}>
+                  <button
+                    type="button"
+                    className="locationPickerSuggestionItem"
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => handleSavedLocationSelect(location)}
+                  >
+                    {label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
       ) : null}
 
-      {/* Search */}
-      <div
-        className="locationPickerSearchWrap"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <label>
-          Wyszukaj adres
-          <div className="locationPickerSearchBox">
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => handleSearchChange(e.target.value)}
-              onFocus={() =>
-                suggestions.length > 0 && setShowSuggestions(true)
-              }
-              placeholder="np. Rynek Glowny 1, Krakow"
-              className="locationPickerSearchInput"
-              autoComplete="off"
-            />
-            {loading && <span className="locationPickerSpinner" />}
-          </div>
-        </label>
-
-        {showSuggestions && (
-          <ul className="locationPickerSuggestions">
-            {suggestions.map((s, i) => (
-              <li key={i}>
-                <button
-                  type="button"
-                  className="locationPickerSuggestionItem"
-                  onClick={() => handleSuggestionSelect(s)}
-                >
-                  {s.displayName}
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-
-      {/* Map */}
       <div ref={containerRef} className="locationPickerMap" />
       <p className="locationPickerHint">
         Kliknij na mape lub przeciagnij pinezke, aby skorygowac lokalizacje.
-        {latitude != null && longitude != null && (
+        {latitude != null && longitude != null ? (
           <>
             {" "}
             Wspolrzedne: {latitude.toFixed(5)}, {longitude.toFixed(5)}
           </>
-        )}
+        ) : null}
       </p>
 
-      {/* Visible form fields */}
       <div className="formGrid">
+        <div className="locationPickerSearchWrap">
+          <label>
+            Miasto
+            <div className="locationPickerSearchBox">
+              <input
+                name="location_city"
+                value={city}
+                onChange={(e) => handleCityChange(e.target.value)}
+                onFocus={() => citySuggestions.length > 0 && setShowCitySuggestions(true)}
+                placeholder="Wpisz miasto w Polsce"
+                className="locationPickerSearchInput"
+                autoComplete="off"
+              />
+              {cityLoading ? <span className="locationPickerSpinner" /> : null}
+            </div>
+          </label>
+
+          {showCitySuggestions && citySuggestions.length > 0 ? (
+            <ul className="locationPickerSuggestions">
+              {citySuggestions.map((suggestion) => (
+                <li key={`${suggestion.displayName}-${suggestion.latitude}-${suggestion.longitude}`}>
+                  <button
+                    type="button"
+                    className="locationPickerSuggestionItem"
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => handleCitySelect(suggestion)}
+                  >
+                    {suggestion.displayName}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+
+        <div className="locationPickerSearchWrap">
+          <label>
+            Ulica i numer
+            <div className="locationPickerSearchBox">
+              <input
+                name="location_address"
+                value={address}
+                onChange={(e) => handleAddressChange(e.target.value)}
+                onFocus={() => addressSuggestions.length > 0 && setShowAddressSuggestions(true)}
+                onKeyDown={(e) => {
+                  if (e.key !== "Enter") return;
+                  e.preventDefault();
+                  void handleAddressConfirm();
+                }}
+                placeholder={city.trim() ? "Wpisz ulice i numer" : "Najpierw wybierz miasto"}
+                className="locationPickerSearchInput"
+                autoComplete="off"
+                disabled={!city.trim()}
+              />
+              {addressLoading ? <span className="locationPickerSpinner" /> : null}
+            </div>
+          </label>
+
+          {showAddressSuggestions && addressSuggestions.length > 0 ? (
+            <ul className="locationPickerSuggestions">
+              {addressSuggestions.map((suggestion) => (
+                <li key={`${suggestion.displayName}-${suggestion.latitude}-${suggestion.longitude}`}>
+                  <button
+                    type="button"
+                    className="locationPickerSuggestionItem"
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => handleAddressSelect(suggestion)}
+                  >
+                    {suggestion.address ?? suggestion.displayName}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+
         <label>
           Nazwa miejsca
           <input
@@ -362,40 +515,13 @@ export default function LocationPickerMap({
             value={locationName}
             onChange={(e) => {
               setLocationName(e.target.value);
-              setLocationId("");
+              clearDatabaseSelection();
             }}
             placeholder="np. Dom Kultury"
           />
         </label>
-        <label>
-          Adres
-          <input
-            name="location_address"
-            value={address}
-            onChange={(e) => {
-              const val = e.target.value;
-              setAddress(val);
-              setLocationId("");
-              triggerManualAddressGeocode(val, city);
-            }}
-          />
-        </label>
-        <label>
-          Miasto
-          <input
-            name="location_city"
-            value={city}
-            onChange={(e) => {
-              const val = e.target.value;
-              setCity(val);
-              setLocationId("");
-              triggerManualAddressGeocode(address, val);
-            }}
-          />
-        </label>
       </div>
 
-      {/* Hidden fields — consumed by server action */}
       <input type="hidden" name="location_id" value={locationId} />
       <input type="hidden" name="location_latitude" value={latitude ?? ""} />
       <input type="hidden" name="location_longitude" value={longitude ?? ""} />
@@ -446,7 +572,18 @@ export default function LocationPickerMap({
   );
 }
 
-/* Polish labels — same logic as main MapLibreMap */
+function formatSavedLocationLabel(location: SavedLocation) {
+  return [location.name, location.city?.name, location.address].filter(Boolean).join(", ");
+}
+
+function normalizeSearch(value: string) {
+  return value
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
 function applyPolishLabels(map: maplibregl.Map) {
   const layers = map.getStyle().layers ?? [];
   layers.forEach((layer) => {
@@ -457,8 +594,9 @@ function applyPolishLabels(map: maplibregl.Map) {
       id.includes("address") ||
       id.includes("shield") ||
       id.includes("ref")
-    )
+    ) {
       return;
+    }
 
     const field = JSON.stringify(layer.layout["text-field"]).toLowerCase();
     if (
@@ -466,8 +604,9 @@ function applyPolishLabels(map: maplibregl.Map) {
       !id.includes("label") &&
       !id.includes("place") &&
       !id.includes("poi")
-    )
+    ) {
       return;
+    }
 
     map.setLayoutProperty(layer.id, "text-field", [
       "coalesce",
@@ -477,4 +616,211 @@ function applyPolishLabels(map: maplibregl.Map) {
       ["get", "name:nonlatin"]
     ]);
   });
+}
+
+function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
+  const sourceId = getVectorTileSourceId(map);
+
+  if (!map.getSource(VOIVODESHIP_SOURCE_ID)) {
+    map.addSource(VOIVODESHIP_SOURCE_ID, {
+      type: "geojson",
+      data: "/data/wojewodztwa-min.geojson"
+    });
+  }
+
+  const beforeId = findFirstSymbolLayerId(map);
+
+  if (!map.getLayer("eventmap-voivodeship-fill")) {
+    map.addLayer(
+      {
+        id: "eventmap-voivodeship-fill",
+        type: "fill",
+        source: VOIVODESHIP_SOURCE_ID,
+        paint: {
+          "fill-color": [
+            "match",
+            ["get", "nazwa"],
+            "dolnośląskie",
+            "#fef3c7",
+            "kujawsko-pomorskie",
+            "#dcfce7",
+            "lubelskie",
+            "#dbeafe",
+            "lubuskie",
+            "#fce7f3",
+            "łódzkie",
+            "#ede9fe",
+            "małopolskie",
+            "#ccfbf1",
+            "mazowieckie",
+            "#fee2e2",
+            "opolskie",
+            "#e0f2fe",
+            "podkarpackie",
+            "#fef9c3",
+            "podlaskie",
+            "#dcfce7",
+            "pomorskie",
+            "#dbeafe",
+            "śląskie",
+            "#fae8ff",
+            "świętokrzyskie",
+            "#ffedd5",
+            "warmińsko-mazurskie",
+            "#cffafe",
+            "wielkopolskie",
+            "#ecfccb",
+            "zachodniopomorskie",
+            "#e0e7ff",
+            "#fef3c7"
+          ],
+          "fill-opacity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            4,
+            0.16,
+            7,
+            0.22,
+            10,
+            0.18
+          ]
+        }
+      },
+      beforeId
+    );
+  }
+
+  if (!map.getLayer("eventmap-voivodeship-boundaries")) {
+    map.addLayer(
+      {
+        id: "eventmap-voivodeship-boundaries",
+        type: "line",
+        source: VOIVODESHIP_SOURCE_ID,
+        paint: {
+          "line-color": "#dc2626",
+          "line-opacity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            5,
+            0.5,
+            8,
+            0.68,
+            11,
+            0.78
+          ],
+          "line-width": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            5,
+            1.4,
+            8,
+            2.4,
+            11,
+            3.4
+          ],
+          "line-blur": 0.12
+        }
+      },
+      beforeId
+    );
+  }
+
+  if (sourceId && !map.getLayer("eventmap-county-boundaries")) {
+    map.addLayer(
+      {
+        id: "eventmap-county-boundaries",
+        type: "line",
+        source: sourceId,
+        "source-layer": "boundary",
+        minzoom: 6,
+        filter: adminLevelFilter("6"),
+        paint: {
+          "line-color": "#1d4ed8",
+          "line-opacity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            6,
+            0.42,
+            10,
+            0.62,
+            13,
+            0.78
+          ],
+          "line-width": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            6,
+            1,
+            10,
+            1.8,
+            13,
+            2.6
+          ],
+          "line-dasharray": [3, 1.5]
+        }
+      },
+      beforeId
+    );
+  }
+}
+
+function addHouseNumberLayer(map: maplibregl.Map) {
+  const sourceId = getVectorTileSourceId(map);
+  if (!sourceId || map.getLayer("eventmap-house-numbers")) return;
+
+  map.addLayer({
+    id: "eventmap-house-numbers",
+    type: "symbol",
+    source: sourceId,
+    "source-layer": "housenumber",
+    minzoom: 17,
+    layout: {
+      "text-field": ["get", "housenumber"],
+      "text-font": ["Noto Sans Regular"],
+      "text-size": [
+        "interpolate",
+        ["linear"],
+        ["zoom"],
+        17,
+        10,
+        19,
+        12
+      ],
+      "text-allow-overlap": false,
+      "text-ignore-placement": false
+    },
+    paint: {
+      "text-color": "#4b5563",
+      "text-halo-color": "rgba(255, 255, 255, 0.88)",
+      "text-halo-width": 1
+    }
+  });
+}
+
+function getVectorTileSourceId(map: maplibregl.Map) {
+  const sources = map.getStyle().sources ?? {};
+  const preferredSourceIds = [
+    "openmaptiles",
+    "openfreemap",
+    "openstreetmap",
+    "openstreetmap-openmaptiles"
+  ];
+
+  const preferredSourceId = preferredSourceIds.find((sourceId) => sources[sourceId]?.type === "vector");
+  if (preferredSourceId) return preferredSourceId;
+
+  return Object.entries(sources).find(([, source]) => source.type === "vector")?.[0] ?? null;
+}
+
+function findFirstSymbolLayerId(map: maplibregl.Map) {
+  return map.getStyle().layers?.find((layer) => layer.type === "symbol")?.id;
+}
+
+function adminLevelFilter(adminLevel: string): FilterSpecification {
+  return ["==", ["to-string", ["get", "admin_level"]], adminLevel];
 }
