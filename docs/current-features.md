@@ -319,3 +319,7 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 - Reset hasła.
 - Upload obrazów do Supabase Storage.
 - Testy automatyczne.
+
+## Ostatnie aktualizacje UI
+
+- Lista publiczna wydarzen pokazuje poczatkowo 20 kart, a przycisk `Pokaz wiecej wydarzen` doladowuje kolejne porcje po 20 wynikow i znika po wyswietleniu calej przefiltrowanej listy.

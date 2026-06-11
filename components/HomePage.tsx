@@ -32,6 +32,8 @@ type HomePageProps = {
   activeCityLocations?: KnownLocation[];
 };
 
+const EVENTS_PAGE_SIZE = 20;
+
 const POPULAR_CITIES = [
   { label: "Wrocław", slug: "wroclaw" },
   { label: "Warszawa", slug: "warszawa" },
@@ -70,6 +72,26 @@ export default function HomePage({
       : ""
   );
   const [sortBy, setSortBy] = useState<"nearest" | "date">("nearest");
+  const visibleEventsResetKey = useMemo(
+    () => [
+      dateFilter,
+      customDate,
+      radiusKm,
+      isAllPoland,
+      category,
+      location.label,
+      location.latitude,
+      location.longitude,
+      priceMode,
+      maxPrice,
+      sortBy
+    ].join("|"),
+    [dateFilter, customDate, radiusKm, isAllPoland, category, location, priceMode, maxPrice, sortBy]
+  );
+  const [visibleEventsPage, setVisibleEventsPage] = useState({
+    count: EVENTS_PAGE_SIZE,
+    resetKey: visibleEventsResetKey
+  });
 
   // Routing contexts
   const isCategoryPage = !!initialCategory && !initialLocation;
@@ -174,6 +196,19 @@ export default function HomePage({
       }))
       .sort((a, b) => b.count - a.count);
   }, [categoryOptions, filteredEvents]);
+
+  const visibleEvents = useMemo(
+    () => {
+      const count =
+        visibleEventsPage.resetKey === visibleEventsResetKey
+          ? visibleEventsPage.count
+          : EVENTS_PAGE_SIZE;
+      return filteredEvents.slice(0, count);
+    },
+    [filteredEvents, visibleEventsPage, visibleEventsResetKey]
+  );
+
+  const hiddenEventsCount = Math.max(filteredEvents.length - visibleEvents.length, 0);
 
   // Handlers
   function handleLocationSelect(loc: KnownLocation) {
@@ -405,11 +440,26 @@ export default function HomePage({
 
             {filteredEvents.length > 0 ? (
               <div className="eventsList">
-                {filteredEvents.slice(0, 20).map(({ event, distanceKm }) => (
+                {visibleEvents.map(({ event, distanceKm }) => (
                   <EventCard key={event.id} event={event} distanceKm={distanceKm} />
                 ))}
-                {filteredEvents.length > 20 && (
-                  <button type="button" className="showMoreBtn">
+                {hiddenEventsCount > 0 && (
+                  <button
+                    type="button"
+                    className="showMoreBtn"
+                    onClick={() => {
+                      setVisibleEventsPage((page) => {
+                        const currentCount =
+                          page.resetKey === visibleEventsResetKey
+                            ? page.count
+                            : EVENTS_PAGE_SIZE;
+                        return {
+                          count: Math.min(currentCount + EVENTS_PAGE_SIZE, filteredEvents.length),
+                          resetKey: visibleEventsResetKey
+                        };
+                      });
+                    }}
+                  >
                     Pokaż więcej wydarzeń
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9" /></svg>
                   </button>
