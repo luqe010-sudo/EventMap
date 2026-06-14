@@ -177,14 +177,6 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
               {link.label}
             </Link>
           ))}
-          {dashboardHref ? (
-            <Link
-              href={dashboardHref}
-              className={`navLink${isActive(dashboardHref) ? " navLinkActive" : ""}`}
-            >
-              Panel
-            </Link>
-          ) : null}
         </div>
 
         {/* ── Right: Auth area (desktop) ── */}
@@ -272,16 +264,6 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
               <span>{link.label}</span>
             </Link>
           ))}
-          {dashboardHref && (
-            <Link
-              href={dashboardHref}
-              className={`navMobileLink${isActive(dashboardHref) ? " navMobileLinkActive" : ""}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              <IconPanel />
-              <span>Panel</span>
-            </Link>
-          )}
         </div>
 
         <div className="navMobileDivider" />
@@ -296,6 +278,16 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
                   <span className="navMobileUserRole">{roleLabel}</span>
                 </div>
               </div>
+              {dashboardHref && (
+                <Link
+                  href={dashboardHref}
+                  className="navMobilePanelBtn"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <IconPanel />
+                  <span>Panel zarządzania</span>
+                </Link>
+              )}
               <form action="/auth/sign-out" method="post">
                 <button type="submit" className="navMobileLogoutBtn">
                   <IconLogout />

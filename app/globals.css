@@ -709,7 +709,7 @@ a { color: inherit; text-decoration: none; }
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 10000;
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   background: rgba(250, 249, 247, 0.88);
@@ -1169,6 +1169,38 @@ a { color: inherit; text-decoration: none; }
   background: #fef2ee;
   border-color: var(--brand);
   color: var(--brand-dark);
+}
+
+.navMobilePanelBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-soft);
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.navMobilePanelBtn:hover {
+  background: var(--brand-light);
+  border-color: var(--brand-light);
+  color: var(--brand);
+}
+
+.navMobilePanelBtn svg {
+  color: var(--ink-secondary);
+  transition: all var(--transition);
+}
+
+.navMobilePanelBtn:hover svg {
+  color: var(--brand);
 }
 
 .navMobileLoginBtn {
@@ -4779,7 +4811,7 @@ a.edSourceItem:hover .edSourceArrow {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.3);
-    z-index: 998;
+    z-index: 10001;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     animation: navOverlayIn 0.25s ease forwards;
@@ -4793,7 +4825,7 @@ a.edSourceItem:hover .edSourceArrow {
     right: 0;
     bottom: 0;
     background: var(--bg-card);
-    z-index: 999;
+    z-index: 10002;
     padding: 16px 20px 24px;
     overflow-y: auto;
     transform: translateY(-100%);
