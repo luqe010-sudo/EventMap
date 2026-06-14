@@ -156,8 +156,9 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
   ];
 
   return (
-    <nav className="navbar" aria-label="Nawigacja główna">
-      <div className="navbarInner">
+    <>
+      <nav className="navbar" aria-label="Nawigacja główna">
+        <div className="navbarInner">
         {/* ── Left: Logo ── */}
         <div className="navLeft">
           <Link href="/" className="navLogo">
@@ -246,6 +247,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
           <span />
         </button>
       </div>
+      </nav>
 
       {/* ── Mobile overlay + menu ── */}
       {menuOpen && (
@@ -303,6 +305,6 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
           )}
         </div>
       </div>
-    </nav>
+    </>
   );
 }
