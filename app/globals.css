@@ -725,6 +725,8 @@ a { color: inherit; text-decoration: none; }
   justify-content: space-between;
   align-items: center;
   height: 64px;
+  position: relative;
+  z-index: 10005;
 }
 
 .navLogo {
@@ -4830,12 +4832,15 @@ a.edSourceItem:hover .edSourceArrow {
     overflow-y: auto;
     transform: translateY(-100%);
     opacity: 0;
+    visibility: hidden;
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .navMobileMenuOpen {
     transform: translateY(0);
     opacity: 1;
+    visibility: visible;
   }
 
   .filtersPanel {
