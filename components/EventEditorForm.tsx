@@ -87,6 +87,12 @@ export default function EventEditorForm({
             </select>
           </label>
         ) : null}
+        {mode === "admin" ? (
+          <label className="checkboxLabel">
+            <input name="is_featured" type="checkbox" defaultChecked={Boolean(event?.is_featured)} />
+            Promowane
+          </label>
+        ) : null}
       </div>
 
       {mode === "admin" ? (

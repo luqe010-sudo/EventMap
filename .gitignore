@@ -34,3 +34,6 @@ supabase/.temp/
 # local duplicate/exported artifacts
 /background.png
 ChatGPT Image*.png
+importers/ebilet/.import-state.json
+importers/ebilet/.env
+importers/ebilet/.ai-debug/

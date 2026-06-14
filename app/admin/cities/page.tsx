@@ -1,11 +1,16 @@
 import Link from "next/link";
 import AdminSectionNav from "@/components/AdminSectionNav";
-import { listAdminCityPages } from "@/lib/admin-city-pages";
+import AdminTableFilters from "@/components/AdminTableFilters";
+import { type AdminCityPageFilters, listAdminCityPages } from "@/lib/admin-city-pages";
+import { formatPolishDate } from "@/lib/date-format";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminCitiesPage() {
-  const cityPages = await listAdminCityPages();
+type SearchParams = Record<string, string | string[] | undefined>;
+
+export default async function AdminCitiesPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  const filters = parseCityPageFilters(await searchParams);
+  const cityPages = await listAdminCityPages(filters);
 
   return (
     <main className="appShell managementShell">
@@ -19,6 +24,19 @@ export default async function AdminCitiesPage() {
 
       <AdminSectionNav active="cities" />
 
+      <AdminTableFilters
+        action="/admin/cities"
+        values={filters}
+        resultCount={cityPages.length}
+        fields={[
+          { name: "q", label: "Szukaj", placeholder: "Miasto, slug, opis..." },
+          { name: "voivodeship", label: "Wojewodztwo" },
+          { name: "status", label: "Status", type: "select", options: statusOptions },
+          { name: "events", label: "Wydarzenia", type: "select", options: eventCountOptions }
+        ]}
+        sortOptions={citySortOptions}
+      />
+
       <section className="managementPanel">
         <div className="managementTableWrap">
           <table className="managementTable">
@@ -30,6 +48,8 @@ export default async function AdminCitiesPage() {
                 <th>Wojewodztwo</th>
                 <th>Centrum</th>
                 <th>Wydarzenia</th>
+                <th>Dodano</th>
+                <th>Edytowano</th>
                 <th>Akcje</th>
               </tr>
             </thead>
@@ -46,6 +66,8 @@ export default async function AdminCitiesPage() {
                   <td>{cityPage.city?.voivodeship ?? "-"}</td>
                   <td>{formatCoordinates(cityPage.city?.latitude ?? null, cityPage.city?.longitude ?? null)}</td>
                   <td>{cityPage.eventCount}</td>
+                  <td>{cityPage.created_at ? formatDate(cityPage.created_at) : "-"}</td>
+                  <td>{cityPage.updated_at ? formatDate(cityPage.updated_at) : "-"}</td>
                   <td>
                     <div className="tableActions">
                       <Link href={`/admin/cities/${cityPage.id}/edit`}>Edytuj</Link>
@@ -55,8 +77,8 @@ export default async function AdminCitiesPage() {
               ))}
               {cityPages.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="emptyTableCell">
-                    Brak stron miast.
+                  <td colSpan={9} className="emptyTableCell">
+                    Brak miast dla wybranych filtrow.
                   </td>
                 </tr>
               ) : null}
@@ -71,4 +93,44 @@ export default async function AdminCitiesPage() {
 function formatCoordinates(latitude: number | null, longitude: number | null) {
   if (latitude == null || longitude == null) return "Brak centrum";
   return `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+}
+
+const statusOptions = [
+  { label: "Aktywne", value: "active" },
+  { label: "Wylaczone", value: "inactive" }
+];
+
+const eventCountOptions = [
+  { label: "Z wydarzeniami", value: "with" },
+  { label: "Bez wydarzen", value: "without" }
+];
+
+const citySortOptions = [
+  { label: "Miasto", value: "name" },
+  { label: "Slug", value: "slug" },
+  { label: "Wojewodztwo", value: "voivodeship" },
+  { label: "Liczba wydarzen", value: "events" },
+  { label: "Dodano", value: "created_at" },
+  { label: "Edytowano", value: "updated_at" },
+  { label: "Status", value: "status" }
+];
+
+function parseCityPageFilters(params: SearchParams): AdminCityPageFilters {
+  return {
+    q: readParam(params.q),
+    voivodeship: readParam(params.voivodeship),
+    status: readParam(params.status),
+    events: readParam(params.events),
+    sort: readParam(params.sort) ?? "name",
+    dir: readParam(params.dir) ?? "asc"
+  };
+}
+
+function readParam(value: string | string[] | undefined) {
+  const item = Array.isArray(value) ? value[0] : value;
+  return item?.trim() || undefined;
+}
+
+function formatDate(value: string) {
+  return formatPolishDate(value, { dateStyle: "medium", timeStyle: "short" });
 }

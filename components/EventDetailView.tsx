@@ -4,7 +4,7 @@ import EventAnalyticsTracker, { TrackedEventLink } from "@/components/EventAnaly
 import EventDetailMap from "@/components/EventDetailMap";
 import ExpandableDescription from "@/components/ExpandableDescription";
 import { type EventItem, isFreeEvent } from "@/lib/events";
-import { formatPolishDate } from "@/lib/date-format";
+import { formatPolishDate, getDateKeyInAppTimeZone } from "@/lib/date-format";
 import { categoryPath, eventPath, toSlug, toPluralCategoryName, toPluralCategorySlug, formatInCity } from "@/lib/slugs";
 
 type EventDetailViewProps = {
@@ -426,8 +426,8 @@ function formatDateRange(start: string, end: string | null) {
 
   if (!end) return `${startLabel}, ${startTime}`;
 
-  const startDay = new Date(start).toDateString();
-  const endDay = new Date(end).toDateString();
+  const startDay = getDateKeyInAppTimeZone(start);
+  const endDay = getDateKeyInAppTimeZone(end);
   const endTime = formatPolishDate(end, { hour: "2-digit", minute: "2-digit" });
 
   if (startDay === endDay) {
@@ -450,8 +450,8 @@ function formatCompactDate(start: string, end?: string | null) {
   });
   if (!end) return startDate;
 
-  const startDay = new Date(start).toDateString();
-  const endDay = new Date(end).toDateString();
+  const startDay = getDateKeyInAppTimeZone(start);
+  const endDay = getDateKeyInAppTimeZone(end);
   if (startDay === endDay) return startDate;
 
   const endDate = formatPolishDate(end, {

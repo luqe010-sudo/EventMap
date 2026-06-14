@@ -7,6 +7,7 @@ import { requireAdmin } from "@/lib/auth";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
 import { formString } from "@/lib/event-editor";
 import { resolveCityIdFromForm, type CitySummary } from "@/lib/cities";
+import { normalizeSearchText } from "@/lib/slugify";
 
 type Tables = Database["public"]["Tables"];
 type CityPageRow = Tables["city_pages"]["Row"];
@@ -18,14 +19,23 @@ export type AdminCityPage = CityPageRow & {
   eventCount: number;
 };
 
-export async function listAdminCityPages(): Promise<AdminCityPage[]> {
+export type AdminCityPageFilters = {
+  q?: string;
+  status?: string;
+  voivodeship?: string;
+  events?: string;
+  sort?: string;
+  dir?: string;
+};
+
+export async function listAdminCityPages(filters: AdminCityPageFilters = {}): Promise<AdminCityPage[]> {
   await requireAdmin();
   const supabase = await createSupabaseUserClient();
   const [cityPagesResponse, eventsResponse] = await Promise.all([
     supabase
       .from("city_pages")
       .select("*, city:cities(id, name, slug, county, voivodeship, latitude, longitude, is_active)")
-      .limit(500),
+      .limit(1000),
     supabase
       .from("events")
       .select("location:locations(city_id)")
@@ -42,10 +52,12 @@ export async function listAdminCityPages(): Promise<AdminCityPage[]> {
     eventCountsByCityId.set(cityId, (eventCountsByCityId.get(cityId) ?? 0) + 1);
   }
 
-  return (cityPagesResponse.data ?? []).map((cityPage) => ({
+  const cityPages = (cityPagesResponse.data ?? []).map((cityPage) => ({
     ...cityPage,
     eventCount: cityPage.city_id ? eventCountsByCityId.get(cityPage.city_id) ?? 0 : 0
-  })).sort((first, second) => (first.city?.name ?? "").localeCompare(second.city?.name ?? "", "pl"));
+  }));
+
+  return sortAdminCityPages(filterAdminCityPages(cityPages, filters), filters);
 }
 
 export async function getAdminCityPageForEdit(id: string): Promise<AdminCityPage | null> {
@@ -153,6 +165,57 @@ function buildCityPagePayload(formData: FormData, cityId: string): CityPageInser
     meta_description: formString(formData, "meta_description"),
     intro_text: formString(formData, "intro_text")
   };
+}
+
+function filterAdminCityPages(cityPages: AdminCityPage[], filters: AdminCityPageFilters) {
+  const q = normalizeSearch(filters.q);
+  const voivodeship = normalizeSearch(filters.voivodeship);
+
+  return cityPages.filter((cityPage) => {
+    if (filters.status === "active" && cityPage.city?.is_active !== true) return false;
+    if (filters.status === "inactive" && cityPage.city?.is_active === true) return false;
+    if (filters.events === "with" && cityPage.eventCount === 0) return false;
+    if (filters.events === "without" && cityPage.eventCount > 0) return false;
+    if (voivodeship && !normalizeSearch(cityPage.city?.voivodeship).includes(voivodeship)) return false;
+    if (q && ![
+      cityPage.city?.name,
+      cityPage.city?.slug,
+      cityPage.city?.county,
+      cityPage.city?.voivodeship,
+      cityPage.meta_title,
+      cityPage.meta_description,
+      cityPage.intro_text
+    ].some((value) => normalizeSearch(value).includes(q))) {
+      return false;
+    }
+    return true;
+  });
+}
+
+function sortAdminCityPages(cityPages: AdminCityPage[], filters: AdminCityPageFilters) {
+  const sort = filters.sort ?? "name";
+  const direction = filters.dir === "desc" ? -1 : 1;
+  return [...cityPages].sort((first, second) => compareCityPageValue(first, second, sort) * direction);
+}
+
+function compareCityPageValue(first: AdminCityPage, second: AdminCityPage, sort: string) {
+  if (sort === "slug") return (first.city?.slug ?? "").localeCompare(second.city?.slug ?? "", "pl");
+  if (sort === "voivodeship") return (first.city?.voivodeship ?? "").localeCompare(second.city?.voivodeship ?? "", "pl");
+  if (sort === "events") return first.eventCount - second.eventCount;
+  if (sort === "created_at") return dateValue(first.created_at) - dateValue(second.created_at);
+  if (sort === "updated_at") return dateValue(first.updated_at) - dateValue(second.updated_at);
+  if (sort === "status") return Number(Boolean(first.city?.is_active)) - Number(Boolean(second.city?.is_active));
+  return (first.city?.name ?? "").localeCompare(second.city?.name ?? "", "pl");
+}
+
+function normalizeSearch(value: string | null | undefined) {
+  return normalizeSearchText(value).trim();
+}
+
+function dateValue(value: string | null | undefined) {
+  if (!value) return 0;
+  const time = new Date(value).getTime();
+  return Number.isFinite(time) ? time : 0;
 }
 
 function revalidateCityPagePaths() {

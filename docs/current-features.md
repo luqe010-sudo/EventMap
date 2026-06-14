@@ -323,3 +323,8 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 ## Ostatnie aktualizacje UI
 
 - Lista publiczna wydarzen pokazuje poczatkowo 20 kart, a przycisk `Pokaz wiecej wydarzen` doladowuje kolejne porcje po 20 wynikow i znika po wyswietleniu calej przefiltrowanej listy.
+- Publiczne formatowanie dat traktuje wartosci wydarzen bez jawnej strefy jako czas lokalny `Europe/Warsaw`, zeby nie pokazywac godziny przesunietej o offset serwera.
+- Formularz admina wydarzen pozwala ustawic flage `is_featured` przez checkbox `Promowane`.
+- Strona glowna dociaga promowane wydarzenia osobnym zapytaniem i pokazuje je w sekcji `Polecane wydarzenia` bez ograniczenia do najblizszego tygodnia.
+- Tabele panelu admina dla wydarzen, kolejki review, organizatorow, lokalizacji, kategorii i miast SEO maja filtry, wyszukiwarke oraz sortowanie po kluczowych polach rekordow.
+- Generowanie slugow transliteruje polskie znaki, np. `Łódź` -> `lodz`, `Wrocław` -> `wroclaw`, zamiast zamieniac je na myslniki.

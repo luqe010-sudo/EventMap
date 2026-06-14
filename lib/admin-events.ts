@@ -5,8 +5,9 @@ import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/auth";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
 import type { Database } from "@/database.types";
-import { assertEventStatus, editableEventSelect, formString, type EditableEvent, type EventStatus } from "@/lib/event-editor";
+import { assertEventStatus, editableEventSelect, formBoolean, formString, type EditableEvent, type EventStatus } from "@/lib/event-editor";
 import { buildEventWritePayload, deleteEventRelations, saveEventSource } from "@/lib/event-editor-server";
+import { normalizeSearchText } from "@/lib/slugify";
 
 type Tables = Database["public"]["Tables"];
 type EventInsert = Tables["events"]["Insert"];
@@ -18,10 +19,13 @@ const ADMIN_EVENT_LIST_SELECT = `
   id,
   title,
   created_at,
+  updated_at,
   start_at,
+  published_at,
   status,
   visibility,
   review_note,
+  is_featured,
   submitted_by_organizer_id,
   category:categories(name),
   location:locations(city:cities(name)),
@@ -32,14 +36,34 @@ export type AdminEventListItem = {
   id: string;
   title: string;
   created_at: string | null;
+  updated_at: string | null;
   start_at: string;
+  published_at: string | null;
   status: string | null;
   visibility: string | null;
   review_note: string | null;
+  is_featured: boolean | null;
   submitted_by_organizer_id: string | null;
   category: { name: string } | null;
   location: { city: { name: string } | null } | null;
   organizer: { name: string } | null;
+};
+
+export type AdminEventListFilters = {
+  q?: string;
+  status?: string;
+  category?: string;
+  city?: string;
+  organizer?: string;
+  featured?: string;
+  eventFrom?: string;
+  eventTo?: string;
+  createdFrom?: string;
+  createdTo?: string;
+  publishedFrom?: string;
+  publishedTo?: string;
+  sort?: string;
+  dir?: string;
 };
 
 export async function getAdminDashboard() {
@@ -68,33 +92,46 @@ export async function getAdminDashboard() {
   };
 }
 
-export async function listAdminEvents() {
+export async function listAdminEvents(filters: AdminEventListFilters = {}) {
   await requireAdmin();
   const supabase = await createSupabaseUserClient();
-  const { data, error } = await supabase
+  let query = supabase
     .from("events")
-    .select(ADMIN_EVENT_LIST_SELECT)
-    .order("start_at", { ascending: false })
-    .limit(250)
+    .select(ADMIN_EVENT_LIST_SELECT);
+
+  query = applyAdminEventDateFilters(query, filters);
+
+  if (filters.status) query = query.eq("status", filters.status);
+  if (filters.featured === "yes") query = query.eq("is_featured", true);
+  if (filters.featured === "no") query = query.or("is_featured.is.null,is_featured.eq.false");
+
+  const { data, error } = await query
+    .limit(1000)
     .returns<AdminEventListItem[]>();
 
   if (error) throw new Error(`Nie udalo sie pobrac wydarzen admina: ${error.message}`);
-  return data ?? [];
+  return sortAdminEvents(filterAdminEvents(data ?? [], filters), filters);
 }
 
-export async function listAdminReviewEvents() {
+export async function listAdminReviewEvents(filters: AdminEventListFilters = {}) {
   await requireAdmin();
   const supabase = await createSupabaseUserClient();
-  const { data, error } = await supabase
+  let query = supabase
     .from("events")
     .select(ADMIN_EVENT_LIST_SELECT)
-    .in("status", ["draft", "pending_review"])
-    .order("created_at", { ascending: false })
-    .limit(250)
+    .in("status", ["draft", "pending_review"]);
+
+  query = applyAdminEventDateFilters(query, filters);
+
+  const { data, error } = await query
+    .limit(1000)
     .returns<AdminEventListItem[]>();
 
   if (error) throw new Error(`Nie udalo sie pobrac wydarzen do zatwierdzenia: ${error.message}`);
-  return data ?? [];
+  return sortAdminEvents(filterAdminEvents(data ?? [], filters), {
+    ...filters,
+    sort: filters.sort ?? "created_at"
+  });
 }
 
 export async function getAdminEventEditorOptions() {
@@ -146,6 +183,7 @@ export async function adminCreateEventAction(formData: FormData) {
     createdBy: admin.userId
   });
   event.review_note = status === "rejected" ? formString(formData, "review_note") : null;
+  event.is_featured = formBoolean(formData, "is_featured");
 
   const { data, error } = await supabase
     .from("events")
@@ -172,6 +210,7 @@ export async function adminUpdateEventAction(eventId: string, formData: FormData
     status
   });
   event.review_note = status === "rejected" ? reviewNote : reviewNote ?? null;
+  event.is_featured = formBoolean(formData, "is_featured");
 
   const { error } = await supabase
     .from("events")
@@ -255,6 +294,84 @@ function revalidateAdminPaths() {
   revalidatePath("/organizer/events");
   revalidatePath("/organizer/stats");
   revalidatePath("/");
+}
+
+function applyAdminEventDateFilters<T extends { gte: (column: string, value: string) => T; lte: (column: string, value: string) => T }>(
+  query: T,
+  filters: AdminEventListFilters
+) {
+  let next = query;
+  if (filters.eventFrom) next = next.gte("start_at", startOfDayIso(filters.eventFrom));
+  if (filters.eventTo) next = next.lte("start_at", endOfDayIso(filters.eventTo));
+  if (filters.createdFrom) next = next.gte("created_at", startOfDayIso(filters.createdFrom));
+  if (filters.createdTo) next = next.lte("created_at", endOfDayIso(filters.createdTo));
+  if (filters.publishedFrom) next = next.gte("published_at", startOfDayIso(filters.publishedFrom));
+  if (filters.publishedTo) next = next.lte("published_at", endOfDayIso(filters.publishedTo));
+  return next;
+}
+
+function filterAdminEvents(events: AdminEventListItem[], filters: AdminEventListFilters) {
+  const q = normalizeSearch(filters.q);
+  const category = normalizeSearch(filters.category);
+  const city = normalizeSearch(filters.city);
+  const organizer = normalizeSearch(filters.organizer);
+
+  return events.filter((event) => {
+    if (q && ![
+      event.title,
+      event.status,
+      event.category?.name,
+      event.location?.city?.name,
+      event.organizer?.name,
+      event.review_note
+    ].some((value) => normalizeSearch(value).includes(q))) {
+      return false;
+    }
+    if (category && !normalizeSearch(event.category?.name).includes(category)) return false;
+    if (city && !normalizeSearch(event.location?.city?.name).includes(city)) return false;
+    if (organizer && !normalizeSearch(event.organizer?.name).includes(organizer)) return false;
+    return true;
+  });
+}
+
+function sortAdminEvents(events: AdminEventListItem[], filters: AdminEventListFilters) {
+  const sort = filters.sort ?? "created_at";
+  const direction = filters.dir === "asc" ? 1 : -1;
+
+  return [...events].sort((first, second) => {
+    const result = compareAdminEventValue(first, second, sort);
+    return result * direction;
+  });
+}
+
+function compareAdminEventValue(first: AdminEventListItem, second: AdminEventListItem, sort: string) {
+  if (sort === "title") return first.title.localeCompare(second.title, "pl");
+  if (sort === "category") return (first.category?.name ?? "").localeCompare(second.category?.name ?? "", "pl");
+  if (sort === "city") return (first.location?.city?.name ?? "").localeCompare(second.location?.city?.name ?? "", "pl");
+  if (sort === "organizer") return (first.organizer?.name ?? "").localeCompare(second.organizer?.name ?? "", "pl");
+  if (sort === "status") return (first.status ?? "").localeCompare(second.status ?? "", "pl");
+  if (sort === "published_at") return dateValue(first.published_at) - dateValue(second.published_at);
+  if (sort === "updated_at") return dateValue(first.updated_at) - dateValue(second.updated_at);
+  if (sort === "start_at") return dateValue(first.start_at) - dateValue(second.start_at);
+  return dateValue(first.created_at) - dateValue(second.created_at);
+}
+
+function normalizeSearch(value: string | null | undefined) {
+  return normalizeSearchText(value).trim();
+}
+
+function dateValue(value: string | null | undefined) {
+  if (!value) return 0;
+  const time = new Date(value).getTime();
+  return Number.isFinite(time) ? time : 0;
+}
+
+function startOfDayIso(value: string) {
+  return `${value}T00:00:00.000Z`;
+}
+
+function endOfDayIso(value: string) {
+  return `${value}T23:59:59.999Z`;
 }
 
 async function getAdminEventStatusSnapshot(eventId: string) {

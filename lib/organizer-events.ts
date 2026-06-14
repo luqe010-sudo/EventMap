@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { getCurrentUserContext, getPrimaryOrganizerId, requireOrganizerAccess, type OrganizerMembership } from "@/lib/auth";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
 import type { Database } from "@/database.types";
-import { createSlug, editableEventSelect, formString, type EditableEvent } from "@/lib/event-editor";
+import { createSlug, editableEventSelect, formSlug, formString, type EditableEvent } from "@/lib/event-editor";
 import { buildEventWritePayload, saveEventSource } from "@/lib/event-editor-server";
 
 type Tables = Database["public"]["Tables"];
@@ -472,7 +472,7 @@ export async function organizerUpdateProfileAction(organizerId: string, formData
 
   const payload: OrganizerUpdate = {
     name,
-    slug: formString(formData, "slug") ?? createSlug(name),
+    slug: formSlug(formData, "slug") ?? createSlug(name),
     website: formString(formData, "website"),
     facebook_url: formString(formData, "facebook_url"),
     instagram_url: formString(formData, "instagram_url"),

@@ -171,7 +171,7 @@ export default function HomePage({
   // Featured events
   const featuredEvents = useMemo(
     () => filterEvents(initialEvents, {
-      dateFilter: "week",
+      dateFilter: "all",
       customDate: "",
       radiusKm: null,
       category: "Wszystkie",

@@ -1,5 +1,6 @@
 import type { EventCategory, EventItem, KnownLocation } from "./events";
 import { isFreeEvent } from "./events";
+import { toAppDate } from "./date-format";
 
 export type DateFilter = "today" | "tomorrow" | "weekend" | "week" | "custom" | "all";
 export type PriceFilterMode = "all" | "free" | "max";
@@ -164,7 +165,7 @@ export function filterEvents(events: EventItem[], filters: EventFilters, now = n
       distanceKm: distanceInKm(filters.location, event)
     }))
     .filter(({ event, distanceKm }) => {
-      const eventDate = new Date(event.startDate);
+      const eventDate = toAppDate(event.startDate);
       const matchesDate = eventDate >= start && (end === null || eventDate < end);
       const matchesRadius = filters.radiusKm == null || !Number.isFinite(distanceKm) || distanceKm <= filters.radiusKm;
       const matchesCategory = filters.category === "Wszystkie" || event.category === filters.category;
@@ -173,7 +174,7 @@ export function filterEvents(events: EventItem[], filters: EventFilters, now = n
       return matchesDate && matchesRadius && matchesCategory && matchesFree && matchesPrice;
     })
     .sort((first, second) => {
-      const dateDelta = new Date(first.event.startDate).getTime() - new Date(second.event.startDate).getTime();
+      const dateDelta = toAppDate(first.event.startDate).getTime() - toAppDate(second.event.startDate).getTime();
       const firstDistance = Number.isFinite(first.distanceKm) ? first.distanceKm : Number.MAX_SAFE_INTEGER;
       const secondDistance = Number.isFinite(second.distanceKm) ? second.distanceKm : Number.MAX_SAFE_INTEGER;
       return dateDelta || firstDistance - secondDistance;

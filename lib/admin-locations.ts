@@ -7,6 +7,7 @@ import { requireAdmin } from "@/lib/auth";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
 import { formNumber, formString } from "@/lib/event-editor";
 import { resolveCityIdFromForm, type CitySummary } from "@/lib/cities";
+import { normalizeSearchText } from "@/lib/slugify";
 
 type Tables = Database["public"]["Tables"];
 type LocationRow = Tables["locations"]["Row"];
@@ -19,7 +20,17 @@ export type AdminLocation = LocationRow & {
   duplicateGroupSize: number;
 };
 
-export async function listAdminLocations(): Promise<AdminLocation[]> {
+export type AdminLocationFilters = {
+  q?: string;
+  city?: string;
+  voivodeship?: string;
+  events?: string;
+  duplicates?: string;
+  sort?: string;
+  dir?: string;
+};
+
+export async function listAdminLocations(filters: AdminLocationFilters = {}): Promise<AdminLocation[]> {
   await requireAdmin();
   const supabase = await createSupabaseUserClient();
   const [locationsResponse, eventsResponse] = await Promise.all([
@@ -52,15 +63,13 @@ export async function listAdminLocations(): Promise<AdminLocation[]> {
   const rows = locationsResponse.data ?? [];
   const duplicateCounts = buildDuplicateCounts(rows);
 
-  return rows.map((location) => ({
+  const enriched = rows.map((location) => ({
     ...location,
     eventCount: eventCounts.get(location.id) ?? 0,
     duplicateGroupSize: duplicateCounts.get(buildDuplicateKey(location)) ?? 0
-  })).sort((first, second) => {
-    const firstCity = first.city?.name ?? "";
-    const secondCity = second.city?.name ?? "";
-    return firstCity.localeCompare(secondCity, "pl") || (first.name ?? "").localeCompare(second.name ?? "", "pl");
-  });
+  }));
+
+  return sortAdminLocations(filterAdminLocations(enriched, filters), filters);
 }
 
 export async function getAdminLocationForEdit(id: string): Promise<AdminLocation | null> {
@@ -205,6 +214,62 @@ const DUPLICATE_STOP_WORDS = new Set([
   "ul",
   "im"
 ]);
+
+function filterAdminLocations(locations: AdminLocation[], filters: AdminLocationFilters) {
+  const q = normalizeSearch(filters.q);
+  const city = normalizeSearch(filters.city);
+  const voivodeship = normalizeSearch(filters.voivodeship);
+
+  return locations.filter((location) => {
+    if (q && ![
+      location.name,
+      location.address,
+      location.city?.name,
+      location.city?.slug,
+      location.postal_code,
+      location.municipality,
+      location.county,
+      location.voivodeship,
+      location.place_id
+    ].some((value) => normalizeSearch(value).includes(q))) {
+      return false;
+    }
+    if (city && !normalizeSearch(location.city?.name).includes(city)) return false;
+    if (voivodeship && !normalizeSearch(location.voivodeship ?? location.city?.voivodeship).includes(voivodeship)) return false;
+    if (filters.events === "with" && location.eventCount === 0) return false;
+    if (filters.events === "without" && location.eventCount > 0) return false;
+    if (filters.duplicates === "yes" && location.duplicateGroupSize <= 1) return false;
+    return true;
+  });
+}
+
+function sortAdminLocations(locations: AdminLocation[], filters: AdminLocationFilters) {
+  const sort = filters.sort ?? "city";
+  const direction = filters.dir === "desc" ? -1 : 1;
+  return [...locations].sort((first, second) => compareLocationValue(first, second, sort) * direction);
+}
+
+function compareLocationValue(first: AdminLocation, second: AdminLocation, sort: string) {
+  if (sort === "name") return (first.name ?? "").localeCompare(second.name ?? "", "pl");
+  if (sort === "address") return (first.address ?? "").localeCompare(second.address ?? "", "pl");
+  if (sort === "events") return first.eventCount - second.eventCount;
+  if (sort === "duplicates") return first.duplicateGroupSize - second.duplicateGroupSize;
+  if (sort === "created_at") return dateValue(first.created_at) - dateValue(second.created_at);
+  if (sort === "updated_at") return dateValue(first.updated_at) - dateValue(second.updated_at);
+  const firstCity = first.city?.name ?? "";
+  const secondCity = second.city?.name ?? "";
+  return firstCity.localeCompare(secondCity, "pl") || (first.name ?? "").localeCompare(second.name ?? "", "pl");
+}
+
+function normalizeSearch(value: string | null | undefined) {
+  return normalizeSearchText(value).trim();
+}
+
+function dateValue(value: string | null | undefined) {
+  if (!value) return 0;
+  const time = new Date(value).getTime();
+  return Number.isFinite(time) ? time : 0;
+}
 
 function revalidateLocationPaths() {
   revalidatePath("/admin");

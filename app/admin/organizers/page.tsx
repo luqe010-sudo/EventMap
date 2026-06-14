@@ -1,11 +1,16 @@
 import Link from "next/link";
 import AdminSectionNav from "@/components/AdminSectionNav";
-import { listAdminOrganizers } from "@/lib/admin-organizers";
+import AdminTableFilters from "@/components/AdminTableFilters";
+import { type AdminOrganizerFilters, listAdminOrganizers } from "@/lib/admin-organizers";
+import { formatPolishDate } from "@/lib/date-format";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminOrganizersPage() {
-  const organizers = await listAdminOrganizers();
+type SearchParams = Record<string, string | string[] | undefined>;
+
+export default async function AdminOrganizersPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  const filters = parseOrganizerFilters(await searchParams);
+  const organizers = await listAdminOrganizers(filters);
 
   return (
     <main className="appShell managementShell">
@@ -19,6 +24,18 @@ export default async function AdminOrganizersPage() {
 
       <AdminSectionNav active="organizers" />
 
+      <AdminTableFilters
+        action="/admin/organizers"
+        values={filters}
+        resultCount={organizers.length}
+        fields={[
+          { name: "q", label: "Szukaj", placeholder: "Nazwa, slug, kontakt, owner..." },
+          { name: "type", label: "Typ", placeholder: "np. firma" },
+          { name: "verified", label: "Weryfikacja", type: "select", options: verifiedOptions }
+        ]}
+        sortOptions={organizerSortOptions}
+      />
+
       <section className="managementPanel">
         <div className="managementTableWrap">
           <table className="managementTable">
@@ -29,6 +46,8 @@ export default async function AdminOrganizersPage() {
                 <th>Kontakt</th>
                 <th>Owner</th>
                 <th>Status</th>
+                <th>Dodano</th>
+                <th>Edytowano</th>
                 <th>Akcje</th>
               </tr>
             </thead>
@@ -46,6 +65,8 @@ export default async function AdminOrganizersPage() {
                     <td>
                       <span className="statusPill">{organizer.is_verified ? "verified" : "new"}</span>
                     </td>
+                    <td>{organizer.created_at ? formatDate(organizer.created_at) : "-"}</td>
+                    <td>{organizer.updated_at ? formatDate(organizer.updated_at) : "-"}</td>
                     <td>
                       <div className="tableActions">
                         <Link href={`/admin/organizers/${organizer.id}/edit`}>Edytuj</Link>
@@ -54,10 +75,49 @@ export default async function AdminOrganizersPage() {
                   </tr>
                 );
               })}
+              {organizers.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="emptyTableCell">
+                    Brak organizatorow dla wybranych filtrow.
+                  </td>
+                </tr>
+              ) : null}
             </tbody>
           </table>
         </div>
       </section>
     </main>
   );
+}
+
+const verifiedOptions = [
+  { label: "Zweryfikowani", value: "yes" },
+  { label: "Nowi / bez weryfikacji", value: "no" }
+];
+
+const organizerSortOptions = [
+  { label: "Nazwa", value: "name" },
+  { label: "Dodano", value: "created_at" },
+  { label: "Edytowano", value: "updated_at" },
+  { label: "Typ", value: "type" },
+  { label: "Weryfikacja", value: "verified" }
+];
+
+function parseOrganizerFilters(params: SearchParams): AdminOrganizerFilters {
+  return {
+    q: readParam(params.q),
+    type: readParam(params.type),
+    verified: readParam(params.verified),
+    sort: readParam(params.sort) ?? "name",
+    dir: readParam(params.dir) ?? "asc"
+  };
+}
+
+function readParam(value: string | string[] | undefined) {
+  const item = Array.isArray(value) ? value[0] : value;
+  return item?.trim() || undefined;
+}
+
+function formatDate(value: string) {
+  return formatPolishDate(value, { dateStyle: "medium", timeStyle: "short" });
 }

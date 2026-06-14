@@ -93,15 +93,14 @@ export default function FeaturedEvents({ events }: FeaturedEventsProps) {
 }
 
 function formatFeaturedDate(value: string) {
-  const date = new Date(value);
   const todayKey = getDateKeyInAppTimeZone(new Date());
   const tomorrowKey = addDaysToDateKey(todayKey, 1);
-  const eventKey = getDateKeyInAppTimeZone(date);
-  const timeStr = formatPolishDate(date, { hour: "2-digit", minute: "2-digit" });
+  const eventKey = getDateKeyInAppTimeZone(value);
+  const timeStr = formatPolishDate(value, { hour: "2-digit", minute: "2-digit" });
 
   if (eventKey === todayKey) return `DZIS - ${timeStr}`;
   if (eventKey === tomorrowKey) return `JUTRO - ${timeStr}`;
 
-  const dayStr = formatPolishDate(date, { weekday: "short" }).toUpperCase();
+  const dayStr = formatPolishDate(value, { weekday: "short" }).toUpperCase();
   return `${dayStr} - ${timeStr}`;
 }

@@ -1,12 +1,17 @@
 import Link from "next/link";
 import AdminSectionNav from "@/components/AdminSectionNav";
+import AdminTableFilters from "@/components/AdminTableFilters";
 import DeleteLocationButton from "@/components/DeleteLocationButton";
-import { adminDeleteLocationAction, listAdminLocations } from "@/lib/admin-locations";
+import { type AdminLocationFilters, adminDeleteLocationAction, listAdminLocations } from "@/lib/admin-locations";
+import { formatPolishDate } from "@/lib/date-format";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminLocationsPage() {
-  const locations = await listAdminLocations();
+type SearchParams = Record<string, string | string[] | undefined>;
+
+export default async function AdminLocationsPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  const filters = parseLocationFilters(await searchParams);
+  const locations = await listAdminLocations(filters);
 
   return (
     <main className="appShell managementShell">
@@ -20,6 +25,20 @@ export default async function AdminLocationsPage() {
 
       <AdminSectionNav active="locations" />
 
+      <AdminTableFilters
+        action="/admin/locations"
+        values={filters}
+        resultCount={locations.length}
+        fields={[
+          { name: "q", label: "Szukaj", placeholder: "Miejsce, adres, kod, place id..." },
+          { name: "city", label: "Miasto" },
+          { name: "voivodeship", label: "Wojewodztwo" },
+          { name: "events", label: "Wydarzenia", type: "select", options: eventCountOptions },
+          { name: "duplicates", label: "Duplikaty", type: "select", options: duplicateOptions }
+        ]}
+        sortOptions={locationSortOptions}
+      />
+
       <section className="managementPanel">
         <div className="managementTableWrap">
           <table className="managementTable">
@@ -31,6 +50,8 @@ export default async function AdminLocationsPage() {
                 <th>Administracja</th>
                 <th>Wydarzenia</th>
                 <th>Duplikaty</th>
+                <th>Dodano</th>
+                <th>Edytowano</th>
                 <th>Akcje</th>
               </tr>
             </thead>
@@ -54,6 +75,8 @@ export default async function AdminLocationsPage() {
                       <span className="warningPill">{location.duplicateGroupSize} podobne</span>
                     ) : "-"}
                   </td>
+                  <td>{location.created_at ? formatDate(location.created_at) : "-"}</td>
+                  <td>{location.updated_at ? formatDate(location.updated_at) : "-"}</td>
                   <td>
                     <div className="tableActions">
                       <Link href={`/admin/locations/${location.id}/edit`}>Edytuj</Link>
@@ -69,8 +92,8 @@ export default async function AdminLocationsPage() {
               ))}
               {locations.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="emptyTableCell">
-                    Brak lokalizacji.
+                  <td colSpan={9} className="emptyTableCell">
+                    Brak lokalizacji dla wybranych filtrow.
                   </td>
                 </tr>
               ) : null}
@@ -85,4 +108,44 @@ export default async function AdminLocationsPage() {
 function formatCoordinates(latitude: number | null, longitude: number | null) {
   if (latitude == null || longitude == null) return "Brak pinezki";
   return `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+}
+
+const eventCountOptions = [
+  { label: "Z wydarzeniami", value: "with" },
+  { label: "Bez wydarzen", value: "without" }
+];
+
+const duplicateOptions = [
+  { label: "Tylko podejrzane duplikaty", value: "yes" }
+];
+
+const locationSortOptions = [
+  { label: "Miasto", value: "city" },
+  { label: "Nazwa miejsca", value: "name" },
+  { label: "Adres", value: "address" },
+  { label: "Liczba wydarzen", value: "events" },
+  { label: "Duplikaty", value: "duplicates" },
+  { label: "Dodano", value: "created_at" },
+  { label: "Edytowano", value: "updated_at" }
+];
+
+function parseLocationFilters(params: SearchParams): AdminLocationFilters {
+  return {
+    q: readParam(params.q),
+    city: readParam(params.city),
+    voivodeship: readParam(params.voivodeship),
+    events: readParam(params.events),
+    duplicates: readParam(params.duplicates),
+    sort: readParam(params.sort) ?? "city",
+    dir: readParam(params.dir) ?? "asc"
+  };
+}
+
+function readParam(value: string | string[] | undefined) {
+  const item = Array.isArray(value) ? value[0] : value;
+  return item?.trim() || undefined;
+}
+
+function formatDate(value: string) {
+  return formatPolishDate(value, { dateStyle: "medium", timeStyle: "short" });
 }

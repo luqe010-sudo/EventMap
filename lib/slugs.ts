@@ -1,7 +1,10 @@
 import type { EventCategory, EventItem } from "./events";
 import type { DateFilter, PriceFilterMode } from "./filters";
+import { slugify } from "./slugify";
 
 export function toSlug(text: string): string {
+  return slugify(text);
+  /*
   return text
     .trim()
     .toLowerCase()
@@ -10,6 +13,7 @@ export function toSlug(text: string): string {
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+  */
 }
 
 export function eventToSlug(event: EventItem): string {

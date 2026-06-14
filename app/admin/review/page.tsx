@@ -1,6 +1,8 @@
 import Link from "next/link";
 import AdminSectionNav from "@/components/AdminSectionNav";
+import AdminTableFilters from "@/components/AdminTableFilters";
 import {
+  type AdminEventListFilters,
   adminSetEventStatusAction,
   listAdminReviewEvents
 } from "@/lib/admin-events";
@@ -8,8 +10,11 @@ import { formatPolishDate } from "@/lib/date-format";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminReviewPage() {
-  const events = await listAdminReviewEvents();
+type SearchParams = Record<string, string | string[] | undefined>;
+
+export default async function AdminReviewPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  const filters = parseEventFilters(await searchParams);
+  const events = await listAdminReviewEvents(filters);
 
   return (
     <main className="appShell managementShell">
@@ -21,6 +26,23 @@ export default async function AdminReviewPage() {
       </div>
 
       <AdminSectionNav active="review" />
+
+      <AdminTableFilters
+        action="/admin/review"
+        values={filters}
+        resultCount={events.length}
+        fields={[
+          { name: "q", label: "Szukaj", placeholder: "Tytul, miasto, organizator..." },
+          { name: "category", label: "Kategoria" },
+          { name: "city", label: "Miasto" },
+          { name: "organizer", label: "Organizator" },
+          { name: "eventFrom", label: "Data wydarzenia od", type: "date" },
+          { name: "eventTo", label: "Data wydarzenia do", type: "date" },
+          { name: "createdFrom", label: "Dodano od", type: "date" },
+          { name: "createdTo", label: "Dodano do", type: "date" }
+        ]}
+        sortOptions={eventSortOptions}
+      />
 
       <section className="managementPanel">
         <div className="managementTableWrap">
@@ -83,4 +105,35 @@ export default async function AdminReviewPage() {
 
 function formatDate(value: string) {
   return formatPolishDate(value, { dateStyle: "medium", timeStyle: "short" });
+}
+
+const eventSortOptions = [
+  { label: "Dodano", value: "created_at" },
+  { label: "Edytowano", value: "updated_at" },
+  { label: "Data wydarzenia", value: "start_at" },
+  { label: "Tytul", value: "title" },
+  { label: "Miasto", value: "city" },
+  { label: "Kategoria", value: "category" },
+  { label: "Organizator", value: "organizer" },
+  { label: "Status", value: "status" }
+];
+
+function parseEventFilters(params: SearchParams): AdminEventListFilters {
+  return {
+    q: readParam(params.q),
+    category: readParam(params.category),
+    city: readParam(params.city),
+    organizer: readParam(params.organizer),
+    eventFrom: readParam(params.eventFrom),
+    eventTo: readParam(params.eventTo),
+    createdFrom: readParam(params.createdFrom),
+    createdTo: readParam(params.createdTo),
+    sort: readParam(params.sort) ?? "created_at",
+    dir: readParam(params.dir) ?? "desc"
+  };
+}
+
+function readParam(value: string | string[] | undefined) {
+  const item = Array.isArray(value) ? value[0] : value;
+  return item?.trim() || undefined;
 }

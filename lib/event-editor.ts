@@ -1,4 +1,6 @@
 import type { Database } from "@/database.types";
+import { APP_TIME_ZONE, dateTimeLocalToUtcIso, toAppDate } from "@/lib/date-format";
+import { slugify } from "@/lib/slugify";
 
 type Tables = Database["public"]["Tables"];
 
@@ -63,18 +65,19 @@ export function formBoolean(formData: FormData, key: string) {
 }
 
 export function createSlug(text: string) {
-  return text
-    .trim()
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+  return slugify(text);
+}
+
+export function formSlug(formData: FormData, key: string) {
+  const value = formString(formData, key);
+  return value ? createSlug(value) : null;
 }
 
 export function normalizeDateTimeLocal(value: string | null) {
   if (!value) return null;
-  return new Date(value).toISOString();
+  const text = value.trim();
+  if (!text) return null;
+  return dateTimeLocalToUtcIso(text, APP_TIME_ZONE);
 }
 
 export function assertEventStatus(status: string): asserts status is EventStatus {
@@ -119,8 +122,20 @@ export function editableEventSelect() {
 
 export function toDateTimeLocal(value: string | null | undefined) {
   if (!value) return "";
-  const date = new Date(value);
-  const offset = date.getTimezoneOffset();
-  const local = new Date(date.getTime() - offset * 60 * 1000);
-  return local.toISOString().slice(0, 16);
+  const date = toAppDate(value);
+  if (Number.isNaN(date.getTime())) return "";
+
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: APP_TIME_ZONE,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23"
+    }).formatToParts(date).map((part) => [part.type, part.value])
+  );
+
+  return `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}`;
 }

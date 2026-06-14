@@ -128,6 +128,56 @@
   padding: 18px;
 }
 
+.adminFilterPanel {
+  margin-bottom: 16px;
+}
+
+.adminFiltersForm {
+  display: grid;
+  gap: 14px;
+}
+
+.adminFiltersGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.adminFiltersGrid label {
+  display: grid;
+  gap: 7px;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.adminFiltersGrid input,
+.adminFiltersGrid select {
+  min-height: 40px;
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, 0.16);
+  border-radius: 7px;
+  background: #fff;
+  color: #0f172a;
+  padding: 8px 10px;
+  font: inherit;
+  font-weight: 600;
+}
+
+.adminFiltersActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.adminFiltersActions span {
+  margin-right: auto;
+  color: #64748b;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
 .managementTableWrap {
   overflow-x: auto;
 }
@@ -598,15 +648,21 @@
   .organizerDashboardGrid,
   .organizerSettingsGrid,
   .organizerEditorLayout,
+  .adminFiltersGrid,
   .formGrid {
     grid-template-columns: 1fr;
   }
 
   .managementHeader,
   .managementPanelHeader,
-  .adminSectionNav {
+  .adminSectionNav,
+  .adminFiltersActions {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .adminFiltersActions span {
+    margin-right: 0;
   }
 
   .qualityChecklist {

@@ -1,13 +1,18 @@
 import Link from "next/link";
 import AdminSectionNav from "@/components/AdminSectionNav";
+import AdminTableFilters from "@/components/AdminTableFilters";
 import DeleteCategoryButton from "@/components/DeleteCategoryButton";
 import CategoryIcon from "@/components/CategoryIcon";
-import { listAdminCategories, adminDeleteCategoryAction } from "@/lib/admin-categories";
+import { type AdminCategoryFilters, listAdminCategories, adminDeleteCategoryAction } from "@/lib/admin-categories";
+import { formatPolishDate } from "@/lib/date-format";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminCategoriesPage() {
-  const categories = await listAdminCategories();
+type SearchParams = Record<string, string | string[] | undefined>;
+
+export default async function AdminCategoriesPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  const filters = parseCategoryFilters(await searchParams);
+  const categories = await listAdminCategories(filters);
 
   return (
     <main className="appShell managementShell">
@@ -16,10 +21,21 @@ export default async function AdminCategoriesPage() {
           <p className="eyebrow">Panel admina</p>
           <h1>Kategorie</h1>
         </div>
-        <Link href="/admin/categories/new" className="primaryButton">Dodaj kategorię</Link>
+        <Link href="/admin/categories/new" className="primaryButton">Dodaj kategorie</Link>
       </div>
 
       <AdminSectionNav active="categories" />
+
+      <AdminTableFilters
+        action="/admin/categories"
+        values={filters}
+        resultCount={categories.length}
+        fields={[
+          { name: "q", label: "Szukaj", placeholder: "Nazwa, slug, kolor..." },
+          { name: "icon", label: "Ikona", placeholder: "np. Music" }
+        ]}
+        sortOptions={categorySortOptions}
+      />
 
       <section className="managementPanel">
         <div className="managementTableWrap">
@@ -30,7 +46,8 @@ export default async function AdminCategoriesPage() {
                 <th>Nazwa</th>
                 <th>Slug</th>
                 <th>Ikona</th>
-                <th>Kolejność</th>
+                <th>Kolejnosc</th>
+                <th>Dodano</th>
                 <th>Akcje</th>
               </tr>
             </thead>
@@ -60,29 +77,56 @@ export default async function AdminCategoriesPage() {
                       </span>
                     </span>
                   </td>
-                  <td>{cat.sort_order ?? "—"}</td>
+                  <td>{cat.sort_order ?? "-"}</td>
+                  <td>{cat.created_at ? formatDate(cat.created_at) : "-"}</td>
                   <td>
                     <div className="tableActions">
                       <Link href={`/admin/categories/${cat.id}/edit`}>Edytuj</Link>
-                      <DeleteCategoryButton 
-                        deleteAction={adminDeleteCategoryAction.bind(null, cat.id)} 
-                        categoryName={cat.name} 
+                      <DeleteCategoryButton
+                        deleteAction={adminDeleteCategoryAction.bind(null, cat.id)}
+                        categoryName={cat.name}
                       />
                     </div>
                   </td>
                 </tr>
               ))}
-              {categories.length === 0 && (
+              {categories.length === 0 ? (
                 <tr>
-                  <td colSpan={6} style={{ textAlign: "center", padding: "32px", color: "var(--ink-muted)" }}>
-                    Brak kategorii. Dodaj pierwszą kategorię.
+                  <td colSpan={7} className="emptyTableCell">
+                    Brak kategorii dla wybranych filtrow.
                   </td>
                 </tr>
-              )}
+              ) : null}
             </tbody>
           </table>
         </div>
       </section>
     </main>
   );
+}
+
+const categorySortOptions = [
+  { label: "Kolejnosc", value: "sort_order" },
+  { label: "Nazwa", value: "name" },
+  { label: "Slug", value: "slug" },
+  { label: "Ikona", value: "icon" },
+  { label: "Dodano", value: "created_at" }
+];
+
+function parseCategoryFilters(params: SearchParams): AdminCategoryFilters {
+  return {
+    q: readParam(params.q),
+    icon: readParam(params.icon),
+    sort: readParam(params.sort) ?? "sort_order",
+    dir: readParam(params.dir) ?? "asc"
+  };
+}
+
+function readParam(value: string | string[] | undefined) {
+  const item = Array.isArray(value) ? value[0] : value;
+  return item?.trim() || undefined;
+}
+
+function formatDate(value: string) {
+  return formatPolishDate(value, { dateStyle: "medium", timeStyle: "short" });
 }

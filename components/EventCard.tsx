@@ -64,10 +64,9 @@ export default function EventCard({ event, distanceKm }: EventCardProps) {
 }
 
 function formatEventDate(value: string) {
-  const date = new Date(value);
-  const weekday = formatPolishDate(date, { weekday: "short" });
-  const dayMonth = formatPolishDate(date, { day: "numeric", month: "short" });
-  const time = formatPolishDate(date, { hour: "2-digit", minute: "2-digit" });
+  const weekday = formatPolishDate(value, { weekday: "short" });
+  const dayMonth = formatPolishDate(value, { day: "numeric", month: "short" });
+  const time = formatPolishDate(value, { hour: "2-digit", minute: "2-digit" });
   const capitalizedWeekday = weekday.charAt(0).toUpperCase() + weekday.slice(1);
   return `${capitalizedWeekday}, ${dayMonth} - ${time}`;
 }

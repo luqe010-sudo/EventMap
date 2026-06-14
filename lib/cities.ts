@@ -1,6 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/database.types";
-import { createSlug, formBoolean, formNumber, formString } from "@/lib/event-editor";
+import { createSlug, formBoolean, formNumber, formSlug, formString } from "@/lib/event-editor";
 
 type Tables = Database["public"]["Tables"];
 type CityInsert = Tables["cities"]["Insert"];
@@ -41,7 +41,7 @@ export function buildCityPayloadFromForm(formData: FormData, source: CityFormSou
 
   return {
     name,
-    slug: formString(formData, source.slugKey ?? "city_slug") ?? createSlug(name),
+    slug: formSlug(formData, source.slugKey ?? "city_slug") ?? createSlug(name),
     county: formString(formData, source.countyKey ?? "city_county"),
     voivodeship: formString(formData, source.voivodeshipKey ?? "city_voivodeship"),
     latitude: formNumber(formData, source.latitudeKey ?? "city_latitude"),

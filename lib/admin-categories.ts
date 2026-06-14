@@ -5,7 +5,8 @@ import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/auth";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
 import type { Database } from "@/database.types";
-import { createSlug, formString, formNumber } from "@/lib/event-editor";
+import { createSlug, formSlug, formString, formNumber } from "@/lib/event-editor";
+import { normalizeSearchText } from "@/lib/slugify";
 
 type Tables = Database["public"]["Tables"];
 type CategoryRow = Tables["categories"]["Row"];
@@ -14,17 +15,23 @@ type CategoryUpdate = Tables["categories"]["Update"];
 
 export type AdminCategory = CategoryRow;
 
-export async function listAdminCategories(): Promise<AdminCategory[]> {
+export type AdminCategoryFilters = {
+  q?: string;
+  icon?: string;
+  sort?: string;
+  dir?: string;
+};
+
+export async function listAdminCategories(filters: AdminCategoryFilters = {}): Promise<AdminCategory[]> {
   await requireAdmin();
   const supabase = await createSupabaseUserClient();
   const { data, error } = await supabase
     .from("categories")
     .select("*")
-    .order("sort_order", { ascending: true, nullsFirst: false })
-    .order("name", { ascending: true });
+    .limit(1000);
 
   if (error) throw new Error(`Nie udało się pobrać kategorii: ${error.message}`);
-  return data ?? [];
+  return sortAdminCategories(filterAdminCategories(data ?? [], filters), filters);
 }
 
 export async function getAdminCategoryForEdit(id: string): Promise<AdminCategory | null> {
@@ -119,11 +126,50 @@ function buildCategoryPayload(formData: FormData): CategoryInsert | CategoryUpda
 
   return {
     name,
-    slug: formString(formData, "slug") ?? createSlug(name),
+    slug: formSlug(formData, "slug") ?? createSlug(name),
     color: formString(formData, "color"),
     icon: formString(formData, "icon"),
     sort_order: formNumber(formData, "sort_order"),
   };
+}
+
+function filterAdminCategories(categories: AdminCategory[], filters: AdminCategoryFilters) {
+  const q = normalizeSearch(filters.q);
+  const icon = normalizeSearch(filters.icon);
+
+  return categories.filter((category) => {
+    if (q && ![category.name, category.slug, category.icon, category.color]
+      .some((value) => normalizeSearch(value).includes(q))) {
+      return false;
+    }
+    if (icon && !normalizeSearch(category.icon).includes(icon)) return false;
+    return true;
+  });
+}
+
+function sortAdminCategories(categories: AdminCategory[], filters: AdminCategoryFilters) {
+  const sort = filters.sort ?? "sort_order";
+  const direction = filters.dir === "desc" ? -1 : 1;
+  return [...categories].sort((first, second) => compareCategoryValue(first, second, sort) * direction);
+}
+
+function compareCategoryValue(first: AdminCategory, second: AdminCategory, sort: string) {
+  if (sort === "name") return first.name.localeCompare(second.name, "pl");
+  if (sort === "slug") return first.slug.localeCompare(second.slug, "pl");
+  if (sort === "icon") return (first.icon ?? "").localeCompare(second.icon ?? "", "pl");
+  if (sort === "created_at") return dateValue(first.created_at) - dateValue(second.created_at);
+  return (first.sort_order ?? Number.MAX_SAFE_INTEGER) - (second.sort_order ?? Number.MAX_SAFE_INTEGER)
+    || first.name.localeCompare(second.name, "pl");
+}
+
+function normalizeSearch(value: string | null | undefined) {
+  return normalizeSearchText(value).trim();
+}
+
+function dateValue(value: string | null | undefined) {
+  if (!value) return 0;
+  const time = new Date(value).getTime();
+  return Number.isFinite(time) ? time : 0;
 }
 
 function revalidateCategoryPaths() {

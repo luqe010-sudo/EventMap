@@ -4,6 +4,7 @@ import {
   createSlug,
   formBoolean,
   formNumber,
+  formSlug,
   formString,
   normalizeDateTimeLocal
 } from "@/lib/event-editor";
@@ -36,7 +37,7 @@ export async function buildEventWritePayload(
 
   return {
     title,
-    slug: formString(formData, "slug") ?? createSlug(title),
+    slug: formSlug(formData, "slug") ?? createSlug(title),
     description: formString(formData, "description"),
     short_description: formString(formData, "short_description"),
     start_at: startAt,

@@ -1,6 +1,8 @@
 import type { Database } from "@/database.types";
 import { createSupabaseServerClient } from "@/lib/supabase";
 import { toPluralCategoryName, toPluralCategorySlug, toSlug } from "@/lib/slugs";
+import { toAppDate } from "@/lib/date-format";
+import { slugify } from "@/lib/slugify";
 
 type Tables = Database["public"]["Tables"];
 type EventRow = Tables["events"]["Row"];
@@ -201,6 +203,7 @@ export type ListEventsOptions = {
   dateFrom?: string;
   dateTo?: string;
   categoryId?: string;
+  featuredOnly?: boolean;
   includeCancelled?: boolean;
 };
 
@@ -227,6 +230,10 @@ export async function listEvents(options: ListEventsOptions = {}): Promise<Event
 
   if (options.categoryId) {
     query = query.eq("category_id", options.categoryId);
+  }
+
+  if (options.featuredOnly) {
+    query = query.eq("is_featured", true);
   }
 
   if (options.limit) {
@@ -360,11 +367,28 @@ export async function getHomeData() {
 
 async function getHomeEvents(dateFrom: string) {
   try {
-    return await listEvents({ dateFrom, limit: 120 });
+    const [events, featuredEvents] = await Promise.all([
+      listEvents({ dateFrom, limit: 120 }),
+      listEvents({ dateFrom, limit: 40, featuredOnly: true })
+    ]);
+
+    return mergeEventsById(events, featuredEvents);
   } catch (error) {
     logPublicDataError("home events", error);
     return [];
   }
+}
+
+function mergeEventsById(...eventGroups: EventItem[][]) {
+  const byId = new Map<string, EventItem>();
+  for (const events of eventGroups) {
+    for (const event of events) {
+      byId.set(event.id, event);
+    }
+  }
+  return Array.from(byId.values()).sort((first, second) => {
+    return toAppDate(first.startDate).getTime() - toAppDate(second.startDate).getTime();
+  });
 }
 
 async function getHomeCategories() {
@@ -532,6 +556,8 @@ export async function resolveCityLocation(citySlug: string): Promise<KnownLocati
 }
 
 function createSlug(text: string) {
+  return slugify(text);
+  /*
   return text
     .trim()
     .toLowerCase()
@@ -540,4 +566,5 @@ function createSlug(text: string) {
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+  */
 }
