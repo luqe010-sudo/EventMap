@@ -155,6 +155,8 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 - `/register` ma formularz rejestracji użytkowników z wyborem roli: Widz (rola `user`) lub Organizator (rola `organizer`). Dla organizatorów automatycznie tworzy profil organizacyjny (`organizers` i `organizer_users`).
 - `signInAction()` oraz `signUpAction()` używają Supabase Auth.
 - Wylogowanie idzie przez `POST /auth/sign-out`.
+- Navbar posiada nowoczesny wygląd zintegrowany z portalem (efekt glassmorphism/rozmycia tła) i dynamicznym menu profilu dla zalogowanego użytkownika (wygodny dropdown z inicjałem, nazwą, adresem email, rolą, linkiem do panelu zarządzania oraz wylogowaniem).
+- Menu nawigacji jest dostosowane do urządzeń mobilnych (poniżej 1024px) – chowa się automatycznie i wysuwa za pomocą estetycznego przycisku hamburgera zmieniającego się w znak zamknięcia (X), blokując przewijanie strony pod spodem.
 - Navbar pokazuje link do panelu dla roli `admin` albo `organizer`.
 - Navbar nie pokazuje statycznego selektora lokalizacji, zeby nie sugerowac aktywnej lokalizacji uzytkownika.
 

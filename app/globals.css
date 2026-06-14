@@ -704,7 +704,7 @@ a { color: inherit; text-decoration: none; }
 .mainContent { flex: 1 0 auto; }
 
 /* ===================================================
-   Navbar — Clean, modern, glassmorphism
+   Navbar — Modern glassmorphism with dropdown & mobile
    =================================================== */
 .navbar {
   position: sticky;
@@ -740,9 +740,7 @@ a { color: inherit; text-decoration: none; }
 
 .navLogo .brandLogoText span { color: var(--brand); }
 
-.brandLogoText {
-  display: inline-block;
-}
+.brandLogoText { display: inline-block; }
 
 .brandLogoMark {
   display: block;
@@ -768,6 +766,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   color: var(--ink-secondary);
   transition: all var(--transition);
+  position: relative;
 }
 
 .navLink:hover {
@@ -783,114 +782,412 @@ a { color: inherit; text-decoration: none; }
 .navRight {
   display: flex;
   align-items: center;
+  gap: 12px;
+}
+
+/* -- Profile trigger -- */
+.navProfileWrap { position: relative; }
+
+.navProfileTrigger {
+  display: inline-flex;
+  align-items: center;
   gap: 8px;
-}
-
-.navNotifBtn {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  padding: 4px 12px 4px 4px;
   border: 1px solid var(--border);
+  border-radius: 999px;
   background: var(--bg-card);
-  display: grid;
-  place-items: center;
-  color: var(--ink-secondary);
-  box-shadow: none;
-  padding: 0;
-  min-height: unset;
+  color: var(--ink);
+  cursor: pointer;
   transition: all var(--transition);
+  box-shadow: none;
+  min-height: unset;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
 }
 
-.navNotifBtn:hover {
+.navProfileTrigger:hover {
+  border-color: var(--border-strong);
   background: var(--bg-soft);
-  color: var(--ink);
   transform: none;
   box-shadow: none;
 }
 
-.navNotifDot {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--brand);
-  border: 2px solid var(--bg-card);
+.navProfileTrigger.navProfileTriggerOpen {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(217, 93, 57, 0.1);
 }
 
-.navAvatar {
+.navUserInitial {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--brand-gradient);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.navProfileName {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navProfileChevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  color: var(--ink-secondary);
+}
+
+.navProfileTriggerOpen .navProfileChevron {
+  transform: rotate(180deg);
+}
+
+/* -- Profile dropdown -- */
+@keyframes navDropdownIn {
+  from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.navProfileDropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 260px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  padding: 6px;
+  z-index: 1100;
+  animation: navDropdownIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.navDropdownHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px 10px;
+}
+
+.navDropdownInitial {
+  display: grid;
+  place-items: center;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--bg-soft);
-  display: grid;
-  place-items: center;
-  color: var(--ink-secondary);
-  cursor: pointer;
-  transition: all var(--transition);
+  background: var(--brand-gradient);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  flex-shrink: 0;
 }
 
-.navAvatar:hover {
-  border-color: var(--brand);
+.navDropdownUserInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.navDropdownName {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navDropdownEmail {
+  font-size: 0.78rem;
+  color: var(--ink-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navDropdownRole {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.navDropdownDivider {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 8px;
+}
+
+.navDropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.navDropdownItem:hover {
+  background: var(--bg-soft);
   color: var(--brand);
 }
 
+.navDropdownItem svg {
+  flex-shrink: 0;
+  color: var(--ink-secondary);
+  transition: color var(--transition);
+}
+
+.navDropdownItem:hover svg {
+  color: var(--brand);
+}
+
+.navDropdownForm { display: contents; }
+
+.navDropdownLogout {
+  width: 100%;
+  border: none;
+  background: none;
+  font: inherit;
+  text-align: left;
+}
+
+.navDropdownLogout:hover {
+  background: #fef2ee;
+  color: var(--brand-dark);
+}
+
+/* -- Login button -- */
+.navLoginBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.navLoginBtn:hover {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+}
+
+.navLoginBtn svg { flex-shrink: 0; }
+
+/* -- Hamburger to X -- */
 .navHamburger {
   display: none;
   background: transparent;
   border: none;
   flex-direction: column;
   gap: 5px;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   justify-content: center;
+  align-items: center;
   padding: 0;
   box-shadow: none;
   min-height: unset;
+  cursor: pointer;
+  z-index: 1100;
 }
 
 .navHamburger:hover { transform: none; box-shadow: none; }
 
 .navHamburger span {
   display: block;
-  width: 100%;
+  width: 22px;
   height: 2px;
   background: var(--ink);
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
 }
 
+.navHamburgerOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navHamburgerOpen span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.navHamburgerOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* -- Mobile overlay -- */
+.navMobileOverlay {
+  display: none;
+}
+
+@keyframes navOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* -- Mobile menu -- */
 .navMobileMenu {
+  display: none;
+}
+
+.navMobileLinks {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 24px;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  box-shadow: var(--shadow-lg);
-  z-index: 999;
 }
 
-.navMobileMenu a {
-  display: block;
-  padding: 12px 16px;
+.navMobileLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
   font-size: 1rem;
   font-weight: 600;
   color: var(--ink);
-  border-radius: var(--radius-sm);
+  text-decoration: none;
   transition: all var(--transition);
 }
 
-.navMobileMenu a:hover {
+.navMobileLink:hover {
+  background: var(--bg-soft);
   color: var(--brand);
+}
+
+.navMobileLink svg {
+  flex-shrink: 0;
+  color: var(--ink-secondary);
+}
+
+.navMobileLink:hover svg { color: var(--brand); }
+
+.navMobileLinkActive {
   background: var(--brand-light);
+  color: var(--brand);
+}
+
+.navMobileLinkActive svg { color: var(--brand); }
+
+.navMobileDivider {
+  height: 1px;
+  background: var(--border);
+  margin: 12px 0;
+}
+
+.navMobileUserSection {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.navMobileUserInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 4px;
+}
+
+.navMobileUserInitial {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--brand-gradient);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.navMobileUserMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.navMobileUserName {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navMobileUserRole {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-secondary);
+}
+
+.navMobileLogoutBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.navMobileLogoutBtn:hover {
+  background: #fef2ee;
+  border-color: var(--brand);
+  color: var(--brand-dark);
+}
+
+.navMobileLoginBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  background: var(--brand);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.navMobileLoginBtn:hover {
+  background: var(--brand-dark);
 }
 
 /* ===================================================
@@ -4477,6 +4774,37 @@ a.edSourceItem:hover .edSourceArrow {
   .navLinks { display: none; }
   .navRight { display: none; }
   .navHamburger { display: flex; }
+  .navMobileOverlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 998;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: navOverlayIn 0.25s ease forwards;
+  }
+  .navMobileMenu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-card);
+    z-index: 999;
+    padding: 16px 20px 24px;
+    overflow-y: auto;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .navMobileMenuOpen {
+    transform: translateY(0);
+    opacity: 1;
+  }
 
   .filtersPanel {
     grid-template-columns: 1fr;
@@ -4830,91 +5158,6 @@ a.edSourceItem:hover .edSourceArrow {
   justify-content: center;
   margin-left: 6px;
   line-height: 1;
-}
-
-.navThemeToggle {
-  background: transparent;
-  border: none;
-  font-size: 1.15rem;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  padding: 8px;
-  border-radius: 50%;
-  color: var(--ink-secondary);
-  transition: all var(--transition);
-}
-
-.navThemeToggle:hover {
-  background: var(--bg-soft);
-  color: var(--ink);
-}
-
-.navUserWrapper {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-}
-
-.navUserAvatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--border);
-  transition: border-color var(--transition);
-}
-
-.navUserWrapper:hover .navUserAvatar {
-  border-color: var(--brand);
-}
-
-.navAvatarArrow {
-  font-size: 0.6rem;
-  color: var(--ink-secondary);
-}
-
-.navAccount {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.navUserInitial {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: var(--brand);
-  color: #fff;
-  font-weight: 800;
-}
-
-.navUserName {
-  max-width: 130px;
-  overflow: hidden;
-  color: var(--ink);
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.navAuthButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 34px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: #fff;
-  color: var(--ink);
-  padding: 7px 12px;
-  font: inherit;
-  font-size: 0.88rem;
-  font-weight: 800;
 }
 
 /* ===================================================
@@ -5390,17 +5633,6 @@ body {
 
 .navRight {
   gap: 18px;
-}
-
-.navThemeToggle {
-  width: 38px;
-  height: 38px;
-  padding: 0;
-}
-
-.navUserAvatar {
-  width: 36px;
-  height: 36px;
 }
 
 .heroSection {

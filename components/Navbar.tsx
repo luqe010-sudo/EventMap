@@ -30,6 +30,7 @@ export default async function Navbar() {
         auth={{
           isLoggedIn: true,
           displayName: profile?.display_name ?? data.user.email ?? "Konto",
+          email: data.user.email ?? "",
           role: profile?.role ?? "user"
         }}
       />
