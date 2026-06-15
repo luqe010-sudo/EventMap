@@ -5868,7 +5868,7 @@ body {
   background: transparent !important;
   padding: 0 !important;
   min-height: auto !important;
-  font-size: 0.84rem !important;
+  font-size: 0.74rem !important;
   font-weight: 600 !important;
   color: #2d2926 !important;
   width: 100% !important;
@@ -7161,6 +7161,28 @@ select {
   .searchSection {
     border-bottom: 1px solid rgba(64, 52, 44, 0.08) !important;
     padding-bottom: 14px !important;
+  }
+
+  .searchSectionLoc {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  .searchDatePills.searchCapsule {
+    display: flex;
+    flex-wrap: wrap !important;
+    border-radius: 12px !important;
+    padding: 4px !important;
+    gap: 4px !important;
+    width: 100% !important;
+  }
+
+  .searchDatePills.searchCapsule .capsuleItem {
+    flex: 1 1 auto;
+    min-height: 28px !important;
+    height: 28px !important;
+    padding: 0 6px !important;
+    font-size: 0.68rem !important;
   }
 
   .searchActiveFilters {
