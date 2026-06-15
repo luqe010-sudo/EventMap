@@ -136,11 +136,16 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
   /* Lock body scroll when mobile menu is open */
   useEffect(() => {
     if (menuOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.classList.add("bodyScrollLock");
+      document.documentElement.classList.add("bodyScrollLock");
     } else {
-      document.body.style.overflow = "";
+      document.body.classList.remove("bodyScrollLock");
+      document.documentElement.classList.remove("bodyScrollLock");
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.classList.remove("bodyScrollLock");
+      document.documentElement.classList.remove("bodyScrollLock");
+    };
   }, [menuOpen]);
 
   function isActive(href: string) {
@@ -157,7 +162,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
 
   return (
     <>
-      <nav className="navbar" aria-label="Nawigacja główna">
+      <nav className={`navbar${menuOpen ? " navbarFixed" : ""}`} aria-label="Nawigacja główna">
         <div className="navbarInner">
         {/* ── Left: Logo ── */}
         <div className="navLeft">
@@ -248,6 +253,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
         </button>
       </div>
       </nav>
+      {menuOpen && <div className="navbarSpacer" style={{ height: "64px" }} />}
 
       {/* ── Mobile overlay + menu ── */}
       {menuOpen && (

@@ -718,6 +718,19 @@ a { color: inherit; text-decoration: none; }
   transition: all 0.3s ease;
 }
 
+.navbarFixed {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100% !important;
+}
+
+.bodyScrollLock {
+  overflow: hidden !important;
+  height: 100% !important;
+}
+
 .navbarInner {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -5761,7 +5774,7 @@ body {
 
 .searchPanel {
   margin: -2px 0 34px;
-  padding: 18px 20px 17px;
+  padding: 14px 18px 12px;
   border-color: rgba(64, 52, 44, 0.115);
   border-radius: 16px;
   background: rgba(255, 253, 248, 0.96);
@@ -5770,48 +5783,50 @@ body {
 
 .searchTopRow {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) minmax(0, 1.9fr) minmax(0, 1.3fr) auto;
+  gap: 20px;
   align-items: start;
 }
 
-.searchSubmitRow {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+.searchSection {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  min-width: 0;
 }
 
 .searchSubmitBtn {
-  min-width: 160px;
-  min-height: 42px;
-  padding: 0 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 110px;
+  height: 38px;
+  padding: 0 20px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 999px;
   background: linear-gradient(180deg, #fa5d2c, #e94117);
   color: #fff;
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 6px 16px rgba(238, 75, 34, 0.16);
+  box-shadow: 0 4px 12px rgba(238, 75, 34, 0.16);
   transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.searchSubmitBtn svg {
+  flex-shrink: 0;
 }
 
 .searchSubmitBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(238, 75, 34, 0.28);
+  box-shadow: 0 6px 16px rgba(238, 75, 34, 0.24);
   filter: brightness(1.04);
 }
 
 .searchSubmitBtn:active {
   transform: translateY(-1px);
-}
-
-.searchGroup {
-  display: grid;
-  gap: 8px;
-  align-content: start;
-  min-width: 0;
-  position: relative;
 }
 
 .searchLabel {
@@ -5889,11 +5904,11 @@ body {
   color: var(--brand);
 }
 
-.searchRadiusHeader {
+.searchSectionHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  min-height: 32px;
   width: 100%;
 }
 
@@ -6020,45 +6035,69 @@ select {
   font-size: 0.68rem;
 }
 
-.searchDatePills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+/* Capsule-segmented controls styling */
+.searchCapsule {
+  display: inline-flex;
   align-items: center;
+  gap: 2px;
+  padding: 2px;
+  background: var(--bg-soft);
+  border-radius: 9999px;
+  border: 1px solid rgba(64, 52, 44, 0.06);
+  width: fit-content;
 }
 
-.datePill {
+.capsuleItem {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  min-height: 36px;
-  padding: 0 10px;
-  border: 1px solid rgba(64, 52, 44, 0.095);
-  border-radius: 10px;
-  background: #fffefb;
-  color: #403b38;
-  font-size: 0.72rem;
+  min-height: 26px;
+  height: 26px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--ink-secondary);
+  font-size: 0.68rem;
   font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
   white-space: nowrap;
-  box-shadow: none;
 }
 
-.datePillActive {
-  border-color: rgba(238, 75, 34, 0.16);
-  background: #fff3ed;
-  color: var(--brand);
+.capsuleItemActive {
+  background: #ffffff !important;
+  color: var(--brand) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.capsuleText {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+  height: 26px;
+  padding: 0 8px;
+  border-radius: 9999px;
+  color: var(--ink-secondary);
+  font-size: 0.68rem;
+  font-weight: 700;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.capsuleTextActive {
+  background: #ffffff !important;
+  color: var(--brand) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.calendarIcon {
+  flex-shrink: 0;
 }
 
 .searchCustomDate { max-width: 100%; }
 
-.searchPriceHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%;
-}
 
 .searchPriceValue {
   color: #1a1a1a;
@@ -6075,11 +6114,22 @@ select {
   min-width: 0;
 }
 
-.searchPriceControls {
+.searchPriceWrap {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(120px, 1fr) auto;
-  gap: 10px;
+  gap: 5px;
+  column-gap: 10px;
   align-items: center;
+  padding-top: 1px;
+}
+
+.searchPriceLabels {
+  grid-column: 1;
+  display: flex;
+  justify-content: space-between;
+  color: #8d8781;
+  font-size: 0.68rem;
 }
 
 .searchPriceSlider {
@@ -6097,11 +6147,23 @@ select {
 }
 
 .searchInlineInputLabel input {
-  width: 74px;
-  min-height: 36px;
-  padding: 0 8px;
-  text-align: right;
-  font-weight: 800;
+  width: 46px;
+  min-height: 28px;
+  height: 28px;
+  padding: 0;
+  text-align: center;
+  font-weight: 850;
+  border: 1px solid rgba(64, 52, 44, 0.15) !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  color: #1a1a1a !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.searchInlineInputLabel input:focus {
+  border-color: var(--brand) !important;
+  box-shadow: 0 0 0 2px rgba(238, 75, 34, 0.1) !important;
 }
 
 .searchRadiusInputLabel {
@@ -6118,7 +6180,7 @@ select {
   flex-wrap: wrap;
   gap: 6px;
   align-items: center;
-  margin-top: 16px;
+  margin-top: 10px;
 }
 
 .catPill {
@@ -6170,6 +6232,126 @@ select {
 .catPillMore {
   margin-left: auto;
   padding-inline: 12px;
+}
+
+/* Active Filters Bar */
+.searchActiveFilters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(64, 52, 44, 0.06);
+}
+
+.searchActiveFiltersLabel {
+  color: #4d4844;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.searchActiveFiltersBox {
+  flex: 1;
+  min-width: 0;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  padding: 4px 12px;
+  background: #ffffff;
+  border: 1px solid rgba(64, 52, 44, 0.12);
+  border-radius: 8px;
+}
+
+.searchActiveFilterChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+}
+
+.searchActiveFilterChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border: 1px solid rgba(64, 52, 44, 0.1);
+  border-radius: 999px;
+  background: #fffefb;
+  color: #403b38;
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.searchActiveFilterChipX {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  min-height: auto;
+  border: 0;
+  background: transparent;
+  color: #8d8781;
+  font-size: 0.65rem;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0;
+  line-height: 1;
+  transition: all 0.15s ease;
+}
+
+.searchActiveFilterChipX:hover {
+  background: rgba(220, 38, 38, 0.08);
+  color: #dc2626;
+}
+
+.searchActiveFiltersClear {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  min-height: auto;
+  border: 1px solid rgba(238, 75, 34, 0.15);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--brand);
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.searchActiveFiltersClear:hover {
+  background: rgba(238, 75, 34, 0.06);
+  border-color: rgba(238, 75, 34, 0.3);
+}
+
+.searchActiveFiltersEmpty {
+  color: #8d8781;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.searchActiveFiltersActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Desktop separator lines between sections */
+@media (min-width: 1181px) {
+  .searchSectionDate,
+  .searchSectionPrice {
+    border-left: 1px solid rgba(64, 52, 44, 0.08);
+    padding-left: 20px;
+  }
 }
 
 .featuredSection {
@@ -6815,17 +6997,7 @@ select {
   border-color: rgba(39, 35, 34, 0.08);
 }
 
-@media (min-width: 1181px) {
-  .searchTopRow > .searchGroup:nth-child(n + 3)::before {
-    content: "";
-    position: absolute;
-    left: -8px;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: rgba(64, 52, 44, 0.1);
-  }
-}
+
 
 @media (max-width: 1180px) {
   .homePage {
@@ -6844,16 +7016,38 @@ select {
 
   .searchTopRow {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
 
-  .searchTopRow > .searchGroup {
-    border-top: 1px solid rgba(64, 52, 44, 0.09);
-    padding-top: 14px;
+  .searchSectionDate,
+  .searchSectionPrice {
+    border-left: none !important;
+    padding-left: 0 !important;
   }
 
-  .searchTopRow > .searchGroup:nth-child(-n + 2) {
-    border-top: 0;
-    padding-top: 0;
+  .searchSectionLoc,
+  .searchSectionRadius,
+  .searchSectionDate,
+  .searchSectionPrice {
+    border-bottom: 1px solid rgba(64, 52, 44, 0.08);
+    padding-bottom: 16px;
+  }
+
+  .searchActiveFilters {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .searchActiveFiltersBox {
+    width: 100%;
+    flex: none;
+  }
+
+  .searchActiveFiltersActions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
   }
 
   .featuredRight,
@@ -6961,33 +7155,40 @@ select {
 
   .searchTopRow {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
 
-  .searchTopRow > .searchGroup:nth-child(-n + 2) {
-    border-top: 1px solid rgba(64, 52, 44, 0.09);
-    padding-top: 14px;
+  .searchSection {
+    border-bottom: 1px solid rgba(64, 52, 44, 0.08) !important;
+    padding-bottom: 14px !important;
   }
 
-  .searchTopRow > .searchGroup:first-child {
-    border-top: 0;
-    padding-top: 0;
-  }
-
-  .searchDatePills {
+  .searchActiveFilters {
     flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .searchActiveFiltersBox {
+    width: 100%;
+    flex: none;
+  }
+
+  .searchActiveFiltersActions {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+
+  .searchActiveFiltersClear,
+  .searchSubmitBtn {
+    flex: 1;
+    width: 50% !important;
+    justify-content: center !important;
+    margin-left: 0 !important;
   }
 
   .catPillMore {
     margin-left: 0;
-  }
-
-  .searchSubmitRow {
-    justify-content: center;
-    margin-top: 16px;
-  }
-
-  .searchSubmitBtn {
-    width: 100%;
   }
 
   .dateRangeFields {
