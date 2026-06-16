@@ -102,6 +102,32 @@ export default function RegisterPage() {
             </label>
           )}
 
+          <label className="checkboxLabel legalConsentCheckbox">
+            <input name="termsAccepted" type="checkbox" required />
+            <span>
+              Akceptuję{" "}
+              <Link href="/regulamin" target="_blank">
+                regulamin serwisu
+              </Link>
+              .
+            </span>
+          </label>
+
+          <label className="checkboxLabel legalConsentCheckbox">
+            <input name="privacyNoticeAccepted" type="checkbox" required />
+            <span>
+              Potwierdzam, że zapoznałem/zapoznałam się z{" "}
+              <Link href="/regulamin#polityka-prywatnosci" target="_blank">
+                polityką prywatności / RODO
+              </Link>{" "}
+              oraz{" "}
+              <Link href="/regulamin#polityka-cookies" target="_blank">
+                polityką cookies
+              </Link>
+              .
+            </span>
+          </label>
+
           <button type="submit" className="primaryButton" disabled={pending}>
             {pending ? "Rejestrowanie..." : "Zarejestruj sie"}
           </button>

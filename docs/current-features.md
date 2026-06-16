@@ -31,6 +31,8 @@ Strona główna `/`:
 - autouzupelnianie lokalizacji wyswietla doprecyzowane etykiety z wojewodztwem, ale po wyborze zachowuje kanoniczny slug miasta (np. `Wroclaw (woj. dolnoslaskie)` nawiguje jak `wroclaw`).
 - zewnetrzne wyniki miejscowosci bez aktywnej strony miasta przechodza do widoku geolokalizacji po wspolrzednych zamiast zgadywac slug dla niejednoznacznych nazw.
 - teksty lokalne uzywaja bezpiecznej odmiany dla nazw konczacych sie na `Gora`, np. `Srebrna Gora` jest prezentowana jako `w Srebrnej Gorze`.
+- `/regulamin` pokazuje publiczny regulamin serwisu, polityke prywatnosci / RODO oraz polityke cookies; link do strony jest dostepny w navbarze, stopce i glownym sitemap.
+- Przy pierwszej wizycie aplikacja pokazuje banner cookies z wyborem `Akceptuje` albo `Odrzuc analityke`; Google Analytics laduje sie dopiero po zgodzie, a wybor mozna zmienic przyciskiem `Cookies`.
 
 Widok `EventExplorer`:
 
@@ -163,7 +165,7 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 
 - `/login` obsluguje bledy Supabase Auth w formularzu, bez wywolywania 500 w Server Components.
 - `/login` ma formularz email/hasło i link do rejestracji.
-- `/register` ma formularz rejestracji użytkowników z wyborem roli: Widz (rola `user`) lub Organizator (rola `organizer`). Dla organizatorów automatycznie tworzy profil organizacyjny (`organizers` i `organizer_users`).
+- `/register` ma formularz rejestracji użytkowników z wyborem roli: Widz (rola `user`) lub Organizator (rola `organizer`), wymaganym checkboxem akceptacji regulaminu oraz osobnym potwierdzeniem zapoznania sie z polityka prywatnosci / RODO i polityka cookies. Dla organizatorów automatycznie tworzy profil organizacyjny (`organizers` i `organizer_users`).
 - `signInAction()` oraz `signUpAction()` używają Supabase Auth.
 - Wylogowanie idzie przez `POST /auth/sign-out`.
 - Navbar posiada nowoczesny wygląd zintegrowany z portalem (efekt glassmorphism/rozmycia tła) i dynamicznym menu profilu dla zalogowanego użytkownika (wygodny dropdown z inicjałem, nazwą, adresem email, rolą, linkiem do panelu zarządzania oraz wylogowaniem).

@@ -89,7 +89,7 @@ CLOUDINARY_EVENT_FOLDER=eventmap/events
 
 `CLOUDINARY_URL` i `CLOUDINARY_API_SECRET` nie mogą być ustawione jako zmienne `NEXT_PUBLIC_*`, bo zawierają sekret używany do podpisywania uploadu.
 
-Google Analytics jest skonfigurowany bez dodatkowej zmiennej środowiskowej. Globalny Google tag w `app/layout.tsx` używa identyfikatora `G-60019N4V87` i jest ładowany na każdej stronie.
+Google Analytics jest skonfigurowany bez dodatkowej zmiennej środowiskowej. Identyfikator `G-60019N4V87` jest używany w `components/CookieConsent.tsx`, a skrypt GA ładuje się dopiero po zgodzie użytkownika w bannerze cookies.
 
 ## Supabase
 

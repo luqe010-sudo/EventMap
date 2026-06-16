@@ -19,10 +19,12 @@ Aplikacja ma formularz `/register`, ktory wywoluje `signUpAction()` z `lib/auth-
 
 `signUpAction()`:
 
-1. Tworzy uzytkownika przez `supabase.auth.signUp()`.
-2. Zapisuje `display_name`, `role` i opcjonalna nazwe organizatora w metadanych Auth.
-3. Gdy Supabase zwroci sesje, zapisuje/aktualizuje rekord w `profiles`.
-4. Dla roli `organizer` tworzy rekord w `organizers` i powiazanie w `organizer_users`, jesli nie istnieje.
+1. Wymaga zaakceptowania regulaminu przez pole `termsAccepted`.
+2. Wymaga potwierdzenia zapoznania sie z polityka prywatnosci / RODO i polityka cookies przez pole `privacyNoticeAccepted`.
+3. Tworzy uzytkownika przez `supabase.auth.signUp()`.
+4. Zapisuje `display_name`, `role` i opcjonalna nazwe organizatora w metadanych Auth.
+5. Gdy Supabase zwroci sesje, zapisuje/aktualizuje rekord w `profiles`.
+6. Dla roli `organizer` tworzy rekord w `organizers` i powiazanie w `organizer_users`, jesli nie istnieje.
 
 Jesli logowanie zwroci blad `Email not confirmed`, kod pokazuje komunikat w formularzu. Przy rejestracji bez weryfikacji email trzeba potwierdzic konfiguracje Supabase Auth, bo repozytorium nie zawiera ustawien panelu Supabase.
 

@@ -44,6 +44,7 @@ Client components odpowiadają za interakcję UI:
 - `components/LocationSection.tsx` - wrapper obsługujący przełączanie między wyborem istniejącej lokalizacji a tworzeniem nowej przez LocationPickerMap.
 - `components/EventExplorer.tsx` - filtry, lista i mapa dla widoków kategorii/miasta.
 - `components/NavbarClient.tsx` - menu, panel użytkownika i formularz wylogowania.
+- `components/CookieConsent.tsx` - banner zgody na cookies/analitykę; zapisuje wybór w `localStorage` i ładuje Google Analytics dopiero po zgodzie.
 - Komponenty map są ładowane dynamicznie bez SSR.
 - `components/CityAutocomplete.tsx` - publiczne autouzupełnianie miejscowości; priorytetowo używa aktywnych miast z tabeli `cities`, a następnie publicznego Photon/OSM z filtrem `countrycode=PL`, warstwami miejscowości i bounding boxem Polski.
 
@@ -128,7 +129,7 @@ Strony szczegółów wydarzeń i kolekcji generują JSON-LD:
 
 ## Zewnętrzne skrypty
 
-`app/layout.tsx` ładuje jeden globalny Google tag dla Google Analytics z identyfikatorem `G-60019N4V87`. Skrypt jest umieszczony w globalnym `<head>`, więc obejmuje wszystkie strony renderowane przez App Router.
+`app/layout.tsx` renderuje `CookieConsent`, a Google Analytics z identyfikatorem `G-60019N4V87` jest ładowane client-side przez `components/CookieConsent.tsx` dopiero po zgodzie użytkownika na analitykę. Odrzucenie zgody zapisuje się w `localStorage` i blokuje ładowanie skryptu GA.
 
 ## Stany ładowania i błędu
 

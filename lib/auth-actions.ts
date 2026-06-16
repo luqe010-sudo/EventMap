@@ -69,6 +69,8 @@ export async function signUpAction(formData: FormData): Promise<{ success: boole
     const displayName = formData.get("displayName");
     const role = formData.get("role");
     const organizerName = formData.get("organizerName");
+    const termsAccepted = formData.get("termsAccepted");
+    const privacyNoticeAccepted = formData.get("privacyNoticeAccepted");
 
     if (
       typeof email !== "string" ||
@@ -78,6 +80,14 @@ export async function signUpAction(formData: FormData): Promise<{ success: boole
       typeof role !== "string"
     ) {
       return { success: false, error: "Wszystkie pola sa wymagane." };
+    }
+
+    if (termsAccepted !== "on") {
+      return { success: false, error: "Akceptacja regulaminu jest wymagana." };
+    }
+
+    if (privacyNoticeAccepted !== "on") {
+      return { success: false, error: "Potwierdzenie zapoznania sie z polityka prywatnosci i cookies jest wymagane." };
     }
 
     if (password !== confirmPassword) {
