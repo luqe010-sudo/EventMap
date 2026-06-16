@@ -5,8 +5,10 @@ import {
   getCategoryBySlugFromDb,
   listCategories,
   listEvents,
+  listPublicCategoryCityRoutes,
   resolveCityLocation,
   getActiveCityLocations,
+  type CategoryCityRoute,
   type KnownLocation,
 } from "@/lib/events";
 import { toPluralCategorySlug, toPluralCategoryName, formatInCity, toSlug } from "@/lib/slugs";
@@ -148,6 +150,7 @@ export default async function CategoryCityPage({
         categoryOptions={categoryRows}
         initialFilters={initialFilters}
         activeCityLocations={activeCityLocations}
+        availableCategoryCityRoutes={[]}
       />
     );
   }
@@ -182,11 +185,16 @@ export default async function CategoryCityPage({
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows, activeCityLocations] = await Promise.all([
+    const [events, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
       listEvents({ categoryId: category.id, dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
       getActiveCityLocations(),
+      listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 }),
     ]);
+
+    if (!hasCategoryCityRoute(availableCategoryCityRoutes, pluralCategorySlug, cityLocation)) {
+      redirectToCategoryLocation(pluralCategorySlug, cityLocation, resolvedSearchParams);
+    }
 
     return (
       <>
@@ -209,6 +217,7 @@ export default async function CategoryCityPage({
           categoryOptions={categoryRows}
           initialFilters={initialFilters}
           activeCityLocations={activeCityLocations}
+          availableCategoryCityRoutes={availableCategoryCityRoutes}
         />
       </>
     );
@@ -230,10 +239,11 @@ export default async function CategoryCityPage({
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows, activeCityLocations] = await Promise.all([
+    const [events, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
       listEvents({ dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
       getActiveCityLocations(),
+      listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 }),
     ]);
 
     return (
@@ -257,6 +267,7 @@ export default async function CategoryCityPage({
           categoryOptions={categoryRows}
           initialFilters={initialFilters}
           activeCityLocations={activeCityLocations}
+          availableCategoryCityRoutes={availableCategoryCityRoutes}
         />
       </>
     );
@@ -281,4 +292,26 @@ export default async function CategoryCityPage({
 
   // 3. Fallback to 404
   notFound();
+}
+
+function hasCategoryCityRoute(routes: CategoryCityRoute[], categorySlug: string, cityLocation: KnownLocation) {
+  const citySlug = cityLocation.slug ?? toSlug(cityLocation.label);
+  return routes.some((route) => route.categorySlug === categorySlug && route.citySlug === citySlug);
+}
+
+function redirectToCategoryLocation(
+  categorySlug: string,
+  cityLocation: KnownLocation,
+  searchParams: SearchParams
+) {
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(searchParams)) {
+    if (typeof value === "string") query.set(key, value);
+  }
+
+  query.set("lat", String(Math.round(cityLocation.latitude * 1000) / 1000));
+  query.set("lng", String(Math.round(cityLocation.longitude * 1000) / 1000));
+  if (!query.has("radius")) query.set("radius", "30");
+
+  redirect(`/${categorySlug}/lokalizacja?${query.toString()}`);
 }

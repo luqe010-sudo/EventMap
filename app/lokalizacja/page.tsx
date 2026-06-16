@@ -81,6 +81,7 @@ export default async function LocationPage({ searchParams }: Props) {
         categoryOptions={categoryRows}
         initialFilters={initialFilters}
         activeCityLocations={activeCityLocations}
+        availableCategoryCityRoutes={[]}
       />
     </>
   );

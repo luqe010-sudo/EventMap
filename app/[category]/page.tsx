@@ -5,6 +5,7 @@ import {
   getCategoryBySlugFromDb,
   listCategories,
   listEvents,
+  listPublicCategoryCityRoutes,
   resolveCityLocation,
   getActiveCityLocations,
 } from "@/lib/events";
@@ -70,10 +71,11 @@ export default async function CategoryPage({
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows, activeCityLocations] = await Promise.all([
+    const [events, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
       listEvents({ categoryId: category.id, dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
       getActiveCityLocations(),
+      listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 }),
     ]);
 
     return (
@@ -96,6 +98,7 @@ export default async function CategoryPage({
           categoryOptions={categoryRows}
           initialFilters={initialFilters}
           activeCityLocations={activeCityLocations}
+          availableCategoryCityRoutes={availableCategoryCityRoutes}
         />
       </>
     );
@@ -112,10 +115,11 @@ export default async function CategoryPage({
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows, activeCityLocations] = await Promise.all([
+    const [events, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
       listEvents({ dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
       getActiveCityLocations(),
+      listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 }),
     ]);
 
     return (
@@ -138,6 +142,7 @@ export default async function CategoryPage({
           categoryOptions={categoryRows}
           initialFilters={initialFilters}
           activeCityLocations={activeCityLocations}
+          availableCategoryCityRoutes={availableCategoryCityRoutes}
         />
       </>
     );

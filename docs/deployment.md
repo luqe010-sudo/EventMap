@@ -118,6 +118,16 @@ Ta komenda wymaga dostępu sieciowego i zalogowanego Supabase CLI albo tokena Su
 5. Uruchom `npm run build`.
 6. Wdróż aplikację jako standardową aplikację Next.js.
 
+## SEO po wdrozeniu
+
+Po wdrozeniu sprawdz:
+
+- `https://mapaimprez.pl/robots.txt` powinien zwracac `text/plain` i wskazywac `https://mapaimprez.pl/sitemap.xml`;
+- `https://mapaimprez.pl/sitemap.xml` powinien zwracac indeks sitemap;
+- w Google Search Console ponownie przeslij `sitemap.xml`;
+- sprawdz raport indeksowania pod katem `Soft 404`, `Odkryto, obecnie nie zaindeksowano` i `Przeslano i zindeksowano`;
+- stare adresy `/wydarzenie/[slug]` i `/wydarzenia/[slug]` powinny zwracac 308 do kanonicznego URL-a wydarzenia albo 404 dla nieistniejacego sluga.
+
 ## Hosting
 
 `PROJECT_BRIEF.md` wskazuje docelowo Vercel, a `app/layout.tsx` używa domeny `https://mapaimprez.pl` w metadanych. W repozytorium nie ma jednak plików konfiguracyjnych Vercel, GitHub Actions ani innego pipeline'u.

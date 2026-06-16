@@ -26,16 +26,15 @@ export default function Footer() {
             <li><Link href="/">Odkryj wydarzenia</Link></li>
             <li><Link href="/#events-list">Mapa i lista</Link></li>
             <li><Link href="/organizer">Panel organizatora</Link></li>
-            <li><Link href="/login">Logowanie</Link></li>
           </ul>
         </div>
 
         <div className="footerColumn">
-          <h3>Zarzadzanie</h3>
+          <h3>Popularne</h3>
           <ul>
-            <li><Link href="/admin">Panel admina</Link></li>
-            <li><Link href="/admin/events">Wydarzenia</Link></li>
-            <li><Link href="/admin/organizers">Organizatorzy</Link></li>
+            <li><Link href="/koncerty">Koncerty</Link></li>
+            <li><Link href="/wroclaw">Wydarzenia we Wroclawiu</Link></li>
+            <li><Link href="/warszawa">Wydarzenia w Warszawie</Link></li>
           </ul>
         </div>
 

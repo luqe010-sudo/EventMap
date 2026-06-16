@@ -9,8 +9,10 @@ export async function GET() {
   const urlsXml = events
     .map((event) => {
       const path = eventPath(event);
+      const lastmod = event.updated_at ?? event.start_at;
       return `  <url>
     <loc>https://mapaimprez.pl${path}</loc>
+    <lastmod>${new Date(lastmod).toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>`;

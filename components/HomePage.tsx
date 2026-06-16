@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { type CategoryOption, type EventCategory, type EventItem, type KnownLocation, getDefaultLocation, knownLocations } from "@/lib/events";
+import { type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type KnownLocation, getDefaultLocation, knownLocations } from "@/lib/events";
 import {
   DEFAULT_MAX_PRICE,
   clampMaxPrice,
@@ -30,6 +30,7 @@ type HomePageProps = {
   initialDateFilter?: DateFilter;
   initialFilters?: PublicFilterParams;
   activeCityLocations?: KnownLocation[];
+  availableCategoryCityRoutes?: CategoryCityRoute[];
 };
 
 const EVENTS_PAGE_SIZE = 20;
@@ -50,7 +51,8 @@ export default function HomePage({
   initialCategory,
   initialDateFilter,
   initialFilters,
-  activeCityLocations = []
+  activeCityLocations = [],
+  availableCategoryCityRoutes
 }: HomePageProps) {
   // Filter state
   const [dateFilter, setDateFilter] = useState<DateFilter>(
@@ -95,7 +97,7 @@ export default function HomePage({
 
   // Routing contexts
   const isCategoryPage = !!initialCategory && !initialLocation;
-  const isCityPage = !initialCategory && !!initialLocation;
+  const isCityPage = !initialCategory && !!initialLocation && Boolean(initialLocation.slug);
   const isCategoryCityPage = !!initialCategory && !!initialLocation;
   const isHomePage = !initialCategory && !initialLocation;
 
@@ -265,6 +267,32 @@ export default function HomePage({
     ]).filter((slug): slug is string => Boolean(slug));
     return Array.from(new Set([...hardcoded, ...active]));
   }, [activeCityLocations]);
+
+  const locationBySlug = useMemo(() => {
+    const locations = new Map<string, KnownLocation>();
+    for (const loc of [...knownLocations, ...activeCityLocations]) {
+      const slugs = [loc.slug, ...loc.aliases, toSlug(loc.label)].filter((slug): slug is string => Boolean(slug));
+      for (const slug of slugs) locations.set(slug, loc);
+    }
+    return locations;
+  }, [activeCityLocations]);
+
+  const availableCategoryCitySet = useMemo(() => {
+    return new Set((availableCategoryCityRoutes ?? []).map((route) => `${route.categorySlug}/${route.citySlug}`));
+  }, [availableCategoryCityRoutes]);
+
+  const buildCategoryLocationHref = useCallback((categorySlug: string, loc: KnownLocation) => {
+    const pluralCategorySlug = toPluralCategorySlug(categorySlug);
+    const citySlug = loc.slug ?? toSlug(loc.label);
+
+    if (availableCategoryCityRoutes === undefined || availableCategoryCitySet.has(`${pluralCategorySlug}/${citySlug}`)) {
+      return `/${pluralCategorySlug}/${citySlug}`;
+    }
+
+    const lat = Math.round(loc.latitude * 1000) / 1000;
+    const lng = Math.round(loc.longitude * 1000) / 1000;
+    return `/${pluralCategorySlug}/lokalizacja?lat=${lat}&lng=${lng}&radius=30`;
+  }, [availableCategoryCityRoutes, availableCategoryCitySet]);
 
   // Determine if location is a known city (has a slug-able name from city_pages/knownLocations)
   // GPS locations and geo points use empty aliases or ["gps"]
@@ -487,7 +515,7 @@ export default function HomePage({
                   return (
                     <Link
                       key={cat.id}
-                      href={`/${toPluralCategorySlug(cat.slug)}/${initialLocation!.slug ?? toSlug(initialLocation!.label)}`}
+                      href={buildCategoryLocationHref(cat.slug, initialLocation!)}
                       className="cityTileCard"
                       style={{ "--hover-color": catColor } as React.CSSProperties}
                     >
@@ -525,7 +553,13 @@ export default function HomePage({
                 {POPULAR_CITIES.map((city) => (
                   <Link
                     key={city.slug}
-                    href={`/${toPluralCategorySlug(toSlug(initialCategory))}/${city.slug}`}
+                    href={buildCategoryLocationHref(toSlug(initialCategory), locationBySlug.get(city.slug) ?? {
+                      label: city.label,
+                      aliases: [city.slug],
+                      slug: city.slug,
+                      latitude: getDefaultLocation().latitude,
+                      longitude: getDefaultLocation().longitude
+                    })}
                     className="internalLinkCard"
                   >
                     <span>{toPluralCategoryName(initialCategory)} {city.label}</span>
@@ -546,7 +580,7 @@ export default function HomePage({
                   .map((cat) => (
                     <Link
                       key={cat.id}
-                      href={`/${toPluralCategorySlug(cat.slug)}/${initialLocation.slug ?? toSlug(initialLocation.label)}`}
+                      href={buildCategoryLocationHref(cat.slug, initialLocation)}
                       className="internalLinkCard"
                     >
                       <span>{cat.name} {formatInCity(initialLocation.label)}</span>

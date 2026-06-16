@@ -1,49 +1,40 @@
-import { listCategories } from "@/lib/events";
-import { toPluralCategorySlug } from "@/lib/slugs";
-import { createSupabaseServerClient } from "@/lib/supabase";
+import { listPublicCategoryCityRoutes } from "@/lib/events";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const supabase = createSupabaseServerClient();
-
-  const [categories, { data: cities }] = await Promise.all([
-    listCategories(),
-    supabase
-      .from("cities")
-      .select("slug")
-      .eq("is_active", true)
-      .order("slug", { ascending: true })
-  ]);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const routes = await listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 });
 
   const xmlUrls: string[] = [];
 
-  categories.forEach((cat) => {
-    const categorySlug = toPluralCategorySlug(cat.slug);
-
-    (cities ?? []).forEach((city) => {
+  routes.forEach((route) => {
       xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/${categorySlug}/${city.slug}</loc>
+    <loc>https://mapaimprez.pl/${route.categorySlug}/${route.citySlug}</loc>
+    <lastmod>${new Date(route.lastmod).toISOString()}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>`);
 
       xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/${categorySlug}/${city.slug}/dzis</loc>
+    <loc>https://mapaimprez.pl/${route.categorySlug}/${route.citySlug}/dzis</loc>
+    <lastmod>${new Date(route.lastmod).toISOString()}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>`);
       xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/${categorySlug}/${city.slug}/weekend</loc>
+    <loc>https://mapaimprez.pl/${route.categorySlug}/${route.citySlug}/weekend</loc>
+    <lastmod>${new Date(route.lastmod).toISOString()}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>`);
       xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/${categorySlug}/${city.slug}/ten-tydzien</loc>
+    <loc>https://mapaimprez.pl/${route.categorySlug}/${route.citySlug}/ten-tydzien</loc>
+    <lastmod>${new Date(route.lastmod).toISOString()}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>`);
-    });
   });
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

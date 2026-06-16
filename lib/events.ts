@@ -40,6 +40,7 @@ export type EventWithRelations = Pick<
   | "is_featured"
   | "is_verified"
   | "is_cancelled"
+  | "updated_at"
 > & {
   category: Pick<CategoryRow, "id" | "name" | "slug" | "icon" | "color"> | null;
   location: Pick<
@@ -100,6 +101,14 @@ export type CategoryOption = Pick<CategoryRow, "id" | "name" | "slug" | "icon" |
 export type CityPage = CityPageRow & {
   city: Pick<CityRow, "id" | "name" | "slug" | "latitude" | "longitude" | "county" | "voivodeship" | "is_active"> | null;
 };
+export type CategoryCityRoute = {
+  categorySlug: string;
+  citySlug: string;
+  cityLabel: string;
+  latitude: number;
+  longitude: number;
+  lastmod: string;
+};
 
 type SupabaseEventRecord = EventRow & {
   category: Pick<CategoryRow, "id" | "name" | "slug" | "icon" | "color"> | null;
@@ -124,6 +133,13 @@ type SupabaseEventRecord = EventRow & {
   sources: EventSourceSummary[] | null;
 };
 
+type CategoryCityEventRecord = Pick<EventRow, "published_at" | "start_at" | "updated_at"> & {
+  category: Pick<CategoryRow, "slug"> | null;
+  location: (Pick<LocationRow, "latitude" | "longitude"> & {
+    city: Pick<CityRow, "name" | "slug" | "latitude" | "longitude" | "is_active"> | null;
+  }) | null;
+};
+
 const FALLBACK_IMAGE = "/background.png";
 const DEFAULT_CATEGORY_COLOR = "#64748b";
 
@@ -146,6 +162,7 @@ const EVENT_SELECT = `
   is_featured,
   is_verified,
   is_cancelled,
+  updated_at,
   category:categories(id, name, slug, icon, color),
   location:locations(name, address, city_id, municipality, county, voivodeship, latitude, longitude, google_maps_url, city:cities(id, name, slug, latitude, longitude, county, voivodeship, is_active)),
   organizer:organizers!events_organizer_id_fkey(name, slug, website, facebook_url, phone, email, logo_url, type, is_verified),
@@ -244,6 +261,76 @@ export async function listEvents(options: ListEventsOptions = {}): Promise<Event
   if (error) throw new Error(`Nie udalo sie pobrac wydarzen: ${error.message}`);
 
   return (data ?? []).map(mapEventRecord);
+}
+
+export async function listPublicCategoryCityRoutes(
+  options: Pick<ListEventsOptions, "dateFrom" | "dateTo" | "limit"> = {}
+): Promise<CategoryCityRoute[]> {
+  const supabase = createSupabaseServerClient();
+  let query = supabase
+    .from("events")
+    .select(`
+      start_at,
+      published_at,
+      updated_at,
+      category:categories!inner(slug),
+      location:locations!inner(
+        latitude,
+        longitude,
+        city:cities!inner(name, slug, latitude, longitude, is_active)
+      )
+    `)
+    .eq("status", "published")
+    .eq("visibility", "public")
+    .or("is_cancelled.is.null,is_cancelled.eq.false")
+    .order("start_at", { ascending: true });
+
+  if (options.dateFrom) {
+    query = query.gte("start_at", options.dateFrom);
+  }
+
+  if (options.dateTo) {
+    query = query.lt("start_at", options.dateTo);
+  }
+
+  if (options.limit) {
+    query = query.limit(options.limit);
+  }
+
+  const { data, error } = await query.returns<CategoryCityEventRecord[]>();
+  if (error) throw new Error(`Nie udalo sie pobrac tras kategorii i miast: ${error.message}`);
+
+  const routes = new Map<string, CategoryCityRoute>();
+  for (const record of data ?? []) {
+    const categorySlug = record.category?.slug ? toPluralCategorySlug(record.category.slug) : null;
+    const city = record.location?.city;
+    if (!categorySlug || !city?.slug || city.is_active !== true) continue;
+
+    const latitude = city.latitude ?? record.location?.latitude;
+    const longitude = city.longitude ?? record.location?.longitude;
+    if (latitude == null || longitude == null) continue;
+
+    const key = `${categorySlug}/${city.slug}`;
+    const lastmod = record.updated_at ?? record.published_at ?? record.start_at;
+    const existing = routes.get(key);
+    if (!existing) {
+      routes.set(key, {
+        categorySlug,
+        citySlug: city.slug,
+        cityLabel: city.name,
+        latitude,
+        longitude,
+        lastmod
+      });
+    } else if (new Date(lastmod).getTime() > new Date(existing.lastmod).getTime()) {
+      existing.lastmod = lastmod;
+    }
+  }
+
+  return Array.from(routes.values()).sort((first, second) => {
+    const byCategory = first.categorySlug.localeCompare(second.categorySlug, "pl");
+    return byCategory || first.citySlug.localeCompare(second.citySlug, "pl");
+  });
 }
 
 export async function getEventBySlug(slug: string): Promise<EventItem | null> {
@@ -474,6 +561,7 @@ function mapEventRecord(record: SupabaseEventRecord): EventItem {
     is_featured: record.is_featured,
     is_verified: record.is_verified,
     is_cancelled: record.is_cancelled,
+    updated_at: record.updated_at,
     category: record.category,
     location: record.location,
     organizer: record.organizer,

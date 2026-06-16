@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import LoginForm from "@/components/LoginForm";
 
 export const dynamic = "force-dynamic";
+export const metadata: Metadata = {
+  title: "Logowanie | MapaImprez",
+  robots: {
+    index: false,
+    follow: false
+  }
+};
 
 type LoginPageProps = {
   searchParams: Promise<{ signup?: string }>;

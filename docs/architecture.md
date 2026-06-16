@@ -30,6 +30,9 @@ Route'y w `app/` są server components tam, gdzie pobierają dane z Supabase:
 - `app/api/events/[id]/analytics/route.ts` zapisuje publiczne zdarzenia analityczne wydarzenia.
 - `app/lokalizacja/page.tsx` renderuje stronę geolokalizacji z `lat`, `lng`, `radius` w query params; ma `noindex, nofollow`.
 - `app/[category]/[city]/page.tsx` rozpoznaje `city === "lokalizacja"` jako specjalny przypadek geolokalizacji z kategorią.
+- `app/[category]/[city]/page.tsx` renderuje kanoniczna strone kategorii w miescie tylko wtedy, gdy istnieje nadchodzace publiczne wydarzenie tej kategorii w tym miescie; puste pary przekierowuja na `/kategoria/lokalizacja?lat=...&lng=...&radius=30`.
+- `app/robots.ts` wystawia prawdziwy `/robots.txt` z linkiem do indeksu sitemap i blokada paneli, API oraz stron logowania/rejestracji.
+- Legacy route handlery `/wydarzenie/[slug]` i `/wydarzenia/[slug]` przekierowuja istniejace wydarzenia na kanoniczny adres `/{kategoria}/{miasto}/{wydarzenie}`, a dla brakujacych slugow zwracaja HTTP 404 z `X-Robots-Tag: noindex, nofollow`.
 
 Client components odpowiadają za interakcję UI:
 
@@ -114,6 +117,8 @@ MapLibre używa stylu wektorowego i po załadowaniu stylu próbuje preferować p
 - `/wydarzenie/[slug]` dla wydarzenia używa tytułu, miasta, opisu i obrazu wydarzenia.
 - `/wydarzenia/[city]` dla strony miasta używa `cities.slug` oraz metadanych SEO z `city_pages`.
 - `/kategoria/[slug]` używa nazwy kategorii.
+- `sitemap-category-cities.xml` korzysta z `listPublicCategoryCityRoutes()` i zawiera tylko realne pary kategoria-miasto z opublikowanych, publicznych i nieanulowanych nadchodzacych wydarzen.
+- `sitemap-events.xml`, `sitemap-category-cities.xml` i `sitemap-cities.xml` wystawiaja `lastmod`, gdy aplikacja ma wiarygodna date aktualizacji z bazy.
 
 Strony szczegółów wydarzeń i kolekcji generują JSON-LD:
 

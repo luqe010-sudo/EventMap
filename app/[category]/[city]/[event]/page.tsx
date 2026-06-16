@@ -6,9 +6,12 @@ import {
   getCategoryBySlugFromDb,
   listCategories,
   listEvents,
+  listPublicCategoryCityRoutes,
   resolveCityLocation,
   getEventBySlug,
   getActiveCityLocations,
+  type CategoryCityRoute,
+  type KnownLocation,
 } from "@/lib/events";
 import { toPluralCategorySlug, toPluralCategoryName, formatInCity, toSlug, eventPath } from "@/lib/slugs";
 import { searchAddress } from "@/lib/geocoding";
@@ -103,11 +106,16 @@ export default async function EventOrTimePage({
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const [events, categoryRows, activeCityLocations] = await Promise.all([
+    const [events, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
       listEvents({ categoryId: category.id, dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
       getActiveCityLocations(),
+      listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 }),
     ]);
+
+    if (!hasCategoryCityRoute(availableCategoryCityRoutes, pluralCategorySlug, cityLocation)) {
+      redirectToCategoryLocation(pluralCategorySlug, cityLocation);
+    }
 
     const dateFilterMap = {
       "dzis": "today",
@@ -137,6 +145,7 @@ export default async function EventOrTimePage({
           categoryOptions={categoryRows}
           initialFilters={initialFilters}
           activeCityLocations={activeCityLocations}
+          availableCategoryCityRoutes={availableCategoryCityRoutes}
         />
       </>
     );
@@ -166,4 +175,18 @@ export default async function EventOrTimePage({
     .slice(0, 3);
 
   return <EventDetailView event={event} relatedEvents={relatedEvents} />;
+}
+
+function hasCategoryCityRoute(routes: CategoryCityRoute[], categorySlug: string, cityLocation: KnownLocation) {
+  const citySlug = cityLocation.slug ?? toSlug(cityLocation.label);
+  return routes.some((route) => route.categorySlug === categorySlug && route.citySlug === citySlug);
+}
+
+function redirectToCategoryLocation(categorySlug: string, cityLocation: KnownLocation) {
+  const query = new URLSearchParams();
+  query.set("lat", String(Math.round(cityLocation.latitude * 1000) / 1000));
+  query.set("lng", String(Math.round(cityLocation.longitude * 1000) / 1000));
+  query.set("radius", "30");
+
+  redirect(`/${categorySlug}/lokalizacja?${query.toString()}`);
 }

@@ -139,6 +139,12 @@ URL z kategorią:
 - obsługiwane przez `app/[category]/[city]/page.tsx` gdy `city === "lokalizacja"`;
 - filtruje wydarzenia po kategorii;
 - również `noindex, nofollow`.
+- Adresy `/kategoria/miasto` są utrzymywane tylko dla par, które mają nadchodzące publiczne, opublikowane i nieanulowane wydarzenie. Jeżeli para kategorii i miasta nie ma takiego wydarzenia, serwer przekierowuje na noindexowy wariant `/kategoria/lokalizacja?lat=...&lng=...&radius=30`.
+- `sitemap-category-cities.xml` nie tworzy już iloczynu wszystkich kategorii i aktywnych miast; korzysta z realnych par kategorii i miast wynikających z publicznych wydarzeń.
+- `/robots.txt` wskazuje `sitemap.xml` i blokuje indeksowanie paneli, API oraz stron logowania/rejestracji.
+- Panele `/admin/**`, `/organizer/**`, `/login` i `/register` maja metadane `noindex, nofollow`.
+- Stare adresy `/wydarzenie/[slug]` i `/wydarzenia/[slug]` przekierowuja istniejace wydarzenia na kanoniczne URL-e szczegolow albo zwracaja HTTP 404 dla brakujacych slugow.
+- Sitemapy wydarzen, miast oraz par kategoria-miasto zawieraja `lastmod`, gdy data aktualizacji jest dostepna w bazie.
 
 ## Fallback dla nieistniejących miast
 

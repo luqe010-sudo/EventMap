@@ -7,7 +7,7 @@ export async function GET() {
 
   const { data: cities } = await supabase
     .from("cities")
-    .select("slug")
+    .select("slug, updated_at")
     .eq("is_active", true)
     .order("slug", { ascending: true });
 
@@ -16,22 +16,26 @@ export async function GET() {
   (cities ?? []).forEach((city) => {
     xmlUrls.push(`  <url>
     <loc>https://mapaimprez.pl/${city.slug}</loc>
+    ${city.updated_at ? `<lastmod>${new Date(city.updated_at).toISOString()}</lastmod>` : ""}
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>`);
 
     xmlUrls.push(`  <url>
     <loc>https://mapaimprez.pl/${city.slug}/dzis</loc>
+    ${city.updated_at ? `<lastmod>${new Date(city.updated_at).toISOString()}</lastmod>` : ""}
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>`);
     xmlUrls.push(`  <url>
     <loc>https://mapaimprez.pl/${city.slug}/weekend</loc>
+    ${city.updated_at ? `<lastmod>${new Date(city.updated_at).toISOString()}</lastmod>` : ""}
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>`);
     xmlUrls.push(`  <url>
     <loc>https://mapaimprez.pl/${city.slug}/ten-tydzien</loc>
+    ${city.updated_at ? `<lastmod>${new Date(city.updated_at).toISOString()}</lastmod>` : ""}
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>`);
