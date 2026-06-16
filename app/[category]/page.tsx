@@ -92,6 +92,19 @@ export default async function CategoryPage({
             })
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://mapaimprez.pl" },
+                { "@type": "ListItem", position: 2, name: toPluralCategoryName(category.name), item: `https://mapaimprez.pl/${toPluralCategorySlug(category.slug)}` },
+              ],
+            })
+          }}
+        />
         <HomePage
           initialEvents={events}
           initialCategory={category.name}
@@ -133,6 +146,19 @@ export default async function CategoryPage({
               name: `Wydarzenia ${formatInCity(cityLocation.label)} - kalendarz imprez`,
               description: `Wszystkie nadchodzące wydarzenia i imprezy ${formatInCity(cityLocation.label)} na MapaImprez.pl.`,
               url: `https://mapaimprez.pl/${normalizedCitySlug}`
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://mapaimprez.pl" },
+                { "@type": "ListItem", position: 2, name: `Wydarzenia ${formatInCity(cityLocation.label)}`, item: `https://mapaimprez.pl/${normalizedCitySlug}` },
+              ],
             })
           }}
         />

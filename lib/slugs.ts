@@ -22,8 +22,8 @@ export function eventToSlug(event: EventItem): string {
 
 export function eventPath(event: EventItem): string {
   const categorySlug = toPluralCategorySlug(event.categorySlug || toSlug(event.category || "inne"));
-  const citySlug = event.citySlug || toSlug(event.city || "polska");
-  const eventSlug = event.slug || toSlug(event.title);
+  const citySlug = (event.citySlug || toSlug(event.city || "polska")).toLowerCase();
+  const eventSlug = (event.slug || toSlug(event.title)).toLowerCase();
   return `/${categorySlug}/${citySlug}/${eventSlug}`;
 }
 

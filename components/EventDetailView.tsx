@@ -82,7 +82,7 @@ export default function EventDetailView({
             description: event.description ?? event.short_description,
             image: event.imageUrl,
             startDate: event.start_at,
-            endDate: event.end_at,
+            endDate: event.end_at || new Date(new Date(event.start_at).getTime() + 2 * 60 * 60 * 1000).toISOString(),
             eventStatus: event.is_cancelled
               ? "https://schema.org/EventCancelled"
               : "https://schema.org/EventScheduled",
@@ -113,16 +113,70 @@ export default function EventDetailView({
               priceCurrency: event.currency ?? "PLN",
               url: event.sources[0]?.source_url ?? eventUrl,
               availability: "https://schema.org/InStock",
+              validFrom: event.updated_at || new Date(new Date(event.start_at).getTime() - 30 * 24 * 60 * 60 * 1000).toISOString(),
+            },
+            performer: {
+              "@type": "PerformingGroup",
+              name: event.organizerRelation?.name || event.organizerName || "Uczestnicy",
             },
             organizer: event.organizerRelation
               ? {
                   "@type": "Organization",
                   name: event.organizerRelation.name,
                   url:
-                    event.organizerRelation.website ??
-                    event.organizerRelation.facebook_url,
+                    event.organizerRelation.website ||
+                    event.organizerRelation.facebook_url ||
+                    "https://mapaimprez.pl",
                 }
               : undefined,
+          }),
+        }}
+      />
+
+      {/* JSON-LD BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Strona główna",
+                item: "https://mapaimprez.pl",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: categoryPlural,
+                item: `https://mapaimprez.pl/${categorySlug}`,
+              },
+              ...(event.city
+                ? [
+                    {
+                      "@type": "ListItem",
+                      position: 3,
+                      name: event.city,
+                      item: `https://mapaimprez.pl/${categorySlug}/${citySlug}`,
+                    },
+                    {
+                      "@type": "ListItem",
+                      position: 4,
+                      name: event.title,
+                      item: eventUrl,
+                    },
+                  ]
+                : [
+                    {
+                      "@type": "ListItem",
+                      position: 3,
+                      name: event.title,
+                      item: eventUrl,
+                    },
+                  ]),
+            ],
           }),
         }}
       />

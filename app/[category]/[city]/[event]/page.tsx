@@ -55,6 +55,26 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     alternates: {
       canonical: eventPath(event),
     },
+    openGraph: {
+      title: `${event.title} | MapaImprez`,
+      description: event.short_description || event.description || `Wydarzenie ${event.title} w miejscowości ${event.city}.`,
+      url: `https://mapaimprez.pl${eventPath(event)}`,
+      type: "article",
+      ...(event.imageUrl ? {
+        images: [{
+          url: event.imageUrl,
+          width: 1200,
+          height: 630,
+          alt: event.title,
+        }],
+      } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${event.title} | MapaImprez`,
+      description: event.short_description || event.description || `Wydarzenie ${event.title} w miejscowości ${event.city}.`,
+      ...(event.imageUrl ? { images: [event.imageUrl] } : {}),
+    },
   };
 }
 

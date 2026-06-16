@@ -142,6 +142,11 @@ URL z kategorią:
 - Adresy `/kategoria/miasto` są utrzymywane tylko dla par, które mają nadchodzące publiczne, opublikowane i nieanulowane wydarzenie. Jeżeli para kategorii i miasta nie ma takiego wydarzenia, serwer przekierowuje na noindexowy wariant `/kategoria/lokalizacja?lat=...&lng=...&radius=30`.
 - `sitemap-category-cities.xml` nie tworzy już iloczynu wszystkich kategorii i aktywnych miast; korzysta z realnych par kategorii i miast wynikających z publicznych wydarzeń.
 - `/robots.txt` wskazuje `sitemap.xml` i blokuje indeksowanie paneli, API oraz stron logowania/rejestracji.
+- Plik indeksu sitemapy `sitemap.xml` zawiera znacznik `<lastmod>` dla każdego z sub-sitemapów, aby wskazać Google kiedy uległy one zmianie.
+- Adresy URL generowane przez `eventPath()` są zawsze sprowadzane do małych liter (`.toLowerCase()`). Dynamiczna strona szczegółów wydarzenia ma wbudowany redirect (HTTP 307) ze ścieżek z wielkimi literami na ich kanoniczny odpowiednik z małymi literami, co eliminuje problem duplikatów URL-i.
+- Strona główna posiada kanoniczny link `/` w głównym layoucie, aby zabezpieczyć ją przed powstawaniem duplikatów z parametrami UTM lub parametrami wyszukiwania.
+- Zaimplementowano skrypty strukturyzowanych danych `BreadcrumbList` w formacie JSON-LD dla stron wydarzenia, kategorii oraz miast, aby ułatwić wyszukiwarce prezentację ścieżki w wynikach wyszukiwania.
+- Uporządkowane dane wydarzenia (`Event` JSON-LD) zostały uzupełnione pod kątem wymogów Google Search Console: dodano automatyczny fallback dla `endDate` (start + 2h), pole `validFrom` dla oferty `Offer` (na bazie daty aktualizacji lub startu - 30 dni), pole `performer` z nazwą organizatora oraz bezwzględny adres URL dla obiektu `organizer` (fallback na domenę główną).
 - Panele `/admin/**`, `/organizer/**`, `/login` i `/register` maja metadane `noindex, nofollow`.
 - Stare adresy `/wydarzenie/[slug]` i `/wydarzenia/[slug]` przekierowuja istniejace wydarzenia na kanoniczne URL-e szczegolow albo zwracaja HTTP 404 dla brakujacych slugow.
 - Sitemapy wydarzen, miast oraz par kategoria-miasto zawieraja `lastmod`, gdy data aktualizacji jest dostepna w bazie.

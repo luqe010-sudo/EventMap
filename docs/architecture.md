@@ -112,17 +112,18 @@ MapLibre używa stylu wektorowego i po załadowaniu stylu próbuje preferować p
 
 ## Routing i SEO
 
-`app/layout.tsx` definiuje globalne metadane i Open Graph. Strony dynamiczne generują metadata:
+`app/layout.tsx` definiuje globalne metadane (w tym canonical `/`), Open Graph z domyślnym obrazem `public/og-default.png` oraz metadane Twitter Card. Strony dynamiczne generują specyficzne metadata:
 
-- `/wydarzenie/[slug]` dla wydarzenia używa tytułu, miasta, opisu i obrazu wydarzenia.
-- `/wydarzenia/[city]` dla strony miasta używa `cities.slug` oraz metadanych SEO z `city_pages`.
-- `/kategoria/[slug]` używa nazwy kategorii.
+- Szczegóły wydarzenia `/[category]/[city]/[event]` używają dynamicznych tagów Open Graph (m.in. dedykowanego obrazka wydarzenia `imageUrl`) oraz Twitter.
+- Adresy URL generowane przez `eventPath()` są w całości konwertowane do małych liter. Strona szczegółów wydarzenia automatycznie przekierowuje za pomocą `redirect` z wariantów URL z wielkimi literami na kanoniczny lowercase.
+- `sitemap.xml` (sitemap index) przekazuje znacznik `<lastmod>` z aktualnym czasem dla każdego sub-sitemapa.
 - `sitemap-category-cities.xml` korzysta z `listPublicCategoryCityRoutes()` i zawiera tylko realne pary kategoria-miasto z opublikowanych, publicznych i nieanulowanych nadchodzacych wydarzen.
 - `sitemap-events.xml`, `sitemap-category-cities.xml` i `sitemap-cities.xml` wystawiaja `lastmod`, gdy aplikacja ma wiarygodna date aktualizacji z bazy.
 
 Strony szczegółów wydarzeń i kolekcji generują JSON-LD:
 
-- `Event` dla szczegółów wydarzenia.
+- `Event` dla szczegółów wydarzenia. Aby spełnić wytyczne Google Search Console, struktura `Event` posiada zdefiniowane fallbacki dla pól `endDate`, `offers.validFrom`, `performer` oraz `organizer.url`.
+- `BreadcrumbList` dla podstron wydarzeń, kategorii oraz miast w celu prezentacji poprawnej struktury nawigacji w wynikach wyszukiwania.
 - `CollectionPage` dla strony miasta i kategorii.
 
 ## Zewnętrzne skrypty
