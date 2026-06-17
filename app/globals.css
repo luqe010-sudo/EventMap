@@ -5906,6 +5906,7 @@ body {
   height: 520px;
   pointer-events: none;
   background-image:
+    url("/background-mobile.webp"),
     radial-gradient(circle at 20% 12%, rgba(238, 75, 34, 0.18), transparent 34%),
     linear-gradient(180deg, rgba(255, 248, 241, 0.9), rgba(255, 255, 255, 0));
   background-position: center top;
@@ -5928,6 +5929,131 @@ body {
   z-index: 1;
   width: min(var(--max-width), calc(100% - 92px));
   padding-bottom: 36px;
+}
+
+.loadingHomePage {
+  min-height: 2200px;
+  padding-top: 42px;
+}
+
+.loadingHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.45fr);
+  gap: 46px;
+  min-height: 300px;
+  padding: 36px 0 34px;
+}
+
+.loadingBlock,
+.loadingHeroTiles span,
+.loadingSearchGrid span,
+.loadingEventRow span,
+.loadingEventRow b,
+.loadingEventRow i,
+.loadingEventRow em,
+.loadingSidebar div {
+  display: block;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.72), rgba(247, 243, 238, 0.95), rgba(255, 255, 255, 0.72));
+  background-size: 220% 100%;
+  animation: loadingPulse 1.8s ease-in-out infinite;
+}
+
+.loadingTitle {
+  width: min(620px, 82%);
+  height: 112px;
+  margin-bottom: 24px;
+}
+
+.loadingSubtitle {
+  width: min(520px, 70%);
+  height: 56px;
+}
+
+.loadingHeroTiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-content: center;
+}
+
+.loadingHeroTiles span {
+  min-height: 86px;
+}
+
+.loadingSearchPanel {
+  margin-bottom: 32px;
+  padding: 22px;
+  border: 1px solid rgba(39, 35, 34, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 253, 248, 0.86);
+}
+
+.loadingSearchGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.loadingSearchGrid span {
+  min-height: 78px;
+}
+
+.loadingMainLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 2.18fr) minmax(300px, 0.96fr);
+  gap: 46px;
+}
+
+.loadingEventsList,
+.loadingSidebar {
+  display: grid;
+  gap: 14px;
+}
+
+.loadingEventRow {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 16px;
+  min-height: 112px;
+  padding: 14px 16px;
+  border: 1px solid rgba(39, 35, 34, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 253, 248, 0.82);
+}
+
+.loadingEventRow span {
+  min-height: 84px;
+}
+
+.loadingEventRow div {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+}
+
+.loadingEventRow b {
+  width: 42%;
+  height: 14px;
+}
+
+.loadingEventRow i {
+  width: 78%;
+  height: 22px;
+}
+
+.loadingEventRow em {
+  width: 58%;
+  height: 14px;
+}
+
+.loadingSidebar div {
+  min-height: 220px;
+}
+
+@keyframes loadingPulse {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
 }
 
 .navbar {
@@ -7474,6 +7600,48 @@ select {
     width: 100%;
     max-width: calc(100vw - 36px);
     margin-inline: auto;
+  }
+
+  .loadingHomePage {
+    min-height: 1800px;
+    padding-top: 28px;
+  }
+
+  .loadingHero,
+  .loadingMainLayout {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .loadingHero {
+    min-height: 460px;
+    padding-top: 28px;
+  }
+
+  .loadingTitle {
+    width: 92%;
+    height: 132px;
+  }
+
+  .loadingSubtitle {
+    width: 78%;
+  }
+
+  .loadingHeroTiles,
+  .loadingSearchGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .loadingSearchPanel {
+    padding: 16px;
+  }
+
+  .loadingSearchGrid span {
+    min-height: 70px;
+  }
+
+  .loadingSidebar {
+    display: none;
   }
 
   .appShell,
