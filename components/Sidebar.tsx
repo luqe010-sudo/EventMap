@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { MapPinned } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { type EventCategory, type EventItem, type KnownLocation } from "@/lib/events";
 import { formatPolishDate } from "@/lib/date-format";
 
@@ -11,6 +11,13 @@ const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
   ssr: false,
   loading: () => <div className="mapLoading">Ładowanie mapy...</div>
 });
+
+type MapLoadState = "waiting" | "queued" | "loaded";
+
+type WindowWithIdleCallback = Window & {
+  requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+  cancelIdleCallback?: (id: number) => void;
+};
 
 type SidebarProps = {
   events: Array<{ event: EventItem; distanceKm: number }>;
@@ -29,8 +36,73 @@ export default function Sidebar({
   location,
   isAllPoland
 }: SidebarProps) {
-  const [shouldLoadMap, setShouldLoadMap] = useState(false);
+  const [mapLoadState, setMapLoadState] = useState<MapLoadState>("waiting");
+  const mapWrapRef = useRef<HTMLDivElement | null>(null);
+  const loadScheduledRef = useRef(false);
   const mapEvents = useMemo(() => events.map(({ event }) => event), [events]);
+  const isMapLoaded = mapLoadState === "loaded";
+
+  const loadMapNow = useCallback(() => {
+    loadScheduledRef.current = true;
+    setMapLoadState("loaded");
+  }, []);
+
+  useEffect(() => {
+    const mapElement = mapWrapRef.current;
+    let delayTimer: number | undefined;
+    let idleCallbackId: number | undefined;
+    let observer: IntersectionObserver | undefined;
+
+    function scheduleMapLoad() {
+      if (loadScheduledRef.current) return;
+
+      loadScheduledRef.current = true;
+      setMapLoadState("queued");
+
+      const connection = "connection" in navigator
+        ? (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+        : undefined;
+      const delayMs = connection?.saveData ? 4200 : 1400;
+
+      delayTimer = window.setTimeout(() => {
+        const idleWindow = window as WindowWithIdleCallback;
+
+        if (typeof idleWindow.requestIdleCallback === "function") {
+          idleCallbackId = idleWindow.requestIdleCallback(
+            () => setMapLoadState("loaded"),
+            { timeout: 3200 }
+          );
+          return;
+        }
+
+        setMapLoadState("loaded");
+      }, delayMs);
+    }
+
+    if (mapElement && "IntersectionObserver" in window) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            scheduleMapLoad();
+            observer?.disconnect();
+          }
+        },
+        { rootMargin: "650px 0px" }
+      );
+      observer.observe(mapElement);
+    } else {
+      delayTimer = window.setTimeout(scheduleMapLoad, 2600);
+    }
+
+    return () => {
+      observer?.disconnect();
+      if (delayTimer !== undefined) window.clearTimeout(delayTimer);
+      if (idleCallbackId !== undefined) {
+        const idleWindow = window as WindowWithIdleCallback;
+        idleWindow.cancelIdleCallback?.(idleCallbackId);
+      }
+    };
+  }, []);
 
   return (
     <aside className="sidebar" aria-label="Panel boczny">
@@ -38,8 +110,8 @@ export default function Sidebar({
         <div className="sidebarSectionHeader">
           <h3>Wydarzenia na mapie</h3>
         </div>
-        <div className="sidebarMapWrap">
-          {shouldLoadMap ? (
+        <div className="sidebarMapWrap" ref={mapWrapRef}>
+          {isMapLoaded ? (
             <MapLibreMap
               events={mapEvents}
               location={isAllPoland ? undefined : location}
@@ -50,15 +122,19 @@ export default function Sidebar({
               <MapPinned size={28} strokeWidth={2.2} aria-hidden="true" />
               <div>
                 <strong>Mapa wydarzeń</strong>
-                <p>Włącz mapę, aby załadować pineski, klastry i kafelki mapowe.</p>
+                <p>
+                  {mapLoadState === "queued"
+                    ? "Mapa załaduje się za chwilę, gdy strona skończy najważniejsze zadania."
+                    : "Mapa załaduje się automatycznie, gdy zbliżysz się do tej sekcji."}
+                </p>
               </div>
               <button
                 type="button"
                 className="sidebarMapLoadButton"
-                onClick={() => setShouldLoadMap(true)}
+                onClick={loadMapNow}
               >
                 <MapPinned size={16} strokeWidth={2.4} aria-hidden="true" />
-                Pokaż mapę
+                {mapLoadState === "queued" ? "Pokaż teraz" : "Pokaż mapę"}
               </button>
             </div>
           )}

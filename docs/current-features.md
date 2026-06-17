@@ -11,8 +11,8 @@ Strona główna `/`:
 - pokazuje hero, panel wyszukiwania oraz układ 70/30 z lewą kolumną wydarzeń i prawym sidebarem;
 - w lewej kolumnie pokazuje wyróżnione wydarzenia nad listą wydarzeń;
 - w prawym sidebarze pokazuje jeden spójny panel z mapą MapLibre, powiadomieniami, nadchodzącymi wydarzeniami i popularnymi kategoriami;
-- mapa w sidebarze jest uruchamiana na żądanie przyciskiem `Pokaż mapę`, żeby pierwsze ładowanie strony nie pobierało od razu MapLibre, pinesek i kafelków mapowych;
-- mapa w sidebarze po uruchomieniu jest osadzona bezpośrednio w dużym panelu, ma wewnętrzny margines i zaokrąglenie;
+- mapa w sidebarze ładuje się automatycznie dopiero po zbliżeniu panelu mapy do viewportu oraz po krótkim idle/delay, żeby pierwsze ładowanie strony nie pobierało od razu MapLibre, pinesek i kafelków mapowych; przycisk w placeholderze pozwala przyspieszyć ładowanie ręcznie;
+- mapa w sidebarze po załadowaniu jest osadzona bezpośrednio w dużym panelu, ma wewnętrzny margines i zaokrąglenie;
 - mapa na starcie używa zasięgu `Cała Polska`, obejmuje kadrem całą Polskę i pokazuje wydarzenia bez ograniczenia promieniem;
 - mapa grupuje blisko położone wydarzenia w klastry; klastry mają ograniczony promień i rozbijają się na pojedyncze pineski przy średnim przybliżeniu, a kliknięcie klastra przybliża widok.
 - pojedyncze pineski używają koloru i ikony kategorii wydarzenia; wydarzenia z tymi samymi współrzędnymi są lekko rozsuwane wizualnie, żeby nie nachodziły idealnie na siebie.
