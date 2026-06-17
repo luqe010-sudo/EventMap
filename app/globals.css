@@ -26,8 +26,8 @@
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-xl: 32px;
-  --font-title: 'Outfit', 'Georgia', serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  --font-title: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --max-width: 1400px;
   --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -2691,6 +2691,16 @@ a { color: inherit; text-decoration: none; }
   min-height: 42px;
   padding: 10px 16px;
   white-space: nowrap;
+}
+
+.cookieBannerActions .primaryButton {
+  border-color: #8f2a12;
+  background: #9f2f14;
+  color: #fff;
+}
+
+.cookieBannerActions .primaryButton:hover {
+  background: #84240d;
 }
 
 .cookieSettingsButton {
@@ -5895,7 +5905,9 @@ body {
   inset: 0 0 auto;
   height: 520px;
   pointer-events: none;
-  background-image: url("/background.png");
+  background-image:
+    radial-gradient(circle at 20% 12%, rgba(238, 75, 34, 0.18), transparent 34%),
+    linear-gradient(180deg, rgba(255, 248, 241, 0.9), rgba(255, 255, 255, 0));
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -5903,6 +5915,12 @@ body {
   opacity: 0.65;
   mask-image: linear-gradient(180deg, #000 0%, #000 65%, transparent 100%);
   -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 65%, transparent 100%);
+}
+
+@media (min-width: 761px) {
+  .mainContent::before {
+    background-image: url("/background.png");
+  }
 }
 
 .homePage {
@@ -7095,6 +7113,59 @@ select {
 .sidebarMapWrap .mapLibreCanvas,
 .sidebarMapWrap .mapLoading {
   border-radius: 12px;
+}
+
+.sidebarMapPlaceholder {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 14px;
+  width: 100%;
+  height: 100%;
+  padding: 28px;
+  text-align: center;
+  color: #4a403b;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 247, 237, 0.9)),
+    radial-gradient(circle at 30% 24%, rgba(238, 75, 34, 0.16), transparent 32%);
+}
+
+.sidebarMapPlaceholder strong {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--font-title);
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.sidebarMapPlaceholder p {
+  max-width: 260px;
+  margin: 0;
+  color: var(--ink-secondary);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.sidebarMapLoadButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  border: 1px solid rgba(238, 75, 34, 0.28);
+  border-radius: 8px;
+  background: var(--brand);
+  color: #fff;
+  padding: 0 14px;
+  font-size: 0.86rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.sidebarMapLoadButton:hover {
+  border-color: var(--brand-dark);
+  background: var(--brand-dark);
 }
 
 .sidebarNotifSection {

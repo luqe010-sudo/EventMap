@@ -14,9 +14,9 @@ export default function Footer() {
             Dane wydarzen pochodza z bazy Supabase.
           </p>
           <div className="footerSocial">
-            <a href="#" aria-label="Facebook" className="footerSocialLink">FB</a>
-            <a href="#" aria-label="Instagram" className="footerSocialLink">IG</a>
-            <a href="#" aria-label="TikTok" className="footerSocialLink">TT</a>
+            <a href="#" aria-label="FB - Facebook" className="footerSocialLink">FB</a>
+            <a href="#" aria-label="IG - Instagram" className="footerSocialLink">IG</a>
+            <a href="#" aria-label="TT - TikTok" className="footerSocialLink">TT</a>
           </div>
         </div>
 
@@ -43,7 +43,7 @@ export default function Footer() {
           <h3>Badz na biezaco</h3>
           <p>Zapisz sie do newslettera, gdy funkcja powiadomien bedzie gotowa.</p>
           <div className="footerNewsletterForm">
-            <input type="email" placeholder="Twoj adres e-mail" className="footerNewsletterInput" />
+            <input type="email" placeholder="Twoj adres e-mail" className="footerNewsletterInput" aria-label="Adres e-mail do newslettera" />
             <button type="button" className="footerNewsletterBtn">Zapisz sie</button>
           </div>
         </div>

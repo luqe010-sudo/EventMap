@@ -11,7 +11,8 @@ Strona główna `/`:
 - pokazuje hero, panel wyszukiwania oraz układ 70/30 z lewą kolumną wydarzeń i prawym sidebarem;
 - w lewej kolumnie pokazuje wyróżnione wydarzenia nad listą wydarzeń;
 - w prawym sidebarze pokazuje jeden spójny panel z mapą MapLibre, powiadomieniami, nadchodzącymi wydarzeniami i popularnymi kategoriami;
-- mapa w sidebarze jest osadzona bezpośrednio w dużym panelu, ma wewnętrzny margines i zaokrąglenie;
+- mapa w sidebarze jest uruchamiana na żądanie przyciskiem `Pokaż mapę`, żeby pierwsze ładowanie strony nie pobierało od razu MapLibre, pinesek i kafelków mapowych;
+- mapa w sidebarze po uruchomieniu jest osadzona bezpośrednio w dużym panelu, ma wewnętrzny margines i zaokrąglenie;
 - mapa na starcie używa zasięgu `Cała Polska`, obejmuje kadrem całą Polskę i pokazuje wydarzenia bez ograniczenia promieniem;
 - mapa grupuje blisko położone wydarzenia w klastry; klastry mają ograniczony promień i rozbijają się na pojedyncze pineski przy średnim przybliżeniu, a kliknięcie klastra przybliża widok.
 - pojedyncze pineski używają koloru i ikony kategorii wydarzenia; wydarzenia z tymi samymi współrzędnymi są lekko rozsuwane wizualnie, żeby nie nachodziły idealnie na siebie.
@@ -25,7 +26,7 @@ Strona główna `/`:
 - panel wyszukiwania posiada przycisk "Znajdź" z ikoną lupy umieszczony inline jako piąta kolumna w rzędzie filtrów na desktopie, na mobilnych zajmuje pełną szerokość; kliknięcie "Znajdź" buduje URL z wybranych filtrów (kategoria, miasto/lokalizacja) i nawiguje do odpowiedniej podstrony (np. `/koncerty/wroclaw` lub `/lokalizacja?lat=...&lng=...&radius=...`);
 - panel wyszukiwania (SearchPanel) jest widoczny na wszystkich stronach; ma kompaktowy, jednorzędowy układ bez obramowań wokół sekcji — 5 kolumn na desktopie (Lokalizacja | Promień | Kiedy? | Cena | Znajdź), 2 kolumny na tablecie, 1 kolumna na mobile; na podstronach data filtruje dynamicznie, a zmiana kategorii lub miasta nawiguje dopiero po kliknięciu "Znajdź";
 - panel wyszukiwania posiada pasek „Aktywne filtry" u dołu, pokazujący aktywne filtry (lokalizacja, promień, data, cena, kategoria) jako chipy z przyciskami usuwania poszczególnych filtrów oraz przyciskiem „Wyczyść wszystko" resetującym wszystkie filtry naraz; gdy brak aktywnych filtrów, wyświetla „Brak aktywnych filtrów";
-- tło strony (`background.png`) na komputerach oraz na smartfonach jest dopasowane za pomocą `background-size: cover` oraz wypozycjonowane `center top`, dzięki czemu nie tworzy ostrych krawędzi i płynnie rozmywa się na dolnym odcinku (od wysokości 65% z 35-procentowym obszarem całkowitego zanikania).
+- tło strony (`background.png`) jest pobierane tylko na większych ekranach; mobile używa lekkiego tła CSS, żeby ograniczyć początkowy transfer i poprawić Lighthouse.
 
 - autouzupelnianie lokalizacji najpierw dopasowuje aktywne miasta z tabeli `cities`, a potem scala je z wynikami Photon/OSM, czyli providera search-as-you-type dla miejsc; dzieki temu czesciowe wpisy typu `Srebrna Go`, `Stoszow` albo `Budzow` moga zwracac trafniejsze miejscowosci.
 - autouzupelnianie lokalizacji wyswietla doprecyzowane etykiety z wojewodztwem, ale po wyborze zachowuje kanoniczny slug miasta (np. `Wroclaw (woj. dolnoslaskie)` nawiguje jak `wroclaw`).

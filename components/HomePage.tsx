@@ -459,6 +459,7 @@ export default function HomePage({
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as "nearest" | "date")}
                   className="mainEventsSortSelect"
+                  aria-label="Sortowanie wydarzeń"
                 >
                   <option value="nearest">Najbliższe</option>
                   <option value="date">Wg daty</option>

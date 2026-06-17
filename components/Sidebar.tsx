@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { MapPinned } from "lucide-react";
+import { useMemo, useState } from "react";
 import { type EventCategory, type EventItem, type KnownLocation } from "@/lib/events";
 import { formatPolishDate } from "@/lib/date-format";
 
@@ -27,6 +29,9 @@ export default function Sidebar({
   location,
   isAllPoland
 }: SidebarProps) {
+  const [shouldLoadMap, setShouldLoadMap] = useState(false);
+  const mapEvents = useMemo(() => events.map(({ event }) => event), [events]);
+
   return (
     <aside className="sidebar" aria-label="Panel boczny">
       <div className="sidebarSection sidebarMapSection">
@@ -34,11 +39,29 @@ export default function Sidebar({
           <h3>Wydarzenia na mapie</h3>
         </div>
         <div className="sidebarMapWrap">
-          <MapLibreMap
-            events={events.map(({ event }) => event)}
-            location={isAllPoland ? undefined : location}
-            onSelectEvent={() => {}}
-          />
+          {shouldLoadMap ? (
+            <MapLibreMap
+              events={mapEvents}
+              location={isAllPoland ? undefined : location}
+              onSelectEvent={() => {}}
+            />
+          ) : (
+            <div className="sidebarMapPlaceholder">
+              <MapPinned size={28} strokeWidth={2.2} aria-hidden="true" />
+              <div>
+                <strong>Mapa wydarzeń</strong>
+                <p>Włącz mapę, aby załadować pineski, klastry i kafelki mapowe.</p>
+              </div>
+              <button
+                type="button"
+                className="sidebarMapLoadButton"
+                onClick={() => setShouldLoadMap(true)}
+              >
+                <MapPinned size={16} strokeWidth={2.4} aria-hidden="true" />
+                Pokaż mapę
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

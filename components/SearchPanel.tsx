@@ -184,6 +184,7 @@ export default function SearchPanel({
             <input
               type="range"
               className="searchSlider"
+              aria-label="Promień wyszukiwania w kilometrach"
               min={5}
               max={100}
               step={5}
