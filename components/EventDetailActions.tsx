@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useState, useTransition } from "react";
 import { trackEventAnalytics } from "@/components/EventAnalyticsTracker";
-
-const STORAGE_KEY = "eventmap.savedEvents";
+import { toggleSavedEventAction } from "@/lib/user-account-actions";
 
 /* ================================================================
    Hero CTA area — ticket link + share button
@@ -97,63 +97,64 @@ export default function EventHeroCta({
 
 type SaveButtonProps = {
   eventId: string;
+  initialSaved: boolean;
+  isLoggedIn: boolean;
+  returnTo: string;
 };
 
-export function EventSaveButton({ eventId }: SaveButtonProps) {
-  const [saved, setSaved] = useState(false);
+export function EventSaveButton({ eventId, initialSaved, isLoggedIn, returnTo }: SaveButtonProps) {
+  const [saved, setSaved] = useState(initialSaved);
+  const [error, setError] = useState("");
+  const [pending, startTransition] = useTransition();
 
-  useEffect(() => {
-    setSaved(readSavedEvents().includes(eventId));
-  }, [eventId]);
+  if (!isLoggedIn) {
+    return (
+      <Link className="edSaveBtn" href={`/login?next=${encodeURIComponent(returnTo)}`}>
+        <HeartIcon filled={false} />
+        Zaloguj się, aby zapisać
+      </Link>
+    );
+  }
 
   function handleSave() {
-    const savedEvents = readSavedEvents();
-    const nextSaved = savedEvents.includes(eventId)
-      ? savedEvents.filter((id) => id !== eventId)
-      : [...savedEvents, eventId];
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextSaved));
-    setSaved(nextSaved.includes(eventId));
-    trackEventAnalytics(eventId, "save_click");
+    const nextSaved = !saved;
+    setError("");
+    startTransition(async () => {
+      const result = await toggleSavedEventAction(eventId, nextSaved);
+      if (result.requiresLogin) {
+        window.location.assign(`/login?next=${encodeURIComponent(returnTo)}`);
+        return;
+      }
+      if (result.error) {
+        setError(result.error);
+        return;
+      }
+      setSaved(result.saved);
+      if (result.saved) trackEventAnalytics(eventId, "save_click");
+    });
   }
 
   return (
-    <button
-      type="button"
-      className={`edSaveBtn ${saved ? "edSaveBtnActive" : ""}`}
-      onClick={handleSave}
-      aria-pressed={saved}
-    >
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill={saved ? "currentColor" : "none"}
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+    <div className="eventSaveControl">
+      <button
+        type="button"
+        className={`edSaveBtn ${saved ? "edSaveBtnActive" : ""}`}
+        onClick={handleSave}
+        aria-pressed={saved}
+        disabled={pending}
       >
-        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-      </svg>
-      {saved ? "Zapisano" : "Zapisz"}
-    </button>
+        <HeartIcon filled={saved} />
+        {pending ? "Zapisywanie..." : saved ? "Zapisano" : "Zapisz"}
+      </button>
+      {error ? <span className="eventSaveError" role="alert">{error}</span> : null}
+    </div>
   );
 }
 
-/* ================================================================
-   Helpers
-   ================================================================ */
-
-function readSavedEvents() {
-  if (typeof window === "undefined") return [];
-
-  try {
-    const value = window.localStorage.getItem(STORAGE_KEY);
-    const parsed = value ? JSON.parse(value) : [];
-    return Array.isArray(parsed)
-      ? parsed.filter((item): item is string => typeof item === "string")
-      : [];
-  } catch {
-    return [];
-  }
+function HeartIcon({ filled }: { filled: boolean }) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+    </svg>
+  );
 }

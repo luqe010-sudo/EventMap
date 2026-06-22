@@ -12,6 +12,17 @@ export const metadata: Metadata = {
   title: "MapaImprez.pl - Odkryj lokalne wydarzenia w swojej okolicy",
   description: SITE_DESCRIPTION,
   metadataBase: new URL("https://mapaimprez.pl"),
+  icons: {
+    icon: [
+      {
+        url: "/icon.svg?v=20260622",
+        type: "image/svg+xml",
+        sizes: "any"
+      }
+    ],
+    shortcut: "/icon.svg?v=20260622",
+    apple: "/icon.svg?v=20260622"
+  },
   alternates: {
     canonical: "/",
   },

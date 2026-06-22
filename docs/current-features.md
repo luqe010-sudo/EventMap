@@ -63,7 +63,7 @@ Szczegóły pokazują (redesigned premium layout):
 - krótki opis (`short_description`);
 - zielony przycisk CTA „Zobacz bilety / strona wydarzenia" (link z `ticketUrl` / pierwszego `event_sources.source_url`);
 - przycisk „Udostępnij" (Web Share API / schowek);
-- przycisk „Zapisz" z ikoną serca (zapis lokalny w przeglądarce);
+- przycisk „Zapisz" z ikoną serca; dla zalogowanego użytkownika zapis trafia do `saved_events`, a niezalogowany jest kierowany do logowania z powrotem na wydarzenie;
 - pasek podsumowania: Cena, Kategoria, Organizator.
 
 **Nawigacja sekcji** — linki kotwicowe: Szczegóły, Organizator, Źródła.
@@ -151,7 +151,8 @@ URL z kategorią:
 - Strona główna posiada kanoniczny link `/` w głównym layoucie, aby zabezpieczyć ją przed powstawaniem duplikatów z parametrami UTM lub parametrami wyszukiwania.
 - Zaimplementowano skrypty strukturyzowanych danych `BreadcrumbList` w formacie JSON-LD dla stron wydarzenia, kategorii oraz miast, aby ułatwić wyszukiwarce prezentację ścieżki w wynikach wyszukiwania.
 - Uporządkowane dane wydarzenia (`Event` JSON-LD) zostały uzupełnione pod kątem wymogów Google Search Console: dodano automatyczny fallback dla `endDate` (start + 2h), pole `validFrom` dla oferty `Offer` (na bazie daty aktualizacji lub startu - 30 dni), pole `performer` z nazwą organizatora oraz bezwzględny adres URL dla obiektu `organizer` (fallback na domenę główną).
-- Panele `/admin/**`, `/organizer/**`, `/login` i `/register` maja metadane `noindex, nofollow`.
+- Panele `/admin/**`, `/organizer/**`, `/account`, `/auth/onboarding`, `/login` i `/register` maja metadane `noindex, nofollow`.
+- Favicon jest publikowany jawnie jako wersjonowany `/icon.svg` z logo MapaImprez; legacy `/favicon.ico` przekierowuje trwale (308) do aktualnej ikony, aby wyszukiwarki odswiezyly stary znak.
 - Stare adresy `/wydarzenie/[slug]` i `/wydarzenia/[slug]` przekierowuja istniejace wydarzenia na kanoniczne URL-e szczegolow albo zwracaja HTTP 404 dla brakujacych slugow.
 - Sitemapy wydarzen, miast oraz par kategoria-miasto zawieraja `lastmod`, gdy data aktualizacji jest dostepna w bazie.
 
@@ -166,13 +167,19 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 ## Login, rejestracja i sesja
 
 - `/login` obsluguje bledy Supabase Auth w formularzu, bez wywolywania 500 w Server Components.
-- `/login` ma formularz email/hasło i link do rejestracji.
-- `/register` ma formularz rejestracji użytkowników z wyborem roli: Widz (rola `user`) lub Organizator (rola `organizer`), wymaganym checkboxem akceptacji regulaminu oraz osobnym potwierdzeniem zapoznania sie z polityka prywatnosci / RODO i polityka cookies. Dla organizatorów automatycznie tworzy profil organizacyjny (`organizers` i `organizer_users`).
-- `signInAction()` oraz `signUpAction()` używają Supabase Auth.
+- `/login` ma logowanie Google OAuth, formularz email/hasło i link do rejestracji.
+- `/register` obsluguje rejestracje przez Google OAuth oraz email/haslo, z wyborem roli: Widz (rola `user`) lub Organizator (rola `organizer`), wymaganym checkboxem akceptacji regulaminu oraz osobnym potwierdzeniem zapoznania sie z polityka prywatnosci / RODO i polityka cookies. Dla organizatorów automatycznie tworzy profil organizacyjny (`organizers` i `organizer_users`).
+- Callback `/auth/callback` wymienia kod Google na sesje SSR i wykrywa, gdy pierwsze "logowanie" Google w rzeczywistosci utworzylo konto Auth.
+- Nowe konto rozpoczęte z `/login` trafia obowiązkowo na `/auth/onboarding`, gdzie użytkownik akceptuje dokumenty i wybiera rolę przed utworzeniem/uzupełnieniem profilu aplikacyjnego.
+- Przepływ Google nie pozwala nadać roli `admin`; dla roli organizatora tworzy wymagane `organizers` i `organizer_users`.
+- `signInAction()`, `signInWithGoogleAction()` oraz `signUpAction()` używają Supabase Auth.
+- `/account` jest panelem konta Widza: pozwala ustawić `profiles.display_name` oraz wyświetlać i usuwać zapisane wydarzenia; organizatora przekierowuje do `/organizer`.
+- Organizator edytuje nazwę użytkownika w `/organizer/settings`, a zapisane wydarzenia przegląda w osobnej zakładce `/organizer/saved` swojego panelu.
+- Ikony serca na kartach wydarzeń i przycisk na szczegółach zapisują stan w `saved_events`; lista konta pokazuje tylko wydarzenia nadal opublikowane, publiczne i nieanulowane.
 - Wylogowanie idzie przez `POST /auth/sign-out`.
 - Navbar posiada nowoczesny wygląd zintegrowany z portalem (efekt glassmorphism/rozmycia tła) i dynamicznym menu profilu dla zalogowanego użytkownika (wygodny dropdown z inicjałem, nazwą, adresem email, rolą, linkiem do panelu zarządzania oraz wylogowaniem).
 - Menu nawigacji jest dostosowane do urządzeń mobilnych (poniżej 1024px) – chowa się automatycznie i wysuwa za pomocą estetycznego przycisku hamburgera zmieniającego się w znak zamknięcia (X), blokując przewijanie strony pod spodem.
-- Navbar pokazuje link do panelu dla roli `admin` albo `organizer`.
+- Navbar pokazuje „Moje konto i zapisane” kontom bez roli organizatora; organizator widzi jeden link do panelu organizatora.
 - Navbar nie pokazuje statycznego selektora lokalizacji, zeby nie sugerowac aktywnej lokalizacji uzytkownika.
 
 ## Panel admina
@@ -311,6 +318,11 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 - liczy wyswietlenia i klikniecia z `event_analytics`;
 - zapisania liczy z `event_analytics` oraz dodatkowo z `saved_events`.
 
+`/organizer/saved`:
+
+- pokazuje zapisane wydarzenia organizatora wewnątrz jego panelu;
+- używa tej samej bezpiecznej warstwy `saved_events`, ale nie dubluje panelu `/account`.
+
 `/organizer/settings`:
 
 - pozwala zaktualizowac nazwe kontaktowa profilu;
@@ -328,11 +340,9 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 
 ## Niezaimplementowane mimo tabel w bazie
 
-- UI zapisanych wydarzeń z `saved_events`.
 - UI preferencji powiadomień z `notification_preferences`.
 - Scraper i panel źródeł scrapingu.
 - AI extraction pipeline.
-- Rejestracja użytkowników.
 - Reset hasła.
 - Upload obrazów do Supabase Storage.
 - Testy automatyczne.

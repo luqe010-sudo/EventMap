@@ -10,11 +10,13 @@ import { categoryPath, eventPath, toSlug, toPluralCategoryName, toPluralCategory
 type EventDetailViewProps = {
   event: EventItem;
   relatedEvents?: EventItem[];
+  saveState?: { isLoggedIn: boolean; isSaved: boolean };
 };
 
 export default function EventDetailView({
   event,
   relatedEvents = [],
+  saveState = { isLoggedIn: false, isSaved: false },
 }: EventDetailViewProps) {
   const categoryPlural = toPluralCategoryName(event.category);
   const categorySlug = toPluralCategorySlug(event.categorySlug || toSlug(event.category || "inne"));
@@ -199,7 +201,12 @@ export default function EventDetailView({
               />
             </div>
             <div className="edImageActions">
-              <EventSaveButton eventId={event.id} />
+              <EventSaveButton
+                eventId={event.id}
+                initialSaved={saveState.isSaved}
+                isLoggedIn={saveState.isLoggedIn}
+                returnTo={eventPath(event)}
+              />
             </div>
           </div>
 

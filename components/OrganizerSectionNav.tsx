@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 type OrganizerSectionNavProps = {
-  active: "dashboard" | "events" | "profile" | "stats" | "settings";
+  active: "dashboard" | "events" | "profile" | "stats" | "saved" | "settings";
 };
 
 const items = [
@@ -9,6 +9,7 @@ const items = [
   { href: "/organizer/events", label: "Moje wydarzenia", key: "events" },
   { href: "/organizer/profile", label: "Profil organizatora", key: "profile" },
   { href: "/organizer/stats", label: "Statystyki", key: "stats" },
+  { href: "/organizer/saved", label: "Zapisane wydarzenia", key: "saved" },
   { href: "/organizer/settings", label: "Ustawienia", key: "settings" }
 ] as const;
 

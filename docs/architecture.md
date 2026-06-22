@@ -26,7 +26,12 @@ Route'y w `app/` są server components tam, gdzie pobierają dane z Supabase:
 - `app/wydarzenia/[city]/page.tsx` renderuje stronę miasta; dla starego sluga wydarzenia przekierowuje na `/wydarzenie/[slug]`.
 - `app/kategoria/[slug]/page.tsx` pobiera kategorię i wydarzenia z tej kategorii.
 - `app/admin/**` oraz `app/organizer/**` renderują panele po stronie serwera i korzystają z server actions.
-- `app/login/page.tsx` oraz `app/register/page.tsx` obsługują logowanie i rejestrację użytkowników.
+- `app/login/page.tsx` oraz `app/register/page.tsx` obsługują logowanie i rejestrację użytkowników przez email/haslo i Google OAuth.
+- `app/auth/callback/route.ts` wymienia kod Google OAuth na sesje Supabase SSR i inicjalizuje profil uzytkownika.
+- `app/auth/onboarding/page.tsx` wymusza zgody prawne i wybor roli, gdy pierwsze logowanie Google utworzylo nowego uzytkownika Auth.
+- `app/account/page.tsx` jest panelem konta dla uzytkownikow bez roli organizatora; organizatora przekierowuje do `/organizer`.
+- `app/organizer/saved/page.tsx` renderuje zapisane wydarzenia wewnatrz panelu organizatora.
+- `app/api/account/saved-events/route.ts` zwraca klientowi stan zapisow aktualnej sesji, potrzebny do ikon serca na listach.
 - `app/api/events/[id]/analytics/route.ts` zapisuje publiczne zdarzenia analityczne wydarzenia.
 - `app/lokalizacja/page.tsx` renderuje stronę geolokalizacji z `lat`, `lng`, `radius` w query params; ma `noindex, nofollow`.
 - `app/[category]/[city]/page.tsx` rozpoznaje `city === "lokalizacja"` jako specjalny przypadek geolokalizacji z kategorią.
@@ -45,6 +50,9 @@ Client components odpowiadają za interakcję UI:
 - `components/EventExplorer.tsx` - filtry, lista i mapa dla widoków kategorii/miasta.
 - `components/NavbarClient.tsx` - menu, panel użytkownika i formularz wylogowania.
 - `components/CookieConsent.tsx` - banner zgody na cookies/analitykę; zapisuje wybór w `localStorage` i ładuje Google Analytics dopiero po zgodzie.
+- `components/GoogleOnboardingForm.tsx` - finalizacja nowego konta Google z wyborem roli i wymaganymi zgodami.
+- `components/UserProfileForm.tsx` - zmiana nazwy uzytkownika w `profiles.display_name`.
+- `components/SavedEventCard.tsx` i `components/EventCardSaveButton.tsx` - lista zapisanych wydarzen i zapis z publicznych kart.
 - Komponenty map są ładowane dynamicznie bez SSR.
 - `components/CityAutocomplete.tsx` - publiczne autouzupełnianie miejscowości; priorytetowo używa aktywnych miast z tabeli `cities`, a następnie publicznego Photon/OSM z filtrem `countrycode=PL`, warstwami miejscowości i bounding boxem Polski.
 
@@ -54,7 +62,11 @@ Zapytania Supabase są wydzielone poza UI:
 
 - `lib/events.ts` - publiczne odczyty wydarzeń, kategorii i stron miast.
 - `lib/auth.ts` - kontekst użytkownika i guardy ról.
-- `lib/auth-actions.ts` - logowanie, rejestracja (wraz z automatyczną konfiguracją organizatora) i wylogowanie.
+- `lib/auth-actions.ts` - logowanie i rejestracja email/haslo, rozpoczecie Google OAuth (wraz z automatyczną konfiguracją organizatora) i wylogowanie.
+- `lib/oauth-profile.ts` - inicjalizacja `profiles` oraz opcjonalnego organizatora po callbacku Google OAuth.
+- `lib/oauth-state.ts` - ograniczony stan rejestracji przekazywany do callbacku w cookie HttpOnly.
+- `lib/user-account.ts` - dane panelu konta, stan zapisow i publiczne pobieranie zapisanych wydarzen.
+- `lib/user-account-actions.ts` - aktualizacja nazwy oraz zapis/usuwanie `saved_events` po zweryfikowaniu sesji.
 - `lib/admin-events.ts` - dashboard admina, lista wydarzeń, CRUD i zmiana statusu.
 - `lib/organizer-events.ts` - dashboard organizatora, lista i zapis wydarzeń organizatora, powiadomienia oraz agregacja statystyk.
 - `lib/admin-organizers.ts` - CRUD organizatorów.
@@ -143,4 +155,4 @@ Strony szczegółów wydarzeń i kolekcji generują JSON-LD:
 - Brak testów automatycznych w repozytorium.
 - Brak konfiguracji CI/CD.
 - Brak konfiguracji Vercel lub innego hostingu w repozytorium.
-- Route handlery API obejmuja `/auth/sign-out` oraz `POST /api/events/[id]/analytics`.
+- Route handlery API obejmuja `/auth/callback`, `/auth/sign-out` oraz `POST /api/events/[id]/analytics`; `/auth/onboarding` jest chroniona sesja strona SSR.

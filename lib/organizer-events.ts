@@ -515,6 +515,7 @@ export async function organizerUpdateAccountAction(formData: FormData) {
 
   if (error) throw new Error(`Nie udalo sie zapisac ustawien konta: ${error.message}`);
   revalidatePath("/organizer/settings");
+  revalidatePath("/", "layout");
 }
 
 export async function createOrganizerAccountAction(formData: FormData) {

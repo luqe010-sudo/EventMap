@@ -4,6 +4,15 @@ Aplikacja nie definiuje klasycznego REST API dla wydarzeń. Komunikacja z bazą 
 
 ## Route handlers
 
+### `GET /auth/callback`
+
+Plik: `app/auth/callback/route.ts`
+
+- odbiera kod Google OAuth;
+- wymienia kod na sesje Supabase przez PKCE;
+- uzupelnia brakujacy profil i opcjonalne powiazanie organizatora;
+- przekierowuje na `/` albo `/organizer`.
+
 ### `POST /auth/sign-out`
 
 Plik: `app/auth/sign-out/route.ts`
@@ -16,6 +25,12 @@ Działanie:
 
 Navbar wysyła formularz `POST` do tej ścieżki.
 
+### `GET /api/account/saved-events`
+
+- zwraca `{ isLoggedIn, eventIds }` dla aktualnej sesji;
+- jest używany przez ikony serca na publicznych kartach wydarzeń;
+- nie przyjmuje `user_id` od klienta.
+
 ## Server actions
 
 ### Auth
@@ -24,8 +39,18 @@ Plik: `lib/auth-actions.ts`
 
 - `signInAction(formData)` - loguje przez `supabase.auth.signInWithPassword({ email, password })`, po sukcesie przekierowuje na `/`, a po bledzie zwraca stan formularza zamiast rzucac wyjatek RSC.
 - `signInFormAction(previousState, formData)` - wariant dla formularza `/login` opartego o `useActionState()`.
+- `signInWithGoogleAction(formData)` - rozpoczyna Google OAuth, zapisuje krotkotrwaly stan rejestracji w cookie HttpOnly i ustawia callback `/auth/callback`.
+- `completeGoogleOnboardingAction(previousState, formData)` - po pierwszym logowaniu Google waliduje zgody i role, tworzy/uzupelnia profil oraz opcjonalnego organizatora.
 - `signUpAction(formData)` - rejestruje uzytkownika przez Supabase Auth, tworzy/aktualizuje `profiles`, a dla roli `organizer` tworzy `organizers` i `organizer_users`.
 - Wylogowanie jest obslugiwane przez route handler `/auth/sign-out`.
+
+### Konto użytkownika
+
+Plik: `lib/user-account-actions.ts`
+
+- `updateUserProfileAction(previousState, formData)` - aktualizuje `profiles.display_name` zalogowanego użytkownika.
+- `toggleSavedEventAction(eventId, shouldSave)` - dodaje albo usuwa własny rekord `saved_events`; przed zapisem weryfikuje publiczny status wydarzenia.
+- `removeSavedEventAction(eventId)` - usuwa zapis z listy `/account` albo `/organizer/saved`, zależnie od roli.
 
 ### Admin events
 

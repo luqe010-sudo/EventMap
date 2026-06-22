@@ -229,10 +229,16 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
                     </div>
                   </div>
                   <div className="navDropdownDivider" />
+                  {auth.role !== "organizer" && (
+                    <Link href="/account" className="navDropdownItem" role="menuitem" onClick={() => setProfileOpen(false)}>
+                      <IconUser />
+                      <span>Moje konto i zapisane</span>
+                    </Link>
+                  )}
                   {dashboardHref && (
                     <Link href={dashboardHref} className="navDropdownItem" role="menuitem" onClick={() => setProfileOpen(false)}>
                       <IconPanel />
-                      <span>Panel zarządzania</span>
+                      <span>{auth.role === "organizer" ? "Panel organizatora" : "Panel administracyjny"}</span>
                     </Link>
                   )}
                   <div className="navDropdownDivider" />
@@ -299,6 +305,16 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
                   <span className="navMobileUserRole">{roleLabel}</span>
                 </div>
               </div>
+              {auth.role !== "organizer" && (
+                <Link
+                  href="/account"
+                  className="navMobilePanelBtn"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <IconUser />
+                  <span>Moje konto i zapisane</span>
+                </Link>
+              )}
               {dashboardHref && (
                 <Link
                   href={dashboardHref}
@@ -306,7 +322,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
                   onClick={() => setMenuOpen(false)}
                 >
                   <IconPanel />
-                  <span>Panel zarządzania</span>
+                  <span>{auth.role === "organizer" ? "Panel organizatora" : "Panel administracyjny"}</span>
                 </Link>
               )}
               <form action="/auth/sign-out" method="post">

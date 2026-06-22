@@ -2462,6 +2462,72 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.6;
 }
 
+.formSuccess {
+  border: 1px solid rgba(22, 163, 74, 0.22);
+  border-radius: 7px;
+  background: #f0fdf4;
+  color: #166534;
+  padding: 12px 14px;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.googleAuthButton {
+  width: 100%;
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.18);
+  border-radius: 10px;
+  background: #fff;
+  color: #1f2937;
+  font-weight: 650;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+.googleAuthButton:hover {
+  background: #f8fafc;
+  border-color: rgba(15, 23, 42, 0.3);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.googleAuthButton:focus-visible {
+  outline: 3px solid rgba(217, 93, 57, 0.22);
+  outline-offset: 2px;
+}
+
+.googleRegisterForm {
+  margin-top: 1.25rem;
+}
+
+.authDivider {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.25rem 0;
+  color: #94a3b8;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.authDivider::before,
+.authDivider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.authOnboardingIntro {
+  margin: -0.25rem 0 1.25rem;
+  color: #64748b;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
 /* ===================================================
    Legal documents
    =================================================== */
@@ -3982,6 +4048,220 @@ select:focus {
 
 .edSaveBtnActive svg {
   color: #e74c3c;
+}
+
+.edSaveBtn:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.eventSaveControl {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.eventSaveError {
+  color: #b91c1c;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* ===================================================
+   User account
+   =================================================== */
+.accountShell {
+  display: grid;
+  gap: 18px;
+}
+
+.accountOverviewGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 18px;
+}
+
+.accountOverviewGrid > section,
+.accountSavedSection {
+  scroll-margin-top: 100px;
+}
+
+.accountSummaryPanel {
+  align-self: stretch;
+}
+
+.accountDetails {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.accountDetails > div {
+  display: grid;
+  gap: 4px;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.accountDetails > div:last-child {
+  border-bottom: 0;
+}
+
+.accountDetails dt {
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.accountDetails dd {
+  margin: 0;
+  color: #0f172a;
+  font-weight: 750;
+  overflow-wrap: anywhere;
+}
+
+.accountSavedCount {
+  display: inline-grid;
+  min-width: 36px;
+  min-height: 36px;
+  place-items: center;
+  border-radius: 999px;
+  background: #fef2ee;
+  color: #b83d1c;
+  font-weight: 850;
+}
+
+.accountSavedGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.accountSavedCard {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 10px;
+  background: #fff;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.accountSavedCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.09);
+}
+
+.accountSavedCardLink {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  min-height: 150px;
+}
+
+.accountSavedCardLink img {
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  object-fit: cover;
+}
+
+.accountSavedCardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px 14px 48px;
+}
+
+.accountSavedCategory {
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.accountSavedCardBody h3 {
+  margin: 5px 0 8px;
+  color: #0f172a;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.accountSavedCardBody p,
+.accountSavedCardBody > span:last-child {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.accountSavedCardBody > span:last-child {
+  margin-top: 5px;
+}
+
+.accountSavedRemoveForm {
+  position: absolute;
+  right: 12px;
+  bottom: 11px;
+}
+
+.accountSavedRemove {
+  border: 0;
+  background: transparent;
+  color: #b91c1c;
+  padding: 5px 2px;
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+
+.accountSavedRemove:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.accountEmptyState {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 42px 20px;
+  text-align: center;
+}
+
+.accountEmptyState h3,
+.accountEmptyState p {
+  margin: 0;
+}
+
+.accountEmptyState p {
+  color: #64748b;
+}
+
+.accountEmptyState a {
+  margin-top: 8px;
+  border-radius: 8px;
+  background: #d95d39;
+  color: #fff;
+  padding: 9px 14px;
+  font-weight: 750;
+}
+
+@media (max-width: 900px) {
+  .accountOverviewGrid,
+  .accountSavedGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .accountSavedCardLink {
+    grid-template-columns: 110px minmax(0, 1fr);
+  }
+
+  .accountSavedCardLink img {
+    min-height: 165px;
+  }
 }
 
 /* Hero Info (right column) */
@@ -5551,6 +5831,7 @@ a.edSourceItem:hover .edSourceArrow {
    Mockup-Aligned Horizontal Event Card (eventCardH)
    =================================================== */
 .eventCardH {
+  position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -5641,6 +5922,28 @@ a.edSourceItem:hover .edSourceArrow {
 .eventCardHFav:hover {
   color: #ef4444;
   transform: scale(1.1);
+}
+
+.eventCardH > .eventCardHFav {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  z-index: 2;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.eventCardHTopRight {
+  padding-right: 30px;
+}
+
+.eventCardHFavActive {
+  color: #ef4444;
+}
+
+.eventCardHFav:disabled {
+  cursor: wait;
+  opacity: 0.55;
 }
 
 .eventCardHTitle {

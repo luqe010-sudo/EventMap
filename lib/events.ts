@@ -263,6 +263,23 @@ export async function listEvents(options: ListEventsOptions = {}): Promise<Event
   return (data ?? []).map(mapEventRecord);
 }
 
+export async function listPublicEventsByIds(eventIds: string[]): Promise<EventItem[]> {
+  if (!eventIds.length) return [];
+
+  const supabase = createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("events")
+    .select(EVENT_SELECT)
+    .in("id", eventIds)
+    .eq("status", "published")
+    .eq("visibility", "public")
+    .or("is_cancelled.is.null,is_cancelled.eq.false")
+    .returns<SupabaseEventRecord[]>();
+
+  if (error) throw new Error(`Nie udalo sie pobrac zapisanych wydarzen: ${error.message}`);
+  return (data ?? []).map(mapEventRecord);
+}
+
 export async function listPublicCategoryCityRoutes(
   options: Pick<ListEventsOptions, "dateFrom" | "dateTo" | "limit"> = {}
 ): Promise<CategoryCityRoute[]> {

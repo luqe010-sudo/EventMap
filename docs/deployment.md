@@ -45,6 +45,7 @@ Kod wymaga:
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+NEXT_PUBLIC_SITE_URL=https://mapaimprez.pl
 CLOUDINARY_URL=
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
@@ -66,6 +67,25 @@ NEXT_PUBLIC_SUPABASE_URL=https://PROJECT_ID.supabase.co
 ```
 
 Nie ustawiaj tu endpointu REST, np. `https://PROJECT_ID.supabase.co/rest/v1`. Kod normalizuje URL do originu, ale poprawna wartość zmiennej środowiskowej ułatwia diagnozę logów Vercel i Supabase.
+
+`NEXT_PUBLIC_SITE_URL` jest zalecane dla stabilnego callbacku Google OAuth. Bez tej zmiennej aplikacja wyznacza origin z naglowkow zadania.
+
+### Google OAuth
+
+W Google Cloud Console autoryzowany redirect URI klienta webowego powinien wskazywac callback Supabase:
+
+```text
+https://PROJECT_ID.supabase.co/auth/v1/callback
+```
+
+W Supabase Dashboard, w `Authentication -> URL Configuration`, dodaj do Redirect URLs:
+
+```text
+https://mapaimprez.pl/auth/callback
+http://localhost:3000/auth/callback
+```
+
+Jesli lokalna aplikacja dziala na innym porcie, ten callback tez musi byc dodany. Plik pobrany z Google Cloud w formacie `client_secret_*.json` nie jest potrzebny aplikacji i nie moze trafic do repozytorium ani deploymentu; wzorzec jest ignorowany przez `.gitignore`.
 
 Upload obrazów wydarzeń używa Cloudinary po stronie serwera. Wymagane są:
 

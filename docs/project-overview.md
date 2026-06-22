@@ -4,11 +4,11 @@
 
 MapaImprez.pl to aplikacja webowa do odkrywania lokalnych wydarzeń w Polsce. Kod wskazuje na portal, w którym użytkownik może przeglądać wydarzenia według daty, lokalizacji, promienia, kategorii i ceny, a organizatorzy oraz administratorzy mogą dodawać i moderować treści.
 
-Główne dane aplikacji pochodzą z Supabase/PostgreSQL. Warstwa publiczna pobiera wydarzenia przez `lib/events.ts`, a panele zarządzania korzystają z server actions w `lib/admin-events.ts`, `lib/organizer-events.ts` i `lib/admin-organizers.ts`.
+Główne dane aplikacji pochodzą z Supabase/PostgreSQL. Warstwa publiczna pobiera wydarzenia przez `lib/events.ts`, a panele korzystają z server actions w `lib/admin-events.ts`, `lib/organizer-events.ts`, `lib/admin-organizers.ts` i `lib/user-account-actions.ts`.
 
 ## Typy użytkowników
 
-- Gość lub zwykły użytkownik: przegląda publiczne wydarzenia.
+- Gość przegląda publiczne wydarzenia; zalogowany Widz ma dodatkowo `/account`, nazwę użytkownika i zapisane wydarzenia.
 - Organizator: po zalogowaniu ma dostęp do `/organizer` i może zarządzać wydarzeniami przypisanymi do organizatorów połączonych z jego kontem przez `organizer_users`.
 - Admin: po zalogowaniu ma dostęp do `/admin`, może zarządzać wszystkimi wydarzeniami i organizatorami.
 
@@ -18,12 +18,14 @@ Główne dane aplikacji pochodzą z Supabase/PostgreSQL. Warstwa publiczna pobie
 - `/wydarzenie/[slug]` - szczegóły wydarzenia po `events.slug`.
 - `/wydarzenia/[city]` - strona miasta po `cities.slug`; stare adresy wydarzeń w tym formacie przekierowują na `/wydarzenie/[slug]`.
 - `/kategoria/[slug]` - lista wydarzeń dla kategorii.
-- `/login` - logowanie przez Supabase Auth email/hasło.
+- `/login` - logowanie przez Supabase Auth email/hasło lub Google OAuth.
+- `/account` - panel konta Widza (oraz kont administracyjnych) z nazwą użytkownika i `saved_events`; organizatorzy korzystają zamiast niego z odpowiednich sekcji `/organizer/settings` i `/organizer/saved`.
 - `/admin` - dashboard admina.
 - `/admin/events` - tabela wydarzeń i akcje moderacyjne.
 - `/admin/events/new` oraz `/admin/events/[id]/edit` - formularz wydarzenia.
 - `/admin/organizers`, `/admin/organizers/new`, `/admin/organizers/[id]/edit` - zarządzanie organizatorami.
 - `/organizer` - dashboard organizatora.
+- `/organizer/saved` - zapisane wydarzenia zalogowanego organizatora.
 - `/organizer/events/new` oraz `/organizer/events/[id]/edit` - dodawanie i edycja własnych wydarzeń.
 
 ## Aktualny stan względem pierwotnego briefu

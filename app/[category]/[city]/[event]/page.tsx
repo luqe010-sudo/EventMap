@@ -16,6 +16,7 @@ import {
 import { toPluralCategorySlug, toPluralCategoryName, formatInCity, toSlug, eventPath } from "@/lib/slugs";
 import { searchAddress } from "@/lib/geocoding";
 import { parsePublicFilterParams } from "@/lib/filters";
+import { getEventSaveState } from "@/lib/user-account";
 
 type Params = { category: string; city: string; event: string };
 type SearchParams = Record<string, string | string[] | undefined>;
@@ -184,17 +185,20 @@ export default async function EventOrTimePage({
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const allEventsForCategory = await listEvents({
-    categoryId: event.categoryRelation?.id,
-    dateFrom: today.toISOString(),
-    limit: 50,
-  });
+  const [allEventsForCategory, saveState] = await Promise.all([
+    listEvents({
+      categoryId: event.categoryRelation?.id,
+      dateFrom: today.toISOString(),
+      limit: 50,
+    }),
+    getEventSaveState(event.id)
+  ]);
 
   const relatedEvents = allEventsForCategory
     .filter((e) => e.id !== event.id)
     .slice(0, 3);
 
-  return <EventDetailView event={event} relatedEvents={relatedEvents} />;
+  return <EventDetailView event={event} relatedEvents={relatedEvents} saveState={saveState} />;
 }
 
 function hasCategoryCityRoute(routes: CategoryCityRoute[], categorySlug: string, cityLocation: KnownLocation) {

@@ -3,12 +3,20 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import { signInFormAction, type SignInFormState } from "@/lib/auth-actions";
+import { signInWithGoogleAction } from "@/lib/auth-actions";
+import GoogleIcon from "@/components/GoogleIcon";
 
 const initialSignInFormState: SignInFormState = {
   error: null
 };
 
-export default function LoginForm() {
+export default function LoginForm({
+  oauthError = null,
+  next = "/"
+}: {
+  oauthError?: string | null;
+  next?: string;
+}) {
   const [state, formAction, pending] = useActionState(
     signInFormAction,
     initialSignInFormState
@@ -16,13 +24,25 @@ export default function LoginForm() {
 
   return (
     <>
-      {state.error ? (
+      {state.error || oauthError ? (
         <div className="formError" role="alert">
-          {state.error}
+          {state.error ?? oauthError}
         </div>
       ) : null}
 
+      <form action={signInWithGoogleAction}>
+        <input type="hidden" name="intent" value="login" />
+        <input type="hidden" name="next" value={next} />
+        <button type="submit" className="googleAuthButton">
+          <GoogleIcon />
+          Kontynuuj z Google
+        </button>
+      </form>
+
+      <div className="authDivider"><span>lub</span></div>
+
       <form action={formAction} className="managementForm">
+        <input type="hidden" name="next" value={next} />
         <label>
           Email
           <input name="email" type="email" required autoComplete="email" />

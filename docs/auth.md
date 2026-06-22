@@ -13,6 +13,22 @@ Aplikacja uzywa Supabase Auth. Formularz `/login` renderuje `components/LoginFor
 
 `signInAction(formData)` zostaje dostepna jako prosty wariant tej samej logiki.
 
+### Google OAuth
+
+Ekrany `/login` i `/register` udostepniaja logowanie przez Google. `signInWithGoogleAction()` wywoluje `supabase.auth.signInWithOAuth({ provider: "google" })` i kieruje dostawce do `/auth/callback`.
+
+Route handler `/auth/callback`:
+
+1. Wymienia kod OAuth na sesje przez `exchangeCodeForSession()`.
+2. Pobiera zweryfikowanego uzytkownika przez `auth.getUser()`.
+3. Rozpoznaje pierwsze logowanie Google rowniez wtedy, gdy trigger Supabase zdazyl automatycznie utworzyc `profiles`.
+4. Jesli uzytkownik rozpoczal zwykle logowanie, ale Google dopiero utworzylo jego konto, przekierowuje na obowiazkowy `/auth/onboarding`.
+5. Onboarding wymaga akceptacji regulaminu, potwierdzenia polityki prywatnosci/cookies i wyboru roli `user` albo `organizer`.
+6. Dopiero po zatwierdzeniu tworzy lub uzupelnia profil; rola `admin` nigdy nie moze zostac nadana przez ten przeplyw.
+7. Dla nowego organizatora tworzy `organizers` i `organizer_users`, jesli powiazanie jeszcze nie istnieje.
+
+Zamiar rejestracji, rola i nazwa organizatora sa przechowywane przez maksymalnie 10 minut w cookie `HttpOnly`, `SameSite=Lax`, ograniczonym do `/auth/callback`. Niedokonczony onboarding jest autoryzowany osobnym cookie HttpOnly przez 30 minut. Ukonczenie jest oznaczane w `auth.users.user_metadata.eventmap_onboarding_completed`; nie wymaga to migracji tabel `public`. Konto utworzone przez Google przed dodaniem tego oznaczenia zostanie skierowane na onboarding przy kolejnym logowaniu Google.
+
 ## Rejestracja
 
 Aplikacja ma formularz `/register`, ktory wywoluje `signUpAction()` z `lib/auth-actions.ts`.
@@ -32,7 +48,7 @@ Jesli logowanie zwroci blad `Email not confirmed`, kod pokazuje komunikat w form
 
 `lib/supabase-user.ts` tworzy klienta Supabase przez `createServerClient` z `@supabase/ssr`. Klient korzysta z cookies Next.js.
 
-Globalny `middleware.ts` nie jest obecnie uzywany. Sesja jest odczytywana w server components, server actions i route handlers przez `createSupabaseUserClient()`.
+Globalny `middleware.ts` nie jest obecnie uzywany. Sesja jest odczytywana w server components, server actions i route handlers przez `createSupabaseUserClient()`. W przeplywie Google cookie sesyjne sa ustawiane podczas wymiany kodu PKCE w `/auth/callback`.
 
 ## Profil uzytkownika
 
@@ -76,15 +92,18 @@ W praktyce funkcje organizatora wymagaja memberships, bo operuja na `submitted_b
 - pobiera uzytkownika przez Supabase;
 - jesli nie ma uzytkownika, przekazuje `isLoggedIn: false`;
 - jesli uzytkownik jest zalogowany, pobiera `profiles.display_name` i `profiles.role`;
-- `NavbarClient` pokazuje link `Panel` dla `admin` albo `organizer`;
+- `NavbarClient` pokazuje `/account` zalogowanym bez roli organizatora, a organizatorom wyłącznie wejście do `/organizer`;
 - wylogowanie odbywa sie formularzem `POST /auth/sign-out`.
 
 ## Wymagane RLS policies
 
-Repozytorium nie zawiera definicji RLS, wiec faktyczny stan wymaga potwierdzenia. Kod wymaga przynajmniej:
+Faktyczny stan RLS wdrożony w Supabase wymaga każdorazowego potwierdzenia. Kod wymaga przynajmniej:
+
+Proponowany, niewykonywany automatycznie skrypt dla panelu konta znajduje sie w `docs/user-account-rls.sql`.
 
 - uzytkownik moze odczytac swoj rekord `profiles`;
 - uzytkownik moze utworzyc lub zaktualizowac swoj rekord `profiles` podczas rejestracji;
+- uzytkownik moze odczytywac, dodawac i usuwac tylko swoje rekordy `saved_events` (`user_id = auth.uid()`);
 - organizator moze odczytywac swoje `organizer_users`;
 - organizator moze tworzyc powiazanie `organizer_users` dla siebie podczas rejestracji albo istnieje trigger/service flow, ktory robi to za aplikacje;
 - admin moze odczytywac i zapisywac tabele zarzadcze;
@@ -101,4 +120,4 @@ Repozytorium nie zawiera definicji RLS, wiec faktyczny stan wymaga potwierdzenia
 - Czy istnieje trigger tworzacy `profiles` po utworzeniu uzytkownika.
 - Czy `profiles.id` ma FK do `auth.users.id`.
 - Czy `organizer_users.user_id` ma FK do `auth.users.id`.
-- Czy w Supabase wlaczone sa wylacznie logowania email/haslo, czy takze inni providerzy.
+- Czy callbacki Google OAuth dla produkcji i localhost sa wpisane na allowliscie Supabase Auth.

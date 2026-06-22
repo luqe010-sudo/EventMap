@@ -11,12 +11,14 @@ export const metadata: Metadata = {
 };
 
 type LoginPageProps = {
-  searchParams: Promise<{ signup?: string }>;
+  searchParams: Promise<{ signup?: string; oauth_error?: string; next?: string }>;
 };
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
   const params = await searchParams;
   const isSignupSuccess = params?.signup === "success";
+  const oauthError = getOAuthErrorMessage(params?.oauth_error);
+  const next = safeNextPath(params?.next);
 
   return (
     <main className="appShell managementShell">
@@ -40,8 +42,19 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           </div>
         )}
 
-        <LoginForm />
+        <LoginForm oauthError={oauthError} next={next} />
       </section>
     </main>
   );
+}
+
+function getOAuthErrorMessage(code: string | undefined) {
+  if (code === "cancelled") return "Logowanie przez Google zostało anulowane.";
+  if (code === "callback") return "Nie udało się dokończyć logowania przez Google. Spróbuj ponownie.";
+  if (code === "start") return "Nie udało się rozpocząć logowania przez Google. Spróbuj ponownie.";
+  return null;
+}
+
+function safeNextPath(value: string | undefined) {
+  return value?.startsWith("/") && !value.startsWith("//") ? value : "/";
 }

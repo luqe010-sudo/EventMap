@@ -1,10 +1,21 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { cookies, headers } from "next/headers";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
 import { createSlug } from "@/lib/event-editor";
+import {
+  GOOGLE_OAUTH_COOKIE,
+  GOOGLE_ONBOARDING_COOKIE,
+  type GoogleOAuthRegistration
+} from "@/lib/oauth-state";
+import { ensureGoogleOAuthAccount } from "@/lib/oauth-profile";
 
 export type SignInFormState = {
+  error: string | null;
+};
+
+export type GoogleOnboardingFormState = {
   error: string | null;
 };
 
@@ -17,6 +28,123 @@ export async function signInFormAction(
   formData: FormData
 ): Promise<SignInFormState> {
   return signInWithFormData(formData);
+}
+
+export async function signInWithGoogleAction(formData: FormData) {
+  const intent = formData.get("intent") === "register" ? "register" : "login";
+  const requestedNext = safeNextPath(formData.get("next"));
+  const role = formData.get("role") === "organizer" ? "organizer" : "user";
+  const organizerNameValue = formData.get("organizerName");
+  const organizerName =
+    typeof organizerNameValue === "string" && organizerNameValue.trim()
+      ? organizerNameValue.trim().slice(0, 160)
+      : null;
+
+  if (intent === "register") {
+    if (formData.get("termsAccepted") !== "on" || formData.get("privacyNoticeAccepted") !== "on") {
+      redirect("/register?oauth_error=consent");
+    }
+  }
+
+  const origin = await getRequestOrigin();
+  const callbackUrl = new URL("/auth/callback", origin);
+  const registration: GoogleOAuthRegistration = {
+    intent,
+    role,
+    organizerName,
+    next: intent === "register"
+      ? role === "organizer" ? "/organizer" : "/"
+      : requestedNext
+  };
+
+  const cookieStore = await cookies();
+  cookieStore.set(GOOGLE_OAUTH_COOKIE, encodeURIComponent(JSON.stringify(registration)), {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: callbackUrl.protocol === "https:",
+    path: "/auth/callback",
+    maxAge: 10 * 60
+  });
+
+  let supabase: Awaited<ReturnType<typeof createSupabaseUserClient>>;
+  try {
+    supabase = await createSupabaseUserClient();
+  } catch (error) {
+    console.error("[auth] Failed to create Supabase client for Google OAuth", error);
+    redirect(`/${intent === "register" ? "register" : "login"}?oauth_error=start`);
+  }
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: callbackUrl.toString(),
+      queryParams: {
+        prompt: "select_account"
+      }
+    }
+  });
+
+  if (error || !data.url) {
+    console.error("[auth] Failed to start Google OAuth", error);
+    redirect(`/${intent === "register" ? "register" : "login"}?oauth_error=start`);
+  }
+
+  redirect(data.url);
+}
+
+export async function completeGoogleOnboardingAction(
+  _previousState: GoogleOnboardingFormState,
+  formData: FormData
+): Promise<GoogleOnboardingFormState> {
+  const role = formData.get("role") === "organizer" ? "organizer" : "user";
+  const organizerNameValue = formData.get("organizerName");
+  const organizerName =
+    typeof organizerNameValue === "string" && organizerNameValue.trim()
+      ? organizerNameValue.trim().slice(0, 160)
+      : null;
+
+  if (formData.get("termsAccepted") !== "on") {
+    return { error: "Akceptacja regulaminu jest wymagana." };
+  }
+  if (formData.get("privacyNoticeAccepted") !== "on") {
+    return { error: "Potwierdzenie zapoznania się z polityką prywatności i cookies jest wymagane." };
+  }
+
+  try {
+    const supabase = await createSupabaseUserClient();
+    const { data, error: userError } = await supabase.auth.getUser();
+    if (userError || !data.user) {
+      return { error: "Sesja Google wygasła. Zaloguj się ponownie." };
+    }
+
+    const cookieStore = await cookies();
+    if (cookieStore.get(GOOGLE_ONBOARDING_COOKIE)?.value !== data.user.id) {
+      return { error: "Sesja rejestracji wygasła. Zaloguj się ponownie przez Google." };
+    }
+
+    await ensureGoogleOAuthAccount(supabase, data.user, {
+      intent: "register",
+      role,
+      organizerName,
+      next: role === "organizer" ? "/organizer" : "/"
+    });
+
+    const { error: metadataError } = await supabase.auth.updateUser({
+      data: { eventmap_onboarding_completed: true }
+    });
+    if (metadataError) throw metadataError;
+    cookieStore.set(GOOGLE_ONBOARDING_COOKIE, "", {
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/auth/onboarding",
+      maxAge: 0
+    });
+  } catch (error) {
+    console.error("[auth] Failed to complete Google onboarding", error);
+    return { error: "Nie udało się utworzyć profilu. Spróbuj ponownie." };
+  }
+
+  redirect(role === "organizer" ? "/organizer" : "/");
 }
 
 async function signInWithFormData(formData: FormData): Promise<SignInFormState> {
@@ -44,7 +172,7 @@ async function signInWithFormData(formData: FormData): Promise<SignInFormState> 
     return { error: mapSignInError(error.message) };
   }
 
-  redirect("/");
+  redirect(safeNextPath(formData.get("next")));
 }
 
 function mapSignInError(message: string) {
@@ -59,6 +187,37 @@ function mapSignInError(message: string) {
   }
 
   return `Nie udalo sie zalogowac: ${message}`;
+}
+
+async function getRequestOrigin() {
+  const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (configuredSiteUrl) {
+    try {
+      return new URL(configuredSiteUrl).origin;
+    } catch {
+      console.error("[auth] NEXT_PUBLIC_SITE_URL is not a valid URL");
+    }
+  }
+
+  const headerStore = await headers();
+  const requestOrigin = headerStore.get("origin");
+  if (requestOrigin) {
+    try {
+      return new URL(requestOrigin).origin;
+    } catch {
+      // Fall back to proxy/host headers below.
+    }
+  }
+
+  const host = headerStore.get("x-forwarded-host") ?? headerStore.get("host");
+  if (!host) return "http://localhost:3000";
+
+  const protocol = headerStore.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
+  return `${protocol}://${host}`;
+}
+
+function safeNextPath(value: FormDataEntryValue | null) {
+  return typeof value === "string" && value.startsWith("/") && !value.startsWith("//") ? value : "/";
 }
 
 export async function signUpAction(formData: FormData): Promise<{ success: boolean; error?: string }> {
@@ -106,7 +265,8 @@ export async function signUpAction(formData: FormData): Promise<{ success: boole
         data: {
           display_name: displayName,
           role: role,
-          organizer_name: (typeof organizerName === "string" && organizerName.trim()) || displayName
+          organizer_name: (typeof organizerName === "string" && organizerName.trim()) || displayName,
+          eventmap_onboarding_completed: true
         }
       }
     });

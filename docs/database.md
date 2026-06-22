@@ -335,7 +335,7 @@ Relacja:
 
 - `saved_events.event_id -> events.id`
 
-W UI nie ma jeszcze funkcji zapisywania wydarzeń.
+Tabela jest używana przez przyciski zapisu na kartach i szczegółach wydarzenia oraz przez `/account` dla Widza i `/organizer/saved` dla Organizatora. Kod zawsze ustawia `user_id` na podstawie zweryfikowanej sesji i pokazuje w panelu tylko wydarzenia `published`, `public` oraz nieanulowane. RLS musi ograniczać `select`, `insert` i `delete` do `user_id = auth.uid()`.
 
 ### `notification_preferences`
 
