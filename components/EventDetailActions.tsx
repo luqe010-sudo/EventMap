@@ -14,6 +14,7 @@ type HeroCtaProps = {
   title: string;
   url: string;
   ticketUrl?: string;
+  hideTicketLink?: boolean;
 };
 
 export default function EventHeroCta({
@@ -21,6 +22,7 @@ export default function EventHeroCta({
   title,
   url,
   ticketUrl,
+  hideTicketLink = false,
 }: HeroCtaProps) {
   const [shareStatus, setShareStatus] = useState("");
 
@@ -42,7 +44,7 @@ export default function EventHeroCta({
 
   return (
     <div className="edHeroCta">
-      {ticketUrl ? (
+      {ticketUrl && !hideTicketLink ? (
         <a
           href={ticketUrl}
           target="_blank"

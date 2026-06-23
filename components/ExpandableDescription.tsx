@@ -53,7 +53,8 @@ export default function ExpandableDescription({ text }: Props) {
 function splitDescription(value?: string | null) {
   const paragraphs =
     value
-      ?.split(/\n{2,}/)
+      ?.replace(/\r\n?/g, "\n")
+      .split(/\n\s*\n/)
       .map((p) => p.trim())
       .filter(Boolean) ?? [];
   return paragraphs.length

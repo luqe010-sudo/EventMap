@@ -18,6 +18,8 @@ Strona główna `/`:
 - mapa grupuje blisko położone wydarzenia w klastry; klastry mają ograniczony promień i rozbijają się na pojedyncze pineski przy średnim przybliżeniu, a kliknięcie klastra przybliża widok.
 - pojedyncze pineski i klastry są kompaktowe, używają koloru oraz ikon kategorii wydarzeń i mają wyraźną przezroczystość; zaznaczona pinezka pozostaje mocniejsza, a wydarzenia z tymi samymi współrzędnymi są lekko rozsuwane wizualnie, żeby nie nachodziły idealnie na siebie.
 - popup pojedynczej pineski pokazuje zdjęcie wydarzenia, klikalny tytuł prowadzący do szczegółów, adres i krótki opis.
+- podstrony zakończonych, nadal opublikowanych wydarzeń pozostają dostępne i indeksowalne; zdjęcie jest wyszarzone, a komunikat kieruje do przyszłych podobnych wydarzeń. Nieaktualny link do biletów jest na takim widoku ukryty.
+- opisy wydarzeń zachowują pojedyncze przejścia do nowej linii oraz akapity oddzielone pustym wierszem, bez interpretowania treści jako HTML.
 - mapa pokazuje subtelnie kolorowane województwa o zróżnicowanej palecie, granice powiatów widoczne już od niższego poziomu przybliżenia na bazie warstwy `boundary` oraz numery budynków przy dużym przybliżeniu.
 - etykiety mapy są preferowane w języku polskim, jeśli styl kafelków udostępnia pole `name:pl`; nazwy dużych, średnich i małych miejscowości pojawiają się wcześniej niż w stylu bazowym i są renderowane pod pinezkami wydarzeń.
 - filtruje po presetach daty, niestandardowym zakresie dat, promieniu albo zasięgu `Cała Polska`, kategorii i opcji darmowych wydarzeń;

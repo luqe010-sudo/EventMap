@@ -12,6 +12,8 @@ Wydarzenie jest widoczne publicznie tylko, gdy:
 
 Lista publiczna jest sortowana po `events.start_at ASC`.
 
+Upływ daty wydarzenia nie usuwa jego publicznej podstrony ani wpisu z sitemap, jeśli rekord nadal spełnia powyższe warunki. Widok szczegółów oznacza takie wydarzenie jako zakończone i promuje przyszłe podobne wydarzenia. Status `archived` nadal wyłącza rekord z publicznego frontendu.
+
 ## Daty
 
 `lib/filters.ts` definiuje filtry:

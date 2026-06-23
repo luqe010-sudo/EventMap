@@ -43,6 +43,10 @@ export default function EventDetailView({
   });
   const fullDate = formatDateRange(event.start_at, event.end_at);
   const isFree = isFreeEvent(event);
+  const isPast = isPastEvent(event);
+  const similarEventsHref = relatedEvents.length
+    ? "#podobne-wydarzenia"
+    : categoryPath(event.category);
   const googleMapsUrl =
     event.location?.google_maps_url ||
     (event.latitude != null && event.longitude != null
@@ -187,7 +191,7 @@ export default function EventDetailView({
         {/* ====== HERO SECTION ====== */}
         <section className="edHero">
           <div className="edHeroImageCol">
-            <div className="edHeroImageWrap">
+            <div className={`edHeroImageWrap ${isPast ? "edHeroImagePast" : ""}`}>
               <span
                 className="edCategoryBadge"
                 style={{ backgroundColor: event.categoryColor }}
@@ -199,6 +203,16 @@ export default function EventDetailView({
                 alt={event.title}
                 className="edHeroImage"
               />
+              {isPast ? (
+                <div className="edPastEventOverlay">
+                  <p>
+                    Wydarzenie odbyło się <strong>{dateFormatted}</strong>, nie przegap kolejnych okazji.
+                  </p>
+                  <Link href={similarEventsHref}>
+                    {relatedEvents.length ? "Zobacz podobne niżej" : "Zobacz kolejne wydarzenia"}
+                  </Link>
+                </div>
+              ) : null}
             </div>
             <div className="edImageActions">
               <EventSaveButton
@@ -237,6 +251,7 @@ export default function EventDetailView({
               title={event.title}
               url={eventUrl}
               ticketUrl={event.ticketUrl}
+              hideTicketLink={isPast}
             />
 
             {/* ====== INFO BAR ====== */}
@@ -427,7 +442,7 @@ export default function EventDetailView({
 
           {/* Related Events */}
           {relatedEvents.length ? (
-            <section className="edRelatedSection">
+            <section className="edRelatedSection" id="podobne-wydarzenia">
               <div className="edRelatedHeader">
                 <h2>Podobne wydarzenia</h2>
                 <Link href={categoryPath(event.category)} className="edRelatedLink">
@@ -521,6 +536,15 @@ function formatCompactDate(start: string, end?: string | null) {
     year: "numeric",
   });
   return `${startDate} \u2013 ${endDate}`;
+}
+
+function isPastEvent(event: Pick<EventItem, "start_at" | "end_at">) {
+  const startTime = new Date(event.start_at).getTime();
+  const endTime = event.end_at
+    ? new Date(event.end_at).getTime()
+    : startTime + 2 * 60 * 60 * 1000;
+
+  return Number.isFinite(endTime) && endTime < Date.now();
 }
 
 function formatSourceUrl(value: string) {
