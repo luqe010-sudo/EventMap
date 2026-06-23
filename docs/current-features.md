@@ -11,17 +11,18 @@ Strona główna `/`:
 - pokazuje hero, panel wyszukiwania oraz układ 70/30 z lewą kolumną wydarzeń i prawym sidebarem;
 - w lewej kolumnie pokazuje wyróżnione wydarzenia nad listą wydarzeń;
 - w prawym sidebarze pokazuje jeden spójny panel z mapą MapLibre, powiadomieniami, nadchodzącymi wydarzeniami i popularnymi kategoriami;
+- wydarzenia w sekcji `Nadchodzące wydarzenia` linkują do swoich stron szczegółowych, a odnośnik `Zobacz kalendarz wydarzeń` przewija bieżącą stronę do pełnej listy;
 - mapa w sidebarze ładuje się automatycznie dopiero po zbliżeniu panelu mapy do viewportu oraz po krótkim idle/delay, żeby pierwsze ładowanie strony nie pobierało od razu MapLibre, pinesek i kafelków mapowych; przycisk w placeholderze pozwala przyspieszyć ładowanie ręcznie;
 - mapa w sidebarze po załadowaniu jest osadzona bezpośrednio w dużym panelu, ma wewnętrzny margines i zaokrąglenie;
 - mapa na starcie używa zasięgu `Cała Polska`, obejmuje kadrem całą Polskę i pokazuje wydarzenia bez ograniczenia promieniem;
 - mapa grupuje blisko położone wydarzenia w klastry; klastry mają ograniczony promień i rozbijają się na pojedyncze pineski przy średnim przybliżeniu, a kliknięcie klastra przybliża widok.
-- pojedyncze pineski używają koloru i ikony kategorii wydarzenia; wydarzenia z tymi samymi współrzędnymi są lekko rozsuwane wizualnie, żeby nie nachodziły idealnie na siebie.
+- pojedyncze pineski i klastry są kompaktowe, używają koloru oraz ikon kategorii wydarzeń i mają wyraźną przezroczystość; zaznaczona pinezka pozostaje mocniejsza, a wydarzenia z tymi samymi współrzędnymi są lekko rozsuwane wizualnie, żeby nie nachodziły idealnie na siebie.
 - popup pojedynczej pineski pokazuje zdjęcie wydarzenia, klikalny tytuł prowadzący do szczegółów, adres i krótki opis.
-- mapa pokazuje lekko kolorowane województwa, wyraźne granice powiatów na bazie warstwy `boundary` oraz numery budynków przy dużym przybliżeniu.
-- etykiety mapy są preferowane w języku polskim, jeśli styl kafelków udostępnia pole `name:pl`.
+- mapa pokazuje subtelnie kolorowane województwa o zróżnicowanej palecie, granice powiatów widoczne już od niższego poziomu przybliżenia na bazie warstwy `boundary` oraz numery budynków przy dużym przybliżeniu.
+- etykiety mapy są preferowane w języku polskim, jeśli styl kafelków udostępnia pole `name:pl`; nazwy dużych, średnich i małych miejscowości pojawiają się wcześniej niż w stylu bazowym i są renderowane pod pinezkami wydarzeń.
 - filtruje po presetach daty, niestandardowym zakresie dat, promieniu albo zasięgu `Cała Polska`, kategorii i opcji darmowych wydarzeń;
 - pozwala wybrać lokalizację z autouzupełniania albo GPS;
-- sortuje po odległości albo dacie.
+- domyślnie sortuje wydarzenia według daty, z możliwością przełączenia na sortowanie po odległości.
 - na widoku mobilnym zachowuje estetyczne marginesy od krawędzi (18px), a kafelki klimatu w sekcji hero układają się w układ trójkolumnowy o zmniejszonych wymiarach;
 - panel wyszukiwania posiada przycisk "Znajdź" z ikoną lupy umieszczony inline jako piąta kolumna w rzędzie filtrów na desktopie, na mobilnych zajmuje pełną szerokość; kliknięcie "Znajdź" buduje URL z wybranych filtrów (kategoria, miasto/lokalizacja) i nawiguje do odpowiedniej podstrony (np. `/koncerty/wroclaw` lub `/lokalizacja?lat=...&lng=...&radius=...`);
 - panel wyszukiwania (SearchPanel) jest widoczny na wszystkich stronach; ma kompaktowy, jednorzędowy układ bez obramowań wokół sekcji — 5 kolumn na desktopie (Lokalizacja | Promień | Kiedy? | Cena | Znajdź), 2 kolumny na tablecie, 1 kolumna na mobile; na podstronach data filtruje dynamicznie, a zmiana kategorii lub miasta nawiguje dopiero po kliknięciu "Znajdź";

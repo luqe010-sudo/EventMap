@@ -588,6 +588,8 @@ function applyPolishLabels(map: maplibregl.Map) {
   const layers = map.getStyle().layers ?? [];
   layers.forEach((layer) => {
     if (layer.type !== "symbol" || !layer.layout?.["text-field"]) return;
+    prioritizePlaceLabel(map, layer);
+
     const id = layer.id.toLowerCase();
     if (
       id.includes("housenumber") ||
@@ -616,6 +618,71 @@ function applyPolishLabels(map: maplibregl.Map) {
       ["get", "name:nonlatin"]
     ]);
   });
+
+  addPriorityCityLabels(map);
+}
+
+function prioritizePlaceLabel(
+  map: maplibregl.Map,
+  layer: Extract<maplibregl.LayerSpecification, { type: "symbol" }>
+) {
+  if (layer.id === "label_city" || layer.id === "label_city_capital") {
+    map.setLayerZoomRange(layer.id, 1, layer.maxzoom ?? 24);
+    map.setLayoutProperty(layer.id, "symbol-sort-key", ["coalesce", ["get", "rank"], 99]);
+    map.setLayoutProperty(layer.id, "text-padding", 1);
+    return;
+  }
+
+  if (layer.id === "label_town") {
+    map.setLayerZoomRange(layer.id, 1, layer.maxzoom ?? 24);
+    map.setLayoutProperty(layer.id, "symbol-sort-key", ["coalesce", ["get", "rank"], 99]);
+    map.setLayoutProperty(layer.id, "text-padding", 1);
+    return;
+  }
+
+  if (layer.id === "label_village") {
+    map.setLayerZoomRange(layer.id, 1.5, layer.maxzoom ?? 24);
+    map.setLayoutProperty(layer.id, "symbol-sort-key", ["coalesce", ["get", "rank"], 99]);
+    map.setLayoutProperty(layer.id, "text-padding", 1);
+  }
+}
+
+function addPriorityCityLabels(map: maplibregl.Map) {
+  const sourceId = getVectorTileSourceId(map);
+  if (!sourceId || map.getLayer("eventmap-major-city-labels")) return;
+
+  map.addLayer({
+    id: "eventmap-major-city-labels",
+    type: "symbol",
+    source: sourceId,
+    "source-layer": "place",
+    minzoom: 1,
+    maxzoom: 7,
+    filter: [
+      "all",
+      ["in", ["get", "class"], ["literal", ["city", "town"]]],
+      ["<=", ["get", "rank"], 8]
+    ] as FilterSpecification,
+    layout: {
+      "symbol-sort-key": ["coalesce", ["get", "rank"], 99],
+      "text-allow-overlap": true,
+      "text-field": [
+        "coalesce",
+        ["get", "name:pl"],
+        ["get", "name"],
+        ["get", "name:latin"],
+        ["get", "name:nonlatin"]
+      ],
+      "text-font": ["Noto Sans Bold"],
+      "text-size": ["interpolate", ["linear"], ["zoom"], 2, 10, 5, 12, 7, 14]
+    },
+    paint: {
+      "text-color": "#111827",
+      "text-halo-blur": 0.8,
+      "text-halo-color": "#ffffff",
+      "text-halo-width": 1.4
+    }
+  });
 }
 
 function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
@@ -641,49 +708,49 @@ function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
             "match",
             ["get", "nazwa"],
             "dolnośląskie",
-            "#fef3c7",
+            "#f59e0b",
             "kujawsko-pomorskie",
-            "#dcfce7",
+            "#22c55e",
             "lubelskie",
-            "#dbeafe",
+            "#3b82f6",
             "lubuskie",
-            "#fce7f3",
+            "#ec4899",
             "łódzkie",
-            "#ede9fe",
+            "#8b5cf6",
             "małopolskie",
-            "#ccfbf1",
+            "#14b8a6",
             "mazowieckie",
-            "#fee2e2",
+            "#ef4444",
             "opolskie",
-            "#e0f2fe",
+            "#0ea5e9",
             "podkarpackie",
-            "#fef9c3",
+            "#eab308",
             "podlaskie",
-            "#dcfce7",
+            "#10b981",
             "pomorskie",
-            "#dbeafe",
+            "#2563eb",
             "śląskie",
-            "#fae8ff",
+            "#d946ef",
             "świętokrzyskie",
-            "#ffedd5",
+            "#f97316",
             "warmińsko-mazurskie",
-            "#cffafe",
+            "#06b6d4",
             "wielkopolskie",
-            "#ecfccb",
+            "#84cc16",
             "zachodniopomorskie",
-            "#e0e7ff",
-            "#fef3c7"
+            "#6366f1",
+            "#f59e0b"
           ],
           "fill-opacity": [
             "interpolate",
             ["linear"],
             ["zoom"],
             4,
-            0.16,
+            0.18,
             7,
-            0.22,
+            0.23,
             10,
-            0.18
+            0.17
           ]
         }
       },
@@ -735,7 +802,7 @@ function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
         type: "line",
         source: sourceId,
         "source-layer": "boundary",
-        minzoom: 6,
+        minzoom: 3,
         filter: adminLevelFilter("6"),
         paint: {
           "line-color": "#1d4ed8",
@@ -743,6 +810,14 @@ function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
             "interpolate",
             ["linear"],
             ["zoom"],
+            3,
+            0.05,
+            3.5,
+            0.08,
+            4,
+            0.12,
+            5,
+            0.24,
             6,
             0.42,
             10,
@@ -754,6 +829,14 @@ function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
             "interpolate",
             ["linear"],
             ["zoom"],
+            3,
+            0.3,
+            3.5,
+            0.4,
+            4,
+            0.5,
+            5,
+            0.7,
             6,
             1,
             10,

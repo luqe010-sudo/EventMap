@@ -153,10 +153,11 @@ function addEventSourceAndLayers(
           50,
           "#ef3f18"
         ],
-        "circle-radius": ["step", ["get", "point_count"], 20, 10, 25, 25, 31, 50, 38],
+        "circle-radius": ["step", ["get", "point_count"], 17, 10, 21, 25, 26, 50, 32],
         "circle-stroke-color": "#ffffff",
-        "circle-stroke-width": 3,
-        "circle-opacity": 0.94
+        "circle-stroke-width": 2.4,
+        "circle-stroke-opacity": 0.78,
+        "circle-opacity": 0.7
       }
     });
   }
@@ -170,7 +171,7 @@ function addEventSourceAndLayers(
       layout: {
         "text-field": ["get", "point_count_abbreviated"],
         "text-font": ["Noto Sans Bold"],
-        "text-size": 13
+        "text-size": 12
       },
       paint: {
         "text-color": "#ffffff"
@@ -189,7 +190,8 @@ function addEventSourceAndLayers(
         "circle-radius": selectedCircleRadius(NO_SELECTED_EVENT_ID),
         "circle-stroke-color": "#ffffff",
         "circle-stroke-width": selectedStrokeWidth(NO_SELECTED_EVENT_ID),
-        "circle-opacity": 0.96
+        "circle-stroke-opacity": 0.76,
+        "circle-opacity": selectedCircleOpacity(NO_SELECTED_EVENT_ID)
       }
     });
   }
@@ -202,9 +204,12 @@ function addEventSourceAndLayers(
       filter: ["!", ["has", "point_count"]],
       layout: {
         "icon-image": ["get", "icon"],
-        "icon-size": 0.68,
+        "icon-size": 0.61,
         "icon-allow-overlap": true,
         "icon-ignore-placement": true
+      },
+      paint: {
+        "icon-opacity": selectedIconOpacity(NO_SELECTED_EVENT_ID)
       }
     });
   }
@@ -378,14 +383,26 @@ function updateSelectedPaint(map: maplibregl.Map, selectedEventId?: string) {
   const selectedId = selectedEventId ?? NO_SELECTED_EVENT_ID;
   map.setPaintProperty("event-pins", "circle-radius", selectedCircleRadius(selectedId));
   map.setPaintProperty("event-pins", "circle-stroke-width", selectedStrokeWidth(selectedId));
+  map.setPaintProperty("event-pins", "circle-opacity", selectedCircleOpacity(selectedId));
+  if (map.getLayer("event-pin-icons")) {
+    map.setPaintProperty("event-pin-icons", "icon-opacity", selectedIconOpacity(selectedId));
+  }
 }
 
 function selectedCircleRadius(selectedEventId: string): ExpressionSpecification {
-  return ["case", ["==", ["get", "id"], selectedEventId], 21, 16];
+  return ["case", ["==", ["get", "id"], selectedEventId], 19, 14];
 }
 
 function selectedStrokeWidth(selectedEventId: string): ExpressionSpecification {
-  return ["case", ["==", ["get", "id"], selectedEventId], 4, 2];
+  return ["case", ["==", ["get", "id"], selectedEventId], 3.5, 1.8];
+}
+
+function selectedCircleOpacity(selectedEventId: string): ExpressionSpecification {
+  return ["case", ["==", ["get", "id"], selectedEventId], 0.88, 0.64];
+}
+
+function selectedIconOpacity(selectedEventId: string): ExpressionSpecification {
+  return ["case", ["==", ["get", "id"], selectedEventId], 0.96, 0.78];
 }
 
 function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
@@ -411,49 +428,49 @@ function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
             "match",
             ["get", "nazwa"],
             "dolnośląskie",
-            "#fef3c7",
+            "#f59e0b",
             "kujawsko-pomorskie",
-            "#dcfce7",
+            "#22c55e",
             "lubelskie",
-            "#dbeafe",
+            "#3b82f6",
             "lubuskie",
-            "#fce7f3",
+            "#ec4899",
             "łódzkie",
-            "#ede9fe",
+            "#8b5cf6",
             "małopolskie",
-            "#ccfbf1",
+            "#14b8a6",
             "mazowieckie",
-            "#fee2e2",
+            "#ef4444",
             "opolskie",
-            "#e0f2fe",
+            "#0ea5e9",
             "podkarpackie",
-            "#fef9c3",
+            "#eab308",
             "podlaskie",
-            "#dcfce7",
+            "#10b981",
             "pomorskie",
-            "#dbeafe",
+            "#2563eb",
             "śląskie",
-            "#fae8ff",
+            "#d946ef",
             "świętokrzyskie",
-            "#ffedd5",
+            "#f97316",
             "warmińsko-mazurskie",
-            "#cffafe",
+            "#06b6d4",
             "wielkopolskie",
-            "#ecfccb",
+            "#84cc16",
             "zachodniopomorskie",
-            "#e0e7ff",
-            "#fef3c7"
+            "#6366f1",
+            "#f59e0b"
           ],
           "fill-opacity": [
             "interpolate",
             ["linear"],
             ["zoom"],
             4,
-            0.16,
+            0.18,
             7,
-            0.22,
+            0.23,
             10,
-            0.18
+            0.17
           ]
         }
       },
@@ -505,7 +522,7 @@ function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
         type: "line",
         source: sourceId,
         "source-layer": "boundary",
-        minzoom: 6,
+        minzoom: 3,
         filter: adminLevelFilter("6"),
         paint: {
           "line-color": "#1d4ed8",
@@ -513,6 +530,14 @@ function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
             "interpolate",
             ["linear"],
             ["zoom"],
+            3,
+            0.05,
+            3.5,
+            0.08,
+            4,
+            0.12,
+            5,
+            0.24,
             6,
             0.42,
             10,
@@ -524,6 +549,14 @@ function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
             "interpolate",
             ["linear"],
             ["zoom"],
+            3,
+            0.3,
+            3.5,
+            0.4,
+            4,
+            0.5,
+            5,
+            0.7,
             6,
             1,
             10,
@@ -671,6 +704,8 @@ function applyPolishLabels(map: maplibregl.Map) {
     if (layer.type !== "symbol" || !layer.layout?.["text-field"]) return;
     if (!shouldLocalizeLayer(layer.id, layer.layout["text-field"])) return;
 
+    prioritizePlaceLabel(map, layer);
+
     map.setLayoutProperty(layer.id, "text-field", [
       "coalesce",
       ["get", "name:pl"],
@@ -678,6 +713,71 @@ function applyPolishLabels(map: maplibregl.Map) {
       ["get", "name:latin"],
       ["get", "name:nonlatin"]
     ]);
+  });
+
+  addPriorityCityLabels(map);
+}
+
+function prioritizePlaceLabel(
+  map: maplibregl.Map,
+  layer: Extract<maplibregl.LayerSpecification, { type: "symbol" }>
+) {
+  if (layer.id === "label_city" || layer.id === "label_city_capital") {
+    map.setLayerZoomRange(layer.id, 1, layer.maxzoom ?? 24);
+    map.setLayoutProperty(layer.id, "symbol-sort-key", ["coalesce", ["get", "rank"], 99]);
+    map.setLayoutProperty(layer.id, "text-padding", 1);
+    return;
+  }
+
+  if (layer.id === "label_town") {
+    map.setLayerZoomRange(layer.id, 1, layer.maxzoom ?? 24);
+    map.setLayoutProperty(layer.id, "symbol-sort-key", ["coalesce", ["get", "rank"], 99]);
+    map.setLayoutProperty(layer.id, "text-padding", 1);
+    return;
+  }
+
+  if (layer.id === "label_village") {
+    map.setLayerZoomRange(layer.id, 1.5, layer.maxzoom ?? 24);
+    map.setLayoutProperty(layer.id, "symbol-sort-key", ["coalesce", ["get", "rank"], 99]);
+    map.setLayoutProperty(layer.id, "text-padding", 1);
+  }
+}
+
+function addPriorityCityLabels(map: maplibregl.Map) {
+  const sourceId = getVectorTileSourceId(map);
+  if (!sourceId || map.getLayer("eventmap-major-city-labels")) return;
+
+  map.addLayer({
+    id: "eventmap-major-city-labels",
+    type: "symbol",
+    source: sourceId,
+    "source-layer": "place",
+    minzoom: 1,
+    maxzoom: 7,
+    filter: [
+      "all",
+      ["in", ["get", "class"], ["literal", ["city", "town"]]],
+      ["<=", ["get", "rank"], 8]
+    ] as FilterSpecification,
+    layout: {
+      "symbol-sort-key": ["coalesce", ["get", "rank"], 99],
+      "text-allow-overlap": true,
+      "text-field": [
+        "coalesce",
+        ["get", "name:pl"],
+        ["get", "name"],
+        ["get", "name:latin"],
+        ["get", "name:nonlatin"]
+      ],
+      "text-font": ["Noto Sans Bold"],
+      "text-size": ["interpolate", ["linear"], ["zoom"], 2, 10, 5, 12, 7, 14]
+    },
+    paint: {
+      "text-color": "#111827",
+      "text-halo-blur": 0.8,
+      "text-halo-color": "#ffffff",
+      "text-halo-width": 1.4
+    }
   });
 }
 

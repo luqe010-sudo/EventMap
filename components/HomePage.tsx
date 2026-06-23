@@ -73,7 +73,7 @@ export default function HomePage({
       ? `Szukam wydarzeń w pobliżu: ${initialLocation.label}.`
       : ""
   );
-  const [sortBy, setSortBy] = useState<"nearest" | "date">("nearest");
+  const [sortBy, setSortBy] = useState<"nearest" | "date">("date");
   const visibleEventsResetKey = useMemo(
     () => [
       dateFilter,
