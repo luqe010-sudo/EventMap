@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import EventHeroCta, { EventSaveButton } from "@/components/EventDetailActions";
 import EventAnalyticsTracker, { TrackedEventLink } from "@/components/EventAnalyticsTracker";
