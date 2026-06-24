@@ -66,6 +66,7 @@ export default function HomePage({
     y: number;
     timestamp: number;
   } | null>(null);
+  const touchStartRef = useRef<{ x: number; y: number; timestamp: number } | null>(null);
   const suppressClickRef = useRef(false);
 
   // Filter state
@@ -415,6 +416,7 @@ export default function HomePage({
 
   function handlePointerStart(event: React.PointerEvent<HTMLElement>) {
     if (
+      event.pointerType === "touch" ||
       (event.pointerType === "mouse" && event.button !== 0) ||
       shouldIgnoreViewSwipe(event.target)
     ) {
@@ -437,18 +439,51 @@ export default function HomePage({
 
     const deltaX = event.clientX - start.x;
     const deltaY = event.clientY - start.y;
-    const elapsed = Date.now() - start.timestamp;
-    const isDeliberateHorizontalSwipe =
-      Math.abs(deltaX) >= 100 &&
-      Math.abs(deltaX) > Math.abs(deltaY) * 1.5 &&
-      elapsed <= 800;
+    if (completeViewSwipe(deltaX, deltaY, Date.now() - start.timestamp)) {
+      event.preventDefault();
+    }
+  }
 
-    if (!isDeliberateHorizontalSwipe) return;
-    event.preventDefault();
+  function handleTouchStart(event: React.TouchEvent<HTMLElement>) {
+    if (event.touches.length !== 1 || shouldIgnoreViewSwipe(event.target)) {
+      touchStartRef.current = null;
+      return;
+    }
+
+    const touch = event.touches[0];
+    touchStartRef.current = {
+      x: touch.clientX,
+      y: touch.clientY,
+      timestamp: Date.now()
+    };
+  }
+
+  function handleTouchEnd(event: React.TouchEvent<HTMLElement>) {
+    const start = touchStartRef.current;
+    touchStartRef.current = null;
+    if (!start || event.changedTouches.length !== 1) return;
+
+    const touch = event.changedTouches[0];
+    completeViewSwipe(
+      touch.clientX - start.x,
+      touch.clientY - start.y,
+      Date.now() - start.timestamp
+    );
+  }
+
+  function completeViewSwipe(deltaX: number, deltaY: number, elapsed: number) {
+    const isDeliberateHorizontalSwipe =
+      Math.abs(deltaX) >= 72 &&
+      Math.abs(deltaX) > Math.abs(deltaY) * 1.25 &&
+      elapsed <= 1200;
+
+    if (!isDeliberateHorizontalSwipe) return false;
+
     suppressClickRef.current = true;
     window.setTimeout(() => { suppressClickRef.current = false; }, 400);
     if (viewMode === "list" && deltaX < 0) showMobileMap();
     if (viewMode === "map" && deltaX > 0) showMobileList();
+    return true;
   }
 
   function handleClickCapture(event: React.MouseEvent<HTMLElement>) {
@@ -464,6 +499,9 @@ export default function HomePage({
       onPointerDownCapture={handlePointerStart}
       onPointerUpCapture={handlePointerEnd}
       onPointerCancelCapture={() => { pointerStartRef.current = null; }}
+      onTouchStartCapture={handleTouchStart}
+      onTouchEndCapture={handleTouchEnd}
+      onTouchCancelCapture={() => { touchStartRef.current = null; }}
       onClickCapture={handleClickCapture}
     >
       {!isHomePage && (
