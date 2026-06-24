@@ -12,15 +12,23 @@ type EventCardProps = {
   event: EventItem;
   distanceKm: number;
   onShowOnMap?: (eventId: string) => void;
+  onOpenEvent?: (eventId: string) => void;
 };
 
-export default function EventCard({ event, distanceKm, onShowOnMap }: EventCardProps) {
+export default function EventCard({ event, distanceKm, onShowOnMap, onOpenEvent }: EventCardProps) {
   const dateStr = formatEventDate(event.startDate);
   const isFree = isFreeEvent(event);
 
+  function handleCardClick(e: React.MouseEvent) {
+    if (!onOpenEvent) return;
+    if (!window.matchMedia("(max-width: 760px)").matches) return;
+    e.preventDefault();
+    onOpenEvent(event.id);
+  }
+
   return (
     <article className="eventCardH">
-      <Link href={eventPath(event)} className="eventCardHLink">
+      <Link href={eventPath(event)} className="eventCardHLink" onClick={handleCardClick}>
         <div className="eventCardHImageWrap">
           <img src={event.imageUrl} alt={event.title} className="eventCardHImage" loading="lazy" />
         </div>

@@ -1,11 +1,9 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { CalendarDays, List, Map, MapPin, X } from "lucide-react";
 import type { EventItem, KnownLocation } from "@/lib/events";
 import { formatPolishDate } from "@/lib/date-format";
-import { eventPath } from "@/lib/slugs";
 
 const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
   ssr: false,
@@ -14,22 +12,26 @@ const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
 
 type MobileMapViewProps = {
   active: boolean;
+  parked?: boolean;
   events: EventItem[];
   selectedEventId: string | null;
   location?: KnownLocation;
   onSelectEvent: (eventId: string) => void;
   onClearSelection: () => void;
   onShowList: () => void;
+  onOpenEvent: (eventId: string) => void;
 };
 
 export default function MobileMapView({
   active,
+  parked = false,
   events,
   selectedEventId,
   location,
   onSelectEvent,
   onClearSelection,
-  onShowList
+  onShowList,
+  onOpenEvent
 }: MobileMapViewProps) {
   const selectedEvent = events.find((event) => event.id === selectedEventId) ?? null;
   const selectedEventDescription = selectedEvent
@@ -39,7 +41,7 @@ export default function MobileMapView({
   return (
     <section
       id="mobile-map-view"
-      className={`mobileMapView ${active ? "mobileMapViewActive" : ""}`}
+      className={`mobileMapView ${active ? "mobileMapViewActive" : ""} ${parked ? "mobileMapViewParked" : ""}`}
       aria-label="Mapa wydarzeń"
       aria-hidden={!active}
     >
@@ -50,7 +52,7 @@ export default function MobileMapView({
         location={location}
         onSelectEvent={onSelectEvent}
         showEventPopup={false}
-        isVisible={active}
+        isVisible={active || parked}
       />
 
       <div className="mobileMapCount" aria-live="polite">
@@ -99,7 +101,9 @@ export default function MobileMapView({
                 {selectedEvent.city || selectedEvent.address}
               </span>
             </div>
-            <Link href={eventPath(selectedEvent)}>Zobacz wydarzenie</Link>
+            <button type="button" onClick={() => onOpenEvent(selectedEvent.id)}>
+              Zobacz wydarzenie
+            </button>
           </div>
         </article>
       ) : null}

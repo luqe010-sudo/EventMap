@@ -72,7 +72,9 @@ export default async function CategoryPage({
     today.setHours(0, 0, 0, 0);
 
     const [events, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
-      listEvents({ categoryId: category.id, dateFrom: today.toISOString(), limit: 250 }),
+      // Keep a complete client-side event pool so changing/clearing the category
+      // immediately produces truthful results before the next explicit navigation.
+      listEvents({ dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
       getActiveCityLocations(),
       listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 }),

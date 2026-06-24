@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { trackEventAnalytics } from "@/components/EventAnalyticsTracker";
 import { toggleSavedEventAction } from "@/lib/user-account-actions";
 
@@ -99,17 +99,65 @@ export default function EventHeroCta({
 
 type SaveButtonProps = {
   eventId: string;
-  initialSaved: boolean;
-  isLoggedIn: boolean;
+  initialSaved?: boolean;
+  isLoggedIn?: boolean;
   returnTo: string;
 };
 
 export function EventSaveButton({ eventId, initialSaved, isLoggedIn, returnTo }: SaveButtonProps) {
-  const [saved, setSaved] = useState(initialSaved);
+  const [saved, setSaved] = useState(initialSaved ?? false);
+  const [resolvedLoggedIn, setResolvedLoggedIn] = useState<boolean | null>(isLoggedIn ?? null);
   const [error, setError] = useState("");
   const [pending, startTransition] = useTransition();
 
-  if (!isLoggedIn) {
+  useEffect(() => {
+    let active = true;
+    setError("");
+
+    if (typeof isLoggedIn === "boolean") {
+      setResolvedLoggedIn(isLoggedIn);
+      setSaved(initialSaved ?? false);
+    } else {
+      setResolvedLoggedIn(null);
+      void fetch("/api/account/saved-events", { cache: "no-store" })
+        .then(async (response) => {
+          if (!response.ok) throw new Error("Saved events request failed");
+          return response.json() as Promise<{ isLoggedIn: boolean; eventIds: string[] }>;
+        })
+        .then((snapshot) => {
+          if (!active) return;
+          setResolvedLoggedIn(snapshot.isLoggedIn);
+          setSaved(snapshot.eventIds.includes(eventId));
+        })
+        .catch(() => {
+          if (!active) return;
+          setResolvedLoggedIn(false);
+          setSaved(false);
+        });
+    }
+
+    function handleSavedEvent(event: Event) {
+      const detail = (event as CustomEvent<{ eventId: string; saved: boolean }>).detail;
+      if (detail?.eventId === eventId) setSaved(detail.saved);
+    }
+
+    window.addEventListener("eventmap:saved-event", handleSavedEvent);
+    return () => {
+      active = false;
+      window.removeEventListener("eventmap:saved-event", handleSavedEvent);
+    };
+  }, [eventId, initialSaved, isLoggedIn]);
+
+  if (resolvedLoggedIn === null) {
+    return (
+      <button type="button" className="edSaveBtn" disabled>
+        <HeartIcon filled={false} />
+        Sprawdzam zapis…
+      </button>
+    );
+  }
+
+  if (!resolvedLoggedIn) {
     return (
       <Link className="edSaveBtn" href={`/login?next=${encodeURIComponent(returnTo)}`}>
         <HeartIcon filled={false} />
@@ -132,6 +180,9 @@ export function EventSaveButton({ eventId, initialSaved, isLoggedIn, returnTo }:
         return;
       }
       setSaved(result.saved);
+      window.dispatchEvent(new CustomEvent("eventmap:saved-event", {
+        detail: { eventId, saved: result.saved }
+      }));
       if (result.saved) trackEventAnalytics(eventId, "save_click");
     });
   }

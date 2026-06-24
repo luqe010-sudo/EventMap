@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { List as ListIcon, Map as MapIcon } from "lucide-react";
+import { List as ListIcon, Map as MapIcon, CalendarDays } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type KnownLocation, getDefaultLocation, knownLocations } from "@/lib/events";
 import {
@@ -16,12 +16,12 @@ import HeroSection from "@/components/HeroSection";
 import SearchPanel from "@/components/SearchPanel";
 import CategoryIcon from "@/components/CategoryIcon";
 import MobileMapView from "@/components/MobileMapView";
-
+import EventDetailView from "@/components/EventDetailView";
 import FeaturedEvents from "@/components/FeaturedEvents";
 import EventCard from "@/components/EventCard";
 import Sidebar from "@/components/Sidebar";
 import ValueProps from "@/components/ValueProps";
-import { toSlug, toPluralCategoryName, toPluralCategorySlug, formatInCity, buildSearchUrl } from "@/lib/slugs";
+import { toSlug, toPluralCategoryName, toPluralCategorySlug, formatInCity, buildSearchUrl, eventPath } from "@/lib/slugs";
 import { generateSeoText } from "@/lib/seo-texts";
 
 type HomePageProps = {
@@ -46,6 +46,14 @@ const POPULAR_CITIES = [
   { label: "Łódź", slug: "lodz" },
 ];
 
+type MobileView = "list" | "map" | "event";
+
+type MobileWorkspaceHistory = {
+  view: MobileView;
+  eventId?: string;
+  workspaceUrl: string;
+};
+
 export default function HomePage({
   initialEvents,
   categoryOptions,
@@ -56,11 +64,14 @@ export default function HomePage({
   activeCityLocations = [],
   availableCategoryCityRoutes
 }: HomePageProps) {
-  const [viewMode, setViewMode] = useState<"list" | "map">("list");
+  const [viewMode, setViewMode] = useState<MobileView>("list");
   const [hasOpenedMap, setHasOpenedMap] = useState(false);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
+  const [openedEventId, setOpenedEventId] = useState<string | null>(null);
   const homePageRef = useRef<HTMLElement | null>(null);
+  const mobileEventViewRef = useRef<HTMLElement | null>(null);
   const listScrollPositionRef = useRef(0);
+  const workspaceUrlRef = useRef("");
   const pointerStartRef = useRef<{
     pointerId: number;
     x: number;
@@ -119,56 +130,60 @@ export default function HomePage({
     resetKey: visibleEventsResetKey
   });
 
-  // Routing contexts
-  const isCategoryPage = !!initialCategory && !initialLocation;
-  const isCityPage = !initialCategory && !!initialLocation && Boolean(initialLocation.slug);
-  const isCategoryCityPage = !!initialCategory && !!initialLocation;
-  const isHomePage = !initialCategory && !initialLocation;
+  const activeCategory = category === "Wszystkie" ? undefined : category;
+  const activeLocation = isAllPoland ? undefined : location;
+  const activeLocationLabel = activeLocation
+    ? getPublicLocationLabel(activeLocation.label)
+    : undefined;
+  const activeLocationPhrase = activeLocation
+    ? getLocationPhrase(activeLocationLabel ?? activeLocation.label)
+    : undefined;
 
-  // SEO copywriting & Headings
+  // Visible copy follows the live filters, not only the route used for the first render.
   const pageTitle = useMemo(() => {
-    if (initialCategory && initialLocation) {
-      return `${toPluralCategoryName(initialCategory)} ${formatInCity(initialLocation.label)}`;
+    if (activeCategory && activeLocationPhrase) {
+      return `${toPluralCategoryName(activeCategory)} ${activeLocationPhrase}`;
     }
-    if (initialCategory) {
-      return `${toPluralCategoryName(initialCategory)} w Polsce`;
+    if (activeCategory) {
+      return `${toPluralCategoryName(activeCategory)} w Polsce`;
     }
-    if (initialLocation) {
-      return `Imprezy ${formatInCity(initialLocation.label)}`;
+    if (activeLocationPhrase) {
+      return `Imprezy ${activeLocationPhrase}`;
     }
     return undefined;
-  }, [initialCategory, initialLocation]);
+  }, [activeCategory, activeLocationPhrase]);
 
   const pageSubtitle = useMemo(() => {
-    if (initialCategory && initialLocation) {
-      return `Najbliższe ${toPluralCategoryName(initialCategory).toLowerCase()} ${formatInCity(initialLocation.label)}. Sprawdź zbliżający się kalendarz.`;
+    if (activeCategory && activeLocationPhrase) {
+      return `Najbliższe ${toPluralCategoryName(activeCategory).toLowerCase()} ${activeLocationPhrase}. Sprawdź zbliżający się kalendarz.`;
     }
-    if (initialCategory) {
-      const nameLower = toPluralCategoryName(initialCategory).toLowerCase();
+    if (activeCategory) {
+      const nameLower = toPluralCategoryName(activeCategory).toLowerCase();
       return `Sprawdź najbliższe ${nameLower}, festiwale muzyczne i występy na żywo.`;
     }
-    if (initialLocation) {
+    if (activeLocation) {
       return `Znajdź koncerty, festiwale, wydarzenia sportowe i imprezy dla dzieci.`;
     }
     return undefined;
-  }, [initialCategory, initialLocation]);
+  }, [activeCategory, activeLocation, activeLocationPhrase]);
 
   const listHeading = useMemo(() => {
-    if (initialCategory && initialLocation) {
-      return `Kalendarz: ${toPluralCategoryName(initialCategory).toLowerCase()} ${formatInCity(initialLocation.label)}`;
+    if (activeCategory && activeLocationPhrase) {
+      return `Kalendarz: ${toPluralCategoryName(activeCategory).toLowerCase()} ${activeLocationPhrase}`;
     }
-    if (initialCategory) {
-      return `Nadchodzące ${toPluralCategoryName(initialCategory).toLowerCase()} w Polsce`;
+    if (activeCategory) {
+      return `Nadchodzące ${toPluralCategoryName(activeCategory).toLowerCase()} w Polsce`;
     }
-    if (initialLocation) {
-      return `Nadchodzące wydarzenia ${formatInCity(initialLocation.label)}`;
+    if (activeLocationPhrase) {
+      return `Nadchodzące wydarzenia ${activeLocationPhrase}`;
     }
     return "Wydarzenia w Twojej okolicy";
-  }, [initialCategory, initialLocation]);
+  }, [activeCategory, activeLocationPhrase]);
 
   const seoTextHtml = useMemo(() => {
-    return generateSeoText(initialCategory, initialLocation?.label);
-  }, [initialCategory, initialLocation]);
+    const seoLocation = activeLocation?.slug ? activeLocationLabel : undefined;
+    return generateSeoText(activeCategory, seoLocation);
+  }, [activeCategory, activeLocation, activeLocationLabel]);
 
   // Filtered events
   const filteredEvents = useMemo(
@@ -235,6 +250,21 @@ export default function HomePage({
   );
 
   const hiddenEventsCount = Math.max(filteredEvents.length - visibleEvents.length, 0);
+  const eventById = useMemo(
+    () => new Map(initialEvents.map((event) => [event.id, event])),
+    [initialEvents]
+  );
+
+  const openedEvent = openedEventId
+    ? eventById.get(openedEventId) ?? null
+    : null;
+
+  const openedEventRelated = useMemo(() => {
+    if (!openedEvent) return [];
+    return initialEvents
+      .filter((e) => e.id !== openedEvent.id && e.category === openedEvent.category)
+      .slice(0, 3);
+  }, [initialEvents, openedEvent]);
 
   useEffect(() => {
     if (
@@ -246,7 +276,19 @@ export default function HomePage({
   }, [filteredEvents, selectedEventId]);
 
   useEffect(() => {
-    if (viewMode !== "map" || !window.matchMedia("(max-width: 760px)").matches) return;
+    if (openedEventId && !eventById.has(openedEventId)) {
+      setOpenedEventId(null);
+      if (viewMode === "event") setViewMode("list");
+    }
+  }, [eventById, openedEventId, viewMode]);
+
+  useEffect(() => {
+    if (!openedEventId) return;
+    mobileEventViewRef.current?.scrollTo({ top: 0, behavior: "auto" });
+  }, [openedEventId]);
+
+  useEffect(() => {
+    if (viewMode === "list" || !window.matchMedia("(max-width: 760px)").matches) return;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -256,6 +298,46 @@ export default function HomePage({
       document.body.classList.remove("mobileMapActive");
     };
   }, [viewMode]);
+
+  useEffect(() => {
+    function handlePopState(event: PopStateEvent) {
+      const historyState = (event.state as {
+        eventMapWorkspace?: MobileWorkspaceHistory;
+      } | null)?.eventMapWorkspace;
+
+      if (!historyState) {
+        setViewMode("list");
+        return;
+      }
+
+      workspaceUrlRef.current = historyState.workspaceUrl;
+      if (historyState.view === "event" && historyState.eventId) {
+        if (eventById.has(historyState.eventId)) {
+          setSelectedEventId(historyState.eventId);
+          setOpenedEventId(historyState.eventId);
+          setViewMode("event");
+          return;
+        }
+      }
+
+      const restoredEventId = historyState.eventId && eventById.has(historyState.eventId)
+        ? historyState.eventId
+        : null;
+      setOpenedEventId(restoredEventId);
+      if (restoredEventId) setSelectedEventId(restoredEventId);
+
+      if (historyState.view === "map") {
+        setHasOpenedMap(true);
+        setViewMode("map");
+        return;
+      }
+
+      setViewMode("list");
+    }
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [eventById]);
 
   // Handlers
   function handleLocationSelect(loc: KnownLocation) {
@@ -389,13 +471,23 @@ export default function HomePage({
   }, [category, location, isAllPoland, radiusKm, isKnownCity, dateFilter, customDate, priceMode, maxPrice]);
 
   useEffect(() => {
-    const url = currentSearchUrl();
-    const currentUrl = `${window.location.pathname}${window.location.search}`;
+    if (viewMode === "event") return;
 
-    if (url !== currentUrl) {
-      window.history.replaceState(window.history.state, "", url);
-    }
-  }, [currentSearchUrl]);
+    const url = currentSearchUrl();
+    workspaceUrlRef.current = url;
+    window.history.replaceState(
+      {
+        ...window.history.state,
+        eventMapWorkspace: {
+          view: viewMode,
+          eventId: openedEventId ?? undefined,
+          workspaceUrl: url
+        } satisfies MobileWorkspaceHistory
+      },
+      "",
+      url
+    );
+  }, [currentSearchUrl, openedEventId, viewMode]);
 
   const handleFindSubmit = useCallback(() => {
     const url = currentSearchUrl();
@@ -409,19 +501,84 @@ export default function HomePage({
     window.location.assign(url);
   }, [currentSearchUrl]);
 
+  const pushWorkspaceHistory = useCallback((view: "list" | "map") => {
+    const workspaceUrl = workspaceUrlRef.current || currentSearchUrl();
+    window.history.pushState(
+      {
+        ...window.history.state,
+        eventMapWorkspace: {
+          view,
+          eventId: openedEventId ?? undefined,
+          workspaceUrl
+        } satisfies MobileWorkspaceHistory
+      },
+      "",
+      workspaceUrl
+    );
+  }, [currentSearchUrl, openedEventId]);
+
   const showMobileMap = useCallback((eventId?: string) => {
     listScrollPositionRef.current = window.scrollY;
     if (eventId) setSelectedEventId(eventId);
+    if (viewMode === "event") pushWorkspaceHistory("map");
     setHasOpenedMap(true);
     window.requestAnimationFrame(() => setViewMode("map"));
-  }, []);
+  }, [pushWorkspaceHistory, viewMode]);
 
   const showMobileList = useCallback(() => {
+    if (viewMode === "event") pushWorkspaceHistory("list");
     setViewMode("list");
     window.requestAnimationFrame(() => {
       window.scrollTo({ top: listScrollPositionRef.current, behavior: "auto" });
     });
-  }, []);
+  }, [pushWorkspaceHistory, viewMode]);
+
+  const openMobileEvent = useCallback((eventId: string) => {
+    const event = eventById.get(eventId);
+    if (!event) return;
+
+    const workspaceUrl = workspaceUrlRef.current || currentSearchUrl();
+    workspaceUrlRef.current = workspaceUrl;
+    setSelectedEventId(eventId);
+    setOpenedEventId(eventId);
+    setHasOpenedMap(true);
+    setViewMode("event");
+    window.history.pushState(
+      {
+        ...window.history.state,
+        eventMapWorkspace: {
+          view: "event",
+          eventId,
+          workspaceUrl
+        } satisfies MobileWorkspaceHistory
+      },
+      "",
+      eventPath(event)
+    );
+  }, [currentSearchUrl, eventById]);
+
+  const showOpenedEvent = useCallback(() => {
+    if (!openedEvent) return;
+    openMobileEvent(openedEvent.id);
+  }, [openMobileEvent, openedEvent]);
+
+  const closeMobileEvent = useCallback(() => {
+    const workspaceUrl = workspaceUrlRef.current || currentSearchUrl();
+    window.history.replaceState(
+      {
+        ...window.history.state,
+        eventMapWorkspace: {
+          view: "map",
+          workspaceUrl
+        } satisfies MobileWorkspaceHistory
+      },
+      "",
+      workspaceUrl
+    );
+    setOpenedEventId(null);
+    setHasOpenedMap(true);
+    setViewMode("map");
+  }, [currentSearchUrl]);
 
   function handlePointerStart(event: React.PointerEvent<HTMLElement>) {
     if (
@@ -545,14 +702,20 @@ export default function HomePage({
     if (!page) return;
 
     const viewportWidth = window.innerWidth;
-    const mapOffset = viewMode === "list"
-      ? clamp(viewportWidth + Math.min(deltaX, 0), 0, viewportWidth)
-      : clamp(Math.max(deltaX, 0), 0, viewportWidth);
-    const progress = 1 - mapOffset / viewportWidth;
-    const indicatorLeft = viewportWidth * 0.25 - 36 + progress * viewportWidth * 0.5;
+    const maxViewIndex = openedEventId ? 2 : 1;
+    const currentViewIndex = viewMode === "list" ? 0 : viewMode === "map" ? 1 : 2;
+    const position = clamp(
+      currentViewIndex * viewportWidth - deltaX,
+      0,
+      maxViewIndex * viewportWidth
+    );
+    const indicatorStart = openedEventId ? viewportWidth / 6 : viewportWidth / 4;
+    const indicatorStep = openedEventId ? viewportWidth / 3 : viewportWidth / 2;
+    const indicatorLeft = indicatorStart - 36 + (position / viewportWidth) * indicatorStep;
 
-    page.style.setProperty("--mobile-map-drag-x", `${mapOffset}px`);
-    page.style.setProperty("--mobile-list-drag-x", `${mapOffset - viewportWidth}px`);
+    page.style.setProperty("--mobile-list-drag-x", `${-position}px`);
+    page.style.setProperty("--mobile-map-drag-x", `${viewportWidth - position}px`);
+    page.style.setProperty("--mobile-event-drag-x", `${2 * viewportWidth - position}px`);
     page.style.setProperty("--mobile-indicator-drag-left", `${indicatorLeft}px`);
     page.classList.add("mobileViewDragging");
   }
@@ -563,26 +726,21 @@ export default function HomePage({
       Math.abs(deltaX) > Math.abs(deltaY) * 1.25 &&
       elapsed <= 1200;
 
+    const viewOrder: MobileView[] = openedEventId
+      ? ["list", "map", "event"]
+      : ["list", "map"];
+    const currentIndex = viewOrder.indexOf(viewMode);
+    const direction = deltaX < 0 ? 1 : -1;
     const nextMode = isDeliberateHorizontalSwipe
-      ? viewMode === "list" && deltaX < 0
-        ? "map"
-        : viewMode === "map" && deltaX > 0
-          ? "list"
-          : viewMode
+      ? viewOrder[clamp(currentIndex + direction, 0, viewOrder.length - 1)]
       : viewMode;
 
     if (nextMode !== viewMode) {
       suppressClickRef.current = true;
       window.setTimeout(() => { suppressClickRef.current = false; }, 400);
-      if (nextMode === "map") {
-        setHasOpenedMap(true);
-        setViewMode("map");
-      } else {
-        setViewMode("list");
-        window.requestAnimationFrame(() => {
-          window.scrollTo({ top: listScrollPositionRef.current, behavior: "auto" });
-        });
-      }
+      if (nextMode === "event" && openedEventId) openMobileEvent(openedEventId);
+      else if (nextMode === "map") showMobileMap();
+      else showMobileList();
     }
 
     settleViewDrag();
@@ -602,6 +760,7 @@ export default function HomePage({
       page.classList.remove("mobileViewDragging");
       page.style.removeProperty("--mobile-map-drag-x");
       page.style.removeProperty("--mobile-list-drag-x");
+      page.style.removeProperty("--mobile-event-drag-x");
       page.style.removeProperty("--mobile-indicator-drag-left");
       dragSettleTimerRef.current = window.setTimeout(() => {
         page.classList.remove("mobileViewSettling");
@@ -620,7 +779,7 @@ export default function HomePage({
   return (
     <main
       ref={homePageRef}
-      className={`homePage ${viewMode === "map" ? "mobileMapMode" : "mobileListMode"}`}
+      className={`homePage ${viewMode === "map" ? "mobileMapMode" : viewMode === "event" ? "mobileEventMode" : "mobileListMode"}`}
       onPointerDownCapture={handlePointerStart}
       onPointerMoveCapture={handlePointerMove}
       onPointerUpCapture={handlePointerEnd}
@@ -637,41 +796,43 @@ export default function HomePage({
       }}
       onClickCapture={handleClickCapture}
     >
-      {!isHomePage && (
+      {(activeCategory || activeLocation || dateFilter !== "all") && (
         <nav className="breadcrumbs subpageBreadcrumbs" aria-label="Ścieżka powrotu">
           <Link href="/" aria-label="Strona główna">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: "-2px" }}><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
           </Link>
-          {initialCategory && (
+          {activeCategory && (
             <>
               <span className="separator">›</span>
-              {initialLocation || initialDateFilter ? (
-                <Link href={`/${toPluralCategorySlug(toSlug(initialCategory))}`}>{toPluralCategoryName(initialCategory)}</Link>
+              {activeLocation || dateFilter !== "all" ? (
+                <Link href={`/${toPluralCategorySlug(toSlug(activeCategory))}`}>{toPluralCategoryName(activeCategory)}</Link>
               ) : (
-                <span className="current">{toPluralCategoryName(initialCategory)}</span>
+                <span className="current">{toPluralCategoryName(activeCategory)}</span>
               )}
             </>
           )}
-          {initialLocation && (
+          {activeLocation && (
             <>
               <span className="separator">›</span>
-              {initialDateFilter ? (
-                <Link href={initialCategory 
-                  ? `/${toPluralCategorySlug(toSlug(initialCategory))}/${initialLocation.slug ?? toSlug(initialLocation.label)}`
-                  : `/${initialLocation.slug ?? toSlug(initialLocation.label)}`
+              {dateFilter !== "all" ? (
+                <Link href={activeCategory
+                  ? buildCategoryLocationHref(toSlug(activeCategory), activeLocation)
+                  : activeLocation.slug
+                    ? `/${activeLocation.slug}`
+                    : currentSearchUrl()
                 }>
-                  {initialLocation.label}
+                  {activeLocationLabel}
                 </Link>
               ) : (
-                <span className="current">{initialLocation.label}</span>
+                <span className="current">{activeLocationLabel}</span>
               )}
             </>
           )}
-          {initialDateFilter && (
+          {dateFilter !== "all" && (
             <>
               <span className="separator">›</span>
               <span className="current">
-                {initialDateFilter === "today" ? "Dzisiaj" : initialDateFilter === "weekend" ? "Weekend" : "Ten tydzień"}
+                {getDateFilterLabel(dateFilter)}
               </span>
             </>
           )}
@@ -719,6 +880,7 @@ export default function HomePage({
         <div className="mainColumn">
           <FeaturedEvents
             events={featuredEvents}
+            onOpenEvent={openMobileEvent}
           />
 
           <section className="mainEvents" id="events-list" aria-label="Lista wydarzeń">
@@ -746,6 +908,7 @@ export default function HomePage({
                     event={event}
                     distanceKm={distanceKm}
                     onShowOnMap={showMobileMap}
+                    onOpenEvent={openMobileEvent}
                   />
                 ))}
                 {hiddenEventsCount > 0 && (
@@ -780,10 +943,10 @@ export default function HomePage({
           </section>
 
           {/* City categories tiles grid and quick timing links — below events */}
-          {isCityPage && (
+          {!activeCategory && activeLocation && (
             <section className="cityCategoriesSec">
               <div className="citySecHeader">
-                <h2>Kategorie wydarzeń {formatInCity(initialLocation!.label)}</h2>
+                <h2>Kategorie wydarzeń {activeLocationPhrase}</h2>
                 <p>Przeglądaj wydarzenia w wybranym klimacie</p>
               </div>
               <div className="cityTilesGrid">
@@ -792,7 +955,7 @@ export default function HomePage({
                   return (
                     <Link
                       key={cat.id}
-                      href={buildCategoryLocationHref(cat.slug, initialLocation!)}
+                      href={buildCategoryLocationHref(cat.slug, activeLocation)}
                       className="cityTileCard"
                       style={{ "--hover-color": catColor } as React.CSSProperties}
                     >
@@ -811,26 +974,28 @@ export default function HomePage({
                 })}
               </div>
               
-              <div className="cityQuickTimeLinks">
-                <Link href={`/${initialLocation!.slug ?? toSlug(initialLocation!.label)}/dzis`} className="cityTimeBtn">
-                  📅 Wydarzenia dzisiaj {formatInCity(initialLocation!.label)}
-                </Link>
-                <Link href={`/${initialLocation!.slug ?? toSlug(initialLocation!.label)}/weekend`} className="cityTimeBtn">
-                  🎉 Wydarzenia w weekend {formatInCity(initialLocation!.label)}
-                </Link>
-              </div>
+              {activeLocation.slug ? (
+                <div className="cityQuickTimeLinks">
+                  <Link href={`/${activeLocation.slug}/dzis`} className="cityTimeBtn">
+                    📅 Wydarzenia dzisiaj {activeLocationPhrase}
+                  </Link>
+                  <Link href={`/${activeLocation.slug}/weekend`} className="cityTimeBtn">
+                    🎉 Wydarzenia w weekend {activeLocationPhrase}
+                  </Link>
+                </div>
+              ) : null}
             </section>
           )}
 
           {/* Popular Cities linking cloud (for Category Page) */}
-          {isCategoryPage && (
+          {activeCategory && !activeLocation && (
             <section className="internalLinksSec">
-              <h3>Popularne miasta dla kategorii {toPluralCategoryName(initialCategory)}</h3>
+              <h3>Popularne miasta dla kategorii {toPluralCategoryName(activeCategory)}</h3>
               <div className="internalLinksGrid">
                 {POPULAR_CITIES.map((city) => (
                   <Link
                     key={city.slug}
-                    href={buildCategoryLocationHref(toSlug(initialCategory), locationBySlug.get(city.slug) ?? {
+                    href={buildCategoryLocationHref(toSlug(activeCategory), locationBySlug.get(city.slug) ?? {
                       label: city.label,
                       aliases: [city.slug],
                       slug: city.slug,
@@ -839,7 +1004,7 @@ export default function HomePage({
                     })}
                     className="internalLinkCard"
                   >
-                    <span>{toPluralCategoryName(initialCategory)} {city.label}</span>
+                    <span>{toPluralCategoryName(activeCategory)} {city.label}</span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
                   </Link>
                 ))}
@@ -848,19 +1013,19 @@ export default function HomePage({
           )}
 
           {/* Other Categories linking cloud (for Category + City Page) */}
-          {isCategoryCityPage && (
+          {activeCategory && activeLocation && (
             <section className="internalLinksSec">
-              <h3>Inne wydarzenia {formatInCity(initialLocation.label)}</h3>
+              <h3>Inne wydarzenia {activeLocationPhrase}</h3>
               <div className="internalLinksGrid">
                 {categoryOptions
-                  .filter((cat) => cat.name !== toPluralCategoryName(initialCategory))
+                  .filter((cat) => cat.name !== toPluralCategoryName(activeCategory))
                   .map((cat) => (
                     <Link
                       key={cat.id}
-                      href={buildCategoryLocationHref(cat.slug, initialLocation)}
+                      href={buildCategoryLocationHref(cat.slug, activeLocation)}
                       className="internalLinkCard"
                     >
-                      <span>{cat.name} {formatInCity(initialLocation.label)}</span>
+                      <span>{cat.name} {activeLocationPhrase}</span>
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
                     </Link>
                   ))}
@@ -889,18 +1054,49 @@ export default function HomePage({
       {hasOpenedMap ? (
         <MobileMapView
           active={viewMode === "map"}
+          parked={viewMode === "event"}
           events={filteredEvents.map(({ event }) => event)}
           selectedEventId={selectedEventId}
           location={isAllPoland ? undefined : location}
           onSelectEvent={setSelectedEventId}
           onClearSelection={() => setSelectedEventId(null)}
           onShowList={showMobileList}
+          onOpenEvent={openMobileEvent}
         />
       ) : null}
 
-      <div className="mobileViewSwitcher" role="group" aria-label="Widok wyników">
+      {openedEvent ? (
+        <section
+          ref={mobileEventViewRef}
+          id="mobile-event-view"
+          className={`mobileEventView ${viewMode === "event" ? "mobileEventViewActive" : ""}`}
+          aria-label={`Wydarzenie: ${openedEvent.title}`}
+          aria-hidden={viewMode !== "event"}
+        >
+          <EventDetailView
+            key={openedEvent.id}
+            event={openedEvent}
+            relatedEvents={openedEventRelated}
+            embedded
+            onClose={closeMobileEvent}
+            onOpenEvent={openMobileEvent}
+          />
+        </section>
+      ) : null}
+
+      <div className={`mobileViewSwitcher ${openedEventId ? "mobileViewSwitcherWithEvent" : ""}`} role="group" aria-label="Widok wyników">
         <span
-          className={`mobileViewSwitcherIndicator ${viewMode === "map" ? "mobileViewSwitcherIndicatorMap" : ""}`}
+          className={`mobileViewSwitcherIndicator ${
+            openedEventId
+              ? viewMode === "map"
+                ? "mobileViewSwitcherIndicatorMap"
+                : viewMode === "event"
+                ? "mobileViewSwitcherIndicatorEvent"
+                : ""
+              : viewMode === "map"
+              ? "mobileViewSwitcherIndicatorMap"
+              : ""
+          }`}
           aria-hidden="true"
         />
         <button
@@ -921,10 +1117,25 @@ export default function HomePage({
           <MapIcon size={18} strokeWidth={2.3} aria-hidden="true" />
           Mapa
         </button>
+        {openedEventId ? (
+          <button
+            type="button"
+            className={viewMode === "event" ? "active" : ""}
+            onClick={showOpenedEvent}
+            aria-pressed={viewMode === "event"}
+          >
+            <CalendarDays size={18} strokeWidth={2.3} aria-hidden="true" />
+            Wydarzenie
+          </button>
+        ) : null}
       </div>
 
       <span className="srOnly" aria-live="polite">
-        {viewMode === "map" ? "Widok mapy" : "Widok listy"}
+        {viewMode === "map"
+          ? "Widok mapy"
+          : viewMode === "event"
+            ? `Widok wydarzenia: ${openedEvent?.title ?? ""}`
+            : "Widok listy"}
       </span>
     </main>
   );
@@ -943,4 +1154,24 @@ function clamp(value: number, min: number, max: number) {
 function clampRadius(value: number) {
   if (!Number.isFinite(value)) return 100;
   return Math.min(Math.max(Math.round(value), 5), 100);
+}
+
+function getPublicLocationLabel(label: string) {
+  return label.replace(/\s+\(woj\.[^)]+\)$/i, "").trim();
+}
+
+function getLocationPhrase(label: string) {
+  const normalized = label.trim().toLowerCase();
+  if (normalized === "moja lokalizacja") return "w Twojej okolicy";
+  if (normalized === "wybrana lokalizacja") return "w wybranej okolicy";
+  return formatInCity(label);
+}
+
+function getDateFilterLabel(filter: DateFilter) {
+  if (filter === "today") return "Dzisiaj";
+  if (filter === "tomorrow") return "Jutro";
+  if (filter === "weekend") return "Weekend";
+  if (filter === "week") return "Ten tydzień";
+  if (filter === "custom") return "Wybrany termin";
+  return "Wszystkie terminy";
 }

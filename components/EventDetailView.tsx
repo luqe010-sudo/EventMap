@@ -11,17 +11,25 @@ type EventDetailViewProps = {
   event: EventItem;
   relatedEvents?: EventItem[];
   saveState?: { isLoggedIn: boolean; isSaved: boolean };
+  embedded?: boolean;
+  onClose?: () => void;
+  onOpenEvent?: (eventId: string) => void;
 };
 
 export default function EventDetailView({
   event,
   relatedEvents = [],
-  saveState = { isLoggedIn: false, isSaved: false },
+  saveState,
+  embedded = false,
+  onClose,
+  onOpenEvent,
 }: EventDetailViewProps) {
   const categoryPlural = toPluralCategoryName(event.category);
   const categorySlug = toPluralCategorySlug(event.categorySlug || toSlug(event.category || "inne"));
   const citySlug = event.citySlug || toSlug(event.city || "polska");
   const cityHref = event.city ? `/${citySlug}` : "/";
+  const Wrapper = embedded ? "div" : "main";
+  const wrapperClassName = embedded ? "edShellEmbedded" : "appShell eventDetailPage";
   const eventUrl = `https://mapaimprez.pl${eventPath(event)}`;
   const mapTargetId = "event-detail-map";
   const eventLocation = {
@@ -54,138 +62,159 @@ export default function EventDetailView({
       : null);
 
   return (
-    <main className="appShell eventDetailPage">
+    <Wrapper className={wrapperClassName}>
       <EventAnalyticsTracker eventId={event.id} />
 
-      {/* Breadcrumbs */}
-      <nav
-        className="breadcrumbs edBreadcrumbs"
-        aria-label="Ścieżka powrotu"
-      >
-        <Link href="/" aria-label="Strona główna">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
-        </Link>
-        <span className="separator">›</span>
-        <Link href={`/${categorySlug}`}>{categoryPlural}</Link>
-        {event.city ? (
-          <>
-            <span className="separator">›</span>
-            <Link href={`/${categorySlug}/${citySlug}`}>{event.city}</Link>
-          </>
-        ) : null}
-        <span className="separator">›</span>
-        <span className="current">{event.title}</span>
-      </nav>
+      {/* Close button for embedded mode */}
+      {embedded && onClose ? (
+        <button
+          type="button"
+          className="edEmbeddedClose"
+          onClick={onClose}
+          aria-label="Zamknij widok wydarzenia"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      ) : null}
 
-      {/* JSON-LD structured data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Event",
-            name: event.title,
-            description: event.description ?? event.short_description,
-            image: event.imageUrl,
-            startDate: event.start_at,
-            endDate: event.end_at || new Date(new Date(event.start_at).getTime() + 2 * 60 * 60 * 1000).toISOString(),
-            eventStatus: event.is_cancelled
-              ? "https://schema.org/EventCancelled"
-              : "https://schema.org/EventScheduled",
-            eventAttendanceMode:
-              "https://schema.org/OfflineEventAttendanceMode",
-            location: {
-              "@type": "Place",
-              name: event.location?.name ?? event.address,
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: event.location?.address,
-                addressLocality: event.city,
-                addressRegion: event.location?.voivodeship,
-                addressCountry: "PL",
-              },
-              geo:
-                event.latitude != null && event.longitude != null
+      {/* Breadcrumbs — skip in embedded mode */}
+      {!embedded ? (
+        <nav
+          className="breadcrumbs edBreadcrumbs"
+          aria-label="Ścieżka powrotu"
+        >
+          <Link href="/" aria-label="Strona główna">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+          </Link>
+          <span className="separator">›</span>
+          <Link href={`/${categorySlug}`}>{categoryPlural}</Link>
+          {event.city ? (
+            <>
+              <span className="separator">›</span>
+              <Link href={`/${categorySlug}/${citySlug}`}>{event.city}</Link>
+            </>
+          ) : null}
+          <span className="separator">›</span>
+          <span className="current">{event.title}</span>
+        </nav>
+      ) : null}
+
+      {/* JSON-LD structured data — skip in embedded mode */}
+      {!embedded ? (
+        <>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Event",
+                name: event.title,
+                description: event.description ?? event.short_description,
+                image: event.imageUrl,
+                startDate: event.start_at,
+                endDate: event.end_at || new Date(new Date(event.start_at).getTime() + 2 * 60 * 60 * 1000).toISOString(),
+                eventStatus: event.is_cancelled
+                  ? "https://schema.org/EventCancelled"
+                  : "https://schema.org/EventScheduled",
+                eventAttendanceMode:
+                  "https://schema.org/OfflineEventAttendanceMode",
+                location: {
+                  "@type": "Place",
+                  name: event.location?.name ?? event.address,
+                  address: {
+                    "@type": "PostalAddress",
+                    streetAddress: event.location?.address,
+                    addressLocality: event.city,
+                    addressRegion: event.location?.voivodeship,
+                    addressCountry: "PL",
+                  },
+                  geo:
+                    event.latitude != null && event.longitude != null
+                      ? {
+                          "@type": "GeoCoordinates",
+                          latitude: event.latitude,
+                          longitude: event.longitude,
+                        }
+                      : undefined,
+                },
+                offers: {
+                  "@type": "Offer",
+                  price: event.price_min ?? 0,
+                  priceCurrency: event.currency ?? "PLN",
+                  url: event.sources[0]?.source_url ?? eventUrl,
+                  availability: "https://schema.org/InStock",
+                  validFrom: event.updated_at || new Date(new Date(event.start_at).getTime() - 30 * 24 * 60 * 60 * 1000).toISOString(),
+                },
+                performer: {
+                  "@type": "PerformingGroup",
+                  name: event.organizerRelation?.name || event.organizerName || "Uczestnicy",
+                },
+                organizer: event.organizerRelation
                   ? {
-                      "@type": "GeoCoordinates",
-                      latitude: event.latitude,
-                      longitude: event.longitude,
+                      "@type": "Organization",
+                      name: event.organizerRelation.name,
+                      url:
+                        event.organizerRelation.website ||
+                        event.organizerRelation.facebook_url ||
+                        "https://mapaimprez.pl",
                     }
                   : undefined,
-            },
-            offers: {
-              "@type": "Offer",
-              price: event.price_min ?? 0,
-              priceCurrency: event.currency ?? "PLN",
-              url: event.sources[0]?.source_url ?? eventUrl,
-              availability: "https://schema.org/InStock",
-              validFrom: event.updated_at || new Date(new Date(event.start_at).getTime() - 30 * 24 * 60 * 60 * 1000).toISOString(),
-            },
-            performer: {
-              "@type": "PerformingGroup",
-              name: event.organizerRelation?.name || event.organizerName || "Uczestnicy",
-            },
-            organizer: event.organizerRelation
-              ? {
-                  "@type": "Organization",
-                  name: event.organizerRelation.name,
-                  url:
-                    event.organizerRelation.website ||
-                    event.organizerRelation.facebook_url ||
-                    "https://mapaimprez.pl",
-                }
-              : undefined,
-          }),
-        }}
-      />
+              }),
+            }}
+          />
 
-      {/* JSON-LD BreadcrumbList */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Strona główna",
-                item: "https://mapaimprez.pl",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: categoryPlural,
-                item: `https://mapaimprez.pl/${categorySlug}`,
-              },
-              ...(event.city
-                ? [
-                    {
-                      "@type": "ListItem",
-                      position: 3,
-                      name: event.city,
-                      item: `https://mapaimprez.pl/${categorySlug}/${citySlug}`,
-                    },
-                    {
-                      "@type": "ListItem",
-                      position: 4,
-                      name: event.title,
-                      item: eventUrl,
-                    },
-                  ]
-                : [
-                    {
-                      "@type": "ListItem",
-                      position: 3,
-                      name: event.title,
-                      item: eventUrl,
-                    },
-                  ]),
-            ],
-          }),
-        }}
-      />
+          {/* JSON-LD BreadcrumbList */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Strona główna",
+                    item: "https://mapaimprez.pl",
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: categoryPlural,
+                    item: `https://mapaimprez.pl/${categorySlug}`,
+                  },
+                  ...(event.city
+                    ? [
+                        {
+                          "@type": "ListItem",
+                          position: 3,
+                          name: event.city,
+                          item: `https://mapaimprez.pl/${categorySlug}/${citySlug}`,
+                        },
+                        {
+                          "@type": "ListItem",
+                          position: 4,
+                          name: event.title,
+                          item: eventUrl,
+                        },
+                      ]
+                    : [
+                        {
+                          "@type": "ListItem",
+                          position: 3,
+                          name: event.title,
+                          item: eventUrl,
+                        },
+                      ]),
+                ],
+              }),
+            }}
+          />
+        </>
+      ) : null}
 
       <article className="edShell">
         {/* ====== HERO SECTION ====== */}
@@ -217,8 +246,8 @@ export default function EventDetailView({
             <div className="edImageActions">
               <EventSaveButton
                 eventId={event.id}
-                initialSaved={saveState.isSaved}
-                isLoggedIn={saveState.isLoggedIn}
+                initialSaved={saveState?.isSaved}
+                isLoggedIn={saveState?.isLoggedIn}
                 returnTo={eventPath(event)}
               />
             </div>
@@ -306,32 +335,34 @@ export default function EventDetailView({
 
 
         {/* ====== CONTENT GRID: Description + Map ====== */}
-        <div className="edContentGrid" id="opis">
+        <div className={`edContentGrid ${embedded ? "edContentGridEmbedded" : ""}`} id="opis">
           <section className="edDescSection">
             <h2>Opis wydarzenia</h2>
             <ExpandableDescription text={event.description ?? event.short_description} />
           </section>
 
-          <section className="edMapSection" id={mapTargetId}>
-            <h2>Lokalizacja</h2>
-            <div className="edMapContainer">
-              <EventDetailMap event={event} location={eventLocation} />
-            </div>
-            <p className="edMapAddress">{event.address || "Lokalizacja nieznana"}</p>
-            {googleMapsUrl ? (
-              <TrackedEventLink
-                eventId={event.id}
-                eventType="map_click"
-                href={googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="edGoogleMapsLink"
-              >
-                Otwórz w Google Maps
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-              </TrackedEventLink>
-            ) : null}
-          </section>
+          {!embedded ? (
+            <section className="edMapSection" id={mapTargetId}>
+              <h2>Lokalizacja</h2>
+              <div className="edMapContainer">
+                <EventDetailMap event={event} location={eventLocation} />
+              </div>
+              <p className="edMapAddress">{event.address || "Lokalizacja nieznana"}</p>
+              {googleMapsUrl ? (
+                <TrackedEventLink
+                  eventId={event.id}
+                  eventType="map_click"
+                  href={googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="edGoogleMapsLink"
+                >
+                  Otwórz w Google Maps
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+                </TrackedEventLink>
+              ) : null}
+            </section>
+          ) : null}
         </div>
 
         {/* ====== BOTTOM GRID: Organizer + Sources | Related ====== */}
@@ -451,7 +482,17 @@ export default function EventDetailView({
               </div>
               <div className="edRelatedGrid">
                 {relatedEvents.map((re) => (
-                  <Link key={re.id} href={eventPath(re)} className="edRelatedCard">
+                  <Link
+                    key={re.id}
+                    href={eventPath(re)}
+                    className="edRelatedCard"
+                    onClick={(e) => {
+                      if (onOpenEvent && window.matchMedia("(max-width: 760px)").matches) {
+                        e.preventDefault();
+                        onOpenEvent(re.id);
+                      }
+                    }}
+                  >
                     <div className="edRelatedCardImageWrap">
                       <img src={re.imageUrl} alt={re.title} />
                       <span
@@ -482,7 +523,7 @@ export default function EventDetailView({
           ) : null}
         </div>
       </article>
-    </main>
+    </Wrapper>
   );
 }
 

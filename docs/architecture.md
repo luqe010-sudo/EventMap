@@ -36,13 +36,19 @@ Route'y w `app/` są server components tam, gdzie pobierają dane z Supabase:
 - `app/lokalizacja/page.tsx` renderuje stronę geolokalizacji z `lat`, `lng`, `radius` w query params; ma `noindex, nofollow`.
 - `app/[category]/[city]/page.tsx` rozpoznaje `city === "lokalizacja"` jako specjalny przypadek geolokalizacji z kategorią.
 - `app/[category]/[city]/page.tsx` renderuje kanoniczna strone kategorii w miescie tylko wtedy, gdy istnieje nadchodzace publiczne wydarzenie tej kategorii w tym miescie; puste pary przekierowuja na `/kategoria/lokalizacja?lat=...&lng=...&radius=30`.
+- `app/api/events/[id]/analytics/route.ts` zapisuje publiczne zdarzenia analityczne wydarzenia.
+- `app/lokalizacja/page.tsx` renderuje stronę geolokalizacji z `lat`, `lng`, `radius` w query params; ma `noindex, nofollow`.
+- `app/[category]/[city]/page.tsx` rozpoznaje `city === "lokalizacja"` jako specjalny przypadek geolokalizacji z kategorią.
+- `app/[category]/[city]/page.tsx` renderuje kanoniczna strone kategorii w miescie tylko wtedy, gdy istnieje nadchodzace publiczne wydarzenie tej kategorii w tym miescie; puste pary przekierowuja na `/kategoria/lokalizacja?lat=...&lng=...&radius=30`.
 - `app/robots.ts` wystawia prawdziwy `/robots.txt` z linkiem do indeksu sitemap i blokada paneli, API oraz stron logowania/rejestracji.
 - Legacy route handlery `/wydarzenie/[slug]` i `/wydarzenia/[slug]` przekierowuja istniejace wydarzenia na kanoniczny adres `/{kategoria}/{miasto}/{wydarzenie}`, a dla brakujacych slugow zwracaja HTTP 404 z `X-Robots-Tag: noindex, nofollow`.
 
 Client components odpowiadają za interakcję UI:
 
-- `components/HomePage.tsx` - stan filtrów na stronie głównej oraz układ 70/30: lewa kolumna z wyróżnionymi wydarzeniami i listą, prawa kolumna z sidebarem.
-- `components/MobileMapView.tsx` - mobilny, pelnoekranowy widok mapy dla aktualnie przefiltrowanych wynikow, z licznikiem i kontrolowana mini karta wybranego wydarzenia. `HomePage` utrzymuje wspolny stan trybu `list/map` oraz zaznaczonego wydarzenia.
+- `components/HomePage.tsx` - stan filtrow oraz uklad 70/30: lewa kolumna z wyroznionymi wydarzeniami i lista, prawa kolumna z sidebarem. Widoczne naglowki, linki kontekstowe i tresci pomocnicze sa wyliczane z aktywnej kategorii i lokalizacji, a nie tylko z poczatkowych parametrow route'a.
+- `components/MobileMapView.tsx` - mobilny, pelnoekranowy widok mapy dla aktualnie przefiltrowanych wynikow, z licznikiem i kontrolowana mini karta wybranego wydarzenia. `HomePage` utrzymuje wspolny stan trybu `list/map/event` oraz zaznaczonego wydarzenia.
+- `components/EventDetailView.tsx` - uzywany na dynamicznej podstronie szczegolow oraz jako trzeci ekran mobilnego workspace (z propem `embedded`) z obrazem, metadanymi, akcjami, opisem i organizatorem ostatnio otwartego wydarzenia. Tryb osadzony pomija breadcrumbsy, JSON-LD oraz mape i pobiera client-side stan zapisania wydarzenia.
+- Mobilny workspace zapisuje aktywny widok, ostatnie wydarzenie i URL listy w History API. Kanoniczny URL wydarzenia pojawia sie bez demontowania listy i mapy, a mapa pozostaje zaparkowana pod szczegolami, zachowujac zoom, pozycje oraz zaznaczona pinezke.
 - `components/FeaturedEvents.tsx` - karuzela wyróżnionych wydarzeń; nie renderuje mapy.
 - `components/Sidebar.tsx` - prawa kolumna strony głównej z pojedynczą mapą MapLibre, CTA powiadomień, nadchodzącymi wydarzeniami i kategoriami.
 - `components/MapLibreMap.tsx` - wspólny komponent mapy dla strony głównej, eksploratora i szczegółów; używa GeoJSON source z `cluster: true`, warstw klastrów, warstw pojedynczych pinesek oraz ikon kategorii. Po załadowaniu stylu dokłada kolorowane województwa i ich granice z lokalnego `public/data/wojewodztwa-min.geojson`, wyraźne granice powiatów z wektorowych kafelków OpenMapTiles (`boundary`, `admin_level=6`) oraz numery budynków (`housenumber`). Gdy mapa nie dostaje lokalizacji, kadruje stałe bounds całej Polski.

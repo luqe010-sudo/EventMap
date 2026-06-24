@@ -137,7 +137,7 @@ export default async function CategoryCityPage({
     today.setHours(0, 0, 0, 0);
 
     const [events, categoryRows, activeCityLocations] = await Promise.all([
-      listEvents({ categoryId: category.id, dateFrom: today.toISOString(), limit: 250 }),
+      listEvents({ dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
       getActiveCityLocations(),
     ]);
@@ -186,7 +186,7 @@ export default async function CategoryCityPage({
     today.setHours(0, 0, 0, 0);
 
     const [events, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
-      listEvents({ categoryId: category.id, dateFrom: today.toISOString(), limit: 250 }),
+      listEvents({ dateFrom: today.toISOString(), limit: 250 }),
       listCategories(),
       getActiveCityLocations(),
       listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 }),

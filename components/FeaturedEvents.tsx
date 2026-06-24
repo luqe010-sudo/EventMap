@@ -9,9 +9,10 @@ import { addDaysToDateKey, formatPolishDate, getDateKeyInAppTimeZone } from "@/l
 
 type FeaturedEventsProps = {
   events: Array<{ event: EventItem; distanceKm: number }>;
+  onOpenEvent?: (eventId: string) => void;
 };
 
-export default function FeaturedEvents({ events }: FeaturedEventsProps) {
+export default function FeaturedEvents({ events, onOpenEvent }: FeaturedEventsProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -29,6 +30,13 @@ export default function FeaturedEvents({ events }: FeaturedEventsProps) {
       left: direction === "left" ? -320 : 320,
       behavior: "smooth"
     });
+  }
+
+  function handleCardClick(e: React.MouseEvent, eventId: string) {
+    if (!onOpenEvent) return;
+    if (!window.matchMedia("(max-width: 760px)").matches) return;
+    e.preventDefault();
+    onOpenEvent(eventId);
   }
 
   if (events.length === 0) return null;
@@ -57,7 +65,12 @@ export default function FeaturedEvents({ events }: FeaturedEventsProps) {
             {events.map(({ event, distanceKm }) => {
               const isFree = isFreeEvent(event);
               return (
-                <Link key={event.id} href={eventPath(event)} className="featuredCard">
+                <Link
+                  key={event.id}
+                  href={eventPath(event)}
+                  className="featuredCard"
+                  onClick={(e) => handleCardClick(e, event.id)}
+                >
                   <div className="featuredCardImageWrap">
                     <img src={event.imageUrl} alt={event.title} className="featuredCardImage" loading="lazy" />
                     <div className="featuredCardOverlay">

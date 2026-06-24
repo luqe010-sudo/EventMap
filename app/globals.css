@@ -2053,7 +2053,7 @@ a { color: inherit; text-decoration: none; }
   top: 80px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
 }
 
 .sidebarSection {
@@ -2198,7 +2198,7 @@ a { color: inherit; text-decoration: none; }
 .sidebarCategories {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   padding: 16px 20px;
 }
 
@@ -2206,7 +2206,7 @@ a { color: inherit; text-decoration: none; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: 999px;
   border: 1px solid var(--border);
   background: var(--bg-card);
@@ -5993,6 +5993,7 @@ a.edSourceItem:hover .edSourceArrow {
    Mobile list / map discovery switcher
    =================================================== */
 .mobileMapView,
+.mobileEventView,
 .mobileViewSwitcher,
 .eventCardHMapButton {
   display: none;
@@ -6033,7 +6034,8 @@ a.edSourceItem:hover .edSourceArrow {
     padding-bottom: calc(112px + env(safe-area-inset-bottom));
   }
 
-  .homePage.mobileMapMode {
+  .homePage.mobileMapMode,
+  .homePage.mobileEventMode {
     padding-bottom: 0;
   }
 
@@ -6065,6 +6067,13 @@ a.edSourceItem:hover .edSourceArrow {
       visibility 0s linear 0s;
   }
 
+  .mobileMapViewParked {
+    visibility: visible;
+    pointer-events: none;
+    transform: translateX(0);
+    transition: none;
+  }
+
   .homePage.mobileViewDragging .mobileMapView {
     visibility: visible;
     pointer-events: auto;
@@ -6072,13 +6081,25 @@ a.edSourceItem:hover .edSourceArrow {
     transition: none;
   }
 
-  .homePage.mobileViewDragging > :not(.mobileMapView):not(.mobileViewSwitcher):not(.srOnly) {
+  .homePage.mobileViewDragging > :not(.mobileMapView):not(.mobileEventView):not(.mobileViewSwitcher):not(.srOnly) {
     transform: translateX(var(--mobile-list-drag-x));
     transition: none !important;
   }
 
-  .homePage.mobileViewSettling > :not(.mobileMapView):not(.mobileViewSwitcher):not(.srOnly) {
+  .homePage.mobileViewSettling > :not(.mobileMapView):not(.mobileEventView):not(.mobileViewSwitcher):not(.srOnly) {
     transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+
+  .homePage > :not(.mobileMapView):not(.mobileEventView):not(.mobileViewSwitcher):not(.srOnly) {
+    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .homePage.mobileMapMode > :not(.mobileMapView):not(.mobileEventView):not(.mobileViewSwitcher):not(.srOnly) {
+    transform: translateX(-100%);
+  }
+
+  .homePage.mobileEventMode > :not(.mobileMapView):not(.mobileEventView):not(.mobileViewSwitcher):not(.srOnly) {
+    transform: translateX(-200%);
   }
 
   .mobileMapView .mapLibreCanvas,
@@ -6156,6 +6177,7 @@ a.edSourceItem:hover .edSourceArrow {
 
   .mobileMapEmpty button,
   .mobileMapPreviewBody > a,
+  .mobileMapPreviewBody > button,
   .eventCardHMapButton {
     display: inline-flex;
     min-height: 38px;
@@ -6258,7 +6280,8 @@ a.edSourceItem:hover .edSourceArrow {
     color: var(--brand);
   }
 
-  .mobileMapPreviewBody > a {
+  .mobileMapPreviewBody > a,
+  .mobileMapPreviewBody > button {
     min-height: 32px;
     padding: 0 10px;
   }
@@ -6276,6 +6299,135 @@ a.edSourceItem:hover .edSourceArrow {
     border-radius: 999px;
     background: #fff;
     color: #252120;
+  }
+
+  .mobileEventView {
+    position: fixed;
+    inset: 64px 0 0;
+    z-index: 940;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: calc(88px + env(safe-area-inset-bottom));
+    visibility: hidden;
+    background: #f7f3ec;
+    pointer-events: none;
+    transform: translateX(100%);
+    transition:
+      transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 320ms;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    will-change: transform;
+  }
+
+  .mobileEventViewActive {
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+    transition:
+      transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0s;
+  }
+
+  .homePage.mobileViewDragging .mobileEventView {
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(var(--mobile-event-drag-x));
+    transition: none;
+  }
+
+  /* ---- Embedded EventDetailView inside mobile event tab ---- */
+  .edShellEmbedded {
+    position: relative;
+  }
+
+  .edEmbeddedClose {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 10;
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.44);
+    border-radius: 999px;
+    background: rgba(31, 27, 25, 0.68);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(31, 27, 25, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .mobileEventView .edShellEmbedded .edShell {
+    gap: 0;
+  }
+
+  .mobileEventView .edShellEmbedded .edHero {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 0;
+    padding: 0 0 24px;
+  }
+
+  .mobileEventView .edShellEmbedded .edHeroImageCol {
+    width: 100%;
+  }
+
+  .mobileEventView .edShellEmbedded .edHeroImageWrap {
+    border-radius: 0;
+    aspect-ratio: 16 / 10;
+    max-height: 42vh;
+  }
+
+  .mobileEventView .edShellEmbedded .edHeroImage {
+    border-radius: 0;
+  }
+
+  .mobileEventView .edShellEmbedded .edImageActions {
+    padding: 0 18px;
+  }
+
+  .mobileEventView .edShellEmbedded .edHeroInfo {
+    padding: 0 18px;
+  }
+
+  .mobileEventView .edShellEmbedded .edHeroInfo h1 {
+    font-size: clamp(1.65rem, 7vw, 2.15rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  .mobileEventView .edShellEmbedded .edInfoBar {
+    margin: 0;
+  }
+
+  .mobileEventView .edShellEmbedded .edContentGrid {
+    padding: 0 18px 24px;
+  }
+
+  .mobileEventView .edShellEmbedded .edContentGridEmbedded {
+    display: block;
+  }
+
+  .mobileEventView .edShellEmbedded .edBottomGrid {
+    padding: 0 18px 36px;
+  }
+
+  .mobileEventView .edShellEmbedded .edHeroCta {
+    display: grid;
+    gap: 9px;
+    margin: -2px 0 0;
+  }
+
+  .mobileEventView .edShellEmbedded .edTicketBtn,
+  .mobileEventView .edShellEmbedded .edShareBtn {
+    width: 100%;
+    min-height: 46px;
+    justify-content: center;
   }
 
   .mobileViewSwitcher {
@@ -6298,6 +6450,10 @@ a.edSourceItem:hover .edSourceArrow {
     -webkit-backdrop-filter: blur(16px);
   }
 
+  .mobileViewSwitcherWithEvent {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .mobileViewSwitcherIndicator {
     position: absolute;
     top: -1px;
@@ -6312,6 +6468,18 @@ a.edSourceItem:hover .edSourceArrow {
 
   .mobileViewSwitcherIndicatorMap {
     left: calc(75% - 36px);
+  }
+
+  .mobileViewSwitcherWithEvent .mobileViewSwitcherIndicator {
+    left: calc(16.6667% - 36px);
+  }
+
+  .mobileViewSwitcherWithEvent .mobileViewSwitcherIndicatorMap {
+    left: calc(50% - 36px);
+  }
+
+  .mobileViewSwitcherWithEvent .mobileViewSwitcherIndicatorEvent {
+    left: calc(83.3333% - 36px);
   }
 
   .homePage.mobileViewDragging .mobileViewSwitcherIndicator {
@@ -6342,6 +6510,8 @@ a.edSourceItem:hover .edSourceArrow {
 
   .mobileViewSwitcher button:focus-visible,
   .mobileMapPreviewClose:focus-visible,
+  .mobileMapPreviewBody > button:focus-visible,
+  .edEmbeddedClose:focus-visible,
   .eventCardHMapButton:focus-visible {
     outline: 3px solid rgba(238, 75, 34, 0.36);
     outline-offset: 2px;
@@ -6357,6 +6527,7 @@ a.edSourceItem:hover .edSourceArrow {
 
 @media (prefers-reduced-motion: reduce) {
   .mobileMapView,
+  .mobileEventView,
   .mobileViewSwitcherIndicator,
   .mobileViewSwitcher button {
     transition: none;
@@ -7848,7 +8019,7 @@ select {
 
 .sidebar {
   top: 82px;
-  gap: 16px;
+  gap: 12px;
 }
 
 .sidebarSection {
@@ -7947,11 +8118,11 @@ select {
 }
 
 .sidebarSection + .sidebarSection {
-  margin-top: 20px;
+  margin-top: 14px;
 }
 
 .sidebarSection:not(:last-child) {
-  padding-bottom: 20px;
+  padding-bottom: 14px;
   border-bottom: 1px solid rgba(39, 35, 34, 0.08);
 }
 
