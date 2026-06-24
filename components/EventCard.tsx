@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { MapPin } from "lucide-react";
 import type { EventItem } from "@/lib/events";
 import { isFreeEvent } from "@/lib/events";
 import { eventPath } from "@/lib/slugs";
@@ -10,9 +11,10 @@ import EventCardSaveButton from "@/components/EventCardSaveButton";
 type EventCardProps = {
   event: EventItem;
   distanceKm: number;
+  onShowOnMap?: (eventId: string) => void;
 };
 
-export default function EventCard({ event, distanceKm }: EventCardProps) {
+export default function EventCard({ event, distanceKm, onShowOnMap }: EventCardProps) {
   const dateStr = formatEventDate(event.startDate);
   const isFree = isFreeEvent(event);
 
@@ -51,6 +53,17 @@ export default function EventCard({ event, distanceKm }: EventCardProps) {
         </div>
       </Link>
       <EventCardSaveButton eventId={event.id} returnTo={eventPath(event)} />
+      {onShowOnMap && event.latitude != null && event.longitude != null ? (
+        <button
+          type="button"
+          className="eventCardHMapButton"
+          onClick={() => onShowOnMap(event.id)}
+          aria-label={`Pokaż na mapie: ${event.title}`}
+        >
+          <MapPin size={16} strokeWidth={2.4} aria-hidden="true" />
+          Pokaż na mapie
+        </button>
+      ) : null}
     </article>
   );
 }

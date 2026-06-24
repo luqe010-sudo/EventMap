@@ -42,6 +42,7 @@ Route'y w `app/` są server components tam, gdzie pobierają dane z Supabase:
 Client components odpowiadają za interakcję UI:
 
 - `components/HomePage.tsx` - stan filtrów na stronie głównej oraz układ 70/30: lewa kolumna z wyróżnionymi wydarzeniami i listą, prawa kolumna z sidebarem.
+- `components/MobileMapView.tsx` - mobilny, pelnoekranowy widok mapy dla aktualnie przefiltrowanych wynikow, z licznikiem i kontrolowana mini karta wybranego wydarzenia. `HomePage` utrzymuje wspolny stan trybu `list/map` oraz zaznaczonego wydarzenia.
 - `components/FeaturedEvents.tsx` - karuzela wyróżnionych wydarzeń; nie renderuje mapy.
 - `components/Sidebar.tsx` - prawa kolumna strony głównej z pojedynczą mapą MapLibre, CTA powiadomień, nadchodzącymi wydarzeniami i kategoriami.
 - `components/MapLibreMap.tsx` - wspólny komponent mapy dla strony głównej, eksploratora i szczegółów; używa GeoJSON source z `cluster: true`, warstw klastrów, warstw pojedynczych pinesek oraz ikon kategorii. Po załadowaniu stylu dokłada kolorowane województwa i ich granice z lokalnego `public/data/wojewodztwa-min.geojson`, wyraźne granice powiatów z wektorowych kafelków OpenMapTiles (`boundary`, `admin_level=6`) oraz numery budynków (`housenumber`). Gdy mapa nie dostaje lokalizacji, kadruje stałe bounds całej Polski.

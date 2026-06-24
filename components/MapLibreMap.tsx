@@ -13,8 +13,11 @@ import { flushSync } from "react-dom";
 type MapLibreMapProps = {
   events: EventItem[];
   selectedEventId?: string;
+  focusedEventId?: string;
   location?: KnownLocation;
   onSelectEvent: (eventId: string) => void;
+  showEventPopup?: boolean;
+  isVisible?: boolean;
 };
 
 type EventFeatureProperties = {
@@ -55,13 +58,17 @@ const MAP_LOCALE = {
 export default function MapLibreMap({
   events,
   selectedEventId,
+  focusedEventId,
   location,
-  onSelectEvent
+  onSelectEvent,
+  showEventPopup = true,
+  isVisible = true
 }: MapLibreMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const locationMarkerRef = useRef<maplibregl.Marker | null>(null);
   const onSelectEventRef = useRef(onSelectEvent);
+  const showEventPopupRef = useRef(showEventPopup);
   const initialCenterRef = useRef<[number, number]>(
     location ? [location.longitude, location.latitude] : POLAND_CENTER
   );
@@ -70,6 +77,10 @@ export default function MapLibreMap({
   useEffect(() => {
     onSelectEventRef.current = onSelectEvent;
   }, [onSelectEvent]);
+
+  useEffect(() => {
+    showEventPopupRef.current = showEventPopup;
+  }, [showEventPopup]);
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -92,7 +103,7 @@ export default function MapLibreMap({
       await addCategoryImages(map, events);
       addAdministrativeBoundaryLayers(map);
       addHouseNumberLayer(map);
-      addEventSourceAndLayers(map, onSelectEventRef);
+      addEventSourceAndLayers(map, onSelectEventRef, showEventPopupRef);
       setMapReady(true);
     });
 
@@ -113,17 +124,37 @@ export default function MapLibreMap({
       const source = map.getSource(EVENT_SOURCE_ID) as maplibregl.GeoJSONSource | undefined;
       source?.setData(buildEventFeatureCollection(events));
     });
-    updateSelectedPaint(map, selectedEventId);
     updateLocationMarker(map, location, locationMarkerRef);
     fitMapToPoints(map, location, events);
-  }, [events, location, mapReady, selectedEventId]);
+  }, [events, location, mapReady]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !mapReady) return;
+    updateSelectedPaint(map, selectedEventId);
+  }, [mapReady, selectedEventId]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !mapReady || !focusedEventId) return;
+    focusMapOnEvent(map, events, focusedEventId);
+  }, [events, focusedEventId, mapReady]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !mapReady || !isVisible) return;
+
+    const frameId = window.requestAnimationFrame(() => map.resize());
+    return () => window.cancelAnimationFrame(frameId);
+  }, [isVisible, mapReady]);
 
   return <div ref={containerRef} className="mapLibreCanvas" />;
 }
 
 function addEventSourceAndLayers(
   map: maplibregl.Map,
-  onSelectEventRef: MutableRefObject<(eventId: string) => void>
+  onSelectEventRef: MutableRefObject<(eventId: string) => void>,
+  showEventPopupRef: MutableRefObject<boolean>
 ) {
   if (!map.getSource(EVENT_SOURCE_ID)) {
     map.addSource(EVENT_SOURCE_ID, {
@@ -214,12 +245,13 @@ function addEventSourceAndLayers(
     });
   }
 
-  bindEventLayerInteractions(map, onSelectEventRef);
+  bindEventLayerInteractions(map, onSelectEventRef, showEventPopupRef);
 }
 
 function bindEventLayerInteractions(
   map: maplibregl.Map,
-  onSelectEventRef: MutableRefObject<(eventId: string) => void>
+  onSelectEventRef: MutableRefObject<(eventId: string) => void>,
+  showEventPopupRef: MutableRefObject<boolean>
 ) {
   map.on("click", "event-clusters", (event) => {
     const feature = map.queryRenderedFeatures(event.point, { layers: ["event-clusters"] })[0];
@@ -245,10 +277,12 @@ function bindEventLayerInteractions(
     const properties = feature.properties as EventFeatureProperties;
     onSelectEventRef.current(properties.id);
 
-    new maplibregl.Popup({ offset: 18 })
-      .setLngLat(geometry.coordinates as [number, number])
-      .setHTML(renderEventPopup(properties))
-      .addTo(map);
+    if (showEventPopupRef.current) {
+      new maplibregl.Popup({ offset: 18 })
+        .setLngLat(geometry.coordinates as [number, number])
+        .setHTML(renderEventPopup(properties))
+        .addTo(map);
+    }
   });
 
   ["event-clusters", "event-pins"].forEach((layerId) => {
@@ -376,6 +410,20 @@ function fitMapToPoints(map: maplibregl.Map, location: KnownLocation | undefined
 
 function fitMapToPoland(map: maplibregl.Map) {
   map.fitBounds(POLAND_BOUNDS, { padding: 18, duration: 500 });
+}
+
+function focusMapOnEvent(map: maplibregl.Map, events: EventItem[], eventId: string) {
+  const feature = buildEventFeatureCollection(events).features.find(
+    (item) => item.properties.id === eventId
+  );
+  if (!feature) return;
+
+  map.easeTo({
+    center: feature.geometry.coordinates as [number, number],
+    zoom: Math.max(map.getZoom(), 13),
+    offset: [0, -70],
+    duration: 550
+  });
 }
 
 function updateSelectedPaint(map: maplibregl.Map, selectedEventId?: string) {

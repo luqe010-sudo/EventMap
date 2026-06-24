@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { List as ListIcon, Map as MapIcon } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type KnownLocation, getDefaultLocation, knownLocations } from "@/lib/events";
 import {
   DEFAULT_MAX_PRICE,
@@ -14,6 +15,7 @@ import {
 import HeroSection from "@/components/HeroSection";
 import SearchPanel from "@/components/SearchPanel";
 import CategoryIcon from "@/components/CategoryIcon";
+import MobileMapView from "@/components/MobileMapView";
 
 import FeaturedEvents from "@/components/FeaturedEvents";
 import EventCard from "@/components/EventCard";
@@ -54,6 +56,18 @@ export default function HomePage({
   activeCityLocations = [],
   availableCategoryCityRoutes
 }: HomePageProps) {
+  const [viewMode, setViewMode] = useState<"list" | "map">("list");
+  const [hasOpenedMap, setHasOpenedMap] = useState(false);
+  const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
+  const listScrollPositionRef = useRef(0);
+  const pointerStartRef = useRef<{
+    pointerId: number;
+    x: number;
+    y: number;
+    timestamp: number;
+  } | null>(null);
+  const suppressClickRef = useRef(false);
+
   // Filter state
   const [dateFilter, setDateFilter] = useState<DateFilter>(
     initialFilters?.dateFilter ?? initialDateFilter ?? "all"
@@ -212,6 +226,27 @@ export default function HomePage({
 
   const hiddenEventsCount = Math.max(filteredEvents.length - visibleEvents.length, 0);
 
+  useEffect(() => {
+    if (
+      selectedEventId &&
+      !filteredEvents.some(({ event }) => event.id === selectedEventId)
+    ) {
+      setSelectedEventId(null);
+    }
+  }, [filteredEvents, selectedEventId]);
+
+  useEffect(() => {
+    if (viewMode !== "map" || !window.matchMedia("(max-width: 760px)").matches) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.body.classList.add("mobileMapActive");
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.body.classList.remove("mobileMapActive");
+    };
+  }, [viewMode]);
+
   // Handlers
   function handleLocationSelect(loc: KnownLocation) {
     setIsAllPoland(false);
@@ -364,8 +399,73 @@ export default function HomePage({
     window.location.assign(url);
   }, [currentSearchUrl]);
 
+  const showMobileMap = useCallback((eventId?: string) => {
+    listScrollPositionRef.current = window.scrollY;
+    if (eventId) setSelectedEventId(eventId);
+    setHasOpenedMap(true);
+    window.requestAnimationFrame(() => setViewMode("map"));
+  }, []);
+
+  const showMobileList = useCallback(() => {
+    setViewMode("list");
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: listScrollPositionRef.current, behavior: "auto" });
+    });
+  }, []);
+
+  function handlePointerStart(event: React.PointerEvent<HTMLElement>) {
+    if (
+      (event.pointerType === "mouse" && event.button !== 0) ||
+      shouldIgnoreViewSwipe(event.target)
+    ) {
+      pointerStartRef.current = null;
+      return;
+    }
+
+    pointerStartRef.current = {
+      pointerId: event.pointerId,
+      x: event.clientX,
+      y: event.clientY,
+      timestamp: Date.now()
+    };
+  }
+
+  function handlePointerEnd(event: React.PointerEvent<HTMLElement>) {
+    const start = pointerStartRef.current;
+    pointerStartRef.current = null;
+    if (!start || start.pointerId !== event.pointerId) return;
+
+    const deltaX = event.clientX - start.x;
+    const deltaY = event.clientY - start.y;
+    const elapsed = Date.now() - start.timestamp;
+    const isDeliberateHorizontalSwipe =
+      Math.abs(deltaX) >= 100 &&
+      Math.abs(deltaX) > Math.abs(deltaY) * 1.5 &&
+      elapsed <= 800;
+
+    if (!isDeliberateHorizontalSwipe) return;
+    event.preventDefault();
+    suppressClickRef.current = true;
+    window.setTimeout(() => { suppressClickRef.current = false; }, 400);
+    if (viewMode === "list" && deltaX < 0) showMobileMap();
+    if (viewMode === "map" && deltaX > 0) showMobileList();
+  }
+
+  function handleClickCapture(event: React.MouseEvent<HTMLElement>) {
+    if (!suppressClickRef.current) return;
+    suppressClickRef.current = false;
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   return (
-    <main className="homePage">
+    <main
+      className={`homePage ${viewMode === "map" ? "mobileMapMode" : "mobileListMode"}`}
+      onPointerDownCapture={handlePointerStart}
+      onPointerUpCapture={handlePointerEnd}
+      onPointerCancelCapture={() => { pointerStartRef.current = null; }}
+      onClickCapture={handleClickCapture}
+    >
       {!isHomePage && (
         <nav className="breadcrumbs subpageBreadcrumbs" aria-label="Ścieżka powrotu">
           <Link href="/" aria-label="Strona główna">
@@ -470,7 +570,12 @@ export default function HomePage({
             {filteredEvents.length > 0 ? (
               <div className="eventsList">
                 {visibleEvents.map(({ event, distanceKm }) => (
-                  <EventCard key={event.id} event={event} distanceKm={distanceKm} />
+                  <EventCard
+                    key={event.id}
+                    event={event}
+                    distanceKm={distanceKm}
+                    onShowOnMap={showMobileMap}
+                  />
                 ))}
                 {hiddenEventsCount > 0 && (
                   <button
@@ -609,7 +714,54 @@ export default function HomePage({
       </div>
 
       <ValueProps />
+
+      {hasOpenedMap ? (
+        <MobileMapView
+          active={viewMode === "map"}
+          events={filteredEvents.map(({ event }) => event)}
+          selectedEventId={selectedEventId}
+          location={isAllPoland ? undefined : location}
+          onSelectEvent={setSelectedEventId}
+          onClearSelection={() => setSelectedEventId(null)}
+          onShowList={showMobileList}
+        />
+      ) : null}
+
+      <div className="mobileViewSwitcher" role="group" aria-label="Widok wyników">
+        <span
+          className={`mobileViewSwitcherIndicator ${viewMode === "map" ? "mobileViewSwitcherIndicatorMap" : ""}`}
+          aria-hidden="true"
+        />
+        <button
+          type="button"
+          className={viewMode === "list" ? "active" : ""}
+          onClick={showMobileList}
+          aria-pressed={viewMode === "list"}
+        >
+          <ListIcon size={18} strokeWidth={2.3} aria-hidden="true" />
+          Lista
+        </button>
+        <button
+          type="button"
+          className={viewMode === "map" ? "active" : ""}
+          onClick={() => showMobileMap()}
+          aria-pressed={viewMode === "map"}
+        >
+          <MapIcon size={18} strokeWidth={2.3} aria-hidden="true" />
+          Mapa
+        </button>
+      </div>
+
+      <span className="srOnly" aria-live="polite">
+        {viewMode === "map" ? "Widok mapy" : "Widok listy"}
+      </span>
     </main>
+  );
+}
+
+function shouldIgnoreViewSwipe(target: EventTarget | null) {
+  return target instanceof Element && Boolean(
+    target.closest("button, input, select, textarea, [role='button'], .mobileMapPreview, .maplibregl-control-container")
   );
 }
 
