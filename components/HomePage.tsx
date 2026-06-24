@@ -59,14 +59,23 @@ export default function HomePage({
   const [viewMode, setViewMode] = useState<"list" | "map">("list");
   const [hasOpenedMap, setHasOpenedMap] = useState(false);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
+  const homePageRef = useRef<HTMLElement | null>(null);
   const listScrollPositionRef = useRef(0);
   const pointerStartRef = useRef<{
     pointerId: number;
     x: number;
     y: number;
     timestamp: number;
+    direction: "pending" | "horizontal" | "vertical";
   } | null>(null);
-  const touchStartRef = useRef<{ x: number; y: number; timestamp: number } | null>(null);
+  const touchStartRef = useRef<{
+    identifier: number;
+    x: number;
+    y: number;
+    timestamp: number;
+    direction: "pending" | "horizontal" | "vertical";
+  } | null>(null);
+  const dragSettleTimerRef = useRef<number | null>(null);
   const suppressClickRef = useRef(false);
 
   // Filter state
@@ -428,8 +437,21 @@ export default function HomePage({
       pointerId: event.pointerId,
       x: event.clientX,
       y: event.clientY,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      direction: "pending"
     };
+  }
+
+  function handlePointerMove(event: React.PointerEvent<HTMLElement>) {
+    const start = pointerStartRef.current;
+    if (!start || start.pointerId !== event.pointerId) return;
+
+    const isHorizontal = trackViewDrag(
+      start,
+      event.clientX - start.x,
+      event.clientY - start.y
+    );
+    if (isHorizontal) event.preventDefault();
   }
 
   function handlePointerEnd(event: React.PointerEvent<HTMLElement>) {
@@ -452,23 +474,87 @@ export default function HomePage({
 
     const touch = event.touches[0];
     touchStartRef.current = {
+      identifier: touch.identifier,
       x: touch.clientX,
       y: touch.clientY,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      direction: "pending"
     };
+  }
+
+  function handleTouchMove(event: React.TouchEvent<HTMLElement>) {
+    const start = touchStartRef.current;
+    if (!start) return;
+
+    const touch = Array.from(event.touches).find(
+      (item) => item.identifier === start.identifier
+    );
+    if (!touch) return;
+
+    const isHorizontal = trackViewDrag(
+      start,
+      touch.clientX - start.x,
+      touch.clientY - start.y
+    );
+    if (isHorizontal && event.cancelable) event.preventDefault();
   }
 
   function handleTouchEnd(event: React.TouchEvent<HTMLElement>) {
     const start = touchStartRef.current;
     touchStartRef.current = null;
-    if (!start || event.changedTouches.length !== 1) return;
+    if (!start) return;
 
-    const touch = event.changedTouches[0];
+    const touch = Array.from(event.changedTouches).find(
+      (item) => item.identifier === start.identifier
+    );
+    if (!touch) {
+      settleViewDrag();
+      return;
+    }
     completeViewSwipe(
       touch.clientX - start.x,
       touch.clientY - start.y,
       Date.now() - start.timestamp
     );
+  }
+
+  function trackViewDrag(
+    start: { direction: "pending" | "horizontal" | "vertical" },
+    deltaX: number,
+    deltaY: number
+  ) {
+    if (start.direction === "pending") {
+      if (Math.max(Math.abs(deltaX), Math.abs(deltaY)) < 10) return false;
+      start.direction = Math.abs(deltaX) > Math.abs(deltaY) * 1.1
+        ? "horizontal"
+        : "vertical";
+
+      if (start.direction === "horizontal" && viewMode === "list") {
+        listScrollPositionRef.current = window.scrollY;
+        setHasOpenedMap(true);
+      }
+    }
+
+    if (start.direction !== "horizontal") return false;
+    updateViewDragPosition(deltaX);
+    return true;
+  }
+
+  function updateViewDragPosition(deltaX: number) {
+    const page = homePageRef.current;
+    if (!page) return;
+
+    const viewportWidth = window.innerWidth;
+    const mapOffset = viewMode === "list"
+      ? clamp(viewportWidth + Math.min(deltaX, 0), 0, viewportWidth)
+      : clamp(Math.max(deltaX, 0), 0, viewportWidth);
+    const progress = 1 - mapOffset / viewportWidth;
+    const indicatorLeft = viewportWidth * 0.25 - 36 + progress * viewportWidth * 0.5;
+
+    page.style.setProperty("--mobile-map-drag-x", `${mapOffset}px`);
+    page.style.setProperty("--mobile-list-drag-x", `${mapOffset - viewportWidth}px`);
+    page.style.setProperty("--mobile-indicator-drag-left", `${indicatorLeft}px`);
+    page.classList.add("mobileViewDragging");
   }
 
   function completeViewSwipe(deltaX: number, deltaY: number, elapsed: number) {
@@ -477,13 +563,51 @@ export default function HomePage({
       Math.abs(deltaX) > Math.abs(deltaY) * 1.25 &&
       elapsed <= 1200;
 
-    if (!isDeliberateHorizontalSwipe) return false;
+    const nextMode = isDeliberateHorizontalSwipe
+      ? viewMode === "list" && deltaX < 0
+        ? "map"
+        : viewMode === "map" && deltaX > 0
+          ? "list"
+          : viewMode
+      : viewMode;
 
-    suppressClickRef.current = true;
-    window.setTimeout(() => { suppressClickRef.current = false; }, 400);
-    if (viewMode === "list" && deltaX < 0) showMobileMap();
-    if (viewMode === "map" && deltaX > 0) showMobileList();
-    return true;
+    if (nextMode !== viewMode) {
+      suppressClickRef.current = true;
+      window.setTimeout(() => { suppressClickRef.current = false; }, 400);
+      if (nextMode === "map") {
+        setHasOpenedMap(true);
+        setViewMode("map");
+      } else {
+        setViewMode("list");
+        window.requestAnimationFrame(() => {
+          window.scrollTo({ top: listScrollPositionRef.current, behavior: "auto" });
+        });
+      }
+    }
+
+    settleViewDrag();
+    return nextMode !== viewMode;
+  }
+
+  function settleViewDrag() {
+    const page = homePageRef.current;
+    if (!page || !page.classList.contains("mobileViewDragging")) return;
+
+    if (dragSettleTimerRef.current !== null) {
+      window.clearTimeout(dragSettleTimerRef.current);
+    }
+
+    page.classList.add("mobileViewSettling");
+    window.requestAnimationFrame(() => {
+      page.classList.remove("mobileViewDragging");
+      page.style.removeProperty("--mobile-map-drag-x");
+      page.style.removeProperty("--mobile-list-drag-x");
+      page.style.removeProperty("--mobile-indicator-drag-left");
+      dragSettleTimerRef.current = window.setTimeout(() => {
+        page.classList.remove("mobileViewSettling");
+        dragSettleTimerRef.current = null;
+      }, 340);
+    });
   }
 
   function handleClickCapture(event: React.MouseEvent<HTMLElement>) {
@@ -495,13 +619,22 @@ export default function HomePage({
 
   return (
     <main
+      ref={homePageRef}
       className={`homePage ${viewMode === "map" ? "mobileMapMode" : "mobileListMode"}`}
       onPointerDownCapture={handlePointerStart}
+      onPointerMoveCapture={handlePointerMove}
       onPointerUpCapture={handlePointerEnd}
-      onPointerCancelCapture={() => { pointerStartRef.current = null; }}
+      onPointerCancelCapture={() => {
+        pointerStartRef.current = null;
+        settleViewDrag();
+      }}
       onTouchStartCapture={handleTouchStart}
+      onTouchMoveCapture={handleTouchMove}
       onTouchEndCapture={handleTouchEnd}
-      onTouchCancelCapture={() => { touchStartRef.current = null; }}
+      onTouchCancelCapture={() => {
+        touchStartRef.current = null;
+        settleViewDrag();
+      }}
       onClickCapture={handleClickCapture}
     >
       {!isHomePage && (
@@ -801,6 +934,10 @@ function shouldIgnoreViewSwipe(target: EventTarget | null) {
   return target instanceof Element && Boolean(
     target.closest("button, input, select, textarea, [role='button'], .mobileMapPreview, .maplibregl-control-container")
   );
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
 }
 
 function clampRadius(value: number) {

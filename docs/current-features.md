@@ -352,7 +352,7 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 
 ## Ostatnie aktualizacje UI
 
-- Na urzadzeniach mobilnych publiczne listy wydarzen maja staly, pelnoszeroki dolny przelacznik `Lista | Mapa` z ikonami Lucide i animowanym wskaznikiem aktywnego widoku. Widok mapy korzysta z filtrow ustawionych na liscie, obsluguje gesty poziome palcem, rysikiem i mysza, a przycisk `Pokaz na mapie` na karcie centruje wybrane wydarzenie i otwiera jego mini karte.
+- Na urzadzeniach mobilnych publiczne listy wydarzen maja staly, pelnoszeroki dolny przelacznik `Lista | Mapa` z ikonami Lucide i animowanym wskaznikiem aktywnego widoku. Widok mapy korzysta z filtrow ustawionych na liscie i interaktywnie podaza za poziomym gestem palca, rysika lub myszy; po puszczeniu domyka albo cofa przejscie. Przycisk `Pokaz na mapie` na karcie centruje wybrane wydarzenie i otwiera jego mini karte.
 - Mobilny widok mapy nie duplikuje panelu filtrow. Klikniecie pinezki pokazuje kontrolowana mini karte wydarzenia z krotkim opisem, a powrot do listy zachowuje poprzednia pozycje przewijania.
 - Lista publiczna wydarzen pokazuje poczatkowo 20 kart, a przycisk `Pokaz wiecej wydarzen` doladowuje kolejne porcje po 20 wynikow i znika po wyswietleniu calej przefiltrowanej listy.
 - Publiczne formatowanie dat traktuje wartosci wydarzen bez jawnej strefy jako czas lokalny `Europe/Warsaw`, zeby nie pokazywac godziny przesunietej o offset serwera.

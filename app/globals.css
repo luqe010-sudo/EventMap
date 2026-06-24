@@ -6065,6 +6065,22 @@ a.edSourceItem:hover .edSourceArrow {
       visibility 0s linear 0s;
   }
 
+  .homePage.mobileViewDragging .mobileMapView {
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(var(--mobile-map-drag-x));
+    transition: none;
+  }
+
+  .homePage.mobileViewDragging > :not(.mobileMapView):not(.mobileViewSwitcher):not(.srOnly) {
+    transform: translateX(var(--mobile-list-drag-x));
+    transition: none !important;
+  }
+
+  .homePage.mobileViewSettling > :not(.mobileMapView):not(.mobileViewSwitcher):not(.srOnly) {
+    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+
   .mobileMapView .mapLibreCanvas,
   .mobileMapView .mapLoading {
     width: 100%;
@@ -6296,6 +6312,11 @@ a.edSourceItem:hover .edSourceArrow {
 
   .mobileViewSwitcherIndicatorMap {
     left: calc(75% - 36px);
+  }
+
+  .homePage.mobileViewDragging .mobileViewSwitcherIndicator {
+    left: var(--mobile-indicator-drag-left);
+    transition: none;
   }
 
   .mobileViewSwitcher button {
