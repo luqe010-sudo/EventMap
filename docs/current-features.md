@@ -184,6 +184,7 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 - Menu nawigacji jest dostosowane do urządzeń mobilnych (poniżej 1024px) – chowa się automatycznie i wysuwa za pomocą estetycznego przycisku hamburgera zmieniającego się w znak zamknięcia (X), blokując przewijanie strony pod spodem.
 - Navbar pokazuje „Moje konto i zapisane” kontom bez roli organizatora; organizator widzi jeden link do panelu organizatora.
 - Navbar nie pokazuje statycznego selektora lokalizacji, zeby nie sugerowac aktywnej lokalizacji uzytkownika.
+- Navbar ma przycisk zmiany motywu jasny/ciemny. Wybor zapisuje sie w `localStorage` pod kluczem `eventmap-theme`, jest ustawiany przed hydratacja strony i obejmuje publiczne strony, panele konta oraz panele admina/organizatora przez globalne tokeny CSS i nadpisania `data-theme="dark"`. Bez zapisanego wyboru mobile startuje domyslnie w trybie ciemnym. Mapa MapLibre zachowuje ten sam styl kafelkow i warstw co w trybie jasnym, a mobile dark mode uzywa osobnego tla `background-dark-mobile.webp`.
 
 ## Panel admina
 

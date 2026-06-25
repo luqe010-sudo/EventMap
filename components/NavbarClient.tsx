@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Moon, Sun } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 type NavbarAuth =
@@ -16,6 +17,10 @@ type NavbarAuth =
 type NavbarClientProps = {
   auth: NavbarAuth;
 };
+
+type ThemeMode = "light" | "dark";
+
+const THEME_STORAGE_KEY = "eventmap-theme";
 
 /* ── SVG icon helpers (inline, no dependency) ── */
 
@@ -104,6 +109,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [theme, setTheme] = useState<ThemeMode>("light");
   const profileRef = useRef<HTMLDivElement>(null);
 
   const dashboardHref =
@@ -166,6 +172,32 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
     return pathname.startsWith(href);
   }
 
+  useEffect(() => {
+    function getCurrentTheme(): ThemeMode {
+      return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+    }
+
+    function handleStorageChange(event: StorageEvent) {
+      if (event.key !== THEME_STORAGE_KEY) return;
+      const nextTheme: ThemeMode = event.newValue === "dark" ? "dark" : "light";
+      document.documentElement.dataset.theme = nextTheme;
+      document.documentElement.style.colorScheme = nextTheme;
+      setTheme(nextTheme);
+    }
+
+    setTheme(getCurrentTheme());
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
+  function handleThemeToggle() {
+    const nextTheme: ThemeMode = theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = nextTheme;
+    document.documentElement.style.colorScheme = nextTheme;
+    window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    setTheme(nextTheme);
+  }
+
   const navLinks = [
     { href: "/", label: "Odkryj", icon: <IconDiscover /> },
     { href: "/#events-list", label: "Mapa", icon: <IconMap /> },
@@ -200,6 +232,16 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
 
         {/* ── Right: Auth area (desktop) ── */}
         <div className="navRight">
+          <button
+            type="button"
+            className="themeToggle"
+            onClick={handleThemeToggle}
+            aria-label={theme === "dark" ? "Wlacz tryb jasny" : "Wlacz tryb ciemny"}
+            title={theme === "dark" ? "Tryb jasny" : "Tryb ciemny"}
+          >
+            <Sun className="themeToggleIcon themeToggleSun" size={17} strokeWidth={2.4} aria-hidden="true" />
+            <Moon className="themeToggleIcon themeToggleMoon" size={17} strokeWidth={2.4} aria-hidden="true" />
+          </button>
           {auth.isLoggedIn ? (
             <div className="navProfileWrap" ref={profileRef}>
               <button
@@ -296,6 +338,18 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
         <div className="navMobileDivider" />
 
         <div className="navMobileUserSection">
+          <button
+            type="button"
+            className="navMobileThemeBtn"
+            onClick={handleThemeToggle}
+          >
+            {theme === "dark" ? (
+              <Sun size={18} strokeWidth={2.4} aria-hidden="true" />
+            ) : (
+              <Moon size={18} strokeWidth={2.4} aria-hidden="true" />
+            )}
+            <span>{theme === "dark" ? "Tryb jasny" : "Tryb ciemny"}</span>
+          </button>
           {auth.isLoggedIn ? (
             <>
               <div className="navMobileUserInfo">

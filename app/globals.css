@@ -7140,6 +7140,12 @@ body {
   overflow: visible;
 }
 
+.heroQuickTileIcon-heart { color: #ff5a3d; }
+.heroQuickTileIcon-child { color: #f4b438; }
+.heroQuickTileIcon-calendar { color: #2f8cff; }
+.heroQuickTileIcon-gift { color: #32d46b; }
+.heroQuickTileIcon-bolt { color: #ffc329; }
+
 .heroQuickTileLabel {
   color: #2f2a28;
   font-size: 0.74rem;
@@ -9148,4 +9154,539 @@ select {
   background: #fef2ee;
   color: #b83d1c;
   font-weight: 600;
+}
+
+/* ===================================================
+   Theme toggle
+   =================================================== */
+.themeToggle {
+  position: relative;
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  min-height: 42px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--ink);
+  box-shadow: none;
+  transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.themeToggle:hover {
+  transform: translateY(-1px);
+}
+
+.themeToggleIcon {
+  position: absolute;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.themeToggleMoon {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.themeToggleSun {
+  opacity: 0;
+  transform: scale(0.62) rotate(-40deg);
+}
+
+.navMobileThemeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+@media (max-width: 1024px) {
+  .themeToggle {
+    display: none;
+  }
+}
+
+/* ===================================================
+   Dark mode
+   =================================================== */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0d121a;
+  --bg-soft: #11171e;
+  --bg-card: #131a20;
+  --bg-card-hover: #172028;
+  --dark-page: #0d121a;
+  --dark-hero-card: #151a21;
+  --dark-hero-tile: #13181f;
+  --dark-search: #11171e;
+  --dark-search-control: #11171d;
+  --dark-block: #131a20;
+  --dark-accent-dot: #fa5907;
+  --ink: #f4f7fb;
+  --ink-secondary: #c7d1df;
+  --ink-muted: #8e9cad;
+  --border: rgba(139, 159, 179, 0.24);
+  --border-strong: rgba(153, 173, 192, 0.34);
+  --brand: #fa5907;
+  --brand-light: rgba(250, 89, 7, 0.15);
+  --brand-dark: #ff7a45;
+  --brand-gradient: linear-gradient(135deg, #fa5907 0%, #f04418 100%);
+  --green: #68d16f;
+  --green-light: rgba(104, 209, 111, 0.15);
+  --shadow-sm: 0 12px 34px rgba(0, 0, 0, 0.26);
+  --shadow-md: 0 18px 52px rgba(0, 0, 0, 0.32);
+  --shadow-lg: 0 26px 74px rgba(0, 0, 0, 0.42);
+  --shadow-xl: 0 34px 96px rgba(0, 0, 0, 0.54);
+}
+
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+  background: var(--dark-page);
+}
+
+html[data-theme="dark"] body {
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 82% 34%, rgba(250, 89, 7, 0.08), transparent 30%),
+    radial-gradient(circle at 18% 72%, rgba(28, 79, 140, 0.16), transparent 36%),
+    linear-gradient(180deg, var(--dark-page) 0%, #0d141d 46%, #0b1017 100%);
+}
+
+html[data-theme="dark"] .mainContent {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018) 0, transparent 110px),
+    radial-gradient(circle at 50% 0%, rgba(116, 146, 178, 0.1), transparent 28%),
+    linear-gradient(180deg, rgba(13, 18, 26, 0.78) 0%, rgba(13, 18, 26, 0.96) 48%, var(--dark-page) 100%);
+}
+
+html[data-theme="dark"] .mainContent::before {
+  background-image:
+    linear-gradient(180deg, rgba(13, 18, 26, 0.52) 0%, rgba(13, 18, 26, 0.38) 52%, rgba(13, 18, 26, 0) 100%),
+    url("/backround_dark.png");
+  filter: none;
+  opacity: 0.72;
+  mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 62%, transparent 100%);
+}
+
+html[data-theme="dark"] .navbar {
+  background: rgba(6, 10, 15, 0.95);
+  border-bottom-color: rgba(139, 159, 179, 0.16);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.24);
+}
+
+html[data-theme="dark"] .navLogo,
+html[data-theme="dark"] .footerLogo,
+html[data-theme="dark"] .navLink:hover,
+html[data-theme="dark"] .navLink.navLinkActive,
+html[data-theme="dark"] .heroTitle,
+html[data-theme="dark"] .featuredTitle,
+html[data-theme="dark"] .mainEventsHeader h2,
+html[data-theme="dark"] .sidebarSectionHeader h3,
+html[data-theme="dark"] .citySecHeader h2,
+html[data-theme="dark"] .internalLinksSec h3,
+html[data-theme="dark"] .seoTextCard h2,
+html[data-theme="dark"] .managementSubsection h2,
+html[data-theme="dark"] .eventCardHTitle,
+html[data-theme="dark"] .featuredCardTitle,
+html[data-theme="dark"] .sidebarUpcomingTitle,
+html[data-theme="dark"] .edHeroInfo h1,
+html[data-theme="dark"] .edDescSection h2,
+html[data-theme="dark"] .edMapSection h2,
+html[data-theme="dark"] .edOrgSection h2,
+html[data-theme="dark"] .edSourcesSection h2,
+html[data-theme="dark"] .edRelatedSection h2,
+html[data-theme="dark"] .edMoreLinksSection h2 {
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .heroTitle {
+  text-shadow: 0 12px 36px rgba(0, 0, 0, 0.36);
+}
+
+html[data-theme="dark"] .heroTitleAccent {
+  background: none;
+  color: var(--dark-accent-dot);
+  -webkit-text-fill-color: var(--dark-accent-dot);
+}
+
+html[data-theme="dark"] .navLink,
+html[data-theme="dark"] .heroSubtitle,
+html[data-theme="dark"] .featuredSubtitle,
+html[data-theme="dark"] .citySecHeader p,
+html[data-theme="dark"] .seoTextCard,
+html[data-theme="dark"] .eventCardHDesc,
+html[data-theme="dark"] .eventCardHLocation,
+html[data-theme="dark"] .eventCardHDate,
+html[data-theme="dark"] .featuredCardInfo,
+html[data-theme="dark"] .sidebarUpcomingMeta,
+html[data-theme="dark"] .sidebarNotifContent p,
+html[data-theme="dark"] .footerColumn a,
+html[data-theme="dark"] .footerBrand p,
+html[data-theme="dark"] .footerNewsletter p,
+html[data-theme="dark"] .footerBottom,
+html[data-theme="dark"] .edHeroDesc,
+html[data-theme="dark"] .edExpandContent,
+html[data-theme="dark"] .edInfoSub,
+html[data-theme="dark"] .edInfoLabel,
+html[data-theme="dark"] .edSourceText small,
+html[data-theme="dark"] .edRelatedCardDate,
+html[data-theme="dark"] .edRelatedCardLocation,
+html[data-theme="dark"] .edMapAddress,
+html[data-theme="dark"] .panelMutedText,
+html[data-theme="dark"] .formHint,
+html[data-theme="dark"] .tableSubtext,
+html[data-theme="dark"] .qualityChecklist p {
+  color: var(--ink-secondary);
+}
+
+html[data-theme="dark"] .searchRadiusLabels,
+html[data-theme="dark"] .searchPriceLabels,
+html[data-theme="dark"] .searchActiveFiltersEmpty,
+html[data-theme="dark"] .mainEventsCount,
+html[data-theme="dark"] .breadcrumbs,
+html[data-theme="dark"] .emptyState,
+html[data-theme="dark"] .accountEmptyState {
+  color: var(--ink-muted);
+}
+
+html[data-theme="dark"] .heroRight .heroCard,
+html[data-theme="dark"] .searchPanel,
+html[data-theme="dark"] .featuredMapCard,
+html[data-theme="dark"] .sidebar,
+html[data-theme="dark"] .eventsList,
+html[data-theme="dark"] .valueGrid,
+html[data-theme="dark"] .seoTextCard,
+html[data-theme="dark"] .internalLinkCard,
+html[data-theme="dark"] .cityTileCard,
+html[data-theme="dark"] .accountOverviewGrid > section,
+html[data-theme="dark"] .accountSavedSection,
+html[data-theme="dark"] .accountSummaryPanel,
+html[data-theme="dark"] .accountSavedCard,
+html[data-theme="dark"] .loginPanel,
+html[data-theme="dark"] .managementPanel,
+html[data-theme="dark"] .managementStat,
+html[data-theme="dark"] .qualityChecklist,
+html[data-theme="dark"] .cookieBanner,
+html[data-theme="dark"] .edContentCard,
+html[data-theme="dark"] .edOrganizerCard,
+html[data-theme="dark"] .edSourcesCard,
+html[data-theme="dark"] .edRelatedCard {
+  border-color: var(--border);
+  background: var(--dark-block);
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.026);
+}
+
+html[data-theme="dark"] .searchPanel {
+  background: var(--dark-search);
+}
+
+html[data-theme="dark"] .heroRight .heroCard {
+  background: var(--dark-hero-card);
+}
+
+html[data-theme="dark"] .edInfoBar {
+  background: transparent;
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .featuredMapCard,
+html[data-theme="dark"] .sidebar {
+  background: var(--dark-block);
+}
+
+html[data-theme="dark"] .featuredCard,
+html[data-theme="dark"] .eventCardH,
+html[data-theme="dark"] .sidebarNotifContent,
+html[data-theme="dark"] .edMoreLinkCard,
+html[data-theme="dark"] .edSourceItem,
+html[data-theme="dark"] .accountSavedCard,
+html[data-theme="dark"] .cityTileCard,
+html[data-theme="dark"] .internalLinkCard {
+  border-color: rgba(139, 159, 179, 0.2);
+  background: var(--dark-block);
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .featuredCard:hover,
+html[data-theme="dark"] .eventCardH:hover,
+html[data-theme="dark"] .accountSavedCard:hover,
+html[data-theme="dark"] .cityTileCard:hover,
+html[data-theme="dark"] .internalLinkCard:hover,
+html[data-theme="dark"] .edMoreLinkCard:hover,
+html[data-theme="dark"] a.edSourceItem:hover {
+  background: #172028;
+}
+
+html[data-theme="dark"] .heroQuickTile,
+html[data-theme="dark"] .autocompleteContainer,
+html[data-theme="dark"] .searchCapsule,
+html[data-theme="dark"] .catPill,
+html[data-theme="dark"] .searchActiveFiltersBox,
+html[data-theme="dark"] .searchActiveFilterChip,
+html[data-theme="dark"] .featuredSeeAll,
+html[data-theme="dark"] .showMoreBtn,
+html[data-theme="dark"] .mainEventsSortSelect,
+html[data-theme="dark"] .sidebarCategoryChip,
+html[data-theme="dark"] .sidebarUpcomingDate,
+html[data-theme="dark"] .footerNewsletterInput,
+html[data-theme="dark"] .navProfileTrigger,
+html[data-theme="dark"] .navLoginBtn,
+html[data-theme="dark"] .themeToggle,
+html[data-theme="dark"] .navMobileThemeBtn,
+html[data-theme="dark"] .managementForm input,
+html[data-theme="dark"] .managementForm select,
+html[data-theme="dark"] .managementForm textarea,
+html[data-theme="dark"] .adminFiltersGrid input,
+html[data-theme="dark"] .adminFiltersGrid select,
+html[data-theme="dark"] .tableActions button,
+html[data-theme="dark"] .tableActions a,
+html[data-theme="dark"] .iconSelectTrigger,
+html[data-theme="dark"] .iconSelectDropdown,
+html[data-theme="dark"] .edSaveBtn,
+html[data-theme="dark"] .edShareBtn,
+html[data-theme="dark"] .edExpandToggle,
+html[data-theme="dark"] .edOrgLink,
+html[data-theme="dark"] .edGoogleMapsLink,
+html[data-theme="dark"] .edMetaChip {
+  border-color: rgba(139, 159, 179, 0.24) !important;
+  background: var(--dark-search-control) !important;
+  color: var(--ink) !important;
+}
+
+html[data-theme="dark"] .searchInlineInputLabel input {
+  border-color: rgba(139, 159, 179, 0.24) !important;
+  background: var(--dark-search-control) !important;
+  color: var(--ink) !important;
+}
+
+html[data-theme="dark"] .heroQuickTile {
+  background: var(--dark-hero-tile) !important;
+}
+
+html[data-theme="dark"] .heroQuickTile:hover,
+html[data-theme="dark"] .catPill:hover,
+html[data-theme="dark"] .featuredSeeAll:hover,
+html[data-theme="dark"] .showMoreBtn:hover,
+html[data-theme="dark"] .navProfileTrigger:hover,
+html[data-theme="dark"] .navLoginBtn:hover,
+html[data-theme="dark"] .themeToggle:hover,
+html[data-theme="dark"] .edSaveBtn:hover,
+html[data-theme="dark"] .edShareBtn:hover,
+html[data-theme="dark"] .edExpandToggle:hover,
+html[data-theme="dark"] .edOrgLink:hover,
+html[data-theme="dark"] .edGoogleMapsLink:hover {
+  border-color: rgba(250, 89, 7, 0.48) !important;
+  background: rgba(250, 89, 7, 0.1) !important;
+}
+
+html[data-theme="dark"] .capsuleItem,
+html[data-theme="dark"] .capsuleText {
+  color: #b9c4d2;
+}
+
+html[data-theme="dark"] .capsuleItemActive,
+html[data-theme="dark"] .capsuleTextActive,
+html[data-theme="dark"] .catPillActive,
+html[data-theme="dark"] .adminSectionTabActive {
+  border-color: rgba(250, 89, 7, 0.48) !important;
+  background: rgba(250, 89, 7, 0.16) !important;
+  color: #ff7a45 !important;
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .searchSlider::-webkit-slider-thumb {
+  border-color: var(--dark-page) !important;
+  box-shadow: 0 0 0 3px rgba(250, 89, 7, 0.16) !important;
+}
+
+html[data-theme="dark"] .searchSlider::-moz-range-thumb {
+  border-color: var(--dark-page) !important;
+  box-shadow: 0 0 0 3px rgba(250, 89, 7, 0.16) !important;
+}
+
+html[data-theme="dark"] .searchLabel,
+html[data-theme="dark"] .searchInlineInputLabel,
+html[data-theme="dark"] .searchActiveFiltersLabel,
+html[data-theme="dark"] .heroCardTitle,
+html[data-theme="dark"] .heroQuickTileLabel,
+html[data-theme="dark"] .sidebarNotifContent h3,
+html[data-theme="dark"] .managementStat span,
+html[data-theme="dark"] .organizerEventList strong,
+html[data-theme="dark"] .organizerPlainList strong,
+html[data-theme="dark"] .managementForm label,
+html[data-theme="dark"] .managementFormLabel,
+html[data-theme="dark"] .adminFiltersGrid label,
+html[data-theme="dark"] .edInfoText strong,
+html[data-theme="dark"] .edSourceText strong,
+html[data-theme="dark"] .edOrgInfo strong,
+html[data-theme="dark"] .edRelatedCardBody h3 {
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .autocompleteContainer:focus-within,
+html[data-theme="dark"] .searchInlineInputLabel input:focus,
+html[data-theme="dark"] .managementForm input:focus,
+html[data-theme="dark"] .managementForm select:focus,
+html[data-theme="dark"] .managementForm textarea:focus {
+  border-color: rgba(250, 89, 7, 0.7) !important;
+  box-shadow: 0 0 0 3px rgba(250, 89, 7, 0.16) !important;
+}
+
+html[data-theme="dark"] .autocompleteDropdown,
+html[data-theme="dark"] .locationPickerSuggestions,
+html[data-theme="dark"] .navProfileDropdown,
+html[data-theme="dark"] .navMobileMenu {
+  border-color: var(--border);
+  background: rgba(17, 23, 30, 0.98);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.52);
+}
+
+html[data-theme="dark"] .autocompleteItem,
+html[data-theme="dark"] .locationPickerSuggestionItem,
+html[data-theme="dark"] .iconOptionRow {
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .autocompleteItem.highlighted,
+html[data-theme="dark"] .autocompleteItem:hover,
+html[data-theme="dark"] .locationPickerSuggestionItem:hover,
+html[data-theme="dark"] .iconOptionRow:hover,
+html[data-theme="dark"] .iconOptionRow.isSelected,
+html[data-theme="dark"] .navDropdownLogout:hover,
+html[data-theme="dark"] .navMobileLogoutBtn:hover {
+  background: rgba(250, 89, 7, 0.14);
+  color: var(--brand-dark);
+}
+
+html[data-theme="dark"] .searchActiveFilters,
+html[data-theme="dark"] .eventCardH + .eventCardH,
+html[data-theme="dark"] .sidebarSection:not(:last-child),
+html[data-theme="dark"] .sidebarNotifSection,
+html[data-theme="dark"] .footerBottom,
+html[data-theme="dark"] .managementTable th,
+html[data-theme="dark"] .managementTable td,
+html[data-theme="dark"] .managementSubsection,
+html[data-theme="dark"] .organizerEventList li,
+html[data-theme="dark"] .organizerPlainList li,
+html[data-theme="dark"] .adminSectionNav,
+html[data-theme="dark"] .edInfoBarHeader,
+html[data-theme="dark"] .edInfoItem {
+  border-color: rgba(139, 159, 179, 0.18);
+}
+
+html[data-theme="dark"] .eventCardH > .eventCardHFav,
+html[data-theme="dark"] .featuredCardFav,
+html[data-theme="dark"] .mobileMapPreviewClose {
+  background: rgba(13, 18, 26, 0.78);
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .featuredCardFree,
+html[data-theme="dark"] .eventCardHPriceFree {
+  color: var(--green);
+}
+
+html[data-theme="dark"] .sidebarMapWrap,
+html[data-theme="dark"] .featuredMapWrap,
+html[data-theme="dark"] .edMapContainer,
+html[data-theme="dark"] .locationPickerMap {
+  border-color: rgba(139, 159, 179, 0.24);
+  background: var(--bg-soft);
+}
+
+html[data-theme="dark"] .sidebarMapPlaceholder {
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(19, 26, 32, 0.94), rgba(17, 23, 30, 0.96)),
+    radial-gradient(circle at 30% 24%, rgba(250, 89, 7, 0.16), transparent 32%);
+}
+
+html[data-theme="dark"] .valueIcon,
+html[data-theme="dark"] .edInfoIcon,
+html[data-theme="dark"] .edOrgAvatar,
+html[data-theme="dark"] .edSourceIcon {
+  background: rgba(250, 89, 7, 0.16);
+  color: var(--brand-dark);
+}
+
+html[data-theme="dark"] .siteFooter {
+  border-top-color: rgba(139, 159, 179, 0.16);
+  background: rgba(13, 18, 26, 0.98);
+  color: var(--ink-secondary);
+}
+
+html[data-theme="dark"] .footerNewsletter,
+html[data-theme="dark"] .emptyState,
+html[data-theme="dark"] .accountEmptyState,
+html[data-theme="dark"] .mobileViewSwitcher,
+html[data-theme="dark"] .mobileMapPreview,
+html[data-theme="dark"] .mobileMapEmpty,
+html[data-theme="dark"] .mobileMapCount,
+html[data-theme="dark"] .schemaNotice {
+  border-color: var(--border);
+  background: var(--dark-block);
+  color: var(--ink-secondary);
+}
+
+html[data-theme="dark"] .mobileMapView,
+html[data-theme="dark"] .mobileEventView {
+  background: var(--dark-page);
+}
+
+html[data-theme="dark"] .mobileViewSwitcher button {
+  color: var(--ink-secondary);
+}
+
+html[data-theme="dark"] .mobileViewSwitcher button.active {
+  color: var(--brand-dark);
+}
+
+html[data-theme="dark"] .formError {
+  border-color: rgba(248, 113, 113, 0.35);
+  background: rgba(127, 29, 29, 0.24);
+  color: #fecaca;
+}
+
+html[data-theme="dark"] .successPill,
+html[data-theme="dark"] .statusPill,
+html[data-theme="dark"] .warningPill {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .themeToggleMoon {
+  opacity: 0;
+  transform: scale(0.62) rotate(40deg);
+}
+
+html[data-theme="dark"] .themeToggleSun {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+@media (max-width: 760px) {
+  html[data-theme="dark"] .mainContent::before {
+    background-image:
+      linear-gradient(180deg, rgba(13, 18, 26, 0.56) 0%, rgba(13, 18, 26, 0.4) 58%, rgba(13, 18, 26, 0) 100%),
+      url("/background-dark-mobile.webp");
+    opacity: 0.66;
+  }
+
+  html[data-theme="dark"] .searchSectionLoc,
+  html[data-theme="dark"] .searchSectionRadius,
+  html[data-theme="dark"] .searchSectionDate,
+  html[data-theme="dark"] .searchSectionPrice {
+    border-bottom-color: rgba(139, 159, 179, 0.18) !important;
+  }
 }

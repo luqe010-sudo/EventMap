@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CalendarDays, DollarSign, MapPin, Tag } from "lucide-react";
 import EventHeroCta, { EventSaveButton } from "@/components/EventDetailActions";
 import EventAnalyticsTracker, { TrackedEventLink } from "@/components/EventAnalyticsTracker";
 import EventDetailMap from "@/components/EventDetailMap";
@@ -293,7 +294,7 @@ export default function EventDetailView({
 
               <div className="edInfoItem">
                 <div className="edInfoIcon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+                  <CalendarDays size={18} strokeWidth={2.2} aria-hidden="true" />
                 </div>
                 <div className="edInfoText">
                   <span className="edInfoLabel">Kiedy</span>
@@ -303,7 +304,7 @@ export default function EventDetailView({
 
               <div className="edInfoItem">
                 <div className="edInfoIcon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                  <MapPin size={18} strokeWidth={2.2} aria-hidden="true" />
                 </div>
                 <div className="edInfoText">
                   <span className="edInfoLabel">Gdzie</span>
@@ -313,7 +314,7 @@ export default function EventDetailView({
 
               <div className="edInfoItem">
                 <div className="edInfoIcon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" /></svg>
+                  <DollarSign size={18} strokeWidth={2.2} aria-hidden="true" />
                 </div>
                 <div className="edInfoText">
                   <span className="edInfoLabel">Cena</span>
@@ -324,7 +325,7 @@ export default function EventDetailView({
 
               <div className="edInfoItem">
                 <div className="edInfoIcon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" /><line x1="7" y1="7" x2="7.01" y2="7" /></svg>
+                  <Tag size={18} strokeWidth={2.2} aria-hidden="true" />
                 </div>
                 <div className="edInfoText">
                   <span className="edInfoLabel">Kategoria</span>
