@@ -472,7 +472,7 @@ export async function getHomeData() {
 async function getHomeEvents(dateFrom: string) {
   try {
     const [events, featuredEvents] = await Promise.all([
-      listEvents({ dateFrom, limit: 120 }),
+      listEvents({ dateFrom, limit: 300 }),
       listEvents({ dateFrom, limit: 40, featuredOnly: true })
     ]);
 
