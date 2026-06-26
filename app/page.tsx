@@ -17,11 +17,17 @@ type SearchParams = Record<string, string | string[] | undefined>;
 
 export default async function Home({ searchParams }: { searchParams: Promise<SearchParams> }) {
   const initialFilters = parsePublicFilterParams(await searchParams);
-  const { events, categories, activeCityLocations } = await getHomeData();
+  const { events, eventSearch, categories, activeCityLocations } = await getHomeData({
+    dateFilter: initialFilters.dateFilter ?? "all",
+    customDate: initialFilters.customDate,
+    priceMode: initialFilters.priceMode ?? "all",
+    maxPrice: initialFilters.maxPrice
+  });
 
   return (
     <HomePage
       initialEvents={events}
+      initialEventSearch={eventSearch}
       categoryOptions={categories}
       initialFilters={initialFilters}
       activeCityLocations={activeCityLocations}

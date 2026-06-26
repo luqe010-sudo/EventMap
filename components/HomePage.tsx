@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { List as ListIcon, Map as MapIcon, CalendarDays } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type KnownLocation, getDefaultLocation, knownLocations } from "@/lib/events";
+import { type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type KnownLocation, type PublicEventSearchResult, getDefaultLocation, knownLocations } from "@/lib/events";
 import {
   DEFAULT_MAX_PRICE,
   clampMaxPrice,
@@ -26,6 +26,7 @@ import { generateSeoText } from "@/lib/seo-texts";
 
 type HomePageProps = {
   initialEvents: EventItem[];
+  initialEventSearch?: PublicEventSearchResult;
   categoryOptions: CategoryOption[];
   initialLocation?: KnownLocation;
   initialCategory?: EventCategory;
@@ -56,6 +57,7 @@ type MobileWorkspaceHistory = {
 
 export default function HomePage({
   initialEvents,
+  initialEventSearch,
   categoryOptions,
   initialLocation,
   initialCategory,
@@ -68,6 +70,21 @@ export default function HomePage({
   const [hasOpenedMap, setHasOpenedMap] = useState(false);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [openedEventId, setOpenedEventId] = useState<string | null>(null);
+  const [events, setEvents] = useState(initialEvents);
+  const [eventSearch, setEventSearch] = useState<PublicEventSearchResult>(
+    initialEventSearch ?? {
+      events: initialEvents,
+      totalCount: initialEvents.length,
+      page: 1,
+      pageSize: EVENTS_PAGE_SIZE,
+      maxResults: 300,
+      shownCount: initialEvents.length,
+      hasMore: false
+    }
+  );
+  const [eventsLoading, setEventsLoading] = useState(false);
+  const [eventsLoadingMore, setEventsLoadingMore] = useState(false);
+  const [eventsError, setEventsError] = useState<string | null>(null);
   const homePageRef = useRef<HTMLElement | null>(null);
   const mobileEventViewRef = useRef<HTMLElement | null>(null);
   const listScrollPositionRef = useRef(0);
@@ -88,6 +105,8 @@ export default function HomePage({
   } | null>(null);
   const dragSettleTimerRef = useRef<number | null>(null);
   const suppressClickRef = useRef(false);
+  const searchRequestRef = useRef(0);
+  const hasSkippedInitialSearchRef = useRef(false);
 
   // Filter state
   const [dateFilter, setDateFilter] = useState<DateFilter>(
@@ -109,27 +128,6 @@ export default function HomePage({
       : ""
   );
   const [sortBy, setSortBy] = useState<"nearest" | "date">("date");
-  const visibleEventsResetKey = useMemo(
-    () => [
-      dateFilter,
-      customDate,
-      radiusKm,
-      isAllPoland,
-      category,
-      location.label,
-      location.latitude,
-      location.longitude,
-      priceMode,
-      maxPrice,
-      sortBy
-    ].join("|"),
-    [dateFilter, customDate, radiusKm, isAllPoland, category, location, priceMode, maxPrice, sortBy]
-  );
-  const [visibleEventsPage, setVisibleEventsPage] = useState({
-    count: EVENTS_PAGE_SIZE,
-    resetKey: visibleEventsResetKey
-  });
-
   const activeCategory = category === "Wszystkie" ? undefined : category;
   const activeLocation = isAllPoland ? undefined : location;
   const activeLocationLabel = activeLocation
@@ -188,10 +186,10 @@ export default function HomePage({
   // Filtered events
   const filteredEvents = useMemo(
     () => {
-      let results = filterEvents(initialEvents, {
+      let results = filterEvents(events, {
         dateFilter,
         customDate,
-        radiusKm: isAllPoland ? null : radiusKm,
+        radiusKm: isAllPoland || location.slug ? null : radiusKm,
         category,
         location,
         priceMode,
@@ -206,12 +204,12 @@ export default function HomePage({
       }
       return results;
     },
-    [initialEvents, dateFilter, customDate, radiusKm, isAllPoland, category, location, priceMode, maxPrice, sortBy]
+    [events, dateFilter, customDate, radiusKm, isAllPoland, category, location, priceMode, maxPrice, sortBy]
   );
 
   // Featured events
   const featuredEvents = useMemo(
-    () => filterEvents(initialEvents, {
+    () => filterEvents(events, {
       dateFilter: "all",
       customDate: "",
       radiusKm: null,
@@ -219,7 +217,7 @@ export default function HomePage({
       location,
       priceMode: "all"
     }).filter(({ event }) => event.isFeatured),
-    [initialEvents, location]
+    [events, location]
   );
 
   // Category counts
@@ -238,21 +236,13 @@ export default function HomePage({
       .sort((a, b) => b.count - a.count);
   }, [categoryOptions, filteredEvents]);
 
-  const visibleEvents = useMemo(
-    () => {
-      const count =
-        visibleEventsPage.resetKey === visibleEventsResetKey
-          ? visibleEventsPage.count
-          : EVENTS_PAGE_SIZE;
-      return filteredEvents.slice(0, count);
-    },
-    [filteredEvents, visibleEventsPage, visibleEventsResetKey]
-  );
-
-  const hiddenEventsCount = Math.max(filteredEvents.length - visibleEvents.length, 0);
+  const visibleEvents = filteredEvents;
+  const shownEventsCount = Math.min(eventSearch.shownCount, eventSearch.maxResults);
+  const cappedTotalCount = Math.min(eventSearch.totalCount, eventSearch.maxResults);
+  const canLoadMoreEvents = !eventsLoading && eventSearch.hasMore && shownEventsCount < eventSearch.maxResults;
   const eventById = useMemo(
-    () => new Map(initialEvents.map((event) => [event.id, event])),
-    [initialEvents]
+    () => new Map(events.map((event) => [event.id, event])),
+    [events]
   );
 
   const openedEvent = openedEventId
@@ -261,10 +251,10 @@ export default function HomePage({
 
   const openedEventRelated = useMemo(() => {
     if (!openedEvent) return [];
-    return initialEvents
+    return events
       .filter((e) => e.id !== openedEvent.id && e.category === openedEvent.category)
       .slice(0, 3);
-  }, [initialEvents, openedEvent]);
+  }, [events, openedEvent]);
 
   useEffect(() => {
     if (
@@ -470,6 +460,81 @@ export default function HomePage({
     return url;
   }, [category, location, isAllPoland, radiusKm, isKnownCity, dateFilter, customDate, priceMode, maxPrice]);
 
+  const currentEventsApiParams = useCallback((page: number) => {
+    const params = new URLSearchParams({
+      page: String(page),
+      pageSize: String(EVENTS_PAGE_SIZE)
+    });
+
+    if (category !== "Wszystkie") {
+      params.set("categorySlug", toPluralCategorySlug(toSlug(category)));
+    }
+
+    if (!isAllPoland && isKnownCity(location)) {
+      params.set("citySlug", location.slug ?? toSlug(location.label));
+    } else if (!isAllPoland && location.label !== "Polska") {
+      params.set("lat", String(Math.round(location.latitude * 1000) / 1000));
+      params.set("lng", String(Math.round(location.longitude * 1000) / 1000));
+      params.set("radius", String(radiusKm));
+    }
+
+    if (dateFilter !== "all") {
+      params.set("kiedy", dateFilter);
+      if (dateFilter === "custom") {
+        const [from, to] = customDate.split("/");
+        if (from) params.set("dataOd", from);
+        if (to) params.set("dataDo", to);
+      }
+    }
+
+    if (priceMode !== "all") {
+      params.set("cena", priceMode);
+      if (priceMode === "max") params.set("cenaMax", String(maxPrice));
+    }
+
+    return params;
+  }, [category, customDate, dateFilter, isAllPoland, isKnownCity, location, maxPrice, priceMode, radiusKm]);
+
+  const eventsSearchKey = useMemo(
+    () => currentEventsApiParams(1).toString(),
+    [currentEventsApiParams]
+  );
+
+  const loadEventsPage = useCallback(async (page: number, mode: "replace" | "append") => {
+    const requestId = searchRequestRef.current + 1;
+    searchRequestRef.current = requestId;
+    setEventsError(null);
+    if (mode === "append") setEventsLoadingMore(true);
+    else setEventsLoading(true);
+
+    try {
+      const response = await fetch(`/api/events/search?${currentEventsApiParams(page).toString()}`, {
+        cache: "no-store"
+      });
+      if (!response.ok) throw new Error("Events search request failed");
+      const result = (await response.json()) as PublicEventSearchResult;
+      if (searchRequestRef.current !== requestId) return;
+
+      setEventSearch(result);
+      setEvents((currentEvents) => {
+        if (mode === "replace") return result.events;
+        const byId = new Map(currentEvents.map((event) => [event.id, event]));
+        for (const event of result.events) byId.set(event.id, event);
+        return Array.from(byId.values());
+      });
+    } catch (error) {
+      console.error("[home] Failed to load filtered events", error);
+      if (searchRequestRef.current === requestId) {
+        setEventsError("Nie udało się pobrać wydarzeń dla aktualnych filtrów.");
+      }
+    } finally {
+      if (searchRequestRef.current === requestId) {
+        setEventsLoading(false);
+        setEventsLoadingMore(false);
+      }
+    }
+  }, [currentEventsApiParams]);
+
   useEffect(() => {
     if (viewMode === "event") return;
 
@@ -489,17 +554,33 @@ export default function HomePage({
     );
   }, [currentSearchUrl, openedEventId, viewMode]);
 
-  const handleFindSubmit = useCallback(() => {
-    const url = currentSearchUrl();
-    const target = new URL(url, window.location.origin);
-
-    if (target.href === window.location.href) {
-      window.location.reload();
+  useEffect(() => {
+    if (!hasSkippedInitialSearchRef.current) {
+      hasSkippedInitialSearchRef.current = true;
       return;
     }
 
-    window.location.assign(url);
-  }, [currentSearchUrl]);
+    void loadEventsPage(1, "replace");
+  }, [eventsSearchKey, loadEventsPage]);
+
+  const handleFindSubmit = useCallback(() => {
+    const url = currentSearchUrl();
+    workspaceUrlRef.current = url;
+    window.history.pushState(
+      {
+        ...window.history.state,
+        eventMapWorkspace: {
+          view: "list",
+          eventId: openedEventId ?? undefined,
+          workspaceUrl: url
+        } satisfies MobileWorkspaceHistory
+      },
+      "",
+      url
+    );
+    setViewMode("list");
+    document.getElementById("events-list")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [currentSearchUrl, openedEventId]);
 
   const pushWorkspaceHistory = useCallback((view: "list" | "map") => {
     const workspaceUrl = workspaceUrlRef.current || currentSearchUrl();
@@ -899,6 +980,13 @@ export default function HomePage({
                 </select>
               </div>
             </div>
+            <p className="mainEventsCount">
+              {eventSearch.totalCount > 0
+                ? `Znaleziono ${formatNumber(eventSearch.totalCount)} wydarzeń, pokazujemy ${formatNumber(shownEventsCount)} z maksymalnie ${formatNumber(cappedTotalCount)} najbliższych.`
+                : "Nie znaleziono wydarzeń dla aktualnych filtrów."}
+              {eventsLoading ? " Odświeżam wyniki..." : ""}
+            </p>
+            {eventsError ? <p className="mainEventsError">{eventsError}</p> : null}
 
             {filteredEvents.length > 0 ? (
               <div className="eventsList">
@@ -911,24 +999,14 @@ export default function HomePage({
                     onOpenEvent={openMobileEvent}
                   />
                 ))}
-                {hiddenEventsCount > 0 && (
+                {canLoadMoreEvents && (
                   <button
                     type="button"
                     className="showMoreBtn"
-                    onClick={() => {
-                      setVisibleEventsPage((page) => {
-                        const currentCount =
-                          page.resetKey === visibleEventsResetKey
-                            ? page.count
-                            : EVENTS_PAGE_SIZE;
-                        return {
-                          count: Math.min(currentCount + EVENTS_PAGE_SIZE, filteredEvents.length),
-                          resetKey: visibleEventsResetKey
-                        };
-                      });
-                    }}
+                    disabled={eventsLoading || eventsLoadingMore}
+                    onClick={() => void loadEventsPage(eventSearch.page + 1, "append")}
                   >
-                    Pokaż więcej wydarzeń
+                    {eventsLoadingMore ? "Pobieram..." : "Pokaż więcej wydarzeń"}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9" /></svg>
                   </button>
                 )}
@@ -1154,6 +1232,10 @@ function clamp(value: number, min: number, max: number) {
 function clampRadius(value: number) {
   if (!Number.isFinite(value)) return 100;
   return Math.min(Math.max(Math.round(value), 5), 100);
+}
+
+function formatNumber(value: number) {
+  return new Intl.NumberFormat("pl-PL").format(value);
 }
 
 function getPublicLocationLabel(label: string) {

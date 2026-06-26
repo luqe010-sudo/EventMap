@@ -4,10 +4,10 @@ import HomePage from "@/components/HomePage";
 import {
   getCategoryBySlugFromDb,
   listCategories,
-  listEvents,
   listPublicCategoryCityRoutes,
   resolveCityLocation,
   getActiveCityLocations,
+  searchPublicEvents,
   type CategoryCityRoute,
   type KnownLocation,
 } from "@/lib/events";
@@ -133,18 +133,24 @@ export default async function CategoryCityPage({
       longitude: lng,
     };
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const [events, categoryRows, activeCityLocations] = await Promise.all([
-      listEvents({ dateFrom: today.toISOString(), limit: 250 }),
+    const [eventSearch, categoryRows, activeCityLocations] = await Promise.all([
+      searchPublicEvents({
+        categoryId: category.id,
+        location: geoLocation,
+        radiusKm: radius,
+        dateFilter: initialFilters.dateFilter ?? "all",
+        customDate: initialFilters.customDate,
+        priceMode: initialFilters.priceMode ?? "all",
+        maxPrice: initialFilters.maxPrice
+      }),
       listCategories(),
       getActiveCityLocations(),
     ]);
 
     return (
       <HomePage
-        initialEvents={events}
+        initialEvents={eventSearch.events}
+        initialEventSearch={eventSearch}
         initialCategory={category.name}
         initialLocation={geoLocation}
         categoryOptions={categoryRows}
@@ -182,14 +188,18 @@ export default async function CategoryCityPage({
       notFound();
     }
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const [events, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
-      listEvents({ dateFrom: today.toISOString(), limit: 250 }),
+    const [eventSearch, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
+      searchPublicEvents({
+        categoryId: category.id,
+        citySlug,
+        dateFilter: initialFilters.dateFilter ?? "all",
+        customDate: initialFilters.customDate,
+        priceMode: initialFilters.priceMode ?? "all",
+        maxPrice: initialFilters.maxPrice
+      }),
       listCategories(),
       getActiveCityLocations(),
-      listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 }),
+      listPublicCategoryCityRoutes({ dateFrom: new Date().toISOString(), limit: 10000 }),
     ]);
 
     if (!hasCategoryCityRoute(availableCategoryCityRoutes, pluralCategorySlug, cityLocation)) {
@@ -209,9 +219,10 @@ export default async function CategoryCityPage({
               url: `https://mapaimprez.pl/${category.slug}/${citySlug}`
             })
           }}
-        />
+      />
         <HomePage
-          initialEvents={events}
+          initialEvents={eventSearch.events}
+          initialEventSearch={eventSearch}
           initialCategory={category.name}
           initialLocation={cityLocation}
           categoryOptions={categoryRows}
@@ -236,14 +247,17 @@ export default async function CategoryCityPage({
       redirect(`/${normalizedCitySlug}/${citySlug}`);
     }
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const [events, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
-      listEvents({ dateFrom: today.toISOString(), limit: 250 }),
+    const [eventSearch, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
+      searchPublicEvents({
+        citySlug: normalizedCitySlug,
+        dateFilter: initialFilters.dateFilter ?? dateFilterMap[citySlug],
+        customDate: initialFilters.customDate,
+        priceMode: initialFilters.priceMode ?? "all",
+        maxPrice: initialFilters.maxPrice
+      }),
       listCategories(),
       getActiveCityLocations(),
-      listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 }),
+      listPublicCategoryCityRoutes({ dateFrom: new Date().toISOString(), limit: 10000 }),
     ]);
 
     return (
@@ -261,7 +275,8 @@ export default async function CategoryCityPage({
           }}
         />
         <HomePage
-          initialEvents={events}
+          initialEvents={eventSearch.events}
+          initialEventSearch={eventSearch}
           initialLocation={cityLocation}
           initialDateFilter={dateFilterMap[citySlug]}
           categoryOptions={categoryRows}

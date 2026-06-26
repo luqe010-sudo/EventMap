@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import HomePage from "@/components/HomePage";
-import { listCategories, listEvents, getActiveCityLocations, type KnownLocation } from "@/lib/events";
+import { listCategories, getActiveCityLocations, searchPublicEvents, type KnownLocation } from "@/lib/events";
 import { parsePublicFilterParams } from "@/lib/filters";
 
 export const dynamic = "force-dynamic";
@@ -53,11 +53,15 @@ export default async function LocationPage({ searchParams }: Props) {
     longitude: lng,
   };
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  const [events, categoryRows, activeCityLocations] = await Promise.all([
-    listEvents({ dateFrom: today.toISOString(), limit: 250 }),
+  const [eventSearch, categoryRows, activeCityLocations] = await Promise.all([
+    searchPublicEvents({
+      location: geoLocation,
+      radiusKm: radius,
+      dateFilter: initialFilters.dateFilter ?? "all",
+      customDate: initialFilters.customDate,
+      priceMode: initialFilters.priceMode ?? "all",
+      maxPrice: initialFilters.maxPrice
+    }),
     listCategories(),
     getActiveCityLocations(),
   ]);
@@ -76,7 +80,8 @@ export default async function LocationPage({ searchParams }: Props) {
         }}
       />
       <HomePage
-        initialEvents={events}
+        initialEvents={eventSearch.events}
+        initialEventSearch={eventSearch}
         initialLocation={geoLocation}
         categoryOptions={categoryRows}
         initialFilters={initialFilters}

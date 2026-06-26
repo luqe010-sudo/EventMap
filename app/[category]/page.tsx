@@ -4,10 +4,10 @@ import HomePage from "@/components/HomePage";
 import {
   getCategoryBySlugFromDb,
   listCategories,
-  listEvents,
   listPublicCategoryCityRoutes,
   resolveCityLocation,
   getActiveCityLocations,
+  searchPublicEvents,
 } from "@/lib/events";
 import { toPluralCategorySlug, toPluralCategoryName, toSlug, formatInCity } from "@/lib/slugs";
 import { searchAddress } from "@/lib/geocoding";
@@ -68,16 +68,17 @@ export default async function CategoryPage({
       redirect(`/${pluralSlug}`);
     }
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const [events, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
-      // Keep a complete client-side event pool so changing/clearing the category
-      // immediately produces truthful results before the next explicit navigation.
-      listEvents({ dateFrom: today.toISOString(), limit: 250 }),
+    const [eventSearch, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
+      searchPublicEvents({
+        categoryId: category.id,
+        dateFilter: initialFilters.dateFilter ?? "all",
+        customDate: initialFilters.customDate,
+        priceMode: initialFilters.priceMode ?? "all",
+        maxPrice: initialFilters.maxPrice
+      }),
       listCategories(),
       getActiveCityLocations(),
-      listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 }),
+      listPublicCategoryCityRoutes({ dateFrom: new Date().toISOString(), limit: 10000 }),
     ]);
 
     return (
@@ -108,7 +109,8 @@ export default async function CategoryPage({
           }}
         />
         <HomePage
-          initialEvents={events}
+          initialEvents={eventSearch.events}
+          initialEventSearch={eventSearch}
           initialCategory={category.name}
           categoryOptions={categoryRows}
           initialFilters={initialFilters}
@@ -127,14 +129,17 @@ export default async function CategoryPage({
       redirect(`/${normalizedCitySlug}`);
     }
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const [events, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
-      listEvents({ dateFrom: today.toISOString(), limit: 250 }),
+    const [eventSearch, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
+      searchPublicEvents({
+        citySlug: normalizedCitySlug,
+        dateFilter: initialFilters.dateFilter ?? "all",
+        customDate: initialFilters.customDate,
+        priceMode: initialFilters.priceMode ?? "all",
+        maxPrice: initialFilters.maxPrice
+      }),
       listCategories(),
       getActiveCityLocations(),
-      listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 }),
+      listPublicCategoryCityRoutes({ dateFrom: new Date().toISOString(), limit: 10000 }),
     ]);
 
     return (
@@ -165,7 +170,8 @@ export default async function CategoryPage({
           }}
         />
         <HomePage
-          initialEvents={events}
+          initialEvents={eventSearch.events}
+          initialEventSearch={eventSearch}
           initialLocation={cityLocation}
           categoryOptions={categoryRows}
           initialFilters={initialFilters}

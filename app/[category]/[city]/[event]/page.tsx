@@ -10,6 +10,7 @@ import {
   resolveCityLocation,
   getEventBySlug,
   getActiveCityLocations,
+  searchPublicEvents,
   type CategoryCityRoute,
   type KnownLocation,
 } from "@/lib/events";
@@ -124,25 +125,29 @@ export default async function EventOrTimePage({
       notFound();
     }
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const [events, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
-      listEvents({ categoryId: category.id, dateFrom: today.toISOString(), limit: 250 }),
-      listCategories(),
-      getActiveCityLocations(),
-      listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 }),
-    ]);
-
-    if (!hasCategoryCityRoute(availableCategoryCityRoutes, pluralCategorySlug, cityLocation)) {
-      redirectToCategoryLocation(pluralCategorySlug, cityLocation);
-    }
-
     const dateFilterMap = {
       "dzis": "today",
       "weekend": "weekend",
       "ten-tydzien": "week",
     } as const;
+
+    const [eventSearch, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
+      searchPublicEvents({
+        categoryId: category.id,
+        citySlug,
+        dateFilter: initialFilters.dateFilter ?? dateFilterMap[eventOrTime],
+        customDate: initialFilters.customDate,
+        priceMode: initialFilters.priceMode ?? "all",
+        maxPrice: initialFilters.maxPrice
+      }),
+      listCategories(),
+      getActiveCityLocations(),
+      listPublicCategoryCityRoutes({ dateFrom: new Date().toISOString(), limit: 10000 }),
+    ]);
+
+    if (!hasCategoryCityRoute(availableCategoryCityRoutes, pluralCategorySlug, cityLocation)) {
+      redirectToCategoryLocation(pluralCategorySlug, cityLocation);
+    }
 
     return (
       <>
@@ -159,7 +164,8 @@ export default async function EventOrTimePage({
           }}
         />
         <HomePage
-          initialEvents={events}
+          initialEvents={eventSearch.events}
+          initialEventSearch={eventSearch}
           initialCategory={category.name}
           initialLocation={cityLocation}
           initialDateFilter={dateFilterMap[eventOrTime]}

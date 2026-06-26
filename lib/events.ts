@@ -3,6 +3,7 @@ import { createSupabaseServerClient } from "@/lib/supabase";
 import { toPluralCategoryName, toPluralCategorySlug, toSlug } from "@/lib/slugs";
 import { toAppDate } from "@/lib/date-format";
 import { slugify } from "@/lib/slugify";
+import type { DateFilter, PriceFilterMode } from "@/lib/filters";
 
 type Tables = Database["public"]["Tables"];
 type EventRow = Tables["events"]["Row"];
@@ -110,6 +111,37 @@ export type CategoryCityRoute = {
   lastmod: string;
 };
 
+export type PublicEventSearchOptions = {
+  page?: number;
+  pageSize?: number;
+  maxResults?: number;
+  dateFilter?: DateFilter;
+  customDate?: string;
+  dateFrom?: string;
+  dateTo?: string;
+  categoryId?: string;
+  categorySlug?: string;
+  cityId?: string;
+  citySlug?: string;
+  location?: Pick<KnownLocation, "latitude" | "longitude">;
+  radiusKm?: number | null;
+  priceMode?: PriceFilterMode;
+  maxPrice?: number | null;
+  featuredOnly?: boolean;
+  includeCancelled?: boolean;
+  includePast?: boolean;
+};
+
+export type PublicEventSearchResult = {
+  events: EventItem[];
+  totalCount: number;
+  page: number;
+  pageSize: number;
+  maxResults: number;
+  shownCount: number;
+  hasMore: boolean;
+};
+
 type SupabaseEventRecord = EventRow & {
   category: Pick<CategoryRow, "id" | "name" | "slug" | "icon" | "color"> | null;
   location: Pick<
@@ -165,6 +197,32 @@ const EVENT_SELECT = `
   updated_at,
   category:categories(id, name, slug, icon, color),
   location:locations(name, address, city_id, municipality, county, voivodeship, latitude, longitude, google_maps_url, city:cities(id, name, slug, latitude, longitude, county, voivodeship, is_active)),
+  organizer:organizers!events_organizer_id_fkey(name, slug, website, facebook_url, phone, email, logo_url, type, is_verified),
+  sources:event_sources(source_name, source_url, source_type, last_seen_at)
+`;
+
+const EVENT_SELECT_WITH_INNER_LOCATION = `
+  id,
+  title,
+  slug,
+  description,
+  short_description,
+  start_at,
+  end_at,
+  is_all_day,
+  main_image_url,
+  price_type,
+  price_min,
+  price_max,
+  currency,
+  status,
+  visibility,
+  is_featured,
+  is_verified,
+  is_cancelled,
+  updated_at,
+  category:categories(id, name, slug, icon, color),
+  location:locations!inner(name, address, city_id, municipality, county, voivodeship, latitude, longitude, google_maps_url, city:cities(id, name, slug, latitude, longitude, county, voivodeship, is_active)),
   organizer:organizers!events_organizer_id_fkey(name, slug, website, facebook_url, phone, email, logo_url, type, is_verified),
   sources:event_sources(source_name, source_url, source_type, last_seen_at)
 `;
@@ -225,10 +283,51 @@ export type ListEventsOptions = {
 };
 
 export async function listEvents(options: ListEventsOptions = {}): Promise<EventItem[]> {
+  const result = await searchPublicEvents({
+    ...options,
+    page: 1,
+    pageSize: options.limit ?? 300,
+    maxResults: options.limit ?? 300,
+    includePast: options.dateFrom == null
+  });
+  return result.events;
+}
+
+export async function searchPublicEvents(options: PublicEventSearchOptions = {}): Promise<PublicEventSearchResult> {
   const supabase = createSupabaseServerClient();
+  const page = Math.max(1, Math.floor(options.page ?? 1));
+  const maxResults = Math.min(Math.max(Math.floor(options.maxResults ?? 300), 1), 10000);
+  const pageSize = Math.min(Math.max(Math.floor(options.pageSize ?? 20), 1), maxResults);
+  const offset = (page - 1) * pageSize;
+
+  if (offset >= maxResults) {
+    return emptyPublicEventSearchResult(page, pageSize, maxResults);
+  }
+
+  const [categoryId, cityId, locationIds] = await Promise.all([
+    resolveCategoryId(options.categoryId, options.categorySlug),
+    resolveCityId(options.cityId, options.citySlug),
+    resolveLocationIdsForRadius(options)
+  ]);
+
+  if ((options.categoryId || options.categorySlug) && !categoryId) {
+    return emptyPublicEventSearchResult(page, pageSize, maxResults);
+  }
+
+  if ((options.cityId || options.citySlug) && !cityId) {
+    return emptyPublicEventSearchResult(page, pageSize, maxResults);
+  }
+
+  if (locationIds && locationIds.length === 0) {
+    return emptyPublicEventSearchResult(page, pageSize, maxResults);
+  }
+
+  const dateRange = getPublicSearchDateRange(options);
+  const pageEnd = Math.min(offset + pageSize - 1, maxResults - 1);
+
   let query = supabase
     .from("events")
-    .select(EVENT_SELECT)
+    .select(cityId ? EVENT_SELECT_WITH_INNER_LOCATION : EVENT_SELECT, { count: "exact" })
     .eq("status", "published")
     .eq("visibility", "public")
     .order("start_at", { ascending: true });
@@ -237,30 +336,50 @@ export async function listEvents(options: ListEventsOptions = {}): Promise<Event
     query = query.or("is_cancelled.is.null,is_cancelled.eq.false");
   }
 
-  if (options.dateFrom) {
-    query = query.gte("start_at", options.dateFrom);
+  if (dateRange.dateFrom) {
+    query = query.gte("start_at", dateRange.dateFrom);
   }
 
-  if (options.dateTo) {
-    query = query.lt("start_at", options.dateTo);
+  if (dateRange.dateTo) {
+    query = query.lt("start_at", dateRange.dateTo);
   }
 
-  if (options.categoryId) {
-    query = query.eq("category_id", options.categoryId);
+  if (categoryId) {
+    query = query.eq("category_id", categoryId);
+  }
+
+  if (cityId) {
+    query = query.eq("location.city_id", cityId);
+  }
+
+  if (locationIds) {
+    query = query.in("location_id", locationIds);
   }
 
   if (options.featuredOnly) {
     query = query.eq("is_featured", true);
   }
 
-  if (options.limit) {
-    query = query.limit(options.limit);
-  }
+  query = applyPublicPriceFilters(query, options);
+  query = query.range(offset, pageEnd);
 
-  const { data, error } = await query.returns<SupabaseEventRecord[]>();
+  const { data, error, count } = await query.returns<SupabaseEventRecord[]>();
   if (error) throw new Error(`Nie udalo sie pobrac wydarzen: ${error.message}`);
 
-  return (data ?? []).map(mapEventRecord);
+  const events = (data ?? []).map(mapEventRecord);
+  const totalCount = count ?? events.length;
+  const cappedTotal = Math.min(totalCount, maxResults);
+  const shownCount = Math.min(offset + events.length, cappedTotal);
+
+  return {
+    events,
+    totalCount,
+    page,
+    pageSize,
+    maxResults,
+    shownCount,
+    hasMore: shownCount < cappedTotal
+  };
 }
 
 export async function listPublicEventsByIds(eventIds: string[]): Promise<EventItem[]> {
@@ -278,6 +397,200 @@ export async function listPublicEventsByIds(eventIds: string[]): Promise<EventIt
 
   if (error) throw new Error(`Nie udalo sie pobrac zapisanych wydarzen: ${error.message}`);
   return (data ?? []).map(mapEventRecord);
+}
+
+async function resolveCategoryId(categoryId?: string, categorySlug?: string) {
+  if (categoryId) return categoryId;
+  if (!categorySlug) return undefined;
+  const category = await getCategoryBySlugFromDb(categorySlug);
+  return category?.id;
+}
+
+async function resolveCityId(cityId?: string, citySlug?: string) {
+  if (cityId) return cityId;
+  if (!citySlug) return undefined;
+
+  const supabase = createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("cities")
+    .select("id")
+    .eq("slug", citySlug)
+    .eq("is_active", true)
+    .maybeSingle();
+
+  if (error) throw new Error(`Nie udalo sie pobrac miasta: ${error.message}`);
+  return data?.id;
+}
+
+async function resolveLocationIdsForRadius(options: PublicEventSearchOptions) {
+  if (!options.location || options.radiusKm == null || !Number.isFinite(options.radiusKm)) return undefined;
+
+  const radiusKm = Math.min(Math.max(Math.round(options.radiusKm), 1), 200);
+  const latitude = options.location.latitude;
+  const longitude = options.location.longitude;
+  const latitudeDelta = radiusKm / 111;
+  const longitudeDelta = radiusKm / Math.max(111 * Math.cos((latitude * Math.PI) / 180), 1);
+  const supabase = createSupabaseServerClient();
+  const ids: string[] = [];
+  const chunkSize = 1000;
+
+  for (let from = 0; from < 10000; from += chunkSize) {
+    const { data, error } = await supabase
+      .from("locations")
+      .select("id, latitude, longitude")
+      .not("latitude", "is", null)
+      .not("longitude", "is", null)
+      .gte("latitude", latitude - latitudeDelta)
+      .lte("latitude", latitude + latitudeDelta)
+      .gte("longitude", longitude - longitudeDelta)
+      .lte("longitude", longitude + longitudeDelta)
+      .range(from, from + chunkSize - 1);
+
+    if (error) throw new Error(`Nie udalo sie pobrac lokalizacji w promieniu: ${error.message}`);
+    const rows = data ?? [];
+    for (const row of rows) {
+      const distance = distanceInKmFromCoordinates(
+        { latitude, longitude },
+        { latitude: row.latitude, longitude: row.longitude }
+      );
+      if (distance <= radiusKm) ids.push(row.id);
+    }
+    if (rows.length < chunkSize) break;
+  }
+
+  return ids;
+}
+
+function getPublicSearchDateRange(options: PublicEventSearchOptions) {
+  const now = new Date();
+  let dateFrom = options.includePast ? options.dateFrom : options.dateFrom ?? now.toISOString();
+  let dateTo = options.dateTo;
+
+  if (options.dateFilter) {
+    const range = resolvePublicDateRange(options.dateFilter, options.customDate ?? "", now);
+    dateFrom = new Date(Math.max(range.start.getTime(), now.getTime())).toISOString();
+    dateTo = range.end?.toISOString();
+  }
+
+  return { dateFrom, dateTo };
+}
+
+function applyPublicPriceFilters<T extends { or: (filters: string) => T }>(
+  query: T,
+  options: Pick<PublicEventSearchOptions, "priceMode" | "maxPrice">
+) {
+  if (options.priceMode === "free") {
+    return query.or("price_type.eq.free,price_type.eq.bezplatne");
+  }
+
+  if (options.priceMode === "max") {
+    const maxPrice = clampPublicMaxPrice(options.maxPrice ?? 0);
+    return query.or(`price_type.eq.free,price_type.eq.bezplatne,price_min.lte.${maxPrice},price_max.lte.${maxPrice}`);
+  }
+
+  return query;
+}
+
+function resolvePublicDateRange(dateFilter: DateFilter, customDate: string, now = new Date()): { start: Date; end: Date | null } {
+  const start = new Date(now);
+  start.setHours(0, 0, 0, 0);
+  const end = new Date(start);
+
+  if (dateFilter === "all") return { start, end: null };
+  if (dateFilter === "today") {
+    end.setDate(start.getDate() + 1);
+    return { start, end };
+  }
+  if (dateFilter === "tomorrow") {
+    start.setDate(start.getDate() + 1);
+    end.setDate(start.getDate() + 1);
+    return { start, end };
+  }
+  if (dateFilter === "weekend") {
+    const day = start.getDay();
+    if (day === 0) {
+      end.setDate(start.getDate() + 1);
+    } else if (day === 6) {
+      end.setDate(start.getDate() + 2);
+    } else {
+      start.setDate(start.getDate() + (6 - day));
+      end.setTime(start.getTime());
+      end.setDate(start.getDate() + 2);
+    }
+    return { start, end };
+  }
+  if (dateFilter === "week") {
+    end.setDate(start.getDate() + 7);
+    return { start, end };
+  }
+
+  const customRange = parsePublicCustomDateRange(customDate);
+  if (customRange) {
+    const selectedStart = new Date(`${customRange.from}T00:00:00`);
+    const selectedEnd = new Date(`${customRange.to}T00:00:00`);
+    selectedEnd.setDate(selectedEnd.getDate() + 1);
+    return { start: selectedStart, end: selectedEnd };
+  }
+
+  return { start, end: null };
+}
+
+function parsePublicCustomDateRange(customDate: string) {
+  const [rawFrom, rawTo] = customDate.split("/");
+  const from = normalizePublicDateInput(rawFrom);
+  const to = normalizePublicDateInput(rawTo);
+  if (!from && !to) return null;
+  const rangeFrom = from ?? to;
+  const rangeTo = to ?? from;
+  if (!rangeFrom || !rangeTo) return null;
+  return rangeFrom <= rangeTo
+    ? { from: rangeFrom, to: rangeTo }
+    : { from: rangeTo, to: rangeFrom };
+}
+
+function normalizePublicDateInput(value?: string) {
+  const trimmed = value?.trim();
+  return trimmed && /^\d{4}-\d{2}-\d{2}$/.test(trimmed) ? trimmed : null;
+}
+
+function distanceInKmFromCoordinates(
+  origin: Pick<KnownLocation, "latitude" | "longitude">,
+  event: Pick<EventItem, "latitude" | "longitude">
+) {
+  if (event.latitude == null || event.longitude == null) return Number.POSITIVE_INFINITY;
+  const earthRadiusKm = 6371;
+  const latitudeDelta = toRadians(event.latitude - origin.latitude);
+  const longitudeDelta = toRadians(event.longitude - origin.longitude);
+  const originLatitude = toRadians(origin.latitude);
+  const eventLatitude = toRadians(event.latitude);
+  const angle =
+    Math.sin(latitudeDelta / 2) * Math.sin(latitudeDelta / 2) +
+    Math.cos(originLatitude) *
+      Math.cos(eventLatitude) *
+      Math.sin(longitudeDelta / 2) *
+      Math.sin(longitudeDelta / 2);
+  return earthRadiusKm * 2 * Math.atan2(Math.sqrt(angle), Math.sqrt(1 - angle));
+}
+
+function clampPublicMaxPrice(value: number) {
+  if (!Number.isFinite(value)) return 100;
+  return Math.min(Math.max(Math.round(value), 0), 500);
+}
+
+function toRadians(value: number) {
+  return (value * Math.PI) / 180;
+}
+
+function emptyPublicEventSearchResult(page: number, pageSize: number, maxResults: number): PublicEventSearchResult {
+  return {
+    events: [],
+    totalCount: 0,
+    page,
+    pageSize,
+    maxResults,
+    shownCount: 0,
+    hasMore: false
+  };
 }
 
 export async function listPublicCategoryCityRoutes(
@@ -452,34 +765,32 @@ export async function getActiveCityLocations(): Promise<KnownLocation[]> {
   }
 }
 
-export async function getHomeData() {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  const [events, categoryRows, activeCityLocations] = await Promise.all([
-    getHomeEvents(today.toISOString()),
+export async function getHomeData(searchOptions: PublicEventSearchOptions = {}) {
+  const [eventSearch, categoryRows, activeCityLocations] = await Promise.all([
+    getHomeEvents(searchOptions),
     getHomeCategories(),
     getActiveCityLocations()
   ]);
 
   return {
-    events,
+    events: eventSearch.events,
+    eventSearch,
     categories: categoryRows.length ? categoryRows : getFallbackCategoryOptions(),
     activeCityLocations
   };
 }
 
-async function getHomeEvents(dateFrom: string) {
+async function getHomeEvents(searchOptions: PublicEventSearchOptions = {}) {
   try {
-    const [events, featuredEvents] = await Promise.all([
-      listEvents({ dateFrom, limit: 300 }),
-      listEvents({ dateFrom, limit: 40, featuredOnly: true })
-    ]);
-
-    return mergeEventsById(events, featuredEvents);
+    return await searchPublicEvents({
+      ...searchOptions,
+      page: searchOptions.page ?? 1,
+      pageSize: searchOptions.pageSize ?? 20,
+      maxResults: 300
+    });
   } catch (error) {
     logPublicDataError("home events", error);
-    return [];
+    return emptyPublicEventSearchResult(searchOptions.page ?? 1, searchOptions.pageSize ?? 20, 300);
   }
 }
 
