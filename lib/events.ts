@@ -174,6 +174,8 @@ type CategoryCityEventRecord = Pick<EventRow, "published_at" | "start_at" | "upd
 
 const FALLBACK_IMAGE = "/background.png";
 const DEFAULT_CATEGORY_COLOR = "#64748b";
+export const PUBLIC_EVENTS_PAGE_SIZE = 20;
+export const PUBLIC_EVENTS_MAX_RESULTS = 300;
 
 const EVENT_SELECT = `
   id,
@@ -296,8 +298,8 @@ export async function listEvents(options: ListEventsOptions = {}): Promise<Event
 export async function searchPublicEvents(options: PublicEventSearchOptions = {}): Promise<PublicEventSearchResult> {
   const supabase = createSupabaseServerClient();
   const page = Math.max(1, Math.floor(options.page ?? 1));
-  const maxResults = Math.min(Math.max(Math.floor(options.maxResults ?? 300), 1), 10000);
-  const pageSize = Math.min(Math.max(Math.floor(options.pageSize ?? 20), 1), maxResults);
+  const maxResults = Math.min(Math.max(Math.floor(options.maxResults ?? PUBLIC_EVENTS_MAX_RESULTS), 1), 10000);
+  const pageSize = Math.min(Math.max(Math.floor(options.pageSize ?? PUBLIC_EVENTS_PAGE_SIZE), 1), maxResults);
   const offset = (page - 1) * pageSize;
 
   if (offset >= maxResults) {
@@ -785,12 +787,16 @@ async function getHomeEvents(searchOptions: PublicEventSearchOptions = {}) {
     return await searchPublicEvents({
       ...searchOptions,
       page: searchOptions.page ?? 1,
-      pageSize: searchOptions.pageSize ?? 20,
-      maxResults: 300
+      pageSize: searchOptions.pageSize ?? PUBLIC_EVENTS_PAGE_SIZE,
+      maxResults: PUBLIC_EVENTS_MAX_RESULTS
     });
   } catch (error) {
     logPublicDataError("home events", error);
-    return emptyPublicEventSearchResult(searchOptions.page ?? 1, searchOptions.pageSize ?? 20, 300);
+    return emptyPublicEventSearchResult(
+      searchOptions.page ?? 1,
+      searchOptions.pageSize ?? PUBLIC_EVENTS_PAGE_SIZE,
+      PUBLIC_EVENTS_MAX_RESULTS
+    );
   }
 }
 

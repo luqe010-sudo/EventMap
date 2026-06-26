@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { searchPublicEvents } from "@/lib/events";
+import { PUBLIC_EVENTS_MAX_RESULTS, PUBLIC_EVENTS_PAGE_SIZE, searchPublicEvents } from "@/lib/events";
 import { parsePublicFilterParams } from "@/lib/filters";
 
 export const dynamic = "force-dynamic";
@@ -7,8 +7,8 @@ export const dynamic = "force-dynamic";
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
   const filters = parsePublicFilterParams(Object.fromEntries(params.entries()));
-  const page = clampInteger(params.get("page"), 1, 1, 15);
-  const pageSize = clampInteger(params.get("pageSize"), 20, 1, 100);
+  const pageSize = clampInteger(params.get("pageSize"), PUBLIC_EVENTS_PAGE_SIZE, 1, PUBLIC_EVENTS_PAGE_SIZE);
+  const page = clampInteger(params.get("page"), 1, 1, Math.ceil(PUBLIC_EVENTS_MAX_RESULTS / pageSize));
   const radiusKm = filters.radiusKm ?? clampInteger(params.get("radius"), 30, 5, 200);
   const lat = parseCoordinate(params.get("lat"));
   const lng = parseCoordinate(params.get("lng"));
@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     const result = await searchPublicEvents({
       page,
       pageSize,
-      maxResults: 300,
+      maxResults: PUBLIC_EVENTS_MAX_RESULTS,
       dateFilter: filters.dateFilter ?? "all",
       customDate: filters.customDate,
       categorySlug: normalizeSlug(params.get("categorySlug")),

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { List as ListIcon, Map as MapIcon, CalendarDays } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type KnownLocation, type PublicEventSearchResult, getDefaultLocation, knownLocations } from "@/lib/events";
+import { PUBLIC_EVENTS_MAX_RESULTS, PUBLIC_EVENTS_PAGE_SIZE, type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type KnownLocation, type PublicEventSearchResult, getDefaultLocation, knownLocations } from "@/lib/events";
 import {
   DEFAULT_MAX_PRICE,
   clampMaxPrice,
@@ -35,8 +35,6 @@ type HomePageProps = {
   activeCityLocations?: KnownLocation[];
   availableCategoryCityRoutes?: CategoryCityRoute[];
 };
-
-const EVENTS_PAGE_SIZE = 20;
 
 const POPULAR_CITIES = [
   { label: "Wrocław", slug: "wroclaw" },
@@ -76,8 +74,8 @@ export default function HomePage({
       events: initialEvents,
       totalCount: initialEvents.length,
       page: 1,
-      pageSize: EVENTS_PAGE_SIZE,
-      maxResults: 300,
+      pageSize: PUBLIC_EVENTS_PAGE_SIZE,
+      maxResults: PUBLIC_EVENTS_MAX_RESULTS,
       shownCount: initialEvents.length,
       hasMore: false
     }
@@ -463,7 +461,7 @@ export default function HomePage({
   const currentEventsApiParams = useCallback((page: number) => {
     const params = new URLSearchParams({
       page: String(page),
-      pageSize: String(EVENTS_PAGE_SIZE)
+      pageSize: String(PUBLIC_EVENTS_PAGE_SIZE)
     });
 
     if (category !== "Wszystkie") {
@@ -921,7 +919,7 @@ export default function HomePage({
       )}
 
       <HeroSection
-        eventCount={filteredEvents.length}
+        eventCount={eventSearch.totalCount}
         onSelectCategory={(cat) => setCategory(cat)}
         onSelectFree={() => { setPriceMode("free"); setCategory("Wszystkie"); }}
         onSelectDateFilter={(f) => setDateFilter(f)}

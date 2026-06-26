@@ -1,6 +1,6 @@
 # Current Features
 
-Aktualizacja wyszukiwania: panel wyszukiwania zapisuje w URL filtry `Kiedy?`, `Cena` oraz `radius`. Cena obsluguje tryby `Za darmo`, `Bez limitu` i limit maksymalny ustawiany suwakiem lub polem kwoty, np. `?kiedy=weekend&cena=max&cenaMax=80`. Promien mozna ustawic suwakiem albo recznie w polu km. Zmiany filtrow aktualizuja pasek adresu przez `history.replaceState()` i pobieraja nowa strone wynikow przez `/api/events/search`; limit 300 jest stosowany dopiero po filtrach Supabase.
+Aktualizacja wyszukiwania: panel wyszukiwania zapisuje w URL filtry `Kiedy?`, `Cena` oraz `radius`. Cena obsluguje tryby `Za darmo`, `Bez limitu` i limit maksymalny ustawiany suwakiem lub polem kwoty, np. `?kiedy=weekend&cena=max&cenaMax=80`. Promien mozna ustawic suwakiem albo recznie w polu km. Zmiany filtrow aktualizuja pasek adresu przez `history.replaceState()` i pobieraja pierwsza paczke wynikow przez `/api/events/search`; limit 300 jest tylko gornym limitem kolejnych stron po filtrach Supabase.
 
 ## Publiczne przeglądanie wydarzeń
 
@@ -359,7 +359,7 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 - Mobilny widok wydarzenia ustawia w pasku adresu jego kanoniczny URL bez niszczenia stanu listy i mapy. Historia przegladarki odtwarza aktywny widok, filtry, zaznaczona pinezke i ostatnie wydarzenie; bezposrednie wejscie lub odswiezenie kanonicznego URL nadal korzysta z pelnej serwerowej strony szczegolow.
 - Mobilna zakladka `Wydarzenie` korzysta ze wspolnego `EventDetailView` w trybie osadzonym, bez dodatkowej mapy i stopki. Otwieraja ja karty listy, polecane wydarzenia oraz mini karta mapy; wybor podobnego wydarzenia podmienia zawartosc, URL i przewija panel szczegolow na poczatek.
 - Naglowek strony, opis, breadcrumbsy, sekcje kategorii/miast, linki `Inne wydarzenia` i tekst SEO odzwierciedlaja aktualny stan filtrow klienta. Podstrony kategorii i miast pobieraja wyniki z backendu po aktualnych filtrach, lacznie z count i paginacja.
-- Lista publiczna wydarzen pokazuje poczatkowo 20 kart, count wszystkich pasujacych wynikow oraz limit 300 najblizszych pozycji. Przycisk `Pokaz wiecej wydarzen` pobiera kolejne strony po 20 wynikow dla aktualnych filtrow z `/api/events/search`, zamiast odslaniac lokalnie elementy z poczatkowej puli.
+- Lista publiczna wydarzen pobiera poczatkowo tylko pierwsza paczke 20 kart, count wszystkich pasujacych wynikow oraz limit 300 najblizszych pozycji. Przycisk `Pokaz wiecej wydarzen` pobiera kolejne strony po 20 wynikow dla aktualnych filtrow z `/api/events/search`, zamiast odslaniac lokalnie elementy z poczatkowej puli.
 - Publiczne formatowanie dat traktuje wartosci wydarzen bez jawnej strefy jako czas lokalny `Europe/Warsaw`, zeby nie pokazywac godziny przesunietej o offset serwera.
 - Formularz admina wydarzen pozwala ustawic flage `is_featured` przez checkbox `Promowane`.
 - Strona glowna dociaga promowane wydarzenia osobnym zapytaniem i pokazuje je w sekcji `Polecane wydarzenia` bez ograniczenia do najblizszego tygodnia.
