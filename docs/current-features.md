@@ -1,6 +1,6 @@
 # Current Features
 
-Aktualizacja wyszukiwania: panel wyszukiwania zapisuje w URL filtry `Kiedy?`, `Cena` oraz `radius`. Cena obsluguje tryby `Za darmo`, `Bez limitu` i limit maksymalny ustawiany suwakiem lub polem kwoty, np. `?kiedy=weekend&cena=max&cenaMax=80`. Promien mozna ustawic suwakiem albo recznie w polu km. Zmiany filtrow aktualizuja pasek adresu przez `history.replaceState()` i pobieraja pierwsza paczke wynikow przez `/api/events/search`; limit 300 jest tylko gornym limitem kolejnych stron po filtrach Supabase.
+Aktualizacja wyszukiwania: panel wyszukiwania zapisuje w URL filtry `Kiedy?`, `Cena` oraz `radius`. Cena obsluguje tryby `Za darmo`, `Bez limitu` i limit maksymalny ustawiany suwakiem lub polem kwoty, np. `?kiedy=weekend&cena=max&cenaMax=80`. Promien mozna ustawic suwakiem albo recznie w polu km, w zakresie 5-200 km. Zmiany filtrow aktualizuja pasek adresu przez `history.replaceState()` i pobieraja pierwsza paczke wynikow przez `/api/events/search`; limit 300 jest tylko gornym limitem kolejnych stron po filtrach Supabase.
 
 ## Publiczne przeglądanie wydarzeń
 
@@ -12,6 +12,7 @@ Strona główna `/`:
 - w lewej kolumnie pokazuje wyróżnione wydarzenia nad listą wydarzeń;
 - w prawym sidebarze pokazuje jeden spójny panel z mapą MapLibre, powiadomieniami, nadchodzącymi wydarzeniami i popularnymi kategoriami;
 - wydarzenia w sekcji `Nadchodzące wydarzenia` linkują do swoich stron szczegółowych, a odnośnik `Zobacz kalendarz wydarzeń` przewija bieżącą stronę do pełnej listy;
+- ikony serca w sekcji `Nadchodzące wydarzenia` używają tej samej logiki `saved_events`, co przyciski zapisu na głównych kartach wydarzeń;
 - mapa w sidebarze ładuje się automatycznie dopiero po zbliżeniu panelu mapy do viewportu oraz po krótkim idle/delay, żeby pierwsze ładowanie strony nie pobierało od razu MapLibre, pinesek i kafelków mapowych; przycisk w placeholderze pozwala przyspieszyć ładowanie ręcznie;
 - mapa w sidebarze po załadowaniu jest osadzona bezpośrednio w dużym panelu, ma wewnętrzny margines i zaokrąglenie;
 - mapa na starcie używa zasięgu `Cała Polska`, obejmuje kadrem całą Polskę i pokazuje wydarzenia bez ograniczenia promieniem;
@@ -182,6 +183,7 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 - Ikony serca na kartach wydarzeń i przycisk na szczegółach zapisują stan w `saved_events`; lista konta pokazuje tylko wydarzenia nadal opublikowane, publiczne i nieanulowane.
 - Wylogowanie idzie przez `POST /auth/sign-out`.
 - Navbar posiada nowoczesny wygląd zintegrowany z portalem (efekt glassmorphism/rozmycia tła) i dynamicznym menu profilu dla zalogowanego użytkownika (wygodny dropdown z inicjałem, nazwą, adresem email, rolą, linkiem do panelu zarządzania oraz wylogowaniem).
+- Kliknięcie logo na stronie głównej wymusza powrót do czystego `/`, resetując aktywny stan filtrów, query string i kotwice.
 - Menu nawigacji jest dostosowane do urządzeń mobilnych (poniżej 1024px) – chowa się automatycznie i wysuwa za pomocą estetycznego przycisku hamburgera zmieniającego się w znak zamknięcia (X), blokując przewijanie strony pod spodem.
 - Navbar pokazuje „Moje konto i zapisane” kontom bez roli organizatora; organizator widzi jeden link do panelu organizatora.
 - Navbar nie pokazuje statycznego selektora lokalizacji, zeby nie sugerowac aktywnej lokalizacji uzytkownika.

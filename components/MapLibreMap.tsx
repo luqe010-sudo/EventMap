@@ -7,6 +7,7 @@ import type { MutableRefObject } from "react";
 import type { EventItem, EventMapMarker, KnownLocation } from "@/lib/events";
 import { eventPath } from "@/lib/slugs";
 import * as LucideIcons from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { createRoot } from "react-dom/client";
 import { flushSync } from "react-dom";
 
@@ -723,7 +724,7 @@ function getLucideIconSvgString(iconName: string): string {
   }
 
   const IconComponent = resolvedKey
-    ? (LucideIcons[resolvedKey as keyof typeof LucideIcons] as React.ComponentType<any>)
+    ? (LucideIcons[resolvedKey as keyof typeof LucideIcons] as LucideIcon)
     : LucideIcons.CircleHelp;
 
   const tempDiv = document.createElement("div");

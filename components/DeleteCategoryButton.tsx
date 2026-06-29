@@ -20,8 +20,8 @@ export default function DeleteCategoryButton({
       action={async () => {
         try {
           await deleteAction();
-        } catch (err: any) {
-          alert(err.message || "Wystąpił błąd podczas usuwania kategorii.");
+        } catch (err: unknown) {
+          alert(err instanceof Error ? err.message : "Wystąpił błąd podczas usuwania kategorii.");
         }
       }}
       onSubmit={onSubmit}

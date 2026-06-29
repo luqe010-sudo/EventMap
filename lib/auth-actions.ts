@@ -369,7 +369,10 @@ export async function signUpAction(formData: FormData): Promise<{ success: boole
     }
 
     return { success: true };
-  } catch (err: any) {
-    return { success: false, error: err.message || "Wystapil nieoczekiwany blad." };
+  } catch (err: unknown) {
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : "Wystapil nieoczekiwany blad."
+    };
   }
 }

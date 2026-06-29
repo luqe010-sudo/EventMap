@@ -68,16 +68,12 @@ export async function adminUpdateCategoryAction(categoryId: string, formData: Fo
   await requireAdmin();
   const supabase = await createSupabaseUserClient();
   const payload = buildCategoryPayload(formData);
-  console.log("adminUpdateCategoryAction - categoryId:", categoryId);
-  console.log("adminUpdateCategoryAction - payload:", payload);
 
   const { data, error } = await supabase
     .from("categories")
     .update(payload as CategoryUpdate)
     .eq("id", categoryId)
     .select();
-
-  console.log("adminUpdateCategoryAction - db result data:", data);
 
   if (error) {
     console.error("adminUpdateCategoryAction error:", error);

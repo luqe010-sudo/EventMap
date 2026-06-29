@@ -198,6 +198,14 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
     setTheme(nextTheme);
   }
 
+  function handleLogoClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    if (pathname !== "/") return;
+    event.preventDefault();
+    setMenuOpen(false);
+    setProfileOpen(false);
+    window.location.assign("/");
+  }
+
   const navLinks = [
     { href: "/", label: "Odkryj", icon: <IconDiscover /> },
     { href: "/#events-list", label: "Mapa", icon: <IconMap /> },
@@ -211,7 +219,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
         <div className="navbarInner">
         {/* ── Left: Logo ── */}
         <div className="navLeft">
-          <Link href="/" className="navLogo">
+          <Link href="/" className="navLogo" onClick={handleLogoClick}>
             <img src="/mapaimprez_logo.svg" alt="" className="brandLogoMark" aria-hidden="true" />
             <span className="brandLogoText">Mapa<span>Imprez.pl</span></span>
           </Link>

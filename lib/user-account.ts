@@ -26,6 +26,7 @@ export async function getUserAccountData(): Promise<UserAccountData> {
     supabase
       .from("saved_events")
       .select("event_id, created_at")
+      .eq("user_id", authData.user.id)
       .order("created_at", { ascending: false })
   ]);
 
@@ -64,6 +65,7 @@ export async function getEventSaveState(eventId: string) {
     const { data, error } = await supabase
       .from("saved_events")
       .select("event_id")
+      .eq("user_id", authData.user.id)
       .eq("event_id", eventId)
       .maybeSingle();
 
@@ -85,7 +87,8 @@ export async function getCurrentUserSavedEventIds() {
 
   const { data, error } = await supabase
     .from("saved_events")
-    .select("event_id");
+    .select("event_id")
+    .eq("user_id", authData.user.id);
   if (error) throw new Error(`Nie udalo sie pobrac zapisanych wydarzen: ${error.message}`);
 
   return {

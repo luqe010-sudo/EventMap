@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { type EventCategory, type CategoryOption } from "@/lib/events";
-import { MAX_PRICE_FILTER_LIMIT, type DateFilter, type PriceFilterMode } from "@/lib/filters";
+import { MAX_PRICE_FILTER_LIMIT, MAX_RADIUS_FILTER_LIMIT, type DateFilter, type PriceFilterMode } from "@/lib/filters";
 import CityAutocomplete from "@/components/CityAutocomplete";
 import type { KnownLocation } from "@/lib/events";
 import CategoryIcon from "@/components/CategoryIcon";
@@ -69,7 +69,7 @@ export default function SearchPanel({
   const [radiusInput, setRadiusInput] = useState(String(radiusKm));
   const [maxPriceInput, setMaxPriceInput] = useState(String(maxPrice));
   const priceProgress = (maxPrice / MAX_PRICE_FILTER_LIMIT) * 100;
-  const radiusProgress = ((radiusKm - 5) / (100 - 5)) * 100;
+  const radiusProgress = ((radiusKm - 5) / (MAX_RADIUS_FILTER_LIMIT - 5)) * 100;
 
   useEffect(() => {
     setRadiusInput(String(radiusKm));
@@ -186,7 +186,7 @@ export default function SearchPanel({
               className="searchSlider"
               aria-label="Promień wyszukiwania w kilometrach"
               min={5}
-              max={100}
+              max={MAX_RADIUS_FILTER_LIMIT}
               step={5}
               value={radiusKm}
               onChange={(e) => onRadiusChange(Number(e.target.value))}
@@ -211,7 +211,7 @@ export default function SearchPanel({
             </label>
             <div className="searchRadiusLabels">
               <span>5 km</span>
-              <span>100 km</span>
+              <span>{MAX_RADIUS_FILTER_LIMIT} km</span>
             </div>
           </div>
         </div>

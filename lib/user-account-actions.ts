@@ -96,6 +96,7 @@ export async function toggleSavedEventAction(
       const { error } = await supabase
         .from("saved_events")
         .delete()
+        .eq("user_id", authData.user.id)
         .eq("event_id", eventId);
       if (error) throw error;
     }

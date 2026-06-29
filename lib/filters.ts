@@ -7,6 +7,7 @@ export type PriceFilterMode = "all" | "free" | "max";
 
 export const DEFAULT_MAX_PRICE = 100;
 export const MAX_PRICE_FILTER_LIMIT = 500;
+export const MAX_RADIUS_FILTER_LIMIT = 200;
 
 export type EventFilters = {
   dateFilter: DateFilter;
@@ -226,7 +227,7 @@ function parseRadiusParam(value?: string) {
   if (!value) return undefined;
   const parsed = Number(value.replace(",", "."));
   if (!Number.isFinite(parsed)) return undefined;
-  return Math.min(Math.max(Math.round(parsed), 5), 100);
+  return Math.min(Math.max(Math.round(parsed), 5), MAX_RADIUS_FILTER_LIMIT);
 }
 
 function serializeCustomDateRangeParam(from?: string | null, to?: string | null) {

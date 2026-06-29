@@ -52,11 +52,6 @@ export default function CategoryEditorForm({
     <form 
       action={action} 
       className="managementForm"
-      onSubmit={(e) => {
-        const formData = new FormData(e.currentTarget);
-        console.log("CLIENT FORM SUBMIT - icon:", formData.get("icon"));
-        console.log("CLIENT FORM SUBMIT - all data:", Object.fromEntries(formData.entries()));
-      }}
     >
       <input type="hidden" name="icon" value={selectedIcon} readOnly />
 

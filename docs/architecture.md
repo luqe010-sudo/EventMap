@@ -12,6 +12,7 @@
 Konfiguracja projektu:
 
 - `package.json` definiuje skrypty `dev`, `build`, `start`, `lint`.
+- `eslint.config.mjs` konfiguruje ESLint CLI dla Next.js; `npm run lint` uruchamia `eslint .` i ignoruje katalogi robocze oraz wygenerowane typy bazy.
 - `next.config.ts` ustawia `reactStrictMode: true`.
 - `tsconfig.json` definiuje alias `@/*`.
 

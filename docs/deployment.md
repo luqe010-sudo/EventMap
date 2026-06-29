@@ -38,6 +38,8 @@ Lint:
 npm run lint
 ```
 
+Skrypt `lint` korzysta z ESLint CLI oraz konfiguracji `eslint.config.mjs`; nie uruchamia interaktywnego `next lint`.
+
 ## Zmienne środowiskowe
 
 Kod wymaga:

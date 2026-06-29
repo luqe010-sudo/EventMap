@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { PUBLIC_EVENTS_MAX_RESULTS, PUBLIC_EVENTS_PAGE_SIZE, type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type EventMapMarker, type KnownLocation, type PublicCategoryCount, type PublicEventSearchResult, getDefaultLocation, knownLocations } from "@/lib/events";
 import {
   DEFAULT_MAX_PRICE,
+  MAX_RADIUS_FILTER_LIMIT,
   clampMaxPrice,
   filterEvents,
   type DateFilter,
@@ -1310,7 +1311,7 @@ function clamp(value: number, min: number, max: number) {
 
 function clampRadius(value: number) {
   if (!Number.isFinite(value)) return 100;
-  return Math.min(Math.max(Math.round(value), 5), 100);
+  return Math.min(Math.max(Math.round(value), 5), MAX_RADIUS_FILTER_LIMIT);
 }
 
 function formatNumber(value: number) {

@@ -59,8 +59,8 @@ export default function RegisterPage() {
         setError(res.error || "Wystapil blad podczas rejestracji.");
         setPending(false);
       }
-    } catch (err: any) {
-      setError(err.message || "Wystapil nieznany blad podczas rejestracji.");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Wystapil nieznany blad podczas rejestracji.");
       setPending(false);
     }
   };
