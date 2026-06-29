@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { CalendarDays, List, Map, MapPin, X } from "lucide-react";
-import type { EventItem, KnownLocation } from "@/lib/events";
+import type { EventItem, EventMapMarker, KnownLocation } from "@/lib/events";
 import { formatPolishDate } from "@/lib/date-format";
 
 const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
@@ -13,7 +13,9 @@ const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
 type MobileMapViewProps = {
   active: boolean;
   parked?: boolean;
-  events: EventItem[];
+  events: EventMapMarker[];
+  selectedEvent: EventItem | null;
+  selectedEventLoading?: boolean;
   selectedEventId: string | null;
   location?: KnownLocation;
   onSelectEvent: (eventId: string) => void;
@@ -26,6 +28,8 @@ export default function MobileMapView({
   active,
   parked = false,
   events,
+  selectedEvent,
+  selectedEventLoading = false,
   selectedEventId,
   location,
   onSelectEvent,
@@ -33,7 +37,6 @@ export default function MobileMapView({
   onShowList,
   onOpenEvent
 }: MobileMapViewProps) {
-  const selectedEvent = events.find((event) => event.id === selectedEventId) ?? null;
   const selectedEventDescription = selectedEvent
     ? selectedEvent.short_description ?? selectedEvent.description
     : null;
@@ -72,7 +75,14 @@ export default function MobileMapView({
         </div>
       ) : null}
 
-      {selectedEvent ? (
+      {selectedEventLoading && selectedEventId ? (
+        <article className="mobileMapPreview mobileMapPreviewLoading" aria-label="Ładowanie wydarzenia">
+          <div className="mobileMapPreviewBody">
+            <span className="mobileMapPreviewCategory">Ładowanie</span>
+            <h2>Pobieram wydarzenie...</h2>
+          </div>
+        </article>
+      ) : selectedEvent ? (
         <article className="mobileMapPreview" aria-label={`Wybrane wydarzenie: ${selectedEvent.title}`}>
           <button
             type="button"

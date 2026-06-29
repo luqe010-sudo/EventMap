@@ -4,14 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import type { ExpressionSpecification, FilterSpecification } from "maplibre-gl";
 import type { MutableRefObject } from "react";
-import type { EventItem, KnownLocation } from "@/lib/events";
+import type { EventItem, EventMapMarker, KnownLocation } from "@/lib/events";
 import { eventPath } from "@/lib/slugs";
 import * as LucideIcons from "lucide-react";
 import { createRoot } from "react-dom/client";
 import { flushSync } from "react-dom";
 
 type MapLibreMapProps = {
-  events: EventItem[];
+  events: MapEvent[];
   selectedEventId?: string;
   focusedEventId?: string;
   location?: KnownLocation;
@@ -27,10 +27,12 @@ type EventFeatureProperties = {
   category: string;
   color: string;
   icon: string;
-  description: string;
-  imageUrl: string;
-  url: string;
+  description?: string;
+  imageUrl?: string;
+  url?: string;
 };
+
+type MapEvent = EventMapMarker | EventItem;
 
 const STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
 const EVENT_SOURCE_ID = "eventmap-events";
@@ -269,8 +271,8 @@ function bindEventLayerInteractions(
     });
   });
 
-  map.on("click", "event-pins", (event) => {
-    const feature = map.queryRenderedFeatures(event.point, { layers: ["event-pins"] })[0];
+  map.on("click", (event) => {
+    const feature = map.queryRenderedFeatures(event.point, { layers: ["event-pin-icons", "event-pins"] })[0];
     const geometry = feature?.geometry;
     if (!feature?.properties || !geometry || geometry.type !== "Point") return;
 
@@ -278,14 +280,20 @@ function bindEventLayerInteractions(
     onSelectEventRef.current(properties.id);
 
     if (showEventPopupRef.current) {
-      new maplibregl.Popup({ offset: 18 })
+      const popup = new maplibregl.Popup({ offset: 18 })
         .setLngLat(geometry.coordinates as [number, number])
         .setHTML(renderEventPopup(properties))
         .addTo(map);
+
+      if (!properties.imageUrl) {
+        void loadEventPopupProperties(properties.id).then((fullProperties) => {
+          if (fullProperties) popup.setHTML(renderEventPopup(fullProperties));
+        });
+      }
     }
   });
 
-  ["event-clusters", "event-pins"].forEach((layerId) => {
+  ["event-clusters", "event-pins", "event-pin-icons"].forEach((layerId) => {
     map.on("mouseenter", layerId, () => {
       map.getCanvas().style.cursor = "pointer";
     });
@@ -295,7 +303,7 @@ function bindEventLayerInteractions(
   });
 }
 
-function buildEventFeatureCollection(events: EventItem[]): GeoJSON.FeatureCollection<GeoJSON.Point, EventFeatureProperties> {
+function buildEventFeatureCollection(events: MapEvent[]): GeoJSON.FeatureCollection<GeoJSON.Point, EventFeatureProperties> {
   const positionedEvents = spreadOverlappingEventCoordinates(events.filter(hasCoordinates));
 
   return {
@@ -312,17 +320,17 @@ function buildEventFeatureCollection(events: EventItem[]): GeoJSON.FeatureCollec
         address: event.address,
         category: event.category,
         color: event.categoryColor,
-        icon: event.categoryRelation?.icon || "CircleHelp",
-        description: event.short_description ?? event.description ?? "",
-        imageUrl: event.imageUrl,
-        url: eventPath(event)
+        icon: getMapEventIcon(event),
+        description: "short_description" in event ? event.short_description ?? event.description ?? "" : undefined,
+        imageUrl: "imageUrl" in event ? event.imageUrl : undefined,
+        url: getMapEventUrl(event)
       }
     }))
   };
 }
 
-function spreadOverlappingEventCoordinates(events: Array<EventItem & { latitude: number; longitude: number }>) {
-  const groups = new Map<string, Array<EventItem & { latitude: number; longitude: number }>>();
+function spreadOverlappingEventCoordinates(events: Array<MapEvent & { latitude: number; longitude: number }>) {
+  const groups = new Map<string, Array<MapEvent & { latitude: number; longitude: number }>>();
 
   for (const event of events) {
     const key = `${event.latitude.toFixed(5)}:${event.longitude.toFixed(5)}`;
@@ -380,7 +388,7 @@ function updateLocationMarker(
   markerRef.current.setLngLat([location.longitude, location.latitude]).addTo(map);
 }
 
-function fitMapToPoints(map: maplibregl.Map, location: KnownLocation | undefined, events: EventItem[]) {
+function fitMapToPoints(map: maplibregl.Map, location: KnownLocation | undefined, events: MapEvent[]) {
   if (!location) {
     fitMapToPoland(map);
     return;
@@ -412,7 +420,7 @@ function fitMapToPoland(map: maplibregl.Map) {
   map.fitBounds(POLAND_BOUNDS, { padding: 18, duration: 500 });
 }
 
-function focusMapOnEvent(map: maplibregl.Map, events: EventItem[], eventId: string) {
+function focusMapOnEvent(map: maplibregl.Map, events: MapEvent[], eventId: string) {
   const feature = buildEventFeatureCollection(events).features.find(
     (item) => item.properties.id === eventId
   );
@@ -676,9 +684,9 @@ function adminLevelFilter(adminLevel: string): FilterSpecification {
   return ["==", ["to-string", ["get", "admin_level"]], adminLevel];
 }
 
-async function addCategoryImages(map: maplibregl.Map, events: EventItem[]) {
+async function addCategoryImages(map: maplibregl.Map, events: MapEvent[]) {
   const uniqueIcons = Array.from(
-    new Set(events.map((e) => e.categoryRelation?.icon || "CircleHelp"))
+    new Set(events.map(getMapEventIcon))
   );
 
   await Promise.all(
@@ -731,7 +739,10 @@ function getLucideIconSvgString(iconName: string): string {
     );
   });
   
-  const svgHtml = tempDiv.querySelector("svg")?.outerHTML || "";
+  const svgHtml = (tempDiv.querySelector("svg")?.outerHTML || "")
+    .replace(/currentColor/g, "#ffffff")
+    .replace(/stroke="[^"]*"/g, 'stroke="#ffffff"')
+    .replace(/color="[^"]*"/g, 'color="#ffffff"');
   root.unmount();
   return svgHtml;
 }
@@ -839,8 +850,19 @@ function shouldLocalizeLayer(layerId: string, textField: unknown) {
   return field.includes("name") || id.includes("label") || id.includes("place") || id.includes("poi");
 }
 
-function hasCoordinates(event: EventItem): event is EventItem & { latitude: number; longitude: number } {
+function hasCoordinates(event: MapEvent): event is MapEvent & { latitude: number; longitude: number } {
   return event.latitude != null && event.longitude != null;
+}
+
+function getMapEventIcon(event: MapEvent) {
+  return "categoryIcon" in event
+    ? event.categoryIcon || "CircleHelp"
+    : event.categoryRelation?.icon || "CircleHelp";
+}
+
+function getMapEventUrl(event: MapEvent) {
+  if ("imageUrl" in event) return eventPath(event);
+  return `/${event.categorySlug}/${event.citySlug}/${event.slug}`.toLowerCase();
 }
 
 
@@ -858,17 +880,17 @@ function escapeHtml(value: string) {
 }
 
 function renderEventPopup(properties: EventFeatureProperties) {
-  const url = escapeHtml(properties.url);
+  const url = escapeHtml(properties.url ?? "#");
   const title = escapeHtml(properties.title);
   const address = escapeHtml(properties.address);
-  const imageUrl = escapeHtml(properties.imageUrl);
-  const description = truncateText(properties.description, 130);
+  const imageUrl = properties.imageUrl ? escapeHtml(properties.imageUrl) : "";
+  const description = properties.description ? truncateText(properties.description, 130) : "";
 
   return `
     <article class="mapEventPopup">
-      <a class="mapEventPopupImageLink" href="${url}" aria-label="${title}">
+      ${imageUrl ? `<a class="mapEventPopupImageLink" href="${url}" aria-label="${title}">
         <img class="mapEventPopupImage" src="${imageUrl}" alt="" loading="lazy" />
-      </a>
+      </a>` : ""}
       <div class="mapEventPopupBody">
         <a class="mapEventPopupTitle" href="${url}">${title}</a>
         <p class="mapEventPopupAddress">${address}</p>
@@ -876,6 +898,34 @@ function renderEventPopup(properties: EventFeatureProperties) {
       </div>
     </article>
   `;
+}
+
+async function loadEventPopupProperties(eventId: string): Promise<EventFeatureProperties | null> {
+  try {
+    const response = await fetch(`/api/events/${encodeURIComponent(eventId)}`, {
+      cache: "no-store"
+    });
+    if (!response.ok) return null;
+    const { event } = (await response.json()) as { event?: EventItem };
+    return event ? eventToFeatureProperties(event) : null;
+  } catch (error) {
+    console.error("[map] Failed to load event popup details", error);
+    return null;
+  }
+}
+
+function eventToFeatureProperties(event: EventItem): EventFeatureProperties {
+  return {
+    id: event.id,
+    title: event.title,
+    address: event.address,
+    category: event.category,
+    color: event.categoryColor,
+    icon: event.categoryRelation?.icon || "CircleHelp",
+    description: event.short_description ?? event.description ?? "",
+    imageUrl: event.imageUrl,
+    url: eventPath(event)
+  };
 }
 
 function truncateText(value: string, maxLength: number) {

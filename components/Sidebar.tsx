@@ -3,8 +3,8 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { MapPinned } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { type EventCategory, type EventItem, type KnownLocation } from "@/lib/events";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { type EventCategory, type EventItem, type EventMapMarker, type KnownLocation } from "@/lib/events";
 import { formatPolishDate } from "@/lib/date-format";
 import { eventPath } from "@/lib/slugs";
 
@@ -22,6 +22,7 @@ type WindowWithIdleCallback = Window & {
 
 type SidebarProps = {
   events: Array<{ event: EventItem; distanceKm: number }>;
+  mapEvents: EventMapMarker[];
   categoryCounts: Array<{ category: EventCategory; count: number; color?: string | null }>;
   onCategorySelect: (category: EventCategory | "Wszystkie") => void;
   selectedCategory: EventCategory | "Wszystkie";
@@ -31,6 +32,7 @@ type SidebarProps = {
 
 export default function Sidebar({
   events,
+  mapEvents,
   categoryCounts,
   onCategorySelect,
   selectedCategory,
@@ -40,7 +42,6 @@ export default function Sidebar({
   const [mapLoadState, setMapLoadState] = useState<MapLoadState>("waiting");
   const mapWrapRef = useRef<HTMLDivElement | null>(null);
   const loadScheduledRef = useRef(false);
-  const mapEvents = useMemo(() => events.map(({ event }) => event), [events]);
   const isMapLoaded = mapLoadState === "loaded";
 
   const loadMapNow = useCallback(() => {

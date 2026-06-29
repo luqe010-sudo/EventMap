@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { List as ListIcon, Map as MapIcon, CalendarDays } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { PUBLIC_EVENTS_MAX_RESULTS, PUBLIC_EVENTS_PAGE_SIZE, type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type KnownLocation, type PublicEventSearchResult, getDefaultLocation, knownLocations } from "@/lib/events";
+import { PUBLIC_EVENTS_MAX_RESULTS, PUBLIC_EVENTS_PAGE_SIZE, type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type EventMapMarker, type KnownLocation, type PublicCategoryCount, type PublicEventSearchResult, getDefaultLocation, knownLocations } from "@/lib/events";
 import {
   DEFAULT_MAX_PRICE,
   clampMaxPrice,
@@ -69,6 +69,10 @@ export default function HomePage({
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [openedEventId, setOpenedEventId] = useState<string | null>(null);
   const [events, setEvents] = useState(initialEvents);
+  const [mapEvents, setMapEvents] = useState<EventMapMarker[]>(() => initialEvents.map(mapEventToMarker));
+  const [selectedMapEvent, setSelectedMapEvent] = useState<EventItem | null>(null);
+  const [selectedMapEventLoading, setSelectedMapEventLoading] = useState(false);
+  const [categoryCounts, setCategoryCounts] = useState<PublicCategoryCount[]>(() => buildCategoryCounts(initialEvents, categoryOptions));
   const [eventSearch, setEventSearch] = useState<PublicEventSearchResult>(
     initialEventSearch ?? {
       events: initialEvents,
@@ -104,6 +108,9 @@ export default function HomePage({
   const dragSettleTimerRef = useRef<number | null>(null);
   const suppressClickRef = useRef(false);
   const searchRequestRef = useRef(0);
+  const markerRequestRef = useRef(0);
+  const categoryCountsRequestRef = useRef(0);
+  const mapEventRequestRef = useRef(0);
   const hasSkippedInitialSearchRef = useRef(false);
 
   // Filter state
@@ -218,22 +225,6 @@ export default function HomePage({
     [events, location]
   );
 
-  // Category counts
-  const categoryCounts = useMemo(() => {
-    const counts = new Map<EventCategory, number>();
-    for (const { event } of filteredEvents) {
-      counts.set(event.category, (counts.get(event.category) || 0) + 1);
-    }
-    return categoryOptions
-      .filter((item) => counts.has(item.name))
-      .map((item) => ({
-        category: item.name,
-        count: counts.get(item.name)!,
-        color: item.color
-      }))
-      .sort((a, b) => b.count - a.count);
-  }, [categoryOptions, filteredEvents]);
-
   const visibleEvents = filteredEvents;
   const shownEventsCount = Math.min(eventSearch.shownCount, eventSearch.maxResults);
   const cappedTotalCount = Math.min(eventSearch.totalCount, eventSearch.maxResults);
@@ -244,7 +235,7 @@ export default function HomePage({
   );
 
   const openedEvent = openedEventId
-    ? eventById.get(openedEventId) ?? null
+    ? eventById.get(openedEventId) ?? (selectedMapEvent?.id === openedEventId ? selectedMapEvent : null)
     : null;
 
   const openedEventRelated = useMemo(() => {
@@ -257,18 +248,20 @@ export default function HomePage({
   useEffect(() => {
     if (
       selectedEventId &&
-      !filteredEvents.some(({ event }) => event.id === selectedEventId)
+      !mapEvents.some((event) => event.id === selectedEventId)
     ) {
       setSelectedEventId(null);
+      setSelectedMapEvent(null);
+      setSelectedMapEventLoading(false);
     }
-  }, [filteredEvents, selectedEventId]);
+  }, [mapEvents, selectedEventId]);
 
   useEffect(() => {
-    if (openedEventId && !eventById.has(openedEventId)) {
+    if (openedEventId && !eventById.has(openedEventId) && selectedMapEvent?.id !== openedEventId) {
       setOpenedEventId(null);
       if (viewMode === "event") setViewMode("list");
     }
-  }, [eventById, openedEventId, viewMode]);
+  }, [eventById, openedEventId, selectedMapEvent, viewMode]);
 
   useEffect(() => {
     if (!openedEventId) return;
@@ -493,6 +486,13 @@ export default function HomePage({
     return params;
   }, [category, customDate, dateFilter, isAllPoland, isKnownCity, location, maxPrice, priceMode, radiusKm]);
 
+  const currentMarkerApiParams = useCallback(() => {
+    const params = currentEventsApiParams(1);
+    params.delete("page");
+    params.delete("pageSize");
+    return params;
+  }, [currentEventsApiParams]);
+
   const eventsSearchKey = useMemo(
     () => currentEventsApiParams(1).toString(),
     [currentEventsApiParams]
@@ -533,6 +533,69 @@ export default function HomePage({
     }
   }, [currentEventsApiParams]);
 
+  const loadMapMarkers = useCallback(async () => {
+    const requestId = markerRequestRef.current + 1;
+    markerRequestRef.current = requestId;
+
+    try {
+      const response = await fetch(`/api/events/markers?${currentMarkerApiParams().toString()}`, {
+        cache: "no-store"
+      });
+      if (!response.ok) throw new Error("Event markers request failed");
+      const result = (await response.json()) as { markers: EventMapMarker[] };
+      if (markerRequestRef.current !== requestId) return;
+      setMapEvents(result.markers);
+    } catch (error) {
+      console.error("[home] Failed to load event markers", error);
+    }
+  }, [currentMarkerApiParams]);
+
+  const loadCategoryCounts = useCallback(async () => {
+    const requestId = categoryCountsRequestRef.current + 1;
+    categoryCountsRequestRef.current = requestId;
+
+    try {
+      const response = await fetch(`/api/events/category-counts?${currentMarkerApiParams().toString()}`, {
+        cache: "no-store"
+      });
+      if (!response.ok) throw new Error("Event category counts request failed");
+      const result = (await response.json()) as { categoryCounts: PublicCategoryCount[] };
+      if (categoryCountsRequestRef.current !== requestId) return;
+      setCategoryCounts(result.categoryCounts);
+    } catch (error) {
+      console.error("[home] Failed to load category counts", error);
+    }
+  }, [currentMarkerApiParams]);
+
+  const loadMapEventDetail = useCallback(async (eventId: string) => {
+    const loadedEvent = eventById.get(eventId);
+    if (loadedEvent) {
+      setSelectedMapEvent(loadedEvent);
+      setSelectedMapEventLoading(false);
+      return;
+    }
+
+    const requestId = mapEventRequestRef.current + 1;
+    mapEventRequestRef.current = requestId;
+    setSelectedMapEvent(null);
+    setSelectedMapEventLoading(true);
+
+    try {
+      const response = await fetch(`/api/events/${encodeURIComponent(eventId)}`, {
+        cache: "no-store"
+      });
+      if (!response.ok) throw new Error("Event detail request failed");
+      const result = (await response.json()) as { event: EventItem };
+      if (mapEventRequestRef.current !== requestId) return;
+      setSelectedMapEvent(result.event);
+    } catch (error) {
+      console.error("[home] Failed to load map event detail", error);
+      if (mapEventRequestRef.current === requestId) setSelectedMapEvent(null);
+    } finally {
+      if (mapEventRequestRef.current === requestId) setSelectedMapEventLoading(false);
+    }
+  }, [eventById]);
+
   useEffect(() => {
     if (viewMode === "event") return;
 
@@ -555,11 +618,15 @@ export default function HomePage({
   useEffect(() => {
     if (!hasSkippedInitialSearchRef.current) {
       hasSkippedInitialSearchRef.current = true;
+      void loadMapMarkers();
+      void loadCategoryCounts();
       return;
     }
 
     void loadEventsPage(1, "replace");
-  }, [eventsSearchKey, loadEventsPage]);
+    void loadMapMarkers();
+    void loadCategoryCounts();
+  }, [eventsSearchKey, loadCategoryCounts, loadEventsPage, loadMapMarkers]);
 
   const handleFindSubmit = useCallback(() => {
     const url = currentSearchUrl();
@@ -596,13 +663,24 @@ export default function HomePage({
     );
   }, [currentSearchUrl, openedEventId]);
 
+  const selectMapEvent = useCallback((eventId: string) => {
+    setSelectedEventId(eventId);
+    void loadMapEventDetail(eventId);
+  }, [loadMapEventDetail]);
+
+  const clearMapSelection = useCallback(() => {
+    setSelectedEventId(null);
+    setSelectedMapEvent(null);
+    setSelectedMapEventLoading(false);
+  }, []);
+
   const showMobileMap = useCallback((eventId?: string) => {
     listScrollPositionRef.current = window.scrollY;
-    if (eventId) setSelectedEventId(eventId);
+    if (eventId) selectMapEvent(eventId);
     if (viewMode === "event") pushWorkspaceHistory("map");
     setHasOpenedMap(true);
     window.requestAnimationFrame(() => setViewMode("map"));
-  }, [pushWorkspaceHistory, viewMode]);
+  }, [pushWorkspaceHistory, selectMapEvent, viewMode]);
 
   const showMobileList = useCallback(() => {
     if (viewMode === "event") pushWorkspaceHistory("list");
@@ -613,7 +691,7 @@ export default function HomePage({
   }, [pushWorkspaceHistory, viewMode]);
 
   const openMobileEvent = useCallback((eventId: string) => {
-    const event = eventById.get(eventId);
+    const event = eventById.get(eventId) ?? (selectedMapEvent?.id === eventId ? selectedMapEvent : null);
     if (!event) return;
 
     const workspaceUrl = workspaceUrlRef.current || currentSearchUrl();
@@ -634,7 +712,7 @@ export default function HomePage({
       "",
       eventPath(event)
     );
-  }, [currentSearchUrl, eventById]);
+  }, [currentSearchUrl, eventById, selectedMapEvent]);
 
   const showOpenedEvent = useCallback(() => {
     if (!openedEvent) return;
@@ -1117,6 +1195,7 @@ export default function HomePage({
 
         <Sidebar
           events={filteredEvents}
+          mapEvents={mapEvents}
           categoryCounts={categoryCounts}
           onCategorySelect={setCategory}
           selectedCategory={category}
@@ -1131,11 +1210,13 @@ export default function HomePage({
         <MobileMapView
           active={viewMode === "map"}
           parked={viewMode === "event"}
-          events={filteredEvents.map(({ event }) => event)}
+          events={mapEvents}
+          selectedEvent={selectedMapEvent}
+          selectedEventLoading={selectedMapEventLoading}
           selectedEventId={selectedEventId}
           location={isAllPoland ? undefined : location}
-          onSelectEvent={setSelectedEventId}
-          onClearSelection={() => setSelectedEventId(null)}
+          onSelectEvent={selectMapEvent}
+          onClearSelection={clearMapSelection}
           onShowList={showMobileList}
           onOpenEvent={openMobileEvent}
         />
@@ -1234,6 +1315,40 @@ function clampRadius(value: number) {
 
 function formatNumber(value: number) {
   return new Intl.NumberFormat("pl-PL").format(value);
+}
+
+function mapEventToMarker(event: EventItem): EventMapMarker {
+  return {
+    id: event.id,
+    title: event.title,
+    slug: event.slug,
+    startDate: event.startDate,
+    address: event.address,
+    city: event.city,
+    citySlug: event.citySlug,
+    latitude: event.latitude,
+    longitude: event.longitude,
+    category: event.category,
+    categorySlug: event.categorySlug,
+    categoryColor: event.categoryColor,
+    categoryIcon: event.categoryRelation?.icon ?? null
+  };
+}
+
+function buildCategoryCounts(events: EventItem[], categoryOptions: CategoryOption[]): PublicCategoryCount[] {
+  const counts = new Map<EventCategory, number>();
+  for (const event of events) {
+    counts.set(event.category, (counts.get(event.category) || 0) + 1);
+  }
+
+  return categoryOptions
+    .filter((item) => counts.has(item.name))
+    .map((item) => ({
+      category: item.name,
+      count: counts.get(item.name)!,
+      color: item.color
+    }))
+    .sort((a, b) => b.count - a.count);
 }
 
 function getPublicLocationLabel(label: string) {

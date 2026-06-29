@@ -142,6 +142,28 @@ export type PublicEventSearchResult = {
   hasMore: boolean;
 };
 
+export type EventMapMarker = {
+  id: string;
+  title: string;
+  slug: string;
+  startDate: string;
+  address: string;
+  city: string;
+  citySlug: string;
+  latitude: number | null;
+  longitude: number | null;
+  category: EventCategory;
+  categorySlug: string;
+  categoryColor: string;
+  categoryIcon: string | null;
+};
+
+export type PublicCategoryCount = {
+  category: EventCategory;
+  count: number;
+  color?: string | null;
+};
+
 type SupabaseEventRecord = EventRow & {
   category: Pick<CategoryRow, "id" | "name" | "slug" | "icon" | "color"> | null;
   location: Pick<
@@ -172,10 +194,22 @@ type CategoryCityEventRecord = Pick<EventRow, "published_at" | "start_at" | "upd
   }) | null;
 };
 
+type SupabaseEventMarkerRecord = Pick<EventRow, "id" | "title" | "slug" | "start_at"> & {
+  category: Pick<CategoryRow, "name" | "slug" | "icon" | "color"> | null;
+  location: (Pick<LocationRow, "name" | "address" | "city_id" | "latitude" | "longitude"> & {
+    city: Pick<CityRow, "name" | "slug"> | null;
+  }) | null;
+};
+
+type SupabaseEventCategoryRecord = {
+  category: Pick<CategoryRow, "name" | "color"> | null;
+};
+
 const FALLBACK_IMAGE = "/background.png";
 const DEFAULT_CATEGORY_COLOR = "#64748b";
 export const PUBLIC_EVENTS_PAGE_SIZE = 20;
 export const PUBLIC_EVENTS_MAX_RESULTS = 300;
+export const PUBLIC_EVENT_MARKER_LIMIT = 10000;
 
 const EVENT_SELECT = `
   id,
@@ -227,6 +261,33 @@ const EVENT_SELECT_WITH_INNER_LOCATION = `
   location:locations!inner(name, address, city_id, municipality, county, voivodeship, latitude, longitude, google_maps_url, city:cities(id, name, slug, latitude, longitude, county, voivodeship, is_active)),
   organizer:organizers!events_organizer_id_fkey(name, slug, website, facebook_url, phone, email, logo_url, type, is_verified),
   sources:event_sources(source_name, source_url, source_type, last_seen_at)
+`;
+
+const EVENT_MARKER_SELECT = `
+  id,
+  title,
+  slug,
+  start_at,
+  category:categories(name, slug, icon, color),
+  location:locations(name, address, city_id, latitude, longitude, city:cities(name, slug))
+`;
+
+const EVENT_MARKER_SELECT_WITH_INNER_LOCATION = `
+  id,
+  title,
+  slug,
+  start_at,
+  category:categories(name, slug, icon, color),
+  location:locations!inner(name, address, city_id, latitude, longitude, city:cities(name, slug))
+`;
+
+const EVENT_CATEGORY_COUNT_SELECT = `
+  category:categories(name, color)
+`;
+
+const EVENT_CATEGORY_COUNT_SELECT_WITH_INNER_LOCATION = `
+  category:categories(name, color),
+  location:locations!inner(city_id)
 `;
 
 export const categories: EventCategory[] = [
@@ -382,6 +443,133 @@ export async function searchPublicEvents(options: PublicEventSearchOptions = {})
     shownCount,
     hasMore: shownCount < cappedTotal
   };
+}
+
+export async function searchPublicEventMarkers(options: PublicEventSearchOptions = {}): Promise<EventMapMarker[]> {
+  const supabase = createSupabaseServerClient();
+  const markerLimit = Math.min(Math.max(Math.floor(options.maxResults ?? PUBLIC_EVENT_MARKER_LIMIT), 1), PUBLIC_EVENT_MARKER_LIMIT);
+  const [categoryId, cityId, locationIds] = await Promise.all([
+    resolveCategoryId(options.categoryId, options.categorySlug),
+    resolveCityId(options.cityId, options.citySlug),
+    resolveLocationIdsForRadius(options)
+  ]);
+
+  if ((options.categoryId || options.categorySlug) && !categoryId) return [];
+  if ((options.cityId || options.citySlug) && !cityId) return [];
+  if (locationIds && locationIds.length === 0) return [];
+
+  const dateRange = getPublicSearchDateRange(options);
+  let query = supabase
+    .from("events")
+    .select(cityId ? EVENT_MARKER_SELECT_WITH_INNER_LOCATION : EVENT_MARKER_SELECT)
+    .eq("status", "published")
+    .eq("visibility", "public")
+    .not("location_id", "is", null)
+    .order("start_at", { ascending: true })
+    .limit(markerLimit);
+
+  if (!options.includeCancelled) {
+    query = query.or("is_cancelled.is.null,is_cancelled.eq.false");
+  }
+
+  if (dateRange.dateFrom) {
+    query = query.gte("start_at", dateRange.dateFrom);
+  }
+
+  if (dateRange.dateTo) {
+    query = query.lt("start_at", dateRange.dateTo);
+  }
+
+  if (categoryId) {
+    query = query.eq("category_id", categoryId);
+  }
+
+  if (cityId) {
+    query = query.eq("location.city_id", cityId);
+  }
+
+  if (locationIds) {
+    query = query.in("location_id", locationIds);
+  }
+
+  if (options.featuredOnly) {
+    query = query.eq("is_featured", true);
+  }
+
+  query = applyPublicPriceFilters(query, options);
+
+  const { data, error } = await query.returns<SupabaseEventMarkerRecord[]>();
+  if (error) throw new Error(`Nie udalo sie pobrac pinezek wydarzen: ${error.message}`);
+
+  return (data ?? []).map(mapEventMarkerRecord).filter(hasMarkerCoordinates);
+}
+
+export async function searchPublicEventCategoryCounts(options: PublicEventSearchOptions = {}): Promise<PublicCategoryCount[]> {
+  const supabase = createSupabaseServerClient();
+  const [categoryId, cityId, locationIds] = await Promise.all([
+    resolveCategoryId(options.categoryId, options.categorySlug),
+    resolveCityId(options.cityId, options.citySlug),
+    resolveLocationIdsForRadius(options)
+  ]);
+
+  if ((options.categoryId || options.categorySlug) && !categoryId) return [];
+  if ((options.cityId || options.citySlug) && !cityId) return [];
+  if (locationIds && locationIds.length === 0) return [];
+
+  const dateRange = getPublicSearchDateRange(options);
+  let query = supabase
+    .from("events")
+    .select(cityId ? EVENT_CATEGORY_COUNT_SELECT_WITH_INNER_LOCATION : EVENT_CATEGORY_COUNT_SELECT)
+    .eq("status", "published")
+    .eq("visibility", "public")
+    .order("start_at", { ascending: true })
+    .limit(PUBLIC_EVENT_MARKER_LIMIT);
+
+  if (!options.includeCancelled) {
+    query = query.or("is_cancelled.is.null,is_cancelled.eq.false");
+  }
+
+  if (dateRange.dateFrom) {
+    query = query.gte("start_at", dateRange.dateFrom);
+  }
+
+  if (dateRange.dateTo) {
+    query = query.lt("start_at", dateRange.dateTo);
+  }
+
+  if (categoryId) {
+    query = query.eq("category_id", categoryId);
+  }
+
+  if (cityId) {
+    query = query.eq("location.city_id", cityId);
+  }
+
+  if (locationIds) {
+    query = query.in("location_id", locationIds);
+  }
+
+  query = applyPublicPriceFilters(query, options);
+
+  const { data, error } = await query.returns<SupabaseEventCategoryRecord[]>();
+  if (error) throw new Error(`Nie udalo sie policzyc kategorii wydarzen: ${error.message}`);
+
+  const counts = new Map<EventCategory, PublicCategoryCount>();
+  for (const record of data ?? []) {
+    const category = toPluralCategoryName(record.category?.name ?? "Inne");
+    const existing = counts.get(category);
+    if (existing) {
+      existing.count += 1;
+    } else {
+      counts.set(category, {
+        category,
+        count: 1,
+        color: record.category?.color ?? categoryColors[category] ?? DEFAULT_CATEGORY_COLOR
+      });
+    }
+  }
+
+  return Array.from(counts.values()).sort((first, second) => second.count - first.count);
 }
 
 export async function listPublicEventsByIds(eventIds: string[]): Promise<EventItem[]> {
@@ -927,6 +1115,35 @@ function mapEventRecord(record: SupabaseEventRecord): EventItem {
     sourceType: "supabase",
     isFeatured: Boolean(record.is_featured)
   };
+}
+
+function mapEventMarkerRecord(record: SupabaseEventMarkerRecord): EventMapMarker {
+  const categoryName = toPluralCategoryName(record.category?.name ?? "Inne");
+  const categorySlug = toPluralCategorySlug(record.category?.slug ?? createSlug(categoryName));
+  const locationName = record.location?.name ?? "";
+  const city = record.location?.city?.name ?? "";
+  const citySlug = record.location?.city?.slug ?? createSlug(city || "polska");
+  const address = [locationName, record.location?.address, city].filter(Boolean).join(", ");
+
+  return {
+    id: record.id,
+    title: record.title,
+    slug: record.slug,
+    startDate: record.start_at,
+    address,
+    city,
+    citySlug,
+    latitude: record.location?.latitude ?? null,
+    longitude: record.location?.longitude ?? null,
+    category: categoryName,
+    categorySlug,
+    categoryColor: getCategoryColor(categoryName, record.category?.color),
+    categoryIcon: record.category?.icon ?? null
+  };
+}
+
+function hasMarkerCoordinates(marker: EventMapMarker): marker is EventMapMarker & { latitude: number; longitude: number } {
+  return marker.latitude != null && marker.longitude != null;
 }
 
 function formatPrice(event: Pick<EventRow, "price_type" | "price_min" | "price_max" | "currency">) {
