@@ -903,9 +903,7 @@ function renderEventPopup(properties: EventFeatureProperties) {
 
 async function loadEventPopupProperties(eventId: string): Promise<EventFeatureProperties | null> {
   try {
-    const response = await fetch(`/api/events/${encodeURIComponent(eventId)}`, {
-      cache: "no-store"
-    });
+    const response = await fetch(`/api/events/${encodeURIComponent(eventId)}`);
     if (!response.ok) return null;
     const { event } = (await response.json()) as { event?: EventItem };
     return event ? eventToFeatureProperties(event) : null;

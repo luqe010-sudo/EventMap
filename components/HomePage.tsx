@@ -507,9 +507,7 @@ export default function HomePage({
     else setEventsLoading(true);
 
     try {
-      const response = await fetch(`/api/events/search?${currentEventsApiParams(page).toString()}`, {
-        cache: "no-store"
-      });
+      const response = await fetch(`/api/events/search?${currentEventsApiParams(page).toString()}`);
       if (!response.ok) throw new Error("Events search request failed");
       const result = (await response.json()) as PublicEventSearchResult;
       if (searchRequestRef.current !== requestId) return;
@@ -539,9 +537,7 @@ export default function HomePage({
     markerRequestRef.current = requestId;
 
     try {
-      const response = await fetch(`/api/events/markers?${currentMarkerApiParams().toString()}`, {
-        cache: "no-store"
-      });
+      const response = await fetch(`/api/events/markers?${currentMarkerApiParams().toString()}`);
       if (!response.ok) throw new Error("Event markers request failed");
       const result = (await response.json()) as { markers: EventMapMarker[] };
       if (markerRequestRef.current !== requestId) return;
@@ -556,9 +552,7 @@ export default function HomePage({
     categoryCountsRequestRef.current = requestId;
 
     try {
-      const response = await fetch(`/api/events/category-counts?${currentMarkerApiParams().toString()}`, {
-        cache: "no-store"
-      });
+      const response = await fetch(`/api/events/category-counts?${currentMarkerApiParams().toString()}`);
       if (!response.ok) throw new Error("Event category counts request failed");
       const result = (await response.json()) as { categoryCounts: PublicCategoryCount[] };
       if (categoryCountsRequestRef.current !== requestId) return;
@@ -582,9 +576,7 @@ export default function HomePage({
     setSelectedMapEventLoading(true);
 
     try {
-      const response = await fetch(`/api/events/${encodeURIComponent(eventId)}`, {
-        cache: "no-store"
-      });
+      const response = await fetch(`/api/events/${encodeURIComponent(eventId)}`);
       if (!response.ok) throw new Error("Event detail request failed");
       const result = (await response.json()) as { event: EventItem };
       if (mapEventRequestRef.current !== requestId) return;

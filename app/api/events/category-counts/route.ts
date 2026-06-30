@@ -2,7 +2,11 @@ import { NextResponse, type NextRequest } from "next/server";
 import { searchPublicEventCategoryCounts } from "@/lib/events";
 import { parsePublicFilterParams } from "@/lib/filters";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
+
+const PUBLIC_CACHE_HEADERS = {
+  "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600"
+};
 
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
@@ -23,7 +27,7 @@ export async function GET(request: NextRequest) {
       maxPrice: filters.maxPrice
     });
 
-    return NextResponse.json({ categoryCounts });
+    return NextResponse.json({ categoryCounts }, { headers: PUBLIC_CACHE_HEADERS });
   } catch (error) {
     console.error("[events-category-counts] Failed to load category counts", error);
     return NextResponse.json(

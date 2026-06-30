@@ -104,6 +104,8 @@ Zapytania Supabase są wydzielone poza UI:
 
 Globalny middleware nie jest obecnie używany. Ścieżki wymagające sesji korzystają z `createSupabaseUserClient()` bezpośrednio w server components, server actions i route handlers.
 
+Globalny navbar nie czyta sesji w server component root layoutu. Publiczny HTML renderuje stan niezalogowany, a prywatny stan profilu jest pobierany po stronie klienta przez `GET /api/account/navbar` z nagłówkiem `private, no-store`. Dzięki temu publiczne strony nie stają się dynamiczne tylko przez cookies użytkownika.
+
 ## Upload obrazów
 
 Formularze wydarzeń w panelu admina i organizatora przyjmują plik `main_image_file` albo ręczny `main_image_url`. Jeśli użytkownik wybierze plik, `buildEventWritePayload()` wysyła go do Cloudinary przez `uploadEventImageToCloudinary()` i zapisuje zwrócony `secure_url` w `events.main_image_url`.
@@ -128,6 +130,8 @@ Geokodowanie odbywa się po stronie klienta; API Nominatim nie wymaga klucza, al
 6. `FeaturedEvents` pokazuje wyróżnione wydarzenia w lewej kolumnie, a `Sidebar` pokazuje mapę dla aktualnie przefiltrowanych wydarzeń.
 
 W widokach `/kategoria/[slug]` i `/wydarzenia/[city]` początkowy zestaw danych też jest pobierany na serwerze, a dalsze filtrowanie robi client component `EventExplorer`.
+
+Publiczne strony SEO mają ustawiony ISR tam, gdzie nie zależą od prywatnej sesji użytkownika. Szczegół wydarzenia `/[category]/[city]/[event]` i pojedynczy segment `/{category}` są statyczne z `revalidate = 300`; stan zapisu wydarzenia jest pobierany klientem przez prywatne API. Sitemapy XML są statyczne/ISR z `revalidate = 3600`, a publiczne API wydarzeń zwraca `Cache-Control: public, s-maxage=300, stale-while-revalidate=600`.
 
 MapLibre używa stylu wektorowego i po załadowaniu stylu próbuje preferować pola `name:pl`, a potem `name`, `name:latin` i `name:nonlatin` dla warstw etykiet. Dzięki temu etykiety mapy są możliwie polskie bez dodatkowego klucza API.
 

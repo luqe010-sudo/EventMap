@@ -14,9 +14,9 @@ import { searchAddress } from "@/lib/geocoding";
 import { parsePublicFilterParams } from "@/lib/filters";
 
 type Params = { category: string };
-type SearchParams = Record<string, string | string[] | undefined>;
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 300;
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { category: categorySlug } = await params;
@@ -52,13 +52,11 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
 export default async function CategoryPage({
   params,
-  searchParams,
 }: {
   params: Promise<Params>;
-  searchParams: Promise<SearchParams>;
 }) {
   const { category: categorySlug } = await params;
-  const initialFilters = parsePublicFilterParams(await searchParams);
+  const initialFilters = parsePublicFilterParams({});
   
   // 1. Try to resolve as category
   const category = await getCategoryBySlugFromDb(categorySlug);

@@ -111,6 +111,11 @@ export type CategoryCityRoute = {
   lastmod: string;
 };
 
+export type PublicEventSitemapEntry = {
+  path: string;
+  lastmod: string;
+};
+
 export type PublicEventSearchOptions = {
   page?: number;
   pageSize?: number;
@@ -203,6 +208,13 @@ type SupabaseEventMarkerRecord = Pick<EventRow, "id" | "title" | "slug" | "start
 
 type SupabaseEventCategoryRecord = {
   category: Pick<CategoryRow, "name" | "color"> | null;
+};
+
+type SupabaseEventSitemapRecord = Pick<EventRow, "slug" | "start_at" | "updated_at"> & {
+  category: Pick<CategoryRow, "slug"> | null;
+  location: {
+    city: Pick<CityRow, "slug"> | null;
+  } | null;
 };
 
 const FALLBACK_IMAGE = "/background.png";
@@ -587,6 +599,40 @@ export async function listPublicEventsByIds(eventIds: string[]): Promise<EventIt
 
   if (error) throw new Error(`Nie udalo sie pobrac zapisanych wydarzen: ${error.message}`);
   return (data ?? []).map(mapEventRecord);
+}
+
+export async function listPublicEventSitemapEntries(limit = 10000): Promise<PublicEventSitemapEntry[]> {
+  const supabase = createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("events")
+    .select(`
+      slug,
+      start_at,
+      updated_at,
+      category:categories(slug),
+      location:locations(city:cities(slug))
+    `)
+    .eq("status", "published")
+    .eq("visibility", "public")
+    .or("is_cancelled.is.null,is_cancelled.eq.false")
+    .order("start_at", { ascending: true })
+    .limit(Math.min(Math.max(Math.floor(limit), 1), 10000))
+    .returns<SupabaseEventSitemapRecord[]>();
+
+  if (error) throw new Error(`Nie udalo sie pobrac mapy wydarzen: ${error.message}`);
+
+  return (data ?? []).flatMap((event) => {
+    if (!event.slug) return [];
+
+    const categorySlug = toPluralCategorySlug(event.category?.slug ?? "inne");
+    const citySlug = (event.location?.city?.slug ?? "polska").toLowerCase();
+    const eventSlug = event.slug.toLowerCase();
+
+    return [{
+      path: `/${categorySlug}/${citySlug}/${eventSlug}`,
+      lastmod: event.updated_at ?? event.start_at
+    }];
+  });
 }
 
 async function resolveCategoryId(categoryId?: string, categorySlug?: string) {

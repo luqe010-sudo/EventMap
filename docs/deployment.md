@@ -140,6 +140,14 @@ Ta komenda wymaga dostępu sieciowego i zalogowanego Supabase CLI albo tokena Su
 5. Uruchom `npm run build`.
 6. Wdróż aplikację jako standardową aplikację Next.js.
 
+## Cache i limity Vercel
+
+Publiczne trasy SEO bez danych prywatnych powinny korzystać ze statycznego renderu albo ISR. Aktualnie szczegół wydarzenia `/[category]/[city]/[event]`, pojedynczy segment `/{category}` oraz sitemapy XML są renderowane statycznie/ISR. Strona główna `/`, `/{category}/{city}`, panele zalogowanych użytkowników i geolokalizacja query pozostają dynamiczne.
+
+Publiczne endpointy `/api/events/search`, `/api/events/markers`, `/api/events/category-counts` i `/api/events/[id]` zwracają krótkie nagłówki CDN cache (`s-maxage=300`). Endpointy prywatne `/api/account/*`, akcje auth i panele nie powinny być cache'owane.
+
+Po zmianach publikacji wydarzeń docelowo należy wywoływać `revalidatePath` albo `revalidateTag` z panelu admina/organizatora, aby skrócić opóźnienie ISR bez wracania do `force-dynamic`.
+
 ## SEO po wdrozeniu
 
 Po wdrozeniu sprawdz:

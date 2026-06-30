@@ -22,7 +22,7 @@ type SearchParams = {
   radius?: string;
 } & Record<string, string | string[] | undefined>;
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 const dateFilterMap = {
   "dzis": "today",

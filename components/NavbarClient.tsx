@@ -110,19 +110,20 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [theme, setTheme] = useState<ThemeMode>("light");
+  const [resolvedAuth, setResolvedAuth] = useState<NavbarAuth>(auth);
   const profileRef = useRef<HTMLDivElement>(null);
 
   const dashboardHref =
-    auth.isLoggedIn && auth.role === "admin"
+    resolvedAuth.isLoggedIn && resolvedAuth.role === "admin"
       ? "/admin"
-      : auth.isLoggedIn && auth.role === "organizer"
+      : resolvedAuth.isLoggedIn && resolvedAuth.role === "organizer"
         ? "/organizer"
         : null;
 
   const roleLabel =
-    auth.isLoggedIn && auth.role === "admin"
+    resolvedAuth.isLoggedIn && resolvedAuth.role === "admin"
       ? "Administrator"
-      : auth.isLoggedIn && auth.role === "organizer"
+      : resolvedAuth.isLoggedIn && resolvedAuth.role === "organizer"
         ? "Organizator"
         : "Użytkownik";
 
@@ -131,6 +132,26 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
     setMenuOpen(false);
     setProfileOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    let active = true;
+
+    void fetch("/api/account/navbar", { cache: "no-store" })
+      .then(async (response) => {
+        if (!response.ok) throw new Error("Navbar auth request failed");
+        return response.json() as Promise<NavbarAuth>;
+      })
+      .then((nextAuth) => {
+        if (active) setResolvedAuth(nextAuth);
+      })
+      .catch(() => {
+        if (active) setResolvedAuth({ isLoggedIn: false });
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   /* Close profile dropdown on click outside */
   useEffect(() => {
@@ -250,7 +271,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
             <Sun className="themeToggleIcon themeToggleSun" size={17} strokeWidth={2.4} aria-hidden="true" />
             <Moon className="themeToggleIcon themeToggleMoon" size={17} strokeWidth={2.4} aria-hidden="true" />
           </button>
-          {auth.isLoggedIn ? (
+          {resolvedAuth.isLoggedIn ? (
             <div className="navProfileWrap" ref={profileRef}>
               <button
                 type="button"
@@ -260,8 +281,8 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
                 aria-haspopup="true"
                 aria-label="Menu profilu"
               >
-                <span className="navUserInitial">{auth.displayName.charAt(0).toUpperCase()}</span>
-                <span className="navProfileName">{auth.displayName}</span>
+                <span className="navUserInitial">{resolvedAuth.displayName.charAt(0).toUpperCase()}</span>
+                <span className="navProfileName">{resolvedAuth.displayName}</span>
                 <svg className="navProfileChevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="6 9 12 15 18 9" />
                 </svg>
@@ -271,15 +292,15 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
               {profileOpen && (
                 <div className="navProfileDropdown" role="menu">
                   <div className="navDropdownHeader">
-                    <span className="navDropdownInitial">{auth.displayName.charAt(0).toUpperCase()}</span>
+                    <span className="navDropdownInitial">{resolvedAuth.displayName.charAt(0).toUpperCase()}</span>
                     <div className="navDropdownUserInfo">
-                      <span className="navDropdownName">{auth.displayName}</span>
-                      {auth.email && <span className="navDropdownEmail">{auth.email}</span>}
+                      <span className="navDropdownName">{resolvedAuth.displayName}</span>
+                      {resolvedAuth.email && <span className="navDropdownEmail">{resolvedAuth.email}</span>}
                       <span className="navDropdownRole">{roleLabel}</span>
                     </div>
                   </div>
                   <div className="navDropdownDivider" />
-                  {auth.role !== "organizer" && (
+                  {resolvedAuth.role !== "organizer" && (
                     <Link href="/account" className="navDropdownItem" role="menuitem" onClick={() => setProfileOpen(false)}>
                       <IconUser />
                       <span>Moje konto i zapisane</span>
@@ -288,7 +309,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
                   {dashboardHref && (
                     <Link href={dashboardHref} className="navDropdownItem" role="menuitem" onClick={() => setProfileOpen(false)}>
                       <IconPanel />
-                      <span>{auth.role === "organizer" ? "Panel organizatora" : "Panel administracyjny"}</span>
+                      <span>{resolvedAuth.role === "organizer" ? "Panel organizatora" : "Panel administracyjny"}</span>
                     </Link>
                   )}
                   <div className="navDropdownDivider" />
@@ -358,16 +379,16 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
             )}
             <span>{theme === "dark" ? "Tryb jasny" : "Tryb ciemny"}</span>
           </button>
-          {auth.isLoggedIn ? (
+          {resolvedAuth.isLoggedIn ? (
             <>
               <div className="navMobileUserInfo">
-                <span className="navMobileUserInitial">{auth.displayName.charAt(0).toUpperCase()}</span>
+                <span className="navMobileUserInitial">{resolvedAuth.displayName.charAt(0).toUpperCase()}</span>
                 <div className="navMobileUserMeta">
-                  <span className="navMobileUserName">{auth.displayName}</span>
+                  <span className="navMobileUserName">{resolvedAuth.displayName}</span>
                   <span className="navMobileUserRole">{roleLabel}</span>
                 </div>
               </div>
-              {auth.role !== "organizer" && (
+              {resolvedAuth.role !== "organizer" && (
                 <Link
                   href="/account"
                   className="navMobilePanelBtn"
@@ -384,7 +405,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
                   onClick={() => setMenuOpen(false)}
                 >
                   <IconPanel />
-                  <span>{auth.role === "organizer" ? "Panel organizatora" : "Panel administracyjny"}</span>
+                  <span>{resolvedAuth.role === "organizer" ? "Panel organizatora" : "Panel administracyjny"}</span>
                 </Link>
               )}
               <form action="/auth/sign-out" method="post">

@@ -1,0 +1,10 @@
+.git
+.next
+node_modules
+
+.env
+.env*.local
+
+scratch
+test_strony
+vercel-diagnostics

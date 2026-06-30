@@ -1,7 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { listPublicEventsByIds } from "@/lib/events";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
+
+const PUBLIC_CACHE_HEADERS = {
+  "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600"
+};
 
 type Params = {
   id: string;
@@ -16,7 +20,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<P
       return NextResponse.json({ error: "Nie znaleziono wydarzenia." }, { status: 404 });
     }
 
-    return NextResponse.json({ event });
+    return NextResponse.json({ event }, { headers: PUBLIC_CACHE_HEADERS });
   } catch (error) {
     console.error("[event-detail-api] Failed to load event", error);
     return NextResponse.json(

@@ -1,18 +1,15 @@
-import { listEvents } from "@/lib/events";
-import { eventPath } from "@/lib/slugs";
+import { listPublicEventSitemapEntries } from "@/lib/events";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export async function GET() {
-  const events = await listEvents({ limit: 10000 });
+  const events = await listPublicEventSitemapEntries(10000);
 
   const urlsXml = events
     .map((event) => {
-      const path = eventPath(event);
-      const lastmod = event.updated_at ?? event.start_at;
       return `  <url>
-    <loc>https://mapaimprez.pl${path}</loc>
-    <lastmod>${new Date(lastmod).toISOString()}</lastmod>
+    <loc>https://mapaimprez.pl${event.path}</loc>
+    <lastmod>${new Date(event.lastmod).toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>`;

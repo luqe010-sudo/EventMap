@@ -2,7 +2,11 @@ import { NextResponse, type NextRequest } from "next/server";
 import { PUBLIC_EVENT_MARKER_LIMIT, searchPublicEventMarkers } from "@/lib/events";
 import { parsePublicFilterParams } from "@/lib/filters";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
+
+const PUBLIC_CACHE_HEADERS = {
+  "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600"
+};
 
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
@@ -24,7 +28,7 @@ export async function GET(request: NextRequest) {
       maxPrice: filters.maxPrice
     });
 
-    return NextResponse.json({ markers });
+    return NextResponse.json({ markers }, { headers: PUBLIC_CACHE_HEADERS });
   } catch (error) {
     console.error("[events-markers] Failed to load event markers", error);
     return NextResponse.json(

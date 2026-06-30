@@ -17,12 +17,11 @@ import {
 import { toPluralCategorySlug, toPluralCategoryName, formatInCity, toSlug, eventPath } from "@/lib/slugs";
 import { searchAddress } from "@/lib/geocoding";
 import { parsePublicFilterParams } from "@/lib/filters";
-import { getEventSaveState } from "@/lib/user-account";
 
 type Params = { category: string; city: string; event: string };
-type SearchParams = Record<string, string | string[] | undefined>;
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 300;
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { category: categorySlug, city: citySlug, event: eventOrTime } = await params;
@@ -82,13 +81,11 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
 export default async function EventOrTimePage({
   params,
-  searchParams,
 }: {
   params: Promise<Params>;
-  searchParams: Promise<SearchParams>;
 }) {
   const { category: categorySlug, city: citySlug, event: eventOrTime } = await params;
-  const initialFilters = parsePublicFilterParams(await searchParams);
+  const initialFilters = parsePublicFilterParams({});
 
   const isTimeKeyword = eventOrTime === "dzis" || eventOrTime === "weekend" || eventOrTime === "ten-tydzien";
 
@@ -191,20 +188,17 @@ export default async function EventOrTimePage({
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const [allEventsForCategory, saveState] = await Promise.all([
-    listEvents({
-      categoryId: event.categoryRelation?.id,
-      dateFrom: today.toISOString(),
-      limit: 50,
-    }),
-    getEventSaveState(event.id)
-  ]);
+  const allEventsForCategory = await listEvents({
+    categoryId: event.categoryRelation?.id,
+    dateFrom: today.toISOString(),
+    limit: 50,
+  });
 
   const relatedEvents = allEventsForCategory
     .filter((e) => e.id !== event.id)
     .slice(0, 3);
 
-  return <EventDetailView event={event} relatedEvents={relatedEvents} saveState={saveState} />;
+  return <EventDetailView event={event} relatedEvents={relatedEvents} />;
 }
 
 function hasCategoryCityRoute(routes: CategoryCityRoute[], categorySlug: string, cityLocation: KnownLocation) {

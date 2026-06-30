@@ -21,6 +21,7 @@ Strona główna `/`:
 - pojedyncze pineski i klastry są kompaktowe, używają koloru oraz ikon kategorii wydarzeń i mają wyraźną przezroczystość; zaznaczona pinezka pozostaje mocniejsza, a wydarzenia z tymi samymi współrzędnymi są lekko rozsuwane wizualnie, żeby nie nachodziły idealnie na siebie.
 - popup pojedynczej pineski pokazuje zdjęcie wydarzenia, klikalny tytuł prowadzący do szczegółów, adres i krótki opis.
 - podstrony zakończonych, nadal opublikowanych wydarzeń pozostają dostępne i indeksowalne; zdjęcie jest wyszarzone, a komunikat kieruje do przyszłych podobnych wydarzeń. Nieaktualny link do biletów jest na takim widoku ukryty.
+- publiczne szczegóły wydarzeń są renderowane jako statyczne ISR z krótką rewalidacją; prywatny stan przycisku zapisu jest dociągany po stronie klienta, aby nie wymuszać dynamicznego HTML dla botów i niezalogowanych użytkowników.
 - opisy wydarzeń zachowują pojedyncze przejścia do nowej linii oraz akapity oddzielone pustym wierszem, bez interpretowania treści jako HTML.
 - mapa pokazuje subtelnie kolorowane województwa o zróżnicowanej palecie, granice powiatów widoczne już od niższego poziomu przybliżenia na bazie warstwy `boundary` oraz numery budynków przy dużym przybliżeniu.
 - etykiety mapy są preferowane w języku polskim, jeśli styl kafelków udostępnia pole `name:pl`; nazwy dużych, średnich i małych miejscowości pojawiają się wcześniej niż w stylu bazowym i są renderowane pod pinezkami wydarzeń.
@@ -151,6 +152,7 @@ URL z kategorią:
 - Adresy `/kategoria/miasto` są utrzymywane tylko dla par, które mają nadchodzące publiczne, opublikowane i nieanulowane wydarzenie. Jeżeli para kategorii i miasta nie ma takiego wydarzenia, serwer przekierowuje na noindexowy wariant `/kategoria/lokalizacja?lat=...&lng=...&radius=30`.
 - `sitemap-category-cities.xml` nie tworzy już iloczynu wszystkich kategorii i aktywnych miast; korzysta z realnych par kategorii i miast wynikających z publicznych wydarzeń.
 - `/robots.txt` wskazuje `sitemap.xml` i blokuje indeksowanie paneli, API oraz stron logowania/rejestracji.
+- Typowe skany WordPress (`/wp-admin/*`, `/wp-login.php`, `/xmlrpc.php`) dostają szybkie 404 z `X-Robots-Tag: noindex, nofollow`, zamiast wpadać w publiczne trasy wydarzeń.
 - Plik indeksu sitemapy `sitemap.xml` zawiera znacznik `<lastmod>` dla każdego z sub-sitemapów, aby wskazać Google kiedy uległy one zmianie.
 - Adresy URL generowane przez `eventPath()` są zawsze sprowadzane do małych liter (`.toLowerCase()`). Dynamiczna strona szczegółów wydarzenia ma wbudowany redirect (HTTP 307) ze ścieżek z wielkimi literami na ich kanoniczny odpowiednik z małymi literami, co eliminuje problem duplikatów URL-i.
 - Strona główna posiada kanoniczny link `/` w głównym layoucie, aby zabezpieczyć ją przed powstawaniem duplikatów z parametrami UTM lub parametrami wyszukiwania.
