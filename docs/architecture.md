@@ -1,5 +1,11 @@
 # Architecture
 
+## Jedenasty pakiet — aktualność geokodowania, 2026-10-08
+
+`LocationPickerMap` porównuje wersję intencji lokalizacji przed zastosowaniem asynchronicznego wyniku miasta, adresu, potwierdzenia adresu i reverse geocoding. Zmiana kontekstu kasuje oba debounce i podpowiedzi; cleanup unieważnia wyniki po unmount. Ochrona nie zależy od obsługi anulowania przez zewnętrznego providera i nie ogranicza liczby już rozpoczętych requestów. Nowy punkt mapy usuwa dane poprzedniego miejsca przed odczytem nowego adresu.
+
+Przygotowany pakiet ochrony zapisów organizatora pozostaje propozycją w `docs/`; nie zmienia bieżącej architektury bazy do osobnego zatwierdzenia i wykonania. [Raport](repair-package-11-2026-10-08.md).
+
 ## Dziesiąty pakiet aplikacji — 2026-10-08
 
 `lib/public-workspace-history.ts` odtwarza stan filtrów z adresu historii przy użyciu wspólnych parserów publicznych tras. HomePage aktualizuje także stan listy/mapy i unieważnia nieaktualne żądania szczegółów. `lib/organizer-event-filters.ts` wyznacza warszawskie granice dni; zapytanie organizatora używa `gte` początku i `lt` początku kolejnego dnia.

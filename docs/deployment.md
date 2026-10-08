@@ -1,5 +1,11 @@
 # Deployment
 
+## Jedenasty pakiet — 2026-10-08
+
+Poprawka wyboru lokalizacji nie wymaga nowych zmiennych środowiskowych ani migracji. Kod i testy można wysłać niezależnie od przygotowanego SQL. Pliki `docs/organizer-write-hardening-{proposal,rollback,tests}.sql` są osobnym pakietem do przeglądu, bez automatycznego wykonania podczas builda lub pushu. Wymagają jawnego zatwierdzenia, spełnienia guardów katalogu, kontrolowanego odbioru i zachowania manifestu instalacji dla testów/rollbacku.
+
+Nie wykonywać lokalnego buildu z fikcyjną konfiguracją jako wersji do publikacji. [Wyniki oraz ograniczenia](repair-package-11-2026-10-08.md). Pełne A04, rozproszona analityka A08 i rzeczywiste sesje Auth pozostają oddzielnymi zadaniami.
+
 ## Dziesiąty pakiet i wysłanie zaległych zmian — 2026-10-08
 
 Pakiet obejmuje historię wyszukiwania, potwierdzanie akcji organizatora, formularze profilu/ustawień, warszawskie filtry dat, kompletne odczyty zapisów i obsługę błędu wylogowania. Nie wymaga migracji, nowych zmiennych środowiskowych ani zmian Auth/SMTP. Przy publikacji budować z konfiguracją docelowego środowiska; fikcyjne wartości izolowanego CI służą wyłącznie weryfikacji.

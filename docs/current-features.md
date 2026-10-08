@@ -1,5 +1,11 @@
 # Current Features
 
+## Jedenasty pakiet — spójny wybór lokalizacji, 2026-10-08
+
+W edytorze wydarzenia nowszy wybór miasta, adresu, znanego miejsca lub punktu mapy unieważnia wcześniejsze odpowiedzi geokodowania i oczekujące podpowiedzi. Opóźniony odczyt nie zmienia najnowszego wyboru ani ręcznie poprawionych danych administracyjnych.
+
+Nowy punkt na mapie od razu usuwa identyfikator poprzedniego znanego miejsca i jego adres, miasto oraz dane administracyjne; nazwa miejsca pozostaje. Formularz pokazuje odczytywanie adresu lub informację o niepowodzeniu. Po nieudanym odczycie trzeba ponownie wyszukać miasto/adres albo wybrać znane miejsce. Nie zapisuje się nowych współrzędnych ze starym adresem. [Weryfikacja i ograniczenia](repair-package-11-2026-10-08.md).
+
 ## Dziesiąty pakiet — historia wyszukiwania i błędy panelu, 2026-10-08
 
 Wstecz/Dalej przywraca filtry, miasto i termin razem z adresem strony oraz widokiem listy/mapy. Powrót z osadzonego szczegółu zachowuje wyszukiwanie; spóźniona odpowiedź poprzedniego szczegółu nie zastępuje nowego wyboru. Zapisane wydarzenia są pobierane stronami, także gdy limit odpowiedzi bazy jest niższy niż żądana strona.

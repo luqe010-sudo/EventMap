@@ -1,5 +1,11 @@
 # Przekazanie kontekstu — MapaImprez / EventMap
 
+## Jedenasty pakiet — bieżący punkt kontynuacji, 2026-10-08
+
+Naprawiona aktualność geokodowania `LocationPickerMap`; **522 testy, TypeScript, lint (15 wcześniejszych ostrzeżeń) i izolowany build przeszły**. [Raport](repair-package-11-2026-10-08.md). Dodatkowo przygotowano [migrację ochrony organizatora](organizer-write-hardening-proposal.sql), dokładny rollback, nowe testy i [transakcyjną próbę](organizer-write-hardening-dry-run.sql). Żaden z tych plików nie został wykonany. Odczytowy SELECT guardu potwierdził 11/11 kolekcji; parser SQL nie stanowi odbioru rzeczywistych uprawnień/triggerów.
+
+Następny krok: uzyskać osobną zgodę na kontrolowaną próbę całego nowego pakietu w jednej transakcji z pełnym ROLLBACK (DDL oraz syntetyczne fixture). Staging nadal niedostępny; plik jest przypięty do tożsamości obecnego EventMap. Nie uruchamiać na podstawie zgody na wcześniejsze testy/poprzednią migrację. Po próbie sprawdzić sukces całego skryptu, zero fixture i identyczność katalogu; trwałe wdrożenie wymaga osobnej decyzji. A04, rozproszona analityka i prawdziwe sesje Auth pozostają otwarte. Starsze stwierdzenia o niewykonywalnej propozycji ochrony organizatora są historyczne.
+
 Stan po dziesiątym pakiecie napraw 2026-10-08: historia wyszukiwania i szczegółu, potwierdzanie akcji i formularze organizatora, warszawskie filtry dat, kompletne zapisy oraz błędy wylogowania. **507 testów, TypeScript i izolowany build przeszły**, lint 0 błędów/15 wcześniejszych ostrzeżeń. [Raport pakietu](repair-package-10-2026-10-08.md). Baza niezmieniona, pozostałe RLS/A04/pełny A08 i realny odbiór nadal otwarte. Katalog projektu: `E:\EventMap`.
 
 ## Dziesiąty pakiet — pierwszeństwo przed historycznym stanem Git i podglądów

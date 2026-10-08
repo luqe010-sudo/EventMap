@@ -76,6 +76,7 @@ export default function LocationPickerMap({
   const markerRef = useRef<maplibregl.Marker | null>(null);
   const cityDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const addressDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const locationRequestVersionRef = useRef(0);
   const handleSelectionRef = useRef<((lat: number, lng: number) => void) | undefined>(undefined);
 
   const initialSavedLocation = savedLocations.find((location) => location.id === initialLocationId);
@@ -92,6 +93,7 @@ export default function LocationPickerMap({
   const [addressSuggestions, setAddressSuggestions] = useState<GeocodingResult[]>([]);
   const [showAddressSuggestions, setShowAddressSuggestions] = useState(false);
   const [addressLoading, setAddressLoading] = useState(false);
+  const [pointAddressStatus, setPointAddressStatus] = useState<"idle" | "loading" | "unavailable">("idle");
 
   const [latitude, setLatitude] = useState<number | null>(initialLatitude ?? null);
   const [longitude, setLongitude] = useState<number | null>(initialLongitude ?? null);
@@ -102,6 +104,24 @@ export default function LocationPickerMap({
   const [voivodeship, setVoivodeship] = useState(initialVoivodeship ?? "");
   const [county, setCounty] = useState(initialCounty ?? "");
   const [municipality, setMunicipality] = useState(initialMunicipality ?? "");
+
+  // Every new location intent invalidates all pending geocoding, including a
+  // reverse lookup that could otherwise overwrite a later saved-place choice.
+  const invalidateLocationRequests = useCallback(() => {
+    const version = ++locationRequestVersionRef.current;
+    if (cityDebounceRef.current) clearTimeout(cityDebounceRef.current);
+    if (addressDebounceRef.current) clearTimeout(addressDebounceRef.current);
+    cityDebounceRef.current = null;
+    addressDebounceRef.current = null;
+    setCitySuggestions([]);
+    setShowCitySuggestions(false);
+    setCityLoading(false);
+    setAddressSuggestions([]);
+    setShowAddressSuggestions(false);
+    setAddressLoading(false);
+    setPointAddressStatus("idle");
+    return version;
+  }, []);
 
   const hasInitialLocation = initialLatitude != null && initialLongitude != null;
   const savedLocationSuggestions = useMemo(() => {
@@ -170,6 +190,7 @@ export default function LocationPickerMap({
   }, [clearDatabaseSelection]);
 
   const handleSavedLocationSelect = useCallback((selected: SavedLocation) => {
+    invalidateLocationRequests();
     setLocationId(selected.id);
     setSavedLocationQuery(formatSavedLocationLabel(selected));
     setLocationName(selected.name ?? "");
@@ -195,9 +216,10 @@ export default function LocationPickerMap({
     } else {
       clearPrecisePosition();
     }
-  }, [clearPrecisePosition, placeMarker]);
+  }, [clearPrecisePosition, invalidateLocationRequests, placeMarker]);
 
   const handleCityChange = useCallback((value: string) => {
+    const requestVersion = invalidateLocationRequests();
     setCity(value);
     setAddress("");
     setPostalCode("");
@@ -206,8 +228,6 @@ export default function LocationPickerMap({
     setMunicipality("");
     clearDatabaseSelection();
     clearPrecisePosition();
-
-    if (cityDebounceRef.current) clearTimeout(cityDebounceRef.current);
 
     if (value.trim().length < 1) {
       setCitySuggestions([]);
@@ -218,14 +238,17 @@ export default function LocationPickerMap({
 
     setCityLoading(true);
     cityDebounceRef.current = setTimeout(async () => {
+      cityDebounceRef.current = null;
       const results = await searchPolishCities(value);
+      if (requestVersion !== locationRequestVersionRef.current) return;
       setCitySuggestions(results);
       setShowCitySuggestions(results.length > 0);
       setCityLoading(false);
     }, SEARCH_DEBOUNCE_MS);
-  }, [clearDatabaseSelection, clearPrecisePosition]);
+  }, [clearDatabaseSelection, clearPrecisePosition, invalidateLocationRequests]);
 
   const handleCitySelect = useCallback((result: GeocodingResult) => {
+    invalidateLocationRequests();
     setCity(result.city ?? result.displayName.split(",")[0] ?? "");
     setAddress("");
     setLatitude(result.latitude);
@@ -245,15 +268,14 @@ export default function LocationPickerMap({
       zoom: CITY_ZOOM,
       duration: 700
     });
-  }, [clearDatabaseSelection, placeMarker]);
+  }, [clearDatabaseSelection, invalidateLocationRequests, placeMarker]);
 
   const handleAddressChange = useCallback((value: string) => {
+    const requestVersion = invalidateLocationRequests();
     setAddress(value);
     setPostalCode("");
     clearDatabaseSelection();
     clearPrecisePosition();
-
-    if (addressDebounceRef.current) clearTimeout(addressDebounceRef.current);
 
     if (value.trim().length < 2 || city.trim().length < 2) {
       setAddressSuggestions([]);
@@ -264,14 +286,17 @@ export default function LocationPickerMap({
 
     setAddressLoading(true);
     addressDebounceRef.current = setTimeout(async () => {
+      addressDebounceRef.current = null;
       const results = await searchStreetAddress(value, city);
+      if (requestVersion !== locationRequestVersionRef.current) return;
       setAddressSuggestions(results);
       setShowAddressSuggestions(results.length > 0);
       setAddressLoading(false);
     }, SEARCH_DEBOUNCE_MS);
-  }, [city, clearDatabaseSelection, clearPrecisePosition]);
+  }, [city, clearDatabaseSelection, clearPrecisePosition, invalidateLocationRequests]);
 
   const handleAddressSelect = useCallback((result: GeocodingResult) => {
+    invalidateLocationRequests();
     setLatitude(result.latitude);
     setLongitude(result.longitude);
     setAddress(result.address ?? result.displayName);
@@ -289,7 +314,7 @@ export default function LocationPickerMap({
       zoom: SELECTED_ZOOM,
       duration: 700
     });
-  }, [clearDatabaseSelection, county, municipality, placeMarker, voivodeship]);
+  }, [clearDatabaseSelection, county, invalidateLocationRequests, municipality, placeMarker, voivodeship]);
 
   const handleAddressConfirm = useCallback(async () => {
     const typedAddress = address.trim();
@@ -301,8 +326,10 @@ export default function LocationPickerMap({
       return;
     }
 
+    const requestVersion = invalidateLocationRequests();
     setAddressLoading(true);
     const results = await searchStreetAddress(typedAddress, city);
+    if (requestVersion !== locationRequestVersionRef.current) return;
     setAddressLoading(false);
     if (results[0]) {
       handleAddressSelect(results[0]);
@@ -311,18 +338,32 @@ export default function LocationPickerMap({
 
     setAddressSuggestions([]);
     setShowAddressSuggestions(false);
-  }, [address, addressSuggestions, city, handleAddressSelect]);
+  }, [address, addressSuggestions, city, handleAddressSelect, invalidateLocationRequests]);
 
   useEffect(() => {
     handleSelectionRef.current = async (lat: number, lng: number) => {
+      const requestVersion = invalidateLocationRequests();
+      clearDatabaseSelection();
+      setShowSavedSuggestions(false);
+      // Address metadata belongs to the previous point until this lookup
+      // succeeds. Never submit it alongside newly chosen coordinates.
+      setCity("");
+      setAddress("");
+      setPostalCode("");
+      setVoivodeship("");
+      setCounty("");
+      setMunicipality("");
       setLatitude(lat);
       setLongitude(lng);
+      setPointAddressStatus("loading");
       placeMarker(lng, lat);
 
       const result = await reverseGeocode(lat, lng);
+      if (requestVersion !== locationRequestVersionRef.current) return;
       if (result) applyResult(result);
+      setPointAddressStatus(result ? "idle" : "unavailable");
     };
-  }, [applyResult, placeMarker]);
+  }, [applyResult, clearDatabaseSelection, invalidateLocationRequests, placeMarker]);
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -381,7 +422,9 @@ export default function LocationPickerMap({
   }, []);
 
   useEffect(() => {
+    const requestVersion = locationRequestVersionRef;
     return () => {
+      ++requestVersion.current;
       if (cityDebounceRef.current) clearTimeout(cityDebounceRef.current);
       if (addressDebounceRef.current) clearTimeout(addressDebounceRef.current);
     };
@@ -398,6 +441,7 @@ export default function LocationPickerMap({
                 type="text"
                 value={savedLocationQuery}
                 onChange={(e) => {
+                  invalidateLocationRequests();
                   setSavedLocationQuery(e.target.value);
                   setLocationId("");
                   setShowSavedSuggestions(true);
@@ -437,6 +481,13 @@ export default function LocationPickerMap({
             {" "}
             Wspolrzedne: {latitude.toFixed(5)}, {longitude.toFixed(5)}
           </>
+        ) : null}
+        {pointAddressStatus !== "idle" ? (
+          <span role="status">
+            {" "}{pointAddressStatus === "loading"
+              ? "Odczytywanie adresu wybranego punktu…"
+              : "Nie udało się ustalić adresu tego punktu. Wyszukaj miasto i adres lub wybierz znane miejsce."}
+          </span>
         ) : null}
       </p>
       {error("location_latitude")}
@@ -553,7 +604,11 @@ export default function LocationPickerMap({
             <input
               name="location_postal_code"
               value={postalCode}
-              onChange={(e) => setPostalCode(e.target.value)}
+              onChange={(e) => {
+                invalidateLocationRequests();
+                setPostalCode(e.target.value);
+                clearDatabaseSelection();
+              }}
             />
           </label>
           <label>
@@ -561,7 +616,11 @@ export default function LocationPickerMap({
             <input
               name="location_municipality"
               value={municipality}
-              onChange={(e) => setMunicipality(e.target.value)}
+              onChange={(e) => {
+                invalidateLocationRequests();
+                setMunicipality(e.target.value);
+                clearDatabaseSelection();
+              }}
             />
           </label>
           <label>
@@ -569,7 +628,11 @@ export default function LocationPickerMap({
             <input
               name="location_county"
               value={county}
-              onChange={(e) => setCounty(e.target.value)}
+              onChange={(e) => {
+                invalidateLocationRequests();
+                setCounty(e.target.value);
+                clearDatabaseSelection();
+              }}
             />
           </label>
           <label>
@@ -577,7 +640,11 @@ export default function LocationPickerMap({
             <input
               name="location_voivodeship"
               value={voivodeship}
-              onChange={(e) => setVoivodeship(e.target.value)}
+              onChange={(e) => {
+                invalidateLocationRequests();
+                setVoivodeship(e.target.value);
+                clearDatabaseSelection();
+              }}
             />
           </label>
         </div>

@@ -1,6 +1,10 @@
 # Ochrona zapisu organizatora — osobna propozycja
 
-Status: **projekt do przeglądu, bez wykonywalnej migracji i bez zmian w bazie**. Proponowany pakiet zamyka trzy potwierdzone problemy: przenoszenie właściciela wydarzenia przez członka dwóch organizacji, zmianę chronionych pól wydarzenia przez organizatora oraz brak UPDATE własnej organizacji. Nie dodaje tabel ani kolumn i nie zmienia ich nazw.
+Status 2026-10-08: **wykonywalne pliki przygotowane do osobnego zatwierdzenia; bez zmian w bazie i bez wykonanych testów SQL**. Dostępne są [migracja](organizer-write-hardening-proposal.sql), [dokładny rollback](organizer-write-hardening-rollback.sql), [nowe testy](organizer-write-hardening-tests.sql) i [transakcyjna próba z pełnym ROLLBACK](organizer-write-hardening-dry-run.sql). Kontrola składni nie zastępuje wykonania. [Raport przygotowania i ograniczenia](repair-package-11-2026-10-08.md).
+
+Proponowany pakiet zamyka trzy potwierdzone problemy: przenoszenie właściciela wydarzenia przez członka dwóch organizacji, zmianę chronionych pól wydarzenia przez organizatora oraz brak UPDATE własnej organizacji. Pozwala także ukryć opublikowane własne wydarzenie bez zmiany jego treści. Nie dodaje tabel ani kolumn i nie zmienia ich nazw. Historyczne stwierdzenia poniżej o braku plików SQL dotyczą etapu projektu kontraktu.
+
+Świeży odczyt 8 października potwierdził identyczność wszystkich dziewięciu kolekcji publicznego katalogu z odebranym stanem 6 października. Osobny odczyt dokładnego SELECT zabezpieczenia migracji potwierdził zgodność 11/11 kolekcji z jej zapisanym baseline. 455 wydarzeń nie ma NULL/nieznanych statusów, brakujących właścicieli/organizatorów, NULL anulowania ani mieszanej atrybucji; triggery i testy nadal obsługują te historyczne przypadki. Sprawdzony lokalny importer eBilet używa roli service_role. Pozostali zewnętrzni konsumenci wymagają potwierdzenia przed stałym wdrożeniem.
 
 ## Potwierdzona podstawa
 

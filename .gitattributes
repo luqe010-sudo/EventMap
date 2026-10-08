@@ -1,0 +1,2 @@
+# Preserve reviewed SQL bytes and pg_proc.prosrc fingerprints on Windows.
+docs/organizer-write-hardening-*.sql text eol=lf

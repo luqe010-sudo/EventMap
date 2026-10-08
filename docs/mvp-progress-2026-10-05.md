@@ -1,5 +1,11 @@
 # Realizacja planu MVP
 
+## Jedenasty pakiet — 2026-10-08
+
+Naprawiono kolejność odpowiedzi geokodowania w edytorze: nowsze miasto, adres, znane miejsce, punkt mapy i korekty administracyjne zachowują pierwszeństwo. Nowy punkt usuwa stare ID i adres/metadane przed odczytem; nazwa miejsca pozostaje. 15 nowych regresji obejmuje odwrotną kolejność odpowiedzi, zmianę kontekstu, krótkie/wyczyszczone zapytanie, awarię reverse oraz unmount.
+
+Pełne izolowane `npm run check` przeszło: **522/522 testów w 40 plikach**, TypeScript, produkcyjny build i lint 0 błędów/15 wcześniejszych ostrzeżeń. Przygotowano wykonywalny pakiet ochrony zapisów organizatora, dokładny rollback, nowy zestaw testów oraz transakcyjną próbę z ROLLBACK. To propozycje wymagające osobnej zgody; w bazie wykonano wyłącznie odczyty katalogu i anonimowych agregatów. [Raport i następny krok](repair-package-11-2026-10-08.md).
+
 ## Dziesiąty pakiet — 2026-10-08
 
 Naprawiono historię filtrów/listy/mapy i spóźnione odpowiedzi szczegółu, potwierdzanie akcji organizatora oraz kompletny odczyt zapisów. Formularze profilu/ustawień zachowują dane i pokazują bezpieczne błędy/pending; filtr dat używa całych dni Europe/Warsaw. Wylogowanie sprawdza wynik SDK i udostępnia ponowienie. Admin trafia do panelu admina zamiast formularza rozszerzenia konta.
