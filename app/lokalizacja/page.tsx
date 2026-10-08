@@ -1,8 +1,12 @@
+import { serializeJsonLd } from "@/lib/json-ld";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import HomePage from "@/components/HomePage";
 import { listCategories, getActiveCityLocations, searchPublicEvents, type KnownLocation } from "@/lib/events";
 import { parsePublicFilterParams } from "@/lib/filters";
+import { appendPublicFilters } from "@/lib/slugs";
+import { publicSearchOptionsFromParams } from "@/lib/public-search-params";
+import { hasLocationCoordinates } from "@/lib/event-search";
 
 export const dynamic = "force-dynamic";
 
@@ -17,10 +21,9 @@ type Props = {
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const params = await searchParams;
-  const lat = parseFloat(params.lat ?? "");
-  const lng = parseFloat(params.lng ?? "");
+  const pointSearch = readPointSearch(params);
 
-  if (Number.isNaN(lat) || Number.isNaN(lng)) {
+  if (!pointSearch) {
     return {
       title: "Wydarzenia w okolicy | MapaImprez",
       robots: { index: false, follow: false },
@@ -29,28 +32,28 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
   return {
     title: "Wydarzenia w okolicy | MapaImprez",
-    description: `Odkryj wydarzenia w promieniu ${params.radius ?? 30} km od wybranego punktu.`,
+    description: `Odkryj wydarzenia w promieniu ${pointSearch.radiusKm ?? 30} km od wybranego punktu.`,
     robots: { index: false, follow: false },
   };
 }
 
 export default async function LocationPage({ searchParams }: Props) {
   const params = await searchParams;
-  const initialFilters = parsePublicFilterParams(params);
-  const lat = parseFloat(params.lat ?? "");
-  const lng = parseFloat(params.lng ?? "");
+  const requestedFilters = parsePublicFilterParams(params);
+  const pointSearch = readPointSearch(params);
 
-  if (Number.isNaN(lat) || Number.isNaN(lng)) {
-    redirect("/");
+  if (!pointSearch) {
+    redirect(appendPublicFilters("/", { ...requestedFilters, radiusKm: undefined, sortBy: "date" }));
   }
 
-  const radius = Math.min(Math.max(parseInt(params.radius ?? "30", 10) || 30, 5), 200);
+  const radius = pointSearch.radiusKm ?? 30;
+  const initialFilters = { ...requestedFilters, radiusKm: radius };
 
   const geoLocation: KnownLocation = {
     label: "Wybrana lokalizacja",
     aliases: [],
-    latitude: lat,
-    longitude: lng,
+    latitude: pointSearch.location.latitude,
+    longitude: pointSearch.location.longitude,
   };
 
   const [eventSearch, categoryRows, activeCityLocations] = await Promise.all([
@@ -60,7 +63,8 @@ export default async function LocationPage({ searchParams }: Props) {
       dateFilter: initialFilters.dateFilter ?? "all",
       customDate: initialFilters.customDate,
       priceMode: initialFilters.priceMode ?? "all",
-      maxPrice: initialFilters.maxPrice
+      maxPrice: initialFilters.maxPrice,
+      sortBy: initialFilters.sortBy
     }),
     listCategories(),
     getActiveCityLocations(),
@@ -71,7 +75,7 @@ export default async function LocationPage({ searchParams }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeJsonLd({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             name: "Wydarzenia w okolicy",
@@ -90,4 +94,18 @@ export default async function LocationPage({ searchParams }: Props) {
       />
     </>
   );
+}
+
+function readPointSearch(params: Awaited<Props["searchParams"]>) {
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    const first = Array.isArray(value) ? value[0] : value;
+    if (first != null) query.set(key, first);
+  }
+  try {
+    const options = publicSearchOptionsFromParams(query);
+    return hasLocationCoordinates(options.location) ? { ...options, location: options.location } : null;
+  } catch {
+    return null;
+  }
 }

@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
 import type { Database } from "@/database.types";
+import { safeNextPath } from "@/lib/navigation";
 
 type Tables = Database["public"]["Tables"];
 
@@ -34,16 +35,16 @@ export async function getCurrentUserContext(): Promise<CurrentUserContext | null
   };
 }
 
-export async function requireAdmin() {
+export async function requireAdmin(next = "/admin") {
   const context = await getCurrentUserContext();
-  if (!context) redirect("/login");
+  if (!context) redirect(`/login?next=${encodeURIComponent(safeNextPath(next))}`);
   if (context.profile?.role !== "admin") redirect("/");
   return context;
 }
 
-export async function requireOrganizerAccess() {
+export async function requireOrganizerAccess(next = "/organizer") {
   const context = await getCurrentUserContext();
-  if (!context) redirect("/login");
+  if (!context) redirect(`/login?next=${encodeURIComponent(safeNextPath(next))}`);
 
   if (context.profile?.role === "admin") {
     return {

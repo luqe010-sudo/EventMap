@@ -1,9 +1,13 @@
+import { resolveDateRange } from "./date-range";
+import { publicDateLowerBoundExpression } from "./event-dates";
 import type { Database } from "@/database.types";
 import { createSupabaseServerClient } from "@/lib/supabase";
 import { toPluralCategoryName, toPluralCategorySlug, toSlug } from "@/lib/slugs";
 import { toAppDate } from "@/lib/date-format";
 import { slugify } from "@/lib/slugify";
 import type { DateFilter, PriceFilterMode } from "@/lib/filters";
+import { comparePublicSearchItems, distanceBetweenCoordinates, hasLocationCoordinates, radiusBoundingBox, type Coordinates, type PublicEventSort } from "./event-search";
+export { hasLocationCoordinates } from "./event-search";
 
 type Tables = Database["public"]["Tables"];
 type EventRow = Tables["events"]["Row"];
@@ -46,6 +50,7 @@ export type EventWithRelations = Pick<
   category: Pick<CategoryRow, "id" | "name" | "slug" | "icon" | "color"> | null;
   location: Pick<
     LocationRow,
+    | "id"
     | "name"
     | "address"
     | "city_id"
@@ -94,8 +99,8 @@ export type KnownLocation = {
   label: string;
   aliases: string[];
   slug?: string;
-  latitude: number;
-  longitude: number;
+  latitude: number | null;
+  longitude: number | null;
 };
 
 export type CategoryOption = Pick<CategoryRow, "id" | "name" | "slug" | "icon" | "color">;
@@ -135,6 +140,7 @@ export type PublicEventSearchOptions = {
   featuredOnly?: boolean;
   includeCancelled?: boolean;
   includePast?: boolean;
+  sortBy?: PublicEventSort;
 };
 
 export type PublicEventSearchResult = {
@@ -173,6 +179,7 @@ type SupabaseEventRecord = EventRow & {
   category: Pick<CategoryRow, "id" | "name" | "slug" | "icon" | "color"> | null;
   location: Pick<
     LocationRow,
+    | "id"
     | "name"
     | "address"
     | "city_id"
@@ -206,8 +213,8 @@ type SupabaseEventMarkerRecord = Pick<EventRow, "id" | "title" | "slug" | "start
   }) | null;
 };
 
-type SupabaseEventCategoryRecord = {
-  category: Pick<CategoryRow, "name" | "color"> | null;
+type PublicSearchRecord = SupabaseEventMarkerRecord & {
+  location: (NonNullable<SupabaseEventMarkerRecord["location"]> & Pick<LocationRow, "id">) | null;
 };
 
 type SupabaseEventSitemapRecord = Pick<EventRow, "slug" | "start_at" | "updated_at"> & {
@@ -222,6 +229,9 @@ const DEFAULT_CATEGORY_COLOR = "#64748b";
 export const PUBLIC_EVENTS_PAGE_SIZE = 20;
 export const PUBLIC_EVENTS_MAX_RESULTS = 300;
 export const PUBLIC_EVENT_MARKER_LIMIT = 10000;
+// Above this volume, a database search/RPC is required. Never present a truncated pool as complete.
+export const PUBLIC_EVENT_CANDIDATE_LIMIT = 50000;
+const PUBLIC_EVENT_FETCH_BATCH_SIZE = 1000;
 
 const EVENT_SELECT = `
   id,
@@ -244,7 +254,7 @@ const EVENT_SELECT = `
   is_cancelled,
   updated_at,
   category:categories(id, name, slug, icon, color),
-  location:locations(name, address, city_id, municipality, county, voivodeship, latitude, longitude, google_maps_url, city:cities(id, name, slug, latitude, longitude, county, voivodeship, is_active)),
+  location:locations(id, name, address, city_id, municipality, county, voivodeship, latitude, longitude, google_maps_url, city:cities(id, name, slug, latitude, longitude, county, voivodeship, is_active)),
   organizer:organizers!events_organizer_id_fkey(name, slug, website, facebook_url, phone, email, logo_url, type, is_verified),
   sources:event_sources(source_name, source_url, source_type, last_seen_at)
 `;
@@ -270,36 +280,27 @@ const EVENT_SELECT_WITH_INNER_LOCATION = `
   is_cancelled,
   updated_at,
   category:categories(id, name, slug, icon, color),
-  location:locations!inner(name, address, city_id, municipality, county, voivodeship, latitude, longitude, google_maps_url, city:cities(id, name, slug, latitude, longitude, county, voivodeship, is_active)),
+  location:locations!inner(id, name, address, city_id, municipality, county, voivodeship, latitude, longitude, google_maps_url, city:cities(id, name, slug, latitude, longitude, county, voivodeship, is_active)),
   organizer:organizers!events_organizer_id_fkey(name, slug, website, facebook_url, phone, email, logo_url, type, is_verified),
   sources:event_sources(source_name, source_url, source_type, last_seen_at)
 `;
 
-const EVENT_MARKER_SELECT = `
+const PUBLIC_SEARCH_SELECT = `
   id,
   title,
   slug,
   start_at,
   category:categories(name, slug, icon, color),
-  location:locations(name, address, city_id, latitude, longitude, city:cities(name, slug))
+  location:locations(id, name, address, city_id, latitude, longitude, city:cities(name, slug))
 `;
 
-const EVENT_MARKER_SELECT_WITH_INNER_LOCATION = `
+const PUBLIC_SEARCH_SELECT_WITH_INNER_LOCATION = `
   id,
   title,
   slug,
   start_at,
   category:categories(name, slug, icon, color),
-  location:locations!inner(name, address, city_id, latitude, longitude, city:cities(name, slug))
-`;
-
-const EVENT_CATEGORY_COUNT_SELECT = `
-  category:categories(name, color)
-`;
-
-const EVENT_CATEGORY_COUNT_SELECT_WITH_INNER_LOCATION = `
-  category:categories(name, color),
-  location:locations!inner(city_id)
+  location:locations!inner(id, name, address, city_id, latitude, longitude, city:cities(name, slug))
 `;
 
 export const categories: EventCategory[] = [
@@ -369,80 +370,23 @@ export async function listEvents(options: ListEventsOptions = {}): Promise<Event
 }
 
 export async function searchPublicEvents(options: PublicEventSearchOptions = {}): Promise<PublicEventSearchResult> {
-  const supabase = createSupabaseServerClient();
-  const page = Math.max(1, Math.floor(options.page ?? 1));
-  const maxResults = Math.min(Math.max(Math.floor(options.maxResults ?? PUBLIC_EVENTS_MAX_RESULTS), 1), 10000);
-  const pageSize = Math.min(Math.max(Math.floor(options.pageSize ?? PUBLIC_EVENTS_PAGE_SIZE), 1), maxResults);
+  const page = clampPublicInteger(options.page, 1, 1, Number.MAX_SAFE_INTEGER);
+  const maxResults = clampPublicInteger(options.maxResults, PUBLIC_EVENTS_MAX_RESULTS, 1, 10000);
+  const pageSize = clampPublicInteger(options.pageSize, PUBLIC_EVENTS_PAGE_SIZE, 1, maxResults);
   const offset = (page - 1) * pageSize;
-
-  if (offset >= maxResults) {
-    return emptyPublicEventSearchResult(page, pageSize, maxResults);
-  }
-
-  const [categoryId, cityId, locationIds] = await Promise.all([
-    resolveCategoryId(options.categoryId, options.categorySlug),
-    resolveCityId(options.cityId, options.citySlug),
-    resolveLocationIdsForRadius(options)
-  ]);
-
-  if ((options.categoryId || options.categorySlug) && !categoryId) {
-    return emptyPublicEventSearchResult(page, pageSize, maxResults);
-  }
-
-  if ((options.cityId || options.citySlug) && !cityId) {
-    return emptyPublicEventSearchResult(page, pageSize, maxResults);
-  }
-
-  if (locationIds && locationIds.length === 0) {
-    return emptyPublicEventSearchResult(page, pageSize, maxResults);
-  }
-
-  const dateRange = getPublicSearchDateRange(options);
-  const pageEnd = Math.min(offset + pageSize - 1, maxResults - 1);
-
-  let query = supabase
-    .from("events")
-    .select(cityId ? EVENT_SELECT_WITH_INNER_LOCATION : EVENT_SELECT, { count: "exact" })
-    .eq("status", "published")
-    .eq("visibility", "public")
-    .order("start_at", { ascending: true });
-
-  if (!options.includeCancelled) {
-    query = query.or("is_cancelled.is.null,is_cancelled.eq.false");
-  }
-
-  if (dateRange.dateFrom) {
-    query = query.gte("start_at", dateRange.dateFrom);
-  }
-
-  if (dateRange.dateTo) {
-    query = query.lt("start_at", dateRange.dateTo);
-  }
-
-  if (categoryId) {
-    query = query.eq("category_id", categoryId);
-  }
-
-  if (cityId) {
-    query = query.eq("location.city_id", cityId);
-  }
-
-  if (locationIds) {
-    query = query.in("location_id", locationIds);
-  }
-
-  if (options.featuredOnly) {
-    query = query.eq("is_featured", true);
-  }
-
-  query = applyPublicPriceFilters(query, options);
-  query = query.range(offset, pageEnd);
-
-  const { data, error, count } = await query.returns<SupabaseEventRecord[]>();
-  if (error) throw new Error(`Nie udalo sie pobrac wydarzen: ${error.message}`);
-
-  const events = (data ?? []).map(mapEventRecord);
-  const totalCount = count ?? events.length;
+  const context = await resolvePublicSearchContext(options);
+  if (!context) return emptyPublicEventSearchResult(page, pageSize, maxResults);
+  const records = await collectPublicSearchRecords(context);
+  records.sort((first, second) => comparePublicSearchItems(
+    { id: first.id, startDate: first.start_at, ...getSearchRecordCoordinates(first) },
+    { id: second.id, startDate: second.start_at, ...getSearchRecordCoordinates(second) },
+    options.sortBy,
+    context.origin
+  ));
+  // The display cap is applied after filtering and sorting the whole candidate pool.
+  const selectedRecords = records.slice(offset, Math.min(offset + pageSize, maxResults));
+  const events = await readPublicSearchPage(context, selectedRecords);
+  const totalCount = records.length;
   const cappedTotal = Math.min(totalCount, maxResults);
   const shownCount = Math.min(offset + events.length, cappedTotal);
 
@@ -458,116 +402,23 @@ export async function searchPublicEvents(options: PublicEventSearchOptions = {})
 }
 
 export async function searchPublicEventMarkers(options: PublicEventSearchOptions = {}): Promise<EventMapMarker[]> {
-  const supabase = createSupabaseServerClient();
-  const markerLimit = Math.min(Math.max(Math.floor(options.maxResults ?? PUBLIC_EVENT_MARKER_LIMIT), 1), PUBLIC_EVENT_MARKER_LIMIT);
-  const [categoryId, cityId, locationIds] = await Promise.all([
-    resolveCategoryId(options.categoryId, options.categorySlug),
-    resolveCityId(options.cityId, options.citySlug),
-    resolveLocationIdsForRadius(options)
-  ]);
-
-  if ((options.categoryId || options.categorySlug) && !categoryId) return [];
-  if ((options.cityId || options.citySlug) && !cityId) return [];
-  if (locationIds && locationIds.length === 0) return [];
-
-  const dateRange = getPublicSearchDateRange(options);
-  let query = supabase
-    .from("events")
-    .select(cityId ? EVENT_MARKER_SELECT_WITH_INNER_LOCATION : EVENT_MARKER_SELECT)
-    .eq("status", "published")
-    .eq("visibility", "public")
-    .not("location_id", "is", null)
-    .order("start_at", { ascending: true })
-    .limit(markerLimit);
-
-  if (!options.includeCancelled) {
-    query = query.or("is_cancelled.is.null,is_cancelled.eq.false");
+  const context = await resolvePublicSearchContext(options);
+  if (!context) return [];
+  const records = await collectPublicSearchRecords(context);
+  const markers = records.map(mapEventMarkerRecord).filter(hasMarkerCoordinates);
+  const markerLimit = clampPublicInteger(options.maxResults, PUBLIC_EVENT_MARKER_LIMIT, 1, PUBLIC_EVENT_MARKER_LIMIT);
+  if (markers.length > markerLimit) {
+    throw new Error("Zbyt wiele wydarzeń na mapie. Zawęź termin, kategorię lub obszar wyszukiwania.");
   }
-
-  if (dateRange.dateFrom) {
-    query = query.gte("start_at", dateRange.dateFrom);
-  }
-
-  if (dateRange.dateTo) {
-    query = query.lt("start_at", dateRange.dateTo);
-  }
-
-  if (categoryId) {
-    query = query.eq("category_id", categoryId);
-  }
-
-  if (cityId) {
-    query = query.eq("location.city_id", cityId);
-  }
-
-  if (locationIds) {
-    query = query.in("location_id", locationIds);
-  }
-
-  if (options.featuredOnly) {
-    query = query.eq("is_featured", true);
-  }
-
-  query = applyPublicPriceFilters(query, options);
-
-  const { data, error } = await query.returns<SupabaseEventMarkerRecord[]>();
-  if (error) throw new Error(`Nie udalo sie pobrac pinezek wydarzen: ${error.message}`);
-
-  return (data ?? []).map(mapEventMarkerRecord).filter(hasMarkerCoordinates);
+  return markers;
 }
 
 export async function searchPublicEventCategoryCounts(options: PublicEventSearchOptions = {}): Promise<PublicCategoryCount[]> {
-  const supabase = createSupabaseServerClient();
-  const [categoryId, cityId, locationIds] = await Promise.all([
-    resolveCategoryId(options.categoryId, options.categorySlug),
-    resolveCityId(options.cityId, options.citySlug),
-    resolveLocationIdsForRadius(options)
-  ]);
-
-  if ((options.categoryId || options.categorySlug) && !categoryId) return [];
-  if ((options.cityId || options.citySlug) && !cityId) return [];
-  if (locationIds && locationIds.length === 0) return [];
-
-  const dateRange = getPublicSearchDateRange(options);
-  let query = supabase
-    .from("events")
-    .select(cityId ? EVENT_CATEGORY_COUNT_SELECT_WITH_INNER_LOCATION : EVENT_CATEGORY_COUNT_SELECT)
-    .eq("status", "published")
-    .eq("visibility", "public")
-    .order("start_at", { ascending: true })
-    .limit(PUBLIC_EVENT_MARKER_LIMIT);
-
-  if (!options.includeCancelled) {
-    query = query.or("is_cancelled.is.null,is_cancelled.eq.false");
-  }
-
-  if (dateRange.dateFrom) {
-    query = query.gte("start_at", dateRange.dateFrom);
-  }
-
-  if (dateRange.dateTo) {
-    query = query.lt("start_at", dateRange.dateTo);
-  }
-
-  if (categoryId) {
-    query = query.eq("category_id", categoryId);
-  }
-
-  if (cityId) {
-    query = query.eq("location.city_id", cityId);
-  }
-
-  if (locationIds) {
-    query = query.in("location_id", locationIds);
-  }
-
-  query = applyPublicPriceFilters(query, options);
-
-  const { data, error } = await query.returns<SupabaseEventCategoryRecord[]>();
-  if (error) throw new Error(`Nie udalo sie policzyc kategorii wydarzen: ${error.message}`);
-
+  const context = await resolvePublicSearchContext(options);
+  if (!context) return [];
+  const records = await collectPublicSearchRecords(context);
   const counts = new Map<EventCategory, PublicCategoryCount>();
-  for (const record of data ?? []) {
+  for (const record of records) {
     const category = toPluralCategoryName(record.category?.name ?? "Inne");
     const existing = counts.get(category);
     if (existing) {
@@ -588,17 +439,24 @@ export async function listPublicEventsByIds(eventIds: string[]): Promise<EventIt
   if (!eventIds.length) return [];
 
   const supabase = createSupabaseServerClient();
-  const { data, error } = await supabase
-    .from("events")
-    .select(EVENT_SELECT)
-    .in("id", eventIds)
-    .eq("status", "published")
-    .eq("visibility", "public")
-    .or("is_cancelled.is.null,is_cancelled.eq.false")
-    .returns<SupabaseEventRecord[]>();
-
-  if (error) throw new Error(`Nie udalo sie pobrac zapisanych wydarzen: ${error.message}`);
-  return (data ?? []).map(mapEventRecord);
+  const uniqueIds = [...new Set(eventIds)];
+  const records: SupabaseEventRecord[] = [];
+  // Keep URLs bounded and read every row even when Supabase's max_rows is low.
+  for (let offset = 0; offset < uniqueIds.length; offset += 100) {
+    const ids = uniqueIds.slice(offset, offset + 100);
+    const batch = await readAllPublicRows((from, to) => supabase
+      .from("events")
+      .select(EVENT_SELECT, { count: "exact" })
+      .in("id", ids)
+      .eq("status", "published")
+      .eq("visibility", "public")
+      .or("is_cancelled.is.null,is_cancelled.eq.false")
+      .order("id", { ascending: true })
+      .range(from, to)
+      .returns<SupabaseEventRecord[]>());
+    records.push(...batch);
+  }
+  return records.map(mapEventRecord);
 }
 
 export async function listPublicEventSitemapEntries(limit = 10000): Promise<PublicEventSitemapEntry[]> {
@@ -642,59 +500,157 @@ async function resolveCategoryId(categoryId?: string, categorySlug?: string) {
   return category?.id;
 }
 
-async function resolveCityId(cityId?: string, citySlug?: string) {
-  if (cityId) return cityId;
-  if (!citySlug) return undefined;
+type PublicSearchContext = {
+  options: PublicEventSearchOptions;
+  dateRange: { dateFrom?: string; dateTo?: string };
+  categoryId?: string;
+  cityId?: string;
+  origin?: Coordinates;
+  radiusKm?: number;
+};
 
+async function resolveSearchCity(options: PublicEventSearchOptions) {
+  if (!options.cityId && !options.citySlug) return null;
   const supabase = createSupabaseServerClient();
-  const { data, error } = await supabase
-    .from("cities")
-    .select("id")
-    .eq("slug", citySlug)
-    .eq("is_active", true)
-    .maybeSingle();
-
+  let query = supabase.from("cities").select("id, latitude, longitude").eq("is_active", true);
+  query = options.cityId ? query.eq("id", options.cityId) : query.eq("slug", options.citySlug!);
+  const { data, error } = await query.maybeSingle();
   if (error) throw new Error(`Nie udalo sie pobrac miasta: ${error.message}`);
-  return data?.id;
+  return data;
 }
 
-async function resolveLocationIdsForRadius(options: PublicEventSearchOptions) {
-  if (!options.location || options.radiusKm == null || !Number.isFinite(options.radiusKm)) return undefined;
+async function resolvePublicSearchContext(options: PublicEventSearchOptions): Promise<PublicSearchContext | null> {
+  const [categoryId, city] = await Promise.all([
+    resolveCategoryId(options.categoryId, options.categorySlug),
+    resolveSearchCity(options)
+  ]);
+  if ((options.categoryId || options.categorySlug) && !categoryId) return null;
+  if ((options.cityId || options.citySlug) && !city) return null;
 
-  const radiusKm = Math.min(Math.max(Math.round(options.radiusKm), 1), 200);
-  const latitude = options.location.latitude;
-  const longitude = options.location.longitude;
-  const latitudeDelta = radiusKm / 111;
-  const longitudeDelta = radiusKm / Math.max(111 * Math.cos((latitude * Math.PI) / 180), 1);
-  const supabase = createSupabaseServerClient();
-  const ids: string[] = [];
-  const chunkSize = 1000;
-
-  for (let from = 0; from < 10000; from += chunkSize) {
-    const { data, error } = await supabase
-      .from("locations")
-      .select("id, latitude, longitude")
-      .not("latitude", "is", null)
-      .not("longitude", "is", null)
-      .gte("latitude", latitude - latitudeDelta)
-      .lte("latitude", latitude + latitudeDelta)
-      .gte("longitude", longitude - longitudeDelta)
-      .lte("longitude", longitude + longitudeDelta)
-      .range(from, from + chunkSize - 1);
-
-    if (error) throw new Error(`Nie udalo sie pobrac lokalizacji w promieniu: ${error.message}`);
-    const rows = data ?? [];
-    for (const row of rows) {
-      const distance = distanceInKmFromCoordinates(
-        { latitude, longitude },
-        { latitude: row.latitude, longitude: row.longitude }
-      );
-      if (distance <= radiusKm) ids.push(row.id);
-    }
-    if (rows.length < chunkSize) break;
+  // A canonical city's centre is authoritative; an arbitrary point must not replace missing city data.
+  const centre = city ?? options.location;
+  const origin = hasLocationCoordinates(centre) ? { latitude: centre.latitude, longitude: centre.longitude } : undefined;
+  const radiusRequested = options.radiusKm != null;
+  if (radiusRequested && (!origin || !Number.isFinite(options.radiusKm))) {
+    throw new Error("Nie można wyznaczyć promienia: brak poprawnych współrzędnych miejsca.");
+  }
+  if (options.sortBy === "nearest" && !origin) {
+    throw new Error("Nie można sortować według odległości: brak współrzędnych miejsca.");
   }
 
-  return ids;
+  return {
+    options,
+    dateRange: getPublicSearchDateRange(options),
+    categoryId,
+    // Radius search intentionally includes locations in other cities.
+    cityId: radiusRequested ? undefined : city?.id,
+    origin,
+    radiusKm: radiusRequested ? Math.min(Math.max(Math.round(options.radiusKm!), 1), 200) : undefined
+  };
+}
+
+function buildPublicSearchQuery(context: PublicSearchContext, select: string) {
+  const supabase = createSupabaseServerClient();
+  let query = supabase.from("events").select(select, { count: "exact" })
+    .eq("status", "published").eq("visibility", "public")
+    .order("start_at", { ascending: true }).order("id", { ascending: true });
+  if (!context.options.includeCancelled) query = query.or("is_cancelled.is.null,is_cancelled.eq.false");
+  if (context.dateRange.dateFrom) query = query.or(publicDateLowerBoundExpression(context.dateRange.dateFrom));
+  if (context.dateRange.dateTo) query = query.lt("start_at", context.dateRange.dateTo);
+  if (context.categoryId) query = query.eq("category_id", context.categoryId);
+  if (context.cityId) query = query.eq("location.city_id", context.cityId);
+  if (context.radiusKm != null && context.origin) {
+    const bounds = radiusBoundingBox(context.origin, context.radiusKm);
+    query = query.gte("location.latitude", bounds.minLatitude).lte("location.latitude", bounds.maxLatitude);
+    if (bounds.minLongitude != null && bounds.maxLongitude != null) {
+      query = query.gte("location.longitude", bounds.minLongitude).lte("location.longitude", bounds.maxLongitude);
+    }
+  }
+  if (context.options.featuredOnly) query = query.eq("is_featured", true);
+  return applyPublicPriceFilters(query, context.options);
+}
+
+type PublicRowsResponse<T> = {
+  data: T[] | null;
+  error: { message: string } | null;
+  count: number | null;
+};
+
+async function readAllPublicRows<T extends { id: string }>(
+  fetchPage: (from: number, to: number) => PromiseLike<PublicRowsResponse<T>>
+): Promise<T[]> {
+  const records: T[] = [];
+  const seen = new Set<string>();
+  let expectedCount: number | undefined;
+  while (true) {
+    const { data, error, count } = await fetchPage(records.length, records.length + PUBLIC_EVENT_FETCH_BATCH_SIZE - 1);
+    if (error) throw new Error(`Nie udalo sie pobrac wydarzen: ${error.message}`);
+    if (count == null || !Number.isSafeInteger(count) || count < 0) {
+      throw new Error("Nie udało się potwierdzić pełnej liczby wydarzeń.");
+    }
+    if (count > PUBLIC_EVENT_CANDIDATE_LIMIT) {
+      throw new Error("Zbyt wiele wydarzeń. Zawęź termin, kategorię lub obszar wyszukiwania.");
+    }
+    if (expectedCount != null && count !== expectedCount) {
+      throw new Error("Katalog wydarzeń zmienił się podczas wyszukiwania. Spróbuj ponownie.");
+    }
+    expectedCount = count;
+    const rows = data ?? [];
+    if (!rows.length && records.length < expectedCount) {
+      throw new Error("Nie udało się pobrać wszystkich wydarzeń. Spróbuj ponownie.");
+    }
+    for (const record of rows) {
+      if (seen.has(record.id)) throw new Error("Katalog wydarzeń zmienił się podczas wyszukiwania. Spróbuj ponownie.");
+      seen.add(record.id);
+      records.push(record);
+    }
+    if (records.length > expectedCount) throw new Error("Nie udało się potwierdzić pełnej liczby wydarzeń.");
+    if (records.length === expectedCount) return records;
+    // Supabase may enforce a lower max_rows than our requested page size.
+    // Advance by actual rows, and use exact count rather than a short page as the end signal.
+  }
+}
+
+function getSearchRecordCoordinates(record: PublicSearchRecord) {
+  return { latitude: record.location?.latitude ?? null, longitude: record.location?.longitude ?? null };
+}
+
+async function collectPublicSearchRecords(context: PublicSearchContext) {
+  const select = context.cityId || context.radiusKm != null ? PUBLIC_SEARCH_SELECT_WITH_INNER_LOCATION : PUBLIC_SEARCH_SELECT;
+  const records = await readAllPublicRows((from, to) => buildPublicSearchQuery(context, select)
+    .range(from, to).returns<PublicSearchRecord[]>());
+  return context.radiusKm == null ? records : records.filter(record =>
+    distanceBetweenCoordinates(context.origin, getSearchRecordCoordinates(record)) <= context.radiusKm!
+  );
+}
+
+async function readPublicSearchPage(context: PublicSearchContext, selectedRecords: PublicSearchRecord[]) {
+  const selectedIds = selectedRecords.map(record => record.id);
+  if (!selectedIds.length) return [];
+  const select = context.cityId || context.radiusKm != null ? EVENT_SELECT_WITH_INNER_LOCATION : EVENT_SELECT;
+  const records: SupabaseEventRecord[] = [];
+  // Keep IN filters short enough for the PostgREST URL even for an internal large page request.
+  for (let offset = 0; offset < selectedIds.length; offset += 100) {
+    const ids = selectedIds.slice(offset, offset + 100);
+    const batch = await readAllPublicRows((from, to) => buildPublicSearchQuery(context, select)
+      .in("id", ids).range(from, to).returns<SupabaseEventRecord[]>());
+    if (batch.length !== ids.length || batch.some(record => !ids.includes(record.id))) {
+      throw new Error("Katalog wydarzeń zmienił się podczas wyszukiwania. Spróbuj ponownie.");
+    }
+    records.push(...batch);
+  }
+  const candidates = new Map(selectedRecords.map(record => [record.id, record]));
+  for (const record of records) {
+    const candidate = candidates.get(record.id)!;
+    if (record.start_at !== candidate.start_at ||
+      record.location?.latitude !== candidate.location?.latitude ||
+      record.location?.longitude !== candidate.location?.longitude ||
+      record.location?.city_id !== candidate.location?.city_id) {
+      throw new Error("Katalog wydarzeń zmienił się podczas wyszukiwania. Spróbuj ponownie.");
+    }
+  }
+  const byId = new Map(records.map(record => [record.id, mapEventRecord(record)]));
+  return selectedIds.map(id => byId.get(id)!);
 }
 
 function getPublicSearchDateRange(options: PublicEventSearchOptions) {
@@ -703,7 +659,7 @@ function getPublicSearchDateRange(options: PublicEventSearchOptions) {
   let dateTo = options.dateTo;
 
   if (options.dateFilter) {
-    const range = resolvePublicDateRange(options.dateFilter, options.customDate ?? "", now);
+    const range = resolveDateRange(options.dateFilter, options.customDate ?? "", now);
     dateFrom = new Date(Math.max(range.start.getTime(), now.getTime())).toISOString();
     dateTo = range.end?.toISOString();
   }
@@ -720,92 +676,11 @@ function applyPublicPriceFilters<T extends { or: (filters: string) => T }>(
   }
 
   if (options.priceMode === "max") {
-    const maxPrice = clampPublicMaxPrice(options.maxPrice ?? 0);
+    const maxPrice = clampPublicMaxPrice(options.maxPrice ?? 100);
     return query.or(`price_type.eq.free,price_type.eq.bezplatne,price_min.lte.${maxPrice},price_max.lte.${maxPrice}`);
   }
 
   return query;
-}
-
-function resolvePublicDateRange(dateFilter: DateFilter, customDate: string, now = new Date()): { start: Date; end: Date | null } {
-  const start = new Date(now);
-  start.setHours(0, 0, 0, 0);
-  const end = new Date(start);
-
-  if (dateFilter === "all") return { start, end: null };
-  if (dateFilter === "today") {
-    end.setDate(start.getDate() + 1);
-    return { start, end };
-  }
-  if (dateFilter === "tomorrow") {
-    start.setDate(start.getDate() + 1);
-    end.setDate(start.getDate() + 1);
-    return { start, end };
-  }
-  if (dateFilter === "weekend") {
-    const day = start.getDay();
-    if (day === 0) {
-      end.setDate(start.getDate() + 1);
-    } else if (day === 6) {
-      end.setDate(start.getDate() + 2);
-    } else {
-      start.setDate(start.getDate() + (6 - day));
-      end.setTime(start.getTime());
-      end.setDate(start.getDate() + 2);
-    }
-    return { start, end };
-  }
-  if (dateFilter === "week") {
-    end.setDate(start.getDate() + 7);
-    return { start, end };
-  }
-
-  const customRange = parsePublicCustomDateRange(customDate);
-  if (customRange) {
-    const selectedStart = new Date(`${customRange.from}T00:00:00`);
-    const selectedEnd = new Date(`${customRange.to}T00:00:00`);
-    selectedEnd.setDate(selectedEnd.getDate() + 1);
-    return { start: selectedStart, end: selectedEnd };
-  }
-
-  return { start, end: null };
-}
-
-function parsePublicCustomDateRange(customDate: string) {
-  const [rawFrom, rawTo] = customDate.split("/");
-  const from = normalizePublicDateInput(rawFrom);
-  const to = normalizePublicDateInput(rawTo);
-  if (!from && !to) return null;
-  const rangeFrom = from ?? to;
-  const rangeTo = to ?? from;
-  if (!rangeFrom || !rangeTo) return null;
-  return rangeFrom <= rangeTo
-    ? { from: rangeFrom, to: rangeTo }
-    : { from: rangeTo, to: rangeFrom };
-}
-
-function normalizePublicDateInput(value?: string) {
-  const trimmed = value?.trim();
-  return trimmed && /^\d{4}-\d{2}-\d{2}$/.test(trimmed) ? trimmed : null;
-}
-
-function distanceInKmFromCoordinates(
-  origin: Pick<KnownLocation, "latitude" | "longitude">,
-  event: Pick<EventItem, "latitude" | "longitude">
-) {
-  if (event.latitude == null || event.longitude == null) return Number.POSITIVE_INFINITY;
-  const earthRadiusKm = 6371;
-  const latitudeDelta = toRadians(event.latitude - origin.latitude);
-  const longitudeDelta = toRadians(event.longitude - origin.longitude);
-  const originLatitude = toRadians(origin.latitude);
-  const eventLatitude = toRadians(event.latitude);
-  const angle =
-    Math.sin(latitudeDelta / 2) * Math.sin(latitudeDelta / 2) +
-    Math.cos(originLatitude) *
-      Math.cos(eventLatitude) *
-      Math.sin(longitudeDelta / 2) *
-      Math.sin(longitudeDelta / 2);
-  return earthRadiusKm * 2 * Math.atan2(Math.sqrt(angle), Math.sqrt(1 - angle));
 }
 
 function clampPublicMaxPrice(value: number) {
@@ -813,8 +688,8 @@ function clampPublicMaxPrice(value: number) {
   return Math.min(Math.max(Math.round(value), 0), 500);
 }
 
-function toRadians(value: number) {
-  return (value * Math.PI) / 180;
+function clampPublicInteger(value: number | undefined, fallback: number, minimum: number, maximum: number) {
+  return Number.isFinite(value) ? Math.min(Math.max(Math.floor(value!), minimum), maximum) : fallback;
 }
 
 function emptyPublicEventSearchResult(page: number, pageSize: number, maxResults: number): PublicEventSearchResult {
@@ -901,18 +776,31 @@ export async function listPublicCategoryCityRoutes(
 
 export async function getEventBySlug(slug: string): Promise<EventItem | null> {
   const supabase = createSupabaseServerClient();
-  const { data, error } = await supabase
+  const publicQuery = () => supabase
     .from("events")
     .select(EVENT_SELECT)
-    .eq("slug", slug)
     .eq("status", "published")
     .eq("visibility", "public")
-    .or("is_cancelled.is.null,is_cancelled.eq.false")
+    .or("is_cancelled.is.null,is_cancelled.eq.false");
+  const { data, error } = await publicQuery()
+    .eq("slug", slug)
     .maybeSingle()
     .returns<SupabaseEventRecord | null>();
 
   if (error) throw new Error(`Nie udalo sie pobrac wydarzenia: ${error.message}`);
-  return data ? mapEventRecord(data) : null;
+  if (data) return mapEventRecord(data);
+
+  // Imported slugs may retain capitals while public URLs use lowercase.
+  // Escape LIKE metacharacters so the route segment remains a literal slug.
+  const literalSlug = slug.replace(/[\\%_]/g, "\\$&");
+  const { data: matches, error: lookupError } = await publicQuery()
+    .ilike("slug", literalSlug)
+    .limit(2)
+    .returns<SupabaseEventRecord[]>();
+
+  if (lookupError) throw new Error(`Nie udalo sie pobrac wydarzenia: ${lookupError.message}`);
+  if (matches && matches.length > 1) throw new Error("Nie udalo sie pobrac wydarzenia: niejednoznaczny slug.");
+  return matches?.[0] ? mapEventRecord(matches[0]) : null;
 }
 
 export async function listCategories(): Promise<CategoryOption[]> {
@@ -963,10 +851,11 @@ export async function getCityPageBySlug(slug: string): Promise<CityPage | null> 
 export async function getActiveCitySlugs(): Promise<string[]> {
   const supabase = createSupabaseServerClient();
   try {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("cities")
       .select("slug")
       .eq("is_active", true);
+    if (error) throw new Error(error.message);
     return (data ?? []).map(item => item.slug);
   } catch (err) {
     console.error("getActiveCitySlugs error:", err);
@@ -977,11 +866,12 @@ export async function getActiveCitySlugs(): Promise<string[]> {
 export async function getActiveCityLocations(): Promise<KnownLocation[]> {
   const supabase = createSupabaseServerClient();
   try {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("cities")
       .select("name, slug, latitude, longitude, voivodeship")
       .eq("is_active", true)
       .order("name", { ascending: true });
+    if (error) throw new Error(error.message);
 
     return (data ?? []).map((city) => {
       const voivodeship = city.voivodeship?.replace(/^województwo\s+/i, "");
@@ -991,8 +881,7 @@ export async function getActiveCityLocations(): Promise<KnownLocation[]> {
         label,
         aliases: Array.from(new Set([city.slug, createSlug(city.name)].filter(Boolean))),
         slug: city.slug,
-        latitude: city.latitude ?? getDefaultLocation().latitude,
-        longitude: city.longitude ?? getDefaultLocation().longitude
+        ...getCityCoordinates(city)
       };
     });
   } catch (err) {
@@ -1002,14 +891,16 @@ export async function getActiveCityLocations(): Promise<KnownLocation[]> {
 }
 
 export async function getHomeData(searchOptions: PublicEventSearchOptions = {}) {
-  const [eventSearch, categoryRows, activeCityLocations] = await Promise.all([
+  const [eventSearch, categoryRows, activeCityLocations, featuredSearch] = await Promise.all([
     getHomeEvents(searchOptions),
     getHomeCategories(),
-    getActiveCityLocations()
+    getActiveCityLocations(),
+    getHomeEvents({ ...searchOptions, featuredOnly: true, page: 1, pageSize: 8 })
   ]);
 
   return {
     events: eventSearch.events,
+    featuredEvents: featuredSearch.events,
     eventSearch,
     categories: categoryRows.length ? categoryRows : getFallbackCategoryOptions(),
     activeCityLocations
@@ -1069,7 +960,7 @@ function logPublicDataError(context: string, error: unknown) {
   console.error(`[events] Failed to load ${context}`, error);
 }
 
-export function getDefaultLocation(): KnownLocation {
+export function getDefaultLocation(): KnownLocation & Coordinates {
   return {
     label: "Polska",
     aliases: ["polska", "poland"],
@@ -1095,8 +986,7 @@ export function mapCityPageToLocation(cityPage: CityPage): KnownLocation {
     label: city?.name ?? "Polska",
     aliases: city ? [city.slug, createSlug(city.name)] : [],
     slug: city?.slug,
-    latitude: city?.latitude ?? getDefaultLocation().latitude,
-    longitude: city?.longitude ?? getDefaultLocation().longitude
+    ...getCityCoordinates(city)
   };
 }
 
@@ -1189,7 +1079,7 @@ function mapEventMarkerRecord(record: SupabaseEventMarkerRecord): EventMapMarker
 }
 
 function hasMarkerCoordinates(marker: EventMapMarker): marker is EventMapMarker & { latitude: number; longitude: number } {
-  return marker.latitude != null && marker.longitude != null;
+  return hasLocationCoordinates(marker);
 }
 
 function formatPrice(event: Pick<EventRow, "price_type" | "price_min" | "price_max" | "currency">) {
@@ -1209,35 +1099,37 @@ function formatPrice(event: Pick<EventRow, "price_type" | "price_min" | "price_m
 export async function resolveCityLocation(citySlug: string): Promise<KnownLocation | null> {
   const normSlug = citySlug.trim().toLowerCase();
 
-  // 1. Check knownLocations first
-  const known = knownLocations.find(loc => loc.aliases.includes(normSlug));
-  if (known) return known;
-
   const supabase = createSupabaseServerClient();
 
-  // 2. Query canonical cities
+  // Canonical data takes precedence, including its explicit lack of coordinates.
   try {
-    const { data: city } = await supabase
+    const { data: city, error } = await supabase
       .from("cities")
       .select("id, name, slug, latitude, longitude, county, voivodeship, is_active")
       .eq("slug", normSlug)
       .eq("is_active", true)
       .maybeSingle();
+    if (error) throw new Error(error.message);
 
     if (city) {
       return {
         label: city.name,
         aliases: [city.slug],
         slug: city.slug,
-        latitude: city.latitude ?? getDefaultLocation().latitude,
-        longitude: city.longitude ?? getDefaultLocation().longitude
+        ...getCityCoordinates(city)
       };
     }
   } catch (err) {
     console.error("resolveCityLocation cities error:", err);
   }
 
-  return null;
+  return knownLocations.find(loc => loc.aliases.includes(normSlug)) ?? null;
+}
+
+function getCityCoordinates(city: Pick<CityRow, "latitude" | "longitude"> | null | undefined) {
+  return hasLocationCoordinates(city)
+    ? { latitude: city.latitude, longitude: city.longitude }
+    : { latitude: null, longitude: null };
 }
 
 function createSlug(text: string) {

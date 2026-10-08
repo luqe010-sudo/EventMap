@@ -16,7 +16,11 @@ export async function GET() {
     const supabase = await createSupabaseUserClient();
     const { data, error } = await supabase.auth.getUser();
 
-    if (error || !data.user) {
+    if (error) {
+      console.error("[navbar] Failed to load auth user", error);
+      return NextResponse.json({ isLoggedIn: false }, { headers: PRIVATE_CACHE_HEADERS });
+    }
+    if (!data.user) {
       return NextResponse.json({ isLoggedIn: false }, { headers: PRIVATE_CACHE_HEADERS });
     }
 
@@ -28,6 +32,7 @@ export async function GET() {
 
     if (profileError) {
       console.error("[navbar] Failed to load profile", profileError);
+      return NextResponse.json({ isLoggedIn: false }, { headers: PRIVATE_CACHE_HEADERS });
     }
 
     return NextResponse.json(

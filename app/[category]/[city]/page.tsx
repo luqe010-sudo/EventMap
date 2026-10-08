@@ -1,3 +1,4 @@
+import { serializeJsonLd } from "@/lib/json-ld";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import HomePage from "@/components/HomePage";
@@ -8,12 +9,13 @@ import {
   resolveCityLocation,
   getActiveCityLocations,
   searchPublicEvents,
-  type CategoryCityRoute,
   type KnownLocation,
 } from "@/lib/events";
-import { toPluralCategorySlug, toPluralCategoryName, formatInCity, toSlug } from "@/lib/slugs";
+import { appendPublicFilters, buildSearchUrl, toPluralCategorySlug, toPluralCategoryName, formatInCity, toSlug } from "@/lib/slugs";
 import { searchAddress } from "@/lib/geocoding";
 import { parsePublicFilterParams } from "@/lib/filters";
+import { normalizeCitySearchFilters, publicSearchOptionsFromParams } from "@/lib/public-search-params";
+import { hasLocationCoordinates } from "@/lib/event-search";
 
 type Params = { category: string; city: string };
 type SearchParams = {
@@ -22,7 +24,7 @@ type SearchParams = {
   radius?: string;
 } & Record<string, string | string[] | undefined>;
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 const dateFilterMap = {
   "dzis": "today",
@@ -32,7 +34,6 @@ const dateFilterMap = {
 
 export async function generateMetadata({
   params,
-  searchParams,
 }: {
   params: Promise<Params>;
   searchParams: Promise<SearchParams>;
@@ -98,7 +99,7 @@ export default async function CategoryCityPage({
 }) {
   const { category: categorySlug, city: citySlug } = await params;
   const resolvedSearchParams = await searchParams;
-  const initialFilters = parsePublicFilterParams(resolvedSearchParams);
+  const requestedFilters = parsePublicFilterParams(resolvedSearchParams);
 
   // Handle /{category}/lokalizacja?lat=...&lng=...&radius=...
   if (citySlug === "lokalizacja") {
@@ -107,30 +108,37 @@ export default async function CategoryCityPage({
       notFound();
     }
 
-    const pluralCategorySlug = toPluralCategorySlug(categorySlug);
+    const pluralCategorySlug = toPluralCategorySlug(category.slug);
+    const query = new URLSearchParams();
+    for (const [key, value] of Object.entries(resolvedSearchParams)) {
+      const first = Array.isArray(value) ? value[0] : value;
+      if (first != null) query.set(key, first);
+    }
+    let pointOptions: ReturnType<typeof publicSearchOptionsFromParams> | null = null;
+    try {
+      pointOptions = publicSearchOptionsFromParams(query);
+    } catch {
+      // Invalid points return to the category without a radius or distance sort.
+    }
+    const point = pointOptions?.location;
+    if (!hasLocationCoordinates(point)) {
+      redirect(appendPublicFilters(`/${pluralCategorySlug}`, { ...requestedFilters, radiusKm: undefined, sortBy: "date" }));
+    }
+    const radius = pointOptions?.radiusKm ?? 30;
+    const initialFilters = { ...requestedFilters, radiusKm: radius };
     if (categorySlug !== pluralCategorySlug) {
-      const sp = resolvedSearchParams;
-      const qs = new URLSearchParams();
-      if (sp.lat) qs.set("lat", sp.lat);
-      if (sp.lng) qs.set("lng", sp.lng);
-      if (sp.radius) qs.set("radius", sp.radius);
-      redirect(`/${pluralCategorySlug}/lokalizacja?${qs.toString()}`);
+      redirect(buildSearchUrl({
+        ...initialFilters,
+        categorySlug: pluralCategorySlug,
+        geoLocation: { lat: point.latitude, lng: point.longitude, radius }
+      }));
     }
-
-    const sp = resolvedSearchParams;
-    const lat = parseFloat(sp.lat ?? "");
-    const lng = parseFloat(sp.lng ?? "");
-    if (Number.isNaN(lat) || Number.isNaN(lng)) {
-      redirect(`/${pluralCategorySlug}`);
-    }
-
-    const radius = Math.min(Math.max(parseInt(sp.radius ?? "30", 10) || 30, 5), 200);
 
     const geoLocation: KnownLocation = {
       label: "Wybrana lokalizacja",
       aliases: [],
-      latitude: lat,
-      longitude: lng,
+      latitude: point.latitude,
+      longitude: point.longitude,
     };
 
     const [eventSearch, categoryRows, activeCityLocations] = await Promise.all([
@@ -141,7 +149,8 @@ export default async function CategoryCityPage({
         dateFilter: initialFilters.dateFilter ?? "all",
         customDate: initialFilters.customDate,
         priceMode: initialFilters.priceMode ?? "all",
-        maxPrice: initialFilters.maxPrice
+        maxPrice: initialFilters.maxPrice,
+        sortBy: initialFilters.sortBy
       }),
       listCategories(),
       getActiveCityLocations(),
@@ -164,54 +173,60 @@ export default async function CategoryCityPage({
   // 1. Try category + city
   const category = await getCategoryBySlugFromDb(categorySlug);
   if (category) {
-    const pluralCategorySlug = toPluralCategorySlug(categorySlug);
-    const normalizedCitySlug = toSlug(citySlug);
-    if (categorySlug !== pluralCategorySlug || citySlug !== normalizedCitySlug) {
-      redirect(`/${pluralCategorySlug}/${normalizedCitySlug}`);
-    }
+    const pluralCategorySlug = toPluralCategorySlug(category.slug);
 
     const cityLocation = await resolveCityLocation(citySlug);
     if (!cityLocation) {
       // Try to geocode the citySlug as a fallback
+      let geocoded: Awaited<ReturnType<typeof searchAddress>> = [];
       try {
         const query = citySlug.replace(/-/g, " ");
-        const geocoded = await searchAddress(query);
-        if (geocoded && geocoded.length > 0) {
-          const best = geocoded[0];
-          const lat = Math.round(best.latitude * 1000) / 1000;
-          const lng = Math.round(best.longitude * 1000) / 1000;
-          redirect(`/${pluralCategorySlug}/lokalizacja?lat=${lat}&lng=${lng}&radius=30`);
-        }
+        geocoded = await searchAddress(query);
       } catch (err) {
         console.error("Failed to geocode fallback city:", err);
       }
+      const best = geocoded.find(hasLocationCoordinates);
+      if (best) {
+        redirect(buildSearchUrl({
+          ...requestedFilters,
+          categorySlug: pluralCategorySlug,
+          geoLocation: {
+            lat: Math.round(best.latitude * 1000) / 1000,
+            lng: Math.round(best.longitude * 1000) / 1000,
+            radius: requestedFilters.radiusKm ?? 30
+          }
+        }));
+      }
       notFound();
+    }
+    const initialFilters = normalizeCitySearchFilters(requestedFilters, cityLocation);
+    const normalizedCitySlug = cityLocation.slug ?? toSlug(cityLocation.label);
+    if (categorySlug !== pluralCategorySlug || citySlug !== normalizedCitySlug) {
+      redirect(appendPublicFilters(`/${pluralCategorySlug}/${normalizedCitySlug}`, initialFilters));
     }
 
     const [eventSearch, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
       searchPublicEvents({
         categoryId: category.id,
-        citySlug,
+        citySlug: normalizedCitySlug,
+        radiusKm: initialFilters.radiusKm,
         dateFilter: initialFilters.dateFilter ?? "all",
         customDate: initialFilters.customDate,
         priceMode: initialFilters.priceMode ?? "all",
-        maxPrice: initialFilters.maxPrice
+        maxPrice: initialFilters.maxPrice,
+        sortBy: initialFilters.sortBy
       }),
       listCategories(),
       getActiveCityLocations(),
       listPublicCategoryCityRoutes({ dateFrom: new Date().toISOString(), limit: 10000 }),
     ]);
 
-    if (!hasCategoryCityRoute(availableCategoryCityRoutes, pluralCategorySlug, cityLocation)) {
-      redirectToCategoryLocation(pluralCategorySlug, cityLocation, resolvedSearchParams);
-    }
-
     return (
       <>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: serializeJsonLd({
               "@context": "https://schema.org",
               "@type": "CollectionPage",
               name: `${category.name} ${formatInCity(cityLocation.label)} - wydarzenia`,
@@ -243,17 +258,20 @@ export default async function CategoryCityPage({
     }
 
     const normalizedCitySlug = cityLocation.slug ?? toSlug(cityLocation.label);
+    const initialFilters = normalizeCitySearchFilters(requestedFilters, cityLocation);
     if (categorySlug !== normalizedCitySlug) {
-      redirect(`/${normalizedCitySlug}/${citySlug}`);
+      redirect(appendPublicFilters(`/${normalizedCitySlug}/${citySlug}`, initialFilters));
     }
 
     const [eventSearch, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
       searchPublicEvents({
         citySlug: normalizedCitySlug,
+        radiusKm: initialFilters.radiusKm,
         dateFilter: initialFilters.dateFilter ?? dateFilterMap[citySlug],
         customDate: initialFilters.customDate,
         priceMode: initialFilters.priceMode ?? "all",
-        maxPrice: initialFilters.maxPrice
+        maxPrice: initialFilters.maxPrice,
+        sortBy: initialFilters.sortBy
       }),
       listCategories(),
       getActiveCityLocations(),
@@ -265,7 +283,7 @@ export default async function CategoryCityPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: serializeJsonLd({
               "@context": "https://schema.org",
               "@type": "CollectionPage",
               name: `Wydarzenia ${formatInCity(cityLocation.label)} - imprezy ${citySlug}`,
@@ -290,43 +308,28 @@ export default async function CategoryCityPage({
     // Fallback: if categorySlug is not a known city, but citySlug is a time keyword, try geocoding categorySlug
     const isTimeKeyword = citySlug === "dzis" || citySlug === "weekend" || citySlug === "ten-tydzien";
     if (isTimeKeyword) {
+      let geocoded: Awaited<ReturnType<typeof searchAddress>> = [];
       try {
         const query = categorySlug.replace(/-/g, " ");
-        const geocoded = await searchAddress(query);
-        if (geocoded && geocoded.length > 0) {
-          const best = geocoded[0];
-          const lat = Math.round(best.latitude * 1000) / 1000;
-          const lng = Math.round(best.longitude * 1000) / 1000;
-          redirect(`/lokalizacja?lat=${lat}&lng=${lng}&radius=30`);
-        }
+        geocoded = await searchAddress(query);
       } catch (err) {
         console.error("Failed to geocode city+time page fallback:", err);
+      }
+      const best = geocoded.find(hasLocationCoordinates);
+      if (best) {
+        redirect(buildSearchUrl({
+          ...requestedFilters,
+          dateFilter: requestedFilters.dateFilter ?? dateFilterMap[citySlug],
+          geoLocation: {
+            lat: Math.round(best.latitude * 1000) / 1000,
+            lng: Math.round(best.longitude * 1000) / 1000,
+            radius: requestedFilters.radiusKm ?? 30
+          }
+        }));
       }
     }
   }
 
   // 3. Fallback to 404
   notFound();
-}
-
-function hasCategoryCityRoute(routes: CategoryCityRoute[], categorySlug: string, cityLocation: KnownLocation) {
-  const citySlug = cityLocation.slug ?? toSlug(cityLocation.label);
-  return routes.some((route) => route.categorySlug === categorySlug && route.citySlug === citySlug);
-}
-
-function redirectToCategoryLocation(
-  categorySlug: string,
-  cityLocation: KnownLocation,
-  searchParams: SearchParams
-) {
-  const query = new URLSearchParams();
-  for (const [key, value] of Object.entries(searchParams)) {
-    if (typeof value === "string") query.set(key, value);
-  }
-
-  query.set("lat", String(Math.round(cityLocation.latitude * 1000) / 1000));
-  query.set("lng", String(Math.round(cityLocation.longitude * 1000) / 1000));
-  if (!query.has("radius")) query.set("radius", "30");
-
-  redirect(`/${categorySlug}/lokalizacja?${query.toString()}`);
 }

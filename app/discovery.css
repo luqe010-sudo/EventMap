@@ -1,0 +1,257 @@
+/* Public discovery UI. Loaded after legacy styles; keep this as the single
+   home-page surface/spacing/controls definition for both themes. */
+:root {
+  --discovery-radius: 16px;
+  --discovery-control-radius: 10px;
+  --discovery-shadow: 0 2px 12px rgba(43, 35, 29, .045);
+}
+html[data-theme="dark"] {
+  --discovery-shadow: 0 2px 12px rgba(0, 0, 0, .12);
+}
+
+html[data-theme] .mainContent { background: var(--bg); }
+html[data-theme] .mainContent::before { opacity: .24; }
+html[data-theme] .navbar { background: var(--bg-card); border-color: var(--border); box-shadow: none; }
+html[data-theme] .navHamburger, html[data-theme] .themeToggle { min-width: 44px; min-height: 44px; }
+html[data-theme] .homePage { width: min(var(--max-width), calc(100% - 64px)); max-width: none; margin-inline: auto; }
+html[data-theme] .homePage .heroSection { grid-template-columns: minmax(0, 1fr) minmax(340px, .9fr); gap: 32px; min-height: 0; padding: 40px 0 32px; }
+html[data-theme] .homePage .heroTitle { margin: 0 0 14px; font-size: clamp(2.2rem, 3.7vw, 3.5rem); font-weight: 750; line-height: 1.1; letter-spacing: -.045em; color: var(--ink); text-shadow: none; }
+html[data-theme] .homePage .heroSubtitle { margin: 0; color: var(--ink-secondary); font-size: .95rem; line-height: 1.65; }
+html[data-theme] .homePage .heroCard { padding: 18px; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); }
+html[data-theme] .homePage .heroCardTitle { margin: 0 0 14px; font-size: .85rem; font-weight: 600; color: var(--ink-secondary); }
+html[data-theme] .homePage .heroQuickTiles { gap: 8px; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+html[data-theme] .homePage .heroQuickTile { min-height: 76px; padding: 10px 4px; border: 1px solid var(--border); border-radius: var(--discovery-control-radius); background: var(--bg-soft) !important; box-shadow: none; }
+html[data-theme] .homePage .heroQuickTileLabel { margin: 0; font-size: .75rem; font-weight: 600; line-height: 1.35; color: var(--ink); white-space: normal; }
+html[data-theme] .homePage .heroQuickTileIcon svg { width: 24px; height: 24px; stroke-width: 2; }
+
+/* One card system for rails, venue groups and the main list. */
+.eventCarousel { min-width: 0; max-width: 100%; margin: 0 0 28px; }
+.eventCarouselHeader { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 14px; }
+.eventCarouselHeader > div:first-child { min-width: 0; }
+.eventCarouselHeader h2 { margin: 0; font-size: 1.25rem; line-height: 1.3; font-weight: 700; letter-spacing: -.02em; color: var(--ink); overflow-wrap: anywhere; }
+.eventCarouselHeader p, .eventCarouselHint { margin: 6px 0 0; color: var(--ink-secondary); font-size: .85rem; line-height: 1.5; }
+.eventCarouselActions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.eventCarouselActions > a { color: var(--brand-dark); font-size: .85rem; font-weight: 600; }
+.eventCarouselNav { display: flex; gap: 6px; }
+.eventCarouselNav button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--border); border-radius: var(--discovery-control-radius); background: var(--bg-card); color: var(--ink); cursor: pointer; }
+.eventCarouselNav button:disabled { opacity: .35; cursor: default; }
+.eventCarouselNav button:hover:not(:disabled) { border-color: var(--brand); }
+.eventCarouselTrack { display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding: 3px 2px 12px; scrollbar-width: none; min-width: 0; max-width: 100%; }
+.eventCarouselTrack::-webkit-scrollbar { display: none; }
+.eventCarouselCard { position: relative; flex: 0 0 260px; min-width: 0; scroll-snap-align: start; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); overflow: hidden; box-shadow: var(--discovery-shadow); }
+.eventCarouselCardLink { display: flex; flex-direction: column; height: 100%; color: var(--ink); text-decoration: none; }
+.eventCarouselImageWrap { aspect-ratio: 2 / 1; overflow: hidden; background: var(--bg-soft); }
+.eventCarouselImageWrap img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.eventCarouselBody { display: flex; flex-direction: column; flex: 1; padding: 14px; gap: 8px; }
+.eventCarouselCategory { font-size: .72rem; line-height: 1.3; font-weight: 650; }
+.eventCarouselBody h3 { margin: 0; font-size: 1rem; font-weight: 700; line-height: 1.4; min-height: 2.8em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.eventCarouselDate { display: flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 500; color: var(--ink-secondary); }
+.eventCarouselLocation { display: flex; align-items: center; gap: 6px; margin: 0; color: var(--ink-secondary); font-size: .8rem; white-space: nowrap; overflow: hidden; }
+.eventCarouselLocation span { overflow: hidden; text-overflow: ellipsis; }
+.eventCarouselDate svg, .eventCarouselLocation svg { flex-shrink: 0; }
+.eventCarouselPrice { display: flex; gap: 8px; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 4px; font-size: .9rem; font-weight: 650; }
+.eventCarouselPrice span + span { color: var(--ink-secondary); font-size: .8rem; font-weight: 400; }
+.eventCarouselSave, html[data-theme] .homePage .eventCardH > .eventCardHFav { position: absolute; top: 10px; right: 10px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--border); border-radius: 50%; background: var(--bg-card); color: var(--ink); box-shadow: var(--discovery-shadow); cursor: pointer; }
+.eventCarouselSave.eventCardHFavActive, html[data-theme] .homePage .eventCardH > .eventCardHFavActive { color: var(--brand); }
+.eventCardSaveFeedback { position: absolute; z-index: 3; right: 8px; bottom: 8px; max-width: calc(100% - 16px); padding: 10px 12px; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--bg-card); color: var(--ink); box-shadow: var(--discovery-shadow); font-size: .8rem; line-height: 1.4; }
+html[data-theme] .homePage .mainLayout { grid-template-columns: minmax(0, 1fr) 310px; gap: 28px; }
+html[data-theme] .homePage .mainEventsHeader { gap: 16px; margin: 0 0 8px; }
+html[data-theme] .homePage .mainEventsHeader h2 { font-size: 1.25rem; font-weight: 700; line-height: 1.35; letter-spacing: -.02em; }
+html[data-theme] .homePage .mainEventsCount { margin: 0 0 20px; font-size: .85rem; font-weight: 400; color: var(--ink-secondary); }
+html[data-theme] .homePage .mainEventsSortSelect { min-height: 44px; width: auto; max-width: 185px; border-radius: var(--discovery-control-radius); color: var(--ink); background: var(--bg-card); font-size: .8rem; }
+html[data-theme] .homePage .eventsList { display: grid; gap: 16px; border: 0; border-radius: 0; background: transparent; overflow: visible; box-shadow: none; }
+html[data-theme] .homePage .eventCardH { position: relative; margin: 0; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); overflow: hidden; }
+html[data-theme] .homePage .eventCardH:hover { background: var(--bg-card); border-color: var(--border-strong); transform: none; }
+html[data-theme] .homePage .eventCardHLink { display: grid; grid-template-columns: 144px minmax(0, 1fr); gap: 16px; padding: 16px; }
+html[data-theme] .homePage .eventCardHImageWrap { width: 144px; height: 144px; aspect-ratio: 1; border-radius: 10px; }
+html[data-theme] .homePage .eventCardH > .eventCardHFav { top: 24px; left: 108px; right: auto; }
+html[data-theme] .homePage .eventCardHTop { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+html[data-theme] .homePage .eventCardHTopRight { padding-right: 0; }
+html[data-theme] .homePage .eventCardHCategory { font-size: .72rem; font-weight: 650; line-height: 1.4; text-transform: none; }
+html[data-theme] .homePage .eventCardHDate { display: flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 500; line-height: 1.4; color: var(--ink-secondary); }
+html[data-theme] .homePage .eventCardHTitle { margin: 0 0 6px; font-size: 1rem; font-weight: 700; line-height: 1.4; letter-spacing: -.015em; }
+html[data-theme] .homePage .eventCardHDesc { margin: 0 0 12px; font-size: .85rem; line-height: 1.5; color: var(--ink-secondary); -webkit-line-clamp: 2; }
+html[data-theme] .homePage .eventCardHBottom { gap: 10px; flex-wrap: wrap; }
+html[data-theme] .homePage .eventCardHLocation { font-size: .8rem; color: var(--ink-secondary); }
+html[data-theme] .homePage .eventCardHLocation svg { flex-shrink: 0; }
+html[data-theme] .homePage .eventCardHLocation span { overflow: hidden; text-overflow: ellipsis; }
+html[data-theme] .homePage .eventCardHPrice { font-size: .9rem; font-weight: 650; }
+html[data-theme] .homePage .eventCardHDist { font-size: .8rem; color: var(--ink-secondary); }
+html[data-theme] .homePage .eventsList > .eventCarousel { padding: 16px; margin: 0; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); }
+html[data-theme] .homePage .eventsList > .eventCarousel h2 { font-size: 1.05rem; }
+html[data-theme] .homePage .eventsList > .eventCarousel .eventCarouselCard { box-shadow: none; }
+html[data-theme] .homePage .showMoreBtn { min-height: 48px; border: 1px solid var(--border); border-radius: var(--discovery-control-radius); background: var(--bg-card); color: var(--ink); font-size: .9rem; font-weight: 600; }
+
+/* Search: four actual sections, theme-aware controls, one active-state color. */
+html[data-theme] .homePage .searchPanel { padding: 22px; margin: 0 0 32px; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); }
+.searchPanelHeading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; }
+.searchPanelHeading h2 { margin: 0; color: var(--ink); font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
+.searchPanelHeading p { margin: 4px 0 0; font-size: .85rem; color: var(--ink-secondary); }
+.searchAdvancedToggle { display: none; }
+html[data-theme] .homePage .searchTopRow { grid-template-columns: minmax(190px, 1.1fr) minmax(150px, .9fr) minmax(210px, 1.35fr) minmax(170px, 1fr); gap: 20px; }
+html[data-theme] .homePage .searchSectionHeader { flex-wrap: wrap; justify-content: flex-start; gap: 8px; min-height: 32px; }
+html[data-theme] .homePage .searchLabel { color: var(--ink-secondary); font-size: .8rem; font-weight: 600; }
+/* These controls replace legacy rules containing !important. */
+html[data-theme] .homePage .autocompleteContainer { min-height: 48px !important; gap: 8px; padding: 0 8px 0 12px !important; border: 1px solid var(--border) !important; border-radius: var(--discovery-control-radius) !important; background: var(--bg-soft) !important; }
+html[data-theme] .homePage .autocompleteContainer input { min-width: 0; width: 100%; padding: 0 !important; min-height: 46px; font-size: .9rem !important; color: var(--ink) !important; }
+html[data-theme] .homePage .autocompleteContainer input::placeholder { color: var(--ink-secondary); }
+html[data-theme] .homePage .locationBoxGpsBtn { width: 44px; height: 44px; color: var(--ink-secondary); }
+html[data-theme] .homePage .searchCapsule { gap: 4px; padding: 3px; border: 1px solid var(--border) !important; border-radius: var(--discovery-control-radius); background: var(--bg-soft) !important; }
+html[data-theme] .homePage .capsuleItem { min-height: 36px !important; height: auto !important; padding: 6px 10px !important; border-radius: 8px; font-size: .8rem !important; font-weight: 500; color: var(--ink-secondary); }
+html[data-theme] .homePage .capsuleText { font-size: .75rem; font-weight: 500; color: var(--ink-secondary); }
+html[data-theme] .homePage .capsuleItemActive, html[data-theme] .homePage .capsuleTextActive { background: var(--brand-light) !important; color: var(--brand-dark) !important; box-shadow: none; }
+html[data-theme] .homePage .searchDatePills { flex-wrap: wrap; width: 100%; }
+html[data-theme] .homePage .searchRadiusWrap, html[data-theme] .homePage .searchPriceWrap { grid-template-columns: minmax(70px, 1fr) auto; }
+html[data-theme] .homePage .searchInlineInputLabel { color: var(--ink-secondary); font-size: .8rem; }
+html[data-theme] .homePage .searchInlineInputLabel input { min-height: 44px; background: var(--bg-soft) !important; color: var(--ink) !important; border-color: var(--border) !important; border-radius: 8px; font-size: .85rem; }
+html[data-theme] .homePage .searchCategoryRow { gap: 8px; padding: 18px 0 0; }
+html[data-theme] .homePage .catPill { min-height: 40px; padding: 8px 12px; border-radius: var(--discovery-control-radius); background: var(--bg-soft) !important; border: 1px solid var(--border) !important; color: var(--ink) !important; font-size: .8rem; font-weight: 500; }
+html[data-theme] .homePage .catPillActive { background: var(--brand-light) !important; border-color: color-mix(in srgb, var(--brand) 35%, var(--border)) !important; color: var(--brand-dark) !important; }
+html[data-theme] .homePage .searchActiveFilters { border-color: var(--border); margin-top: 18px; padding-top: 18px; gap: 12px; }
+html[data-theme] .homePage .searchActiveFiltersLabel { color: var(--ink-secondary); font-size: .8rem; }
+html[data-theme] .homePage .searchActiveFiltersBox { padding: 0; border: 0; background: transparent !important; }
+html[data-theme] .homePage .searchActiveFilterChip { font-size: .8rem; font-weight: 500; color: var(--ink); background: var(--bg-soft) !important; }
+.searchActiveFilterChipX { display: inline-grid; place-items: center; min-width: 32px; min-height: 32px; color: var(--ink-secondary); }
+html[data-theme] .homePage .searchActiveFiltersEmpty { color: var(--ink-secondary); font-size: .8rem; }
+html[data-theme] .homePage .searchActiveFiltersClear { min-height: 44px; border: 1px solid var(--border); border-radius: var(--discovery-control-radius); background: transparent; color: var(--ink-secondary); font-size: .85rem; font-weight: 500; }
+html[data-theme] .homePage .searchSubmitBtn { min-height: 44px; height: auto; border-radius: var(--discovery-control-radius); background: var(--brand); box-shadow: none; color: #fff; font-size: .85rem; font-weight: 650; }
+html[data-theme] .homePage .hint { color: var(--ink-secondary); font-size: .8rem; line-height: 1.5; }
+html[data-theme] .homePage .sidebar { border: 0; padding: 0; gap: 16px; background: transparent; box-shadow: none; }
+html[data-theme] .homePage .sidebarSection, html[data-theme] .homePage .seoTextCard, html[data-theme] .homePage .valueGrid { border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); }
+html[data-theme] .homePage .sidebarSection { padding: 16px; }
+html[data-theme] .homePage .sidebarSection + .sidebarSection { margin-top: 0; }
+html[data-theme] .homePage .sidebarSectionHeader h3 { color: var(--ink); font-size: 1rem; font-weight: 700; }
+html[data-theme] .homePage .sidebarMapPlaceholder { background: var(--bg-soft); color: var(--ink); }
+html[data-theme] .homePage .sidebarMapLoadButton { min-height: 44px; border-radius: var(--discovery-control-radius); font-weight: 600; }
+html[data-theme] .homePage .sidebarUpcomingItem { padding-right: 50px; border-color: var(--border); }
+html[data-theme] .homePage .sidebarUpcomingFav { width: 44px; height: 44px; color: var(--ink-secondary); }
+html[data-theme] .homePage .sidebarUpcomingFav.eventCardHFavActive { color: var(--brand); }
+html[data-theme] .homePage .sidebarUpcomingDate { background: var(--bg-soft); }
+html[data-theme] .homePage .sidebarCategoryChip { min-height: 44px; border: 1px solid var(--border); border-radius: var(--discovery-control-radius); background: var(--bg-soft); color: var(--ink); font-weight: 500; }
+html[data-theme] .homePage .sidebarCategoryChip.sidebarCategoryActive { background: var(--brand-light); border-color: var(--brand); color: var(--brand-dark); }
+html[data-theme] .homePage .sidebarCategoryCount { color: var(--ink-secondary); }
+html[data-theme] .homePage .emptyState { padding: 32px 24px; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); color: var(--ink-secondary); }
+html[data-theme] .homePage .emptyState h3 { font-size: 1.15rem; font-weight: 700; color: var(--ink); }
+
+/* Route loading must follow the selected theme too. */
+html[data-theme] .loadingHomePage .loadingSearchPanel, html[data-theme] .loadingHomePage .loadingEventRow { border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); }
+html[data-theme] .loadingHomePage :is(.loadingBlock, .loadingHeroTiles span, .loadingSearchGrid span, .loadingEventRow span, .loadingEventRow b, .loadingEventRow i, .loadingEventRow em, .loadingSidebar div) { background: color-mix(in srgb, var(--ink) 9%, var(--bg-card)); animation: searchSkeletonPulse 1.5s ease-in-out infinite alternate; }
+html[data-theme] :is(.edSaveBtn, .edShareBtn, .edGoogleMapsLink, .edOrgLink) { border-radius: var(--discovery-control-radius); min-height: 44px; font-weight: 600; box-shadow: none; }
+/* A grid's automatic minimum must not widen the embedded event beyond a phone. */
+html[data-theme] .edShell { grid-template-columns: minmax(0, 1fr); }
+.edShell > *, .edHeroInfo, .edHeroImageCol, .edContentGrid > *, .edBottomGrid > * { min-width: 0; }
+html[data-theme] .edHeroInfo h1 { font-weight: 750; line-height: 1.15; overflow-wrap: anywhere; }
+.edHeroDesc, .edExpandContent p, .edInfoText strong, .edSourceText { overflow-wrap: anywhere; }
+html[data-theme] .edShell :is(.edDescSection, .edMapSection, .edOrgSection, .edSourcesSection, .edRelatedSection) h2 { font-size: 1.15rem; font-weight: 700; }
+html[data-theme] .edExpandToggle { min-height: 44px; border-radius: var(--discovery-control-radius); background: var(--bg-card); font-weight: 600; }
+
+/* Search feedback keeps the same surfaces and control geometry. */
+.resultsAction { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 16px; border: 1px solid var(--border-strong); border-radius: var(--discovery-control-radius); color: var(--ink); background: var(--bg-card); font: inherit; font-size: .85rem; font-weight: 600; cursor: pointer; }
+.resultsAction:hover { border-color: var(--brand); }
+.resultsActionPrimary { background: var(--brand); color: white; border-color: var(--brand); }
+.resultsFeedback { display: flex; align-items: center; gap: 14px; padding: 20px; margin: 18px 0; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); color: var(--ink); }
+.resultsFeedback > svg { flex-shrink: 0; color: var(--brand); }
+.resultsFeedback > div { flex: 1; }
+.resultsFeedback p { margin: 5px 0 0; color: var(--ink-secondary); font-size: .9rem; }
+.emptySearchIcon { display: grid; place-items: center; margin: 0 auto 16px; width: 56px; height: 56px; border-radius: var(--discovery-radius); background: var(--brand-light); color: var(--brand); }
+.emptyStateActions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.sidebarMapStatus { padding: 12px 18px; font-size: .85rem; color: var(--ink-secondary); }
+.resultsSkeleton { display: grid; gap: 16px; }
+.resultSkeletonCard { display: flex; gap: 20px; padding: 16px; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); }
+.resultSkeletonCard > span { width: 144px; min-height: 144px; border-radius: 10px; }
+.resultSkeletonCard > div { flex: 1; padding: 16px 0; display: grid; gap: 14px; }
+.resultSkeletonCard i { display: block; height: 14px; border-radius: 6px; }
+.resultSkeletonCard i:last-child { width: 65%; }
+.resultSkeletonCard > span, .resultSkeletonCard i { background: color-mix(in srgb, var(--ink) 9%, var(--bg-card)); animation: searchSkeletonPulse 1.5s ease-in-out infinite alternate; }
+@keyframes searchSkeletonPulse { to { opacity: .45; } }
+.homePage button:focus-visible, .homePage a:focus-visible, .homePage input:focus-visible, .eventCarouselTrack:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+html[data-theme] .homePage .searchSlider:focus-visible { outline: 3px solid var(--brand) !important; outline-offset: 3px; }
+.homePage .eventCardHLink:focus-visible, .eventCarouselCardLink:focus-visible { outline-offset: -3px; }
+
+@media (max-width: 1100px) {
+  html[data-theme] .homePage .searchTopRow { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  html[data-theme] .homePage .heroSection { grid-template-columns: 1fr; gap: 20px; }
+  html[data-theme] .homePage .heroCard { max-width: none; }
+  html[data-theme] .homePage .mainLayout { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  html[data-theme] .homePage { width: calc(100% - 32px); }
+  html[data-theme] .homePage .heroSection { padding: 28px 0 24px; gap: 20px; text-align: left; }
+  html[data-theme] .homePage .heroTitle { font-size: 2rem; max-width: 100%; line-height: 1.15; }
+  html[data-theme] .homePage .heroSubtitle { font-size: .9rem; line-height: 1.6; }
+  html[data-theme] .homePage .heroCard { padding: 14px 12px; }
+  html[data-theme] .homePage .heroCardTitle { margin-bottom: 10px; font-size: .8rem; }
+  html[data-theme] .homePage .heroQuickTile { min-height: 68px; padding: 8px 2px; }
+  html[data-theme] .homePage .heroQuickTileLabel { font-size: .7rem; }
+  .eventCarouselHeader { flex-wrap: wrap; gap: 10px; align-items: flex-start; }
+  .eventCarouselActions { width: 100%; justify-content: space-between; }
+  .eventCarouselHeader h2 { font-size: 1.15rem; }
+  .eventCarouselHeader p, .eventCarouselHint { font-size: .8rem; }
+  .eventCarouselTrack { scroll-padding-inline: 2px; }
+  .eventCarouselCard { flex-basis: calc(100% - 42px); max-width: 280px; }
+  .eventCarouselHint { margin-top: 0; }
+  html[data-theme] .homePage .searchPanel { padding: 18px 14px; }
+  .searchPanelHeading { align-items: center; margin-bottom: 18px; }
+  .searchPanelHeading h2 { font-size: 1.05rem; }
+  .searchPanelHeading p { font-size: .8rem; }
+  .searchAdvancedToggle { display: inline-flex; gap: 6px; align-items: center; justify-content: center; flex-shrink: 0; min-height: 44px; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--discovery-control-radius); background: var(--bg-soft); color: var(--ink); font: inherit; font-size: .8rem; font-weight: 600; }
+  .searchAdvancedToggle[aria-expanded="true"] > svg:last-child { transform: rotate(180deg); }
+  html[data-theme] .homePage .searchTopRow { grid-template-columns: 1fr; gap: 16px; }
+  .searchTopRow:not(.searchAdvancedOpen) .searchSectionRadius, .searchTopRow:not(.searchAdvancedOpen) .searchSectionPrice { display: none; }
+  html[data-theme] .homePage .searchSection { border: 0 !important; padding: 0 !important; }
+  .searchSectionLoc { order: 0; }
+  .searchSectionDate { order: 1; }
+  .searchSectionRadius { order: 2; }
+  .searchSectionPrice { order: 3; }
+  html[data-theme] .homePage .capsuleItem { min-height: 44px !important; }
+  html[data-theme] .homePage .searchCategoryRow { display: flex; flex-wrap: nowrap; overflow-x: auto; max-width: 100%; gap: 8px; padding-block: 16px 6px; scrollbar-width: none; }
+  .searchCategoryRow::-webkit-scrollbar { display: none; }
+  html[data-theme] .homePage .catPill { flex-shrink: 0; min-height: 44px; }
+  .searchActiveFiltersLabel { display: none; }
+  .searchActiveFiltersActions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+  html[data-theme] .homePage .searchActiveFiltersClear, html[data-theme] .homePage .searchSubmitBtn { width: 100% !important; }
+  html[data-theme] .homePage .mainEventsHeader { align-items: flex-start; }
+  html[data-theme] .homePage .mainEventsHeader h2 { font-size: 1.15rem; }
+  html[data-theme] .homePage .mainEventsSortSelect { max-width: 112px; font-size: .75rem; }
+  html[data-theme] .homePage .eventCardHLink { grid-template-columns: 1fr; gap: 0; padding: 0; }
+  html[data-theme] .homePage .eventCardHImageWrap { width: 100%; height: auto; aspect-ratio: 2 / 1; border-radius: 0; }
+  html[data-theme] .homePage .eventCardHBody { padding: 16px; }
+  html[data-theme] .homePage .eventCardH > .eventCardHFav { top: 10px; right: 10px; left: auto; }
+  html[data-theme] .homePage .eventCardHMapButton { min-height: 44px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--discovery-control-radius); color: var(--ink-secondary); font-size: .8rem; font-weight: 500; }
+  html[data-theme] .homePage .eventCardHBottom { align-items: flex-start; }
+  html[data-theme] .homePage .eventCardHPriceDist { margin-left: 0; }
+  html[data-theme] .homePage .eventsList > .eventCarousel { padding: 14px; }
+  html[data-theme] .homePage .mobileViewSwitcher { background: var(--bg-card); border-top: 1px solid var(--border); box-shadow: none; }
+  html[data-theme] .homePage .mobileViewSwitcher button { font-weight: 600; }
+  html[data-theme] .edEmbeddedClose { width: 44px; height: 44px; }
+  html[data-theme] .mobileEventView .edShellEmbedded .edHeroInfo { width: 100%; padding-inline: 16px; }
+  html[data-theme] .mobileEventView .edShellEmbedded .edImageActions { padding-inline: 16px; }
+  html[data-theme] .mobileEventView .edShellEmbedded .edHeroImage { height: 100%; object-fit: cover; }
+  html[data-theme] .mobileEventView .edShellEmbedded .edContentGrid { padding-inline: 16px; }
+  html[data-theme] .mobileEventView .edShellEmbedded .edBottomGrid { padding-inline: 16px; }
+  body.mobileMapActive .cookieSettingsButton { left: 12px; right: auto; }
+  .resultsFeedback { flex-wrap: wrap; padding: 16px; }
+  .resultsFeedback .resultsAction { width: 100%; }
+  .emptyStateActions { flex-direction: column; }
+  .resultSkeletonCard > span { width: 85px; min-height: 110px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eventCarouselTrack { scroll-behavior: auto; }
+  .resultSkeletonCard > span, .resultSkeletonCard i { animation: none; }
+  html[data-theme] .loadingHomePage :is(.loadingBlock, .loadingHeroTiles span, .loadingSearchGrid span, .loadingEventRow span, .loadingEventRow b, .loadingEventRow i, .loadingEventRow em, .loadingSidebar div) { animation: none; }
+}
+.searchLocationScope {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.searchLocationScope .capsuleItem {
+  flex: 1;
+  min-height: 44px;
+}
+
+.searchSectionRadius input:disabled,
+.searchLocationScope button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}

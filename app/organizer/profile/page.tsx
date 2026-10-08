@@ -1,9 +1,7 @@
 import OrganizerProfileForm from "@/components/OrganizerProfileForm";
 import OrganizerSectionNav from "@/components/OrganizerSectionNav";
-import {
-  getOrganizerProfileData,
-  organizerUpdateProfileAction
-} from "@/lib/organizer-events";
+import { getOrganizerProfileData } from "@/lib/organizer-events";
+import { organizerUpdateProfileFormAction } from "@/lib/organizer-form-actions";
 
 export const dynamic = "force-dynamic";
 
@@ -31,7 +29,7 @@ export default async function OrganizerProfilePage() {
               </div>
               <OrganizerProfileForm
                 organizer={organizer}
-                action={organizerUpdateProfileAction.bind(null, organizer.id)}
+                action={organizerUpdateProfileFormAction.bind(null, organizer.id)}
               />
             </section>
           ))}

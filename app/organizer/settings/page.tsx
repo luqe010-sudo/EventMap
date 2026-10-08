@@ -1,4 +1,5 @@
 import OrganizerSectionNav from "@/components/OrganizerSectionNav";
+import { redirect } from "next/navigation";
 import {
   OrganizerSettingsForm,
   OrganizerUpgradeForm
@@ -9,6 +10,7 @@ export const dynamic = "force-dynamic";
 
 export default async function OrganizerSettingsPage() {
   const data = await getOrganizerSettingsData();
+  if (data.profile?.role === "admin") redirect("/admin");
   const isOrganizer = data.profile?.role === "organizer";
 
   return (

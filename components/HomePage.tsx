@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { List as ListIcon, Map as MapIcon, CalendarDays } from "lucide-react";
+import { List as ListIcon, Map as MapIcon, CalendarDays, Search, RotateCcw, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { PUBLIC_EVENTS_MAX_RESULTS, PUBLIC_EVENTS_PAGE_SIZE, type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type EventMapMarker, type KnownLocation, type PublicCategoryCount, type PublicEventSearchResult, getDefaultLocation, knownLocations } from "@/lib/events";
 import {
@@ -19,14 +19,20 @@ import CategoryIcon from "@/components/CategoryIcon";
 import MobileMapView from "@/components/MobileMapView";
 import EventDetailView from "@/components/EventDetailView";
 import FeaturedEvents from "@/components/FeaturedEvents";
+import EventVenueDeck from "@/components/EventVenueDeck";
+import { groupEventsByVenue } from "@/lib/event-groups";
 import EventCard from "@/components/EventCard";
 import Sidebar from "@/components/Sidebar";
 import ValueProps from "@/components/ValueProps";
 import { toSlug, toPluralCategoryName, toPluralCategorySlug, formatInCity, buildSearchUrl, eventPath } from "@/lib/slugs";
 import { generateSeoText } from "@/lib/seo-texts";
+import { hasLocationCoordinates } from "@/lib/event-search";
+import { restorePublicWorkspaceSearch } from "@/lib/public-workspace-history";
+import { useMobileWorkspaceAccessibility } from "@/components/useMobileWorkspaceAccessibility";
 
 type HomePageProps = {
   initialEvents: EventItem[];
+  initialFeaturedEvents?: EventItem[];
   initialEventSearch?: PublicEventSearchResult;
   categoryOptions: CategoryOption[];
   initialLocation?: KnownLocation;
@@ -52,28 +58,32 @@ type MobileWorkspaceHistory = {
   view: MobileView;
   eventId?: string;
   workspaceUrl: string;
+  originView?: "list" | "map";
 };
 
 export default function HomePage({
   initialEvents,
+  initialFeaturedEvents = [],
   initialEventSearch,
   categoryOptions,
   initialLocation,
   initialCategory,
   initialDateFilter,
   initialFilters,
-  activeCityLocations = [],
-  availableCategoryCityRoutes
+  activeCityLocations = []
 }: HomePageProps) {
   const [viewMode, setViewMode] = useState<MobileView>("list");
   const [hasOpenedMap, setHasOpenedMap] = useState(false);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [openedEventId, setOpenedEventId] = useState<string | null>(null);
   const [events, setEvents] = useState(initialEvents);
+  const [recommendedPool, setRecommendedPool] = useState(initialFeaturedEvents);
   const [mapEvents, setMapEvents] = useState<EventMapMarker[]>(() => initialEvents.map(mapEventToMarker));
   const [selectedMapEvent, setSelectedMapEvent] = useState<EventItem | null>(null);
   const [selectedMapEventLoading, setSelectedMapEventLoading] = useState(false);
   const [categoryCounts, setCategoryCounts] = useState<PublicCategoryCount[]>(() => buildCategoryCounts(initialEvents, categoryOptions));
+  const [categoryCountsLoading, setCategoryCountsLoading] = useState(true);
+  const [categoryCountsError, setCategoryCountsError] = useState<string | null>(null);
   const [eventSearch, setEventSearch] = useState<PublicEventSearchResult>(
     initialEventSearch ?? {
       events: initialEvents,
@@ -88,10 +98,15 @@ export default function HomePage({
   const [eventsLoading, setEventsLoading] = useState(false);
   const [eventsLoadingMore, setEventsLoadingMore] = useState(false);
   const [eventsError, setEventsError] = useState<string | null>(null);
+  const [failedEventsPage, setFailedEventsPage] = useState(1);
+  const [markersLoading, setMarkersLoading] = useState(false);
+  const [markersError, setMarkersError] = useState<string | null>(null);
+  const [historySearchRevision, setHistorySearchRevision] = useState(0);
   const homePageRef = useRef<HTMLElement | null>(null);
   const mobileEventViewRef = useRef<HTMLElement | null>(null);
   const listScrollPositionRef = useRef(0);
   const workspaceUrlRef = useRef("");
+  const eventOriginViewRef = useRef<"list" | "map">("list");
   const pointerStartRef = useRef<{
     pointerId: number;
     x: number;
@@ -112,6 +127,7 @@ export default function HomePage({
   const markerRequestRef = useRef(0);
   const categoryCountsRequestRef = useRef(0);
   const mapEventRequestRef = useRef(0);
+  const historyRestoreRequestRef = useRef(0);
   const hasSkippedInitialSearchRef = useRef(false);
 
   // Filter state
@@ -120,7 +136,10 @@ export default function HomePage({
   );
   const [customDate, setCustomDate] = useState(initialFilters?.customDate ?? "");
   const [radiusKm, setRadiusKm] = useState(clampRadius(initialFilters?.radiusKm ?? 100));
-  const [isAllPoland, setIsAllPoland] = useState(!initialLocation && initialFilters?.radiusKm == null);
+  const [isAllPoland, setIsAllPoland] = useState(!initialLocation);
+  const [locationMode, setLocationMode] = useState<"city" | "radius">(
+    initialLocation?.slug && initialFilters?.radiusKm == null ? "city" : "radius"
+  );
   const [category, setCategory] = useState<EventCategory | "Wszystkie">(
     initialCategory ?? "Wszystkie"
   );
@@ -130,17 +149,24 @@ export default function HomePage({
   const [location, setLocation] = useState<KnownLocation>(initialLocation ?? getDefaultLocation());
   const [locationStatus, setLocationStatus] = useState(
     initialLocation
-      ? `Szukam wydarzeń w pobliżu: ${initialLocation.label}.`
-      : ""
+      ? hasLocationCoordinates(initialLocation)
+        ? initialFilters?.radiusKm != null || !initialLocation.slug
+          ? `Szukam w promieniu ${initialFilters?.radiusKm ?? 100} km: ${initialLocation.label}.`
+          : `Szukam wydarzeń w miejscowości: ${initialLocation.label}.`
+        : `Brak współrzędnych centrum ${initialLocation.label}. Dostępne jest wyszukiwanie w mieście; promień i odległość są niedostępne.`
+      : "Przeglądasz całą Polskę. Wybierz miejscowość lub użyj GPS, aby zobaczyć lokalną ofertę."
   );
-  const [sortBy, setSortBy] = useState<"nearest" | "date">("date");
+  const [sortBy, setSortBy] = useState<"nearest" | "date">(initialFilters?.sortBy ?? "date");
+  const hasLocationCenter = hasLocationCoordinates(location);
+  const effectiveRadius = !isAllPoland && locationMode === "radius" && hasLocationCenter ? radiusKm : null;
+  const effectiveSort = !isAllPoland && hasLocationCenter ? sortBy : "date";
   const activeCategory = category === "Wszystkie" ? undefined : category;
   const activeLocation = isAllPoland ? undefined : location;
   const activeLocationLabel = activeLocation
     ? getPublicLocationLabel(activeLocation.label)
     : undefined;
   const activeLocationPhrase = activeLocation
-    ? getLocationPhrase(activeLocationLabel ?? activeLocation.label)
+    ? `${getLocationPhrase(activeLocationLabel ?? activeLocation.label)}${effectiveRadius != null ? ` i okolicy · ${radiusKm} km` : ""}`
     : undefined;
 
   // Visible copy follows the live filters, not only the route used for the first render.
@@ -163,7 +189,7 @@ export default function HomePage({
     }
     if (activeCategory) {
       const nameLower = toPluralCategoryName(activeCategory).toLowerCase();
-      return `Sprawdź najbliższe ${nameLower}, festiwale muzyczne i występy na żywo.`;
+      return `Sprawdź dostępne wydarzenia w kategorii ${nameLower}. Wybierz miejscowość i datę.`;
     }
     if (activeLocation) {
       return `Znajdź koncerty, festiwale, wydarzenia sportowe i imprezy dla dzieci.`;
@@ -181,7 +207,7 @@ export default function HomePage({
     if (activeLocationPhrase) {
       return `Nadchodzące wydarzenia ${activeLocationPhrase}`;
     }
-    return "Wydarzenia w Twojej okolicy";
+    return "Nadchodzące wydarzenia w Polsce";
   }, [activeCategory, activeLocationPhrase]);
 
   const seoTextHtml = useMemo(() => {
@@ -192,47 +218,45 @@ export default function HomePage({
   // Filtered events
   const filteredEvents = useMemo(
     () => {
-      let results = filterEvents(events, {
+      const results = filterEvents(events, {
         dateFilter,
         customDate,
-        radiusKm: isAllPoland || location.slug ? null : radiusKm,
+        radiusKm: effectiveRadius,
         category,
         location,
         priceMode,
-        maxPrice
+        maxPrice,
+        sortBy: effectiveSort
       });
-      if (sortBy === "nearest") {
-        results = [...results].sort((a, b) => {
-          const firstDistance = Number.isFinite(a.distanceKm) ? a.distanceKm : Number.MAX_SAFE_INTEGER;
-          const secondDistance = Number.isFinite(b.distanceKm) ? b.distanceKm : Number.MAX_SAFE_INTEGER;
-          return firstDistance - secondDistance;
-        });
-      }
-      return results;
+      return isAllPoland ? results.map((item) => ({ ...item, distanceKm: Number.POSITIVE_INFINITY })) : results;
     },
-    [events, dateFilter, customDate, radiusKm, isAllPoland, category, location, priceMode, maxPrice, sortBy]
+    [events, dateFilter, customDate, effectiveRadius, isAllPoland, category, location, priceMode, maxPrice, effectiveSort]
   );
 
   // Featured events
   const featuredEvents = useMemo(
-    () => filterEvents(events, {
-      dateFilter: "all",
-      customDate: "",
-      radiusKm: null,
-      category: "Wszystkie",
+    () => filterEvents([...new Map([...recommendedPool, ...events].map((event) => [event.id, event])).values()], {
+      dateFilter,
+      customDate,
+      radiusKm: effectiveRadius,
+      category,
       location,
-      priceMode: "all"
-    }).filter(({ event }) => event.isFeatured),
-    [events, location]
+      priceMode,
+      maxPrice
+    }).sort((a, b) => Number(b.event.isFeatured) - Number(a.event.isFeatured)).slice(0, 8)
+      .map((item) => isAllPoland ? { ...item, distanceKm: Number.POSITIVE_INFINITY } : item),
+    [events, recommendedPool, dateFilter, customDate, category, location, isAllPoland, effectiveRadius, priceMode, maxPrice]
   );
 
   const visibleEvents = filteredEvents;
+  const venueGroups = useMemo(() => groupEventsByVenue(visibleEvents), [visibleEvents]);
   const shownEventsCount = Math.min(eventSearch.shownCount, eventSearch.maxResults);
   const cappedTotalCount = Math.min(eventSearch.totalCount, eventSearch.maxResults);
+  const mapPointsCount = mapEvents.filter(hasLocationCoordinates).length;
   const canLoadMoreEvents = !eventsLoading && eventSearch.hasMore && shownEventsCount < eventSearch.maxResults;
   const eventById = useMemo(
-    () => new Map(events.map((event) => [event.id, event])),
-    [events]
+    () => new Map([...recommendedPool, ...events].map((event) => [event.id, event])),
+    [events, recommendedPool]
   );
 
   const openedEvent = openedEventId
@@ -247,15 +271,17 @@ export default function HomePage({
   }, [events, openedEvent]);
 
   useEffect(() => {
+    if (viewMode === "event") return;
     if (
       selectedEventId &&
       !mapEvents.some((event) => event.id === selectedEventId)
     ) {
+      ++mapEventRequestRef.current;
       setSelectedEventId(null);
       setSelectedMapEvent(null);
       setSelectedMapEventLoading(false);
     }
-  }, [mapEvents, selectedEventId]);
+  }, [mapEvents, selectedEventId, viewMode]);
 
   useEffect(() => {
     if (openedEventId && !eventById.has(openedEventId) && selectedMapEvent?.id !== openedEventId) {
@@ -281,52 +307,15 @@ export default function HomePage({
     };
   }, [viewMode]);
 
-  useEffect(() => {
-    function handlePopState(event: PopStateEvent) {
-      const historyState = (event.state as {
-        eventMapWorkspace?: MobileWorkspaceHistory;
-      } | null)?.eventMapWorkspace;
-
-      if (!historyState) {
-        setViewMode("list");
-        return;
-      }
-
-      workspaceUrlRef.current = historyState.workspaceUrl;
-      if (historyState.view === "event" && historyState.eventId) {
-        if (eventById.has(historyState.eventId)) {
-          setSelectedEventId(historyState.eventId);
-          setOpenedEventId(historyState.eventId);
-          setViewMode("event");
-          return;
-        }
-      }
-
-      const restoredEventId = historyState.eventId && eventById.has(historyState.eventId)
-        ? historyState.eventId
-        : null;
-      setOpenedEventId(restoredEventId);
-      if (restoredEventId) setSelectedEventId(restoredEventId);
-
-      if (historyState.view === "map") {
-        setHasOpenedMap(true);
-        setViewMode("map");
-        return;
-      }
-
-      setViewMode("list");
-    }
-
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, [eventById]);
-
   // Handlers
   function handleLocationSelect(loc: KnownLocation) {
     setIsAllPoland(false);
     setLocation(loc);
     setLocationInput(loc.label);
-    setLocationStatus(`Szukam wydarzeń w pobliżu: ${loc.label}.`);
+    setLocationMode(isKnownCity(loc) ? "city" : "radius");
+    setLocationStatus(hasLocationCoordinates(loc)
+      ? isKnownCity(loc) ? `Szukam wydarzeń w miejscowości: ${loc.label}.` : `Szukam w promieniu ${radiusKm} km: ${loc.label}.`
+      : `Brak współrzędnych centrum ${loc.label}. Dostępne jest wyszukiwanie w mieście; promień i odległość są niedostępne.`);
   }
 
   function handleUseGPS() {
@@ -345,6 +334,7 @@ export default function HomePage({
         };
         setIsAllPoland(false);
         setLocation(gpsLocation);
+        setLocationMode("radius");
         setLocationInput(gpsLocation.label);
         setLocationStatus("Używam Twojej aktualnej lokalizacji.");
       },
@@ -354,8 +344,22 @@ export default function HomePage({
   }
 
   function handleRadiusChange(radius: number) {
+    if (isAllPoland || !hasLocationCenter) {
+      setLocationStatus("Wybierz miejscowość lub użyj GPS, zanim ustawisz promień wyszukiwania.");
+      return;
+    }
     setIsAllPoland(false);
     setRadiusKm(clampRadius(radius));
+    setLocationMode("radius");
+    setLocationStatus(`Szukam w promieniu ${clampRadius(radius)} km: ${location.label}.`);
+  }
+
+  function handleLocationModeChange(mode: "city" | "radius") {
+    if (mode === "radius" && !hasLocationCenter) return;
+    setLocationMode(mode);
+    setLocationStatus(mode === "city"
+      ? `Szukam wydarzeń w miejscowości: ${location.label}.`
+      : `Szukam w promieniu ${radiusKm} km: ${location.label}.`);
   }
 
   // filter radius to default location or specific city
@@ -386,22 +390,18 @@ export default function HomePage({
     return locations;
   }, [activeCityLocations]);
 
-  const availableCategoryCitySet = useMemo(() => {
-    return new Set((availableCategoryCityRoutes ?? []).map((route) => `${route.categorySlug}/${route.citySlug}`));
-  }, [availableCategoryCityRoutes]);
-
   const buildCategoryLocationHref = useCallback((categorySlug: string, loc: KnownLocation) => {
     const pluralCategorySlug = toPluralCategorySlug(categorySlug);
     const citySlug = loc.slug ?? toSlug(loc.label);
 
-    if (availableCategoryCityRoutes === undefined || availableCategoryCitySet.has(`${pluralCategorySlug}/${citySlug}`)) {
+    if (loc.slug || !hasLocationCoordinates(loc)) {
       return `/${pluralCategorySlug}/${citySlug}`;
     }
 
     const lat = Math.round(loc.latitude * 1000) / 1000;
     const lng = Math.round(loc.longitude * 1000) / 1000;
     return `/${pluralCategorySlug}/lokalizacja?lat=${lat}&lng=${lng}&radius=30`;
-  }, [availableCategoryCityRoutes, availableCategoryCitySet]);
+  }, []);
 
   // Determine if location is a known city (has a slug-able name from city_pages/knownLocations)
   // GPS locations and geo points use empty aliases or ["gps"]
@@ -429,7 +429,7 @@ export default function HomePage({
     if (!isAllPoland && isKnownCity(location)) {
       // Known city — use slug
       citySlug = location.slug ?? toSlug(location.label);
-    } else if (!isAllPoland && location.label !== "Polska") {
+    } else if (!isAllPoland && hasLocationCoordinates(location)) {
       // GPS or unknown point — use lat/lng params
       geoLocation = {
         lat: Math.round(location.latitude * 1000) / 1000,
@@ -447,10 +447,11 @@ export default function HomePage({
       customDate,
       priceMode,
       maxPrice,
-      radiusKm: isAllPoland ? null : radiusKm
+      radiusKm: effectiveRadius,
+      sortBy: effectiveSort
     });
     return url;
-  }, [category, location, isAllPoland, radiusKm, isKnownCity, dateFilter, customDate, priceMode, maxPrice]);
+  }, [category, location, isAllPoland, radiusKm, isKnownCity, dateFilter, customDate, priceMode, maxPrice, effectiveRadius, effectiveSort]);
 
   const currentEventsApiParams = useCallback((page: number) => {
     const params = new URLSearchParams({
@@ -464,11 +465,13 @@ export default function HomePage({
 
     if (!isAllPoland && isKnownCity(location)) {
       params.set("citySlug", location.slug ?? toSlug(location.label));
-    } else if (!isAllPoland && location.label !== "Polska") {
+    } else if (!isAllPoland && hasLocationCoordinates(location)) {
       params.set("lat", String(Math.round(location.latitude * 1000) / 1000));
       params.set("lng", String(Math.round(location.longitude * 1000) / 1000));
-      params.set("radius", String(radiusKm));
     }
+
+    if (effectiveRadius != null) params.set("radius", String(effectiveRadius));
+    if (effectiveSort === "nearest") params.set("sort", "nearest");
 
     if (dateFilter !== "all") {
       params.set("kiedy", dateFilter);
@@ -485,7 +488,7 @@ export default function HomePage({
     }
 
     return params;
-  }, [category, customDate, dateFilter, isAllPoland, isKnownCity, location, maxPrice, priceMode, radiusKm]);
+  }, [category, customDate, dateFilter, isAllPoland, isKnownCity, location, maxPrice, priceMode, effectiveRadius, effectiveSort]);
 
   const currentMarkerApiParams = useCallback(() => {
     const params = currentEventsApiParams(1);
@@ -499,12 +502,33 @@ export default function HomePage({
     [currentEventsApiParams]
   );
 
+  useEffect(() => {
+    const controller = new AbortController();
+    const params = new URLSearchParams(eventsSearchKey);
+    params.set("featured", "1");
+    params.set("pageSize", "8");
+    setRecommendedPool([]);
+    void fetch(`/api/events/search?${params}`, { signal: controller.signal })
+      .then(async (response) => {
+        if (!response.ok) throw new Error("Featured search failed");
+        const result = await response.json() as PublicEventSearchResult;
+        if (!controller.signal.aborted) setRecommendedPool(result.events);
+      })
+      .catch((error) => {
+        if (!controller.signal.aborted) console.error("[home] Failed to load featured events", error);
+      });
+    return () => controller.abort();
+  }, [eventsSearchKey]);
+
   const loadEventsPage = useCallback(async (page: number, mode: "replace" | "append") => {
     const requestId = searchRequestRef.current + 1;
     searchRequestRef.current = requestId;
     setEventsError(null);
     if (mode === "append") setEventsLoadingMore(true);
-    else setEventsLoading(true);
+    else {
+      setEventsLoading(true);
+      setEvents([]);
+    }
 
     try {
       const response = await fetch(`/api/events/search?${currentEventsApiParams(page).toString()}`);
@@ -522,6 +546,7 @@ export default function HomePage({
     } catch (error) {
       console.error("[home] Failed to load filtered events", error);
       if (searchRequestRef.current === requestId) {
+        setFailedEventsPage(page);
         setEventsError("Nie udało się pobrać wydarzeń dla aktualnych filtrów.");
       }
     } finally {
@@ -535,6 +560,9 @@ export default function HomePage({
   const loadMapMarkers = useCallback(async () => {
     const requestId = markerRequestRef.current + 1;
     markerRequestRef.current = requestId;
+    setMarkersLoading(true);
+    setMarkersError(null);
+    setMapEvents([]);
 
     try {
       const response = await fetch(`/api/events/markers?${currentMarkerApiParams().toString()}`);
@@ -544,12 +572,18 @@ export default function HomePage({
       setMapEvents(result.markers);
     } catch (error) {
       console.error("[home] Failed to load event markers", error);
+      if (markerRequestRef.current === requestId) setMarkersError("Nie udało się pobrać punktów na mapę.");
+    } finally {
+      if (markerRequestRef.current === requestId) setMarkersLoading(false);
     }
   }, [currentMarkerApiParams]);
 
   const loadCategoryCounts = useCallback(async () => {
     const requestId = categoryCountsRequestRef.current + 1;
     categoryCountsRequestRef.current = requestId;
+    setCategoryCounts([]);
+    setCategoryCountsLoading(true);
+    setCategoryCountsError(null);
 
     try {
       const response = await fetch(`/api/events/category-counts?${currentMarkerApiParams().toString()}`);
@@ -559,19 +593,21 @@ export default function HomePage({
       setCategoryCounts(result.categoryCounts);
     } catch (error) {
       console.error("[home] Failed to load category counts", error);
+      if (categoryCountsRequestRef.current === requestId) setCategoryCountsError("Nie udało się policzyć kategorii dla aktualnych filtrów.");
+    } finally {
+      if (categoryCountsRequestRef.current === requestId) setCategoryCountsLoading(false);
     }
   }, [currentMarkerApiParams]);
 
   const loadMapEventDetail = useCallback(async (eventId: string) => {
+    const requestId = ++mapEventRequestRef.current;
     const loadedEvent = eventById.get(eventId);
     if (loadedEvent) {
       setSelectedMapEvent(loadedEvent);
       setSelectedMapEventLoading(false);
-      return;
+      return loadedEvent;
     }
 
-    const requestId = mapEventRequestRef.current + 1;
-    mapEventRequestRef.current = requestId;
     setSelectedMapEvent(null);
     setSelectedMapEventLoading(true);
 
@@ -579,15 +615,87 @@ export default function HomePage({
       const response = await fetch(`/api/events/${encodeURIComponent(eventId)}`);
       if (!response.ok) throw new Error("Event detail request failed");
       const result = (await response.json()) as { event: EventItem };
-      if (mapEventRequestRef.current !== requestId) return;
+      if (mapEventRequestRef.current !== requestId) return null;
       setSelectedMapEvent(result.event);
+      return result.event;
     } catch (error) {
       console.error("[home] Failed to load map event detail", error);
       if (mapEventRequestRef.current === requestId) setSelectedMapEvent(null);
+      return null;
     } finally {
       if (mapEventRequestRef.current === requestId) setSelectedMapEventLoading(false);
     }
   }, [eventById]);
+
+  useEffect(() => {
+    async function handlePopState(popEvent: PopStateEvent) {
+      const requestId = ++historyRestoreRequestRef.current;
+      const historyState = (popEvent.state as { eventMapWorkspace?: MobileWorkspaceHistory } | null)?.eventMapWorkspace;
+      if (!historyState) {
+        // Entries owned by another route need their server-rendered context.
+        window.location.reload();
+        return;
+      }
+      if (historyState.workspaceUrl !== currentSearchUrl()) {
+        const restored = restorePublicWorkspaceSearch(historyState.workspaceUrl, window.location.origin, categoryOptions, locationBySlug);
+        if (!restored) {
+          window.location.reload();
+          return;
+        }
+        // Reject outstanding results from the workspace being left immediately.
+        ++searchRequestRef.current;
+        ++markerRequestRef.current;
+        ++categoryCountsRequestRef.current;
+        ++mapEventRequestRef.current;
+        setHistorySearchRevision(revision => revision + 1);
+        setCategory(restored.category);
+        setIsAllPoland(restored.location === null);
+        setLocation(restored.location ?? getDefaultLocation());
+        setLocationInput(restored.location?.label ?? "");
+        setLocationMode(restored.locationMode);
+        setRadiusKm(restored.radiusKm);
+        setDateFilter(restored.dateFilter);
+        setCustomDate(restored.customDate);
+        setPriceMode(restored.priceMode);
+        setMaxPrice(restored.maxPrice);
+        setSortBy(restored.sortBy);
+        setLocationStatus(!restored.location ? "Pokazuję wydarzenia z całej Polski."
+          : restored.locationMode === "radius" ? `Szukam w promieniu ${restored.radiusKm} km: ${restored.location.label}.`
+          : `Szukam wydarzeń w miejscowości: ${restored.location.label}.`);
+      }
+      workspaceUrlRef.current = historyState.workspaceUrl;
+      if (historyState.view === "event" && historyState.eventId) {
+        // Preserve the canonical event URL while its detail is being restored.
+        setViewMode("event");
+        setOpenedEventId(null);
+        const restored = eventById.get(historyState.eventId) ?? await loadMapEventDetail(historyState.eventId);
+        if (historyRestoreRequestRef.current !== requestId) return;
+        if (!restored) {
+          // The canonical page owns the unavailable/not-found state.
+          window.location.reload();
+          return;
+        }
+        eventOriginViewRef.current = historyState.originView ?? "list";
+        setSelectedMapEvent(restored);
+        setSelectedEventId(restored.id);
+        setOpenedEventId(restored.id);
+        setViewMode("event");
+        return;
+      }
+      const restoredEventId = historyState.eventId && eventById.has(historyState.eventId) ? historyState.eventId : null;
+      setOpenedEventId(restoredEventId);
+      if (restoredEventId) setSelectedEventId(restoredEventId);
+      if (historyState.view === "map") setHasOpenedMap(true);
+      setViewMode(historyState.view === "map" ? "map" : "list");
+    }
+    window.addEventListener("popstate", handlePopState);
+    return () => { window.removeEventListener("popstate", handlePopState); };
+  }, [categoryOptions, currentSearchUrl, eventById, loadMapEventDetail, locationBySlug]);
+
+  useEffect(() => () => {
+    ++historyRestoreRequestRef.current;
+    ++mapEventRequestRef.current;
+  }, []);
 
   useEffect(() => {
     if (viewMode === "event") return;
@@ -619,7 +727,7 @@ export default function HomePage({
     void loadEventsPage(1, "replace");
     void loadMapMarkers();
     void loadCategoryCounts();
-  }, [eventsSearchKey, loadCategoryCounts, loadEventsPage, loadMapMarkers]);
+  }, [eventsSearchKey, historySearchRevision, loadCategoryCounts, loadEventsPage, loadMapMarkers]);
 
   const handleFindSubmit = useCallback(() => {
     const url = currentSearchUrl();
@@ -662,6 +770,7 @@ export default function HomePage({
   }, [loadMapEventDetail]);
 
   const clearMapSelection = useCallback(() => {
+    ++mapEventRequestRef.current;
     setSelectedEventId(null);
     setSelectedMapEvent(null);
     setSelectedMapEventLoading(false);
@@ -688,6 +797,10 @@ export default function HomePage({
     if (!event) return;
 
     const workspaceUrl = workspaceUrlRef.current || currentSearchUrl();
+    if (viewMode !== "event") {
+      eventOriginViewRef.current = viewMode === "map" ? "map" : "list";
+      if (viewMode === "list") listScrollPositionRef.current = window.scrollY;
+    }
     workspaceUrlRef.current = workspaceUrl;
     setSelectedEventId(eventId);
     setOpenedEventId(eventId);
@@ -699,13 +812,14 @@ export default function HomePage({
         eventMapWorkspace: {
           view: "event",
           eventId,
-          workspaceUrl
+          workspaceUrl,
+          originView: eventOriginViewRef.current
         } satisfies MobileWorkspaceHistory
       },
       "",
       eventPath(event)
     );
-  }, [currentSearchUrl, eventById, selectedMapEvent]);
+  }, [currentSearchUrl, eventById, selectedMapEvent, viewMode]);
 
   const showOpenedEvent = useCallback(() => {
     if (!openedEvent) return;
@@ -714,11 +828,12 @@ export default function HomePage({
 
   const closeMobileEvent = useCallback(() => {
     const workspaceUrl = workspaceUrlRef.current || currentSearchUrl();
+    const returnView = eventOriginViewRef.current;
     window.history.replaceState(
       {
         ...window.history.state,
         eventMapWorkspace: {
-          view: "map",
+          view: returnView,
           workspaceUrl
         } satisfies MobileWorkspaceHistory
       },
@@ -726,9 +841,23 @@ export default function HomePage({
       workspaceUrl
     );
     setOpenedEventId(null);
-    setHasOpenedMap(true);
-    setViewMode("map");
+    if (returnView === "map") setHasOpenedMap(true);
+    setViewMode(returnView);
+    if (returnView === "list") window.requestAnimationFrame(() => window.scrollTo({ top: listScrollPositionRef.current, behavior: "auto" }));
   }, [currentSearchUrl]);
+
+  useMobileWorkspaceAccessibility({ workspaceRef: homePageRef, view: viewMode, event: openedEvent, onCloseEvent: closeMobileEvent, onShowList: showMobileList });
+
+  useEffect(() => {
+    const mobile = window.matchMedia("(max-width: 760px)");
+    const showDesktopList = () => {
+      if (mobile.matches) return;
+      setViewMode("list");
+      setOpenedEventId(null);
+    };
+    mobile.addEventListener("change", showDesktopList);
+    return () => mobile.removeEventListener("change", showDesktopList);
+  }, []);
 
   function handlePointerStart(event: React.PointerEvent<HTMLElement>) {
     if (
@@ -990,13 +1119,14 @@ export default function HomePage({
       )}
 
       <HeroSection
-        eventCount={eventSearch.totalCount}
         onSelectCategory={(cat) => setCategory(cat)}
         onSelectFree={() => { setPriceMode("free"); setCategory("Wszystkie"); }}
         onSelectDateFilter={(f) => setDateFilter(f)}
         title={pageTitle}
         subtitle={pageSubtitle}
       />
+
+      <FeaturedEvents events={featuredEvents} onOpenEvent={openMobileEvent} />
 
       <SearchPanel
         locationInput={locationInput}
@@ -1011,6 +1141,10 @@ export default function HomePage({
         onCustomDateChange={setCustomDate}
         radiusKm={radiusKm}
         isAllPoland={isAllPoland}
+        locationMode={locationMode}
+        canSearchCity={isKnownCity(location)}
+        hasLocationCenter={hasLocationCenter}
+        onLocationModeChange={handleLocationModeChange}
         onRadiusChange={handleRadiusChange}
         onAllPolandSelect={handleAllPolandSelect}
         category={category}
@@ -1028,46 +1162,57 @@ export default function HomePage({
       {/* Main 70/30 layout: events list + sidebar */}
       <div className="mainLayout">
         <div className="mainColumn">
-          <FeaturedEvents
-            events={featuredEvents}
-            onOpenEvent={openMobileEvent}
-          />
 
-          <section className="mainEvents" id="events-list" aria-label="Lista wydarzeń">
+          <section className="mainEvents" id="events-list" aria-label="Lista wydarzeń" aria-busy={eventsLoading || eventsLoadingMore}>
             <div className="mainEventsHeader">
               <h2>{listHeading}</h2>
               <div className="mainEventsSort">
                 <span>Sortuj:</span>
                 <select
-                  value={sortBy}
+                  value={effectiveSort}
                   onChange={(e) => setSortBy(e.target.value as "nearest" | "date")}
                   className="mainEventsSortSelect"
                   aria-label="Sortowanie wydarzeń"
                 >
-                  <option value="nearest">Najbliższe</option>
+                  <option value="nearest" disabled={isAllPoland || !hasLocationCenter}>Wg odległości</option>
                   <option value="date">Wg daty</option>
                 </select>
               </div>
             </div>
-            <p className="mainEventsCount">
-              {eventSearch.totalCount > 0
-                ? `Znaleziono ${formatNumber(eventSearch.totalCount)} wydarzeń, pokazujemy ${formatNumber(shownEventsCount)} z maksymalnie ${formatNumber(cappedTotalCount)} najbliższych.`
-                : "Nie znaleziono wydarzeń dla aktualnych filtrów."}
-              {eventsLoading ? " Odświeżam wyniki..." : ""}
+            <p className="mainEventsCount" role="status">
+              {eventsLoading ? "Szukam wydarzeń dla Twoich filtrów…" : eventsError ? "Wyniki wymagają ponownego pobrania." : eventSearch.totalCount > 0
+                ? `${formatNumber(eventSearch.totalCount)} wydarzeń · wyświetlono ${formatNumber(shownEventsCount)}${!markersLoading && !markersError ? ` · ${formatNumber(mapPointsCount)} na mapie` : ""}${eventSearch.totalCount > cappedTotalCount ? ` · limit tego widoku: ${formatNumber(cappedTotalCount)}` : ""}`
+                : "Brak wydarzeń dla wybranych filtrów."}
             </p>
-            {eventsError ? <p className="mainEventsError">{eventsError}</p> : null}
+            {eventsError ? (
+              <div className="resultsFeedback" role="alert">
+                <RotateCcw size={22} aria-hidden="true" />
+                <div><strong>Spróbujmy jeszcze raz</strong><p>{eventsError}</p></div>
+                <button type="button" className="resultsAction" onClick={() => void loadEventsPage(failedEventsPage, failedEventsPage > 1 ? "append" : "replace")}><RotateCcw size={16} aria-hidden="true" />Ponów</button>
+              </div>
+            ) : null}
 
-            {filteredEvents.length > 0 ? (
+            {eventsLoading ? (
+              <div className="resultsSkeleton" aria-hidden="true">{[0, 1, 2].map((key) => <div className="resultSkeletonCard" key={key}><span /><div><i /><i /><i /></div></div>)}</div>
+            ) : filteredEvents.length > 0 ? (
               <div className="eventsList">
-                {visibleEvents.map(({ event, distanceKm }) => (
+                {venueGroups.map((group) => group.events.length > 1 ? (
+                  <EventVenueDeck
+                    key={group.key}
+                    venue={group.venue}
+                    events={group.events}
+                    onOpenEvent={openMobileEvent}
+                    onShowOnMap={showMobileMap}
+                  />
+                ) : group.events.map(({ event, distanceKm }) => (
                   <EventCard
                     key={event.id}
                     event={event}
-                    distanceKm={distanceKm}
+                    distanceKm={isAllPoland ? Number.POSITIVE_INFINITY : distanceKm}
                     onShowOnMap={showMobileMap}
                     onOpenEvent={openMobileEvent}
                   />
-                ))}
+                )))}
                 {canLoadMoreEvents && (
                   <button
                     type="button"
@@ -1080,13 +1225,17 @@ export default function HomePage({
                   </button>
                 )}
               </div>
-            ) : (
+            ) : !eventsError ? (
               <div className="emptyState">
-                <div className="emptyIcon">🔍</div>
-                <h3>Tu chwilowo cisza.</h3>
-                <p>Zwiększ promień, zmień datę albo wybierz inną kategorię.</p>
+                <div className="emptySearchIcon"><Search size={28} aria-hidden="true" /></div>
+                <h3>Jeszcze nie mamy takiego planu</h3>
+                <p>Oferta zależy od miejsca i terminu. Zmień filtry lub sprawdź wydarzenia w całej Polsce.</p>
+                <div className="emptyStateActions">
+                  <button type="button" className="resultsAction" onClick={() => { setCategory("Wszystkie"); setDateFilter("all"); setCustomDate(""); setPriceMode("all"); }}>Wyczyść datę, kategorię i cenę</button>
+                  {!isAllPoland ? <button type="button" className="resultsAction resultsActionPrimary" onClick={handleAllPolandSelect}>Sprawdź całą Polskę<ArrowRight size={16} aria-hidden="true" /></button> : null}
+                </div>
               </div>
-            )}
+            ) : null}
           </section>
 
           {/* City categories tiles grid and quick timing links — below events */}
@@ -1146,8 +1295,8 @@ export default function HomePage({
                       label: city.label,
                       aliases: [city.slug],
                       slug: city.slug,
-                      latitude: getDefaultLocation().latitude,
-                      longitude: getDefaultLocation().longitude
+                      latitude: null,
+                      longitude: null
                     })}
                     className="internalLinkCard"
                   >
@@ -1190,10 +1339,16 @@ export default function HomePage({
           events={filteredEvents}
           mapEvents={mapEvents}
           categoryCounts={categoryCounts}
+          categoryCountsLoading={categoryCountsLoading}
+          categoryCountsError={categoryCountsError}
+          onRetryCategoryCounts={() => void loadCategoryCounts()}
           onCategorySelect={setCategory}
           selectedCategory={category}
           location={location}
           isAllPoland={isAllPoland}
+          markersLoading={markersLoading}
+          markersError={markersError}
+          onRetryMarkers={() => void loadMapMarkers()}
         />
       </div>
 
@@ -1204,6 +1359,9 @@ export default function HomePage({
           active={viewMode === "map"}
           parked={viewMode === "event"}
           events={mapEvents}
+          markersLoading={markersLoading}
+          markersError={markersError}
+          onRetryMarkers={() => void loadMapMarkers()}
           selectedEvent={selectedMapEvent}
           selectedEventLoading={selectedMapEventLoading}
           selectedEventId={selectedEventId}
@@ -1222,6 +1380,8 @@ export default function HomePage({
           className={`mobileEventView ${viewMode === "event" ? "mobileEventViewActive" : ""}`}
           aria-label={`Wydarzenie: ${openedEvent.title}`}
           aria-hidden={viewMode !== "event"}
+          inert={viewMode !== "event"}
+          tabIndex={-1}
         >
           <EventDetailView
             key={openedEvent.id}
@@ -1293,7 +1453,7 @@ export default function HomePage({
 
 function shouldIgnoreViewSwipe(target: EventTarget | null) {
   return target instanceof Element && Boolean(
-    target.closest("button, input, select, textarea, [role='button'], .mobileMapPreview, .maplibregl-control-container")
+    target.closest("button, input, select, textarea, [role='button'], .eventCarousel, .eventVenueDeck, .mobileMapPreview, .maplibregl-control-container")
   );
 }
 

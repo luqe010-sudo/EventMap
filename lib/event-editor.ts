@@ -46,6 +46,11 @@ export const eventStatuses: EventStatus[] = [
   "archived"
 ];
 
+/** Keep the first publication date across later edits and moderation. */
+export function eventPublicationTimestamp(status: string, publishedAt: string | null, now = new Date()) {
+  return publishedAt ?? (status === "published" ? now.toISOString() : null);
+}
+
 export function formString(formData: FormData, key: string) {
   const value = formData.get(key);
   if (typeof value !== "string") return null;

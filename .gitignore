@@ -37,3 +37,9 @@ supabase/.temp/
 ChatGPT Image*.png
 importers/
 scraping/
+/scratch/
+/test_strony/
+/vercel-diagnostics/
+
+.vercel
+.env*

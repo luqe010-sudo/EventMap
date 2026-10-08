@@ -1,10 +1,10 @@
 import Link from "next/link";
 import OrganizerSectionNav from "@/components/OrganizerSectionNav";
+import EventSaveNotice from "@/components/EventSaveNotice";
+import OrganizerEventQuickAction from "@/components/OrganizerEventQuickAction";
 import {
   listOrganizerEvents,
-  organizerCancelEventAction,
-  organizerDuplicateEventAction,
-  organizerHideEventAction
+  organizerDuplicateEventAction
 } from "@/lib/organizer-events";
 import { formatPolishDate } from "@/lib/date-format";
 import { toPluralCategorySlug } from "@/lib/slugs";
@@ -13,6 +13,7 @@ type SearchParams = {
   status?: string;
   dateFrom?: string;
   dateTo?: string;
+  save?: string | string[];
 };
 
 export const dynamic = "force-dynamic";
@@ -40,6 +41,7 @@ export default async function OrganizerEventsPage({
       </div>
 
       <OrganizerSectionNav active="events" />
+      <EventSaveNotice value={params.save} />
 
       <section className="managementPanel organizerFilterPanel">
         <form className="formGrid">
@@ -105,12 +107,8 @@ export default async function OrganizerEventsPage({
                       <div className="tableActions">
                         <Link href={`/organizer/events/${event.id}/edit`}>Edytuj</Link>
                         {publicPath ? <Link href={publicPath}>Podglad</Link> : null}
-                        <form action={organizerHideEventAction.bind(null, event.id)}>
-                          <button type="submit">Ukryj</button>
-                        </form>
-                        <form action={organizerCancelEventAction.bind(null, event.id)}>
-                          <button type="submit">Anuluj</button>
-                        </form>
+                        <OrganizerEventQuickAction eventId={event.id} intent="hide" />
+                        <OrganizerEventQuickAction eventId={event.id} intent="cancel" />
                         <form action={organizerDuplicateEventAction.bind(null, event.id)}>
                           <button type="submit">Duplikuj</button>
                         </form>

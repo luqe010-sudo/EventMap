@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import type { FilterSpecification } from "maplibre-gl";
+import { eventTextLimits, type EventFieldErrors } from "@/lib/event-editor-validation";
 import {
   reverseGeocode,
   searchPolishCities,
@@ -24,6 +25,7 @@ type SavedLocation = {
 };
 
 type LocationPickerMapProps = {
+  fieldErrors?: EventFieldErrors;
   initialLocationId?: string | null;
   initialLatitude?: number | null;
   initialLongitude?: number | null;
@@ -59,8 +61,15 @@ export default function LocationPickerMap({
   initialCounty,
   initialMunicipality,
   showAdministrativeFields = false,
-  savedLocations = []
+  savedLocations = [],
+  fieldErrors = {}
 }: LocationPickerMapProps) {
+  const attrs = (name: string) => ({
+    "aria-invalid": Boolean(fieldErrors[name]),
+    "aria-describedby": fieldErrors[name] ? `event-error-${name}` : undefined
+  });
+  const error = (name: string) => fieldErrors[name]
+    ? <span id={`event-error-${name}`} className="formError">{fieldErrors[name]}</span> : null;
   const rootRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
@@ -430,6 +439,9 @@ export default function LocationPickerMap({
           </>
         ) : null}
       </p>
+      {error("location_latitude")}
+      {error("location_longitude")}
+      {error("location_id")}
 
       <div className="formGrid">
         <div className="locationPickerSearchWrap">
@@ -438,6 +450,8 @@ export default function LocationPickerMap({
             <div className="locationPickerSearchBox">
               <input
                 name="location_city"
+                maxLength={eventTextLimits.location_city}
+                {...attrs("location_city")}
                 value={city}
                 onChange={(e) => handleCityChange(e.target.value)}
                 onFocus={() => citySuggestions.length > 0 && setShowCitySuggestions(true)}
@@ -448,6 +462,7 @@ export default function LocationPickerMap({
               {cityLoading ? <span className="locationPickerSpinner" /> : null}
             </div>
           </label>
+          {error("location_city")}
 
           {showCitySuggestions && citySuggestions.length > 0 ? (
             <ul className="locationPickerSuggestions">
@@ -473,6 +488,8 @@ export default function LocationPickerMap({
             <div className="locationPickerSearchBox">
               <input
                 name="location_address"
+                maxLength={eventTextLimits.location_address}
+                {...attrs("location_address")}
                 value={address}
                 onChange={(e) => handleAddressChange(e.target.value)}
                 onFocus={() => addressSuggestions.length > 0 && setShowAddressSuggestions(true)}
@@ -489,6 +506,7 @@ export default function LocationPickerMap({
               {addressLoading ? <span className="locationPickerSpinner" /> : null}
             </div>
           </label>
+          {error("location_address")}
 
           {showAddressSuggestions && addressSuggestions.length > 0 ? (
             <ul className="locationPickerSuggestions">
@@ -512,6 +530,8 @@ export default function LocationPickerMap({
           Nazwa miejsca
           <input
             name="location_name"
+            maxLength={eventTextLimits.location_name}
+            {...attrs("location_name")}
             value={locationName}
             onChange={(e) => {
               setLocationName(e.target.value);
@@ -519,6 +539,7 @@ export default function LocationPickerMap({
             }}
             placeholder="np. Dom Kultury"
           />
+          {error("location_name")}
         </label>
       </div>
 
@@ -568,6 +589,8 @@ export default function LocationPickerMap({
           <input type="hidden" name="location_municipality" value={municipality} />
         </>
       )}
+      {(["location_postal_code", "location_municipality", "location_county", "location_voivodeship"] as const)
+        .filter(name => fieldErrors[name]).map(name => <div key={name}>{error(name)}</div>)}
     </div>
   );
 }

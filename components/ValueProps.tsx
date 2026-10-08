@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function ValueProps() {
   return (
     <section className="valueSection">
@@ -5,25 +7,25 @@ export default function ValueProps() {
         <div className="valueCard">
           <span className="valueIcon valueIconCamera"><ValueIcon name="camera" /></span>
           <h3>Wszystko w jednym miejscu</h3>
-          <p>Zbieramy wydarzenia z internetu, Facebooka, stron gmin i lokalnych portali, żebyś nie musiał szukać w wielu miejscach.</p>
+          <p>Przeglądaj wydarzenia i sprawdzaj szczegóły oraz linki do ich źródeł w jednym miejscu.</p>
         </div>
         <div className="valueCard">
           <span className="valueIcon valueIconPin"><ValueIcon name="pin" /></span>
           <h3>Lokalnie i aktualnie</h3>
-          <p>Skupiamy się na wydarzeniach w Twojej okolicy. Codziennie nowe propozycje, zawsze aktualne.</p>
+          <p>Wybierz miejscowość i datę. Liczba dostępnych wydarzeń zależy od lokalnej oferty.</p>
         </div>
         <div className="valueCard">
           <span className="valueIcon valueIconHeart"><ValueIcon name="heart" /></span>
           <h3>Dopasowane do Ciebie</h3>
-          <p>Wybierz swoje zainteresowania i otrzymuj informacje o wydarzeniach, które Cię interesują.</p>
+          <p>Filtruj wydarzenia według kategorii, daty i ceny, żeby znaleźć coś dla siebie.</p>
         </div>
         <div className="valueCard valueCardCta">
           <span className="valueIcon valueIconCalendar"><ValueIcon name="calendar" /></span>
           <h3>Organizujesz wydarzenie?</h3>
-          <p>Dodaj je do naszej bazy i dotrzyj do tysięcy osób w Twojej okolicy.</p>
-          <span className="valueLink">
+          <p>Załóż konto organizatora i prześlij wydarzenie do zatwierdzenia.</p>
+          <Link href="/organizer/events/new" className="valueLink">
             Dodaj wydarzenie →
-          </span>
+          </Link>
         </div>
       </div>
     </section>

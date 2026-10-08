@@ -1,8 +1,10 @@
 "use client";
 
 import LocationPickerMap from "./LocationPickerMap";
+import type { EventFieldErrors } from "@/lib/event-editor-validation";
 
 type LocationSectionProps = {
+  fieldErrors?: EventFieldErrors;
   defaultLocation?: {
     id: string;
     name: string | null;
@@ -31,7 +33,8 @@ type LocationSectionProps = {
 
 export default function LocationSection({
   defaultLocation,
-  savedLocations = []
+  savedLocations = [],
+  fieldErrors
 }: LocationSectionProps) {
   return (
     <section className="managementSubsection">
@@ -48,6 +51,7 @@ export default function LocationSection({
         initialCounty={defaultLocation?.county}
         initialMunicipality={defaultLocation?.municipality}
         savedLocations={savedLocations}
+        fieldErrors={fieldErrors}
       />
     </section>
   );

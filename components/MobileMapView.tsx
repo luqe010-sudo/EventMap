@@ -14,6 +14,9 @@ type MobileMapViewProps = {
   active: boolean;
   parked?: boolean;
   events: EventMapMarker[];
+  markersLoading?: boolean;
+  markersError?: string | null;
+  onRetryMarkers?: () => void;
   selectedEvent: EventItem | null;
   selectedEventLoading?: boolean;
   selectedEventId: string | null;
@@ -28,6 +31,9 @@ export default function MobileMapView({
   active,
   parked = false,
   events,
+  markersLoading = false,
+  markersError = null,
+  onRetryMarkers,
   selectedEvent,
   selectedEventLoading = false,
   selectedEventId,
@@ -47,6 +53,8 @@ export default function MobileMapView({
       className={`mobileMapView ${active ? "mobileMapViewActive" : ""} ${parked ? "mobileMapViewParked" : ""}`}
       aria-label="Mapa wydarzeń"
       aria-hidden={!active}
+      inert={!active}
+      tabIndex={-1}
     >
       <MapLibreMap
         events={events}
@@ -60,17 +68,17 @@ export default function MobileMapView({
 
       <div className="mobileMapCount" aria-live="polite">
         <MapPin size={16} strokeWidth={2.4} aria-hidden="true" />
-        {formatEventCount(events.length)}
+        {markersLoading ? "Odświeżam punkty…" : markersError ? "Punkty niedostępne" : formatEventCount(events.length)}
       </div>
 
-      {events.length === 0 ? (
+      {!markersLoading && events.length === 0 ? (
         <div className="mobileMapEmpty">
           <Map size={28} aria-hidden="true" />
-          <strong>Brak wydarzeń na mapie</strong>
-          <p>Wróć do listy i zmień filtry.</p>
-          <button type="button" onClick={onShowList}>
+          <strong>{markersError ? "Nie udało się wczytać punktów" : "Brak wydarzeń na mapie"}</strong>
+          <p>{markersError ? "Sprawdź połączenie i spróbuj ponownie." : "Wróć do listy i zmień filtry."}</p>
+          <button type="button" onClick={markersError ? onRetryMarkers : onShowList}>
             <List size={17} aria-hidden="true" />
-            Wróć do listy
+            {markersError ? "Spróbuj ponownie" : "Wróć do listy"}
           </button>
         </div>
       ) : null}

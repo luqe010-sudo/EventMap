@@ -1,6 +1,9 @@
 import type { EventCategory, EventItem, KnownLocation } from "./events";
 import { isFreeEvent } from "./events";
-import { toAppDate } from "./date-format";
+import { comparePublicSearchItems, distanceBetweenCoordinates, type PublicEventSort } from "./event-search";
+import { eventOverlapsWindow } from "./event-dates";
+import { normalizeDateInput, resolveDateRange } from "./date-range";
+export { resolveDateRange } from "./date-range";
 
 export type DateFilter = "today" | "tomorrow" | "weekend" | "week" | "custom" | "all";
 export type PriceFilterMode = "all" | "free" | "max";
@@ -18,6 +21,7 @@ export type EventFilters = {
   isFree?: boolean;
   priceMode?: PriceFilterMode;
   maxPrice?: number | null;
+  sortBy?: PublicEventSort;
 };
 
 export type PublicFilterParams = {
@@ -26,6 +30,7 @@ export type PublicFilterParams = {
   priceMode?: PriceFilterMode;
   maxPrice?: number;
   radiusKm?: number;
+  sortBy?: PublicEventSort;
 };
 
 export function normalizeText(value: string) {
@@ -34,59 +39,6 @@ export function normalizeText(value: string) {
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
-}
-
-export function resolveDateRange(dateFilter: DateFilter, customDate: string, now = new Date()): { start: Date; end: Date | null } {
-  const start = new Date(now);
-  start.setHours(0, 0, 0, 0);
-  const end = new Date(start);
-
-  if (dateFilter === "all") {
-    return { start, end: null };
-  }
-
-  if (dateFilter === "today") {
-    end.setDate(start.getDate() + 1);
-    return { start, end };
-  }
-
-  if (dateFilter === "tomorrow") {
-    start.setDate(start.getDate() + 1);
-    end.setDate(start.getDate() + 1);
-    return { start, end };
-  }
-
-  if (dateFilter === "weekend") {
-    const day = start.getDay();
-    if (day === 0) {
-      end.setDate(start.getDate() + 1);
-    } else if (day === 6) {
-      end.setDate(start.getDate() + 2);
-    } else {
-      const daysUntilSaturday = 6 - day;
-      start.setDate(start.getDate() + daysUntilSaturday);
-      end.setTime(start.getTime());
-      end.setDate(start.getDate() + 2);
-    }
-    return { start, end };
-  }
-
-  if (dateFilter === "week") {
-    end.setDate(start.getDate() + 7);
-    return { start, end };
-  }
-
-  const customRange = parseCustomDateRange(customDate);
-
-  if (customRange) {
-    const selectedStart = new Date(`${customRange.from}T00:00:00`);
-    const selectedEnd = new Date(`${customRange.to}T00:00:00`);
-    selectedEnd.setDate(selectedEnd.getDate() + 1);
-    return { start: selectedStart, end: selectedEnd };
-  }
-
-  end.setDate(start.getDate() + 1);
-  return { start, end };
 }
 
 export function parsePublicFilterParams(
@@ -100,13 +52,16 @@ export function parsePublicFilterParams(
   const priceMode = parsePriceModeParam(readParam(params.cena), readParam(params.cenaMax));
   const maxPrice = parseMaxPriceParam(readParam(params.cenaMax));
   const radiusKm = parseRadiusParam(readParam(params.radius));
+  const sortParam = readParam(params.sort);
+  const sortBy = sortParam === "date" || sortParam === "nearest" ? sortParam : undefined;
 
   return {
     ...(dateFilter ? { dateFilter } : {}),
     ...(customDate ? { customDate } : {}),
     ...(priceMode ? { priceMode } : {}),
     ...(maxPrice != null ? { maxPrice } : {}),
-    ...(radiusKm != null ? { radiusKm } : {})
+    ...(radiusKm != null ? { radiusKm } : {}),
+    ...(sortBy ? { sortBy } : {})
   };
 }
 
@@ -115,49 +70,13 @@ export function clampMaxPrice(value: number) {
   return Math.min(Math.max(Math.round(value), 0), MAX_PRICE_FILTER_LIMIT);
 }
 
-function parseCustomDateRange(customDate: string) {
-  const [rawFrom, rawTo] = customDate.split("/");
-  const from = normalizeDateInput(rawFrom);
-  const to = normalizeDateInput(rawTo);
-
-  if (!from && !to) return null;
-
-  const rangeFrom = from ?? to;
-  const rangeTo = to ?? from;
-
-  if (!rangeFrom || !rangeTo) return null;
-
-  return rangeFrom <= rangeTo
-    ? { from: rangeFrom, to: rangeTo }
-    : { from: rangeTo, to: rangeFrom };
-}
-
-function normalizeDateInput(value?: string) {
-  const trimmed = value?.trim();
-  return trimmed && /^\d{4}-\d{2}-\d{2}$/.test(trimmed) ? trimmed : null;
-}
-
 export function distanceInKm(origin: KnownLocation, event: Pick<EventItem, "latitude" | "longitude">) {
-  if (event.latitude == null || event.longitude == null) return Number.POSITIVE_INFINITY;
-
-  const earthRadiusKm = 6371;
-  const latitudeDelta = toRadians(event.latitude - origin.latitude);
-  const longitudeDelta = toRadians(event.longitude - origin.longitude);
-  const originLatitude = toRadians(origin.latitude);
-  const eventLatitude = toRadians(event.latitude);
-
-  const angle =
-    Math.sin(latitudeDelta / 2) * Math.sin(latitudeDelta / 2) +
-    Math.cos(originLatitude) *
-      Math.cos(eventLatitude) *
-      Math.sin(longitudeDelta / 2) *
-      Math.sin(longitudeDelta / 2);
-
-  return earthRadiusKm * 2 * Math.atan2(Math.sqrt(angle), Math.sqrt(1 - angle));
+  return distanceBetweenCoordinates(origin, event);
 }
 
 export function filterEvents(events: EventItem[], filters: EventFilters, now = new Date()) {
   const { start, end } = resolveDateRange(filters.dateFilter, filters.customDate, now);
+  const lowerBound = new Date(Math.max(start.getTime(), now.getTime()));
   const priceMode = filters.priceMode ?? (filters.isFree ? "free" : "all");
 
   return events
@@ -166,20 +85,14 @@ export function filterEvents(events: EventItem[], filters: EventFilters, now = n
       distanceKm: distanceInKm(filters.location, event)
     }))
     .filter(({ event, distanceKm }) => {
-      const eventDate = toAppDate(event.startDate);
-      const matchesDate = eventDate >= start && (end === null || eventDate < end);
-      const matchesRadius = filters.radiusKm == null || !Number.isFinite(distanceKm) || distanceKm <= filters.radiusKm;
+      const matchesDate = eventOverlapsWindow(event.startDate, event.end_at, lowerBound, end);
+      const matchesRadius = filters.radiusKm == null || distanceKm <= filters.radiusKm;
       const matchesCategory = filters.category === "Wszystkie" || event.category === filters.category;
       const matchesFree = !filters.isFree || isFreeEvent(event);
       const matchesPrice = matchesPriceFilter(event, priceMode, filters.maxPrice);
       return matchesDate && matchesRadius && matchesCategory && matchesFree && matchesPrice;
     })
-    .sort((first, second) => {
-      const dateDelta = toAppDate(first.event.startDate).getTime() - toAppDate(second.event.startDate).getTime();
-      const firstDistance = Number.isFinite(first.distanceKm) ? first.distanceKm : Number.MAX_SAFE_INTEGER;
-      const secondDistance = Number.isFinite(second.distanceKm) ? second.distanceKm : Number.MAX_SAFE_INTEGER;
-      return dateDelta || firstDistance - secondDistance;
-    });
+    .sort((first, second) => comparePublicSearchItems(first.event, second.event, filters.sortBy, filters.location));
 }
 
 function matchesPriceFilter(
@@ -238,8 +151,4 @@ function serializeCustomDateRangeParam(from?: string | null, to?: string | null)
 
 function readParam(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;
-}
-
-function toRadians(value: number) {
-  return (value * Math.PI) / 180;
 }

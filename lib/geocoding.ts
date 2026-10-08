@@ -174,28 +174,15 @@ export async function searchAddress(query: string): Promise<GeocodingResult[]> {
 export async function searchPolishCities(query: string): Promise<GeocodingResult[]> {
   const cleanQuery = query.trim();
   if (cleanQuery.length < MIN_CITY_QUERY_LENGTH) return [];
-
   const localMatches = findLocalCitySuggestions(cleanQuery);
   if (cleanQuery.length < 2) return localMatches;
-
   try {
     const photonResults = await searchPhotonPolishCities(cleanQuery);
-    const rankedPhotonResults = rankCitySuggestions(cleanQuery, photonResults);
-    const mergedResults = uniqueResults([...localMatches, ...rankedPhotonResults]).slice(0, MAX_CITY_RESULTS);
-    if (mergedResults.length > 0) return mergedResults;
-
-    const nominatimResults = await searchNominatimPolishCities(cleanQuery);
-    return uniqueResults([...localMatches, ...rankCitySuggestions(cleanQuery, nominatimResults)]).slice(0, MAX_CITY_RESULTS);
+    return uniqueResults([...localMatches, ...rankCitySuggestions(cleanQuery, photonResults)]).slice(0, MAX_CITY_RESULTS);
   } catch {
-    try {
-      const nominatimResults = await searchNominatimPolishCities(cleanQuery);
-      return uniqueResults([...localMatches, ...rankCitySuggestions(cleanQuery, nominatimResults)]).slice(0, MAX_CITY_RESULTS);
-    } catch {
-      return localMatches;
-    }
+    return localMatches;
   }
 }
-
 async function searchPhotonPolishCities(query: string): Promise<GeocodingResult[]> {
   const params = new URLSearchParams({
     q: query,
@@ -216,80 +203,20 @@ async function searchPhotonPolishCities(query: string): Promise<GeocodingResult[
     .filter(isGeocodingResult);
 }
 
-async function searchNominatimPolishCities(query: string): Promise<GeocodingResult[]> {
-  const params = new URLSearchParams({
-    q: `${query}, Polska`,
-    format: "json",
-    countrycodes: "pl",
-    addressdetails: "1",
-    limit: String(MAX_CITY_RESULTS),
-    dedupe: "1",
-    "accept-language": "pl"
-  });
-
-  const response = await fetch(`${NOMINATIM_BASE}/search?${params}`, {
-    headers: { "User-Agent": USER_AGENT }
-  });
-  if (!response.ok) throw new Error("Nominatim error");
-
-  const results = (await response.json()) as NominatimResult[];
-  return results.map(mapPolishCityResult).filter(isGeocodingResult);
-}
-
-export async function searchStreetAddress(
-  query: string,
-  city: string
-): Promise<GeocodingResult[]> {
-  const cleanQuery = query
-    .replace(/\bul\.\s*/gi, "")
-    .replace(/\bulica\s*/gi, "")
-    .trim();
+export async function searchStreetAddress(query: string, city: string): Promise<GeocodingResult[]> {
+  const cleanQuery = query.trim();
   const cleanCity = city.trim();
-
   if (cleanQuery.length < MIN_ADDRESS_QUERY_LENGTH || cleanCity.length < 2) return [];
-
-  const includeHouseNumber = hasHouseNumberQuery(cleanQuery);
-
   try {
-    const photonResults = await searchPhotonStreetAddresses(cleanQuery, cleanCity, includeHouseNumber);
-    const rankedPhotonResults = uniqueAddressResults(rankAddressSuggestions(cleanQuery, photonResults));
-    const exactPhotonResults = includeHouseNumber
-      ? rankedPhotonResults.filter((result) => hasHouseNumberQuery(result.address ?? ""))
-      : rankedPhotonResults;
-
-    if (exactPhotonResults.length > 0) {
-      return exactPhotonResults.slice(0, MAX_ADDRESS_RESULTS);
-    }
-
-    if (cleanQuery.length < MIN_QUERY_LENGTH) {
-      return rankedPhotonResults.slice(0, MAX_ADDRESS_RESULTS);
-    }
-
-    const nominatimResults = await searchNominatimStreetAddresses(cleanQuery, cleanCity, includeHouseNumber);
-    const rankedNominatimResults = rankAddressSuggestions(cleanQuery, nominatimResults);
-    const exactNominatimResults = includeHouseNumber
-      ? rankedNominatimResults.filter((result) => hasHouseNumberQuery(result.address ?? ""))
-      : rankedNominatimResults;
-
-    return uniqueAddressResults([
-      ...exactNominatimResults,
-      ...rankedPhotonResults,
-      ...rankedNominatimResults
-    ]).slice(0, MAX_ADDRESS_RESULTS);
+    const includeHouseNumber = hasHouseNumberQuery(cleanQuery);
+    const results = await searchPhotonStreetAddresses(cleanQuery, cleanCity, includeHouseNumber);
+    const ranked = uniqueAddressResults(rankAddressSuggestions(cleanQuery, results));
+    const exact = includeHouseNumber ? ranked.filter((result) => hasHouseNumberQuery(result.address ?? "")) : ranked;
+    return exact.slice(0, MAX_ADDRESS_RESULTS);
   } catch {
-    try {
-      const nominatimResults = await searchNominatimStreetAddresses(cleanQuery, cleanCity, includeHouseNumber);
-      const rankedNominatimResults = rankAddressSuggestions(cleanQuery, nominatimResults);
-      const exactNominatimResults = includeHouseNumber
-        ? rankedNominatimResults.filter((result) => hasHouseNumberQuery(result.address ?? ""))
-        : rankedNominatimResults;
-      return uniqueAddressResults([...exactNominatimResults, ...rankedNominatimResults]).slice(0, MAX_ADDRESS_RESULTS);
-    } catch {
-      return [];
-    }
+    return [];
   }
 }
-
 async function searchPhotonStreetAddresses(
   query: string,
   city: string,
@@ -313,53 +240,6 @@ async function searchPhotonStreetAddresses(
   return (data.features ?? [])
     .map((feature) => mapPhotonAddressResult(feature, city, includeHouseNumber))
     .filter(isGeocodingResult);
-}
-
-async function searchNominatimStreetAddresses(
-  query: string,
-  city: string,
-  includeHouseNumber: boolean
-): Promise<GeocodingResult[]> {
-  const structuredParams = new URLSearchParams({
-    street: query,
-    city,
-    country: "Polska",
-    format: "json",
-    countrycodes: "pl",
-    addressdetails: "1",
-    limit: String(MAX_ADDRESS_RESULTS),
-    dedupe: "1",
-    "accept-language": "pl"
-  });
-  const freeformParams = new URLSearchParams({
-    q: `${query}, ${city}, Polska`,
-    format: "json",
-    countrycodes: "pl",
-    addressdetails: "1",
-    limit: String(MAX_ADDRESS_RESULTS),
-    dedupe: "1",
-    "accept-language": "pl"
-  });
-
-  const responses = await Promise.allSettled([
-    fetchNominatimResults(structuredParams),
-    fetchNominatimResults(freeformParams)
-  ]);
-  const results = responses.flatMap((response) => response.status === "fulfilled" ? response.value : []);
-  if (!results.length) throw new Error("Nominatim error");
-
-  return results
-    .filter((result) => isResultInCity(result, city))
-    .map((result) => mapNominatimStreetAddressResult(result, includeHouseNumber))
-    .filter((result) => Boolean(result.address));
-}
-
-async function fetchNominatimResults(params: URLSearchParams) {
-  const response = await fetch(`${NOMINATIM_BASE}/search?${params}`, {
-    headers: { "User-Agent": USER_AGENT }
-  });
-  if (!response.ok) throw new Error("Nominatim error");
-  return (await response.json()) as NominatimResult[];
 }
 
 export async function reverseGeocode(
@@ -404,47 +284,6 @@ function mapNominatimResult(result: NominatimResult): GeocodingResult {
     voivodeship: voivodeship || null,
     county: formatAdministrativeName(addr?.county) || null,
     municipality: formatAdministrativeName(addr?.municipality) || null
-  };
-}
-
-function mapNominatimStreetAddressResult(
-  result: NominatimResult,
-  includeHouseNumber: boolean
-): GeocodingResult {
-  const mapped = mapNominatimResult(result);
-  if (!mapped.address || includeHouseNumber) return mapped;
-
-  const streetOnly = removeTrailingHouseNumber(mapped.address);
-  return {
-    ...mapped,
-    displayName: [streetOnly, mapped.city, mapped.voivodeship].filter(Boolean).join(", "),
-    address: streetOnly
-  };
-}
-
-function mapPolishCityResult(result: NominatimResult): GeocodingResult | null {
-  const addr = result.address;
-  const city = getResultCity(addr, true) ?? addr?.municipality ?? result.name ?? null;
-  if (!city) return null;
-
-  const latitude = parseFloat(result.lat);
-  const longitude = parseFloat(result.lon);
-  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return null;
-
-  const voivodeship = formatVoivodeship(addr?.state);
-  const county = formatAdministrativeName(addr?.county);
-  const municipality = formatAdministrativeName(addr?.municipality);
-  const suffix = [county, voivodeship].filter(Boolean).join(", ");
-  return {
-    displayName: suffix ? `${city}, ${suffix}` : city,
-    latitude,
-    longitude,
-    city,
-    address: null,
-    postalCode: null,
-    voivodeship: voivodeship || null,
-    county: county || null,
-    municipality: municipality || null
   };
 }
 
@@ -522,12 +361,6 @@ function hasHouseNumberQuery(query: string) {
 
 function removeTrailingHouseNumber(value: string) {
   return value.replace(/\s+\d+[a-zA-Z]?(?:\/\d+[a-zA-Z]?)?$/, "").trim();
-}
-
-function isResultInCity(result: NominatimResult, city: string) {
-  const resultCity = getResultCity(result.address, true);
-  if (!resultCity) return true;
-  return normalizeSearchText(resultCity) === normalizeSearchText(city);
 }
 
 function isGeocodingResult(result: GeocodingResult | null): result is GeocodingResult {

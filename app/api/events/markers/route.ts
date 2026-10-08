@@ -1,56 +1,25 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { PUBLIC_EVENT_MARKER_LIMIT, searchPublicEventMarkers } from "@/lib/events";
-import { parsePublicFilterParams } from "@/lib/filters";
+import { publicSearchOptionsFromParams } from "@/lib/public-search-params";
+import { PUBLIC_EVENT_NO_STORE_HEADERS } from "@/lib/public-event-cache";
 
-export const revalidate = 300;
-
-const PUBLIC_CACHE_HEADERS = {
-  "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600"
-};
+export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
-  const filters = parsePublicFilterParams(Object.fromEntries(params.entries()));
-  const radiusKm = filters.radiusKm ?? clampInteger(params.get("radius"), 30, 5, 200);
-  const lat = parseCoordinate(params.get("lat"));
-  const lng = parseCoordinate(params.get("lng"));
 
   try {
     const markers = await searchPublicEventMarkers({
-      maxResults: PUBLIC_EVENT_MARKER_LIMIT,
-      dateFilter: filters.dateFilter ?? "all",
-      customDate: filters.customDate,
-      categorySlug: normalizeSlug(params.get("categorySlug")),
-      citySlug: normalizeSlug(params.get("citySlug")),
-      location: lat != null && lng != null ? { latitude: lat, longitude: lng } : undefined,
-      radiusKm: lat != null && lng != null ? radiusKm : null,
-      priceMode: filters.priceMode ?? "all",
-      maxPrice: filters.maxPrice
+      ...publicSearchOptionsFromParams(params),
+      maxResults: PUBLIC_EVENT_MARKER_LIMIT
     });
 
-    return NextResponse.json({ markers }, { headers: PUBLIC_CACHE_HEADERS });
+    return NextResponse.json({ markers }, { headers: PUBLIC_EVENT_NO_STORE_HEADERS });
   } catch (error) {
     console.error("[events-markers] Failed to load event markers", error);
     return NextResponse.json(
       { error: "Nie udalo sie pobrac pinezek wydarzen." },
-      { status: 500 }
+      { status: 500, headers: PUBLIC_EVENT_NO_STORE_HEADERS }
     );
   }
-}
-
-function normalizeSlug(value: string | null) {
-  const trimmed = value?.trim();
-  return trimmed || undefined;
-}
-
-function parseCoordinate(value: string | null) {
-  if (!value) return undefined;
-  const parsed = Number(value.replace(",", "."));
-  return Number.isFinite(parsed) ? parsed : undefined;
-}
-
-function clampInteger(value: string | null, fallback: number, min: number, max: number) {
-  const parsed = value ? Number.parseInt(value, 10) : fallback;
-  if (!Number.isFinite(parsed)) return fallback;
-  return Math.min(Math.max(parsed, min), max);
 }

@@ -1,4 +1,5 @@
 import type { Database } from "@/database.types";
+import { unstable_rethrow } from "next/navigation";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
 import {
   createSlug,
@@ -6,8 +7,9 @@ import {
   formNumber,
   formSlug,
   formString,
-  normalizeDateTimeLocal
+  eventPublicationTimestamp
 } from "@/lib/event-editor";
+import { EventValidationError, eventValidationState, validateEventForm, type EventEditorState } from "@/lib/event-editor-validation";
 import { uploadEventImageToCloudinary } from "@/lib/cloudinary";
 import { resolveCityIdFromForm } from "@/lib/cities";
 
@@ -18,20 +20,26 @@ type EventUpdate = Tables["events"]["Update"];
 type EventWriteOptions = {
   organizerId: string;
   status: string;
-  createdBy?: string | null;
-};
+} & ({ mode: "create"; createdBy: string | null } | {
+  mode: "update";
+  existing: Pick<Tables["events"]["Row"], "visibility" | "submitted_by_organizer_id" | "published_at">;
+});
+
+/** Only use before writing the event; a later source failure is a partial write. */
+export function eventPreparationFailure(error: unknown): EventEditorState {
+  unstable_rethrow(error);
+  if (error instanceof EventValidationError) return eventValidationState(error);
+  console.error("[event-editor] Failed to prepare event", error);
+  return { fieldErrors: {}, error: "Nie udało się przygotować wydarzenia do zapisu. Spróbuj ponownie." };
+}
 
 export async function buildEventWritePayload(
   formData: FormData,
   options: EventWriteOptions
 ): Promise<EventInsert | EventUpdate> {
-  const title = formString(formData, "title");
-  const startAt = normalizeDateTimeLocal(formString(formData, "start_at"));
-  const categoryId = formString(formData, "category_id");
-
-  if (!title || !startAt) throw new Error("Tytul i data rozpoczecia sa wymagane.");
-  if (!categoryId) throw new Error("Kategoria wydarzenia jest wymagana.");
-  if (!options.organizerId) throw new Error("Organizator wydarzenia jest wymagany.");
+  const values = validateEventForm(formData, options.organizerId);
+  const title = formString(formData, "title")!;
+  const categoryId = formString(formData, "category_id")!;
 
   const uploadedImageUrl = await uploadEventImageToCloudinary(getEventImageFile(formData));
 
@@ -40,22 +48,22 @@ export async function buildEventWritePayload(
     slug: formSlug(formData, "slug") ?? createSlug(title),
     description: formString(formData, "description"),
     short_description: formString(formData, "short_description"),
-    start_at: startAt,
-    end_at: normalizeDateTimeLocal(formString(formData, "end_at")),
+    start_at: values.startAt,
+    end_at: values.endAt,
     is_all_day: formBoolean(formData, "is_all_day"),
     category_id: categoryId,
     location_id: await resolveEventLocationId(formData),
     organizer_id: options.organizerId,
-    submitted_by_organizer_id: options.organizerId,
-    price_type: formString(formData, "price_type"),
-    price_min: formNumber(formData, "price_min"),
-    price_max: formNumber(formData, "price_max"),
-    currency: formString(formData, "currency") ?? "PLN",
+    submitted_by_organizer_id: options.mode === "update" ? options.existing.submitted_by_organizer_id : options.organizerId,
+    price_type: values.priceType,
+    price_min: values.priceMin,
+    price_max: values.priceMax,
+    currency: values.currency,
     main_image_url: uploadedImageUrl ?? formString(formData, "main_image_url"),
     status: options.status,
-    visibility: "public",
-    published_at: options.status === "published" ? new Date().toISOString() : null,
-    created_by: options.createdBy ?? undefined
+    visibility: options.mode === "update" ? options.existing.visibility : "public",
+    published_at: eventPublicationTimestamp(options.status, options.mode === "update" ? options.existing.published_at : null),
+    ...(options.mode === "create" ? { created_by: options.createdBy } : {})
   };
 }
 
@@ -79,6 +87,7 @@ export async function saveEventSource(
     .select("id")
     .eq("event_id", eventId)
     .order("created_at", { ascending: true })
+    .order("id", { ascending: true })
     .limit(1)
     .maybeSingle();
 
@@ -93,10 +102,11 @@ export async function saveEventSource(
   };
 
   const response = existing?.id
-    ? await supabase.from("event_sources").update(payload).eq("id", existing.id)
-    : await supabase.from("event_sources").insert({ ...payload, event_id: eventId });
+    ? await supabase.from("event_sources").update(payload).eq("id", existing.id).eq("event_id", eventId).select("id").maybeSingle()
+    : await supabase.from("event_sources").insert({ ...payload, event_id: eventId }).select("id").single();
 
   if (response.error) throw new Error(`Nie udalo sie zapisac zrodla: ${response.error.message}`);
+  if (!response.data) throw new Error("Nie udało się potwierdzić zapisu źródła wydarzenia.");
 }
 
 export async function deleteEventRelations(eventId: string) {

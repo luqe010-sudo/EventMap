@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import OrganizerSectionNav from "@/components/OrganizerSectionNav";
 import { OrganizerUpgradeForm } from "@/components/OrganizerAccountForms";
 import {
@@ -7,11 +8,13 @@ import {
   organizerMarkNotificationReadAction
 } from "@/lib/organizer-events";
 import { formatPolishDate } from "@/lib/date-format";
+import OrganizerStatisticsNotice from "@/components/OrganizerStatisticsNotice";
 
 export const dynamic = "force-dynamic";
 
 export default async function OrganizerDashboardPage() {
   const context = await getOrganizerEntryContext();
+  if (context.profile?.role === "admin") redirect("/admin");
 
   if (!context.isOrganizer) {
     return (
@@ -28,8 +31,8 @@ export default async function OrganizerDashboardPage() {
       <main className="appShell managementShell">
         <div className="emptyState">
           <h1>Brakuje organizatora</h1>
-          <p>Twoje konto ma role organizatora, ale nie jest polaczone z zadnym rekordem w `organizer_users`.</p>
-          <Link href="/organizer/settings" className="primaryButton">Przejdz do ustawien</Link>
+          <p>Twoje konto nie jest jeszcze powiązane z profilem organizatora. Skontaktuj się z administratorem, aby uzyskać dostęp.</p>
+          <Link href="/organizer/settings" className="primaryButton">Przejdź do ustawień</Link>
         </div>
       </main>
     );
@@ -46,12 +49,13 @@ export default async function OrganizerDashboardPage() {
       </div>
 
       <OrganizerSectionNav active="dashboard" />
+      <OrganizerStatisticsNotice analyticsStatus={dashboard.stats.analyticsStatus} savesStatus={dashboard.stats.savesStatus} />
 
       <section className="managementStats organizerStatsWide">
         <StatCard label="Aktywne wydarzenia" value={dashboard.activeEvents} />
         <StatCard label="Do zatwierdzenia" value={dashboard.pendingReview} />
         <StatCard label="Wyswietlenia w tym miesiacu" value={dashboard.stats.monthViews} />
-        <StatCard label="Klikniecia kontaktu" value={dashboard.stats.contactClicks} />
+        <StatCard label="Kliknięcia kontaktu w tym miesiącu" value={dashboard.stats.contactClicks} />
       </section>
 
       <div className="organizerDashboardGrid">
@@ -137,21 +141,22 @@ export default async function OrganizerDashboardPage() {
             <Link href="/organizer/stats">Szczegoly</Link>
           </div>
           <div className="organizerMetricList">
-            <span>Zapisania wydarzen: <strong>{dashboard.stats.saves}</strong></span>
-            <span>Klikniecia biletow: <strong>{dashboard.stats.ticketClicks}</strong></span>
-            <span>Udostepnienia: <strong>0</strong></span>
+            <span>Bieżące zapisania wydarzeń: <strong>{dashboard.stats.currentSaves ?? "—"}</strong></span>
+            <span>Kliknięcia serca w tym miesiącu: <strong>{dashboard.stats.saveClicks ?? "—"}</strong></span>
+            <span>Kliknięcia biletów w tym miesiącu: <strong>{dashboard.stats.ticketClicks ?? "—"}</strong></span>
+            <span>Udostępnienia w tym miesiącu: <strong>{dashboard.stats.shares ?? "—"}</strong></span>
           </div>
-          <p className="panelMutedText">Dane sa liczone z publicznych interakcji zapisanych w `event_analytics`.</p>
+          <p className="panelMutedText">Interakcje obejmują zarejestrowane wyświetlenia i kliknięcia, a nie unikalne osoby. Bieżące zapisania i kliknięcia serca są oddzielnymi miarami. Miesiąc liczymy według czasu w Polsce.</p>
         </section>
       </div>
     </main>
   );
 }
 
-function StatCard({ label, value }: { label: string; value: number }) {
+function StatCard({ label, value }: { label: string; value: number | null }) {
   return (
     <div className="managementStat">
-      <span>{value}</span>
+      <span>{value ?? "—"}</span>
       <p>{label}</p>
     </div>
   );

@@ -11,13 +11,8 @@ export default function Footer() {
           </Link>
           <p>
             Przewodnik po lokalnych wydarzeniach w Polsce.<br />
-            Dane wydarzen pochodza z bazy Supabase.
+            Wybierz miejscowość i odkryj dostępną lokalną ofertę.
           </p>
-          <div className="footerSocial">
-            <a href="#" aria-label="FB - Facebook" className="footerSocialLink">FB</a>
-            <a href="#" aria-label="IG - Instagram" className="footerSocialLink">IG</a>
-            <a href="#" aria-label="TT - TikTok" className="footerSocialLink">TT</a>
-          </div>
         </div>
 
         <div className="footerColumn">
@@ -34,19 +29,11 @@ export default function Footer() {
           <h3>Popularne</h3>
           <ul>
             <li><Link href="/koncerty">Koncerty</Link></li>
-            <li><Link href="/wroclaw">Wydarzenia we Wroclawiu</Link></li>
+            <li><Link href="/wroclaw">Wydarzenia we Wrocławiu</Link></li>
             <li><Link href="/warszawa">Wydarzenia w Warszawie</Link></li>
           </ul>
         </div>
 
-        <div className="footerColumn footerNewsletter">
-          <h3>Badz na biezaco</h3>
-          <p>Zapisz sie do newslettera, gdy funkcja powiadomien bedzie gotowa.</p>
-          <div className="footerNewsletterForm">
-            <input type="email" placeholder="Twoj adres e-mail" className="footerNewsletterInput" aria-label="Adres e-mail do newslettera" />
-            <button type="button" className="footerNewsletterBtn">Zapisz sie</button>
-          </div>
-        </div>
       </div>
 
       <div className="footerBottom">

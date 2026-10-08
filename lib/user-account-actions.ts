@@ -68,38 +68,21 @@ export async function toggleSavedEventAction(
   eventId: string,
   shouldSave: boolean
 ): Promise<ToggleSavedEventResult> {
-  if (!eventId) return { saved: false, error: "Brakuje identyfikatora wydarzenia." };
+  if (typeof eventId !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(eventId) || typeof shouldSave !== "boolean") {
+    return { saved: false, error: "Nieprawidłowe dane zapisu wydarzenia." };
+  }
 
   try {
     const supabase = await createSupabaseUserClient();
     const { data: authData, error: authError } = await supabase.auth.getUser();
     if (authError || !authData.user) return { saved: false, requiresLogin: true };
 
-    if (shouldSave) {
-      const { data: event, error: eventError } = await supabase
-        .from("events")
-        .select("id")
-        .eq("id", eventId)
-        .eq("status", "published")
-        .eq("visibility", "public")
-        .or("is_cancelled.is.null,is_cancelled.eq.false")
-        .maybeSingle();
-      if (eventError) throw eventError;
-      if (!event) return { saved: false, error: "Tego wydarzenia nie można zapisać." };
-
-      const { error } = await supabase.from("saved_events").insert({
-        user_id: authData.user.id,
-        event_id: eventId
-      });
-      if (error && error.code !== "23505") throw error;
-    } else {
-      const { error } = await supabase
-        .from("saved_events")
-        .delete()
-        .eq("user_id", authData.user.id)
-        .eq("event_id", eventId);
-      if (error) throw error;
+    const { data, error } = await supabase.rpc("set_my_saved_event", { p_event_id: eventId, p_saved: shouldSave });
+    if (error) {
+      if (shouldSave && error.code === "42501") return { saved: false, error: "Tego wydarzenia nie można już zapisać. Odśwież listę wydarzeń." };
+      throw error;
     }
+    if (data !== shouldSave) throw new Error("Unexpected saved event state");
 
     revalidatePath("/account");
     revalidatePath("/organizer/saved");
@@ -110,8 +93,6 @@ export async function toggleSavedEventAction(
   }
 }
 
-export async function removeSavedEventAction(eventId: string) {
-  await toggleSavedEventAction(eventId, false);
-  revalidatePath("/account");
-  revalidatePath("/organizer/saved");
+export async function removeSavedEventAction(eventId: string): Promise<ToggleSavedEventResult> {
+  return toggleSavedEventAction(eventId, false);
 }

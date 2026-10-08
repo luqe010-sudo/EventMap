@@ -3,11 +3,9 @@
 import Link from "next/link";
 import Script from "next/script";
 import { useEffect, useState } from "react";
+import { clearAnalyticsSession, readAnalyticsConsent, saveAnalyticsConsent, subscribeAnalyticsConsent, type AnalyticsConsentValue } from "@/lib/analytics-consent";
 
-const CONSENT_STORAGE_KEY = "eventmap.cookieConsent";
 const GA_MEASUREMENT_ID = "G-60019N4V87";
-
-type CookieConsentValue = "accepted" | "rejected";
 
 declare global {
   interface Window {
@@ -16,33 +14,26 @@ declare global {
   }
 }
 
-function loadStoredConsent(): CookieConsentValue | null {
-  try {
-    const value = window.localStorage.getItem(CONSENT_STORAGE_KEY);
-    return value === "accepted" || value === "rejected" ? value : null;
-  } catch {
-    return null;
-  }
-}
-
 export default function CookieConsent() {
-  const [consent, setConsent] = useState<CookieConsentValue | null>(null);
+  const [consent, setConsent] = useState<AnalyticsConsentValue | null>(null);
   const [ready, setReady] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   useEffect(() => {
-    setConsent(loadStoredConsent());
+    const updateConsent = () => {
+      const value = readAnalyticsConsent();
+      if (value !== "accepted") clearAnalyticsSession();
+      setConsent(value);
+      // Disabling GA also stops a script already loaded before revocation.
+      (window as unknown as Record<string, unknown>)[`ga-disable-${GA_MEASUREMENT_ID}`] = value !== "accepted";
+    };
+    updateConsent();
     setReady(true);
+    return subscribeAnalyticsConsent(updateConsent);
   }, []);
 
-  function saveConsent(value: CookieConsentValue) {
-    try {
-      window.localStorage.setItem(CONSENT_STORAGE_KEY, value);
-    } catch {
-      // If storage is unavailable, keep the choice for the current render only.
-    }
-
-    setConsent(value);
+  function saveConsent(value: AnalyticsConsentValue) {
+    setConsent(saveAnalyticsConsent(value));
     setSettingsOpen(false);
   }
 
@@ -73,8 +64,8 @@ export default function CookieConsent() {
           <div className="cookieBannerText">
             <strong>Cookies i analityka</strong>
             <p>
-              Używamy niezbędnych cookies do działania serwisu. Google
-              Analytics uruchomimy tylko po Twojej zgodzie. Szczegóły opisuje{" "}
+              Używamy niezbędnych cookies do działania serwisu. Statystyki
+              wydarzeń i Google Analytics uruchomimy po Twojej zgodzie. Szczegóły opisuje{" "}
               <Link href="/regulamin#polityka-cookies">polityka cookies</Link>.
             </p>
           </div>

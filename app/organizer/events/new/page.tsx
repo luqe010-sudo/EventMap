@@ -9,7 +9,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export default async function OrganizerNewEventPage() {
-  const options = await getOrganizerEventEditorOptions();
+  const options = await getOrganizerEventEditorOptions("/organizer/events/new");
 
   if (!options.hasOrganizer) {
     return (

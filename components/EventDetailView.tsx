@@ -1,6 +1,8 @@
 "use client";
+import { serializeJsonLd } from "@/lib/json-ld";
 
 import Link from "next/link";
+import EventCarousel from "./EventCarousel";
 import { CalendarDays, DollarSign, MapPin, Tag } from "lucide-react";
 import EventHeroCta, { EventSaveButton } from "@/components/EventDetailActions";
 import EventAnalyticsTracker, { TrackedEventLink } from "@/components/EventAnalyticsTracker";
@@ -8,6 +10,9 @@ import EventDetailMap from "@/components/EventDetailMap";
 import ExpandableDescription from "@/components/ExpandableDescription";
 import { type EventItem, isFreeEvent } from "@/lib/events";
 import { formatPolishDate, getDateKeyInAppTimeZone } from "@/lib/date-format";
+import { formatEventCardPrice } from "@/lib/event-presentation";
+import { hasLocationCoordinates } from "@/lib/event-search";
+import { getEventDirectionsUrl } from "@/lib/event-directions";
 import { categoryPath, eventPath, toSlug, toPluralCategoryName, toPluralCategorySlug, formatInCity } from "@/lib/slugs";
 
 type EventDetailViewProps = {
@@ -30,17 +35,16 @@ export default function EventDetailView({
   const categoryPlural = toPluralCategoryName(event.category);
   const categorySlug = toPluralCategorySlug(event.categorySlug || toSlug(event.category || "inne"));
   const citySlug = event.citySlug || toSlug(event.city || "polska");
-  const cityHref = event.city ? `/${citySlug}` : "/";
   const Wrapper = embedded ? "div" : "main";
   const wrapperClassName = embedded ? "edShellEmbedded" : "appShell eventDetailPage";
   const eventUrl = `https://mapaimprez.pl${eventPath(event)}`;
   const mapTargetId = "event-detail-map";
-  const eventLocation = {
+  const eventLocation = hasLocationCoordinates(event) ? {
     label: event.city || event.location?.name || event.title,
     aliases: event.city ? [toSlug(event.city)] : [],
-    latitude: event.latitude ?? 52.2297,
-    longitude: event.longitude ?? 21.0122,
-  };
+    latitude: event.latitude,
+    longitude: event.longitude,
+  } : null;
 
   const dateFormatted = formatPolishDate(event.start_at, {
     day: "2-digit",
@@ -48,21 +52,17 @@ export default function EventDetailView({
     year: "numeric",
   });
   const dayOfWeek = formatPolishDate(event.start_at, { weekday: "short" });
-  const timeFormatted = formatPolishDate(event.start_at, {
+  const timeFormatted = event.is_all_day ? "Cały dzień" : formatPolishDate(event.start_at, {
     hour: "2-digit",
     minute: "2-digit",
   });
-  const fullDate = formatDateRange(event.start_at, event.end_at);
+  const fullDate = formatDateRange(event.start_at, event.end_at, event.is_all_day);
   const isFree = isFreeEvent(event);
   const isPast = isPastEvent(event);
   const similarEventsHref = relatedEvents.length
     ? "#podobne-wydarzenia"
     : categoryPath(event.category);
-  const googleMapsUrl =
-    event.location?.google_maps_url ||
-    (event.latitude != null && event.longitude != null
-      ? `https://www.google.com/maps/search/?api=1&query=${event.latitude},${event.longitude}`
-      : null);
+  const googleMapsUrl = getEventDirectionsUrl(event);
 
   return (
     <Wrapper className={wrapperClassName}>
@@ -111,14 +111,14 @@ export default function EventDetailView({
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
+              __html: serializeJsonLd({
                 "@context": "https://schema.org",
                 "@type": "Event",
                 name: event.title,
                 description: event.description ?? event.short_description,
                 image: event.imageUrl,
                 startDate: event.start_at,
-                endDate: event.end_at || new Date(new Date(event.start_at).getTime() + 2 * 60 * 60 * 1000).toISOString(),
+                endDate: event.end_at ?? undefined,
                 eventStatus: event.is_cancelled
                   ? "https://schema.org/EventCancelled"
                   : "https://schema.org/EventScheduled",
@@ -135,7 +135,7 @@ export default function EventDetailView({
                     addressCountry: "PL",
                   },
                   geo:
-                    event.latitude != null && event.longitude != null
+                    hasLocationCoordinates(event)
                       ? {
                           "@type": "GeoCoordinates",
                           latitude: event.latitude,
@@ -143,18 +143,12 @@ export default function EventDetailView({
                         }
                       : undefined,
                 },
-                offers: {
+                offers: isFree || event.price_min != null || event.price_max != null ? {
                   "@type": "Offer",
-                  price: event.price_min ?? 0,
+                  price: isFree ? 0 : event.price_min ?? event.price_max,
                   priceCurrency: event.currency ?? "PLN",
                   url: event.sources[0]?.source_url ?? eventUrl,
-                  availability: "https://schema.org/InStock",
-                  validFrom: event.updated_at || new Date(new Date(event.start_at).getTime() - 30 * 24 * 60 * 60 * 1000).toISOString(),
-                },
-                performer: {
-                  "@type": "PerformingGroup",
-                  name: event.organizerRelation?.name || event.organizerName || "Uczestnicy",
-                },
+                } : undefined,
                 organizer: event.organizerRelation
                   ? {
                       "@type": "Organization",
@@ -173,7 +167,7 @@ export default function EventDetailView({
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
+              __html: serializeJsonLd({
                 "@context": "https://schema.org",
                 "@type": "BreadcrumbList",
                 itemListElement: [
@@ -238,7 +232,7 @@ export default function EventDetailView({
               {isPast ? (
                 <div className="edPastEventOverlay">
                   <p>
-                    Wydarzenie odbyło się <strong>{dateFormatted}</strong>, nie przegap kolejnych okazji.
+                    {event.end_at ? "Wydarzenie zakończone." : "Termin rozpoczęcia minął; godzina zakończenia nie jest podana."} Data: <strong>{dateFormatted}</strong>. Sprawdź kolejne wydarzenia.
                   </p>
                   <Link href={similarEventsHref}>
                     {relatedEvents.length ? "Zobacz podobne niżej" : "Zobacz kolejne wydarzenia"}
@@ -257,7 +251,7 @@ export default function EventDetailView({
           </div>
 
           <div className="edHeroInfo">
-            <h1>{event.title}</h1>
+            <h1 id="event-detail-title" tabIndex={embedded ? -1 : undefined}>{event.title}</h1>
 
             <div className="edHeroMeta">
               <span className="edMetaChip">
@@ -318,8 +312,7 @@ export default function EventDetailView({
                 </div>
                 <div className="edInfoText">
                   <span className="edInfoLabel">Cena</span>
-                  <strong>{event.price}</strong>
-                  <span className="edInfoSub">{isFree ? "Bezpłatne" : "Bilety płatne"}</span>
+                  <strong>{formatEventCardPrice(event)}</strong>
                 </div>
               </div>
 
@@ -344,13 +337,15 @@ export default function EventDetailView({
             <ExpandableDescription text={event.description ?? event.short_description} />
           </section>
 
-          {!embedded ? (
             <section className="edMapSection" id={mapTargetId}>
               <h2>Lokalizacja</h2>
+              {!embedded && eventLocation ? (
               <div className="edMapContainer">
                 <EventDetailMap event={event} location={eventLocation} />
               </div>
+              ) : null}
               <p className="edMapAddress">{event.address || "Lokalizacja nieznana"}</p>
+              {!eventLocation ? <p className="edMapAddress">Punkt na mapie nie jest dostępny. Sprawdź adres i źródło wydarzenia.</p> : null}
               {googleMapsUrl ? (
                 <TrackedEventLink
                   eventId={event.id}
@@ -360,12 +355,11 @@ export default function EventDetailView({
                   rel="noopener noreferrer"
                   className="edGoogleMapsLink"
                 >
-                  Otwórz w Google Maps
+                  {eventLocation || event.location?.google_maps_url?.trim() ? "Otwórz w Google Maps" : "Wyszukaj miejsce w Google Maps"}
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                 </TrackedEventLink>
               ) : null}
             </section>
-          ) : null}
         </div>
 
         {/* ====== BOTTOM GRID: Organizer + Sources | Related ====== */}
@@ -384,7 +378,7 @@ export default function EventDetailView({
                 </div>
                 <div className="edOrgInfo">
                   <strong>{event.organizerName}</strong>
-                  <span>
+                  <span title={event.organizerRelation?.is_verified ? "Oznaczenie dotyczy profilu organizatora, a nie weryfikacji wszystkich danych wydarzenia." : undefined}>
                     {event.organizerRelation?.is_verified
                       ? "✓ Zweryfikowany organizator"
                       : "Organizator wydarzenia"}
@@ -477,51 +471,7 @@ export default function EventDetailView({
           {/* Related Events */}
           {relatedEvents.length ? (
             <section className="edRelatedSection" id="podobne-wydarzenia">
-              <div className="edRelatedHeader">
-                <h2>Podobne wydarzenia</h2>
-                <Link href={categoryPath(event.category)} className="edRelatedLink">
-                  Zobacz wszystkie
-                </Link>
-              </div>
-              <div className="edRelatedGrid">
-                {relatedEvents.map((re) => (
-                  <Link
-                    key={re.id}
-                    href={eventPath(re)}
-                    className="edRelatedCard"
-                    onClick={(e) => {
-                      if (onOpenEvent && window.matchMedia("(max-width: 760px)").matches) {
-                        e.preventDefault();
-                        onOpenEvent(re.id);
-                      }
-                    }}
-                  >
-                    <div className="edRelatedCardImageWrap">
-                      <img src={re.imageUrl} alt={re.title} />
-                      <span
-                        className="edRelatedCardBadge"
-                        style={{ backgroundColor: re.categoryColor }}
-                      >
-                        {re.category}
-                      </span>
-                    </div>
-                    <div className="edRelatedCardBody">
-                      <h3>{re.title}</h3>
-                      <span className="edRelatedCardDate">
-                        {formatCompactDate(re.start_at, re.end_at)}
-                      </span>
-                      <span className="edRelatedCardLocation">{re.city || re.address}</span>
-                      <span className={`edRelatedCardPrice ${isFreeEvent(re) ? "edRelatedCardPriceFree" : ""}`}>
-                        {isFreeEvent(re)
-                          ? "Bezpłatne"
-                          : re.price_min != null
-                            ? `od ${re.price_min} ${re.currency ?? "PLN"}`
-                            : re.price}
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+              <EventCarousel title="Podobne wydarzenia" events={relatedEvents.map((event) => ({ event, distanceKm: Number.POSITIVE_INFINITY }))} onOpenEvent={onOpenEvent} seeAllHref={categoryPath(event.category)} />
             </section>
           ) : null}
         </div>
@@ -532,14 +482,14 @@ export default function EventDetailView({
 
 /* ---- Helpers ---- */
 
-function formatDateRange(start: string, end: string | null) {
+function formatDateRange(start: string, end: string | null, isAllDay: boolean | null) {
   const startLabel = formatPolishDate(start, {
     weekday: "long",
     day: "2-digit",
     month: "long",
     year: "numeric",
   });
-  const startTime = formatPolishDate(start, {
+  const startTime = isAllDay ? "Cały dzień" : formatPolishDate(start, {
     hour: "2-digit",
     minute: "2-digit",
   });
@@ -551,6 +501,7 @@ function formatDateRange(start: string, end: string | null) {
   const endTime = formatPolishDate(end, { hour: "2-digit", minute: "2-digit" });
 
   if (startDay === endDay) {
+    if (isAllDay) return `${startLabel}, ${startTime}`;
     return `${startLabel}, ${startTime} \u2013 ${endTime}`;
   }
 
@@ -559,36 +510,18 @@ function formatDateRange(start: string, end: string | null) {
     month: "long",
     year: "numeric",
   });
-  return `${startLabel}, ${startTime} \u2013 ${endLabel}, ${endTime}`;
-}
-
-function formatCompactDate(start: string, end?: string | null) {
-  const startDate = formatPolishDate(start, {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
-  if (!end) return startDate;
-
-  const startDay = getDateKeyInAppTimeZone(start);
-  const endDay = getDateKeyInAppTimeZone(end);
-  if (startDay === endDay) return startDate;
-
-  const endDate = formatPolishDate(end, {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
-  return `${startDate} \u2013 ${endDate}`;
+  return isAllDay
+    ? `${startLabel} \u2013 ${endLabel}, ${startTime}`
+    : `${startLabel}, ${startTime} \u2013 ${endLabel}, ${endTime}`;
 }
 
 function isPastEvent(event: Pick<EventItem, "start_at" | "end_at">) {
   const startTime = new Date(event.start_at).getTime();
   const endTime = event.end_at
     ? new Date(event.end_at).getTime()
-    : startTime + 2 * 60 * 60 * 1000;
+    : startTime;
 
-  return Number.isFinite(endTime) && endTime < Date.now();
+  return Number.isFinite(endTime) && endTime <= Date.now();
 }
 
 function formatSourceUrl(value: string) {

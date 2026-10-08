@@ -2,11 +2,13 @@ import Link from "next/link";
 import OrganizerSectionNav from "@/components/OrganizerSectionNav";
 import { getOrganizerStats } from "@/lib/organizer-events";
 import { formatPolishDate } from "@/lib/date-format";
+import OrganizerStatisticsNotice from "@/components/OrganizerStatisticsNotice";
 
 export const dynamic = "force-dynamic";
 
 export default async function OrganizerStatsPage() {
-  const rows = await getOrganizerStats();
+  const stats = await getOrganizerStats();
+  const rows = stats.rows;
 
   return (
     <main className="appShell managementShell">
@@ -18,6 +20,7 @@ export default async function OrganizerStatsPage() {
       </div>
 
       <OrganizerSectionNav active="stats" />
+      <OrganizerStatisticsNotice analyticsStatus={stats.analyticsStatus} savesStatus={stats.savesStatus} />
 
       <section className="managementPanel">
         <div className="managementPanelHeader">
@@ -25,9 +28,9 @@ export default async function OrganizerStatsPage() {
           <Link href="/organizer/events">Moje wydarzenia</Link>
         </div>
         <p className="panelMutedText">
-          Wyswietlenia i klikniecia sa liczone z `event_analytics`; zapisania dodatkowo uwzgledniaja `saved_events`.
+          Wyświetlenia i kliknięcia obejmują cały zarejestrowany okres, a nie unikalne osoby. Kliknięcia serca i bieżące zapisania są oddzielnymi miarami; usunięte zapisanie nie zmniejsza historycznej liczby kliknięć.
         </p>
-        <div className="managementTableWrap">
+        <div className="managementTableWrap" tabIndex={0} role="region" aria-label="Statystyki wydarzeń — tabela przewijana poziomo">
           <table className="managementTable">
             <thead>
               <tr>
@@ -38,7 +41,8 @@ export default async function OrganizerStatsPage() {
                 <th>WWW</th>
                 <th>Mapa</th>
                 <th>Bilety</th>
-                <th>Zapisania</th>
+                <th>Kliknięcia serca</th>
+                <th>Bieżące zapisania</th>
                 <th>Udostepnienia</th>
               </tr>
             </thead>
@@ -47,18 +51,19 @@ export default async function OrganizerStatsPage() {
                 <tr key={row.event.id}>
                   <td>{row.event.title}</td>
                   <td>{formatDate(row.event.start_at)}</td>
-                  <td>{row.views}</td>
-                  <td>{row.phoneClicks}</td>
-                  <td>{row.websiteClicks}</td>
-                  <td>{row.mapClicks}</td>
-                  <td>{row.ticketClicks}</td>
-                  <td>{row.saves}</td>
-                  <td>{row.shares}</td>
+                  <td>{row.views ?? "—"}</td>
+                  <td>{row.phoneClicks ?? "—"}</td>
+                  <td>{row.websiteClicks ?? "—"}</td>
+                  <td>{row.mapClicks ?? "—"}</td>
+                  <td>{row.ticketClicks ?? "—"}</td>
+                  <td>{row.saveClicks ?? "—"}</td>
+                  <td>{row.currentSaves ?? "—"}</td>
+                  <td>{row.shares ?? "—"}</td>
                 </tr>
               ))}
               {!rows.length ? (
                 <tr>
-                  <td colSpan={9} className="emptyTableCell">Brak wydarzen do pokazania statystyk.</td>
+                  <td colSpan={10} className="emptyTableCell">Brak wydarzen do pokazania statystyk.</td>
                 </tr>
               ) : null}
             </tbody>

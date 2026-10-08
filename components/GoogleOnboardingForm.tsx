@@ -9,12 +9,13 @@ import {
 
 const initialState: GoogleOnboardingFormState = { error: null };
 
-export default function GoogleOnboardingForm() {
-  const [role, setRole] = useState<"user" | "organizer">("user");
+export default function GoogleOnboardingForm({ next = "/" }: { next?: string }) {
+  const [role, setRole] = useState<"user" | "organizer">(next.startsWith("/organizer") ? "organizer" : "user");
   const [state, formAction, pending] = useActionState(completeGoogleOnboardingAction, initialState);
 
   return (
     <form action={formAction} className="managementForm">
+      <input type="hidden" name="next" value={next} />
       {state.error ? (
         <div className="formError" role="alert">
           {state.error}

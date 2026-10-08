@@ -108,6 +108,7 @@ export function EventSaveButton({ eventId, initialSaved, isLoggedIn, returnTo }:
   const [saved, setSaved] = useState(initialSaved ?? false);
   const [resolvedLoggedIn, setResolvedLoggedIn] = useState<boolean | null>(isLoggedIn ?? null);
   const [error, setError] = useState("");
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const [pending, startTransition] = useTransition();
 
   useEffect(() => {
@@ -131,8 +132,8 @@ export function EventSaveButton({ eventId, initialSaved, isLoggedIn, returnTo }:
         })
         .catch(() => {
           if (!active) return;
-          setResolvedLoggedIn(false);
-          setSaved(false);
+          setResolvedLoggedIn(null);
+          setError("Nie udało się sprawdzić zapisanych wydarzeń.");
         });
     }
 
@@ -146,9 +147,10 @@ export function EventSaveButton({ eventId, initialSaved, isLoggedIn, returnTo }:
       active = false;
       window.removeEventListener("eventmap:saved-event", handleSavedEvent);
     };
-  }, [eventId, initialSaved, isLoggedIn]);
+  }, [eventId, initialSaved, isLoggedIn, loadAttempt]);
 
   if (resolvedLoggedIn === null) {
+    if (error) return <div className="eventSaveControl"><button type="button" className="edSaveBtn" onClick={() => setLoadAttempt((attempt) => attempt + 1)}>Spróbuj ponownie</button><span className="eventSaveError" role="alert">{error}</span></div>;
     return (
       <button type="button" className="edSaveBtn" disabled>
         <HeartIcon filled={false} />

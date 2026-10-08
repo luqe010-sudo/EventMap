@@ -1,3 +1,4 @@
+import { serializeJsonLd } from "@/lib/json-ld";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import HomePage from "@/components/HomePage";
@@ -9,14 +10,15 @@ import {
   getActiveCityLocations,
   searchPublicEvents,
 } from "@/lib/events";
-import { toPluralCategorySlug, toPluralCategoryName, toSlug, formatInCity } from "@/lib/slugs";
+import { appendPublicFilters, buildSearchUrl, toPluralCategorySlug, toPluralCategoryName, toSlug, formatInCity } from "@/lib/slugs";
 import { searchAddress } from "@/lib/geocoding";
 import { parsePublicFilterParams } from "@/lib/filters";
+import { normalizeCitySearchFilters } from "@/lib/public-search-params";
+import { hasLocationCoordinates } from "@/lib/event-search";
 
 type Params = { category: string };
-
-export const dynamic = "force-static";
-export const revalidate = 300;
+type SearchParams = Record<string, string | string[] | undefined>;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { category: categorySlug } = await params;
@@ -52,18 +54,21 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
 export default async function CategoryPage({
   params,
+  searchParams,
 }: {
   params: Promise<Params>;
+  searchParams: Promise<SearchParams>;
 }) {
   const { category: categorySlug } = await params;
-  const initialFilters = parsePublicFilterParams({});
+  const requestedFilters = parsePublicFilterParams(await searchParams);
   
   // 1. Try to resolve as category
   const category = await getCategoryBySlugFromDb(categorySlug);
   if (category) {
-    const pluralSlug = toPluralCategorySlug(categorySlug);
+    const initialFilters = { ...requestedFilters, radiusKm: undefined, sortBy: "date" as const };
+    const pluralSlug = toPluralCategorySlug(category.slug);
     if (categorySlug !== pluralSlug) {
-      redirect(`/${pluralSlug}`);
+      redirect(appendPublicFilters(`/${pluralSlug}`, initialFilters));
     }
 
     const [eventSearch, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
@@ -72,7 +77,8 @@ export default async function CategoryPage({
         dateFilter: initialFilters.dateFilter ?? "all",
         customDate: initialFilters.customDate,
         priceMode: initialFilters.priceMode ?? "all",
-        maxPrice: initialFilters.maxPrice
+        maxPrice: initialFilters.maxPrice,
+        sortBy: initialFilters.sortBy
       }),
       listCategories(),
       getActiveCityLocations(),
@@ -84,7 +90,7 @@ export default async function CategoryPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: serializeJsonLd({
               "@context": "https://schema.org",
               "@type": "CollectionPage",
               name: `${category.name} - wydarzenia w Polsce`,
@@ -96,7 +102,7 @@ export default async function CategoryPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: serializeJsonLd({
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
@@ -122,18 +128,21 @@ export default async function CategoryPage({
   // 2. Try to resolve as city
   const cityLocation = await resolveCityLocation(categorySlug);
   if (cityLocation) {
+    const initialFilters = normalizeCitySearchFilters(requestedFilters, cityLocation);
     const normalizedCitySlug = cityLocation.slug ?? toSlug(cityLocation.label);
     if (categorySlug !== normalizedCitySlug) {
-      redirect(`/${normalizedCitySlug}`);
+      redirect(appendPublicFilters(`/${normalizedCitySlug}`, initialFilters));
     }
 
     const [eventSearch, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
       searchPublicEvents({
         citySlug: normalizedCitySlug,
+        radiusKm: initialFilters.radiusKm,
         dateFilter: initialFilters.dateFilter ?? "all",
         customDate: initialFilters.customDate,
         priceMode: initialFilters.priceMode ?? "all",
-        maxPrice: initialFilters.maxPrice
+        maxPrice: initialFilters.maxPrice,
+        sortBy: initialFilters.sortBy
       }),
       listCategories(),
       getActiveCityLocations(),
@@ -145,7 +154,7 @@ export default async function CategoryPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: serializeJsonLd({
               "@context": "https://schema.org",
               "@type": "CollectionPage",
               name: `Wydarzenia ${formatInCity(cityLocation.label)} - kalendarz imprez`,
@@ -157,7 +166,7 @@ export default async function CategoryPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: serializeJsonLd({
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
@@ -181,17 +190,23 @@ export default async function CategoryPage({
   }
 
   // Try to geocode categorySlug as a fallback city
+  let geocoded: Awaited<ReturnType<typeof searchAddress>> = [];
   try {
     const query = categorySlug.replace(/-/g, " ");
-    const geocoded = await searchAddress(query);
-    if (geocoded && geocoded.length > 0) {
-      const best = geocoded[0];
-      const lat = Math.round(best.latitude * 1000) / 1000;
-      const lng = Math.round(best.longitude * 1000) / 1000;
-      redirect(`/lokalizacja?lat=${lat}&lng=${lng}&radius=30`);
-    }
+    geocoded = await searchAddress(query);
   } catch (err) {
     console.error("Failed to geocode single segment city page fallback:", err);
+  }
+  const best = geocoded.find(hasLocationCoordinates);
+  if (best) {
+    redirect(buildSearchUrl({
+      ...requestedFilters,
+      geoLocation: {
+        lat: Math.round(best.latitude * 1000) / 1000,
+        lng: Math.round(best.longitude * 1000) / 1000,
+        radius: requestedFilters.radiusKm ?? 30
+      }
+    }));
   }
 
   // 3. Fallback to 404

@@ -1,7 +1,8 @@
 import { listCategories } from "@/lib/events";
 import { toPluralCategorySlug } from "@/lib/slugs";
+import { PUBLIC_EVENT_NO_STORE_HEADERS } from "@/lib/public-event-cache";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   const categories = await listCategories();
@@ -25,7 +26,7 @@ ${urlsXml}
   return new Response(xml, {
     headers: {
       "Content-Type": "application/xml",
-      "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=59"
+      ...PUBLIC_EVENT_NO_STORE_HEADERS
     }
   });
 }

@@ -174,6 +174,7 @@ export type SearchUrlParams = {
   priceMode?: PriceFilterMode;
   maxPrice?: number | null;
   radiusKm?: number | null;
+  sortBy?: "date" | "nearest";
 };
 
 /**
@@ -219,7 +220,7 @@ export function buildSearchUrl(params: SearchUrlParams): string {
   return appendQuery(`/`, query);
 }
 
-function buildFilterQuery(params: Pick<SearchUrlParams, "dateFilter" | "customDate" | "priceMode" | "maxPrice" | "radiusKm">) {
+export function buildFilterQuery(params: Pick<SearchUrlParams, "dateFilter" | "customDate" | "priceMode" | "maxPrice" | "radiusKm" | "sortBy">) {
   const query = new URLSearchParams();
 
   if (params.dateFilter && params.dateFilter !== "all") {
@@ -242,7 +243,15 @@ function buildFilterQuery(params: Pick<SearchUrlParams, "dateFilter" | "customDa
     query.set("radius", String(params.radiusKm));
   }
 
+  if (params.sortBy === "nearest") query.set("sort", "nearest");
+
   return query;
+}
+
+export function appendPublicFilters(path: string, params: Parameters<typeof buildFilterQuery>[0]) {
+  const query = buildFilterQuery(params);
+  if (params.dateFilter === "all") query.set("kiedy", "all");
+  return appendQuery(path, query);
 }
 
 function appendQuery(path: string, query: URLSearchParams) {

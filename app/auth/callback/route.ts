@@ -1,3 +1,4 @@
+import { safeNextPath } from "@/lib/navigation";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import {
@@ -23,7 +24,7 @@ export async function GET(request: Request) {
   });
 
   if (providerError || !code) {
-    return NextResponse.redirect(new URL("/login?oauth_error=cancelled", url.origin));
+    return NextResponse.redirect(new URL(`/login?oauth_error=cancelled&next=${encodeURIComponent(safeNextPath(registration.next))}`, url.origin));
   }
 
   try {
@@ -60,7 +61,7 @@ export async function GET(request: Request) {
         path: "/auth/onboarding",
         maxAge: 30 * 60
       });
-      return NextResponse.redirect(new URL("/auth/onboarding", url.origin));
+      return NextResponse.redirect(new URL(`/auth/onboarding?next=${encodeURIComponent(safeNextPath(registration.next))}`, url.origin));
     }
 
     await ensureGoogleOAuthAccount(supabase, data.user, registration);
@@ -73,7 +74,7 @@ export async function GET(request: Request) {
     return NextResponse.redirect(new URL(safeNextPath(registration.next), url.origin));
   } catch (error) {
     console.error("[auth] Google OAuth callback failed", error);
-    return NextResponse.redirect(new URL("/login?oauth_error=callback", url.origin));
+    return NextResponse.redirect(new URL(`/login?oauth_error=callback&next=${encodeURIComponent(safeNextPath(registration.next))}`, url.origin));
   }
 }
 
@@ -97,9 +98,7 @@ function defaultRegistration(): GoogleOAuthRegistration {
   return { intent: "login", role: "user", organizerName: null, next: "/" };
 }
 
-function safeNextPath(value: unknown) {
-  return typeof value === "string" && value.startsWith("/") && !value.startsWith("//") ? value : "/";
-}
+
 
 function isFirstSignIn(createdAt: string, lastSignInAt: string | undefined) {
   if (!lastSignInAt) return true;

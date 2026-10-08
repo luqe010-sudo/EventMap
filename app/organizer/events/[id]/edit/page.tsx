@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import EventEditorForm from "@/components/EventEditorForm";
+import EventSaveNotice from "@/components/EventSaveNotice";
 import EventQualityChecklist from "@/components/EventQualityChecklist";
 import OrganizerSectionNav from "@/components/OrganizerSectionNav";
 import { formatPolishDate } from "@/lib/date-format";
@@ -15,8 +16,12 @@ type Params = { id: string };
 
 export const dynamic = "force-dynamic";
 
-export default async function OrganizerEditEventPage({ params }: { params: Promise<Params> }) {
+export default async function OrganizerEditEventPage({ params, searchParams }: {
+  params: Promise<Params>;
+  searchParams: Promise<{ save?: string | string[] }>;
+}) {
   const { id } = await params;
+  const { save } = await searchParams;
   const [event, options, moderationLogs] = await Promise.all([
     getOrganizerEventForEdit(id),
     getOrganizerEventEditorOptions(),
@@ -36,6 +41,7 @@ export default async function OrganizerEditEventPage({ params }: { params: Promi
       </div>
 
       <OrganizerSectionNav active="events" />
+      <EventSaveNotice value={save} />
 
       <div className="organizerEditorLayout">
         <section className="managementPanel">
@@ -44,7 +50,7 @@ export default async function OrganizerEditEventPage({ params }: { params: Promi
             event={event}
             options={options}
             mode="organizer"
-            submitLabel="Zapisz i wyslij do akceptacji"
+            submitLabel={event.status === "published" ? "Zapisz i wyślij do sprawdzenia" : "Zapisz zmiany"}
           />
         </section>
         <div className="organizerEditorSide">

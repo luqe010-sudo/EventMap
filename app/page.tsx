@@ -3,7 +3,7 @@ import { getHomeData } from "@/lib/events";
 import { parsePublicFilterParams } from "@/lib/filters";
 import type { Metadata } from "next";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "MapaImprez.pl - lokalne wydarzenia w Polsce",
@@ -17,16 +17,18 @@ type SearchParams = Record<string, string | string[] | undefined>;
 
 export default async function Home({ searchParams }: { searchParams: Promise<SearchParams> }) {
   const initialFilters = parsePublicFilterParams(await searchParams);
-  const { events, eventSearch, categories, activeCityLocations } = await getHomeData({
+  const { events, featuredEvents, eventSearch, categories, activeCityLocations } = await getHomeData({
     dateFilter: initialFilters.dateFilter ?? "all",
     customDate: initialFilters.customDate,
     priceMode: initialFilters.priceMode ?? "all",
-    maxPrice: initialFilters.maxPrice
+    maxPrice: initialFilters.maxPrice,
+    sortBy: "date"
   });
 
   return (
     <HomePage
       initialEvents={events}
+      initialFeaturedEvents={featuredEvents}
       initialEventSearch={eventSearch}
       categoryOptions={categories}
       initialFilters={initialFilters}

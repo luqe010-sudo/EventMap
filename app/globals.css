@@ -197,7 +197,7 @@
 }
 
 .managementTable th {
-  color: #475569;
+  color: var(--ink-secondary);
   font-size: 0.78rem;
   text-transform: uppercase;
 }
@@ -267,6 +267,18 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+}
+
+.tableActions .organizerEventQuickAction {
+  display: grid;
+  justify-items: start;
+  max-width: 320px;
+}
+
+.organizerEventQuickAction .formError,
+.organizerEventQuickAction .formSuccess {
+  margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .tableActionInput {
@@ -2542,9 +2554,23 @@ a { color: inherit; text-decoration: none; }
 
 .authOnboardingIntro {
   margin: -0.25rem 0 1.25rem;
-  color: #64748b;
+  color: var(--ink-secondary);
   font-size: 0.92rem;
   line-height: 1.6;
+}
+
+.authHelpLinks {
+  margin-top: 1rem;
+  color: var(--ink-secondary);
+}
+
+.authHelpLinks a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* ===================================================
@@ -4278,9 +4304,16 @@ select:focus {
 }
 
 .accountSavedRemoveForm {
-  position: absolute;
-  right: 12px;
-  bottom: 11px;
+  position: relative;
+  margin-top: -34px;
+  padding: 0 14px 12px;
+  text-align: right;
+}
+
+.accountSavedRemoveForm .formError {
+  margin: 6px 0 0;
+  text-align: left;
+  overflow-wrap: anywhere;
 }
 
 .accountSavedRemove {
@@ -7151,6 +7184,11 @@ body {
   width: 29px;
   height: 29px;
   overflow: visible;
+}
+
+.accountSavedRemove:disabled {
+  cursor: wait;
+  opacity: 0.65;
 }
 
 .heroQuickTileIcon-heart { color: #ff5a3d; }

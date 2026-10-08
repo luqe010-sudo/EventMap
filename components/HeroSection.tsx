@@ -5,7 +5,6 @@ import type { LucideIcon } from "lucide-react";
 import type { EventCategory } from "@/lib/events";
 
 type HeroSectionProps = {
-  eventCount: number;
   onSelectCategory: (category: EventCategory | "Wszystkie") => void;
   onSelectFree: () => void;
   onSelectDateFilter: (filter: "today" | "weekend") => void;
@@ -14,8 +13,8 @@ type HeroSectionProps = {
 };
 
 const quickTiles = [
-  { icon: "heart", label: "Dla mnie", action: "category" as const, value: "Kultura" },
-  { icon: "child", label: "Dla dzieci", action: "category" as const, value: "Rodzina" },
+  { icon: "heart", label: "Kultura", action: "category" as const, value: "Kultura" },
+  { icon: "child", label: "Dla dzieci", action: "category" as const, value: "Rodzinne" },
   { icon: "calendar", label: "Na weekend", action: "date" as const, value: "weekend" },
   { icon: "gift", label: "Za darmo", action: "free" as const, value: "" },
   { icon: "bolt", label: "Na dziś", action: "date" as const, value: "today" },
@@ -29,7 +28,7 @@ const quickTileIcons: Record<string, LucideIcon> = {
   bolt: Zap,
 };
 
-export default function HeroSection({ eventCount, onSelectCategory, onSelectFree, onSelectDateFilter, title, subtitle }: HeroSectionProps) {
+export default function HeroSection({ onSelectCategory, onSelectFree, onSelectDateFilter, title, subtitle }: HeroSectionProps) {
   return (
     <section className="heroSection">
       <div className="heroLeft">
@@ -37,7 +36,7 @@ export default function HeroSection({ eventCount, onSelectCategory, onSelectFree
           {title || (
             <>
               Odkrywaj wydarzenia<br />
-              w swojej okolicy<span className="heroTitleAccent">.</span>
+              w Polsce<span className="heroTitleAccent">.</span>
             </>
           )}
         </h1>
@@ -53,8 +52,7 @@ export default function HeroSection({ eventCount, onSelectCategory, onSelectFree
       <div className="heroRight">
         <div className="heroCard">
           <p className="heroCardTitle">
-            Nie wiesz co robić? Pokaż nam swój klimat<br />
-            a my znajdziemy coś dla Ciebie!
+            Co chcesz odkryć?
           </p>
           <div className="heroQuickTiles">
             {quickTiles.map((tile) => {

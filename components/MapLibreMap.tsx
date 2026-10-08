@@ -5,6 +5,7 @@ import maplibregl from "maplibre-gl";
 import type { ExpressionSpecification, FilterSpecification } from "maplibre-gl";
 import type { MutableRefObject } from "react";
 import type { EventItem, EventMapMarker, KnownLocation } from "@/lib/events";
+import { hasLocationCoordinates } from "@/lib/event-search";
 import { eventPath } from "@/lib/slugs";
 import * as LucideIcons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -73,7 +74,7 @@ export default function MapLibreMap({
   const onSelectEventRef = useRef(onSelectEvent);
   const showEventPopupRef = useRef(showEventPopup);
   const initialCenterRef = useRef<[number, number]>(
-    location ? [location.longitude, location.latitude] : POLAND_CENTER
+    hasLocationCoordinates(location) ? [location.longitude, location.latitude] : POLAND_CENTER
   );
   const [mapReady, setMapReady] = useState(false);
 
@@ -373,7 +374,7 @@ function updateLocationMarker(
   location: KnownLocation | undefined,
   markerRef: React.MutableRefObject<maplibregl.Marker | null>
 ) {
-  if (!location) {
+  if (!hasLocationCoordinates(location)) {
     markerRef.current?.remove();
     markerRef.current = null;
     return;
@@ -395,7 +396,7 @@ function fitMapToPoints(map: maplibregl.Map, location: KnownLocation | undefined
     return;
   }
 
-  const points: Array<[number, number]> = location ? [[location.longitude, location.latitude]] : [];
+  const points: Array<[number, number]> = hasLocationCoordinates(location) ? [[location.longitude, location.latitude]] : [];
   events.forEach((event) => {
     if (event.latitude != null && event.longitude != null) {
       points.push([event.longitude, event.latitude]);

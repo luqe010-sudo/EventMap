@@ -258,7 +258,7 @@ const cookieSections: Section[] = [
     body: [
       "Niezbędne cookies i identyfikatory sesji służą do działania strony, bezpieczeństwa, logowania i utrzymania sesji Supabase Auth. Bez nich część funkcji, w szczególności konto użytkownika i panel organizatora, może nie działać prawidłowo.",
       "Preferencje i dane lokalne mogą służyć do zapamiętania ustawień interfejsu, zapisanych wydarzeń w przeglądarce, identyfikatora sesji analitycznej wydarzeń albo ostatnio wybranych opcji wyszukiwania.",
-      "Analityka wydarzeń może zapisywać informacje o publicznych interakcjach z wydarzeniem, takich jak wyświetlenie, kliknięcie linku, kliknięcie mapy, zapisanie lub udostępnienie wydarzenia. Dane te pomagają organizatorom i administratorom mierzyć skuteczność publikacji.",
+      "Po zgodzie na analitykę statystyki wydarzeń zapisują informacje o publicznych interakcjach z wydarzeniem, takich jak wyświetlenie, kliknięcie linku, kliknięcie mapy, zapisanie lub udostępnienie wydarzenia. Nowe interakcje nie są powiązane z kontem użytkownika. Dane te pomagają organizatorom i administratorom mierzyć skuteczność publikacji; nie oznaczają liczby unikalnych osób.",
       "Google Analytics, jeżeli jest aktywne, może wykorzystywać pliki cookies i podobne identyfikatory do tworzenia zbiorczych statystyk odwiedzin, źródeł ruchu i sposobu korzystania z serwisu.",
     ],
   },
@@ -267,7 +267,7 @@ const cookieSections: Section[] = [
     title: "3. Przykładowe cookies i identyfikatory",
     body: [
       "Cookies Supabase Auth: utrzymują sesję zalogowanego użytkownika i obsługują bezpieczeństwo logowania. Są używane tylko wtedy, gdy użytkownik korzysta z funkcji konta.",
-      "eventmap.analyticsSessionId: identyfikator sesji w przeglądarce używany do podstawowej analityki interakcji z wydarzeniami.",
+      "eventmap.analyticsSessionId: losowy identyfikator zapisany w sessionStorage po zgodzie na analitykę interakcji z wydarzeniami. Odrzucenie analityki usuwa ten identyfikator z bieżącej karty przeglądarki.",
       "_ga oraz _ga_*: przykładowe pliki Google Analytics, jeżeli usługa jest aktywna w serwisie. Służą do rozróżniania wizyt i tworzenia statystyk.",
       "Preferencje przeglądarki i localStorage: mogą przechowywać lokalne ustawienia interfejsu lub zapisane przez użytkownika elementy, o ile dana funkcja jest dostępna w serwisie.",
     ],
@@ -277,7 +277,7 @@ const cookieSections: Section[] = [
     title: "4. Zgoda i zarządzanie cookies",
     body: [
       "Cookies niezbędne do działania serwisu mogą być wykorzystywane bez dodatkowej zgody, ponieważ są potrzebne do świadczenia usługi żądanej przez użytkownika.",
-      "Przy pierwszej wizycie serwis wyświetla banner cookies. Google Analytics jest ładowane dopiero po wybraniu zgody na analitykę. Odrzucenie analityki nie blokuje korzystania z podstawowych funkcji serwisu.",
+      "Przy pierwszej wizycie serwis wyświetla banner cookies. Statystyki interakcji z wydarzeniami i Google Analytics uruchamiają się po wybraniu zgody na analitykę. Odrzucenie zgody zatrzymuje nowe pomiary w przeglądarce i nie blokuje korzystania z podstawowych funkcji serwisu.",
       "Decyzja użytkownika jest zapisywana w pamięci przeglądarki. Użytkownik może ponownie otworzyć ustawienia przyciskiem Cookies widocznym po zapisaniu wyboru.",
       "Użytkownik może ograniczyć lub usunąć cookies w ustawieniach przeglądarki. Ograniczenie cookies może spowodować, że logowanie, panel organizatora, zapamiętane ustawienia lub część funkcji serwisu przestaną działać prawidłowo.",
       "Użytkownik może też korzystać z narzędzi udostępnianych przez dostawców przeglądarek lub dostawców usług analitycznych, w tym ustawień prywatności, blokowania cookies stron trzecich i rozszerzeń ograniczających śledzenie.",

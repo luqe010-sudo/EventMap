@@ -1,164 +1,32 @@
 # API
 
-Aplikacja nie definiuje klasycznego REST API dla wydarzeń. Komunikacja z bazą odbywa się przez Supabase JS w warstwie `lib/` oraz przez Next.js server actions.
+Stan lokalny 2026-10-06. Route handlers aplikacji i Server Actions korzystają z biblioteki lib; nie są kontraktem API dla integracji zewnętrznych. RLS/uprawnienia Supabase wymagają osobnego odbioru.
 
 ## Route handlers
 
-### `GET /auth/callback`
+| Ścieżka | Działanie |
+| --- | --- |
+| GET /api/events/search | Publiczne wydarzenia i totalCount; wspólny model miasta/promienia/dat/ceny/kategorii/sortowania. |
+| GET /api/events/markers | Markery tej samej pełnej puli; brak współrzędnych nie usuwa karty z listy. |
+| GET /api/events/category-counts | Liczniki kategorii dla wyszukiwania. |
+| GET /api/events/{id} | Szczegóły opublikowanego, publicznego, nieanulowanego wydarzenia albo 404. |
+| POST /api/events/{id}/analytics | Interakcja po deklaracji zgody, same-origin/UUID/dokładny JSON do 1024 B/public-only/limiter. [Kontrakt i ograniczenia](event-analytics.md). |
+| GET /api/account/navbar | Menu bieżącej sesji; anonimowy fallback po awarii Auth/profilu. |
+| GET /api/account/saved-events | Własne zapisy bieżącej sesji, bez przyjmowania user_id; błąd usługi odrębny od pustej listy. |
+| GET /auth/callback | PKCE Google OAuth, dozwolony powrót i ewentualny onboarding. |
+| GET /auth/recovery | Recovery PKCE/token_hash, krótki kontekst HttpOnly powiązany z kontem i przekierowanie do resetu. |
+| POST /auth/sign-out | Wylogowanie bieżącej sesji i usunięcie kontekstu recovery. |
 
-Plik: `app/auth/callback/route.ts`
+Parametry wyszukiwania normalizuje lib/public-search-params.ts; zapytania wydarzeń są w lib/events.ts. Publiczne dane mają zawsze status published, visibility public i is_cancelled różne od true. Discovery/detail API, aliasy /wydarzenie i /wydarzenia oraz sitemap nie przechowują odpowiedzi: Cache-Control no-store, max-age=0. Listingi publiczne są dynamiczne; więcej w [architekturze](architecture.md).
 
-- odbiera kod Google OAuth;
-- wymienia kod na sesje Supabase przez PKCE;
-- uzupelnia brakujacy profil i opcjonalne powiazanie organizatora;
-- przekierowuje na `/` albo `/organizer`.
+## Server Actions i guardy
 
-### `POST /auth/sign-out`
+Auth/rejestrację obsługuje lib/auth-actions.ts, odzyskiwanie lib/auth-password-actions.ts; [przepływy Auth](auth.md). Account actions ustalają użytkownika z sesji. Własne zapisy używają wdrożonych get_my_saved_events i set_my_saved_event z auth.uid(), a nie parametru właściciela.
 
-Plik: `app/auth/sign-out/route.ts`
+lib/admin-events.ts sprawdza admina na serwerze. listAdminEvents/listAdminReviewEvents zwracają teraz { events, totalCount, page, pageSize, pageCount }, po 50 rekordów na stronę. SQL obsługuje daty/status/promowane i zwykłe strony; pełna projekcja do 50 000 rekordów obsługuje polski tekst/nazwy relacji przed paginacją. Review jest zawsze draft/pending_review. Awaria/limit to błąd, nie ucięta lista.
 
-Działanie:
+lib/organizer-events.ts sprawdza rolę i członkostwo organizer_users, ogranicza events do submitted_by_organizer_id i nie przyjmuje podmiany właściciela. Create zawsze pending_review; edycja published wraca do moderacji; rejected ma oddzielny resubmit. getOrganizerStats zwraca rows oraz niezależne analyticsStatus/savesStatus, a miary mogą być null. Bieżące zapisania i historyczne kliknięcia nie są sumowane. [Statystyki](event-analytics.md).
 
-- tworzy klienta Supabase SSR przez `createSupabaseUserClient()`;
-- wykonuje `supabase.auth.signOut()`;
-- przekierowuje na `/`.
+Edytory używają useActionState i walidacji w lib/event-editor-validation.ts. Po częściowym/niepotwierdzonym events/source/moderation zachowują formularz i pokazują sposób sprawdzenia wyniku. Akcje nie są jeszcze transakcyjne ani trwale idempotentne: [propozycja A04](event-write-transaction-proposal.md). Nowe writer RPC/tabela/kolumna nie zostały wdrożone.
 
-Navbar wysyła formularz `POST` do tej ścieżki.
-
-### `GET /api/account/saved-events`
-
-- zwraca `{ isLoggedIn, eventIds }` dla aktualnej sesji;
-- jest używany przez ikony serca na publicznych kartach wydarzeń;
-- nie przyjmuje `user_id` od klienta.
-
-## Server actions
-
-### Auth
-
-Plik: `lib/auth-actions.ts`
-
-- `signInAction(formData)` - loguje przez `supabase.auth.signInWithPassword({ email, password })`, po sukcesie przekierowuje na `/`, a po bledzie zwraca stan formularza zamiast rzucac wyjatek RSC.
-- `signInFormAction(previousState, formData)` - wariant dla formularza `/login` opartego o `useActionState()`.
-- `signInWithGoogleAction(formData)` - rozpoczyna Google OAuth, zapisuje krotkotrwaly stan rejestracji w cookie HttpOnly i ustawia callback `/auth/callback`.
-- `completeGoogleOnboardingAction(previousState, formData)` - po pierwszym logowaniu Google waliduje zgody i role, tworzy/uzupelnia profil oraz opcjonalnego organizatora.
-- `signUpAction(formData)` - rejestruje uzytkownika przez Supabase Auth, tworzy/aktualizuje `profiles`, a dla roli `organizer` tworzy `organizers` i `organizer_users`.
-- Wylogowanie jest obslugiwane przez route handler `/auth/sign-out`.
-
-### Konto użytkownika
-
-Plik: `lib/user-account-actions.ts`
-
-- `updateUserProfileAction(previousState, formData)` - aktualizuje `profiles.display_name` zalogowanego użytkownika.
-- `toggleSavedEventAction(eventId, shouldSave)` - dodaje albo usuwa własny rekord `saved_events`; przed zapisem weryfikuje publiczny status wydarzenia.
-- `removeSavedEventAction(eventId)` - usuwa zapis z listy `/account` albo `/organizer/saved`, zależnie od roli.
-
-### Admin events
-
-Plik: `lib/admin-events.ts`
-
-- `adminCreateEventAction(formData)` - tworzy wydarzenie jako admin.
-- `adminUpdateEventAction(eventId, formData)` - aktualizuje dowolne wydarzenie.
-- `adminSetEventStatusAction(eventId, status)` - zmienia status i ustawia `published_at` przy publikacji.
-- `adminDeleteEventAction(eventId)` - usuwa powiązane `event_sources`, `event_tags`, `saved_events`, a potem `events`.
-
-### Admin locations
-
-Plik: `lib/admin-locations.ts`
-
-- `adminCreateLocationAction(formData)` - tworzy lokalizacje.
-- `adminUpdateLocationAction(locationId, formData)` - aktualizuje lokalizacje, w tym pinezke i dane administracyjne.
-- `adminDeleteLocationAction(locationId)` - usuwa lokalizacje tylko wtedy, gdy nie ma przypisanych wydarzen.
-
-### Admin city pages
-
-Plik: `lib/admin-city-pages.ts`
-
-- `adminCreateCityPageAction(formData)` - tworzy strone lokalna SEO.
-- `adminUpdateCityPageAction(cityPageId, formData)` - aktualizuje aktywnosc, slug, metadata, tekst wstepny i centrum miasta.
-
-### Organizer events
-
-Plik: `lib/organizer-events.ts`
-
-- `organizerCreateEventAction(formData)` - tworzy wydarzenie organizatora ze statusem `pending_review`.
-- `organizerUpdateEventAction(eventId, formData)` - aktualizuje tylko własne wydarzenie; opublikowane wydarzenie wraca do `pending_review`.
-
-### Admin organizers
-
-Plik: `lib/admin-organizers.ts`
-
-- `adminCreateOrganizerAction(formData)` - tworzy organizatora.
-- `adminUpdateOrganizerAction(organizerId, formData)` - aktualizuje organizatora.
-- `saveOrganizerOwner()` - wewnętrznie dodaje wpis `organizer_users` z rolą `owner`, jeśli podano `owner_user_id` i powiązanie jeszcze nie istnieje.
-
-## Funkcje odczytu danych
-
-### Publiczne wydarzenia
-
-Plik: `lib/events.ts`
-
-- `listEvents(options)` - pobiera wydarzenia publiczne.
-- `getEventBySlug(slug)` - pobiera szczegóły publicznego wydarzenia.
-- `listCategories()` - pobiera kategorie.
-- `getCategoryBySlugFromDb(slug)` - pobiera kategorię po slugu.
-- `getCityPageBySlug(slug)` - pobiera aktywną stronę miasta.
-- `getHomeData()` - pobiera wydarzenia od początku bieżącego dnia i kategorie.
-
-Główne zapytanie wydarzeń wybiera:
-
-- pola `events`;
-- `category:categories(...)`;
-- `location:locations(...)`;
-- `organizer:organizers!events_organizer_id_fkey(...)`;
-- `sources:event_sources(...)`.
-
-Filtry publiczne:
-
-- `status = "published"`;
-- `visibility = "public"`;
-- domyślnie `is_cancelled is null` albo `is_cancelled = false`;
-- sortowanie po `start_at` rosnąco.
-
-### Admin
-
-Plik: `lib/admin-events.ts`
-
-- `getAdminDashboard()` - liczy `pending_review`, `published`, `rejected` i pobiera ostatnie wydarzenia.
-- `listAdminEvents()` - pobiera do 250 wydarzeń dla tabeli admina.
-- `listAdminReviewEvents()` - pobiera wydarzenia ze statusem `draft` albo `pending_review`.
-- `getAdminEventEditorOptions()` - pobiera kategorie, organizatorów i lokalizacje do formularza.
-- `getAdminEventForEdit(id)` - pobiera wydarzenie z relacjami do edycji.
-
-Plik: `lib/admin-organizers.ts`
-
-- `listAdminOrganizers()`.
-- `getAdminOrganizerForEdit(id)`.
-
-Plik: `lib/admin-locations.ts`
-
-- `listAdminLocations()` - pobiera lokalizacje, liczy przypisane wydarzenia i oznacza potencjalne duplikaty.
-- `getAdminLocationForEdit(id)` - pobiera lokalizacje do formularza edycji.
-
-Plik: `lib/admin-city-pages.ts`
-
-- `listAdminCityPages()` - pobiera strony miast i liczy wydarzenia przez `locations.city_id`.
-- `getAdminCityPageForEdit(id)` - pobiera strone miasta do formularza edycji.
-
-### Organizator
-
-Plik: `lib/organizer-events.ts`
-
-- `getOrganizerDashboard()`.
-- `listOrganizerEvents()`.
-- `getOrganizerEventEditorOptions()`.
-- `getOrganizerEventForEdit(eventId)`.
-
-Wszystkie te funkcje ograniczają dostęp do `submitted_by_organizer_id` powiązanych z użytkownikiem przez `organizer_users`.
-
-## Brakujące lub niepotwierdzone API
-
-- Brak endpointów API dla zewnętrznych klientów.
-- Brak endpointów webhooków.
-- Brak server action do rejestracji użytkownika.
-- Brak API do zapisanych wydarzeń i powiadomień mimo obecności tabel.
-- Brak API scrapingu/AI w kodzie aplikacji.
+Panele locations/categories/organizers/city-pages korzystają z właściwych lib/admin-*. Nie ma potwierdzonego API webhooków, zewnętrznych integracji, scrapingu/AI ani powiadomień użytkownika. Tabele same nie oznaczają gotowej funkcji.

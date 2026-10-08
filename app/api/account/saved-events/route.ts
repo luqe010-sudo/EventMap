@@ -12,6 +12,6 @@ export async function GET() {
       isLoggedIn: true,
       eventIds: [],
       error: "Nie udało się pobrać zapisanych wydarzeń."
-    });
+    }, { status: 503 });
   }
 }

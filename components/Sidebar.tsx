@@ -29,6 +29,12 @@ type SidebarProps = {
   selectedCategory: EventCategory | "Wszystkie";
   location: KnownLocation;
   isAllPoland: boolean;
+  markersLoading?: boolean;
+  markersError?: string | null;
+  onRetryMarkers?: () => void;
+  categoryCountsLoading?: boolean;
+  categoryCountsError?: string | null;
+  onRetryCategoryCounts?: () => void;
 };
 
 export default function Sidebar({
@@ -38,7 +44,13 @@ export default function Sidebar({
   onCategorySelect,
   selectedCategory,
   location,
-  isAllPoland
+  isAllPoland,
+  markersLoading = false,
+  markersError = null,
+  onRetryMarkers,
+  categoryCountsLoading = false,
+  categoryCountsError = null,
+  onRetryCategoryCounts
 }: SidebarProps) {
   const [mapLoadState, setMapLoadState] = useState<MapLoadState>("waiting");
   const mapWrapRef = useRef<HTMLDivElement | null>(null);
@@ -142,20 +154,7 @@ export default function Sidebar({
             </div>
           )}
         </div>
-      </div>
-
-      <div className="sidebarSection sidebarNotifSection">
-        <div className="sidebarNotifContent">
-          <h3>Powiadomienia o nowych wydarzeniach</h3>
-          <p>Bądź na bieżąco! Powiadomimy Cię, gdy pojawi się coś ciekawego w Twojej okolicy.</p>
-          <button type="button" className="sidebarNotifBtn">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 7h18s-3 0-3-7" />
-              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-            </svg>
-            Ustaw powiadomienia
-          </button>
-        </div>
+        {markersLoading ? <p className="sidebarMapStatus" role="status">Odświeżam punkty…</p> : markersError ? <div className="sidebarMapStatus" role="alert"><p>{markersError}</p><button type="button" className="resultsAction" onClick={onRetryMarkers}>Spróbuj ponownie</button></div> : null}
       </div>
 
       <div className="sidebarSection">
@@ -184,7 +183,7 @@ export default function Sidebar({
                   <div className="sidebarUpcomingInfo">
                     <span className="sidebarUpcomingTitle">{event.title}</span>
                     <span className="sidebarUpcomingMeta">
-                      {event.city} - {Number.isFinite(distanceKm) ? `${distanceKm.toFixed(0)} km` : "brak dystansu"}
+                      {event.city}{Number.isFinite(distanceKm) ? ` · ${distanceKm.toFixed(0)} km` : ""}
                     </span>
                   </div>
                 </Link>
@@ -211,32 +210,21 @@ export default function Sidebar({
           <h3>Popularne kategorie</h3>
         </div>
         <div className="sidebarCategories">
-          {categoryCounts.map(({ category, count, color }) => {
+          {categoryCountsLoading ? <p className="hint" role="status">Liczę kategorie…</p> : categoryCountsError ? (
+            <div className="sidebarMapStatus" role="alert"><p>{categoryCountsError}</p><button type="button" className="resultsAction" onClick={onRetryCategoryCounts}>Spróbuj ponownie</button></div>
+          ) : categoryCounts.length === 0 ? <p className="hint">Brak kategorii dla wybranych filtrów.</p> : null}
+          {categoryCounts.map(({ category, count }) => {
             const isActive = selectedCategory === category;
-            const chipColor = color || "var(--ink)";
             return (
               <button
                 key={category}
                 type="button"
                 className={`sidebarCategoryChip ${isActive ? "sidebarCategoryActive" : ""}`}
-                style={
-                  isActive
-                    ? {
-                        background: chipColor,
-                        borderColor: chipColor,
-                        color: "white"
-                      }
-                    : ({
-                        "--hover-border": chipColor
-                      } as React.CSSProperties)
-                }
                 onClick={() => onCategorySelect(isActive ? "Wszystkie" : category)}
+                aria-pressed={isActive}
               >
                 {category}{" "}
-                <span
-                  className="sidebarCategoryCount"
-                  style={isActive ? { color: "rgba(255,255,255,0.7)" } : undefined}
-                >
+                <span className="sidebarCategoryCount">
                   ({count})
                 </span>
               </button>

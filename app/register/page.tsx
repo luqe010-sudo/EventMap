@@ -6,10 +6,12 @@ import { useRouter } from "next/navigation";
 import { signUpAction } from "@/lib/auth-actions";
 import { signInWithGoogleAction } from "@/lib/auth-actions";
 import GoogleIcon from "@/components/GoogleIcon";
+import { safeNextPath } from "@/lib/navigation";
 
 export default function RegisterPage() {
   const router = useRouter();
   const [role, setRole] = useState("user");
+  const [next, setNext] = useState("/");
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -19,6 +21,9 @@ export default function RegisterPage() {
 
   useEffect(() => {
     setMounted(true);
+    const requestedNext = safeNextPath(new URLSearchParams(window.location.search).get("next"));
+    setNext(requestedNext);
+    if (requestedNext.startsWith("/organizer")) setRole("organizer");
     const oauthError = new URLSearchParams(window.location.search).get("oauth_error");
     if (oauthError === "consent") {
       setError("Aby zarejestrować się przez Google, zaakceptuj regulamin i potwierdź zapoznanie się z polityką prywatności oraz cookies.");
@@ -54,7 +59,7 @@ export default function RegisterPage() {
     try {
       const res = await signUpAction(formData);
       if (res.success) {
-        router.push("/login?signup=success");
+        router.push(res.requiresEmailConfirmation ? `/login?signup=success&next=${encodeURIComponent(next)}` : next);
       } else {
         setError(res.error || "Wystapil blad podczas rejestracji.");
         setPending(false);
@@ -128,6 +133,7 @@ export default function RegisterPage() {
         </div>
 
         <form action={signInWithGoogleAction} className="googleRegisterForm">
+          <input type="hidden" name="next" value={next} />
           <input type="hidden" name="intent" value="register" />
           <input type="hidden" name="role" value={role} />
           <input type="hidden" name="organizerName" value={organizerName} />
@@ -170,7 +176,7 @@ export default function RegisterPage() {
 
         <p style={{ marginTop: "1.5rem", textAlign: "center", fontSize: "0.9rem", color: "#64748b" }}>
           Masz juz konto?{" "}
-          <Link href="/login" style={{ color: "#d95d39", fontWeight: 600, textDecoration: "underline" }}>
+          <Link href={`/login?next=${encodeURIComponent(next)}`} style={{ color: "#d95d39", fontWeight: 600, textDecoration: "underline" }}>
             Zaloguj sie
           </Link>
         </p>

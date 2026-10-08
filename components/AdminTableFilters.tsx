@@ -18,7 +18,7 @@ type AdminTableFiltersProps = {
   fields: AdminFilterField[];
   values: Record<string, string | undefined>;
   sortOptions: AdminSortOption[];
-  resultCount: number;
+  resultCount: number | null;
 };
 
 export default function AdminTableFilters({
@@ -30,7 +30,7 @@ export default function AdminTableFilters({
 }: AdminTableFiltersProps) {
   return (
     <section className="managementPanel adminFilterPanel" aria-label="Filtry tabeli">
-      <form action={action} className="adminFiltersForm">
+      <form action={action} method="get" className="adminFiltersForm">
         <div className="adminFiltersGrid">
           {fields.map((field) => (
             <label key={field.name}>
@@ -76,7 +76,7 @@ export default function AdminTableFilters({
         </div>
 
         <div className="adminFiltersActions">
-          <span>{resultCount} wynikow</span>
+          <span>{resultCount === null ? "Wyniki niedostępne" : `${resultCount} wyników`}</span>
           <button type="submit" className="primaryButton">Filtruj</button>
           <Link href={action} className="secondaryButton">Wyczysc</Link>
         </div>

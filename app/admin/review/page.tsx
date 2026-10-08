@@ -1,8 +1,10 @@
 import Link from "next/link";
 import AdminSectionNav from "@/components/AdminSectionNav";
 import AdminTableFilters from "@/components/AdminTableFilters";
+import AdminEventPagination from "@/components/AdminEventPagination";
+import { unstable_rethrow } from "next/navigation";
+import { AdminEventFilterError, adminEventSortOptions, buildAdminEventListUrl, parseAdminEventListFilters, type AdminEventListPage } from "@/lib/admin-event-list";
 import {
-  type AdminEventListFilters,
   adminSetEventStatusAction,
   listAdminReviewEvents
 } from "@/lib/admin-events";
@@ -13,8 +15,16 @@ export const dynamic = "force-dynamic";
 type SearchParams = Record<string, string | string[] | undefined>;
 
 export default async function AdminReviewPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
-  const filters = parseEventFilters(await searchParams);
-  const events = await listAdminReviewEvents(filters);
+  const filters = parseAdminEventListFilters(await searchParams, true);
+  let result: AdminEventListPage | null = null;
+  let loadError: string | null = null;
+  try { result = await listAdminReviewEvents(filters); }
+  catch (error) {
+    unstable_rethrow(error);
+    console.error("[admin-review] Failed to load review page", error);
+    loadError = error instanceof AdminEventFilterError ? error.message : "Nie udało się pobrać pełnych wyników. Zawęź zakres dat i spróbuj ponownie.";
+  }
+  const events = result?.events ?? [];
 
   return (
     <main className="appShell managementShell">
@@ -30,7 +40,7 @@ export default async function AdminReviewPage({ searchParams }: { searchParams: 
       <AdminTableFilters
         action="/admin/review"
         values={filters}
-        resultCount={events.length}
+        resultCount={result?.totalCount ?? null}
         fields={[
           { name: "q", label: "Szukaj", placeholder: "Tytul, miasto, organizator..." },
           { name: "category", label: "Kategoria" },
@@ -41,11 +51,14 @@ export default async function AdminReviewPage({ searchParams }: { searchParams: 
           { name: "createdFrom", label: "Dodano od", type: "date" },
           { name: "createdTo", label: "Dodano do", type: "date" }
         ]}
-        sortOptions={eventSortOptions}
+        sortOptions={adminEventSortOptions.filter(option => option.value !== "published_at")}
       />
 
+      {loadError ? <div role="alert" className="formError"><p>{loadError}</p><Link className="secondaryButton" href={buildAdminEventListUrl("/admin/review", filters, Number(filters.page))}>Spróbuj ponownie</Link></div> : null}
+      {result ? <AdminEventPagination action="/admin/review" filters={filters} result={result} /> : null}
+
       <section className="managementPanel">
-        <div className="managementTableWrap">
+        <div className="managementTableWrap" tabIndex={0} role="region" aria-label="Wydarzenia do zatwierdzenia — tabela przewijana poziomo">
           <table className="managementTable">
             <thead>
               <tr>
@@ -91,7 +104,7 @@ export default async function AdminReviewPage({ searchParams }: { searchParams: 
               {events.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="emptyTableCell">
-                    Brak wydarzen oczekujacych na zatwierdzenie.
+                    {loadError ? "Wyniki niedostępne." : "Brak wydarzeń oczekujących na zatwierdzenie dla wybranych filtrów."}
                   </td>
                 </tr>
               ) : null}
@@ -99,41 +112,11 @@ export default async function AdminReviewPage({ searchParams }: { searchParams: 
           </table>
         </div>
       </section>
+      {result && result.pageCount > 1 ? <AdminEventPagination action="/admin/review" filters={filters} result={result} /> : null}
     </main>
   );
 }
 
 function formatDate(value: string) {
   return formatPolishDate(value, { dateStyle: "medium", timeStyle: "short" });
-}
-
-const eventSortOptions = [
-  { label: "Dodano", value: "created_at" },
-  { label: "Edytowano", value: "updated_at" },
-  { label: "Data wydarzenia", value: "start_at" },
-  { label: "Tytul", value: "title" },
-  { label: "Miasto", value: "city" },
-  { label: "Kategoria", value: "category" },
-  { label: "Organizator", value: "organizer" },
-  { label: "Status", value: "status" }
-];
-
-function parseEventFilters(params: SearchParams): AdminEventListFilters {
-  return {
-    q: readParam(params.q),
-    category: readParam(params.category),
-    city: readParam(params.city),
-    organizer: readParam(params.organizer),
-    eventFrom: readParam(params.eventFrom),
-    eventTo: readParam(params.eventTo),
-    createdFrom: readParam(params.createdFrom),
-    createdTo: readParam(params.createdTo),
-    sort: readParam(params.sort) ?? "created_at",
-    dir: readParam(params.dir) ?? "desc"
-  };
-}
-
-function readParam(value: string | string[] | undefined) {
-  const item = Array.isArray(value) ? value[0] : value;
-  return item?.trim() || undefined;
 }

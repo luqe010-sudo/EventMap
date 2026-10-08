@@ -8,10 +8,35 @@ Aplikacja uzywa Supabase Auth. Formularz `/login` renderuje `components/LoginFor
 
 1. Odczytuje `email` i `password` z `FormData`.
 2. Wywoluje `supabase.auth.signInWithPassword()`.
-3. Po sukcesie przekierowuje na `/`.
+3. Po sukcesie przekierowuje na bezpieczną lokalną ścieżkę `next`, domyślnie `/`.
 4. Po bledzie zwraca stan formularza z komunikatem, zeby zwykly blad logowania nie powodowal 500 w Server Components.
 
 `signInAction(formData)` zostaje dostepna jako prosty wariant tej samej logiki.
+
+## Odzyskiwanie hasła — publikacja 2026-10-06
+
+`/forgot-password` renderuje `PasswordRecoveryForm` i wywołuje `requestPasswordResetAction()` z `lib/auth-password-actions.ts`. Akcja waliduje e-mail, wyznacza origin przez `lib/auth-origin.ts` i wywołuje `resetPasswordForEmail()` z callbackiem `/auth/recovery?next=...`. `next` zawsze przechodzi przez `safeNextPath`. Komunikat sukcesu jest taki sam dla istniejącego i nieistniejącego konta; awarie usługi i ograniczenie liczby próśb mają osobne komunikaty. Samo zapisanie nowego hasła realizuje Supabase Auth przez `updateUser()`, zgodnie z [Password-based Auth](https://supabase.com/docs/guides/auth/passwords).
+
+Callback `/auth/recovery` przyjmuje jedną z dwóch ścieżek:
+
+1. `code`: `exchangeCodeForSession()` musi zwrócić sesję i `redirectType === "recovery"`. Zwykły kod OAuth nie uprawnia do tego formularza. Ta ścieżka wymaga verifiera PKCE zachowanego w przeglądarce, w której rozpoczęto odzyskiwanie; ograniczenie opisuje [PKCE flow](https://supabase.com/docs/guides/auth/sessions/pkce-flow).
+2. `token_hash` oraz `type=recovery`: callback wywołuje `verifyOtp({ token_hash, type: "recovery" })`. Link ze zmienionym typem, oba rodzaje tokenu jednocześnie, błąd dostawcy lub brak tokenu są odrzucane. Ten wariant nie wymaga cookie verifiera PKCE z przeglądarki rozpoczynającej proces.
+
+Po weryfikacji callback pobiera użytkownika przez `getUser()` i ustawia `eventmap-password-recovery`: HttpOnly, SameSite=Lax, Secure dla HTTPS, path `/auth`, ważność 10 minut. Marker zawiera ID zweryfikowanego konta i termin ważności. `/auth/reset-password` oraz `resetPasswordAction()` ponownie sprawdzają `getUser()` i zgodność ważnego markera z kontem. Akcja waliduje zgodność haseł i długość 6–128 znaków; Supabase może nałożyć dodatkowe wymagania. Po udanym `updateUser({ password })` usuwa marker, próbuje zamknąć lokalną sesję odzyskiwania i przekierowuje do `/login?reset=success&next=...`. Błąd zamknięcia sesji nie opisuje już zapisanej zmiany hasła jako porażki.
+
+Callback zwraca `Cache-Control: no-store` i `Referrer-Policy: no-referrer`; ekrany odzyskiwania mają `noindex, nofollow`. Błędy logowane przez ten przepływ nie zawierają hasła ani tokenu linku.
+
+Zalecany link w szablonie Supabase **Reset password**, dostosowany do tego callbacku:
+
+```html
+<a href="{{ .RedirectTo }}&token_hash={{ .TokenHash }}&type=recovery">Ustaw nowe hasło</a>
+```
+
+Aplikacja zawsze dołącza `?next=...` do `RedirectTo`, dlatego szablon dokleja parametry przez `&`. Wariant z `TokenHash` umożliwia otwarcie wiadomości w innej przeglądarce i weryfikację przez serwer; zmienne i weryfikację linku po stronie serwera opisują [Email Templates](https://supabase.com/docs/guides/auth/auth-email-templates). Domyślny `ConfirmationURL` w używanym tutaj przepływie PKCE wymaga przeglądarki i originu z zachowanym verifierem; szczególnie nie należy mieszać `localhost` z `127.0.0.1`.
+
+W produkcji `NEXT_PUBLIC_SITE_URL` jest obowiązkowe dla callbacków Google i odzyskiwania. Lokalny development może wyznaczyć origin z nagłówków. Brak poprawnego originu przerywa akcję przed żądaniem Auth. Szczegóły allowlisty są w [deployment](deployment.md).
+
+Podczas zleconej publikacji dodano do Supabase EventMap wyłącznie `https://mapaimprez.pl/auth/recovery\?next=**`, zachowując dwa wcześniejsze callbacki. Odczyt po zapisie potwierdził zgodność tego pola i zachowanie pozostałych niedeklarowanych ustawień. Nie zmieniono szablonu ani SMTP; ich stan pozostaje niepotwierdzony. Nie wysłano prawdziwej wiadomości, nie wykonano pełnego resetu przez e-mail ani sesji staging. Te próby pozostają warunkiem pełnego odbioru; publikacja kodu i izolowane regresje nie potwierdzają dostarczania poczty. [Raport wdrożenia](production-release-2026-10-06.md).
 
 ### Google OAuth
 
@@ -48,7 +73,7 @@ Jesli logowanie zwroci blad `Email not confirmed`, kod pokazuje komunikat w form
 
 `lib/supabase-user.ts` tworzy klienta Supabase przez `createServerClient` z `@supabase/ssr`. Klient korzysta z cookies Next.js.
 
-Globalny `middleware.ts` nie jest obecnie uzywany. Sesja jest odczytywana w server components, server actions i route handlers przez `createSupabaseUserClient()`. W przeplywie Google cookie sesyjne sa ustawiane podczas wymiany kodu PKCE w `/auth/callback`.
+Globalny `middleware.ts` nie jest obecnie uzywany. Sesja jest odczytywana w server components, server actions i route handlers przez `createSupabaseUserClient()`. W przeplywie Google cookie sesyjne sa ustawiane podczas wymiany kodu PKCE w `/auth/callback`; odzyskiwanie hasła ustawia je w `/auth/recovery` po wymianie kodu albo weryfikacji tokenu recovery.
 
 ## Profil uzytkownika
 
@@ -87,13 +112,17 @@ W praktyce funkcje organizatora wymagaja memberships, bo operuja na `submitted_b
 
 ## Navbar
 
-`components/Navbar.tsx` jest server componentem:
+`components/Navbar.tsx` renderuje początkowy stan niezalogowany bez odczytu cookies w publicznym layoucie. `NavbarClient` pobiera prywatny stan przez `GET /api/account/navbar`:
 
-- pobiera uzytkownika przez Supabase;
-- jesli nie ma uzytkownika, przekazuje `isLoggedIn: false`;
-- jesli uzytkownik jest zalogowany, pobiera `profiles.display_name` i `profiles.role`;
+- endpoint weryfikuje użytkownika przez Supabase Auth i pobiera `profiles.display_name` oraz `profiles.role`;
+- brak użytkownika lub błąd Auth/profilu zwraca `isLoggedIn: false`; awarie są logowane po stronie serwera;
+- odpowiedź ma `Cache-Control: private, no-store, max-age=0`, a błąd żądania klienta także przywraca stan niezalogowany;
 - `NavbarClient` pokazuje `/account` zalogowanym bez roli organizatora, a organizatorom wyłącznie wejście do `/organizer`;
 - wylogowanie odbywa sie formularzem `POST /auth/sign-out`.
+
+## Usuwanie zapisanych wydarzeń
+
+`removeSavedEventAction(eventId)` przekazuje wynik `toggleSavedEventAction(eventId, false)`, korzystającej z wdrożonego `set_my_saved_event`. `SavedEventCard` pokazuje pending oraz błąd, pozostawia kartę przy nieudanym usunięciu i kieruje wygasłą sesję do `/login` z `next` bieżącej listy. Dopiero potwierdzone `saved: false` usuwa kartę i nadaje `eventmap:saved-event`. Nieudana operacja nie rewaliduje listy jako sukces. To obsługa błędu aplikacji; pełny odbiór Auth/HTTP i równoległości RPC pozostaje w [checkliście](mvp-release-checklist-2026-10-05.md).
 
 ## Wymagane RLS policies
 
@@ -121,3 +150,4 @@ Proponowany, niewykonywany automatycznie skrypt dla panelu konta znajduje sie w 
 - Czy `profiles.id` ma FK do `auth.users.id`.
 - Czy `organizer_users.user_id` ma FK do `auth.users.id`.
 - Czy callbacki Google OAuth dla produkcji i localhost sa wpisane na allowliscie Supabase Auth.
+- Czy callback `/auth/recovery`, szablon Reset password i dostarczanie przez SMTP działają dla uzgodnionych originów produkcji oraz środowiska testowego; odebrać token hash w innej przeglądarce i PKCE w przeglądarce rozpoczynającej proces.

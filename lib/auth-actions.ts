@@ -1,7 +1,10 @@
 "use server";
 
+import { safeNextPath } from "@/lib/navigation";
 import { redirect } from "next/navigation";
-import { cookies, headers } from "next/headers";
+import { parseRegistrationRole } from "@/lib/auth-validation";
+import { cookies } from "next/headers";
+import { getRequestOrigin } from "@/lib/auth-origin";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
 import { createSlug } from "@/lib/event-editor";
 import {
@@ -10,6 +13,7 @@ import {
   type GoogleOAuthRegistration
 } from "@/lib/oauth-state";
 import { ensureGoogleOAuthAccount } from "@/lib/oauth-profile";
+import { PASSWORD_RECOVERY_COOKIE, recoveryCookieOptions } from "@/lib/password-recovery";
 
 export type SignInFormState = {
   error: string | null;
@@ -42,22 +46,29 @@ export async function signInWithGoogleAction(formData: FormData) {
 
   if (intent === "register") {
     if (formData.get("termsAccepted") !== "on" || formData.get("privacyNoticeAccepted") !== "on") {
-      redirect("/register?oauth_error=consent");
+      redirect(`/register?oauth_error=consent&next=${encodeURIComponent(requestedNext)}`);
     }
   }
 
-  const origin = await getRequestOrigin();
+  let origin: string;
+  try {
+    origin = await getRequestOrigin();
+  } catch {
+    console.error("[auth] Could not resolve the Google OAuth callback origin");
+    redirect(`/${intent === "register" ? "register" : "login"}?oauth_error=start&next=${encodeURIComponent(requestedNext)}`);
+  }
   const callbackUrl = new URL("/auth/callback", origin);
   const registration: GoogleOAuthRegistration = {
     intent,
     role,
     organizerName,
-    next: intent === "register"
+    next: intent === "register" && requestedNext === "/"
       ? role === "organizer" ? "/organizer" : "/"
       : requestedNext
   };
 
   const cookieStore = await cookies();
+  cookieStore.set(PASSWORD_RECOVERY_COOKIE, "", { ...recoveryCookieOptions(callbackUrl.protocol === "https:"), maxAge: 0 });
   cookieStore.set(GOOGLE_OAUTH_COOKIE, encodeURIComponent(JSON.stringify(registration)), {
     httpOnly: true,
     sameSite: "lax",
@@ -71,7 +82,7 @@ export async function signInWithGoogleAction(formData: FormData) {
     supabase = await createSupabaseUserClient();
   } catch (error) {
     console.error("[auth] Failed to create Supabase client for Google OAuth", error);
-    redirect(`/${intent === "register" ? "register" : "login"}?oauth_error=start`);
+    redirect(`/${intent === "register" ? "register" : "login"}?oauth_error=start&next=${encodeURIComponent(requestedNext)}`);
   }
 
   const { data, error } = await supabase.auth.signInWithOAuth({
@@ -86,7 +97,7 @@ export async function signInWithGoogleAction(formData: FormData) {
 
   if (error || !data.url) {
     console.error("[auth] Failed to start Google OAuth", error);
-    redirect(`/${intent === "register" ? "register" : "login"}?oauth_error=start`);
+    redirect(`/${intent === "register" ? "register" : "login"}?oauth_error=start&next=${encodeURIComponent(requestedNext)}`);
   }
 
   redirect(data.url);
@@ -96,6 +107,7 @@ export async function completeGoogleOnboardingAction(
   _previousState: GoogleOnboardingFormState,
   formData: FormData
 ): Promise<GoogleOnboardingFormState> {
+  const requestedNext = safeNextPath(formData.get("next"));
   const role = formData.get("role") === "organizer" ? "organizer" : "user";
   const organizerNameValue = formData.get("organizerName");
   const organizerName =
@@ -144,7 +156,7 @@ export async function completeGoogleOnboardingAction(
     return { error: "Nie udało się utworzyć profilu. Spróbuj ponownie." };
   }
 
-  redirect(role === "organizer" ? "/organizer" : "/");
+  redirect(requestedNext !== "/" ? requestedNext : role === "organizer" ? "/organizer" : "/");
 }
 
 async function signInWithFormData(formData: FormData): Promise<SignInFormState> {
@@ -172,6 +184,8 @@ async function signInWithFormData(formData: FormData): Promise<SignInFormState> 
     return { error: mapSignInError(error.message) };
   }
 
+  const cookieStore = await cookies();
+  cookieStore.set(PASSWORD_RECOVERY_COOKIE, "", { ...recoveryCookieOptions(process.env.NODE_ENV === "production"), maxAge: 0 });
   redirect(safeNextPath(formData.get("next")));
 }
 
@@ -179,7 +193,7 @@ function mapSignInError(message: string) {
   const normalized = message.toLowerCase();
 
   if (normalized.includes("email not confirmed")) {
-    return "Konto nie jest jeszcze aktywne. Jesli rejestracja ma pomijac weryfikacje email, wylacz potwierdzanie email w Supabase Auth albo potwierdz konto w panelu Supabase.";
+    return "Potwierdź adres e-mail przez link w wiadomości aktywacyjnej. Sprawdź też folder spam.";
   }
 
   if (normalized.includes("invalid login credentials")) {
@@ -189,44 +203,13 @@ function mapSignInError(message: string) {
   return `Nie udalo sie zalogowac: ${message}`;
 }
 
-async function getRequestOrigin() {
-  const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-  if (configuredSiteUrl) {
-    try {
-      return new URL(configuredSiteUrl).origin;
-    } catch {
-      console.error("[auth] NEXT_PUBLIC_SITE_URL is not a valid URL");
-    }
-  }
-
-  const headerStore = await headers();
-  const requestOrigin = headerStore.get("origin");
-  if (requestOrigin) {
-    try {
-      return new URL(requestOrigin).origin;
-    } catch {
-      // Fall back to proxy/host headers below.
-    }
-  }
-
-  const host = headerStore.get("x-forwarded-host") ?? headerStore.get("host");
-  if (!host) return "http://localhost:3000";
-
-  const protocol = headerStore.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
-  return `${protocol}://${host}`;
-}
-
-function safeNextPath(value: FormDataEntryValue | null) {
-  return typeof value === "string" && value.startsWith("/") && !value.startsWith("//") ? value : "/";
-}
-
-export async function signUpAction(formData: FormData): Promise<{ success: boolean; error?: string }> {
+export async function signUpAction(formData: FormData): Promise<{ success: boolean; error?: string; requiresEmailConfirmation?: boolean }> {
   try {
     const email = formData.get("email");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPassword");
     const displayName = formData.get("displayName");
-    const role = formData.get("role");
+    const role = parseRegistrationRole(formData.get("role"));
     const organizerName = formData.get("organizerName");
     const termsAccepted = formData.get("termsAccepted");
     const privacyNoticeAccepted = formData.get("privacyNoticeAccepted");
@@ -236,7 +219,7 @@ export async function signUpAction(formData: FormData): Promise<{ success: boole
       typeof password !== "string" ||
       typeof confirmPassword !== "string" ||
       typeof displayName !== "string" ||
-      typeof role !== "string"
+      role === null
     ) {
       return { success: false, error: "Wszystkie pola sa wymagane." };
     }
@@ -351,7 +334,8 @@ export async function signUpAction(formData: FormData): Promise<{ success: boole
           .single();
 
         if (orgError) {
-          return { success: false, error: `Nie udalo sie utworzyc profilu organizatora: ${orgError.message}. Uruchom skrypt SQL dla wyzwalacza (Trigger) w Supabase.` };
+          console.error("[auth] Failed to create an organizer profile", { code: orgError.code });
+          return { success: false, error: "Nie udało się utworzyć profilu organizatora. Spróbuj ponownie lub skontaktuj się z obsługą strony." };
         }
 
         const { error: memberError } = await supabase
@@ -368,7 +352,7 @@ export async function signUpAction(formData: FormData): Promise<{ success: boole
       }
     }
 
-    return { success: true };
+    return { success: true, requiresEmailConfirmation: !signUpData.session };
   } catch (err: unknown) {
     return {
       success: false,

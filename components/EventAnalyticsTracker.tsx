@@ -2,15 +2,8 @@
 
 import type React from "react";
 import { useEffect } from "react";
-
-type EventAnalyticsType =
-  | "view"
-  | "phone_click"
-  | "website_click"
-  | "ticket_click"
-  | "map_click"
-  | "share_click"
-  | "save_click";
+import { clearAnalyticsSession, readAnalyticsConsent, subscribeAnalyticsConsent } from "@/lib/analytics-consent";
+import { ANALYTICS_SESSION_KEY, isAnalyticsUuid, type EventAnalyticsType } from "@/lib/event-analytics-contract";
 
 type TrackedEventLinkProps = {
   eventId: string;
@@ -22,11 +15,11 @@ type TrackedEventLinkProps = {
   rel?: string;
 };
 
-const SESSION_STORAGE_KEY = "eventmap.analyticsSessionId";
-
 export default function EventAnalyticsTracker({ eventId }: { eventId: string }) {
   useEffect(() => {
-    trackEventAnalytics(eventId, "view");
+    const recordView = () => trackEventAnalytics(eventId, "view");
+    recordView();
+    return subscribeAnalyticsConsent(recordView);
   }, [eventId]);
 
   return null;
@@ -55,9 +48,17 @@ export function TrackedEventLink({
 }
 
 export function trackEventAnalytics(eventId: string, eventType: EventAnalyticsType) {
+  if (typeof window === "undefined" || readAnalyticsConsent() !== "accepted") {
+    clearAnalyticsSession();
+    return;
+  }
+  if (!isAnalyticsUuid(eventId)) return;
+  const sessionId = getAnalyticsSessionId();
+  if (!sessionId) return;
   const payload = JSON.stringify({
     eventType,
-    sessionId: getAnalyticsSessionId()
+    sessionId,
+    analyticsConsent: true
   });
 
   const url = `/api/events/${eventId}/analytics`;
@@ -65,20 +66,17 @@ export function trackEventAnalytics(eventId: string, eventType: EventAnalyticsTy
     method: "POST",
     headers: { "content-type": "application/json" },
     body: payload,
-    keepalive: true
-  }).catch(() => {
-    if (!navigator.sendBeacon) return;
-    const blob = new Blob([payload], { type: "application/json" });
-    navigator.sendBeacon(url, blob);
-  });
+    keepalive: true,
+    credentials: "omit"
+  }).catch(() => { /* Measurement must not interrupt navigation or retry an uncertain write. */ });
 }
 
 function getAnalyticsSessionId() {
   try {
-    const existing = window.sessionStorage.getItem(SESSION_STORAGE_KEY);
-    if (existing) return existing;
+    const existing = window.sessionStorage.getItem(ANALYTICS_SESSION_KEY);
+    if (isAnalyticsUuid(existing)) return existing;
     const next = crypto.randomUUID();
-    window.sessionStorage.setItem(SESSION_STORAGE_KEY, next);
+    window.sessionStorage.setItem(ANALYTICS_SESSION_KEY, next);
     return next;
   } catch {
     return null;

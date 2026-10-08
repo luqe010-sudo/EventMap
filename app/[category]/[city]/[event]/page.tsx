@@ -1,3 +1,4 @@
+import { serializeJsonLd } from "@/lib/json-ld";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import HomePage from "@/components/HomePage";
@@ -11,17 +12,16 @@ import {
   getEventBySlug,
   getActiveCityLocations,
   searchPublicEvents,
-  type CategoryCityRoute,
-  type KnownLocation,
 } from "@/lib/events";
-import { toPluralCategorySlug, toPluralCategoryName, formatInCity, toSlug, eventPath } from "@/lib/slugs";
+import { appendPublicFilters, buildSearchUrl, toPluralCategorySlug, toPluralCategoryName, formatInCity, toSlug, eventPath } from "@/lib/slugs";
 import { searchAddress } from "@/lib/geocoding";
 import { parsePublicFilterParams } from "@/lib/filters";
+import { normalizeCitySearchFilters } from "@/lib/public-search-params";
+import { hasLocationCoordinates } from "@/lib/event-search";
 
 type Params = { category: string; city: string; event: string };
-
-export const dynamic = "force-static";
-export const revalidate = 300;
+type SearchParams = Record<string, string | string[] | undefined>;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { category: categorySlug, city: citySlug, event: eventOrTime } = await params;
@@ -81,21 +81,17 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
 export default async function EventOrTimePage({
   params,
+  searchParams,
 }: {
   params: Promise<Params>;
+  searchParams: Promise<SearchParams>;
 }) {
   const { category: categorySlug, city: citySlug, event: eventOrTime } = await params;
-  const initialFilters = parsePublicFilterParams({});
+  const requestedFilters = parsePublicFilterParams(await searchParams);
 
   const isTimeKeyword = eventOrTime === "dzis" || eventOrTime === "weekend" || eventOrTime === "ten-tydzien";
 
   if (isTimeKeyword) {
-    const pluralCategorySlug = toPluralCategorySlug(categorySlug);
-    const normalizedCitySlug = toSlug(citySlug);
-    if (categorySlug !== pluralCategorySlug || citySlug !== normalizedCitySlug) {
-      redirect(`/${pluralCategorySlug}/${normalizedCitySlug}/${eventOrTime}`);
-    }
-
     const [category, cityLocation] = await Promise.all([
       getCategoryBySlugFromDb(categorySlug),
       resolveCityLocation(citySlug),
@@ -104,54 +100,65 @@ export default async function EventOrTimePage({
     if (!category) {
       notFound();
     }
-
-    if (!cityLocation) {
-      // Try to geocode the citySlug as a fallback
-      try {
-        const query = citySlug.replace(/-/g, " ");
-        const geocoded = await searchAddress(query);
-        if (geocoded && geocoded.length > 0) {
-          const best = geocoded[0];
-          const lat = Math.round(best.latitude * 1000) / 1000;
-          const lng = Math.round(best.longitude * 1000) / 1000;
-          redirect(`/${pluralCategorySlug}/lokalizacja?lat=${lat}&lng=${lng}&radius=30`);
-        }
-      } catch (err) {
-        console.error("Failed to geocode fallback city for event or time page:", err);
-      }
-      notFound();
-    }
-
+    const pluralCategorySlug = toPluralCategorySlug(category.slug);
     const dateFilterMap = {
       "dzis": "today",
       "weekend": "weekend",
       "ten-tydzien": "week",
     } as const;
 
+    if (!cityLocation) {
+      // Try to geocode the citySlug as a fallback
+      let geocoded: Awaited<ReturnType<typeof searchAddress>> = [];
+      try {
+        const query = citySlug.replace(/-/g, " ");
+        geocoded = await searchAddress(query);
+      } catch (err) {
+        console.error("Failed to geocode fallback city for event or time page:", err);
+      }
+      const best = geocoded.find(hasLocationCoordinates);
+      if (best) {
+        redirect(buildSearchUrl({
+          ...requestedFilters,
+          categorySlug: pluralCategorySlug,
+          dateFilter: requestedFilters.dateFilter ?? dateFilterMap[eventOrTime],
+          geoLocation: {
+            lat: Math.round(best.latitude * 1000) / 1000,
+            lng: Math.round(best.longitude * 1000) / 1000,
+            radius: requestedFilters.radiusKm ?? 30
+          }
+        }));
+      }
+      notFound();
+    }
+    const initialFilters = normalizeCitySearchFilters(requestedFilters, cityLocation);
+    const normalizedCitySlug = cityLocation.slug ?? toSlug(cityLocation.label);
+    if (categorySlug !== pluralCategorySlug || citySlug !== normalizedCitySlug) {
+      redirect(appendPublicFilters(`/${pluralCategorySlug}/${normalizedCitySlug}/${eventOrTime}`, initialFilters));
+    }
+
     const [eventSearch, categoryRows, activeCityLocations, availableCategoryCityRoutes] = await Promise.all([
       searchPublicEvents({
         categoryId: category.id,
-        citySlug,
+        citySlug: normalizedCitySlug,
+        radiusKm: initialFilters.radiusKm,
         dateFilter: initialFilters.dateFilter ?? dateFilterMap[eventOrTime],
         customDate: initialFilters.customDate,
         priceMode: initialFilters.priceMode ?? "all",
-        maxPrice: initialFilters.maxPrice
+        maxPrice: initialFilters.maxPrice,
+        sortBy: initialFilters.sortBy
       }),
       listCategories(),
       getActiveCityLocations(),
       listPublicCategoryCityRoutes({ dateFrom: new Date().toISOString(), limit: 10000 }),
     ]);
 
-    if (!hasCategoryCityRoute(availableCategoryCityRoutes, pluralCategorySlug, cityLocation)) {
-      redirectToCategoryLocation(pluralCategorySlug, cityLocation);
-    }
-
     return (
       <>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: serializeJsonLd({
               "@context": "https://schema.org",
               "@type": "CollectionPage",
               name: `${category.name} ${formatInCity(cityLocation.label)} - wydarzenia ${eventOrTime}`,
@@ -183,7 +190,7 @@ export default async function EventOrTimePage({
   const canonPath = eventPath(event);
   const currentPath = `/${categorySlug}/${citySlug}/${eventOrTime}`;
   if (currentPath !== canonPath) {
-    redirect(canonPath);
+    redirect(appendPublicFilters(canonPath, requestedFilters));
   }
 
   const today = new Date();
@@ -199,18 +206,4 @@ export default async function EventOrTimePage({
     .slice(0, 3);
 
   return <EventDetailView event={event} relatedEvents={relatedEvents} />;
-}
-
-function hasCategoryCityRoute(routes: CategoryCityRoute[], categorySlug: string, cityLocation: KnownLocation) {
-  const citySlug = cityLocation.slug ?? toSlug(cityLocation.label);
-  return routes.some((route) => route.categorySlug === categorySlug && route.citySlug === citySlug);
-}
-
-function redirectToCategoryLocation(categorySlug: string, cityLocation: KnownLocation) {
-  const query = new URLSearchParams();
-  query.set("lat", String(Math.round(cityLocation.latitude * 1000) / 1000));
-  query.set("lng", String(Math.round(cityLocation.longitude * 1000) / 1000));
-  query.set("radius", "30");
-
-  redirect(`/${categorySlug}/lokalizacja?${query.toString()}`);
 }

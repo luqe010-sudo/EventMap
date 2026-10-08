@@ -1,13 +1,23 @@
 "use server";
 
+import { randomUUID } from "node:crypto";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/auth";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
 import type { Database } from "@/database.types";
-import { assertEventStatus, editableEventSelect, formBoolean, formString, type EditableEvent, type EventStatus } from "@/lib/event-editor";
-import { buildEventWritePayload, deleteEventRelations, saveEventSource } from "@/lib/event-editor-server";
-import { normalizeSearchText } from "@/lib/slugify";
+import { assertEventStatus, editableEventSelect, eventPublicationTimestamp, formBoolean, formString, type EditableEvent, type EventStatus } from "@/lib/event-editor";
+import { EventValidationError, eventValidationState, eventTextLimits, type EventEditorState } from "@/lib/event-editor-validation";
+import { buildEventWritePayload, deleteEventRelations, eventPreparationFailure, saveEventSource } from "@/lib/event-editor-server";
+import { completeEventWrite, eventWriteFailure } from "@/lib/event-save-feedback";
+import { revalidatePublicEventCache } from "@/lib/public-event-cache";
+import {
+  ADMIN_EVENT_POOL_LIMIT, adminEventDateBounds, adminEventPageInfo, filterAdminEventPool,
+  needsAdminEventPool, normalizeAdminEventListFilters, sortAdminEventPool,
+  type AdminEventListFilters, type AdminEventListItem, type AdminEventListPage
+} from "@/lib/admin-event-list";
+
+export type { AdminEventListFilters, AdminEventListItem, AdminEventListPage } from "@/lib/admin-event-list";
 
 type Tables = Database["public"]["Tables"];
 type EventInsert = Tables["events"]["Insert"];
@@ -31,40 +41,6 @@ const ADMIN_EVENT_LIST_SELECT = `
   location:locations(city:cities(name)),
   organizer:organizers!events_organizer_id_fkey(name)
 `;
-
-export type AdminEventListItem = {
-  id: string;
-  title: string;
-  created_at: string | null;
-  updated_at: string | null;
-  start_at: string;
-  published_at: string | null;
-  status: string | null;
-  visibility: string | null;
-  review_note: string | null;
-  is_featured: boolean | null;
-  submitted_by_organizer_id: string | null;
-  category: { name: string } | null;
-  location: { city: { name: string } | null } | null;
-  organizer: { name: string } | null;
-};
-
-export type AdminEventListFilters = {
-  q?: string;
-  status?: string;
-  category?: string;
-  city?: string;
-  organizer?: string;
-  featured?: string;
-  eventFrom?: string;
-  eventTo?: string;
-  createdFrom?: string;
-  createdTo?: string;
-  publishedFrom?: string;
-  publishedTo?: string;
-  sort?: string;
-  dir?: string;
-};
 
 export async function getAdminDashboard() {
   await requireAdmin();
@@ -93,45 +69,68 @@ export async function getAdminDashboard() {
 }
 
 export async function listAdminEvents(filters: AdminEventListFilters = {}) {
-  await requireAdmin();
-  const supabase = await createSupabaseUserClient();
-  let query = supabase
-    .from("events")
-    .select(ADMIN_EVENT_LIST_SELECT);
-
-  query = applyAdminEventDateFilters(query, filters);
-
-  if (filters.status) query = query.eq("status", filters.status);
-  if (filters.featured === "yes") query = query.eq("is_featured", true);
-  if (filters.featured === "no") query = query.or("is_featured.is.null,is_featured.eq.false");
-
-  const { data, error } = await query
-    .limit(1000)
-    .returns<AdminEventListItem[]>();
-
-  if (error) throw new Error(`Nie udalo sie pobrac wydarzen admina: ${error.message}`);
-  return sortAdminEvents(filterAdminEvents(data ?? [], filters), filters);
+  return readAdminEventPage(filters, false);
 }
 
 export async function listAdminReviewEvents(filters: AdminEventListFilters = {}) {
+  return readAdminEventPage(filters, true);
+}
+
+async function readAdminEventPage(input: AdminEventListFilters, review: boolean): Promise<AdminEventListPage> {
   await requireAdmin();
+  const filters = normalizeAdminEventListFilters(input, review);
+  const bounds = adminEventDateBounds(filters);
   const supabase = await createSupabaseUserClient();
-  let query = supabase
-    .from("events")
-    .select(ADMIN_EVENT_LIST_SELECT)
-    .in("status", ["draft", "pending_review"]);
+  const countQuery = () => supabase.from("events").select(ADMIN_EVENT_LIST_SELECT, { count: "exact", head: true });
+  const dataQuery = () => supabase.from("events").select(ADMIN_EVENT_LIST_SELECT, { count: "exact" });
+  function applyFilters(query: ReturnType<typeof countQuery>) {
+    for (const bound of bounds) {
+      if (bound.from) query = query.gte(bound.column, bound.from);
+      if (bound.until) query = query.lt(bound.column, bound.until);
+    }
+    if (review) query = query.in("status", ["draft", "pending_review"]);
+    else if (filters.status) query = query.eq("status", filters.status);
+    if (filters.featured === "yes") query = query.eq("is_featured", true);
+    if (filters.featured === "no") query = query.or("is_featured.is.null,is_featured.eq.false");
+    return query;
+  }
+  const countResult = await applyFilters(countQuery());
+  if (countResult.error) throw new Error(`Nie udało się policzyć wydarzeń: ${countResult.error.message}`);
+  const count = countResult.count;
+  if (count === null || !Number.isSafeInteger(count) || count < 0) throw new Error("Nie udało się potwierdzić liczby wydarzeń.");
 
-  query = applyAdminEventDateFilters(query, filters);
-
-  const { data, error } = await query
-    .limit(1000)
-    .returns<AdminEventListItem[]>();
-
-  if (error) throw new Error(`Nie udalo sie pobrac wydarzen do zatwierdzenia: ${error.message}`);
-  return sortAdminEvents(filterAdminEvents(data ?? [], filters), {
-    ...filters,
-    sort: filters.sort ?? "created_at"
-  });
+  const usePool = needsAdminEventPool(filters);
+  if (usePool && count > ADMIN_EVENT_POOL_LIMIT) throw new Error("Zbyt wiele wydarzeń dla tego wyszukiwania. Zawęź status lub zakres dat.");
+  const initialPage = adminEventPageInfo(count, filters.page);
+  const start = usePool ? 0 : (initialPage.page - 1) * initialPage.pageSize;
+  const end = usePool ? count : Math.min(count, start + initialPage.pageSize);
+  const rows: AdminEventListItem[] = [];
+  const seen = new Set<string>();
+  // Relation text search and Polish name sorting need the complete projected
+  // pool. Dates/status/featured and ordinary chronological pages stay in SQL.
+  while (start + rows.length < end) {
+    let query = applyFilters(dataQuery());
+    query = usePool ? query.order("id", { ascending: true }) :
+      query.order(filters.sort ?? "created_at", { ascending: filters.dir === "asc", nullsFirst: false }).order("id", { ascending: true });
+    const from = start + rows.length;
+    const result = await query.range(from, Math.min(from + 499, end - 1)).returns<AdminEventListItem[]>();
+    if (result.error) throw new Error(`Nie udało się pobrać wydarzeń: ${result.error.message}`);
+    if (result.count !== count) throw new Error("Lista wydarzeń zmieniła się podczas odczytu. Odśwież wyniki.");
+    const batch = result.data ?? [];
+    if (!batch.length || batch.length > end - from || batch.some(row => !row.id || seen.has(row.id))) {
+      throw new Error("Nie udało się pobrać kompletnej listy wydarzeń. Odśwież wyniki.");
+    }
+    for (const row of batch) {
+      if (seen.has(row.id)) throw new Error("Lista wydarzeń zmieniła się podczas odczytu. Odśwież wyniki.");
+      seen.add(row.id);
+      rows.push(row);
+    }
+  }
+  if (!usePool) return { ...initialPage, events: rows };
+  const filtered = sortAdminEventPool(filterAdminEventPool(rows, filters), filters);
+  const page = adminEventPageInfo(filtered.length, filters.page);
+  const offset = (page.page - 1) * page.pageSize;
+  return { ...page, events: filtered.slice(offset, offset + page.pageSize) };
 }
 
 export async function getAdminEventEditorOptions() {
@@ -165,6 +164,8 @@ export async function getAdminEventForEdit(id: string) {
     .from("events")
     .select(editableEventSelect())
     .eq("id", id)
+    .order("created_at", { ascending: true, referencedTable: "sources" })
+    .order("id", { ascending: true, referencedTable: "sources" })
     .maybeSingle()
     .returns<EditableEvent | null>();
 
@@ -172,56 +173,73 @@ export async function getAdminEventForEdit(id: string) {
   return data;
 }
 
-export async function adminCreateEventAction(formData: FormData) {
+export async function adminCreateEventAction(_previous: EventEditorState, formData: FormData): Promise<EventEditorState> {
   const admin = await requireAdmin();
   const supabase = await createSupabaseUserClient();
   const status = formString(formData, "status") ?? "published";
-  assertEventStatus(status);
-  const event = await buildEventWritePayload(formData, {
-    organizerId: formString(formData, "organizer_id") ?? "",
-    status,
-    createdBy: admin.userId
-  });
+  try { assertEventStatus(status); }
+  catch { return eventValidationState(new EventValidationError({ status: "Wybierz poprawny status wydarzenia." })); }
+  let event;
+  try {
+    event = await buildEventWritePayload(formData, {
+      mode: "create", organizerId: formString(formData, "organizer_id") ?? "", status, createdBy: admin.userId
+    });
+  } catch (error) { return eventPreparationFailure(error); }
   event.review_note = status === "rejected" ? formString(formData, "review_note") : null;
   event.is_featured = formBoolean(formData, "is_featured");
 
-  const { data, error } = await supabase
-    .from("events")
-    .insert(event as EventInsert)
-    .select("id")
-    .single();
-
-  if (error) throw new Error(`Nie udalo sie utworzyc wydarzenia: ${error.message}`);
-
-  await saveEventSource(data.id, formData, "manual");
+  // Keep the attempted ID even if the connection is lost after COMMIT.
+  const eventId = randomUUID();
+  try {
+    const { data, error } = await supabase
+      .from("events")
+      .insert({ ...event as EventInsert, id: eventId })
+      .select("id")
+      .single();
+    if (error) throw error;
+    if (!data || data.id !== eventId) throw new Error("Event insert was not confirmed");
+  } catch (error) { revalidateAdminPaths(); return eventWriteFailure(error, "admin", eventId); }
   revalidateAdminPaths();
-  redirect(`/admin/events/${data.id}/edit`);
+  const incomplete = await completeEventWrite("admin", eventId, [
+    { label: "źródła", run: () => saveEventSource(eventId, formData, "manual") }
+  ]);
+  if (incomplete) return incomplete;
+  redirect(`/admin/events/${eventId}/edit`);
 }
 
-export async function adminUpdateEventAction(eventId: string, formData: FormData) {
+export async function adminUpdateEventAction(eventId: string, _previous: EventEditorState, formData: FormData): Promise<EventEditorState> {
   const admin = await requireAdmin();
   const supabase = await createSupabaseUserClient();
   const existing = await getAdminEventStatusSnapshot(eventId);
-  const status = formString(formData, "status") ?? "published";
-  assertEventStatus(status);
+  if (!existing) throw new Error("Wydarzenie nie istnieje lub nie masz do niego dostępu.");
+  const status = formString(formData, "status") ?? existing.status ?? "draft";
+  try { assertEventStatus(status); }
+  catch { return eventValidationState(new EventValidationError({ status: "Wybierz poprawny status wydarzenia." })); }
   const reviewNote = formString(formData, "review_note");
-  const event = await buildEventWritePayload(formData, {
-    organizerId: formString(formData, "organizer_id") ?? "",
-    status
-  });
+  let event;
+  try {
+    event = await buildEventWritePayload(formData, {
+      mode: "update", existing, organizerId: formString(formData, "organizer_id") ?? "", status
+    });
+  } catch (error) { return eventPreparationFailure(error); }
   event.review_note = status === "rejected" ? reviewNote : reviewNote ?? null;
   event.is_featured = formBoolean(formData, "is_featured");
 
-  const { error } = await supabase
-    .from("events")
-    .update(event as EventUpdate)
-    .eq("id", eventId);
+  try {
+    const { data: updated, error } = await supabase
+      .from("events")
+      .update(event as EventUpdate)
+      .eq("id", eventId)
+      .select("id")
+      .maybeSingle();
+    if (error) throw error;
+    if (!updated) throw new Error("Event update affected no visible rows");
+  } catch (error) { revalidateAdminPaths(); return eventWriteFailure(error, "admin", eventId); }
 
-  if (error) throw new Error(`Nie udalo sie zapisac wydarzenia: ${error.message}`);
-
-  await saveEventSource(eventId, formData, "manual");
+  revalidateAdminPaths();
+  const followups = [{ label: "źródła", run: () => saveEventSource(eventId, formData, "manual") }];
   if (existing?.status !== status || reviewNote) {
-    await recordModerationDecision({
+    followups.push({ label: "historii moderacji i powiadomień", run: () => recordModerationDecision({
       eventId,
       reviewedBy: admin.userId,
       oldStatus: existing?.status ?? null,
@@ -229,9 +247,10 @@ export async function adminUpdateEventAction(eventId: string, formData: FormData
       note: reviewNote,
       title: existing?.title ?? event.title ?? "Wydarzenie",
       organizerId: existing?.submitted_by_organizer_id ?? null
-    });
+    }) });
   }
-  revalidateAdminPaths();
+  const incomplete = await completeEventWrite("admin", eventId, followups);
+  if (incomplete) return incomplete;
   redirect("/admin/events");
 }
 
@@ -240,18 +259,29 @@ export async function adminSetEventStatusAction(eventId: string, status: EventSt
   assertEventStatus(status);
   const supabase = await createSupabaseUserClient();
   const existing = await getAdminEventStatusSnapshot(eventId);
+  if (!existing) throw new Error("Wydarzenie nie istnieje lub nie masz do niego dostępu.");
   const note = formData ? formString(formData, "review_note") : null;
-  const { error } = await supabase
-    .from("events")
-    .update({
-      status,
-      review_note: status === "rejected" ? note : null,
-      published_at: status === "published" ? new Date().toISOString() : null
-    })
-    .eq("id", eventId);
-
-  if (error) throw new Error(`Nie udalo sie zmienic statusu: ${error.message}`);
-  await recordModerationDecision({
+  if (note && note.length > eventTextLimits.review_note) throw new EventValidationError({ review_note: `Maksymalna długość: ${eventTextLimits.review_note} znaków.` });
+  try {
+    const { data: updated, error } = await supabase
+      .from("events")
+      .update({
+        status,
+        review_note: status === "rejected" ? note : null,
+        published_at: eventPublicationTimestamp(status, existing.published_at)
+      })
+      .eq("id", eventId)
+      .select("id")
+      .maybeSingle();
+    if (error) throw error;
+    if (!updated) throw new Error("Event status update affected no visible rows");
+  } catch (error) {
+    revalidateAdminPaths();
+    eventWriteFailure(error, "admin", eventId);
+    redirect("/admin/events?save=unconfirmed");
+  }
+  revalidateAdminPaths();
+  const incomplete = await completeEventWrite("admin", eventId, [{ label: "historii moderacji i powiadomień", run: () => recordModerationDecision({
     eventId,
     reviewedBy: admin.userId,
     oldStatus: existing?.status ?? null,
@@ -259,7 +289,8 @@ export async function adminSetEventStatusAction(eventId: string, status: EventSt
     note,
     title: existing?.title ?? "Wydarzenie",
     organizerId: existing?.submitted_by_organizer_id ?? null
-  });
+  }) }]);
+  if (incomplete) redirect("/admin/events?save=moderation-unconfirmed");
   revalidateAdminPaths();
 }
 
@@ -293,92 +324,14 @@ function revalidateAdminPaths() {
   revalidatePath("/organizer");
   revalidatePath("/organizer/events");
   revalidatePath("/organizer/stats");
-  revalidatePath("/");
-}
-
-function applyAdminEventDateFilters<T extends { gte: (column: string, value: string) => T; lte: (column: string, value: string) => T }>(
-  query: T,
-  filters: AdminEventListFilters
-) {
-  let next = query;
-  if (filters.eventFrom) next = next.gte("start_at", startOfDayIso(filters.eventFrom));
-  if (filters.eventTo) next = next.lte("start_at", endOfDayIso(filters.eventTo));
-  if (filters.createdFrom) next = next.gte("created_at", startOfDayIso(filters.createdFrom));
-  if (filters.createdTo) next = next.lte("created_at", endOfDayIso(filters.createdTo));
-  if (filters.publishedFrom) next = next.gte("published_at", startOfDayIso(filters.publishedFrom));
-  if (filters.publishedTo) next = next.lte("published_at", endOfDayIso(filters.publishedTo));
-  return next;
-}
-
-function filterAdminEvents(events: AdminEventListItem[], filters: AdminEventListFilters) {
-  const q = normalizeSearch(filters.q);
-  const category = normalizeSearch(filters.category);
-  const city = normalizeSearch(filters.city);
-  const organizer = normalizeSearch(filters.organizer);
-
-  return events.filter((event) => {
-    if (q && ![
-      event.title,
-      event.status,
-      event.category?.name,
-      event.location?.city?.name,
-      event.organizer?.name,
-      event.review_note
-    ].some((value) => normalizeSearch(value).includes(q))) {
-      return false;
-    }
-    if (category && !normalizeSearch(event.category?.name).includes(category)) return false;
-    if (city && !normalizeSearch(event.location?.city?.name).includes(city)) return false;
-    if (organizer && !normalizeSearch(event.organizer?.name).includes(organizer)) return false;
-    return true;
-  });
-}
-
-function sortAdminEvents(events: AdminEventListItem[], filters: AdminEventListFilters) {
-  const sort = filters.sort ?? "created_at";
-  const direction = filters.dir === "asc" ? 1 : -1;
-
-  return [...events].sort((first, second) => {
-    const result = compareAdminEventValue(first, second, sort);
-    return result * direction;
-  });
-}
-
-function compareAdminEventValue(first: AdminEventListItem, second: AdminEventListItem, sort: string) {
-  if (sort === "title") return first.title.localeCompare(second.title, "pl");
-  if (sort === "category") return (first.category?.name ?? "").localeCompare(second.category?.name ?? "", "pl");
-  if (sort === "city") return (first.location?.city?.name ?? "").localeCompare(second.location?.city?.name ?? "", "pl");
-  if (sort === "organizer") return (first.organizer?.name ?? "").localeCompare(second.organizer?.name ?? "", "pl");
-  if (sort === "status") return (first.status ?? "").localeCompare(second.status ?? "", "pl");
-  if (sort === "published_at") return dateValue(first.published_at) - dateValue(second.published_at);
-  if (sort === "updated_at") return dateValue(first.updated_at) - dateValue(second.updated_at);
-  if (sort === "start_at") return dateValue(first.start_at) - dateValue(second.start_at);
-  return dateValue(first.created_at) - dateValue(second.created_at);
-}
-
-function normalizeSearch(value: string | null | undefined) {
-  return normalizeSearchText(value).trim();
-}
-
-function dateValue(value: string | null | undefined) {
-  if (!value) return 0;
-  const time = new Date(value).getTime();
-  return Number.isFinite(time) ? time : 0;
-}
-
-function startOfDayIso(value: string) {
-  return `${value}T00:00:00.000Z`;
-}
-
-function endOfDayIso(value: string) {
-  return `${value}T23:59:59.999Z`;
+  revalidatePublicEventCache();
 }
 
 async function getAdminEventStatusSnapshot(eventId: string) {
   const supabase = await createSupabaseUserClient();
   const { data, error } = await supabase
     .from("events")
-    .select("id, title, status, submitted_by_organizer_id")
+    .select("id, title, status, visibility, submitted_by_organizer_id, published_at")
     .eq("id", eventId)
     .maybeSingle();
 

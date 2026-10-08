@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import GoogleOnboardingForm from "@/components/GoogleOnboardingForm";
 import { GOOGLE_ONBOARDING_COOKIE } from "@/lib/oauth-state";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
+import { safeNextPath } from "@/lib/navigation";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
@@ -14,7 +15,8 @@ export const metadata: Metadata = {
   }
 };
 
-export default async function GoogleOnboardingPage() {
+export default async function GoogleOnboardingPage({ searchParams }: { searchParams: Promise<{ next?: string }> }) {
+  const next = safeNextPath((await searchParams).next);
   const supabase = await createSupabaseUserClient();
   const { data, error: userError } = await supabase.auth.getUser();
   if (userError || !data.user) redirect("/login");
@@ -31,7 +33,7 @@ export default async function GoogleOnboardingPage() {
           Wybierz typ konta i zaakceptuj wymagane dokumenty. Profil MapaImprez powstanie dopiero po
           zatwierdzeniu tego formularza.
         </p>
-        <GoogleOnboardingForm />
+        <GoogleOnboardingForm next={next} />
       </section>
     </main>
   );

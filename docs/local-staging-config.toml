@@ -1,0 +1,89 @@
+# EventMap local staging template, Supabase CLI 2.119.0, PostgreSQL 17.
+# Prepared only; no services or application migrations have been run.
+# Copy into an isolated scratch/local-staging/supabase/config.toml.
+# Do not link this directory to any hosted project.
+project_id = "eventmap-local-staging"
+
+[api]
+enabled = true
+port = 54331
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+auto_expose_new_tables = true
+
+[api.tls]
+enabled = false
+
+[db]
+port = 54332
+shadow_port = 54330
+major_version = 17
+health_timeout = "2m"
+
+[db.pooler]
+enabled = false
+port = 54339
+
+# The existing June migrations assume a populated schema. Do not run them here.
+# The separate baseline proposal requires explicit approval before execution.
+[db.migrations]
+enabled = false
+schema_paths = []
+
+[db.seed]
+enabled = false
+sql_paths = []
+
+[realtime]
+enabled = false
+
+[studio]
+enabled = false
+port = 54333
+
+[local_smtp]
+enabled = true
+port = 54334
+
+[storage]
+enabled = false
+
+[storage.s3_protocol]
+enabled = false
+
+[storage.vector]
+enabled = false
+
+[auth]
+enabled = true
+site_url = "http://127.0.0.1:3001"
+additional_redirect_urls = [
+  "http://127.0.0.1:3001/auth/callback",
+  'http://127.0.0.1:3001/auth/callback\?**',
+  "http://127.0.0.1:3001/auth/recovery",
+  'http://127.0.0.1:3001/auth/recovery\?**'
+]
+enable_signup = true
+enable_anonymous_sign_ins = false
+enable_refresh_token_rotation = true
+minimum_password_length = 8
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = true
+secure_password_change = false
+max_frequency = "1s"
+otp_expiry = 3600
+
+# Email is captured by local Mailpit; no external SMTP/OAuth credentials.
+[auth.sms]
+enable_signup = false
+
+[edge_runtime]
+enabled = false
+
+[analytics]
+enabled = false
+port = 54337

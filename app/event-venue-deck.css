@@ -1,0 +1,62 @@
+/* Parallel event cards slide behind the selected card without extra controls. */
+.eventVenueDeck { min-width: 0; max-width: 100%; }
+.eventVenueDeckHeader { display: flex; align-items: flex-start; gap: 8px; color: var(--ink-secondary); }
+.eventVenueDeckHeader > svg { flex-shrink: 0; margin-top: 2px; }
+.eventVenueDeckHeader > div { min-width: 0; }
+.eventVenueDeckHeader h3 { margin: 0; font-size: .88rem; line-height: 1.4; font-weight: 650; color: var(--ink); overflow-wrap: anywhere; }
+.eventVenueDeckHeader p { margin: 3px 0 0; font-size: .72rem; line-height: 1.4; }
+.eventVenueDeckStage {
+  --deck-gutter: 24px;
+  --deck-spread: 72px;
+  position: relative;
+  display: grid;
+  isolation: isolate;
+  /* Reserve the previews outside the list lane so the front matches a single card. */
+  margin-inline: calc(-1 * var(--deck-gutter));
+  padding: 12px var(--deck-gutter);
+  overflow: clip;
+  touch-action: pan-y pinch-zoom;
+  border-radius: var(--discovery-radius);
+}
+.eventVenueDeckStage:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+.eventVenueDeckLayer {
+  position: relative;
+  grid-area: 1 / 1;
+  min-width: 0;
+  transform-origin: center;
+  transform: translateX(calc(var(--deck-spread) * var(--deck-offset-x, 0))) scale(var(--deck-scale, 1));
+  opacity: var(--deck-opacity, 1);
+  transition: transform 460ms cubic-bezier(.2, .8, .2, 1), opacity 460ms ease;
+  will-change: transform;
+}
+.eventVenueDeckDragging .eventVenueDeckLayer { transition: none; }
+.eventVenueDeckRear { pointer-events: none; }
+html[data-theme] .homePage .eventVenueDeckLayer > .eventCardH { height: 100%; }
+html[data-theme] .homePage .eventVenueDeckPreview { pointer-events: none; box-shadow: none; border-color: var(--border-strong); }
+.eventVenueDeckPreview .eventCardHImage { transform: none; }
+.eventVenueDeckSelect {
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  width: var(--deck-gutter);
+  z-index: 110;
+  padding: 0;
+  border: 0;
+  border-radius: var(--discovery-radius);
+  background: transparent;
+  pointer-events: auto;
+  cursor: pointer;
+  touch-action: pan-y pinch-zoom;
+}
+.eventVenueDeckSelect.eventVenueDeckLeft { left: 0; }
+.eventVenueDeckSelect.eventVenueDeckRight { right: 0; }
+.eventVenueDeckSelect:hover { box-shadow: inset 0 0 0 2px var(--border-strong); }
+.eventVenueDeckSelect:focus-visible { outline: 3px solid var(--brand); outline-offset: -3px; }
+@media (max-width: 760px) {
+  .eventVenueDeckStage { --deck-gutter: 32px; --deck-spread: 60px; }
+  /* Only the exposed screen gutter is clickable; clipped cards can extend farther. */
+  .eventVenueDeckSelect { width: 16px; }
+  .eventVenueDeckSelect.eventVenueDeckLeft { left: 16px; }
+  .eventVenueDeckSelect.eventVenueDeckRight { right: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .eventVenueDeckLayer { transition: none; } }

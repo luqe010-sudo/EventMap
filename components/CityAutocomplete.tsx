@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { knownLocations, type KnownLocation } from "@/lib/events";
 import { normalizeText } from "@/lib/filters";
 import { toSlug } from "@/lib/slugs";
@@ -28,20 +28,6 @@ type PhotonFeature = {
   geometry?: {
     type: "Point";
     coordinates: [number, number];
-  };
-};
-
-type NominatimResult = {
-  lat: string;
-  lon: string;
-  name?: string;
-  address?: {
-    city?: string;
-    town?: string;
-    village?: string;
-    municipality?: string;
-    suburb?: string;
-    state?: string;
   };
 };
 
@@ -117,7 +103,9 @@ export default function CityAutocomplete({
   const [isOpen, setIsOpen] = useState(false);
   const [suggestions, setSuggestions] = useState<KnownLocation[]>(popularCitiesList);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchUnavailable, setSearchUnavailable] = useState(false);
   const [highlightIndex, setHighlightIndex] = useState(-1);
+  const suggestionsId = useId();
   const containerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
 
@@ -126,6 +114,7 @@ export default function CityAutocomplete({
   // Debounced Photon search-as-you-type for Polish places.
   useEffect(() => {
     const trimmed = value.trim();
+    setSearchUnavailable(false);
     if (trimmed.length < 2) {
       setSuggestions(popularCitiesList);
       setIsLoading(false);
@@ -133,27 +122,28 @@ export default function CityAutocomplete({
     }
 
     setIsLoading(true);
+    const controller = new AbortController();
     const localMatches = findLocalLocationSuggestions(trimmed, priorityLocations);
-    if (localMatches.length > 0) {
-      setSuggestions(localMatches);
-    }
+    setSuggestions(localMatches);
 
     const delayDebounce = setTimeout(async () => {
       try {
-        const photonResults = await searchPhotonLocations(trimmed);
+        const photonResults = await searchPhotonLocations(trimmed, controller.signal);
+        if (controller.signal.aborted) return;
         const rankedResults = rankLocationSuggestions(trimmed, photonResults);
         const mergedResults = mergeLocationSuggestions(localMatches, rankedResults).slice(0, MAX_SUGGESTIONS);
-        setSuggestions(mergedResults.length > 0 ? mergedResults : popularCitiesList);
+        setSuggestions(mergedResults);
       } catch (err) {
+        if (controller.signal.aborted) return;
         console.error("Failed to fetch Photon places", err);
-        const fallbackResults = await searchFallbackLocations(trimmed, localMatches);
-        setSuggestions(fallbackResults.length > 0 ? fallbackResults : popularCitiesList);
+        setSearchUnavailable(true);
+        setSuggestions(localMatches);
       } finally {
-        setIsLoading(false);
+        if (!controller.signal.aborted) setIsLoading(false);
       }
     }, 350);
 
-    return () => clearTimeout(delayDebounce);
+    return () => { clearTimeout(delayDebounce); controller.abort(); };
   }, [priorityLocations, value]);
 
   useEffect(() => {
@@ -184,6 +174,8 @@ export default function CityAutocomplete({
   }
 
   function handleKeyDown(event: React.KeyboardEvent) {
+    if (event.key === "Escape") { setIsOpen(false); setHighlightIndex(-1); return; }
+    if (isLoading) return;
     if (!isOpen || suggestions.length === 0) {
       if (event.key === "ArrowDown" && suggestions.length > 0) {
         setIsOpen(true);
@@ -258,10 +250,12 @@ export default function CityAutocomplete({
         placeholder="Wpisz miejscowość…"
         autoComplete="off"
         role="combobox"
-        aria-expanded={isOpen && (suggestions.length > 0 || isLoading)}
+        aria-label="Miejscowość"
+        aria-expanded={isOpen}
         aria-haspopup="listbox"
         aria-autocomplete="list"
-        aria-controls="city-suggestions"
+        aria-controls={suggestionsId}
+        aria-activedescendant={isOpen && !isLoading && highlightIndex >= 0 && highlightIndex < suggestions.length ? `${suggestionsId}-${highlightIndex}` : undefined}
       />
       {onUseGPS && (
         <button
@@ -269,6 +263,7 @@ export default function CityAutocomplete({
           className="locationBoxGpsBtn"
           onClick={onUseGPS}
           title="Użyj mojej lokalizacji"
+          aria-label="Użyj mojej lokalizacji"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="3" />
@@ -276,20 +271,23 @@ export default function CityAutocomplete({
           </svg>
         </button>
       )}
-      {isOpen && (suggestions.length > 0 || isLoading) && (
+      {isOpen && (
         <ul
-          id="city-suggestions"
+          id={suggestionsId}
           className="autocompleteDropdown"
           role="listbox"
           ref={listRef}
         >
           {isLoading ? (
             <li className="autocompleteLoading">Wyszukiwanie miejscowości…</li>
+          ) : suggestions.length === 0 ? (
+            <li className="autocompleteLoading" role="presentation">{searchUnavailable ? "Podpowiedzi są chwilowo niedostępne. Spróbuj ponownie lub użyj GPS." : "Nie znaleziono miejscowości. Spróbuj pełnej nazwy."}</li>
           ) : (
             suggestions.map((loc, idx) => (
               <li
                 key={`${loc.label}-${loc.latitude}-${loc.longitude}`}
                 role="option"
+                id={`${suggestionsId}-${idx}`}
                 aria-selected={idx === highlightIndex}
                 className={`autocompleteItem ${idx === highlightIndex ? "highlighted" : ""}`}
                 onMouseDown={(e) => {
@@ -309,7 +307,7 @@ export default function CityAutocomplete({
   );
 }
 
-async function searchPhotonLocations(query: string): Promise<KnownLocation[]> {
+async function searchPhotonLocations(query: string, signal: AbortSignal): Promise<KnownLocation[]> {
   const params = new URLSearchParams({
     q: query,
     countrycode: "PL",
@@ -319,6 +317,7 @@ async function searchPhotonLocations(query: string): Promise<KnownLocation[]> {
   ["city", "locality", "district"].forEach((layer) => params.append("layer", layer));
 
   const response = await fetch(`${PHOTON_API_URL}?${params.toString()}`, {
+    signal,
     headers: {
       "Accept-Language": "pl,en;q=0.7"
     }
@@ -328,36 +327,6 @@ async function searchPhotonLocations(query: string): Promise<KnownLocation[]> {
   const data = (await response.json()) as { features?: PhotonFeature[] };
   return (data.features ?? [])
     .map(mapPhotonFeatureToLocation)
-    .filter((location): location is KnownLocation => Boolean(location));
-}
-
-async function searchFallbackLocations(query: string, localMatches: KnownLocation[]) {
-  if (localMatches.length > 0) return localMatches;
-
-  try {
-    const nominatimResults = await searchNominatimLocations(query);
-    return rankLocationSuggestions(query, nominatimResults);
-  } catch (err) {
-    console.error("Failed to fetch Nominatim places", err);
-    return findLocalLocationSuggestions(query, knownLocations);
-  }
-}
-
-async function searchNominatimLocations(query: string): Promise<KnownLocation[]> {
-  const params = new URLSearchParams({
-    q: `${query}, Polska`,
-    format: "json",
-    limit: String(MAX_SUGGESTIONS),
-    countrycodes: "pl",
-    addressdetails: "1"
-  });
-
-  const response = await fetch(`https://nominatim.openstreetmap.org/search?${params.toString()}`);
-  if (!response.ok) throw new Error("Nominatim error");
-
-  const data = (await response.json()) as NominatimResult[];
-  return data
-    .map(mapNominatimResultToLocation)
     .filter((location): location is KnownLocation => Boolean(location));
 }
 
@@ -389,34 +358,6 @@ function mapPhotonFeatureToLocation(feature: PhotonFeature): KnownLocation | nul
       feature.properties.city ? normalizeText(feature.properties.city) : null,
       feature.properties.county ? normalizeText(feature.properties.county) : null
     ].filter((value): value is string => Boolean(value)))),
-  };
-}
-
-function mapNominatimResultToLocation(item: NominatimResult): KnownLocation | null {
-  const address = item.address || {};
-  const city =
-    address.city ||
-    address.town ||
-    address.village ||
-    address.municipality ||
-    address.suburb ||
-    item.name;
-
-  if (!city) return null;
-
-  const latitude = parseFloat(item.lat);
-  const longitude = parseFloat(item.lon);
-  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return null;
-
-  const state = formatVoivodeship(address.state);
-  const label = state ? `${city} (${state})` : city;
-  const citySlug = toSlug(city);
-
-  return {
-    label,
-    latitude,
-    longitude,
-    aliases: Array.from(new Set([citySlug, normalizeText(city), normalizeText(label)].filter(Boolean))),
   };
 }
 

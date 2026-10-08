@@ -4,6 +4,9 @@ import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
+import "./discovery.css";
+import "./search-panel.css";
+import "./event-venue-deck.css";
 
 const SITE_DESCRIPTION =
   "Znajdz koncerty, festyny, targi, wydarzenia sportowe, rodzinne i kulturalne w Polsce. Filtruj wydarzenia po dacie, miescie, kategorii, cenie i promieniu.";

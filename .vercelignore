@@ -1,10 +1,20 @@
 .git
 .next
 node_modules
+.vercel
+.agents
+.codex
 
-.env
-.env*.local
+.env*
+client_secret_*.json
 
 scratch
 test_strony
 vercel-diagnostics
+importers
+scraping
+supabase
+docs
+tests
+vitest.config.mts
+tsconfig.tsbuildinfo
