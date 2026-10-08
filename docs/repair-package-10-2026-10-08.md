@@ -18,7 +18,9 @@ Końcowe `npm run check` w świeżej kopii źródeł bez `.env*` przeszło: **50
 
 Statyczny render rzeczywistych formularzy z syntetycznymi stanami błędów potwierdził układ przy 360/390/768/1440 px w obu motywach bez overflow strony. To odbiór CSS/HTML bez hydracji, submitów i dostępu do bazy; zachowanie akcji ma oddzielne testy. Podgląd QA zamknięto. Kontrola kandydatów Git nie wykryła sekretów; `git diff --check` przeszedł. Pełne SHA obu oficjalnych GitHub actions sprawdzono z aktualnymi tagami przed wysłaniem.
 
-Workflow [Checks](https://github.com/luqe010-sudo/EventMap/actions/workflows/checks.yml) uruchamia się po push do main. Statusy wysłania i zdalnego runu należy sprawdzać dla konkretnego SHA; lokalny zielony wynik nie zastępuje GitHub/Linux. Ten pakiet nie wykonuje ręcznej publikacji Vercel ani zmian bazy.
+Commit kodu **b4969d7b435b525a13084a08da0bef8339968365** wypchnięto na origin/main; odczyt remote potwierdził identyczny SHA i czysty checkout. [GitHub Checks #37798463586](https://github.com/luqe010-sudo/EventMap/actions/runs/37798463586) zakończył się **success** dla tego commita: świeże npm ci, lint, testy, typy i produkcyjny build na Ubuntu/Node 24 z guardem sieci. Aktualizacja niniejszego raportu jest oddzielnym commitem dokumentacyjnym.
+
+Odczyt Vercel po pushu nadal wskazuje READY `dpl_Dh4QrPip3RxwCg843Zk14NCKb5T1` z 6 października. Ten etap wykonuje zlecony push do GitHub; nie wykonano ręcznej publikacji Vercel ani zmian bazy. Statusów CI, Git i produkcji nie należy utożsamiać.
 
 ## Otwarte wymagania
 

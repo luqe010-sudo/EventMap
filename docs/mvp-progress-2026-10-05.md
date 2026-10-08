@@ -4,7 +4,7 @@
 
 Naprawiono historię filtrów/listy/mapy i spóźnione odpowiedzi szczegółu, potwierdzanie akcji organizatora oraz kompletny odczyt zapisów. Formularze profilu/ustawień zachowują dane i pokazują bezpieczne błędy/pending; filtr dat używa całych dni Europe/Warsaw. Wylogowanie sprawdza wynik SDK i udostępnia ponowienie. Admin trafia do panelu admina zamiast formularza rozszerzenia konta.
 
-Pełne izolowane check: **507/507 testów w 39 plikach, TypeScript/build przeszły, lint 0 błędów/15 wcześniejszych ostrzeżeń**. QA syntetycznych formularzy: oba motywy, 360/390/768/1440 bez overflow strony. [Raport i ograniczenia](repair-package-10-2026-10-08.md). Przygotowano wysłanie wszystkich zaległych pakietów oraz CI; poprzednie opisy „bez commita/push” dokumentują historyczny etap. Baza niezmieniona; ochrona zapisu organizatora, A04, pełny A08 oraz realny odbiór pozostają otwarte.
+Pełne izolowane check: **507/507 testów w 39 plikach, TypeScript/build przeszły, lint 0 błędów/15 wcześniejszych ostrzeżeń**. QA syntetycznych formularzy: oba motywy, 360/390/768/1440 bez overflow strony. [Raport i ograniczenia](repair-package-10-2026-10-08.md). Wszystkie zaległe pakiety oraz CI wypchnięto na origin/main jako `b4969d7`; [GitHub Checks](https://github.com/luqe010-sudo/EventMap/actions/runs/37798463586) zakończył się success. Poprzednie opisy „bez commita/push” dokumentują historyczny etap. Baza niezmieniona; ochrona zapisu organizatora, A04, pełny A08 oraz realny odbiór pozostają otwarte. Dziesiątego pakietu nie opublikowano ręcznie w Vercel.
 
 ## Zatwierdzona poprawka RLS — 2026-10-06 21:21 CEST
 

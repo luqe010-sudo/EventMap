@@ -4,7 +4,7 @@ Stan po dziesiątym pakiecie napraw 2026-10-08: historia wyszukiwania i szczegó
 
 ## Dziesiąty pakiet — pierwszeństwo przed historycznym stanem Git i podglądów
 
-- Dziewięć wcześniejszych pakietów i dziesiąty przygotowano do wysłania na main wraz z workflow Checks. Sprawdzać aktualny git status/HEAD oraz [GitHub CI](https://github.com/luqe010-sudo/EventMap/actions/workflows/checks.yml); opisy „bez commita/push” niżej są historyczne. Nie odtwarzać zakończonych poprawek z audytu.
+- Dziewięć wcześniejszych pakietów i dziesiąty wypchnięto na origin/main jako `b4969d7`, wraz z workflow Checks. [Run #37798463586](https://github.com/luqe010-sudo/EventMap/actions/runs/37798463586) ma success. Dopisanie tego wyniku jest osobnym commitem dokumentacyjnym. Opisy „bez commita/push” niżej są historyczne; sprawdzać aktualny git status/HEAD. Nie odtwarzać zakończonych poprawek z audytu. Produkcja po pushu nadal wskazuje pakiety 8/9 z 6 października; brak ręcznej publikacji dziesiątego pakietu.
 - Końcowy check wykonano w `scratch/package10-ci` bez plików środowiskowych, z fikcyjną konfiguracją, guardem sieci i junction istniejących zależności. Nie służy publikacji. Log `scratch/package10-check.log`. Pierwszy build głównego checkoutu zatrzymał EPERM starego cache. Nie działa serwer QA dziesiątego pakietu; zamknięto go po kontroli syntetycznych formularzy.
 - Nowe poprawki nie zmieniają RLS ani nie zapewniają transakcji tworzenia organizacji/wydarzenia. Aktualna baza może nadal odmówić ukrycia published/profilu. UI pokazuje tę odmowę bez fałszywego sukcesu. Następne SQL wymaga osobnego zatwierdzenia AGENTS.md. Fizyczny telefon, prawdziwe JWT/Auth/SMTP/Google i katalog pozostają do odbioru.
 

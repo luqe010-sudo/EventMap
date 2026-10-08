@@ -1,6 +1,6 @@
 # Kontrola zmian — D08
 
-Status: konfiguracja lokalna, 2026-10-06. Workflow `.github/workflows/checks.yml` jest przygotowany dla `origin=https://github.com/luqe010-sudo/EventMap.git`; nie został wysłany ani uruchomiony na GitHub. Nie zmieniano branch protection, ustawień Actions ani deploymentu.
+Status: **workflow wysłany i odebrany na GitHub, 2026-10-08**. `.github/workflows/checks.yml` uruchomił [Checks #37798463586](https://github.com/luqe010-sudo/EventMap/actions/runs/37798463586) dla `b4969d7`; wynik success obejmuje npm ci, lint, testy, typy i build na Ubuntu/Node 24. Lokalny dziesiąty pakiet ma 507/507 testów w 39 plikach. [Raport](repair-package-10-2026-10-08.md). Nie zmieniano branch protection, ustawień Actions ani deploymentu. Opisy lokalnego pierwszego odbioru niżej są historyczne.
 
 ## Polecenia i zakres
 
