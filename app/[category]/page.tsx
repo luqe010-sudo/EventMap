@@ -1,3 +1,5 @@
+import { listingMetadata } from "@/lib/listing-metadata";
+import { redirectLowercasePath } from "@/lib/canonical-path";
 import { serializeJsonLd } from "@/lib/json-ld";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
@@ -10,11 +12,9 @@ import {
   getActiveCityLocations,
   searchPublicEvents,
 } from "@/lib/events";
-import { appendPublicFilters, buildSearchUrl, toPluralCategorySlug, toPluralCategoryName, toSlug, formatInCity } from "@/lib/slugs";
-import { searchAddress } from "@/lib/geocoding";
+import { appendPublicFilters, toPluralCategorySlug, toPluralCategoryName, toSlug, formatInCity } from "@/lib/slugs";
 import { parsePublicFilterParams } from "@/lib/filters";
 import { normalizeCitySearchFilters } from "@/lib/public-search-params";
-import { hasLocationCoordinates } from "@/lib/event-search";
 
 type Params = { category: string };
 type SearchParams = Record<string, string | string[] | undefined>;
@@ -27,26 +27,26 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const category = await getCategoryBySlugFromDb(categorySlug);
   if (category) {
     const pluralName = toPluralCategoryName(category.name);
-    return {
+    return listingMetadata({
       title: `${pluralName} w Polsce | MapaImprez`,
       description: `Nadchodzące wydarzenia z kategorii ${pluralName} w Polsce. Filtruj po dacie, mieście i odległości.`,
       alternates: {
         canonical: `/${toPluralCategorySlug(category.slug)}`
       }
-    };
+    });
   }
 
   // 2. Try city
   const cityLocation = await resolveCityLocation(categorySlug);
   if (cityLocation) {
     const locationText = formatInCity(cityLocation.label);
-    return {
+    return listingMetadata({
       title: `Wydarzenia ${locationText} | MapaImprez`,
       description: `Najciekawsze wydarzenia i imprezy ${locationText}. Koncerty, sport, festiwale i kultura. Sprawdź na mapie!`,
       alternates: {
         canonical: `/${cityLocation.slug ?? toSlug(cityLocation.label)}`
       }
-    };
+    });
   }
 
   return {};
@@ -60,7 +60,9 @@ export default async function CategoryPage({
   searchParams: Promise<SearchParams>;
 }) {
   const { category: categorySlug } = await params;
-  const requestedFilters = parsePublicFilterParams(await searchParams);
+  const rawSearchParams = await searchParams;
+  redirectLowercasePath([categorySlug], rawSearchParams);
+  const requestedFilters = parsePublicFilterParams(rawSearchParams);
   
   // 1. Try to resolve as category
   const category = await getCategoryBySlugFromDb(categorySlug);
@@ -187,26 +189,6 @@ export default async function CategoryPage({
         />
       </>
     );
-  }
-
-  // Try to geocode categorySlug as a fallback city
-  let geocoded: Awaited<ReturnType<typeof searchAddress>> = [];
-  try {
-    const query = categorySlug.replace(/-/g, " ");
-    geocoded = await searchAddress(query);
-  } catch (err) {
-    console.error("Failed to geocode single segment city page fallback:", err);
-  }
-  const best = geocoded.find(hasLocationCoordinates);
-  if (best) {
-    redirect(buildSearchUrl({
-      ...requestedFilters,
-      geoLocation: {
-        lat: Math.round(best.latitude * 1000) / 1000,
-        lng: Math.round(best.longitude * 1000) / 1000,
-        radius: requestedFilters.radiusKm ?? 30
-      }
-    }));
   }
 
   // 3. Fallback to 404

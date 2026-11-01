@@ -1,5 +1,11 @@
 # Current Features
 
+## Poprawki panelu po audycie — 2026-11-01
+
+Usuwanie wydarzenia w panelu admina wymaga potwierdzenia. Nowe wydarzenie admina startuje jako szkic, a organizatora trzeba wybrać. Formularz odrzuca daty późniejsze niż 3 lata od dziś. Statusy są opisane po polsku, a „Opublikuj” nie pojawia się przy opublikowanych. `/admin/cities` listuje rekordy `cities`; `city_pages` przechowuje opcjonalne treści SEO, a identyfikator w adresie edycji to id miasta.
+
+Autouzupełnianie miejscowości pokazuje tylko miejscowości, bez duplikatów pisowni. Mapa ma polskie nazwy wszystkich województw. Navbar nie pokazuje „Zaloguj” przed odczytaniem sesji. Szczegóły: [audyt](site-audit-2026-11-01.md).
+
 ## Jedenasty pakiet — spójny wybór lokalizacji, 2026-10-08
 
 W edytorze wydarzenia nowszy wybór miasta, adresu, znanego miejsca lub punktu mapy unieważnia wcześniejsze odpowiedzi geokodowania i oczekujące podpowiedzi. Opóźniony odczyt nie zmienia najnowszego wyboru ani ręcznie poprawionych danych administracyjnych.
@@ -510,3 +516,24 @@ Izolowane testy automatyczne istnieją w `tests/` i są uruchamiane przez Vitest
 - Strona glowna dociaga promowane wydarzenia osobnym zapytaniem i pokazuje je w sekcji `Polecane wydarzenia` bez ograniczenia do najblizszego tygodnia.
 - Tabele panelu admina dla wydarzen, kolejki review, organizatorow, lokalizacji, kategorii i miast SEO maja filtry, wyszukiwarke oraz sortowanie po kluczowych polach rekordow.
 - Generowanie slugow transliteruje polskie znaki, np. `Łódź` -> `lodz`, `Wrocław` -> `wroclaw`, zamiast zamieniac je na myslniki.
+
+## Zasilanie katalogu — 2026-10-29
+
+Publiczne obrazy mają wspólną obsługę braków i błędów: lokalna fotografia tematyczna z oznaczeniem „Zdjęcie ilustracyjne” oraz nazwą, datą i miastem; przy nieznanym temacie własna oprawa typograficzna. Istniejące obrazy i plakaty mają pierwszeństwo oraz zachowują pełny kadr. Rozwiązanie obejmuje listę, karuzele, szczegóły, zapisane wydarzenia i mapowe podglądy, w obu motywach. Osiem fotografii ma zapisane źródła i licencje; generowanie AI jest wyłączone. [Zasady i implementacja](event-media-policy.md).
+
+Opublikowano 21 zweryfikowanych wydarzeń w 10 miastach, w tym 8 bezpłatnych. Każda nowa pozycja ma źródło, autorski opis, potwierdzoną godzinę i współrzędne. Uzupełnianie całej Polski jest zaplanowane codziennie o 09:00 w lokalnej aplikacji Codex, przez przegląd źródeł i kontrolowany import. Szczegóły: [raport publikacji](content-supply-runs/2026-10-29.md) oraz [procedura zasilania](content-supply.md). Nie dodano crawlera do aplikacji ani zmian publicznego UI.
+
+### Oprawa wydarzeń wdrożona 1.11.2026
+
+EventVisual działa na produkcji. Potwierdzono listę, karuzele, szczegóły i mobilny podgląd mapy, lokalne licencjonowane fotografie z oznaczeniem ilustracyjnym oraz oryginalne plakaty bez obcinania tekstu. Dopasowanie chóru nie obejmuje Chorwacji, a uproszczony popup nie wymyśla godziny wydarzenia całodniowego. Odbiór: [raport wdrożenia](event-media-release-2026-11-01.md).
+
+## Poprawki audytu 2026-11-01
+
+- Publiczne odpowiedzi nie pobierają e-maila organizatora.
+- Link Mapa otwiera mapę mobilną lub przewija do mapy desktopowej. Skróty hero resetują pozostałe filtry daty/kategorii/ceny i przewijają do wyników.
+- Skróty /kategoria/dzis, /weekend i /ten-tydzien przekierowują do filtrów kategorii przed geokodowaniem. W niedzielę od 18:00 czasu Warszawy weekend wskazuje kolejny weekend.
+- Strona /dla-organizatorow wyjaśnia zgłaszanie i moderację przed rejestracją.
+- Ceny mają dwie cyfry po przecinku. Podobne wydarzenia pochodzą z tego samego miasta i kategorii. Mapa szczegółów zaczyna przy punkcie wydarzenia z zoomem 14 i nie przechwytuje kółka.
+- Regulamin, stopka i podgląd mapy mają style ciemnego motywu; ustawienia cookies są w stopce poza obszarem mapy i filtrów.
+- Mobilny nagłówek jest niższy; długie sekcje SEO i linków mają ograniczoną wysokość z przewijaniem. Odbiór wizualny na urządzeniach pozostaje do wykonania.
+- Polecane są pod listą wyników. Pierwsza porcja listy ma 12 wydarzeń, kolejne dostępne przyciskiem „Pokaż więcej wydarzeń”.

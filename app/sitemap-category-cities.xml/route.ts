@@ -1,52 +1,13 @@
-import { listPublicCategoryCityRoutes } from "@/lib/events";
+import { listPublicEventSitemapEntries } from "@/lib/events";
 import { PUBLIC_EVENT_NO_STORE_HEADERS } from "@/lib/public-event-cache";
-
 export const dynamic = "force-dynamic";
-
 export async function GET() {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const routes = await listPublicCategoryCityRoutes({ dateFrom: today.toISOString(), limit: 10000 });
-
-  const xmlUrls: string[] = [];
-
-  routes.forEach((route) => {
-      xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/${route.categorySlug}/${route.citySlug}</loc>
-    <lastmod>${new Date(route.lastmod).toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>`);
-
-      xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/${route.categorySlug}/${route.citySlug}/dzis</loc>
-    <lastmod>${new Date(route.lastmod).toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>`);
-      xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/${route.categorySlug}/${route.citySlug}/weekend</loc>
-    <lastmod>${new Date(route.lastmod).toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>`);
-      xmlUrls.push(`  <url>
-    <loc>https://mapaimprez.pl/${route.categorySlug}/${route.citySlug}/ten-tydzien</loc>
-    <lastmod>${new Date(route.lastmod).toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>`);
-  });
-
+  const entries = await listPublicEventSitemapEntries();
+  const paths = new Set(entries.map(({ path }) => {
+    const [, category, city] = path.split("/");
+    return `/${category}/${city}`;
+  }));
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${xmlUrls.join("\n")}
-</urlset>`;
-
-  return new Response(xml, {
-    headers: {
-      "Content-Type": "application/xml",
-      ...PUBLIC_EVENT_NO_STORE_HEADERS
-    }
-  });
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[...paths].map(path => `<url><loc>https://mapaimprez.pl${path}</loc></url>`).join("")}</urlset>`;
+  return new Response(xml, { headers: { "Content-Type": "application/xml", ...PUBLIC_EVENT_NO_STORE_HEADERS } });
 }

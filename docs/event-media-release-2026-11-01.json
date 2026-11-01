@@ -1,0 +1,197 @@
+{
+  "date": "2026-11-01",
+  "published": true,
+  "owner_authorization": "Zezwalam — odpowiedź na pytanie o transfer przygotowanego kodu i licencjonowanych zdjęć do Vercel event-map i publikację mapaimprez.pl",
+  "project_id": "prj_81CpZTzncBaxsfLON8BL1EmQ54cW",
+  "deployment": {
+    "id": "dpl_5FdEtNHdYRV7e2WtEbc7kHg2wHUm",
+    "url": "https://event-7lfx0fpst-luqe010-1961s-projects.vercel.app",
+    "inspectorUrl": "https://vercel.com/luqe010-1961s-projects/event-map/5FdEtNHdYRV7e2WtEbc7kHg2wHUm",
+    "readyState": "READY",
+    "target": "production",
+    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_5FdEtNHdYRV7e2WtEbc7kHg2wHUm"
+  },
+  "previous_deployment": {
+    "id": "dpl_FsA53khAF6WbSJ57JXoyyKoVceFc",
+    "url": "event-7ca044wer-luqe010-1961s-projects.vercel.app"
+  },
+  "public_origins": [
+    "https://mapaimprez.pl",
+    "https://www.mapaimprez.pl"
+  ],
+  "tests": {
+    "files": 42,
+    "passed": 531,
+    "failed": 0,
+    "lint_errors": 0,
+    "lint_warnings": 11,
+    "typecheck": true,
+    "local_build": true,
+    "remote_build": true
+  },
+  "package": {
+    "file_count": 216,
+    "bytes": 5077824,
+    "findings": []
+  },
+  "production_smoke": {
+    "verified_at": "2026-11-01T18:52:17.014Z",
+    "origin": "https://mapaimprez.pl",
+    "checks": [
+      {
+        "path": "/kultura/warszawa/curated-szydelkiem-i-wloczka-warszawa-2026-11-03-9f8586ce6fd1",
+        "status": 200,
+        "kind": "photo",
+        "event_schema_omits_illustration": true
+      },
+      {
+        "path": "/kultura/warszawa/curated-widmo-wolnosci-wielcy-tworcy-ekranu-warszawa-2026-11-08-d384c74f5600",
+        "status": 200,
+        "kind": "photo",
+        "event_schema_omits_illustration": true
+      },
+      {
+        "path": "/koncerty/wroclaw/curated-j-brahms-ein-deutsches-requiem-wroclaw-2026-11-06-1d2daca2ae99",
+        "status": 200,
+        "kind": "photo",
+        "event_schema_omits_illustration": true
+      },
+      {
+        "path": "/mecze/gliwice/curated-polska-chorwacja-kwalifikacje-ms-w-koszykowce-mezczyzn-2027-gliwice-2026-11-27-e3f8f86d436b",
+        "status": 200,
+        "kind": "plain",
+        "event_schema_omits_illustration": true
+      },
+      {
+        "path": "/koncerty/warszawa/eleine-warszawa-2026-11-03-31b6280a",
+        "status": 200,
+        "kind": "original"
+      },
+      {
+        "path": "/",
+        "status": 200
+      },
+      {
+        "path": "/kultura/warszawa",
+        "status": 200
+      }
+    ],
+    "assets": [
+      {
+        "path": "/images/editorial/craft.jpg",
+        "bytes": 77213,
+        "sha256_verified": true
+      },
+      {
+        "path": "/images/editorial/cinema.jpg",
+        "bytes": 78519,
+        "sha256_verified": true
+      },
+      {
+        "path": "/images/editorial/piano.jpg",
+        "bytes": 88706,
+        "sha256_verified": true
+      },
+      {
+        "path": "/images/editorial/jazz.jpg",
+        "bytes": 254002,
+        "sha256_verified": true
+      },
+      {
+        "path": "/images/editorial/birds.jpg",
+        "bytes": 160254,
+        "sha256_verified": true
+      },
+      {
+        "path": "/images/editorial/terrarium.jpg",
+        "bytes": 150061,
+        "sha256_verified": true
+      },
+      {
+        "path": "/images/editorial/education.jpg",
+        "bytes": 74349,
+        "sha256_verified": true
+      },
+      {
+        "path": "/images/editorial/blocks.jpg",
+        "bytes": 164462,
+        "sha256_verified": true
+      }
+    ],
+    "public_api": true,
+    "public_filters": true,
+    "poster_contain_css": true,
+    "css_files": 3
+  },
+  "ui": {
+    "checked_at": "2026-11-01T18:55:36.401Z",
+    "mobile": {
+      "documentWidth": 375,
+      "emptyImages": 0,
+      "photos": [
+        {
+          "loaded": true,
+          "src": "/images/editorial/craft.jpg"
+        },
+        {
+          "loaded": true,
+          "src": "/images/editorial/cinema.jpg"
+        },
+        {
+          "loaded": true,
+          "src": "/images/editorial/craft.jpg"
+        },
+        {
+          "loaded": true,
+          "src": "/images/editorial/cinema.jpg"
+        }
+      ],
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    "map": {
+      "documentWidth": 375,
+      "image": [
+        {
+          "loaded": true,
+          "src": "/images/editorial/craft.jpg"
+        }
+      ],
+      "preview": true,
+      "width": 390
+    },
+    "detail": {
+      "credit": "Fot. Kelly Sikkema · Unsplash",
+      "documentWidth": 375,
+      "hero": {
+        "height": 225,
+        "width": 360
+      },
+      "note": "Zdjęcie ilustracyjne",
+      "width": 390
+    },
+    "original_poster": {
+      "documentWidth": 305,
+      "poster": {
+        "height": 144.5625,
+        "loaded": true,
+        "naturalHeight": 369,
+        "naturalWidth": 656,
+        "objectFit": "contain",
+        "width": 257
+      },
+      "width": 320
+    },
+    "light_desktop": {
+      "covers": 4,
+      "documentWidth": 1265,
+      "theme": "light",
+      "width": 1280
+    }
+  },
+  "no_database_or_auth_configuration_changes": true,
+  "new_credentials_created": false,
+  "git_delivery": "Vercel CLI deployment from local working tree; no GitHub push. Future Git builds must include the same source and assets."
+}

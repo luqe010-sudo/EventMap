@@ -91,6 +91,8 @@ function readNumber(formData: FormData, field: string, errors: EventFieldErrors,
   return parsed;
 }
 
+const MAX_EVENT_YEARS_AHEAD = 3;
+
 function readDate(formData: FormData, field: string, errors: EventFieldErrors, required: boolean) {
   const value = formString(formData, field);
   if (!value) {
@@ -104,6 +106,12 @@ function readDate(formData: FormData, field: string, errors: EventFieldErrors, r
   try { iso = match ? normalizeDateTimeLocal(value) : null; } catch { /* Invalid date fields. */ }
   if (!match || !iso || Number(match[3] ?? 0) > 59 || toDateTimeLocal(iso) !== `${match[1]}T${match[2]}`) {
     errors[field] = "Podaj poprawną datę i godzinę w strefie Europe/Warsaw.";
+    return null;
+  }
+  const latestAllowed = new Date();
+  latestAllowed.setUTCFullYear(latestAllowed.getUTCFullYear() + MAX_EVENT_YEARS_AHEAD);
+  if (new Date(iso) > latestAllowed) {
+    errors[field] = `Data nie może być późniejsza niż ${MAX_EVENT_YEARS_AHEAD} lata od dziś. Sprawdź rok.`;
     return null;
   }
   return iso;

@@ -1,5 +1,9 @@
 # Deployment
 
+## Region funkcji — 2026-11-01
+
+`vercel.json` ustawia region `fra1`, bo projekt Supabase EventMap działa w `eu-central-1`. Publikacja nie wymaga nowych zmiennych środowiskowych ani migracji.
+
 ## Jedenasty pakiet — 2026-10-08
 
 Poprawka wyboru lokalizacji nie wymaga nowych zmiennych środowiskowych ani migracji. Kod i testy można wysłać niezależnie od przygotowanego SQL. Pliki `docs/organizer-write-hardening-{proposal,rollback,tests}.sql` są osobnym pakietem do przeglądu, bez automatycznego wykonania podczas builda lub pushu. Wymagają jawnego zatwierdzenia, spełnienia guardów katalogu, kontrolowanego odbioru i zachowania manifestu instalacji dla testów/rollbacku.
@@ -366,3 +370,21 @@ Dla działania paneli i formularzy potrzebne są przynajmniej:
 - Konfiguracja Supabase Auth w panelu Supabase.
 - CI/CD.
 - Monitoring błędów i logów.
+
+## Lokalne zasilanie wydarzeń — 2026-10-29
+
+Oprawa `EventVisual` wymaga deploymentu źródeł wraz z `app/event-visual.css`, `lib/event-cover-media.ts`, manifestem `data/media/editorial-photos.json` i ośmioma plikami `public/images/editorial/`. Nie wymaga nowych zmiennych ani zmian bazy. `.vercelignore` wyklucza lokalne skrypty, paczki `data/content-supply/` i niewykorzystane `assets/event-illustrations/`, zachowując używaną bibliotekę zdjęć i manifest praw.
+
+Redakcyjny import uruchamia się przez `node --env-file=.env.local scripts/import-curated-events.mjs --file <paczka.json>`, najpierw bez zapisu. Zapis wymaga `EVENTMAP_IMPORT_WRITE=1` oraz `--apply`. Serwerowy klucz `EVENTMAP_SUPABASE_SERVICE_ROLE_KEY` pozostaje wyłącznie w ignorowanym lokalnym środowisku. Paczki mają źródła i czas weryfikacji; importer nie wykonuje SQL ani migracji. Szczegóły i odbiór: [content-supply.md](content-supply.md).
+
+Codzienne zadanie w czacie Codex korzysta z lokalnego checkoutu, sieci i dostępu do bazy. Komputer i aplikacja muszą działać. Nie jest to cron hostowany w Vercel. Nowe dane są widoczne przy kolejnym pobraniu publicznych endpointów `no-store`; nie wymagają deploymentu. Nie obiecuj samoczynnego odświeżenia otwartych już widoków.
+
+### Publikacja mediów — 1.11.2026
+
+Po wyraźnej zgodzie właściciela wdrożono `dpl_5FdEtNHdYRV7e2WtEbc7kHg2wHUm` przez zdalny build źródeł oraz `vercel promote`. Domeny mapaimprez.pl i www potwierdzono publicznym odbiorem. Paczka: 216 plików / 5 077 824 B, osiem zdjęć, bez danych importu i sekretów. `.vercelignore` dodatkowo wyklucza .github oraz rootowe AGENTS.md, AUDIT.md, PROJECT_BRIEF.md i README.md. Zmian środowiska, Auth i bazy nie było. Odbiór: [raport](event-media-release-2026-11-01.md).
+
+## Pakiet audytu 2026-11-01
+
+Pakiet opublikowano 1 listopada 2026 na wyraźne polecenie właściciela. Końcowy deployment: dpl_97HoVYrcU87oe5hHGupWmJvDhfVs. Potwierdzono 19/19 kontroli produkcyjnych: 404 nieznanych tras, 307 paneli bez sesji, 308 wielkich liter, odpowiedzi 400 API, pojedynczy description i nagłówki bezpieczeństwa. Podstawowa CSP zachowuje obecną integrację map i analityki. Raport i punkt wycofania: [site-audit-release-2026-11-01.md](site-audit-release-2026-11-01.md). .vercelignore wyklucza także zagnieżdżone worktree .claude.
+
+Region hostingu pozostawiono bez zmian: najpierw właściciel potwierdza region Supabase i położenie funkcji Vercel. Nie ujawniać kluczy ani nie zmieniać regionu na podstawie samego audytu. SQL w docs/site-audit-data-proposal-2026-11-01.sql jest propozycją, nie został uruchomiony; kończy się ROLLBACK. Duplikaty i brakujące centra wymagają zatwierdzonych UUID oraz danych źródłowych. Odbiór kont: rejestracja użytkownika/organizatora, logowanie/reset, zapis/odpis wydarzenia, tworzenie i edycja zgłoszenia, cofnięcie opublikowanego do moderacji, próba dostępu do cudzych wydarzeń oraz panelu admina. Wymaga przygotowanych kont testowych; nie wykonano na produkcji.

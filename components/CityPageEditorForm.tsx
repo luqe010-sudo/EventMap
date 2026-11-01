@@ -34,11 +34,11 @@ export default function CityPageEditorForm({
           <input name="county" defaultValue={cityPage?.city?.county ?? ""} />
         </label>
         <label>
-          Wojewodztwo
+          Województwo
           <input name="voivodeship" defaultValue={cityPage?.city?.voivodeship ?? ""} />
         </label>
         <label>
-          Liczba wydarzen
+          Liczba wydarzeń
           <input value={cityPage?.eventCount ?? 0} readOnly />
         </label>
       </div>

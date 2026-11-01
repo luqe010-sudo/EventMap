@@ -1,3 +1,4 @@
+import { requireOrganizerAccess } from "@/lib/auth";
 import Link from "next/link";
 import OrganizerSectionNav from "@/components/OrganizerSectionNav";
 import { getOrganizerStats } from "@/lib/organizer-events";
@@ -7,6 +8,7 @@ import OrganizerStatisticsNotice from "@/components/OrganizerStatisticsNotice";
 export const dynamic = "force-dynamic";
 
 export default async function OrganizerStatsPage() {
+  await requireOrganizerAccess("/organizer/stats");
   const stats = await getOrganizerStats();
   const rows = stats.rows;
 
@@ -15,7 +17,7 @@ export default async function OrganizerStatsPage() {
       <div className="managementHeader">
         <div>
           <p className="eyebrow">Panel organizatora</p>
-          <h1>Statystyki wydarzen</h1>
+          <h1>Statystyki wydarzeń</h1>
         </div>
       </div>
 
@@ -24,7 +26,7 @@ export default async function OrganizerStatsPage() {
 
       <section className="managementPanel">
         <div className="managementPanelHeader">
-          <h2>Wyniki wydarzen</h2>
+          <h2>Wyniki wydarzeń</h2>
           <Link href="/organizer/events">Moje wydarzenia</Link>
         </div>
         <p className="panelMutedText">
@@ -63,7 +65,7 @@ export default async function OrganizerStatsPage() {
               ))}
               {!rows.length ? (
                 <tr>
-                  <td colSpan={10} className="emptyTableCell">Brak wydarzen do pokazania statystyk.</td>
+                  <td colSpan={10} className="emptyTableCell">Brak wydarzeń do pokazania statystyk.</td>
                 </tr>
               ) : null}
             </tbody>

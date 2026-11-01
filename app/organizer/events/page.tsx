@@ -66,7 +66,7 @@ export default async function OrganizerEventsPage({
           </label>
           <div className="managementActions organizerFilterActions">
             <button type="submit" className="primaryButton">Filtruj</button>
-            <Link href="/organizer/events" className="secondaryButton">Wyczysc</Link>
+            <Link href="/organizer/events" className="secondaryButton">Wyczyść</Link>
           </div>
         </form>
       </section>
@@ -76,7 +76,7 @@ export default async function OrganizerEventsPage({
           <table className="managementTable">
             <thead>
               <tr>
-                <th>Tytul</th>
+                <th>Tytuł</th>
                 <th>Data</th>
                 <th>Miasto</th>
                 <th>Kategoria</th>
@@ -119,7 +119,7 @@ export default async function OrganizerEventsPage({
               })}
               {!events.length ? (
                 <tr>
-                  <td colSpan={7} className="emptyTableCell">Brak wydarzen dla wybranych filtrow.</td>
+                  <td colSpan={7} className="emptyTableCell">Brak wydarzeń dla wybranych filtrow.</td>
                 </tr>
               ) : null}
             </tbody>
@@ -148,7 +148,7 @@ function getQualityChecklist(event: EventForTable) {
   const descriptionLength = event.description?.trim().length ?? 0;
   const sourceUrl = event.sources?.some((source) => Boolean(source.source_url));
   return [
-    { label: "Tytul", done: Boolean(event.title.trim()) },
+    { label: "Tytuł", done: Boolean(event.title.trim()) },
     { label: "Data", done: Boolean(event.start_at) },
     { label: "Lokalizacja", done: Boolean(event.location?.city?.name || event.location?.address) },
     { label: "Opis minimum 300 znakow", done: descriptionLength >= 300 },

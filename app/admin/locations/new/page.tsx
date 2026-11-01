@@ -14,9 +14,9 @@ export default async function AdminNewLocationPage() {
       <div className="managementHeader">
         <div>
           <p className="eyebrow">Panel admina</p>
-          <h1>Dodaj lokalizacje</h1>
+          <h1>Dodaj lokalizację</h1>
         </div>
-        <Link href="/admin/locations" className="secondaryButton">Wroc do listy</Link>
+        <Link href="/admin/locations" className="secondaryButton">Wróć do listy</Link>
       </div>
 
       <AdminSectionNav active="locations" />
@@ -24,7 +24,7 @@ export default async function AdminNewLocationPage() {
       <section className="managementPanel">
         <LocationEditorForm
           action={adminCreateLocationAction}
-          submitLabel="Dodaj lokalizacje"
+          submitLabel="Dodaj lokalizację"
         />
       </section>
     </main>

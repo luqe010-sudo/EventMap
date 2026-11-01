@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { redirect } from "next/navigation";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
 import type { Database } from "@/database.types";
@@ -15,7 +16,7 @@ export type CurrentUserContext = {
   profile: Profile | null;
 };
 
-export async function getCurrentUserContext(): Promise<CurrentUserContext | null> {
+export const getCurrentUserContext = cache(async (): Promise<CurrentUserContext | null> => {
   const supabase = await createSupabaseUserClient();
   const { data: authData, error: authError } = await supabase.auth.getUser();
 
@@ -33,7 +34,7 @@ export async function getCurrentUserContext(): Promise<CurrentUserContext | null
     userId: authData.user.id,
     profile
   };
-}
+});
 
 export async function requireAdmin(next = "/admin") {
   const context = await getCurrentUserContext();

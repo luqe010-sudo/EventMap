@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { knownLocations, type KnownLocation } from "@/lib/events";
 import { normalizeText } from "@/lib/filters";
 import { toSlug } from "@/lib/slugs";
+import { isPhotonSettlement, uniqueSuggestionsByLabel } from "@/lib/location-suggestions";
 
 type CityAutocompleteProps = {
   value: string;
@@ -61,6 +62,8 @@ const VOIVODESHIP_NAME_MAP: Record<string, string> = {
   "subcarpathian": "podkarpackie",
   "subcarpathian voivodeship": "podkarpackie",
   "podkarpackie": "podkarpackie",
+  "podlachian": "podlaskie",
+  "podlachian voivodeship": "podlaskie",
   "podlaskie": "podlaskie",
   "podlaskie voivodeship": "podlaskie",
   "pomeranian": "pomorskie",
@@ -131,7 +134,7 @@ export default function CityAutocomplete({
         const photonResults = await searchPhotonLocations(trimmed, controller.signal);
         if (controller.signal.aborted) return;
         const rankedResults = rankLocationSuggestions(trimmed, photonResults);
-        const mergedResults = mergeLocationSuggestions(localMatches, rankedResults).slice(0, MAX_SUGGESTIONS);
+        const mergedResults = uniqueSuggestionsByLabel(mergeLocationSuggestions(localMatches, rankedResults)).slice(0, MAX_SUGGESTIONS);
         setSuggestions(mergedResults);
       } catch (err) {
         if (controller.signal.aborted) return;
@@ -314,7 +317,7 @@ async function searchPhotonLocations(query: string, signal: AbortSignal): Promis
     limit: String(MAX_SUGGESTIONS * 2),
     bbox: "14.07,49,24.15,54.84"
   });
-  ["city", "locality", "district"].forEach((layer) => params.append("layer", layer));
+  ["city", "locality"].forEach((layer) => params.append("layer", layer));
 
   const response = await fetch(`${PHOTON_API_URL}?${params.toString()}`, {
     signal,
@@ -334,7 +337,7 @@ function mapPhotonFeatureToLocation(feature: PhotonFeature): KnownLocation | nul
   const coordinates = feature.geometry?.coordinates;
   const name = feature.properties.name?.trim();
 
-  if (!name || !coordinates) {
+  if (!name || !coordinates || !isPhotonSettlement(feature.properties)) {
     return null;
   }
 

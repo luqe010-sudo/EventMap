@@ -37,7 +37,7 @@ export default async function OrganizerEditEventPage({ params, searchParams }: {
           <p className="eyebrow">Panel organizatora</p>
           <h1>Edytuj wydarzenie</h1>
         </div>
-        <Link href="/organizer/events" className="secondaryButton">Wroc</Link>
+        <Link href="/organizer/events" className="secondaryButton">Wróć</Link>
       </div>
 
       <OrganizerSectionNav active="events" />

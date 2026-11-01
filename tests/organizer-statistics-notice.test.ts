@@ -4,6 +4,7 @@ import { expect, it, vi } from "vitest";
 import OrganizerStatisticsNotice from "../components/OrganizerStatisticsNotice";
 import type { OrganizerEventListItem } from "../lib/organizer-events";
 
+vi.mock("@/lib/auth", () => ({ requireOrganizerAccess: vi.fn() }));
 vi.mock("@/lib/organizer-events", () => ({ getOrganizerStats: vi.fn() }));
 import { getOrganizerStats } from "../lib/organizer-events";
 import OrganizerStatsPage from "../app/organizer/stats/page";

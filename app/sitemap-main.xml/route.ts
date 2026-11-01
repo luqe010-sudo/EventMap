@@ -11,6 +11,11 @@ export async function GET() {
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://mapaimprez.pl/dla-organizatorow</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://mapaimprez.pl/regulamin</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>

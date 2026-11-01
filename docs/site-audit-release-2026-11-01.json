@@ -1,0 +1,174 @@
+{
+  "deployment": "dpl_97HoVYrcU87oe5hHGupWmJvDhfVs",
+  "checkedAt": "2026-11-01T20:43:57.320504+00:00",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "expected": 200,
+      "ok": true,
+      "location": null,
+      "descriptionCount": 1,
+      "securityHeaders": {
+        "Content-Security-Policy": "object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin"
+      },
+      "heroSpacingCorrect": true
+    },
+    {
+      "path": "/dla-organizatorow",
+      "status": 200,
+      "expected": 200,
+      "ok": true,
+      "location": null,
+      "descriptionCount": 1,
+      "securityHeaders": {
+        "Content-Security-Policy": "object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin"
+      }
+    },
+    {
+      "path": "/regulamin",
+      "status": 200,
+      "expected": 200,
+      "ok": true,
+      "location": null,
+      "descriptionCount": 1,
+      "securityHeaders": {
+        "Content-Security-Policy": "object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin"
+      }
+    },
+    {
+      "path": "/koncerty",
+      "status": 200,
+      "expected": 200,
+      "ok": true,
+      "location": null,
+      "descriptionCount": 1,
+      "securityHeaders": {
+        "Content-Security-Policy": "object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin"
+      },
+      "ogUrl": "https://mapaimprez.pl/koncerty"
+    },
+    {
+      "path": "/nie-ma-takiej-strony-xyzqw",
+      "status": 404,
+      "expected": 404,
+      "ok": true,
+      "location": null
+    },
+    {
+      "path": "/koncerty/nie-ma-takiego-miasta-xyzqw",
+      "status": 404,
+      "expected": 404,
+      "ok": true,
+      "location": null
+    },
+    {
+      "path": "/admin",
+      "status": 307,
+      "expected": 307,
+      "ok": true,
+      "location": "/login?next=%2Fadmin"
+    },
+    {
+      "path": "/account",
+      "status": 307,
+      "expected": 307,
+      "ok": true,
+      "location": "/login?next=/account"
+    },
+    {
+      "path": "/organizer",
+      "status": 307,
+      "expected": 307,
+      "ok": true,
+      "location": "/login"
+    },
+    {
+      "path": "/KONCERTY?kiedy=today",
+      "status": 308,
+      "expected": 308,
+      "ok": true,
+      "location": "/koncerty?kiedy=today"
+    },
+    {
+      "path": "/koncerty/dzis",
+      "status": 307,
+      "expected": 307,
+      "ok": true,
+      "location": "/koncerty?kiedy=today"
+    },
+    {
+      "path": "/api/events/search?lat=abc",
+      "status": 400,
+      "expected": 400,
+      "ok": true,
+      "location": null
+    },
+    {
+      "path": "/api/events/search?sort=nearest",
+      "status": 400,
+      "expected": 400,
+      "ok": true,
+      "location": null
+    },
+    {
+      "path": "/api/events/search?citySlug=gorzow-wielkopolski&radius=30",
+      "status": 400,
+      "expected": 400,
+      "ok": true,
+      "location": null
+    },
+    {
+      "path": "/api/events/search",
+      "status": 200,
+      "expected": 200,
+      "ok": true,
+      "location": null,
+      "pageSize": 12,
+      "rows": 12,
+      "hasEmail": false,
+      "publicOnly": true
+    },
+    {
+      "path": "/sitemap-cities.xml",
+      "status": 200,
+      "expected": 200,
+      "ok": true,
+      "location": null
+    },
+    {
+      "path": "/sitemap-categories.xml",
+      "status": 200,
+      "expected": 200,
+      "ok": true,
+      "location": null
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "expected": 200,
+      "ok": true,
+      "location": null
+    },
+    {
+      "path": "www",
+      "status": 200,
+      "url": "https://mapaimprez.pl/",
+      "ok": true
+    }
+  ],
+  "passed": 19,
+  "total": 19
+}

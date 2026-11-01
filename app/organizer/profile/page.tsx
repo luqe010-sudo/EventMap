@@ -1,3 +1,4 @@
+import { requireOrganizerAccess } from "@/lib/auth";
 import OrganizerProfileForm from "@/components/OrganizerProfileForm";
 import OrganizerSectionNav from "@/components/OrganizerSectionNav";
 import { getOrganizerProfileData } from "@/lib/organizer-events";
@@ -6,6 +7,7 @@ import { organizerUpdateProfileFormAction } from "@/lib/organizer-form-actions";
 export const dynamic = "force-dynamic";
 
 export default async function OrganizerProfilePage() {
+  await requireOrganizerAccess("/organizer/profile");
   const data = await getOrganizerProfileData();
 
   return (

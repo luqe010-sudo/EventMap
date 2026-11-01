@@ -202,7 +202,7 @@ export default function HomePage({
       return `Kalendarz: ${toPluralCategoryName(activeCategory).toLowerCase()} ${activeLocationPhrase}`;
     }
     if (activeCategory) {
-      return `Nadchodzące ${toPluralCategoryName(activeCategory).toLowerCase()} w Polsce`;
+      return `Wydarzenia z kategorii ${toPluralCategoryName(activeCategory)} w Polsce`;
     }
     if (activeLocationPhrase) {
       return `Nadchodzące wydarzenia ${activeLocationPhrase}`;
@@ -266,7 +266,7 @@ export default function HomePage({
   const openedEventRelated = useMemo(() => {
     if (!openedEvent) return [];
     return events
-      .filter((e) => e.id !== openedEvent.id && e.category === openedEvent.category)
+      .filter((e) => e.id !== openedEvent.id && e.category === openedEvent.category && e.citySlug === openedEvent.citySlug)
       .slice(0, 3);
   }, [events, openedEvent]);
 
@@ -712,7 +712,7 @@ export default function HomePage({
         } satisfies MobileWorkspaceHistory
       },
       "",
-      url
+      url + window.location.hash
     );
   }, [currentSearchUrl, openedEventId, viewMode]);
 
@@ -783,6 +783,17 @@ export default function HomePage({
     setHasOpenedMap(true);
     window.requestAnimationFrame(() => setViewMode("map"));
   }, [pushWorkspaceHistory, selectMapEvent, viewMode]);
+
+  useEffect(() => {
+    function navigateToMap() {
+      if (window.location.hash !== "#mapa") return;
+      if (window.matchMedia("(max-width: 760px)").matches) showMobileMap();
+      else document.getElementById("desktop-map")?.scrollIntoView({ block: "start" });
+    }
+    navigateToMap();
+    window.addEventListener("hashchange", navigateToMap);
+    return () => window.removeEventListener("hashchange", navigateToMap);
+  }, [showMobileMap]);
 
   const showMobileList = useCallback(() => {
     if (viewMode === "event") pushWorkspaceHistory("list");
@@ -1119,14 +1130,12 @@ export default function HomePage({
       )}
 
       <HeroSection
-        onSelectCategory={(cat) => setCategory(cat)}
-        onSelectFree={() => { setPriceMode("free"); setCategory("Wszystkie"); }}
-        onSelectDateFilter={(f) => setDateFilter(f)}
+        onSelectCategory={(cat) => { setCategory(cat); setDateFilter("all"); setCustomDate(""); setPriceMode("all"); scrollToResults(); }}
+        onSelectFree={() => { setPriceMode("free"); setCategory("Wszystkie"); setDateFilter("all"); setCustomDate(""); scrollToResults(); }}
+        onSelectDateFilter={(f) => { setDateFilter(f); setCustomDate(""); setCategory("Wszystkie"); setPriceMode("all"); scrollToResults(); }}
         title={pageTitle}
         subtitle={pageSubtitle}
       />
-
-      <FeaturedEvents events={featuredEvents} onOpenEvent={openMobileEvent} />
 
       <SearchPanel
         locationInput={locationInput}
@@ -1239,6 +1248,7 @@ export default function HomePage({
           </section>
 
           {/* City categories tiles grid and quick timing links — below events */}
+          <FeaturedEvents events={featuredEvents} onOpenEvent={openMobileEvent} />
           {!activeCategory && activeLocation && (
             <section className="cityCategoriesSec">
               <div className="citySecHeader">
@@ -1522,4 +1532,8 @@ function getDateFilterLabel(filter: DateFilter) {
   if (filter === "week") return "Ten tydzień";
   if (filter === "custom") return "Wybrany termin";
   return "Wszystkie terminy";
+}
+
+function scrollToResults() {
+  document.getElementById("events-list")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }

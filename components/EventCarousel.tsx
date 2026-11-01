@@ -7,6 +7,7 @@ import type { EventItem } from "@/lib/events";
 import { eventPath } from "@/lib/slugs";
 import { formatEventCardDate, formatEventCardDistance, formatEventCardLocation, formatEventCardPrice } from "@/lib/event-presentation";
 import EventCardSaveButton from "./EventCardSaveButton";
+import EventVisual from "./EventVisual";
 
 export type CarouselEvent = { event: EventItem; distanceKm: number };
 
@@ -72,7 +73,7 @@ export default function EventCarousel({ events, title, description, onOpenEvent,
               if (!onOpenEvent || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !window.matchMedia("(max-width: 760px)").matches) return;
               e.preventDefault(); onOpenEvent(event.id);
             }}>
-              <div className="eventCarouselImageWrap"><img src={event.imageUrl} alt="" loading="lazy" /></div>
+              <div className="eventCarouselImageWrap"><EventVisual event={event} /></div>
               <div className="eventCarouselBody">
                 <span className="eventCarouselCategory" style={{ color: event.categoryColor }}>{event.category}</span>
                 <h3>{event.title}</h3>

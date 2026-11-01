@@ -15,9 +15,9 @@ export function formatEventCardPrice(event: CardPrice) {
 
   const minimum = finitePrice(event.price_min);
   const maximum = finitePrice(event.price_max);
-  const amount = new Intl.NumberFormat("pl-PL", { maximumFractionDigits: 2 });
+  const amount = new Intl.NumberFormat("pl-PL", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const money = new Intl.NumberFormat("pl-PL", {
-    style: "currency", currency, minimumFractionDigits: 0, maximumFractionDigits: 2
+    style: "currency", currency, minimumFractionDigits: 2, maximumFractionDigits: 2
   });
 
   if (minimum != null && maximum != null) {

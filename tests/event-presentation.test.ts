@@ -6,14 +6,14 @@ const price = { price_type: "paid", price_min: 117.9, price_max: 117.9, currency
 const normalized = (value: string) => value.replace(/\s/g, " ");
 
 it("formats a known price and range in Polish without losing the currency", () => {
-  expect(normalized(formatEventCardPrice(price))).toBe("117,9 zł");
-  expect(normalized(formatEventCardPrice({ ...price, price_min: 100, price_max: 117.9 }))).toBe("100–117,9 zł");
-  expect(normalized(formatEventCardPrice({ ...price, currency: "EUR" }))).toBe("117,9 €");
+  expect(normalized(formatEventCardPrice(price))).toBe("117,90 zł");
+  expect(normalized(formatEventCardPrice({ ...price, price_min: 100, price_max: 117.9 }))).toBe("100,00–117,90 zł");
+  expect(normalized(formatEventCardPrice({ ...price, currency: "EUR" }))).toBe("117,90 €");
 });
 
 it("labels a price limit without implying an exact price", () => {
-  expect(normalized(formatEventCardPrice({ ...price, price_max: null }))).toBe("od 117,9 zł");
-  expect(normalized(formatEventCardPrice({ ...price, price_min: null }))).toBe("do 117,9 zł");
+  expect(normalized(formatEventCardPrice({ ...price, price_max: null }))).toBe("od 117,90 zł");
+  expect(normalized(formatEventCardPrice({ ...price, price_min: null }))).toBe("do 117,90 zł");
 });
 
 it("keeps the source label when the currency or price is unknown or contradictory", () => {

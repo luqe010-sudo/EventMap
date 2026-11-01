@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { formatEventStatus } from "@/lib/event-editor";
 import AdminSectionNav from "@/components/AdminSectionNav";
 import { getAdminDashboard } from "@/lib/admin-events";
 import { formatPolishDate } from "@/lib/date-format";
@@ -13,7 +14,7 @@ export default async function AdminDashboardPage() {
       <div className="managementHeader">
         <div>
           <p className="eyebrow">Panel admina</p>
-          <h1>Moderacja wydarzen</h1>
+          <h1>Moderacja wydarzeń</h1>
         </div>
       </div>
 
@@ -34,7 +35,7 @@ export default async function AdminDashboardPage() {
           <table className="managementTable">
             <thead>
               <tr>
-                <th>Tytul</th>
+                <th>Tytuł</th>
                 <th>Data</th>
                 <th>Miasto</th>
                 <th>Status</th>
@@ -46,7 +47,7 @@ export default async function AdminDashboardPage() {
                   <td><Link href={`/admin/events/${event.id}/edit`}>{event.title}</Link></td>
                   <td>{formatDate(event.start_at)}</td>
                   <td>{event.location?.city?.name ?? "-"}</td>
-                  <td><span className="statusPill">{event.status ?? "draft"}</span></td>
+                  <td><span className="statusPill">{formatEventStatus(event.status)}</span></td>
                 </tr>
               ))}
             </tbody>

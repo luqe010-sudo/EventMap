@@ -8,6 +8,7 @@ import { filterEvents, type DateFilter } from "@/lib/filters";
 import { eventPath } from "@/lib/slugs";
 import { formatPolishDate } from "@/lib/date-format";
 import CityAutocomplete from "@/components/CityAutocomplete";
+import EventVisual from "./EventVisual";
 
 const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
   ssr: false,
@@ -253,7 +254,7 @@ export default function EventExplorer({
                   className={`eventCard ${selectedEventId === event.id ? "selected" : ""}`}
                   onClick={() => selectEvent(event.id)}
                 >
-                  <img src={event.imageUrl} alt="" />
+                  <EventVisual event={event} />
                   <div className="eventCardBody">
                     <div className="cardTopline">
                       <span>{event.category}</span>

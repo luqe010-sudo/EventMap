@@ -23,7 +23,7 @@ export default async function AdminEditOrganizerPage({ params }: { params: Promi
           <p className="eyebrow">Panel admina</p>
           <h1>Edytuj organizatora</h1>
         </div>
-        <Link href="/admin/organizers" className="secondaryButton">Wroc do listy</Link>
+        <Link href="/admin/organizers" className="secondaryButton">Wróć do listy</Link>
       </div>
 
       <AdminSectionNav active="organizers" />

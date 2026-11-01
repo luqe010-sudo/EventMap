@@ -16,7 +16,7 @@ export default async function OrganizerNewEventPage() {
       <main className="appShell managementShell">
         <div className="emptyState">
           <h1>Brakuje organizatora</h1>
-          <p>Nie mozesz dodac wydarzenia, dopoki konto nie jest polaczone z organizatorem.</p>
+          <p>Nie możesz dodac wydarzenia, dopoki konto nie jest polaczone z organizatorem.</p>
         </div>
       </main>
     );
@@ -29,7 +29,7 @@ export default async function OrganizerNewEventPage() {
           <p className="eyebrow">Panel organizatora</p>
           <h1>Dodaj wydarzenie</h1>
         </div>
-        <Link href="/organizer/events" className="secondaryButton">Wroc</Link>
+        <Link href="/organizer/events" className="secondaryButton">Wróć</Link>
       </div>
 
       <OrganizerSectionNav active="events" />

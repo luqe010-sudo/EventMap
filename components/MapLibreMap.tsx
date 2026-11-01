@@ -7,6 +7,8 @@ import type { MutableRefObject } from "react";
 import type { EventItem, EventMapMarker, KnownLocation } from "@/lib/events";
 import { hasLocationCoordinates } from "@/lib/event-search";
 import { eventPath } from "@/lib/slugs";
+import { formatPolishDate } from "@/lib/date-format";
+import { getEventCoverPhoto } from "@/lib/event-cover-media";
 import * as LucideIcons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { createRoot } from "react-dom/client";
@@ -20,6 +22,7 @@ type MapLibreMapProps = {
   onSelectEvent: (eventId: string) => void;
   showEventPopup?: boolean;
   isVisible?: boolean;
+  detailMode?: boolean;
 };
 
 type EventFeatureProperties = {
@@ -31,6 +34,8 @@ type EventFeatureProperties = {
   icon: string;
   description?: string;
   imageUrl?: string;
+  startDate?: string;
+  city?: string;
   url?: string;
 };
 
@@ -66,6 +71,7 @@ export default function MapLibreMap({
   location,
   onSelectEvent,
   showEventPopup = true,
+  detailMode = false,
   isVisible = true
 }: MapLibreMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -95,6 +101,7 @@ export default function MapLibreMap({
       center: initialCenterRef.current,
       zoom: location ? 6 : 4.8,
       attributionControl: false,
+      scrollZoom: !detailMode,
       locale: MAP_LOCALE
     });
 
@@ -126,11 +133,16 @@ export default function MapLibreMap({
 
     void addCategoryImages(map, events).then(() => {
       const source = map.getSource(EVENT_SOURCE_ID) as maplibregl.GeoJSONSource | undefined;
-      source?.setData(buildEventFeatureCollection(events));
+      const data = buildEventFeatureCollection(events);
+      source?.setData(data);
+      // A tile laid out while an icon was loading keeps a bare pin until it is rebuilt.
+      map.once("idle", () => source?.setData(data));
     });
     updateLocationMarker(map, location, locationMarkerRef);
-    fitMapToPoints(map, location, events);
-  }, [events, location, mapReady]);
+    if (detailMode && hasLocationCoordinates(location)) {
+      map.jumpTo({ center: [location.longitude, location.latitude], zoom: 14 });
+    } else fitMapToPoints(map, location, events);
+  }, [detailMode, events, location, mapReady]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -286,10 +298,14 @@ function bindEventLayerInteractions(
         .setLngLat(geometry.coordinates as [number, number])
         .setHTML(renderEventPopup(properties))
         .addTo(map);
+      bindPopupImageFallback(popup);
 
       if (!properties.imageUrl) {
         void loadEventPopupProperties(properties.id).then((fullProperties) => {
-          if (fullProperties) popup.setHTML(renderEventPopup(fullProperties));
+          if (fullProperties) {
+            popup.setHTML(renderEventPopup(fullProperties));
+            bindPopupImageFallback(popup);
+          }
         });
       }
     }
@@ -325,6 +341,8 @@ function buildEventFeatureCollection(events: MapEvent[]): GeoJSON.FeatureCollect
         icon: getMapEventIcon(event),
         description: "short_description" in event ? event.short_description ?? event.description ?? "" : undefined,
         imageUrl: "imageUrl" in event ? event.imageUrl : undefined,
+        startDate: event.startDate,
+        city: event.city,
         url: getMapEventUrl(event)
       }
     }))
@@ -686,6 +704,17 @@ function adminLevelFilter(adminLevel: string): FilterSpecification {
   return ["==", ["to-string", ["get", "admin_level"]], adminLevel];
 }
 
+const POLISH_VOIVODESHIP_NAME = ["match", ["get", "name"],
+  "Lower Silesian Voivodeship", "dolnośląskie", "Kuyavian-Pomeranian Voivodeship", "kujawsko-pomorskie",
+  "Lublin Voivodeship", "lubelskie", "Lubusz Voivodeship", "lubuskie",
+  "Łódź Voivodeship", "łódzkie", "Lesser Poland Voivodeship", "małopolskie",
+  "Masovian Voivodeship", "mazowieckie", "Opole Voivodeship", "opolskie",
+  "Subcarpathian Voivodeship", "podkarpackie", "Podlaskie Voivodeship", "podlaskie",
+  "Pomeranian Voivodeship", "pomorskie", "Silesian Voivodeship", "śląskie",
+  "Świętokrzyskie Voivodeship", "świętokrzyskie", "Warmian-Masurian Voivodeship", "warmińsko-mazurskie",
+  "Greater Poland Voivodeship", "wielkopolskie", "West Pomeranian Voivodeship", "zachodniopomorskie",
+  ["get", "name"]] as unknown as ExpressionSpecification;
+
 async function addCategoryImages(map: maplibregl.Map, events: MapEvent[]) {
   const uniqueIcons = Array.from(
     new Set(events.map(getMapEventIcon))
@@ -770,6 +799,7 @@ function applyPolishLabels(map: maplibregl.Map) {
     map.setLayoutProperty(layer.id, "text-field", [
       "coalesce",
       ["get", "name:pl"],
+      POLISH_VOIVODESHIP_NAME,
       ["get", "name"],
       ["get", "name:latin"],
       ["get", "name:nonlatin"]
@@ -826,6 +856,7 @@ function addPriorityCityLabels(map: maplibregl.Map) {
       "text-field": [
         "coalesce",
         ["get", "name:pl"],
+        POLISH_VOIVODESHIP_NAME,
         ["get", "name"],
         ["get", "name:latin"],
         ["get", "name:nonlatin"]
@@ -887,12 +918,19 @@ function renderEventPopup(properties: EventFeatureProperties) {
   const address = escapeHtml(properties.address);
   const imageUrl = properties.imageUrl ? escapeHtml(properties.imageUrl) : "";
   const description = properties.description ? truncateText(properties.description, 130) : "";
+  const date = properties.startDate ? formatPolishDate(properties.startDate, { day: "numeric", month: "short" }) : "";
+  const photo = getEventCoverPhoto(properties);
 
   return `
     <article class="mapEventPopup">
-      ${imageUrl ? `<a class="mapEventPopupImageLink" href="${url}" aria-label="${title}">
-        <img class="mapEventPopupImage" src="${imageUrl}" alt="" loading="lazy" />
-      </a>` : ""}
+      <a class="mapEventPopupImageLink" href="${url}" aria-label="${title}">
+        <div class="mapEventPopupCover${photo ? " mapEventPopupCover--photo" : ""}" aria-hidden="true" ${imageUrl ? "hidden" : ""}>
+          ${photo ? `<img class="mapEventPopupBackdrop" src="${escapeHtml(photo.url)}" alt="" width="1200" height="800" loading="lazy" /><em class="mapEventPopupPhotoNote">Zdjęcie ilustracyjne</em>` : ""}
+          <small>${escapeHtml(properties.category)}</small><strong>${title}</strong>
+          <span>${escapeHtml([date, properties.city].filter(Boolean).join(" · "))}</span>
+        </div>
+        ${imageUrl ? `<img class="mapEventPopupImage" src="${imageUrl}" alt="" loading="lazy" />` : ""}
+      </a>
       <div class="mapEventPopupBody">
         <a class="mapEventPopupTitle" href="${url}">${title}</a>
         <p class="mapEventPopupAddress">${address}</p>
@@ -900,6 +938,22 @@ function renderEventPopup(properties: EventFeatureProperties) {
       </div>
     </article>
   `;
+}
+
+function bindPopupImageFallback(popup: maplibregl.Popup) {
+  const element = popup.getElement();
+  const image = element?.querySelector<HTMLImageElement>(".mapEventPopupImage");
+  const cover = element?.querySelector<HTMLElement>(".mapEventPopupCover");
+  const background = element?.querySelector<HTMLImageElement>(".mapEventPopupBackdrop");
+  if (background) {
+    const removeBackground = () => { background.remove(); element?.querySelector(".mapEventPopupPhotoNote")?.remove(); cover?.classList.remove("mapEventPopupCover--photo"); };
+    background.addEventListener("error", removeBackground, { once: true });
+    if (background.complete && background.naturalWidth === 0) removeBackground();
+  }
+  if (!image || !cover) return;
+  const showCover = () => { image.remove(); cover.hidden = false; };
+  image.addEventListener("error", showCover, { once: true });
+  if (image.complete && image.naturalWidth === 0) showCover();
 }
 
 async function loadEventPopupProperties(eventId: string): Promise<EventFeatureProperties | null> {
@@ -924,6 +978,8 @@ function eventToFeatureProperties(event: EventItem): EventFeatureProperties {
     icon: event.categoryRelation?.icon || "CircleHelp",
     description: event.short_description ?? event.description ?? "",
     imageUrl: event.imageUrl,
+    startDate: event.startDate,
+    city: event.city,
     url: eventPath(event)
   };
 }

@@ -16,7 +16,7 @@ export default async function AdminNewCityPage() {
           <p className="eyebrow">Panel admina</p>
           <h1>Dodaj miasto SEO</h1>
         </div>
-        <Link href="/admin/cities" className="secondaryButton">Wroc do listy</Link>
+        <Link href="/admin/cities" className="secondaryButton">Wróć do listy</Link>
       </div>
 
       <AdminSectionNav active="cities" />

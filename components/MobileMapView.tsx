@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { CalendarDays, List, Map, MapPin, X } from "lucide-react";
 import type { EventItem, EventMapMarker, KnownLocation } from "@/lib/events";
 import { formatPolishDate } from "@/lib/date-format";
+import EventVisual from "./EventVisual";
 
 const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
   ssr: false,
@@ -100,7 +101,7 @@ export default function MobileMapView({
           >
             <X size={17} aria-hidden="true" />
           </button>
-          <img src={selectedEvent.imageUrl} alt="" loading="lazy" />
+          <EventVisual event={selectedEvent} variant="compact" />
           <div className="mobileMapPreviewBody">
             <span className="mobileMapPreviewCategory" style={{ color: selectedEvent.categoryColor }}>
               {selectedEvent.category}

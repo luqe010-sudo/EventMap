@@ -16,7 +16,7 @@ export default function DeleteLocationButton({
   const [pending, startTransition] = useTransition();
 
   function onClick() {
-    if (!confirm(`Czy na pewno chcesz usunac lokalizacje "${locationName}"?`)) {
+    if (!confirm(`Czy na pewno chcesz usunąć lokalizację "${locationName}"?`)) {
       return;
     }
 
@@ -27,7 +27,7 @@ export default function DeleteLocationButton({
       } catch (error) {
         const message = error instanceof Error
           ? error.message
-          : "Wystapil blad podczas usuwania lokalizacji.";
+          : "Wystąpił błąd podczas usuwania lokalizacji.";
         alert(message);
       }
     });
@@ -39,9 +39,9 @@ export default function DeleteLocationButton({
       className="dangerButton"
       disabled={pending}
       onClick={onClick}
-      title={`Usun lokalizacje ${locationName}`}
+      title={`Usuń lokalizację ${locationName}`}
     >
-      {pending ? "Usuwam..." : "Usun"}
+      {pending ? "Usuwam..." : "Usuń"}
     </button>
   );
 }

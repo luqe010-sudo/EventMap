@@ -54,6 +54,8 @@ type PhotonFeature = {
     street?: string;
     housenumber?: string;
     postcode?: string;
+    osm_key?: string;
+    osm_value?: string;
   };
   geometry?: {
     type: "Point";
@@ -100,6 +102,8 @@ const VOIVODESHIP_NAME_MAP: Record<string, string> = {
   "subcarpathian": "podkarpackie",
   "subcarpathian voivodeship": "podkarpackie",
   "podkarpackie": "podkarpackie",
+  "podlachian": "podlaskie",
+  "podlachian voivodeship": "podlaskie",
   "podlaskie": "podlaskie",
   "podlaskie voivodeship": "podlaskie",
   "pomeranian": "pomorskie",
@@ -190,7 +194,7 @@ async function searchPhotonPolishCities(query: string): Promise<GeocodingResult[
     limit: String(MAX_CITY_RESULTS * 2),
     bbox: "14.07,49,24.15,54.84"
   });
-  ["city", "locality", "district"].forEach((layer) => params.append("layer", layer));
+  ["city", "locality"].forEach((layer) => params.append("layer", layer));
 
   const response = await fetch(`${PHOTON_API_URL}?${params}`, {
     headers: { "Accept-Language": "pl,en;q=0.7" }
@@ -288,6 +292,7 @@ function mapNominatimResult(result: NominatimResult): GeocodingResult {
 }
 
 function mapPhotonCityResult(feature: PhotonFeature): GeocodingResult | null {
+  if (feature.properties.osm_key !== "place" || !["city", "town", "village", "hamlet"].includes(feature.properties.osm_value ?? "")) return null;
   const coordinates = feature.geometry?.coordinates;
   const name = feature.properties.name?.trim();
   if (!name || !coordinates || feature.properties.countrycode !== "PL") return null;
@@ -373,8 +378,8 @@ function uniqueResults(results: GeocodingResult[]) {
     const key = [
       normalizeSearchText(result.city ?? ""),
       normalizeSearchText(result.address ?? ""),
-      result.latitude.toFixed(5),
-      result.longitude.toFixed(5)
+      normalizeSearchText(result.voivodeship ?? ""),
+      normalizeSearchText(result.county ?? "")
     ].join("|");
     if (seen.has(key)) return false;
     seen.add(key);

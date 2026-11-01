@@ -111,6 +111,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
   const [profileOpen, setProfileOpen] = useState(false);
   const [theme, setTheme] = useState<ThemeMode>("light");
   const [resolvedAuth, setResolvedAuth] = useState<NavbarAuth>(auth);
+  const [authReady, setAuthReady] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
 
   const dashboardHref =
@@ -142,10 +143,14 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
         return response.json() as Promise<NavbarAuth>;
       })
       .then((nextAuth) => {
-        if (active) setResolvedAuth(nextAuth);
+        if (!active) return;
+        setResolvedAuth(nextAuth);
+        setAuthReady(true);
       })
       .catch(() => {
-        if (active) setResolvedAuth({ isLoggedIn: false });
+        if (!active) return;
+        setResolvedAuth({ isLoggedIn: false });
+        setAuthReady(true);
       });
 
     return () => {
@@ -227,10 +232,18 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
     window.location.assign("/");
   }
 
+  function handleMapClick(event: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    if (href !== "/#mapa" || pathname !== "/") return;
+    event.preventDefault();
+    setMenuOpen(false);
+    window.location.hash = "mapa";
+    window.dispatchEvent(new Event("hashchange"));
+  }
+
   const navLinks = [
     { href: "/", label: "Odkryj", icon: <IconDiscover /> },
-    { href: "/#events-list", label: "Mapa", icon: <IconMap /> },
-    { href: "/organizer", label: "Dla organizatorów", icon: <IconOrganizer /> },
+    { href: "/#mapa", label: "Mapa", icon: <IconMap /> },
+    { href: "/dla-organizatorow", label: "Dla organizatorów", icon: <IconOrganizer /> },
     { href: "/regulamin", label: "Regulamin", icon: <IconDocument /> },
   ];
 
@@ -253,6 +266,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
               key={link.href}
               href={link.href}
               className={`navLink${isActive(link.href) ? " navLinkActive" : ""}`}
+              onClick={(event) => handleMapClick(event, link.href)}
             >
               {link.label}
             </Link>
@@ -322,6 +336,8 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
                 </div>
               )}
             </div>
+          ) : !authReady ? (
+            <span className="navLoginPlaceholder" aria-hidden="true" />
           ) : (
             <Link href="/login" className="navLoginBtn">
               <IconLogin />
@@ -356,7 +372,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
               key={link.href}
               href={link.href}
               className={`navMobileLink${isActive(link.href) ? " navMobileLinkActive" : ""}`}
-              onClick={() => setMenuOpen(false)}
+              onClick={(event) => { setMenuOpen(false); handleMapClick(event, link.href); }}
             >
               {link.icon}
               <span>{link.label}</span>
@@ -415,6 +431,8 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
                 </button>
               </form>
             </>
+          ) : !authReady ? (
+            <span className="navMobileLoginPlaceholder" aria-hidden="true" />
           ) : (
             <Link href="/login" className="navMobileLoginBtn" onClick={() => setMenuOpen(false)}>
               <IconLogin />

@@ -6,7 +6,7 @@ import { getUserAccountData } from "@/lib/user-account";
 export const dynamic = "force-dynamic";
 
 export default async function OrganizerSavedEventsPage() {
-  const data = await getUserAccountData();
+  const data = await getUserAccountData("/organizer/saved");
   if (data.profile?.role !== "organizer") redirect("/account");
 
   return (

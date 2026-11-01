@@ -1,3 +1,5 @@
+import { listingMetadata } from "@/lib/listing-metadata";
+import { redirectLowercasePath } from "@/lib/canonical-path";
 import { serializeJsonLd } from "@/lib/json-ld";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
@@ -45,11 +47,11 @@ export async function generateMetadata({
     const category = await getCategoryBySlugFromDb(categorySlug);
     if (!category) return {};
     const pluralName = toPluralCategoryName(category.name);
-    return {
+    return listingMetadata({
       title: `${pluralName} w okolicy | MapaImprez`,
       description: `Odkryj wydarzenia z kategorii ${pluralName} w pobliżu wybranego punktu.`,
       robots: { index: false, follow: false },
-    };
+    });
   }
 
   // 1. Try category + city
@@ -60,13 +62,13 @@ export async function generateMetadata({
 
     const pluralCategory = toPluralCategoryName(category.name);
     const locationText = formatInCity(cityLocation.label);
-    return {
+    return listingMetadata({
       title: `${pluralCategory} ${locationText} | MapaImprez`,
       description: `Nadchodzące wydarzenia z kategorii ${pluralCategory} ${locationText}. Filtruj po dacie, odległości i cenie.`,
       alternates: {
         canonical: `/${toPluralCategorySlug(category.slug)}/${cityLocation.slug ?? toSlug(cityLocation.label)}`
       }
-    };
+    });
   }
 
   // 2. Try city + time
@@ -78,13 +80,13 @@ export async function generateMetadata({
     const locationText = formatInCity(cityLocation.label);
     const timeLabel = citySlug === "dzis" ? "dzisiaj" : citySlug === "weekend" ? "w weekend" : "w tym tygodniu";
 
-    return {
+    return listingMetadata({
       title: `Wydarzenia ${locationText} ${timeLabel} | MapaImprez`,
       description: `Imprezy i wydarzenia ${locationText} zaplanowane ${timeLabel}. Koncerty, teatr, sport. Sprawdź co robić ${timeLabel}!`,
       alternates: {
         canonical: `/${cityLocation.slug ?? toSlug(cityLocation.label)}/${citySlug}`
       }
-    };
+    });
   }
 
   return {};
@@ -99,6 +101,7 @@ export default async function CategoryCityPage({
 }) {
   const { category: categorySlug, city: citySlug } = await params;
   const resolvedSearchParams = await searchParams;
+  redirectLowercasePath([categorySlug, citySlug], resolvedSearchParams);
   const requestedFilters = parsePublicFilterParams(resolvedSearchParams);
 
   // Handle /{category}/lokalizacja?lat=...&lng=...&radius=...
@@ -174,6 +177,11 @@ export default async function CategoryCityPage({
   const category = await getCategoryBySlugFromDb(categorySlug);
   if (category) {
     const pluralCategorySlug = toPluralCategorySlug(category.slug);
+    if (citySlug in dateFilterMap) {
+      redirect(appendPublicFilters(`/${pluralCategorySlug}`, {
+        ...requestedFilters, dateFilter: dateFilterMap[citySlug as keyof typeof dateFilterMap], customDate: undefined
+      }));
+    }
 
     const cityLocation = await resolveCityLocation(citySlug);
     if (!cityLocation) {

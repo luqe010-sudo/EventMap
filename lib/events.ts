@@ -1,3 +1,4 @@
+import { PublicSearchInputError } from "./public-search-params";
 import { resolveDateRange } from "./date-range";
 import { publicDateLowerBoundExpression } from "./event-dates";
 import type { Database } from "@/database.types";
@@ -65,7 +66,7 @@ export type EventWithRelations = Pick<
   } | null;
   organizer: Pick<
     OrganizerRow,
-    "name" | "slug" | "website" | "facebook_url" | "phone" | "email" | "logo_url" | "type" | "is_verified"
+    "name" | "slug" | "website" | "facebook_url" | "phone" | "logo_url" | "type" | "is_verified"
   > | null;
   sources: EventSourceSummary[];
 };
@@ -194,7 +195,7 @@ type SupabaseEventRecord = EventRow & {
   } | null;
   organizer: Pick<
     OrganizerRow,
-    "name" | "slug" | "website" | "facebook_url" | "phone" | "email" | "logo_url" | "type" | "is_verified"
+    "name" | "slug" | "website" | "facebook_url" | "phone" | "logo_url" | "type" | "is_verified"
   > | null;
   sources: EventSourceSummary[] | null;
 };
@@ -224,9 +225,8 @@ type SupabaseEventSitemapRecord = Pick<EventRow, "slug" | "start_at" | "updated_
   } | null;
 };
 
-const FALLBACK_IMAGE = "/background.png";
 const DEFAULT_CATEGORY_COLOR = "#64748b";
-export const PUBLIC_EVENTS_PAGE_SIZE = 20;
+export const PUBLIC_EVENTS_PAGE_SIZE = 12;
 export const PUBLIC_EVENTS_MAX_RESULTS = 300;
 export const PUBLIC_EVENT_MARKER_LIMIT = 10000;
 // Above this volume, a database search/RPC is required. Never present a truncated pool as complete.
@@ -255,7 +255,7 @@ const EVENT_SELECT = `
   updated_at,
   category:categories(id, name, slug, icon, color),
   location:locations(id, name, address, city_id, municipality, county, voivodeship, latitude, longitude, google_maps_url, city:cities(id, name, slug, latitude, longitude, county, voivodeship, is_active)),
-  organizer:organizers!events_organizer_id_fkey(name, slug, website, facebook_url, phone, email, logo_url, type, is_verified),
+  organizer:organizers!events_organizer_id_fkey(name, slug, website, facebook_url, phone, logo_url, type, is_verified),
   sources:event_sources(source_name, source_url, source_type, last_seen_at)
 `;
 
@@ -281,7 +281,7 @@ const EVENT_SELECT_WITH_INNER_LOCATION = `
   updated_at,
   category:categories(id, name, slug, icon, color),
   location:locations!inner(id, name, address, city_id, municipality, county, voivodeship, latitude, longitude, google_maps_url, city:cities(id, name, slug, latitude, longitude, county, voivodeship, is_active)),
-  organizer:organizers!events_organizer_id_fkey(name, slug, website, facebook_url, phone, email, logo_url, type, is_verified),
+  organizer:organizers!events_organizer_id_fkey(name, slug, website, facebook_url, phone, logo_url, type, is_verified),
   sources:event_sources(source_name, source_url, source_type, last_seen_at)
 `;
 
@@ -475,6 +475,7 @@ export async function listPublicEventSitemapEntries(limit = 10000): Promise<Publ
     .or("is_cancelled.is.null,is_cancelled.eq.false")
     .order("start_at", { ascending: true })
     .limit(Math.min(Math.max(Math.floor(limit), 1), 10000))
+    .or(publicDateLowerBoundExpression(new Date().toISOString()))
     .returns<SupabaseEventSitemapRecord[]>();
 
   if (error) throw new Error(`Nie udalo sie pobrac mapy wydarzen: ${error.message}`);
@@ -532,10 +533,10 @@ async function resolvePublicSearchContext(options: PublicEventSearchOptions): Pr
   const origin = hasLocationCoordinates(centre) ? { latitude: centre.latitude, longitude: centre.longitude } : undefined;
   const radiusRequested = options.radiusKm != null;
   if (radiusRequested && (!origin || !Number.isFinite(options.radiusKm))) {
-    throw new Error("Nie można wyznaczyć promienia: brak poprawnych współrzędnych miejsca.");
+    throw new PublicSearchInputError("Nie można wyznaczyć promienia: brak poprawnych współrzędnych miejsca.");
   }
   if (options.sortBy === "nearest" && !origin) {
-    throw new Error("Nie można sortować według odległości: brak współrzędnych miejsca.");
+    throw new PublicSearchInputError("Nie można sortować według odległości: brak współrzędnych miejsca.");
   }
 
   return {
@@ -1028,7 +1029,7 @@ function mapEventRecord(record: SupabaseEventRecord): EventItem {
 
   return {
     ...base,
-    imageUrl: record.main_image_url ?? FALLBACK_IMAGE,
+    imageUrl: record.main_image_url?.trim() || "",
     startDate: record.start_at,
     endDate: record.end_at ?? undefined,
     address,

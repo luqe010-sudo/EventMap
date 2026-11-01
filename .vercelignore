@@ -4,6 +4,7 @@ node_modules
 .vercel
 .agents
 .codex
+.claude
 
 .env*
 client_secret_*.json
@@ -13,8 +14,16 @@ test_strony
 vercel-diagnostics
 importers
 scraping
+scripts
+data/content-supply
+assets/event-illustrations
 supabase
 docs
 tests
 vitest.config.mts
 tsconfig.tsbuildinfo
+.github
+AGENTS.md
+AUDIT.md
+PROJECT_BRIEF.md
+README.md

@@ -15,7 +15,7 @@ export default function NotFound() {
         <h1>Nie znaleziono strony</h1>
         <p>Ten adres nie prowadzi do aktywnej strony MapaImprez.pl.</p>
         <Link href="/" className="primaryButton">
-          Wroc na strone glowna
+          Wróć na stronę główną
         </Link>
       </div>
     </main>

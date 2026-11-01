@@ -16,6 +16,7 @@ type EventDetailMapProps = {
 export default function EventDetailMap({ event, location }: EventDetailMapProps) {
   return (
     <MapLibreMap
+      detailMode
       events={[event]}
       selectedEventId={event.id}
       location={location}

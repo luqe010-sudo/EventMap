@@ -7,9 +7,11 @@ import "./globals.css";
 import "./discovery.css";
 import "./search-panel.css";
 import "./event-venue-deck.css";
+import "./event-visual.css";
+import "./audit-fixes.css";
 
 const SITE_DESCRIPTION =
-  "Znajdz koncerty, festyny, targi, wydarzenia sportowe, rodzinne i kulturalne w Polsce. Filtruj wydarzenia po dacie, miescie, kategorii, cenie i promieniu.";
+  "Znajdź koncerty, festyny, targi, wydarzenia sportowe, rodzinne i kulturalne w Polsce. Filtruj wydarzenia po dacie, mieście, kategorii, cenie i promieniu.";
 
 const THEME_INIT_SCRIPT = `
 (function () {
@@ -82,7 +84,6 @@ export default function RootLayout({
   return (
     <html lang="pl" suppressHydrationWarning>
       <head>
-        <meta name="description" content={SITE_DESCRIPTION} />
         <meta name="color-scheme" content="light dark" />
         <link rel="preload" as="image" href="/background-mobile.webp" media="(max-width: 760px)" />
         <link rel="preload" as="image" href="/background-dark-mobile.webp" media="(max-width: 760px)" />

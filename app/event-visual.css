@@ -1,0 +1,83 @@
+/* Local licensed thematic photos complement factual, category-based covers. */
+.eventVisual { width: 100%; height: 100%; min-width: 0; position: relative; overflow: hidden; isolation: isolate; container-type: inline-size; }
+.eventVisual--image { display: grid; place-items: center; background: #1d252b; }
+.eventVisual img.eventVisualImage { display: block; width: 100%; height: 100%; min-height: 0; max-height: 100%; object-fit: contain; transform: none !important; border-radius: 0; }
+.eventVisual--cover { background: var(--event-visual-tint, #354f5d); color: #fffaf0; }
+.eventVisualCover { height: 100%; min-height: inherit; box-sizing: border-box; display: grid; grid-template-rows: auto 1fr auto; gap: 8px; padding: clamp(12px, 5cqw, 24px); position: relative; overflow: hidden; background: linear-gradient(145deg, transparent 5%, rgba(0, 0, 0, .24)); }
+.eventVisual img.eventVisualBackdrop { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; max-height: none; object-fit: cover; transform: none; z-index: 0; }
+.eventVisual--photo .eventVisualCover::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(8, 18, 24, .62) 0%, rgba(8, 18, 24, .64) 35%, rgba(8, 18, 24, .88) 100%); pointer-events: none; }
+.eventVisual--photo .eventVisualOrbit, .eventVisual--photo .eventVisualSymbol { display: none; }
+.eventVisual--photo .eventVisualEyebrow, .eventVisual--photo .eventVisualHeadline, .eventVisual--photo .eventVisualFooter { z-index: 2; }
+.eventVisual--photo .eventVisualHeadline { text-shadow: 0 1px 8px rgba(0, 0, 0, .25); }
+.eventVisual--photo .eventVisualEyebrow { flex-wrap: wrap; row-gap: 3px; color: #fffaf0; }
+.eventVisualImageNote { display: block; flex-basis: 100%; text-transform: none; font-size: 8px; line-height: 1.2; letter-spacing: .015em; font-weight: 450; color: rgba(255, 250, 240, .78); }
+.eventVisualOrbit { position: absolute; right: -19%; top: -44%; width: 100%; aspect-ratio: 1; border: 1px solid var(--event-visual-accent); border-radius: 50%; opacity: .25; pointer-events: none; }
+.eventVisualOrbit::after { content: ""; position: absolute; inset: 16%; border: inherit; border-radius: inherit; }
+.eventVisualSymbol { position: absolute; right: -8%; top: 22%; width: 58%; height: 72%; color: var(--event-visual-accent); opacity: .13; transform: rotate(-15deg); pointer-events: none; }
+.eventVisualEyebrow { position: relative; display: flex; align-items: center; gap: 6px; padding-right: 20px; min-width: 0; color: var(--event-visual-accent); font-size: clamp(9px, 3.2cqw, 12px); font-weight: 650; line-height: 1.2; letter-spacing: .06em; text-transform: uppercase; }
+.eventVisualEyebrow svg { flex-shrink: 0; }
+.eventVisualEyebrow span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.eventVisualHeadline { position: relative; align-self: center; font-size: clamp(14px, 7.4cqw, 30px); line-height: 1.08; font-weight: 750; letter-spacing: -.035em; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-wrap: balance; }
+.eventVisualFooter { position: relative; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 8px; padding-top: 7px; border-top: 1px solid rgba(255, 250, 240, .25); font-size: clamp(9px, 3cqw, 12px); line-height: 1.35; font-weight: 550; }
+.eventVisualCity { text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.eventVisualPhotoCredit { flex-basis: 100%; font-size: 10px; font-weight: 400; line-height: 1.4; color: rgba(255, 250, 240, .68); }
+.eventVisualTime { white-space: nowrap; }
+.eventVisual--detail { height: auto; aspect-ratio: 4 / 5; max-height: 640px; }
+.edHeroImageWrap > .eventVisual--detail.eventVisual--image { aspect-ratio: auto; max-height: none; }
+.edHeroImageWrap > .eventVisual--detail.eventVisual--image img.eventVisualImage { height: auto; max-height: 640px; }
+.eventVisual--detail .eventVisualCover { padding: clamp(24px, 7cqw, 40px); gap: 20px; }
+.eventVisual--detail .eventVisualHeadline { font-size: clamp(28px, 9.2cqw, 46px); -webkit-line-clamp: 5; line-height: 1.06; }
+.eventVisual--detail .eventVisualEyebrow { font-size: 12px; padding-right: 0; }
+.eventVisual--detail .eventVisualEyebrow svg { width: 20px; height: 20px; }
+.eventVisual--detail .eventVisualFooter { font-size: 13px; padding-top: 12px; }
+.eventVisual--detail .eventVisualImageNote { font-size: 10px; }
+.eventVisual--compact .eventVisualCover { padding: 9px; gap: 5px; }
+.eventVisual--compact .eventVisualHeadline { font-size: 13px; -webkit-line-clamp: 4; }
+.eventVisual--compact .eventVisualEyebrow { font-size: 8px; padding-right: 0; }
+.eventVisual--compact .eventVisualEyebrow svg { display: none; }
+.eventVisual--compact .eventVisualFooter { font-size: 8px; display: block; }
+.eventVisual--compact .eventVisualFooter > span { display: block; text-align: left; }
+.eventVisual--compact .eventVisualImageNote { font-size: 7px; }
+.eventVisual--compact .eventVisualTime { display: none; }
+.eventCardHImageWrap > .eventVisual, .eventCarouselImageWrap > .eventVisual { min-height: 100%; }
+.eventCarouselImageWrap .eventVisualCover { padding: 11px 14px; gap: 5px; }
+.eventCarouselImageWrap .eventVisualHeadline { font-size: 18px; -webkit-line-clamp: 2; }
+.eventCarouselImageWrap .eventVisualEyebrow { font-size: 9px; }
+.eventCarouselImageWrap .eventVisualFooter { font-size: 10px; padding-top: 5px; }
+.eventCard > .eventVisual { height: 180px; }
+.accountSavedCardLink > .eventVisual { min-height: 160px; }
+.mobileMapPreview > .eventVisual { min-height: 132px; }
+.edHeroImagePast .eventVisual { filter: grayscale(1); }
+.mapEventPopupCover { display: grid; align-content: center; gap: 9px; min-height: 130px; box-sizing: border-box; padding: 18px; background: linear-gradient(145deg, #174a4c, #223846); color: #fffaf0; }
+.mapEventPopupCover small { color: #a8d7c5; font-size: 10px; text-transform: uppercase; letter-spacing: .06em; }
+.mapEventPopupCover strong { font-size: 17px; line-height: 1.2; }
+.mapEventPopupCover span { font-size: 11px; }
+.mapEventPopupCover--photo { position: relative; isolation: isolate; }
+.mapEventPopupCover--photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8, 18, 24, .68), rgba(8, 18, 24, .88)); z-index: -1; }
+.mapEventPopupCover img.mapEventPopupBackdrop { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; min-height: 0; object-fit: cover; }
+.mapEventPopupPhotoNote { font-size: 8px; line-height: 1.2; font-style: normal; color: rgba(255, 250, 240, .8); }
+.mapEventPopupCover[hidden] { display: none; }
+.mapEventPopupImageLink .mapEventPopupImage { object-fit: contain; background: #1d252b; }
+@container (max-width: 170px) {
+  .eventVisualTime { display: none; }
+  .eventVisualFooter { display: block; }
+  .eventVisualCity { display: block; text-align: left; }
+}
+@container (max-width: 130px) {
+  .eventVisualCover, .eventVisual--compact .eventVisualCover { padding: 7px; gap: 4px; }
+  .eventVisualEyebrow, .eventVisual--compact .eventVisualEyebrow { font-size: 7px; padding-right: 0; }
+  .eventVisualEyebrow svg { display: none; }
+  .eventVisual--photo .eventVisualEyebrow > span:not(.eventVisualImageNote) { display: none; }
+  .eventVisualImageNote, .eventVisual--compact .eventVisualImageNote { font-size: 7px; }
+  .eventVisualHeadline, .eventVisual--compact .eventVisualHeadline { font-size: 11px; line-height: 1.12; -webkit-line-clamp: 3; }
+  .eventVisualFooter, .eventVisual--compact .eventVisualFooter { font-size: 7px; padding-top: 3px; }
+  .eventVisualFooter .eventVisualCity { display: none; }
+}
+@media (max-width: 760px) {
+  html[data-theme] .mobileEventView .edShellEmbedded .eventVisual img.eventVisualImage { height: 100%; object-fit: contain; }
+  .mobileEventView .edShellEmbedded .edHeroImageWrap > .eventVisual--detail { height: 100%; max-height: none; min-height: 0; aspect-ratio: auto; }
+  .mobileEventView .edShellEmbedded .eventVisual--detail .eventVisualCover { padding: 20px; gap: 10px; }
+  .mobileEventView .edShellEmbedded .eventVisual--detail .eventVisualHeadline { font-size: clamp(23px, 7.4cqw, 34px); -webkit-line-clamp: 3; }
+  .mobileEventView .edShellEmbedded .eventVisual--detail .eventVisualFooter { font-size: 11px; padding-top: 7px; }
+  .accountSavedCardLink > .eventVisual { aspect-ratio: 2 / 1; min-height: 0; }
+}

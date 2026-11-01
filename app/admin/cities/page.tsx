@@ -30,7 +30,7 @@ export default async function AdminCitiesPage({ searchParams }: { searchParams: 
         resultCount={cityPages.length}
         fields={[
           { name: "q", label: "Szukaj", placeholder: "Miasto, slug, opis..." },
-          { name: "voivodeship", label: "Wojewodztwo" },
+          { name: "voivodeship", label: "Województwo" },
           { name: "status", label: "Status", type: "select", options: statusOptions },
           { name: "events", label: "Wydarzenia", type: "select", options: eventCountOptions }
         ]}
@@ -45,7 +45,7 @@ export default async function AdminCitiesPage({ searchParams }: { searchParams: 
                 <th>Miasto</th>
                 <th>Slug</th>
                 <th>Status</th>
-                <th>Wojewodztwo</th>
+                <th>Województwo</th>
                 <th>Centrum</th>
                 <th>Wydarzenia</th>
                 <th>Dodano</th>
@@ -60,7 +60,7 @@ export default async function AdminCitiesPage({ searchParams }: { searchParams: 
                   <td><code>{cityPage.city?.slug ?? "-"}</code></td>
                   <td>
                     <span className={cityPage.city?.is_active ? "successPill" : "statusPill"}>
-                      {cityPage.city?.is_active ? "aktywna" : "wylaczona"}
+                      {cityPage.city?.is_active ? "aktywna" : "wyłączona"}
                     </span>
                   </td>
                   <td>{cityPage.city?.voivodeship ?? "-"}</td>
@@ -97,19 +97,19 @@ function formatCoordinates(latitude: number | null, longitude: number | null) {
 
 const statusOptions = [
   { label: "Aktywne", value: "active" },
-  { label: "Wylaczone", value: "inactive" }
+  { label: "Wyłączone", value: "inactive" }
 ];
 
 const eventCountOptions = [
   { label: "Z wydarzeniami", value: "with" },
-  { label: "Bez wydarzen", value: "without" }
+  { label: "Bez wydarzeń", value: "without" }
 ];
 
 const citySortOptions = [
   { label: "Miasto", value: "name" },
   { label: "Slug", value: "slug" },
-  { label: "Wojewodztwo", value: "voivodeship" },
-  { label: "Liczba wydarzen", value: "events" },
+  { label: "Województwo", value: "voivodeship" },
+  { label: "Liczba wydarzeń", value: "events" },
   { label: "Dodano", value: "created_at" },
   { label: "Edytowano", value: "updated_at" },
   { label: "Status", value: "status" }

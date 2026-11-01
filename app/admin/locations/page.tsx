@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { requireAdmin } from "@/lib/auth";
 import AdminSectionNav from "@/components/AdminSectionNav";
 import AdminTableFilters from "@/components/AdminTableFilters";
 import DeleteLocationButton from "@/components/DeleteLocationButton";
@@ -10,6 +11,7 @@ export const dynamic = "force-dynamic";
 type SearchParams = Record<string, string | string[] | undefined>;
 
 export default async function AdminLocationsPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  await requireAdmin("/admin/locations");
   const filters = parseLocationFilters(await searchParams);
   const locations = await listAdminLocations(filters);
 
@@ -20,7 +22,7 @@ export default async function AdminLocationsPage({ searchParams }: { searchParam
           <p className="eyebrow">Panel admina</p>
           <h1>Lokalizacje</h1>
         </div>
-        <Link href="/admin/locations/new" className="primaryButton">Dodaj lokalizacje</Link>
+        <Link href="/admin/locations/new" className="primaryButton">Dodaj lokalizację</Link>
       </div>
 
       <AdminSectionNav active="locations" />
@@ -32,7 +34,7 @@ export default async function AdminLocationsPage({ searchParams }: { searchParam
         fields={[
           { name: "q", label: "Szukaj", placeholder: "Miejsce, adres, kod, place id..." },
           { name: "city", label: "Miasto" },
-          { name: "voivodeship", label: "Wojewodztwo" },
+          { name: "voivodeship", label: "Województwo" },
           { name: "events", label: "Wydarzenia", type: "select", options: eventCountOptions },
           { name: "duplicates", label: "Duplikaty", type: "select", options: duplicateOptions }
         ]}
@@ -112,7 +114,7 @@ function formatCoordinates(latitude: number | null, longitude: number | null) {
 
 const eventCountOptions = [
   { label: "Z wydarzeniami", value: "with" },
-  { label: "Bez wydarzen", value: "without" }
+  { label: "Bez wydarzeń", value: "without" }
 ];
 
 const duplicateOptions = [
@@ -123,7 +125,7 @@ const locationSortOptions = [
   { label: "Miasto", value: "city" },
   { label: "Nazwa miejsca", value: "name" },
   { label: "Adres", value: "address" },
-  { label: "Liczba wydarzen", value: "events" },
+  { label: "Liczba wydarzeń", value: "events" },
   { label: "Duplikaty", value: "duplicates" },
   { label: "Dodano", value: "created_at" },
   { label: "Edytowano", value: "updated_at" }

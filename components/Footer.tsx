@@ -19,7 +19,7 @@ export default function Footer() {
           <h3>Nawigacja</h3>
           <ul>
             <li><Link href="/">Odkryj wydarzenia</Link></li>
-            <li><Link href="/#events-list">Mapa i lista</Link></li>
+            <li><Link href="/#mapa">Mapa i lista</Link></li>
             <li><Link href="/organizer">Panel organizatora</Link></li>
             <li><Link href="/regulamin">Regulamin i prywatność</Link></li>
           </ul>
@@ -37,6 +37,7 @@ export default function Footer() {
       </div>
 
       <div className="footerBottom">
+        <span id="cookie-settings" />
         <p>(c) {new Date().getFullYear()} MapaImprez.pl</p>
       </div>
     </footer>

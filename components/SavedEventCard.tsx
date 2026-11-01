@@ -7,6 +7,7 @@ import type { EventItem } from "@/lib/events";
 import { formatPolishDate } from "@/lib/date-format";
 import { eventPath } from "@/lib/slugs";
 import { removeSavedEventAction } from "@/lib/user-account-actions";
+import EventVisual from "./EventVisual";
 
 export default function SavedEventCard({ event }: { event: EventItem }) {
   const pathname = usePathname();
@@ -46,7 +47,7 @@ export default function SavedEventCard({ event }: { event: EventItem }) {
   return (
     <article className="accountSavedCard">
       <Link href={eventPath(event)} className="accountSavedCardLink">
-        <img src={event.imageUrl} alt="" loading="lazy" />
+        <EventVisual event={event} />
         <div className="accountSavedCardBody">
           <span className="accountSavedCategory" style={{ color: event.categoryColor }}>
             {event.category}

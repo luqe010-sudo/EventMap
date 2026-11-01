@@ -1,0 +1,47 @@
+/* Audit 2026-11-01: shared controls and theme contrast. */
+#events-list, #desktop-map { scroll-margin-top: 100px; }
+.footerBottom .cookieSettingsButton {
+  position: static; inset: auto; transform: none; box-shadow: none;
+  background: #fff; color: #252120; border: 1px solid #625d59;
+}
+html[data-theme="dark"] .legalDocument,
+html[data-theme="dark"] .legalDocumentHeader { background: var(--dark-block); }
+html[data-theme="dark"] .legalSection p,
+html[data-theme="dark"] .legalSection li,
+html[data-theme="dark"] .legalDocumentHeader p { color: #c7d1df; }
+html[data-theme="dark"] .legalDocument h2,
+html[data-theme="dark"] .mobileMapPreview h2,
+html[data-theme="dark"] .mobileMapPreview h2 a,
+html[data-theme="dark"] .footerColumn h3 { color: #f3f5f7; }
+.edBottomGrid .edRelatedSection { grid-column: 1 / -1; min-width: 0; width: 100%; }
+html[data-theme="light"] .eventCardMeta,
+html[data-theme="light"] .eventCardCategory { color: #59504b; }
+.primaryButton { background: #b83e10; color: #fff; }
+html[data-theme="light"] .homePage .eventCardHCategory { color: #655048 !important; }
+html[data-theme="light"] .homePage .eventCardHDate,
+html[data-theme="light"] .homePage .eventCardHLocation,
+html[data-theme="light"] .homePage .eventCardHDesc { color: #59504b; }
+@media (max-width: 760px) {
+  .discoverySearchSummary:has(.discoverySearchSummaryEmpty) { display: none; }
+  html[data-theme] .homePage .heroCardTitle { display: none; }
+  html[data-theme] .homePage .heroSubtitle br { display: none; }
+  html[data-theme] .homePage .heroSection { padding-block: 20px; gap: 12px; }
+  html[data-theme] .homePage .heroTitle { font-size: 2rem; }
+  .heroSubtitle { margin-block: 12px; }
+  .heroCard { padding: 12px; }
+  .heroQuickTiles { gap: 6px; }
+  .heroQuickTile { min-height: 72px; padding: 8px; }
+  .seoTextSec, .internalLinksSec, .cityCategoriesSec { content-visibility: auto; }
+  .homePage .seoTextCard { max-height: 180px; overflow: auto; }
+  .homePage .internalLinksGrid, .homePage .cityTilesGrid { max-height: 220px; overflow: auto; }
+}
+html[data-theme="dark"] .legalToc { background: var(--dark-block); }
+html[data-theme="dark"] .legalToc a { color: #c7d1df; }
+html[data-theme="dark"] .legalToc a:hover { background: rgba(255, 255, 255, 0.08); color: #f3f5f7; }
+html[data-theme="dark"] .accountDetails dd,
+html[data-theme="dark"] .accountSavedCardBody h3 { color: #f3f5f7; }
+html[data-theme="dark"] .accountSavedCardBody p,
+html[data-theme="dark"] .accountSavedCardBody > span:last-child { color: #c7d1df; }
+html[data-theme="dark"] .accountSavedRemove { color: #fca5a5; }
+.navLoginPlaceholder { display: inline-block; width: 104px; height: 38px; }
+.navMobileLoginPlaceholder { display: block; height: 52px; }

@@ -15,7 +15,7 @@ export default async function AdminNewEventPage() {
           <p className="eyebrow">Panel admina</p>
           <h1>Dodaj wydarzenie</h1>
         </div>
-        <Link href="/admin/events" className="secondaryButton">Wroc do listy</Link>
+        <Link href="/admin/events" className="secondaryButton">Wróć do listy</Link>
       </div>
 
       <AdminSectionNav active="events" />

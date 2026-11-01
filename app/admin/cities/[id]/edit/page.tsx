@@ -23,7 +23,7 @@ export default async function AdminEditCityPage({ params }: { params: Promise<Pa
           <p className="eyebrow">Panel admina</p>
           <h1>Edytuj miasto SEO</h1>
         </div>
-        <Link href="/admin/cities" className="secondaryButton">Wroc do listy</Link>
+        <Link href="/admin/cities" className="secondaryButton">Wróć do listy</Link>
       </div>
 
       <AdminSectionNav active="cities" />

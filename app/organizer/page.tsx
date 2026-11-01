@@ -77,7 +77,7 @@ export default async function OrganizerDashboardPage() {
               ))}
             </ul>
           ) : (
-            <p className="panelMutedText">Nie masz jeszcze nadchodzacych wydarzen.</p>
+            <p className="panelMutedText">Nie masz jeszcze nadchodzacych wydarzeń.</p>
           )}
         </section>
 
@@ -126,12 +126,12 @@ export default async function OrganizerDashboardPage() {
               {dashboard.locations.map((location) => (
                 <li key={location.id}>
                   <strong>{location.name}</strong>
-                  <span>{location.city} - {location.eventsCount} wydarzen</span>
+                  <span>{location.city} - {location.eventsCount} wydarzeń</span>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="panelMutedText">Miejsca pojawia sie po dodaniu wydarzen z lokalizacja.</p>
+            <p className="panelMutedText">Miejsca pojawia sie po dodaniu wydarzeń z lokalizacja.</p>
           )}
         </section>
 

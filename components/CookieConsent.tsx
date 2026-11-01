@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Script from "next/script";
+import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 import { clearAnalyticsSession, readAnalyticsConsent, saveAnalyticsConsent, subscribeAnalyticsConsent, type AnalyticsConsentValue } from "@/lib/analytics-consent";
 
@@ -88,14 +89,14 @@ export default function CookieConsent() {
         </section>
       )}
 
-      {ready && consent !== null && !settingsOpen && (
+      {ready && consent !== null && !settingsOpen && document.getElementById("cookie-settings") && createPortal(
         <button
           type="button"
           className="cookieSettingsButton"
           onClick={() => setSettingsOpen(true)}
         >
-          Cookies
-        </button>
+          Ustawienia cookies
+        </button>, document.getElementById("cookie-settings")!
       )}
     </>
   );

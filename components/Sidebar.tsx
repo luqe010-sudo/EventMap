@@ -125,7 +125,7 @@ export default function Sidebar({
         <div className="sidebarSectionHeader">
           <h3>Wydarzenia na mapie</h3>
         </div>
-        <div className="sidebarMapWrap" ref={mapWrapRef}>
+        <div id="desktop-map" className="sidebarMapWrap" ref={mapWrapRef}>
           {isMapLoaded ? (
             <MapLibreMap
               events={mapEvents}

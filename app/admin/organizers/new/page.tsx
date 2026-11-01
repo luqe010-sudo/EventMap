@@ -16,7 +16,7 @@ export default async function AdminNewOrganizerPage() {
           <p className="eyebrow">Panel admina</p>
           <h1>Dodaj organizatora</h1>
         </div>
-        <Link href="/admin/organizers" className="secondaryButton">Wroc do listy</Link>
+        <Link href="/admin/organizers" className="secondaryButton">Wróć do listy</Link>
       </div>
 
       <AdminSectionNav active="organizers" />

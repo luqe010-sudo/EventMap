@@ -3,6 +3,7 @@ import { serializeJsonLd } from "@/lib/json-ld";
 
 import Link from "next/link";
 import EventCarousel from "./EventCarousel";
+import EventVisual from "./EventVisual";
 import { CalendarDays, DollarSign, MapPin, Tag } from "lucide-react";
 import EventHeroCta, { EventSaveButton } from "@/components/EventDetailActions";
 import EventAnalyticsTracker, { TrackedEventLink } from "@/components/EventAnalyticsTracker";
@@ -116,7 +117,7 @@ export default function EventDetailView({
                 "@type": "Event",
                 name: event.title,
                 description: event.description ?? event.short_description,
-                image: event.imageUrl,
+                image: event.imageUrl || undefined,
                 startDate: event.start_at,
                 endDate: event.end_at ?? undefined,
                 eventStatus: event.is_cancelled
@@ -224,11 +225,7 @@ export default function EventDetailView({
               >
                 {event.category}
               </span>
-              <img
-                src={event.imageUrl}
-                alt={event.title}
-                className="edHeroImage"
-              />
+              <EventVisual event={event} variant="detail" decorative={false} loading="eager" imageClassName="edHeroImage" />
               {isPast ? (
                 <div className="edPastEventOverlay">
                   <p>

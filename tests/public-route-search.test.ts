@@ -96,14 +96,14 @@ describe("SSR city and radius semantics", () => {
 
 describe("public route redirects", () => {
   it("retains allowed filters while normalising category and city slugs", async () => {
-    await expect(CategoryCityPage({ params: Promise.resolve({ category: "koncert", city: "Warszawa" }), searchParams: Promise.resolve({ kiedy: "tomorrow", cena: "free", radius: "25", sort: "nearest", unexpected: "discard" }) })).rejects.toThrow(RouteRedirect);
+    await expect(CategoryCityPage({ params: Promise.resolve({ category: "koncert", city: "warszawa" }), searchParams: Promise.resolve({ kiedy: "tomorrow", cena: "free", radius: "25", sort: "nearest", unexpected: "discard" }) })).rejects.toThrow(RouteRedirect);
     const url = new URL(vi.mocked(redirect).mock.calls[0][0], "https://example.invalid");
     expect(url.pathname).toBe("/koncerty/warszawa");
     expect(Object.fromEntries(url.searchParams)).toEqual({ kiedy: "tomorrow", cena: "free", radius: "25", sort: "nearest" });
   });
 
   it("keeps an explicit all-dates override when normalising a time route", async () => {
-    await expect(EventOrTimePage({ params: Promise.resolve({ category: "koncert", city: "Warszawa", event: "weekend" }), searchParams: Promise.resolve({ kiedy: "all", cena: "free" }) })).rejects.toThrow(RouteRedirect);
+    await expect(EventOrTimePage({ params: Promise.resolve({ category: "koncert", city: "warszawa", event: "weekend" }), searchParams: Promise.resolve({ kiedy: "all", cena: "free" }) })).rejects.toThrow(RouteRedirect);
     const url = new URL(vi.mocked(redirect).mock.calls[0][0], "https://example.invalid");
     expect(url.pathname).toBe("/koncerty/warszawa/weekend");
     expect(url.searchParams.get("kiedy")).toBe("all");
@@ -134,8 +134,8 @@ describe("public route redirects", () => {
   });
 
   it("retains filters in a canonical direct-event redirect", async () => {
-    vi.mocked(getEventBySlug).mockResolvedValue({ id: "one", title: "Koncert", slug: "Koncert", category: "Koncerty", categorySlug: "koncerty", city: "Warszawa", citySlug: "warszawa" } as EventItem);
-    await expect(EventOrTimePage({ params: Promise.resolve({ category: "koncert", city: "Warszawa", event: "Koncert" }), searchParams: Promise.resolve({ kiedy: "today", cena: "free" }) })).rejects.toThrow(RouteRedirect);
+    vi.mocked(getEventBySlug).mockResolvedValue({ id: "one", title: "Koncert", slug: "Koncert", category: "Koncerty", categorySlug: "koncerty", city: "warszawa", citySlug: "warszawa" } as EventItem);
+    await expect(EventOrTimePage({ params: Promise.resolve({ category: "koncert", city: "warszawa", event: "koncert" }), searchParams: Promise.resolve({ kiedy: "today", cena: "free" }) })).rejects.toThrow(RouteRedirect);
     const url = new URL(vi.mocked(redirect).mock.calls[0][0], "https://example.invalid");
     expect(url.searchParams.get("kiedy")).toBe("today");
     expect(url.searchParams.get("cena")).toBe("free");

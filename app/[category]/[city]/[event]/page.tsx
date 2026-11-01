@@ -1,3 +1,5 @@
+import { listingMetadata } from "@/lib/listing-metadata";
+import { redirectLowercasePath } from "@/lib/canonical-path";
 import { serializeJsonLd } from "@/lib/json-ld";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
@@ -6,7 +8,6 @@ import EventDetailView from "@/components/EventDetailView";
 import {
   getCategoryBySlugFromDb,
   listCategories,
-  listEvents,
   listPublicCategoryCityRoutes,
   resolveCityLocation,
   getEventBySlug,
@@ -38,19 +39,19 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     const pluralCategory = toPluralCategoryName(category.name);
     const locationText = formatInCity(cityLocation.label);
     const timeLabel = eventOrTime === "dzis" ? "dzisiaj" : eventOrTime === "weekend" ? "w weekend" : "w tym tygodniu";
-    return {
+    return listingMetadata({
       title: `${pluralCategory} ${locationText} - wydarzenia ${timeLabel} | MapaImprez`,
       description: `Wydarzenia z kategorii ${pluralCategory} ${locationText} zaplanowane ${timeLabel}. Sprawdź kalendarz i mapę.`,
       alternates: {
         canonical: `/${toPluralCategorySlug(category.slug)}/${cityLocation.slug ?? toSlug(cityLocation.label)}/${eventOrTime}`
       }
-    };
+    });
   }
 
   const event = await getEventBySlug(eventOrTime);
   if (!event) return {};
 
-  return {
+  return listingMetadata({
     title: `${event.title} | MapaImprez`,
     description: event.short_description || event.description || `Wydarzenie ${event.title} w miejscowości ${event.city}.`,
     alternates: {
@@ -76,7 +77,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
       description: event.short_description || event.description || `Wydarzenie ${event.title} w miejscowości ${event.city}.`,
       ...(event.imageUrl ? { images: [event.imageUrl] } : {}),
     },
-  };
+  });
 }
 
 export default async function EventOrTimePage({
@@ -87,7 +88,9 @@ export default async function EventOrTimePage({
   searchParams: Promise<SearchParams>;
 }) {
   const { category: categorySlug, city: citySlug, event: eventOrTime } = await params;
-  const requestedFilters = parsePublicFilterParams(await searchParams);
+  const rawSearchParams = await searchParams;
+  redirectLowercasePath([categorySlug, citySlug, eventOrTime], rawSearchParams);
+  const requestedFilters = parsePublicFilterParams(rawSearchParams);
 
   const isTimeKeyword = eventOrTime === "dzis" || eventOrTime === "weekend" || eventOrTime === "ten-tydzien";
 
@@ -195,15 +198,13 @@ export default async function EventOrTimePage({
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const allEventsForCategory = await listEvents({
+  const nearby = await searchPublicEvents({
     categoryId: event.categoryRelation?.id,
+    citySlug: event.citySlug,
     dateFrom: today.toISOString(),
-    limit: 50,
+    pageSize: 4,
   });
-
-  const relatedEvents = allEventsForCategory
-    .filter((e) => e.id !== event.id)
-    .slice(0, 3);
+  const relatedEvents = nearby.events.filter((item) => item.id !== event.id).slice(0, 3);
 
   return <EventDetailView event={event} relatedEvents={relatedEvents} />;
 }

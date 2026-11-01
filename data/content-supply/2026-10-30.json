@@ -1,0 +1,444 @@
+{
+  "checked_at": "2026-10-30T15:29:40Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Cała Polska — rotacja 8 województw niewzmacnianych w poprzedniej paczce",
+  "voivodeships": [
+    "warmińsko-mazurskie",
+    "kujawsko-pomorskie",
+    "podlaskie",
+    "śląskie",
+    "lubuskie",
+    "opolskie",
+    "podkarpackie",
+    "zachodniopomorskie"
+  ],
+  "media_policy": "docs/event-media-policy.md; bez AI i bez kopiowania plakatów bez potwierdzonych praw; brak main_image_url. Nowy EventVisual jest lokalny i nie został wdrożony na produkcję.",
+  "events": [
+    {
+      "title": "Constract Olsztyn – Futsal Świecie | FOGO Futsal Ekstraklasa",
+      "category_slug": "sport",
+      "start_at": "2026-10-31T16:00:00+01:00",
+      "short_description": "Mecz 11. kolejki FOGO Futsal Ekstraklasy w Małej Arenie Uranii. Otwarcie bram o 15:10. Wstęp biletowany; bilety online oraz ograniczona pula przed wejściem.",
+      "description": "Mecz 11. kolejki FOGO Futsal Ekstraklasy w Małej Arenie Uranii. Otwarcie bram o 15:10. Wstęp biletowany; bilety online oraz ograniczona pula przed wejściem. Aktualne ceny podaje organizator.",
+      "location": {
+        "name": "Hala Urania – Mała Arena",
+        "address": "Aleja Marszałka Józefa Piłsudskiego 44",
+        "city": "Olsztyn",
+        "latitude": 53.7731299,
+        "longitude": 20.495406,
+        "coordinate_source": "https://www.openstreetmap.org/way/101915094"
+      },
+      "source_name": "Hala Urania",
+      "source_url": "https://hala.olsztyn.eu/wydarzenia/constract-olsztyn-vs-futsal-swiecie-fogo-futsal-ekstraklasa/",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://hala.olsztyn.eu/mala-arena/",
+        "https://hala.olsztyn.eu/dla-odwiedzajacych/dojazd-i-parking/"
+      ],
+      "checked_at": "2026-10-30T15:29:40Z",
+      "media_review": "Nie potwierdzono praw do publikacji konkretnego plakatu lub fotografii; main_image_url pozostaje puste. Bez AI i pobierania mediów."
+    },
+    {
+      "title": "Festiwal Smaków Regionalnych — sobota",
+      "category_slug": "targi",
+      "start_at": "2026-11-07T10:00:00+01:00",
+      "end_at": "2026-11-07T18:00:00+01:00",
+      "short_description": "Sobotni dzień spotkań z producentami regionalnej żywności w Hali Urania. W programie degustacje, zakupy u wystawców, pokazy kulinarne i atrakcje rodzinne. Wstęp bezpłatny.",
+      "description": "Sobotni dzień spotkań z producentami regionalnej żywności w Hali Urania. W programie degustacje, zakupy u wystawców, pokazy kulinarne i atrakcje rodzinne. Wstęp bezpłatny. Festiwal trwa przez weekend 7–8 listopada; ten wpis dotyczy soboty w godzinach 10:00–18:00.",
+      "location": {
+        "name": "Hala Urania",
+        "address": "Aleja Marszałka Józefa Piłsudskiego 44",
+        "city": "Olsztyn",
+        "latitude": 53.7731299,
+        "longitude": 20.495406,
+        "coordinate_source": "https://www.openstreetmap.org/way/101915094"
+      },
+      "source_name": "Hala Urania",
+      "source_url": "https://hala.olsztyn.eu/wydarzenia/festiwal-smakow-regionalnych/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://hala.olsztyn.eu/dla-odwiedzajacych/dojazd-i-parking/"
+      ],
+      "checked_at": "2026-10-30T15:29:40Z",
+      "media_review": "Nie potwierdzono praw do publikacji konkretnego plakatu lub fotografii; main_image_url pozostaje puste. Bez AI i pobierania mediów."
+    },
+    {
+      "title": "Listopadowa Lekcja Muzyki X",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-11T13:00:00+01:00",
+      "short_description": "Zespół Pieśni i Tańca Płomienie z kapelą oraz narrator Adam Gajewski przypomną muzyczną i teatralną historię Bydgoszczy. W programie także polskie tańce narodowe. Bilety 30 zł w kasie MCK.",
+      "description": "Zespół Pieśni i Tańca Płomienie z kapelą oraz narrator Adam Gajewski przypomną muzyczną i teatralną historię Bydgoszczy. W programie także polskie tańce narodowe i utwory związane z Jeremim Przyborą. Bilety 30 zł w kasie MCK; wydarzenie w sali koncertowej przy Marcinkowskiego.",
+      "location": {
+        "name": "Miejskie Centrum Kultury w Bydgoszczy",
+        "address": "Marcinkowskiego 12-14",
+        "city": "Bydgoszcz",
+        "latitude": 53.127361,
+        "longitude": 17.997806,
+        "coordinate_source": "https://pl.wikipedia.org/wiki/Miejskie_Centrum_Kultury_w_Bydgoszczy"
+      },
+      "source_name": "Miejskie Centrum Kultury w Bydgoszczy",
+      "source_url": "https://mck-bydgoszcz.pl/program/listopadowa-lekcja-muzyki-x/",
+      "price_type": "paid",
+      "price_min": 30,
+      "price_max": 30,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://mck-bydgoszcz.pl/kontakt/"
+      ],
+      "checked_at": "2026-10-30T15:29:40Z",
+      "media_review": "Nie potwierdzono praw do publikacji konkretnego plakatu lub fotografii; main_image_url pozostaje puste. Bez AI i pobierania mediów."
+    },
+    {
+      "title": "Dzień Świętego Huberta — grodzieńskie spotkanie w CLZ",
+      "category_slug": "kultura",
+      "start_at": "2026-11-03T18:00:00+01:00",
+      "short_description": "Spotkanie poświęcone Grodnu: fotografie Maksima Shveda, quiz oraz akustyczny koncert Alesia Dzianisaua. W programie również zakończenie akcji biegowej Ślad Świętego Huberta. Wstęp wolny.",
+      "description": "Spotkanie poświęcone Grodnu: fotografie Maksima Shveda, quiz oraz akustyczny koncert Alesia Dzianisaua. W programie również zakończenie akcji biegowej Ślad Świętego Huberta i poczęstunek. Wstęp wolny. Organizatorem spotkania jest Centrum im. Ludwika Zamenhofa z udziałem stowarzyszenia Most Life Media.",
+      "location": {
+        "name": "Centrum im. Ludwika Zamenhofa",
+        "address": "Warszawska 19",
+        "city": "Białystok",
+        "latitude": 53.1336903,
+        "longitude": 23.1698715,
+        "coordinate_source": "https://www.openstreetmap.org/way/233056211"
+      },
+      "source_name": "Białostocki Ośrodek Kultury / Centrum im. Ludwika Zamenhofa",
+      "source_url": "https://www.centrumzamenhofa.pl/art,1449,dzien-swietego-huberta",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://bok.bialystok.pl/wydarzenie/grupa-tekstylna-spotkanie/"
+      ],
+      "checked_at": "2026-10-30T15:29:40Z",
+      "media_review": "Nie potwierdzono praw do publikacji konkretnego plakatu lub fotografii; main_image_url pozostaje puste. Bez AI i pobierania mediów."
+    },
+    {
+      "title": "Grupa tekstylna — spotkanie twórcze",
+      "category_slug": "kultura",
+      "start_at": "2026-11-05T17:00:00+01:00",
+      "short_description": "Otwarta grupa dla osób chcących pracować z tekstyliami i opowieściami o pamięci rodzinnej. Można przynieść tkaniny lub pamiątki do twórczego wykorzystania. Wstęp wolny; własne materiały i narzędzia.",
+      "description": "Otwarta grupa dla osób chcących pracować z tekstyliami i opowieściami o pamięci rodzinnej. Można przynieść tkaniny lub pamiątki do twórczego wykorzystania. Wstęp wolny; uczestnicy przynoszą materiały i narzędzia we własnym zakresie. Ten wpis dotyczy spotkania 5 listopada.",
+      "location": {
+        "name": "Centrum im. Ludwika Zamenhofa",
+        "address": "Warszawska 19",
+        "city": "Białystok",
+        "latitude": 53.1336903,
+        "longitude": 23.1698715,
+        "coordinate_source": "https://www.openstreetmap.org/way/233056211"
+      },
+      "source_name": "Białostocki Ośrodek Kultury / Centrum im. Ludwika Zamenhofa",
+      "source_url": "https://bok.bialystok.pl/wydarzenie/grupa-tekstylna-spotkanie/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://www.centrumzamenhofa.pl/art,1448,grupa-tekstylna-spotkanie"
+      ],
+      "checked_at": "2026-10-30T15:29:40Z",
+      "media_review": "Nie potwierdzono praw do publikacji konkretnego plakatu lub fotografii; main_image_url pozostaje puste. Bez AI i pobierania mediów."
+    },
+    {
+      "title": "Wolna pracownia — otwarta przestrzeń twórcza",
+      "category_slug": "kultura",
+      "start_at": "2026-11-19T17:00:00+01:00",
+      "end_at": "2026-11-19T19:00:00+01:00",
+      "short_description": "Otwarta pracownia z trzema stanowiskami tematycznymi i materiałami zapewnionymi przez CLZ. Można dołączyć w dowolnym momencie między 17:00 a 19:00 i tworzyć we własnym tempie. Bez biletów i zapisów.",
+      "description": "Otwarta pracownia z trzema stanowiskami tematycznymi i materiałami zapewnionymi przez CLZ. Można dołączyć w dowolnym momencie między 17:00 a 19:00 i tworzyć we własnym tempie. Wstęp wolny, bez biletów i zapisów; uczestnicy zajmują dostępne miejsce przy stole. Ten wpis dotyczy spotkania 19 listopada.",
+      "location": {
+        "name": "Centrum im. Ludwika Zamenhofa",
+        "address": "Warszawska 19",
+        "city": "Białystok",
+        "latitude": 53.1336903,
+        "longitude": 23.1698715,
+        "coordinate_source": "https://www.openstreetmap.org/way/233056211"
+      },
+      "source_name": "Białostocki Ośrodek Kultury / Centrum im. Ludwika Zamenhofa",
+      "source_url": "https://www.centrumzamenhofa.pl/art,1440,wolna-pracownia-otwarta-przestrzen-tworcza",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://bok.bialystok.pl/wydarzenie/grupa-tekstylna-spotkanie/"
+      ],
+      "checked_at": "2026-10-30T15:29:40Z",
+      "media_review": "Nie potwierdzono praw do publikacji konkretnego plakatu lub fotografii; main_image_url pozostaje puste. Bez AI i pobierania mediów."
+    },
+    {
+      "title": "Poranki Teatralne: C jak cyrk",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-15T12:00:00+01:00",
+      "short_description": "Rodzinny spektakl łączy cyrkową zabawę z polskim alfabetem i ćwiczeniami wymowy. Dzieci uczestniczą w scenicznych działaniach, a artystom towarzyszy muzyka na żywo. Wstęp biletowany; aktualną cenę podaje oficjalna sprzedaż Eventim.",
+      "description": "Rodzinny spektakl łączy cyrkową zabawę z polskim alfabetem i ćwiczeniami wymowy. Dzieci uczestniczą w scenicznych działaniach, a artystom towarzyszy muzyka na żywo. Wydarzenie odbywa się w holu C PreZero Areny Gliwice. Wstęp biletowany; aktualną cenę podaje oficjalna sprzedaż Eventim.",
+      "location": {
+        "name": "PreZero Arena Gliwice — Hol C",
+        "address": "Akademicka 50",
+        "city": "Gliwice",
+        "city_slug": "gliwice",
+        "latitude": 50.285361889966,
+        "longitude": 18.686077623812,
+        "coordinate_source": "https://gama.gliwice.eu/5932-gliwice-prezero-arena"
+      },
+      "source_name": "PreZero Arena Gliwice",
+      "source_url": "https://prezeroarenagliwice.pl/events/poranki-teatralne-c-jak-cyrk/",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://gama.gliwice.eu/391-gliwice-arena-gliwice",
+        "https://maps.google.com?daddr=50.285361889966,18.686077623812"
+      ],
+      "media_review": "Nie potwierdzono jawnej licencji na oficjalny materiał; bez main_image_url, zgodnie z docs/event-media-policy.md.",
+      "checked_at": "2026-10-30T15:29:47Z"
+    },
+    {
+      "title": "Polska – Chorwacja: kwalifikacje MŚ w koszykówce mężczyzn 2027",
+      "category_slug": "mecze",
+      "start_at": "2026-11-27T20:45:00+01:00",
+      "short_description": "Reprezentacja Polski koszykarzy podejmie Chorwację w meczu kwalifikacyjnym do mistrzostw świata 2027. Spotkanie odbędzie się w PreZero Arenie Gliwice. Wstęp biletowany; aktualne ceny i dostępność podaje eBilet.",
+      "description": "Reprezentacja Polski koszykarzy podejmie Chorwację w meczu kwalifikacyjnym do mistrzostw świata 2027. Spotkanie odbędzie się w PreZero Arenie Gliwice. Wstęp biletowany; aktualne ceny i dostępność podaje eBilet.",
+      "location": {
+        "name": "PreZero Arena Gliwice",
+        "address": "Akademicka 50",
+        "city": "Gliwice",
+        "city_slug": "gliwice",
+        "latitude": 50.2852585,
+        "longitude": 18.6876316,
+        "coordinate_source": "Istniejące locations:8bd6e293-b12b-4866-a406-bcbf946363b0 (odczyt 2026-10-30); położenie przy kompleksie potwierdzone geometrią https://api.openstreetmap.org/api/0.6/way/249885670/full.json oraz https://api.openstreetmap.org/api/0.6/way/366613732/full.json",
+        "note": "Zachowano istniejący punkt kompleksu przy Małej Arenie (około 8 m od obrysu, około 46 m od głównego budynku). Nie tworzono niepotwierdzonej nazwy sali. Oficjalny pin GAMA w centrum głównej hali jest dodatkowym dowodem położenia kompleksu."
+      },
+      "source_name": "PreZero Arena Gliwice",
+      "source_url": "https://prezeroarenagliwice.pl/events/kwalifikacje-do-mistrzostw-swiata-w-koszykowce-mezczyzn-2027-polska-chorwacja/",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://gama.gliwice.eu/391-gliwice-arena-gliwice",
+        "https://api.openstreetmap.org/api/0.6/way/249885670/full.json"
+      ],
+      "media_review": "Nie potwierdzono jawnej licencji na oficjalny materiał; bez main_image_url, zgodnie z docs/event-media-policy.md.",
+      "checked_at": "2026-10-30T15:29:47Z"
+    },
+    {
+      "title": "Kto tu nie grał! — wystawa fotografii Lucjusza Cykarskiego",
+      "category_slug": "kultura",
+      "start_at": "2026-11-04T17:00:00+01:00",
+      "short_description": "Wystawa fotografii Lucjusza Cykarskiego dokumentujących muzyków Jazzowej Jesieni w latach 2004–2025. Zbiór pozwala prześledzić zarówno historię festiwalu, jak i rozwój autorskiego spojrzenia fotografa. Wstęp wolny.",
+      "description": "Wystawa fotografii Lucjusza Cykarskiego dokumentujących muzyków Jazzowej Jesieni w latach 2004–2025. Zbiór pozwala prześledzić zarówno historię festiwalu, jak i rozwój autorskiego spojrzenia fotografa. Wstęp wolny.",
+      "location": {
+        "name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
+        "address": "Juliusza Słowackiego 27",
+        "city": "Bielsko-Biała",
+        "city_slug": "bielsko-biala",
+        "latitude": 49.8270983188098,
+        "longitude": 19.0392914499999,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/322/bielskie-centrum-kultury"
+      },
+      "source_name": "Bielskie Centrum Kultury",
+      "source_url": "https://bck.bielsko-biala.pl/kto-tu-nie-gral-wystawa-fotografii-lucjusza-cykarskiego",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://visitbb.pl/praktyczne/obiekt/bielskie-centrum-kultury-im-marii-koterbskiej",
+        "https://www.kupbilecik.pl/pl/place/322/bielskie-centrum-kultury"
+      ],
+      "media_review": "Oficjalny serwis zastrzega prawa autorskie; brak jawnego zakresu dalszej publikacji. Bez main_image_url.",
+      "checked_at": "2026-10-30T15:29:47Z"
+    },
+    {
+      "title": "Soyka / Stańko — odsłuch albumu i rozmowa",
+      "category_slug": "kultura",
+      "start_at": "2026-11-07T14:00:00+01:00",
+      "short_description": "Wspólny odsłuch archiwalnego albumu Stanisława Soyki i Tomasza Stańko oraz rozmowa o jego powstaniu. Gośćmi będą Anna Stańko i Adam Domagała, a spotkanie poprowadzi Mariusz Owczarek. Cafe Maria w BCK; wstęp wolny.",
+      "description": "Wspólny odsłuch archiwalnego albumu Stanisława Soyki i Tomasza Stańko oraz rozmowa o jego powstaniu. Gośćmi będą Anna Stańko i Adam Domagała, a spotkanie poprowadzi Mariusz Owczarek. Wydarzenie w Cafe Maria na pierwszym piętrze BCK towarzyszy Jazzowej Jesieni. Wstęp wolny.",
+      "location": {
+        "name": "Cafe Maria — Bielskie Centrum Kultury",
+        "address": "Juliusza Słowackiego 27",
+        "city": "Bielsko-Biała",
+        "city_slug": "bielsko-biala",
+        "latitude": 49.8270983188098,
+        "longitude": 19.0392914499999,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/322/bielskie-centrum-kultury"
+      },
+      "source_name": "Bielskie Centrum Kultury",
+      "source_url": "https://bck.bielsko-biala.pl/soyka-stanko-arcydziela-z-archiwum-polskiego-radia-odsluch-plyty",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://bck.bielsko-biala.pl/cafe-maria",
+        "https://www.kupbilecik.pl/pl/place/322/bielskie-centrum-kultury"
+      ],
+      "media_review": "Oficjalny serwis zastrzega prawa autorskie; brak jawnego zakresu dalszej publikacji. Bez main_image_url.",
+      "checked_at": "2026-10-30T15:29:47Z"
+    },
+    {
+      "title": "Od zabawy i słuchania do czytania: Bajkowy świat",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-03T11:00:00+01:00",
+      "short_description": "Zajęcia z książkami i zabawami dla dzieci w wieku 2–3 lat, które nie chodzą do żłobka ani przedszkola. Obowiązują wcześniejsze zapisy w Oddziale Dziecięcym: 95 721 58 49. Organizator nie podaje ceny udziału.",
+      "description": "Zajęcia z książkami i zabawami dla dzieci w wieku 2–3 lat, które nie chodzą do żłobka ani przedszkola. Obowiązują wcześniejsze zapisy w Oddziale Dziecięcym: 95 721 58 49. Organizator nie podaje ceny udziału.",
+      "location": {
+        "name": "Biblioteka Herberta — Oddział Dziecięcy",
+        "address": "Sikorskiego 107",
+        "city": "Gorzów Wielkopolski",
+        "latitude": 52.7306092,
+        "longitude": 15.2315019,
+        "coordinate_source": "https://www.openstreetmap.org/way/193925312"
+      },
+      "source_name": "Wojewódzka i Miejska Biblioteka Publiczna im. Zbigniewa Herberta",
+      "source_url": "https://www.wimbp.gorzow.pl/kalendarz-wydarzen/od-zabawy-i-sluchania-do-czytania-bajkowy-swiat.html",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://www.wimbp.gorzow.pl/aktualnosci/wydarzenia-w-listopadzie-2026-roku.html"
+      ],
+      "checked_at": "2026-10-30T15:34:29.030Z",
+      "media_review": "Nie potwierdzono praw do publikacji konkretnego plakatu lub fotografii; main_image_url pozostaje puste. Bez AI i pobierania mediów."
+    },
+    {
+      "title": "Spotkanie z Anną Brzezińską — 24. Opolska Jesień Literacka",
+      "category_slug": "kultura",
+      "start_at": "2026-11-06T18:00:00+01:00",
+      "short_description": "Rozmowa z pisarką i mediewistką o książce „Cierpliwe Genowefy, bezwstydne Magdaleny” oraz codzienności kobiet w średniowieczu. Spotkanie prowadzi Magdalena Najbar. Wstęp wolny.",
+      "description": "Rozmowa z pisarką i mediewistką o książce „Cierpliwe Genowefy, bezwstydne Magdaleny” oraz codzienności kobiet w średniowieczu. Spotkanie prowadzi Magdalena Najbar. Wstęp wolny.",
+      "location": {
+        "name": "Miejska Biblioteka Publiczna — sala konferencyjna",
+        "address": "Minorytów 4",
+        "city": "Opole",
+        "latitude": 50.666704,
+        "longitude": 17.92209,
+        "coordinate_source": "https://mbp.opole.pl/wydarzenia/24-ojl-spotkanie-z-anna-brzezinska/"
+      },
+      "source_name": "Miejska Biblioteka Publiczna w Opolu",
+      "source_url": "https://mbp.opole.pl/wydarzenia/24-ojl-spotkanie-z-anna-brzezinska/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://www.opole.pl/dla-mieszkanca/wydarzenie/24-opolska-jesien-literacka-spotkanie-z-anna-brzezinska-w-miejskiej"
+      ],
+      "checked_at": "2026-10-30T15:34:29.030Z",
+      "media_review": "Nie potwierdzono praw do publikacji konkretnego plakatu lub fotografii; main_image_url pozostaje puste. Bez AI i pobierania mediów."
+    },
+    {
+      "title": "Katarzyna Groniec — Bliżej",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-29T19:00:00+01:00",
+      "short_description": "Kameralny recital Katarzyny Groniec poświęcony piosence literackiej i aktorskiej. Program łączy znane interpretacje z nowszym repertuarem wokalistki. Wstęp biletowany; aktualną cenę podaje serwis sprzedaży ZOK.",
+      "description": "Kameralny recital Katarzyny Groniec poświęcony piosence literackiej i aktorskiej. Program łączy znane interpretacje z nowszym repertuarem wokalistki. Wstęp biletowany; aktualną cenę podaje serwis sprzedaży ZOK.",
+      "location": {
+        "name": "Centrum Nauki Keplera — Planetarium Wenus",
+        "address": "Generała Władysława Sikorskiego 10",
+        "city": "Zielona Góra",
+        "latitude": 51.93606,
+        "longitude": 15.50639,
+        "coordinate_source": "https://mapcarta.com/W207105335"
+      },
+      "source_name": "Zielonogórski Ośrodek Kultury",
+      "source_url": "https://zok.com.pl/katarzyna-groniec-blizej/",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://www.centrumnaukikeplera.pl/regulamin-planetarium-wenus/",
+        "https://zok.abilet.pl/"
+      ],
+      "checked_at": "2026-10-30T15:34:29.030Z",
+      "media_review": "Nie potwierdzono praw do publikacji konkretnego plakatu lub fotografii; main_image_url pozostaje puste. Bez AI i pobierania mediów."
+    },
+    {
+      "title": "X Listopadowe Spotkanie z Historią — początki harcerstwa",
+      "category_slug": "kultura",
+      "start_at": "2026-11-08T12:00:00+01:00",
+      "short_description": "Muzealne spotkanie o początkach skautingu, rzeszowskich drużynach i harcerzach podczas I wojny światowej. W programie prelekcje oraz archiwalne filmy. Udział bezpłatny; osobne bilety obowiązują na wystawy muzeum.",
+      "description": "Muzealne spotkanie o początkach skautingu, rzeszowskich drużynach i harcerzach podczas I wojny światowej. W programie prelekcje oraz archiwalne filmy. Udział bezpłatny; osobne bilety obowiązują na wystawy muzeum.",
+      "location": {
+        "name": "Muzeum Okręgowe — budynek główny",
+        "address": "3 Maja 19",
+        "city": "Rzeszów",
+        "latitude": 50.0352678,
+        "longitude": 22.0012648,
+        "coordinate_source": "https://muzea.org/muzeum/muzeum-okregowe-w-rzeszowie/"
+      },
+      "source_name": "Muzeum Okręgowe w Rzeszowie",
+      "source_url": "https://www.muzeum.rzeszow.pl/pl/2026/10/28/x-listopadowe-spotkanie-z-historia/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [],
+      "end_at": "2026-11-08T15:00:00+01:00",
+      "checked_at": "2026-10-30T15:34:29.030Z",
+      "media_review": "Nie potwierdzono praw do publikacji konkretnego plakatu lub fotografii; main_image_url pozostaje puste. Bez AI i pobierania mediów."
+    },
+    {
+      "title": "Krajobraz pieśnią pisany — koncert na Święto Niepodległości",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-11T17:00:00+01:00",
+      "short_description": "Pieśni Moniuszki, Karłowicza i Szymanowskiego w wykonaniu solistów Podkarpackiego Teatru Muzycznego HALKA, z fortepianem i poezją. Wstęp wolny z wejściówką; odbiór bezpłatnych wejściówek od 2 listopada na portierni WDK.",
+      "description": "Pieśni Moniuszki, Karłowicza i Szymanowskiego w wykonaniu solistów Podkarpackiego Teatru Muzycznego HALKA, z fortepianem i poezją. Wstęp wolny z wejściówką; odbiór bezpłatnych wejściówek od 2 listopada na portierni WDK.",
+      "location": {
+        "name": "Wojewódzki Dom Kultury — sala widowiskowa",
+        "address": "Stefana Okrzei 7",
+        "city": "Rzeszów",
+        "latitude": 50.0393774,
+        "longitude": 22.0037627,
+        "coordinate_source": "https://www.openstreetmap.org/way/167698464"
+      },
+      "source_name": "Podkarpacki Teatr Muzyczny HALKA",
+      "source_url": "https://teatrmuzycznyhalka.rzeszow.pl/2026/10/22/krajobraz-piesnia-pisany-koncert-z-okazji-swieta-11-listopada/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [],
+      "checked_at": "2026-10-30T15:34:29.030Z",
+      "media_review": "Nie potwierdzono praw do publikacji konkretnego plakatu lub fotografii; main_image_url pozostaje puste. Bez AI i pobierania mediów."
+    },
+    {
+      "title": "Wyśpiewaj z nami NIE-PODLEGŁOŚĆ",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-08T17:00:00+01:00",
+      "short_description": "Koncert młodych wokalistów związanych ze szczecińskimi szkołami muzycznymi i Akademią Sztuki. Po występach solowych publiczność wspólnie zaśpiewa pieśni patriotyczne z tekstami wyświetlanymi na ekranie. Wstęp wolny.",
+      "description": "Koncert młodych wokalistów związanych ze szczecińskimi szkołami muzycznymi i Akademią Sztuki. Po występach solowych publiczność wspólnie zaśpiewa pieśni patriotyczne z tekstami wyświetlanymi na ekranie. Wstęp wolny.",
+      "location": {
+        "name": "Pałac Ziemstwa Pomorskiego — Sala Perłowa",
+        "address": "aleja Niepodległości 40",
+        "city": "Szczecin",
+        "latitude": 53.4269889,
+        "longitude": 14.5510278,
+        "coordinate_source": "https://en.wikipedia.org/wiki/Pomeranian_Landowners_Palace"
+      },
+      "source_name": "Akademia Sztuki w Szczecinie",
+      "source_url": "https://www.akademiasztuki.eu/Product/wyspiewaj-z-nami-nie-podleglosc-6ae1e590a4324",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://visitszczecin.eu/pl/kultura/351-palac-ziemstwa-pomorskiego"
+      ],
+      "checked_at": "2026-10-30T15:34:29.030Z",
+      "media_review": "Nie potwierdzono praw do publikacji konkretnego plakatu lub fotografii; main_image_url pozostaje puste. Bez AI i pobierania mediów."
+    }
+  ]
+}

@@ -132,7 +132,7 @@ describe("fresh public event HTTP responses", () => {
 
   it("detail changes from public content to uncached 404 after withdrawal and does not cache a service error", async () => {
     const request = new NextRequest("https://example.invalid/api/events/event");
-    const context = { params: Promise.resolve({ id: "event" }) };
+    const context = { params: Promise.resolve({ id: "00000000-0000-4000-8000-000000000001" }) };
     const first = await detailRoute.GET(request, context);
     expect(first.status).toBe(200);
     expectFresh(first);

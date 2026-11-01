@@ -2,6 +2,7 @@ import { CalendarDays, MapPin } from "lucide-react";
 import type { EventItem } from "@/lib/events";
 import { isFreeEvent } from "@/lib/events";
 import { formatEventCardDate, formatEventCardDistance, formatEventCardLocation, formatEventCardPrice } from "@/lib/event-presentation";
+import EventVisual from "./EventVisual";
 
 type EventCardContentProps = {
   event: EventItem;
@@ -16,13 +17,7 @@ export default function EventCardContent({ event, distanceKm, decorative = false
   return (
     <>
       <div className="eventCardHImageWrap">
-        <img
-          src={event.imageUrl}
-          alt={decorative ? "" : event.title}
-          className="eventCardHImage"
-          loading="lazy"
-          draggable={decorative ? false : undefined}
-        />
+        <EventVisual event={event} imageClassName="eventCardHImage" draggable={decorative ? false : undefined} />
       </div>
       <div className="eventCardHBody">
         <div className="eventCardHTop">

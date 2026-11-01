@@ -43,7 +43,7 @@ export default function HeroSection({ onSelectCategory, onSelectFree, onSelectDa
         <p className="heroSubtitle">
           {subtitle || (
             <>
-              Koncerty, festyny, dożynki, sport i kultura w jednej mapie.<br />
+              Koncerty, festyny, dożynki, sport i kultura w jednej mapie.{" "}<br />
               Wybierz miasto, kategorię i znajdź coś dla siebie.
             </>
           )}

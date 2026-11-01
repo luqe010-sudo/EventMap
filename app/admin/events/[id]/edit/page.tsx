@@ -28,7 +28,7 @@ export default async function AdminEditEventPage({ params }: { params: Promise<P
           <p className="eyebrow">Panel admina</p>
           <h1>Edytuj wydarzenie</h1>
         </div>
-        <Link href="/admin/events" className="secondaryButton">Wroc do listy</Link>
+        <Link href="/admin/events" className="secondaryButton">Wróć do listy</Link>
       </div>
 
       <AdminSectionNav active="events" />

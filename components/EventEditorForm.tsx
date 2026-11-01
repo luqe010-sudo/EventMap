@@ -2,7 +2,7 @@
 
 import { startTransition, useActionState, useState, type FormEvent } from "react";
 import type { EditableEvent, EventEditorOptions } from "@/lib/event-editor";
-import { eventStatuses, toDateTimeLocal } from "@/lib/event-editor";
+import { eventStatuses, formatEventStatus, toDateTimeLocal } from "@/lib/event-editor";
 import { eventTextLimits, type EventEditorState } from "@/lib/event-editor-validation";
 import LocationSection from "@/components/LocationSection";
 
@@ -22,7 +22,7 @@ export default function EventEditorForm({
   submitLabel
 }: EventEditorFormProps) {
   const source = event?.sources?.[0];
-  const selectedOrganizerId = event?.organizer_id ?? options.organizers[0]?.id ?? "";
+  const selectedOrganizerId = event?.organizer_id ?? (mode === "organizer" ? options.organizers[0]?.id ?? "" : "");
   const showAssignedOrganizer = mode === "organizer" && selectedOrganizerId &&
     !options.organizers.some(organizer => organizer.id === selectedOrganizerId);
   const [state, formAction, pending] = useActionState<EventEditorState, FormData>(action, { fieldErrors: {}, error: null });
@@ -69,7 +69,7 @@ export default function EventEditorForm({
       <fieldset disabled={pending} style={{ border: 0, padding: 0, margin: 0, minWidth: 0, display: "contents" }}>
       <div className="formGrid">
         <label>
-          Tytul
+          Tytuł
           <input name="title" required maxLength={eventTextLimits.title} {...attrs("title")} defaultValue={event?.title ?? ""} />
           {error("title")}
         </label>
@@ -81,7 +81,7 @@ export default function EventEditorForm({
       </div>
 
       <label>
-        Krotki opis
+        Krótki opis
         <input name="short_description" maxLength={eventTextLimits.short_description} {...attrs("short_description")} defaultValue={event?.short_description ?? ""} />
         {error("short_description")}
       </label>
@@ -105,7 +105,7 @@ export default function EventEditorForm({
         </label>
         <label className="checkboxLabel">
           <input name="is_all_day" type="checkbox" defaultChecked={Boolean(event?.is_all_day)} />
-          Calodniowe
+          Całodniowe
         </label>
       </div>
 
@@ -113,7 +113,7 @@ export default function EventEditorForm({
         <label>
           Kategoria
           <select name="category_id" {...attrs("category_id")} defaultValue={event?.category_id ?? ""} required>
-            <option value="">Wybierz kategorie</option>
+            <option value="">Wybierz kategorię</option>
             {options.categories.map((category) => (
               <option key={category.id} value={category.id}>{category.name}</option>
             ))}
@@ -137,9 +137,9 @@ export default function EventEditorForm({
         {mode === "admin" ? (
           <label>
             Status
-            <select name="status" {...attrs("status")} defaultValue={event?.status ?? "published"}>
+            <select name="status" {...attrs("status")} defaultValue={event?.status ?? "draft"}>
               {eventStatuses.map((status) => (
-                <option key={status} value={status}>{status}</option>
+                <option key={status} value={status}>{formatEventStatus(status)}</option>
               ))}
             </select>
             {error("status")}
@@ -224,12 +224,12 @@ export default function EventEditorForm({
 
       <div className="formGrid">
         <label>
-          Nazwa zrodla
+          Nazwa źródła
           <input name="source_name" maxLength={eventTextLimits.source_name} {...attrs("source_name")} defaultValue={source?.source_name ?? ""} />
           {error("source_name")}
         </label>
         <label>
-          URL zrodla
+          URL źródła
           <input name="source_url" type="url" maxLength={eventTextLimits.source_url} {...attrs("source_url")} defaultValue={source?.source_url ?? ""} />
           {error("source_url")}
         </label>

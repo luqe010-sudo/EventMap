@@ -23,7 +23,7 @@ export default async function AdminEditLocationPage({ params }: { params: Promis
           <p className="eyebrow">Panel admina</p>
           <h1>Edytuj lokalizacje</h1>
         </div>
-        <Link href="/admin/locations" className="secondaryButton">Wroc do listy</Link>
+        <Link href="/admin/locations" className="secondaryButton">Wróć do listy</Link>
       </div>
 
       <AdminSectionNav active="locations" />

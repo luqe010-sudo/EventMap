@@ -69,8 +69,8 @@ export default function AdminTableFilters({
           <label>
             Kierunek
             <select name="dir" defaultValue={values.dir ?? "desc"}>
-              <option value="desc">Malejaco</option>
-              <option value="asc">Rosnaco</option>
+              <option value="desc">Malejąco</option>
+              <option value="asc">Rosnąco</option>
             </select>
           </label>
         </div>
@@ -78,7 +78,7 @@ export default function AdminTableFilters({
         <div className="adminFiltersActions">
           <span>{resultCount === null ? "Wyniki niedostępne" : `${resultCount} wyników`}</span>
           <button type="submit" className="primaryButton">Filtruj</button>
-          <Link href={action} className="secondaryButton">Wyczysc</Link>
+          <Link href={action} className="secondaryButton">Wyczyść</Link>
         </div>
       </form>
     </section>

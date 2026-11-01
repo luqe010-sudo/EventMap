@@ -1,4 +1,7 @@
 import Link from "next/link";
+import DeleteEventButton from "@/components/DeleteEventButton";
+import { formatEventStatus } from "@/lib/event-editor";
+import { requireAdmin } from "@/lib/auth";
 import AdminSectionNav from "@/components/AdminSectionNav";
 import AdminTableFilters from "@/components/AdminTableFilters";
 import EventSaveNotice from "@/components/EventSaveNotice";
@@ -17,6 +20,7 @@ export const dynamic = "force-dynamic";
 type SearchParams = Record<string, string | string[] | undefined>;
 
 export default async function AdminEventsPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  await requireAdmin("/admin/events");
   const params = await searchParams;
   const filters = parseAdminEventListFilters(params);
   let result: AdminEventListPage | null = null;
@@ -49,11 +53,11 @@ export default async function AdminEventsPage({ searchParams }: { searchParams: 
         values={filters}
         resultCount={result?.totalCount ?? null}
         fields={[
-          { name: "q", label: "Szukaj", placeholder: "Tytul, status, notatka..." },
+          { name: "q", label: "Szukaj", placeholder: "Tytuł, status, notatka..." },
           { name: "status", label: "Status", type: "select", options: eventStatusOptions },
           { name: "featured", label: "Promowane", type: "select", options: featuredOptions },
           { name: "category", label: "Kategoria", placeholder: "np. Koncert" },
-          { name: "city", label: "Miasto", placeholder: "np. Wroclaw" },
+          { name: "city", label: "Miasto", placeholder: "np. Wrocław" },
           { name: "organizer", label: "Organizator", placeholder: "Nazwa" },
           { name: "eventFrom", label: "Data wydarzenia od", type: "date" },
           { name: "eventTo", label: "Data wydarzenia do", type: "date" },
@@ -73,7 +77,7 @@ export default async function AdminEventsPage({ searchParams }: { searchParams: 
           <table className="managementTable">
             <thead>
               <tr>
-                <th>Tytul</th>
+                <th>Tytuł</th>
                 <th>Data wydarzenia</th>
                 <th>Dodano</th>
                 <th>Edytowano</th>
@@ -97,29 +101,29 @@ export default async function AdminEventsPage({ searchParams }: { searchParams: 
                   <td>{event.location?.city?.name ?? "-"}</td>
                   <td>{event.category?.name ?? "-"}</td>
                   <td>{event.organizer?.name ?? "-"}</td>
-                  <td><span className="statusPill">{event.status ?? "draft"}</span></td>
+                  <td><span className="statusPill">{formatEventStatus(event.status)}</span></td>
                   <td>{event.is_featured ? <span className="successPill">tak</span> : "-"}</td>
                   <td>
                     <div className="tableActions">
                       <Link href={`/admin/events/${event.id}/edit`}>Edytuj</Link>
-                      <form action={adminSetEventStatusAction.bind(null, event.id, "published")}>
-                        <button type="submit">Opublikuj</button>
-                      </form>
+                      {event.status !== "published" ? (
+                        <form action={adminSetEventStatusAction.bind(null, event.id, "published")}>
+                          <button type="submit">Opublikuj</button>
+                        </form>
+                      ) : null}
                       <form action={adminSetEventStatusAction.bind(null, event.id, "rejected")}>
                         <input
                           name="review_note"
-                          placeholder="Powod odrzucenia"
+                          placeholder="Powód odrzucenia"
                           defaultValue={event.review_note ?? ""}
                           className="tableActionInput"
                         />
-                        <button type="submit">Odrzuc</button>
+                        <button type="submit">Odrzuć</button>
                       </form>
                       <form action={adminSetEventStatusAction.bind(null, event.id, "archived")}>
                         <button type="submit">Archiwizuj</button>
                       </form>
-                      <form action={adminDeleteEventAction.bind(null, event.id)}>
-                        <button type="submit" className="dangerButton">Usun</button>
-                      </form>
+                      <DeleteEventButton deleteAction={adminDeleteEventAction.bind(null, event.id)} eventTitle={event.title} />
                     </div>
                   </td>
                 </tr>
@@ -145,11 +149,11 @@ function formatDate(value: string) {
 }
 
 const eventStatusOptions = [
-  { label: "draft", value: "draft" },
-  { label: "pending_review", value: "pending_review" },
-  { label: "published", value: "published" },
-  { label: "rejected", value: "rejected" },
-  { label: "archived", value: "archived" }
+  { label: formatEventStatus("draft"), value: "draft" },
+  { label: formatEventStatus("pending_review"), value: "pending_review" },
+  { label: formatEventStatus("published"), value: "published" },
+  { label: formatEventStatus("rejected"), value: "rejected" },
+  { label: formatEventStatus("archived"), value: "archived" }
 ];
 
 const featuredOptions = [

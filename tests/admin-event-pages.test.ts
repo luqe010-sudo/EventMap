@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import type { AdminEventListPage } from "@/lib/admin-event-list";
 
 const mocks = vi.hoisted(() => ({ list: vi.fn(), review: vi.fn() }));
+vi.mock("@/lib/auth", () => ({ requireAdmin: vi.fn() }));
 vi.mock("@/lib/admin-events", () => ({
   listAdminEvents: mocks.list, listAdminReviewEvents: mocks.review,
   adminDeleteEventAction: vi.fn(), adminSetEventStatusAction: vi.fn()

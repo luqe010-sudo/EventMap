@@ -300,9 +300,25 @@ Strony szczegółów wydarzeń i kolekcji generują JSON-LD:
 - `components/Navbar.tsx` renderuje początkowy anonimowy stan; `GET /api/account/navbar` loguje błędy Supabase Auth/profilu i zwraca stan niezalogowany, a `NavbarClient` także obsługuje nieudane pobranie prywatnego stanu.
 - Dla braku organizatora w panelu organizatora istnieje osobny empty state w `app/organizer/page.tsx`.
 
+## Redakcyjne zasilanie katalogu — 2026-10-29
+
+`EventVisual` wspólnie prezentuje rzeczywiste media i lokalne okładki redakcyjne; `lib/event-cover-media.ts` wybiera wąskie motywy z `data/media/editorial-photos.json`. Biblioteka `public/images/editorial/` nie wymaga runtime zewnętrznego API. `imageUrl` zachowuje typ string i ma pustą wartość przy braku prawdziwego `main_image_url`; komponent obsługuje także błąd adresu. JSON-LD pomija brak obrazu. Nie dodano pól ani tabel. [Media](event-media-policy.md).
+
+`scripts/import-curated-events.mjs` importuje ręcznie zweryfikowane paczki `data/content-supply/` do istniejących tabel `events`, `event_sources` i `locations`. Wymaga istniejących miast/kategorii. Działa poza aplikacją Next.js z lokalnym kluczem serwerowym; domyślnie wykonuje odczytowy plan. Publikacja następuje po zapisaniu i potwierdzeniu źródła. Nie przypisuje redakcji jako organizatora. Zasady weryfikacji, deduplikacji, ograniczenia odzysku i rytm ogólnopolskiego zadania: [content-supply.md](content-supply.md). Nie dodano crawlera ani zadania Vercel; zmiana nie wymaga migracji lub wdrożenia frontendu.
+
 ## Elementy wymagające potwierdzenia
 
 - Pełne integracyjne próby Auth/RLS na staging; izolowane testy regresji istnieją w `tests/` i używają Vitest.
 - Brak konfiguracji CI/CD.
 - Hosting Vercel potwierdzony; lokalne powiązanie projektu jest ignorowane w Git. Opublikowane źródła nadal wymagają utrwalenia w zdalnej gałęzi przed kolejnym deploymentem z Git.
 - Route handlery API obejmuja `/auth/callback`, `/auth/recovery`, `/auth/sign-out` oraz `POST /api/events/[id]/analytics`; `/auth/onboarding` jest chroniona sesja strona SSR, a `/auth/reset-password` wymaga także ważnego markera recovery.
+
+### Produkcyjna oprawa mediów — 1.11.2026
+
+EventVisual i lokalny manifest zdjęć są częścią wdrożenia Vercel. Brak nowych zmiennych środowiskowych, usług runtime lub zmian schematu. Minimalny popup MapLibre używa samej daty, ponieważ marker nie przenosi is_all_day. Reguła doboru fotografii chóru ma granice słów, aby nie dopasowywać Chorwacji.
+
+## Audyt 2026-11-01 — runtime
+
+Globalny app/loading.tsx zastąpiono lokalnym Suspense strony głównej; rozstrzygnięcia 404 i guardy paneli nie są objęte globalnym streamingiem. Parametry publicznego wyszukiwania rzucają PublicSearchInputError (HTTP 400); awarie infrastruktury zachowują 500. Middleware sesji nie dodano. Publiczne ścieżki z wielkimi literami mają przekierowanie 308 przed zapytaniem strony. Metadane list używają listingMetadata. Sitemapy miast i kategorii bazują na nadchodzących, publicznych, nieanulowanych wydarzeniach; puste skróty czasowe pominięto.
+
+next.config.ts ustawia nosniff, DENY, strict-origin-when-cross-origin i podstawową CSP (object-src, base-uri, frame-ancestors). CSP nie ogranicza jeszcze skryptów inline; nie jest pełną polityką z nonce. Import eBilet i import kuratorowany odrzucają daty ponad 3 lata naprzód. Konfiguracja TypeScript i ESLint pomija zagnieżdżone worktree .claude.

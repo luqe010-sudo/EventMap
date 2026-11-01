@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { formatEventStatus } from "@/lib/event-editor";
+import { requireAdmin } from "@/lib/auth";
 import AdminSectionNav from "@/components/AdminSectionNav";
 import AdminTableFilters from "@/components/AdminTableFilters";
 import AdminEventPagination from "@/components/AdminEventPagination";
@@ -15,6 +17,7 @@ export const dynamic = "force-dynamic";
 type SearchParams = Record<string, string | string[] | undefined>;
 
 export default async function AdminReviewPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  await requireAdmin("/admin/review");
   const filters = parseAdminEventListFilters(await searchParams, true);
   let result: AdminEventListPage | null = null;
   let loadError: string | null = null;
@@ -42,7 +45,7 @@ export default async function AdminReviewPage({ searchParams }: { searchParams: 
         values={filters}
         resultCount={result?.totalCount ?? null}
         fields={[
-          { name: "q", label: "Szukaj", placeholder: "Tytul, miasto, organizator..." },
+          { name: "q", label: "Szukaj", placeholder: "Tytuł, miasto, organizator..." },
           { name: "category", label: "Kategoria" },
           { name: "city", label: "Miasto" },
           { name: "organizer", label: "Organizator" },
@@ -62,7 +65,7 @@ export default async function AdminReviewPage({ searchParams }: { searchParams: 
           <table className="managementTable">
             <thead>
               <tr>
-                <th>Tytul</th>
+                <th>Tytuł</th>
                 <th>Dodano</th>
                 <th>Data wydarzenia</th>
                 <th>Miasto</th>
@@ -81,7 +84,7 @@ export default async function AdminReviewPage({ searchParams }: { searchParams: 
                   <td>{event.location?.city?.name ?? "-"}</td>
                   <td>{event.category?.name ?? "-"}</td>
                   <td>{event.organizer?.name ?? "-"}</td>
-                  <td><span className="statusPill">{event.status ?? "draft"}</span></td>
+                  <td><span className="statusPill">{formatEventStatus(event.status)}</span></td>
                   <td>
                     <div className="tableActions">
                       <Link href={`/admin/events/${event.id}/edit`}>Sprawdz</Link>
@@ -91,11 +94,11 @@ export default async function AdminReviewPage({ searchParams }: { searchParams: 
                       <form action={adminSetEventStatusAction.bind(null, event.id, "rejected")}>
                         <input
                           name="review_note"
-                          placeholder="Powod odrzucenia"
+                          placeholder="Powód odrzucenia"
                           defaultValue={event.review_note ?? ""}
                           className="tableActionInput"
                         />
-                        <button type="submit">Odrzuc</button>
+                        <button type="submit">Odrzuć</button>
                       </form>
                     </div>
                   </td>

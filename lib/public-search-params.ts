@@ -2,6 +2,8 @@ import type { KnownLocation, PublicEventSearchOptions } from "./events";
 import { hasLocationCoordinates } from "./event-search";
 import { parsePublicFilterParams, type PublicFilterParams } from "./filters";
 
+export class PublicSearchInputError extends Error {}
+
 // List, map and category counts must interpret the same URL identically.
 export function publicSearchOptionsFromParams(params: URLSearchParams): PublicEventSearchOptions {
   const filters = parsePublicFilterParams(Object.fromEntries(params.entries()));
@@ -11,7 +13,10 @@ export function publicSearchOptionsFromParams(params: URLSearchParams): PublicEv
     longitude: parseCoordinate(params.get("lng"))
   };
   if (hasPoint && !hasLocationCoordinates(point)) {
-    throw new Error("Nieprawidłowe współrzędne lokalizacji.");
+    throw new PublicSearchInputError("Nieprawidłowe współrzędne lokalizacji.");
+  }
+  if ((filters.sortBy === "nearest" || filters.radiusKm != null) && !hasPoint && !params.get("citySlug")) {
+    throw new PublicSearchInputError("Wybierz lokalizację dla promienia lub sortowania według odległości.");
   }
   return {
     dateFilter: filters.dateFilter ?? "all",

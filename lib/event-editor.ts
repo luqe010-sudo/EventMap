@@ -38,6 +38,19 @@ export type EditableEvent = Tables["events"]["Row"] & {
   sources: Array<Pick<Tables["event_sources"]["Row"], "id" | "source_name" | "source_url" | "source_type">>;
 };
 
+const EVENT_STATUS_LABELS: Record<string, string> = {
+  draft: "Szkic",
+  pending_review: "Do sprawdzenia",
+  published: "Opublikowane",
+  rejected: "Odrzucone",
+  archived: "Zarchiwizowane"
+};
+
+export function formatEventStatus(status: string | null | undefined) {
+  const value = status ?? "draft";
+  return EVENT_STATUS_LABELS[value] ?? value;
+}
+
 export const eventStatuses: EventStatus[] = [
   "draft",
   "pending_review",

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { requireAdmin } from "@/lib/auth";
 import AdminSectionNav from "@/components/AdminSectionNav";
 import AdminTableFilters from "@/components/AdminTableFilters";
 import DeleteCategoryButton from "@/components/DeleteCategoryButton";
@@ -11,6 +12,7 @@ export const dynamic = "force-dynamic";
 type SearchParams = Record<string, string | string[] | undefined>;
 
 export default async function AdminCategoriesPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  await requireAdmin("/admin/categories");
   const filters = parseCategoryFilters(await searchParams);
   const categories = await listAdminCategories(filters);
 
@@ -21,7 +23,7 @@ export default async function AdminCategoriesPage({ searchParams }: { searchPara
           <p className="eyebrow">Panel admina</p>
           <h1>Kategorie</h1>
         </div>
-        <Link href="/admin/categories/new" className="primaryButton">Dodaj kategorie</Link>
+        <Link href="/admin/categories/new" className="primaryButton">Dodaj kategorię</Link>
       </div>
 
       <AdminSectionNav active="categories" />
@@ -46,7 +48,7 @@ export default async function AdminCategoriesPage({ searchParams }: { searchPara
                 <th>Nazwa</th>
                 <th>Slug</th>
                 <th>Ikona</th>
-                <th>Kolejnosc</th>
+                <th>Kolejność</th>
                 <th>Dodano</th>
                 <th>Akcje</th>
               </tr>
@@ -106,7 +108,7 @@ export default async function AdminCategoriesPage({ searchParams }: { searchPara
 }
 
 const categorySortOptions = [
-  { label: "Kolejnosc", value: "sort_order" },
+  { label: "Kolejność", value: "sort_order" },
   { label: "Nazwa", value: "name" },
   { label: "Slug", value: "slug" },
   { label: "Ikona", value: "icon" },

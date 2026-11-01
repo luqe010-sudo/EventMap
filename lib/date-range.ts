@@ -1,4 +1,4 @@
-import { addDaysToDateKey, getDateKeyInAppTimeZone, toAppDate } from "./date-format";
+import { addDaysToDateKey, getDateKeyInAppTimeZone, toAppDate, formatPolishDate } from "./date-format";
 import type { DateFilter } from "./filters";
 
 export function normalizeDateInput(value?: string) {
@@ -21,6 +21,11 @@ export function resolveDateRange(dateFilter: DateFilter, customDate: string, now
     case "week": to = addDaysToDateKey(from, 7); break;
     case "weekend": {
       const day = new Date(`${from}T00:00:00Z`).getUTCDay();
+      if (day === 0 && Number(formatPolishDate(now, { hour: "2-digit", hourCycle: "h23" })) >= 18) {
+        from = addDaysToDateKey(from, 6);
+        to = addDaysToDateKey(from, 2);
+        break;
+      }
       if (day !== 0 && day !== 6) from = addDaysToDateKey(from, 6 - day);
       to = addDaysToDateKey(from, day === 0 ? 1 : 2);
       break;

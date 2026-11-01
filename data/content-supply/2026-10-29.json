@@ -1,0 +1,481 @@
+{
+  "checked_at": "2026-10-29T19:07:22Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Cała Polska",
+  "events": [
+    {
+      "title": "Nadmorskie finanse — jak zarządzać własnym portfelem",
+      "category_slug": "kultura",
+      "start_at": "2026-11-05T18:00:00+01:00",
+      "short_description": "Otwarty wykład dr. Piotra Kasprzaka o zarządzaniu osobistymi finansami. Spotkanie jest częścią programu obchodów stulecia Gdyni.",
+      "description": "Otwarty wykład dr. Piotra Kasprzaka o zarządzaniu osobistymi finansami. Spotkanie jest częścią programu obchodów stulecia Gdyni.",
+      "location": {
+        "name": "WSAiB",
+        "address": "Kielecka 7",
+        "city": "Gdynia",
+        "latitude": 54.5074228,
+        "longitude": 18.5307994,
+        "coordinate_source": "https://www.openstreetmap.org/way/1150038761"
+      },
+      "source_name": "Miasto Gdynia",
+      "source_url": "https://100.gdynia.pl/en/aktualnosci/spotkajmy-sie-na-urodzinach-gdyni-w-listopadzie",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN"
+    },
+    {
+      "title": "BOTO JAM: Zaduszki Jazzowe pamięci Dextera Gordona",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-05T21:00:00+01:00",
+      "short_description": "Piotr Jankowski i zaproszeni muzycy zagrają jazzowy wieczór poświęcony Dexterowi Gordonowi. Ceny podane przez organizatora: 40 zł, studenckie 20 zł. Zakup online podlega dodatkowej opłacie serwisowej.",
+      "description": "Piotr Jankowski i zaproszeni muzycy zagrają jazzowy wieczór poświęcony Dexterowi Gordonowi. Ceny podane przez organizatora: 40 zł, studenckie 20 zł. Zakup online podlega dodatkowej opłacie serwisowej.",
+      "location": {
+        "name": "Teatr BOTO",
+        "address": "Bohaterów Monte Cassino 54B",
+        "city": "Sopot",
+        "latitude": 54.4439498,
+        "longitude": 18.5678058,
+        "coordinate_source": "https://www.openstreetmap.org/node/8883235892"
+      },
+      "source_name": "Teatr BOTO",
+      "source_url": "https://boto.art.pl/index.php/2026/09/05/boto-jam-zaduszki-jazzowe-pamieci-dextera-gordona/",
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 40,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://stage24.pl/wydarzenia/piotr-jankowski-bartlomiej-brozda-teatr-boto-10154"
+      ]
+    },
+    {
+      "title": "Polski Chór Kameralny: J. S. Bach. Wielkie motety",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-14T19:00:00+01:00",
+      "short_description": "Polski Chór Kameralny pod dyrekcją Jana Łukaszewskiego wykona motety Jana Sebastiana Bacha. Zespołowi towarzyszyć będą instrumenty dawne i pozytyw organowy.",
+      "description": "Polski Chór Kameralny pod dyrekcją Jana Łukaszewskiego wykona motety Jana Sebastiana Bacha. Zespołowi towarzyszyć będą instrumenty dawne i pozytyw organowy.",
+      "location": {
+        "name": "Dwór Artusa",
+        "address": "Długi Targ 43–44",
+        "city": "Gdańsk",
+        "latitude": 54.3487673,
+        "longitude": 18.6533705,
+        "coordinate_source": "https://www.openstreetmap.org/way/60064071"
+      },
+      "source_name": "Miasto Gdańsk",
+      "source_url": "https://www.gdansk.pl/wydarzenia/Polski-Chor-Kameralny-koncert-J-S-Bach-Wielkie-motety,w,43841",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN"
+    },
+    {
+      "title": "Exotic Fest — edycja jesienna",
+      "category_slug": "targi",
+      "start_at": "2026-11-15T10:00:00+01:00",
+      "short_description": "Targi terrarystyki, akwarystyki i botaniki z udziałem hodowców i wystawców. Na miejscu egzotyczne zwierzęta, rośliny i akcesoria oraz okazja do rozmów z pasjonatami. Wstęp biletowany; aktualną cenę podaje organizator.",
+      "description": "Targi terrarystyki, akwarystyki i botaniki z udziałem hodowców i wystawców. Na miejscu egzotyczne zwierzęta, rośliny i akcesoria oraz okazja do rozmów z pasjonatami. Wstęp biletowany; aktualną cenę podaje organizator.",
+      "location": {
+        "name": "Polsat Plus Arena Gdynia",
+        "address": "Kazimierza Górskiego 8",
+        "city": "Gdynia",
+        "latitude": 54.4989221,
+        "longitude": 18.5313642,
+        "coordinate_source": "https://www.openstreetmap.org/way/129343179"
+      },
+      "source_name": "Polsat Plus Arena Gdynia",
+      "source_url": "https://polsatplusarena.gdynia.pl/kalendarz-wydarzen/exotic-fest-2/",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN"
+    },
+    {
+      "title": "Spacer ornitologiczny — Gdynia, Kamienna Góra",
+      "category_slug": "inne",
+      "start_at": "2026-11-21T09:00:00+01:00",
+      "end_at": "2026-11-21T12:00:00+01:00",
+      "short_description": "Spacer z ornitologiem Dariuszem Ożarowskim po gdyńskim wybrzeżu i parkach. Obserwacje zimujących ptaków wodnych oraz miejskich gatunków. Wejściówka 45 zł, dla członków OTOP 36 zł; wymagany wcześniejszy zakup.",
+      "description": "Spacer z ornitologiem Dariuszem Ożarowskim po gdyńskim wybrzeżu i parkach. Obserwacje zimujących ptaków wodnych oraz miejskich gatunków. Wejściówka 45 zł, dla członków OTOP 36 zł; wymagany wcześniejszy zakup.",
+      "location": {
+        "name": "Fontanna na Skwerze Kościuszki — miejsce zbiórki",
+        "address": "Skwer Kościuszki",
+        "city": "Gdynia",
+        "latitude": 54.5190757039532,
+        "longitude": 18.548498369170183,
+        "coordinate_source": "https://odtur.pl/atrakcje/gdynia-fontanna-na-skwerze-kosciuszki-w-gdyni-54156.html"
+      },
+      "source_name": "Ogólnopolskie Towarzystwo Ochrony Ptaków",
+      "source_url": "https://sklep.otop.org.pl/pl/products/21-11-26-r-09-00-12-00-gdynia-kamienna-gora-spacer-ornitologiczny-322.html",
+      "price_type": "paid",
+      "price_min": 36,
+      "price_max": 45,
+      "currency": "PLN"
+    },
+    {
+      "title": "Międzypokoleniowa potańcówka na 100-lecie Gdyni",
+      "category_slug": "imprezy",
+      "start_at": "2026-11-21T18:00:00+01:00",
+      "end_at": "2026-11-21T21:00:00+01:00",
+      "short_description": "Wieczór tańca w klimacie retro, bluesa i swingu z okazji stulecia Gdyni. Wstęp bezpłatny; wydarzenie dla osób pełnoletnich.",
+      "description": "Wieczór tańca w klimacie retro, bluesa i swingu z okazji stulecia Gdyni. Wstęp bezpłatny; wydarzenie dla osób pełnoletnich.",
+      "location": {
+        "name": "II Liceum Ogólnokształcące",
+        "address": "Wolności 22B",
+        "city": "Gdynia",
+        "latitude": 54.5193625,
+        "longitude": 18.5196546,
+        "coordinate_source": "https://www.openstreetmap.org/relation/17350377"
+      },
+      "source_name": "Miasto Gdynia",
+      "source_url": "https://100.gdynia.pl/en/aktualnosci/spotkajmy-sie-na-urodzinach-gdyni-w-listopadzie",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN"
+    },
+    {
+      "title": "Acid Drinkers — Old Iron Biceps Tour 2026",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-29T18:00:00+01:00",
+      "short_description": "Acid Drinkers wystąpią w składzie Titus, Litza, Popcorn i Ślimak. Gdyński koncert jest częścią trasy Old Iron Biceps Tour 2026. Wstęp biletowany; aktualną cenę podaje organizator.",
+      "description": "Acid Drinkers wystąpią w składzie Titus, Litza, Popcorn i Ślimak. Gdyński koncert jest częścią trasy Old Iron Biceps Tour 2026. Wstęp biletowany; aktualną cenę podaje organizator.",
+      "location": {
+        "name": "Polsat Plus Arena Gdynia",
+        "address": "Kazimierza Górskiego 8",
+        "city": "Gdynia",
+        "latitude": 54.4989221,
+        "longitude": 18.5313642,
+        "coordinate_source": "https://www.openstreetmap.org/way/129343179"
+      },
+      "source_name": "Polsat Plus Arena Gdynia",
+      "source_url": "https://polsatplusarena.gdynia.pl/kalendarz-wydarzen/acid-drinkers/",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN"
+    },
+    {
+      "title": "Magic Christmas Concert",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-06T18:00:00+01:00",
+      "short_description": "Świąteczne piosenki w wykonaniu solistów, Sound and Grace oraz CoOperate Orchestra. Wśród zapowiedzianych wykonawców są Kasia Moś, Kasia Cerekwicka, Ewelina Lisowska i Mietek Szcześniak. Wstęp biletowany; aktualną cenę podaje organizator.",
+      "description": "Świąteczne piosenki w wykonaniu solistów, Sound and Grace oraz CoOperate Orchestra. Wśród zapowiedzianych wykonawców są Kasia Moś, Kasia Cerekwicka, Ewelina Lisowska i Mietek Szcześniak. Wstęp biletowany; aktualną cenę podaje organizator.",
+      "location": {
+        "name": "Polsat Plus Arena Gdynia",
+        "address": "Kazimierza Górskiego 8",
+        "city": "Gdynia",
+        "latitude": 54.4989221,
+        "longitude": 18.5313642,
+        "coordinate_source": "https://www.openstreetmap.org/way/129343179"
+      },
+      "source_name": "Polsat Plus Arena Gdynia",
+      "source_url": "https://polsatplusarena.gdynia.pl/kalendarz-wydarzen/magic-christmas-concert-2/",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN"
+    },
+    {
+      "title": "Szydełkiem i włóczką",
+      "category_slug": "kultura",
+      "start_at": "2026-11-03T18:00:00+01:00",
+      "short_description": "Otwarte spotkanie szydełkowania dla początkujących i zaawansowanych. Okazja do wspólnej pracy z włóczką w Międzypokoleniowej Klubokawiarni. Wstęp wolny.",
+      "description": "Otwarte spotkanie szydełkowania dla początkujących i zaawansowanych. Okazja do wspólnej pracy z włóczką w Międzypokoleniowej Klubokawiarni. Wstęp wolny.",
+      "location": {
+        "name": "Międzypokoleniowa Klubokawiarnia",
+        "address": "Anielewicza 3/5",
+        "city": "Warszawa",
+        "latitude": 52.2488742,
+        "longitude": 20.9963346,
+        "coordinate_source": "https://www.openstreetmap.org/way/152452622"
+      },
+      "source_name": "Dom Kultury Śródmieście",
+      "source_url": "https://dks.art.pl/szydelkiem-i-wloczka-3-listopada",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN"
+    },
+    {
+      "title": "Widmo wolności — Wielcy twórcy ekranu",
+      "category_slug": "kultura",
+      "start_at": "2026-11-08T19:00:00+01:00",
+      "short_description": "Pokaz filmu „Widmo wolności” Luisa Buñuela w cyklu Wielcy twórcy ekranu. Zasady rezerwacji wejściówek są dostępne na stronie kina.",
+      "description": "Pokaz filmu „Widmo wolności” Luisa Buñuela w cyklu Wielcy twórcy ekranu. Zasady rezerwacji wejściówek są dostępne na stronie kina.",
+      "location": {
+        "name": "Kino Domu Sztuki",
+        "address": "Wiolinowa 14",
+        "city": "Warszawa",
+        "latitude": 52.1614066,
+        "longitude": 21.0268164,
+        "coordinate_source": "https://www.openstreetmap.org/way/25706854"
+      },
+      "source_name": "Dom Sztuki SMB Jary",
+      "source_url": "https://domsztuki.art.pl/kino/seans/304-widmo-wolnosci",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN"
+    },
+    {
+      "title": "Sąsiedzi (1) — V Paderewski Festival 2026",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-06T19:00:00+01:00",
+      "short_description": "Mateusz Dubiel i Orkiestra Filharmonii Poznańskiej wystąpią podczas V Paderewski Festival. W programie utwory Szeligowskiego, Dobrzyńskiego, Beethovena i Voříška. Koncert w Auli UAM. Wstęp biletowany; aktualną cenę podaje organizator.",
+      "description": "Mateusz Dubiel i Orkiestra Filharmonii Poznańskiej wystąpią podczas V Paderewski Festival. W programie utwory Szeligowskiego, Dobrzyńskiego, Beethovena i Voříška. Koncert w Auli UAM. Wstęp biletowany; aktualną cenę podaje organizator.",
+      "location": {
+        "name": "Aula Uniwersytecka UAM",
+        "address": "Wieniawskiego 1",
+        "city": "Poznań",
+        "latitude": 52.4078448,
+        "longitude": 16.9157469,
+        "coordinate_source": "https://www.openstreetmap.org/node/413606975"
+      },
+      "source_name": "Filharmonia Poznańska",
+      "source_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026/",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN"
+    },
+    {
+      "title": "Muzykoteka: Hej, hej ułani! — koncert rodzinny",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-07T11:00:00+01:00",
+      "short_description": "Rodzinne spotkanie z muzyką w cyklu Muzykoteka Filharmonii Poznańskiej. Listopadowy program nosi tytuł „Hej, hej ułani!”. Bilety i szczegóły udziału na stronie organizatora. Wstęp biletowany; aktualną cenę podaje organizator.",
+      "description": "Rodzinne spotkanie z muzyką w cyklu Muzykoteka Filharmonii Poznańskiej. Listopadowy program nosi tytuł „Hej, hej ułani!”. Bilety i szczegóły udziału na stronie organizatora. Wstęp biletowany; aktualną cenę podaje organizator.",
+      "location": {
+        "name": "Aula Uniwersytecka UAM",
+        "address": "Wieniawskiego 1",
+        "city": "Poznań",
+        "latitude": 52.4078448,
+        "longitude": 16.9157469,
+        "coordinate_source": "https://www.openstreetmap.org/node/413606975"
+      },
+      "source_name": "Filharmonia Poznańska",
+      "source_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026/",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN"
+    },
+    {
+      "title": "Amanti dell'Opera — warsztaty chóralne",
+      "category_slug": "kultura",
+      "start_at": "2026-11-04T16:30:00+01:00",
+      "end_at": "2026-11-04T18:00:00+01:00",
+      "short_description": "Warsztaty chóralne Amanti dell'Opera w Operze Wrocławskiej. Zajęcia trwają 90 minut. Informacje o karnetach i zasadach uczestnictwa podaje organizator.",
+      "description": "Warsztaty chóralne Amanti dell'Opera w Operze Wrocławskiej. Zajęcia trwają 90 minut. Informacje o karnetach i zasadach uczestnictwa podaje organizator.",
+      "location": {
+        "name": "Opera Wrocławska",
+        "address": "Świdnicka 35",
+        "city": "Wrocław",
+        "latitude": 51.1056963,
+        "longitude": 17.0306062,
+        "coordinate_source": "https://www.openstreetmap.org/way/369574311"
+      },
+      "source_name": "Opera Wrocławska",
+      "source_url": "https://www.opera.wroclaw.pl/repertuar?date=2026-11",
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 20,
+      "currency": "PLN"
+    },
+    {
+      "title": "J. Brahms — Ein Deutsches Requiem",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-06T19:00:00+01:00",
+      "short_description": "Koncert z muzyką Johannesa Brahmsa w Operze Wrocławskiej. „Ein Deutsches Requiem” wykonywane jest po niemiecku z polskimi i angielskimi napisami. Bilety od 40 do 120 zł.",
+      "description": "Koncert z muzyką Johannesa Brahmsa w Operze Wrocławskiej. „Ein Deutsches Requiem” wykonywane jest po niemiecku z polskimi i angielskimi napisami. Bilety od 40 do 120 zł.",
+      "location": {
+        "name": "Opera Wrocławska",
+        "address": "Świdnicka 35",
+        "city": "Wrocław",
+        "latitude": 51.1056963,
+        "longitude": 17.0306062,
+        "coordinate_source": "https://www.openstreetmap.org/way/369574311"
+      },
+      "source_name": "Opera Wrocławska",
+      "source_url": "https://www.opera.wroclaw.pl/koncert-j-brahms-ein-deutsches-requiem?date=2026-11-06T19:00",
+      "price_type": "paid",
+      "price_min": 40,
+      "price_max": 120,
+      "currency": "PLN"
+    },
+    {
+      "title": "Cracovia Cosinus — koncert pieśni patriotycznych",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-11T17:00:00+01:00",
+      "end_at": "2026-11-11T20:00:00+01:00",
+      "short_description": "Chór Cracovia Cosinus zaprasza na pieśni patriotyczne i wspólne śpiewanie przy gitarze i akordeonie. Wstęp bezpłatny; obowiązują zapisy na stronie Ośrodka Kultury Kraków–Nowa Huta od 3 listopada.",
+      "description": "Chór Cracovia Cosinus zaprasza na pieśni patriotyczne i wspólne śpiewanie przy gitarze i akordeonie. Wstęp bezpłatny; obowiązują zapisy na stronie Ośrodka Kultury Kraków–Nowa Huta od 3 listopada.",
+      "location": {
+        "name": "Klub Zakole",
+        "address": "Zakole 31",
+        "city": "Kraków",
+        "latitude": 50.1124024,
+        "longitude": 20.0580256,
+        "coordinate_source": "https://www.openstreetmap.org/node/7663766141"
+      },
+      "source_name": "Miasto Kraków",
+      "source_url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN"
+    },
+    {
+      "title": "Niepodległa Biało-Czerwona — koncert zespołu Fermata",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-13T17:00:00+01:00",
+      "short_description": "Koncert zespołu Fermata połączony z finałem konkursu plastycznego „Nowa Sztuka Niepodległa”. Wydarzenie w Klubie Dukat wpisuje się w krakowskie obchody Święta Niepodległości. Wstęp wolny.",
+      "description": "Koncert zespołu Fermata połączony z finałem konkursu plastycznego „Nowa Sztuka Niepodległa”. Wydarzenie w Klubie Dukat wpisuje się w krakowskie obchody Święta Niepodległości. Wstęp wolny.",
+      "location": {
+        "name": "Klub Dukat",
+        "address": "Styczna 1",
+        "city": "Kraków",
+        "latitude": 50.0994388,
+        "longitude": 20.0732375,
+        "coordinate_source": "https://www.openstreetmap.org/node/7663563901"
+      },
+      "source_name": "Miasto Kraków",
+      "source_url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN"
+    },
+    {
+      "title": "W kontakcie | Sztuka Wrażliwości",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-07T11:00:00+01:00",
+      "end_at": "2026-11-07T12:00:00+01:00",
+      "short_description": "Rodzinny warsztat ruchowy z Beatą Pniewską dla dzieci 3–9 lat z opiekunami. Zabawy sensoryczne rozwijają ruch i koordynację. Wstęp bezpłatny; obowiązują zapisy i limit miejsc.",
+      "description": "Rodzinny warsztat ruchowy z Beatą Pniewską dla dzieci 3–9 lat z opiekunami. Zabawy sensoryczne rozwijają ruch i koordynację. Wstęp bezpłatny; obowiązują zapisy i limit miejsc.",
+      "location": {
+        "name": "Warsztaty Kultury — sala widowiskowa, II piętro",
+        "address": "Grodzka 5a",
+        "city": "Lublin",
+        "latitude": 51.2484615,
+        "longitude": 22.5686916,
+        "coordinate_source": "https://www.openstreetmap.org/node/2604112432"
+      },
+      "source_name": "Warsztaty Kultury w Lublinie",
+      "source_url": "https://warsztatykultury.pl/pl/wydarzenia/w-kontakcie-sztuka-wrazliwosci-listopad-2026/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN"
+    },
+    {
+      "title": "Salon Kobiet: Jacek Kałucki i Marek Siudym",
+      "category_slug": "kultura",
+      "start_at": "2026-11-08T17:00:00+01:00",
+      "short_description": "Spotkanie z Jackiem Kałuckim i Markiem Siudymem o pracy aktora oraz kulisach teatru i filmu. Towarzyszy mu prezentacja książki „Sekrety zza kulis. Postscriptum”. Bilet kosztuje 35 zł.",
+      "description": "Spotkanie z Jackiem Kałuckim i Markiem Siudymem o pracy aktora oraz kulisach teatru i filmu. Towarzyszy mu prezentacja książki „Sekrety zza kulis. Postscriptum”. Bilet kosztuje 35 zł.",
+      "location": {
+        "name": "Galeria Winda — Kieleckie Centrum Kultury",
+        "address": "plac Moniuszki 2B",
+        "city": "Kielce",
+        "latitude": 50.868626,
+        "longitude": 20.637316,
+        "coordinate_source": "https://www.openstreetmap.org/way/148074884"
+      },
+      "source_name": "Kieleckie Centrum Kultury",
+      "source_url": "https://www.kck.com.pl/salon-kobiet-jacek-kalucki-i-marek-siudym/",
+      "price_type": "paid",
+      "price_min": 35,
+      "price_max": 35,
+      "currency": "PLN"
+    },
+    {
+      "title": "LEGO Build the Change: Bioróżnorodność i zmiany klimatyczne — Żaby",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-14T12:00:00+01:00",
+      "end_at": "2026-11-14T13:30:00+01:00",
+      "short_description": "Budowanie z LEGO o żabach i ich środowisku, dla dzieci od 5 lat z opiekunami. Każdy potrzebuje biletu: 30 zł lub 15 zł z osobnym biletem do CNiT na ten dzień. Liczba miejsc ograniczona.",
+      "description": "Budowanie z LEGO o żabach i ich środowisku, dla dzieci od 5 lat z opiekunami. Każdy potrzebuje biletu: 30 zł lub 15 zł z osobnym biletem do CNiT na ten dzień. Liczba miejsc ograniczona.",
+      "location": {
+        "name": "Centrum Nauki i Techniki EC1 — Strefa Wejścia",
+        "address": "Targowa 1/3",
+        "city": "Łódź",
+        "latitude": 51.7675351,
+        "longitude": 19.4680828,
+        "coordinate_source": "https://www.openstreetmap.org/relation/16510680"
+      },
+      "source_name": "EC1 Łódź — Miasto Kultury",
+      "source_url": "https://ec1lodz.pl/eventy/warsztaty-lego-build-the-change",
+      "price_type": "paid",
+      "price_min": 15,
+      "price_max": 30,
+      "currency": "PLN"
+    },
+    {
+      "title": "Bliskie spotkanie z ciałem | Sztuka Wrażliwości",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-21T11:00:00+01:00",
+      "end_at": "2026-11-21T12:30:00+01:00",
+      "short_description": "Rodzinne zajęcia z Aldoną Gumienniak o oddechu, emocjach i własnym ciele. Dla rodzin z dziećmi 6–10 lat. Udział bezpłatny; obowiązują zapisy i limit miejsc.",
+      "description": "Rodzinne zajęcia z Aldoną Gumienniak o oddechu, emocjach i własnym ciele. Dla rodzin z dziećmi 6–10 lat. Udział bezpłatny; obowiązują zapisy i limit miejsc.",
+      "location": {
+        "name": "Warsztaty Kultury — sala widowiskowa, II piętro",
+        "address": "Grodzka 5a",
+        "city": "Lublin",
+        "latitude": 51.2484615,
+        "longitude": 22.5686916,
+        "coordinate_source": "https://www.openstreetmap.org/node/2604112432"
+      },
+      "source_name": "Warsztaty Kultury w Lublinie",
+      "source_url": "https://warsztatykultury.pl/pl/wydarzenia/bliskie-spotkanie-z-cialem-sztuka-wrazliwosci/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN"
+    },
+    {
+      "title": "WarsztatujeMY, bo edukacja na UniLodz nie wyklucza!",
+      "category_slug": "kultura",
+      "start_at": "2026-11-21T08:45:00+01:00",
+      "short_description": "Bezpłatne warsztaty dla nauczycieli i osób przygotowujących się do nauczania, poświęcone neurodydaktyce i wspieraniu neuroróżnorodności. Obowiązuje rejestracja do 10 listopada lub wyczerpania miejsc.",
+      "description": "Bezpłatne warsztaty dla nauczycieli i osób przygotowujących się do nauczania, poświęcone neurodydaktyce i wspieraniu neuroróżnorodności. Obowiązuje rejestracja do 10 listopada lub wyczerpania miejsc.",
+      "location": {
+        "name": "Centrum Szkoleniowo-Konferencyjne Uniwersytetu Łódzkiego",
+        "address": "Kopcińskiego 16/18",
+        "city": "Łódź",
+        "latitude": 51.7754351,
+        "longitude": 19.4830035,
+        "coordinate_source": "https://www.openstreetmap.org/way/140368069"
+      },
+      "source_name": "Uniwersytet Łódzki",
+      "source_url": "https://www.uni.lodz.pl/wydarzenia/szczegoly/warsztatujemy-bo-edukacja-na-unilodz-nie-wyklucza",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN"
+    },
+    {
+      "title": "LEGO Build the Change: Ochrona ptaków",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-22T12:00:00+01:00",
+      "end_at": "2026-11-22T13:30:00+01:00",
+      "short_description": "Rodzinne projektowanie z LEGO o ochronie ptaków, dla dzieci od 5 lat z opiekunami. Każda osoba potrzebuje biletu: 30 zł lub 15 zł z osobnym biletem do CNiT na ten dzień. Liczba miejsc ograniczona.",
+      "description": "Rodzinne projektowanie z LEGO o ochronie ptaków, dla dzieci od 5 lat z opiekunami. Każda osoba potrzebuje biletu: 30 zł lub 15 zł z osobnym biletem do CNiT na ten dzień. Liczba miejsc ograniczona.",
+      "location": {
+        "name": "Centrum Nauki i Techniki EC1 — Strefa Wejścia",
+        "address": "Targowa 1/3",
+        "city": "Łódź",
+        "latitude": 51.7675351,
+        "longitude": 19.4680828,
+        "coordinate_source": "https://www.openstreetmap.org/relation/16510680"
+      },
+      "source_name": "EC1 Łódź — Miasto Kultury",
+      "source_url": "https://ec1lodz.pl/eventy/warsztaty-lego-build-the-change",
+      "price_type": "paid",
+      "price_min": 15,
+      "price_max": 30,
+      "currency": "PLN"
+    }
+  ],
+  "geocoding_attribution": "© OpenStreetMap contributors; fontanna w Gdyni: Odtur, zweryfikowane z Wikimedia Commons"
+}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { requireAdmin } from "@/lib/auth";
 import AdminSectionNav from "@/components/AdminSectionNav";
 import AdminTableFilters from "@/components/AdminTableFilters";
 import { type AdminOrganizerFilters, listAdminOrganizers } from "@/lib/admin-organizers";
@@ -9,6 +10,7 @@ export const dynamic = "force-dynamic";
 type SearchParams = Record<string, string | string[] | undefined>;
 
 export default async function AdminOrganizersPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  await requireAdmin("/admin/organizers");
   const filters = parseOrganizerFilters(await searchParams);
   const organizers = await listAdminOrganizers(filters);
 

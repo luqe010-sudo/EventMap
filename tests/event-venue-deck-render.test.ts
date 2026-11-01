@@ -16,7 +16,7 @@ function item(id: string) {
     distanceKm: 2,
     event: {
       id, title: `Koncert ${id}`, slug: `koncert-${id}`, description: "Opis koncertu", short_description: null,
-      start_at: "2027-05-01T18:00:00Z", end_at: null, is_all_day: false, main_image_url: null,
+      start_at: "2027-05-01T18:00:00Z", end_at: null, is_all_day: false, main_image_url: `https://example.invalid/${id}.jpg`,
       price_type: "free", price_min: null, price_max: null, currency: "PLN", status: "published", visibility: "public",
       is_featured: false, is_verified: false, is_cancelled: false, updated_at: null, location: null, sources: [],
       imageUrl: `https://example.invalid/${id}.jpg`, startDate: "2027-05-01T18:00:00Z", address: "Klub, Warszawa",
@@ -68,7 +68,7 @@ it("mounts one ordinary interactive card with complete inert previews and access
     const id = ["b", "c"][index];
     expect(preview).toContain('aria-hidden="true" inert=""');
     expect(preview).not.toMatch(/<(?:a|button)\b/);
-    expect(preview).toMatch(/<img\b[^>]*alt=""[^>]*class="eventCardHImage"[^>]*draggable="false"/);
+    expect(preview).toMatch(/<img\b[^>]*alt=""[^>]*class="[^"]*eventCardHImage"[^>]*draggable="false"/);
     expect(preview).toContain(`<h3 class="eventCardHTitle">Koncert ${id}</h3>`);
     expect(preview).toContain('<p class="eventCardHDesc">Opis koncertu</p>');
     expect(preview).toContain('class="eventCardHCategory" style="color:#123456">Koncerty</span>');
@@ -121,9 +121,10 @@ it("keeps rear card information identical to a regular card for the same event",
   expect(preview).toContain("Krótki opis wydarzenia");
   expect(preview).not.toContain("Dłuższy opis");
   expect(preview).toContain("Cały dzień");
-  expect(preview).toContain("25–40");
+  expect(preview).toContain("25,00–40,00");
   expect(preview).not.toContain("eventCardHDist");
-  expect(regular).toContain('alt="Koncert paid"');
+  // The linked heading already names the event; repeating it as image alt would duplicate it.
+  expect(regular).toContain('alt=""');
   expect(preview).toContain('alt=""');
 });
 

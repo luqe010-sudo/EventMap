@@ -1,0 +1,301 @@
+{
+  "verified_at": "2026-10-29T19:16:22.567Z",
+  "candidates": 22,
+  "published": 21,
+  "skipped_duplicates": 1,
+  "cities": {
+    "Gdynia": 5,
+    "Sopot": 1,
+    "Gdańsk": 1,
+    "Warszawa": 2,
+    "Poznań": 2,
+    "Wrocław": 2,
+    "Kraków": 2,
+    "Lublin": 2,
+    "Kielce": 1,
+    "Łódź": 3
+  },
+  "free": 8,
+  "anonymous_reads": 21,
+  "production_api_reads": 21,
+  "coordinates_confirmed": 21,
+  "html_checks": [
+    {
+      "url": "https://mapaimprez.pl/kultura/warszawa/curated-szydelkiem-i-wloczka-warszawa-2026-11-03-9f8586ce6fd1",
+      "status": 200,
+      "title_present": true
+    },
+    {
+      "url": "https://mapaimprez.pl/rodzinne/lublin/curated-w-kontakcie-sztuka-wrazliwosci-lublin-2026-11-07-4083ec84f0a4",
+      "status": 200,
+      "title_present": true
+    },
+    {
+      "url": "https://mapaimprez.pl/koncerty/gdansk/curated-polski-chor-kameralny-j-s-bach-wielkie-motety-gdansk-2026-11-14-d9dd2834f806",
+      "status": 200,
+      "title_present": true
+    }
+  ],
+  "events": [
+    {
+      "id": "1ec85d29-0229-4a44-87de-c4d61e01a00b",
+      "title": "Nadmorskie finanse — jak zarządzać własnym portfelem",
+      "city": "Gdynia",
+      "category": "kultura",
+      "start_at": "2026-11-05T18:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/gdynia/curated-nadmorskie-finanse-jak-zarzadzac-wlasnym-portfelem-gdynia-2026-11-05-2bf59eeb7297",
+      "source_url": "https://100.gdynia.pl/en/aktualnosci/spotkajmy-sie-na-urodzinach-gdyni-w-listopadzie",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "e4170bb0-bde4-4a75-8a26-dc097485dbcd",
+      "title": "BOTO JAM: Zaduszki Jazzowe pamięci Dextera Gordona",
+      "city": "Sopot",
+      "category": "koncerty",
+      "start_at": "2026-11-05T21:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/sopot/curated-boto-jam-zaduszki-jazzowe-pamieci-dextera-gordona-sopot-2026-11-05-f95cd23d383f",
+      "source_url": "https://boto.art.pl/index.php/2026/09/05/boto-jam-zaduszki-jazzowe-pamieci-dextera-gordona",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "cf7a349c-f8b3-4a68-944b-a94b6ed0ff67",
+      "title": "Polski Chór Kameralny: J. S. Bach. Wielkie motety",
+      "city": "Gdańsk",
+      "category": "koncerty",
+      "start_at": "2026-11-14T19:00:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/koncerty/gdansk/curated-polski-chor-kameralny-j-s-bach-wielkie-motety-gdansk-2026-11-14-d9dd2834f806",
+      "source_url": "https://www.gdansk.pl/wydarzenia/Polski-Chor-Kameralny-koncert-J-S-Bach-Wielkie-motety,w,43841",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "0be09879-0c16-4690-b41d-67d680d2233d",
+      "title": "Exotic Fest — edycja jesienna",
+      "city": "Gdynia",
+      "category": "targi",
+      "start_at": "2026-11-15T10:00:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/targi/gdynia/curated-exotic-fest-edycja-jesienna-gdynia-2026-11-15-0a29558c96a3",
+      "source_url": "https://polsatplusarena.gdynia.pl/kalendarz-wydarzen/exotic-fest-2",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "5900f597-a8b6-4b97-ba6d-2d2735a9d01b",
+      "title": "Spacer ornitologiczny — Gdynia, Kamienna Góra",
+      "city": "Gdynia",
+      "category": "inne",
+      "start_at": "2026-11-21T09:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/inne/gdynia/curated-spacer-ornitologiczny-gdynia-kamienna-gora-gdynia-2026-11-21-04a740f5dab5",
+      "source_url": "https://sklep.otop.org.pl/pl/products/21-11-26-r-09-00-12-00-gdynia-kamienna-gora-spacer-ornitologiczny-322.html",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "0aeb24d1-95e8-4a0f-8083-16e8f70047f7",
+      "title": "Międzypokoleniowa potańcówka na 100-lecie Gdyni",
+      "city": "Gdynia",
+      "category": "imprezy",
+      "start_at": "2026-11-21T18:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/imprezy/gdynia/curated-miedzypokoleniowa-potancowka-na-100-lecie-gdyni-gdynia-2026-11-21-7ad71d45290d",
+      "source_url": "https://100.gdynia.pl/en/aktualnosci/spotkajmy-sie-na-urodzinach-gdyni-w-listopadzie",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "678a0957-b6ef-4bee-bc7c-158de9bbdb30",
+      "title": "Magic Christmas Concert",
+      "city": "Gdynia",
+      "category": "koncerty",
+      "start_at": "2026-12-06T18:00:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/koncerty/gdynia/curated-magic-christmas-concert-gdynia-2026-12-06-ff76434d9868",
+      "source_url": "https://polsatplusarena.gdynia.pl/kalendarz-wydarzen/magic-christmas-concert-2",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "9aa41cde-8b5d-45ee-b425-e2348f95263f",
+      "title": "Szydełkiem i włóczką",
+      "city": "Warszawa",
+      "category": "kultura",
+      "start_at": "2026-11-03T18:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/warszawa/curated-szydelkiem-i-wloczka-warszawa-2026-11-03-9f8586ce6fd1",
+      "source_url": "https://dks.art.pl/szydelkiem-i-wloczka-3-listopada",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "f954ece5-dd53-4e19-a098-6ece76c18c4d",
+      "title": "Widmo wolności — Wielcy twórcy ekranu",
+      "city": "Warszawa",
+      "category": "kultura",
+      "start_at": "2026-11-08T19:00:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/kultura/warszawa/curated-widmo-wolnosci-wielcy-tworcy-ekranu-warszawa-2026-11-08-d384c74f5600",
+      "source_url": "https://domsztuki.art.pl/kino/seans/304-widmo-wolnosci",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "982b02c6-d5d6-4c7e-8df6-18a1b9184e1a",
+      "title": "Sąsiedzi (1) — V Paderewski Festival 2026",
+      "city": "Poznań",
+      "category": "koncerty",
+      "start_at": "2026-11-06T19:00:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/koncerty/poznan/curated-sasiedzi-1-v-paderewski-festival-2026-poznan-2026-11-06-0d257bd609b0",
+      "source_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "b41d8013-3e73-469b-bb58-9446ce46b8f5",
+      "title": "Muzykoteka: Hej, hej ułani! — koncert rodzinny",
+      "city": "Poznań",
+      "category": "rodzinne",
+      "start_at": "2026-11-07T11:00:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/rodzinne/poznan/curated-muzykoteka-hej-hej-ulani-koncert-rodzinny-poznan-2026-11-07-c27f8a452e0f",
+      "source_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "7823d712-01ff-4fd6-bd17-c324b4278727",
+      "title": "Amanti dell'Opera — warsztaty chóralne",
+      "city": "Wrocław",
+      "category": "kultura",
+      "start_at": "2026-11-04T16:30:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/kultura/wroclaw/curated-amanti-dell-opera-warsztaty-choralne-wroclaw-2026-11-04-7b8a493ec810",
+      "source_url": "https://www.opera.wroclaw.pl/repertuar?date=2026-11",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "96b6d31d-1117-440c-9f58-85dcde9a8bdb",
+      "title": "J. Brahms — Ein Deutsches Requiem",
+      "city": "Wrocław",
+      "category": "koncerty",
+      "start_at": "2026-11-06T19:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/wroclaw/curated-j-brahms-ein-deutsches-requiem-wroclaw-2026-11-06-1d2daca2ae99",
+      "source_url": "https://www.opera.wroclaw.pl/koncert-j-brahms-ein-deutsches-requiem?date=2026-11-06T19%3A00",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "3d02f881-0922-467d-b4d1-3f9c1556242e",
+      "title": "Cracovia Cosinus — koncert pieśni patriotycznych",
+      "city": "Kraków",
+      "category": "koncerty",
+      "start_at": "2026-11-11T17:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/koncerty/krakow/curated-cracovia-cosinus-koncert-piesni-patriotycznych-krakow-2026-11-11-d52e80e2f953",
+      "source_url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "0ceefeb0-2c46-4b8e-ada2-dd0922fad761",
+      "title": "Niepodległa Biało-Czerwona — koncert zespołu Fermata",
+      "city": "Kraków",
+      "category": "koncerty",
+      "start_at": "2026-11-13T17:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/koncerty/krakow/curated-niepodlegla-bialo-czerwona-koncert-zespolu-fermata-krakow-2026-11-13-6ee0820a063d",
+      "source_url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "6a45d778-79cf-4a35-8f7a-ff779e0389f1",
+      "title": "W kontakcie | Sztuka Wrażliwości",
+      "city": "Lublin",
+      "category": "rodzinne",
+      "start_at": "2026-11-07T11:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/rodzinne/lublin/curated-w-kontakcie-sztuka-wrazliwosci-lublin-2026-11-07-4083ec84f0a4",
+      "source_url": "https://warsztatykultury.pl/pl/wydarzenia/w-kontakcie-sztuka-wrazliwosci-listopad-2026",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "7df44892-6f36-4b92-8b6e-42b95add3595",
+      "title": "Salon Kobiet: Jacek Kałucki i Marek Siudym",
+      "city": "Kielce",
+      "category": "kultura",
+      "start_at": "2026-11-08T17:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/kultura/kielce/curated-salon-kobiet-jacek-kalucki-i-marek-siudym-kielce-2026-11-08-3c37cd7386f4",
+      "source_url": "https://www.kck.com.pl/salon-kobiet-jacek-kalucki-i-marek-siudym",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "ef4e3db6-4cb6-41cf-bf05-783ca321d9cb",
+      "title": "LEGO Build the Change: Bioróżnorodność i zmiany klimatyczne — Żaby",
+      "city": "Łódź",
+      "category": "rodzinne",
+      "start_at": "2026-11-14T12:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/rodzinne/lodz/curated-lego-build-the-change-bioroznorodnosc-i-zmiany-klimatyczne-zaby-lodz-2026-11-14-765bbbbc8ba6",
+      "source_url": "https://ec1lodz.pl/eventy/warsztaty-lego-build-the-change",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "09ea17c7-e00f-4d2f-bf9c-9e676cdbb4fe",
+      "title": "Bliskie spotkanie z ciałem | Sztuka Wrażliwości",
+      "city": "Lublin",
+      "category": "rodzinne",
+      "start_at": "2026-11-21T11:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/rodzinne/lublin/curated-bliskie-spotkanie-z-cialem-sztuka-wrazliwosci-lublin-2026-11-21-9f134b5bda01",
+      "source_url": "https://warsztatykultury.pl/pl/wydarzenia/bliskie-spotkanie-z-cialem-sztuka-wrazliwosci",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "e41134fb-8b82-4e08-9b61-da315626b43a",
+      "title": "WarsztatujeMY, bo edukacja na UniLodz nie wyklucza!",
+      "city": "Łódź",
+      "category": "kultura",
+      "start_at": "2026-11-21T08:45:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/lodz/curated-warsztatujemy-bo-edukacja-na-unilodz-nie-wyklucza-lodz-2026-11-21-17fce679fbaf",
+      "source_url": "https://www.uni.lodz.pl/wydarzenia/szczegoly/warsztatujemy-bo-edukacja-na-unilodz-nie-wyklucza",
+      "public_api_status": 200,
+      "has_coordinates": true
+    },
+    {
+      "id": "d46da9df-282b-4b00-9bfe-fe20b22d991f",
+      "title": "LEGO Build the Change: Ochrona ptaków",
+      "city": "Łódź",
+      "category": "rodzinne",
+      "start_at": "2026-11-22T12:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/rodzinne/lodz/curated-lego-build-the-change-ochrona-ptakow-lodz-2026-11-22-b789334a5b97",
+      "source_url": "https://ec1lodz.pl/eventy/warsztaty-lego-build-the-change",
+      "public_api_status": 200,
+      "has_coordinates": true
+    }
+  ],
+  "skipped": [
+    {
+      "title": "Acid Drinkers — Old Iron Biceps Tour 2026",
+      "source_url": "https://polsatplusarena.gdynia.pl/kalendarz-wydarzen/acid-drinkers",
+      "outcome": "skipped_duplicate",
+      "event_id": "eeed419f-cd14-4964-8c68-ffdfb72f6621"
+    }
+  ]
+}

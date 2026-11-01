@@ -61,11 +61,11 @@ export default function RegisterPage() {
       if (res.success) {
         router.push(res.requiresEmailConfirmation ? `/login?signup=success&next=${encodeURIComponent(next)}` : next);
       } else {
-        setError(res.error || "Wystapil blad podczas rejestracji.");
+        setError(res.error || "Wystąpił błąd podczas rejestracji.");
         setPending(false);
       }
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Wystapil nieznany blad podczas rejestracji.");
+      setError(err instanceof Error ? err.message : "Wystąpił nieznany błąd podczas rejestracji.");
       setPending(false);
     }
   };
@@ -86,8 +86,8 @@ export default function RegisterPage() {
           <label>
             Typ konta (Rola)
             <select name="role" value={role} onChange={(e) => setRole(e.target.value)}>
-              <option value="user">Chce przegladac wydarzenia (Widz)</option>
-              <option value="organizer">Chce publikowac wydarzenia (Organizator)</option>
+              <option value="user">Chcę przeglądać wydarzenia (Widz)</option>
+              <option value="organizer">Chcę zgłaszać wydarzenia (Organizator)</option>
             </select>
           </label>
 
@@ -97,7 +97,7 @@ export default function RegisterPage() {
               <input
                 name="organizerName"
                 type="text"
-                placeholder="Domyslnie jak nazwa uzytkownika"
+                placeholder="Domyślnie jak nazwa użytkownika"
                 value={organizerName}
                 onChange={(event) => setOrganizerName(event.target.value)}
               />
@@ -154,7 +154,7 @@ export default function RegisterPage() {
           {privacyNoticeAccepted && <input type="hidden" name="privacyNoticeAccepted" value="on" />}
 
           <label>
-            Imie i Nazwisko / Nazwa uzytkownika
+            Imię i nazwisko / Nazwa użytkownika
             <input name="displayName" type="text" required autoComplete="name" />
           </label>
           <label>
@@ -162,22 +162,22 @@ export default function RegisterPage() {
             <input name="email" type="email" required autoComplete="email" />
           </label>
           <label>
-            Haslo
+            Hasło
             <input name="password" type="password" required autoComplete="new-password" />
           </label>
           <label>
-            Powtorz haslo
+            Powtórz hasło
             <input name="confirmPassword" type="password" required autoComplete="new-password" />
           </label>
           <button type="submit" className="primaryButton" disabled={pending}>
-            {pending ? "Rejestrowanie..." : "Zarejestruj sie"}
+            {pending ? "Rejestrowanie..." : "Zarejestruj się"}
           </button>
         </form>
 
         <p style={{ marginTop: "1.5rem", textAlign: "center", fontSize: "0.9rem", color: "#64748b" }}>
-          Masz juz konto?{" "}
+          Masz już konto?{" "}
           <Link href={`/login?next=${encodeURIComponent(next)}`} style={{ color: "#d95d39", fontWeight: 600, textDecoration: "underline" }}>
-            Zaloguj sie
+            Zaloguj się
           </Link>
         </p>
       </section>

@@ -64,6 +64,8 @@ export function formatInCity(city: string): string {
 
   // Dictionary of common cities to locative form with preposition
   const dictionary: Record<string, string> = {
+    "aleksandrów łódzki": "w Aleksandrowie Łódzkim",
+    "aleksandrow lodzki": "w Aleksandrowie Łódzkim",
     wroclaw: "we Wrocławiu",
     wrocław: "we Wrocławiu",
     warszawa: "w Warszawie",

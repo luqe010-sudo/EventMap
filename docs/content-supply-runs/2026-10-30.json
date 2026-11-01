@@ -1,0 +1,457 @@
+{
+  "verified_at": "2026-10-30T15:38:37.475Z",
+  "candidates": 16,
+  "published": 16,
+  "skipped_duplicates": 0,
+  "cities": {
+    "Olsztyn": 2,
+    "Bydgoszcz": 1,
+    "Białystok": 3,
+    "Gliwice": 2,
+    "Bielsko-Biała": 2,
+    "Gorzów Wielkopolski": 1,
+    "Opole": 1,
+    "Zielona Góra": 1,
+    "Rzeszów": 2,
+    "Szczecin": 1
+  },
+  "free": 10,
+  "anonymous_reads": 16,
+  "production_api_reads": 16,
+  "coordinates_confirmed": 16,
+  "markers_confirmed": 16,
+  "marker_checks": [
+    {
+      "city_slug": "olsztyn",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "bydgoszcz",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "bialystok",
+      "status": 200,
+      "confirmed": 3
+    },
+    {
+      "city_slug": "gliwice",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "bielsko-biala",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "gorzow-wielkopolski",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "opole",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "zielona-gora",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "rzeszow",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "szczecin",
+      "status": 200,
+      "confirmed": 1
+    }
+  ],
+  "html_checks": [
+    {
+      "url": "https://mapaimprez.pl/sport/olsztyn/curated-constract-olsztyn-futsal-swiecie-fogo-futsal-ekstraklasa-olsztyn-2026-10-31-fb83fd705812",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": false
+    },
+    {
+      "url": "https://mapaimprez.pl/kultura/bielsko-biala/curated-kto-tu-nie-gral-wystawa-fotografii-lucjusza-cykarskiego-bielsko-biala-2026-11-04-58b996990980",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": false
+    },
+    {
+      "url": "https://mapaimprez.pl/koncerty/szczecin/curated-wyspiewaj-z-nami-nie-podleglosc-szczecin-2026-11-08-4825979451d6",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": false
+    }
+  ],
+  "events": [
+    {
+      "id": "8251dc0c-086d-4d8a-93e1-7a16d47461f5",
+      "title": "Constract Olsztyn – Futsal Świecie | FOGO Futsal Ekstraklasa",
+      "city": "Olsztyn",
+      "city_slug": "olsztyn",
+      "category": "sport",
+      "start_at": "2026-10-31T16:00:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/sport/olsztyn/curated-constract-olsztyn-futsal-swiecie-fogo-futsal-ekstraklasa-olsztyn-2026-10-31-fb83fd705812",
+      "source_url": "https://hala.olsztyn.eu/wydarzenia/constract-olsztyn-vs-futsal-swiecie-fogo-futsal-ekstraklasa",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "e3c12f38-ce0a-4007-a827-7c3a59501eab",
+      "title": "Festiwal Smaków Regionalnych — sobota",
+      "city": "Olsztyn",
+      "city_slug": "olsztyn",
+      "category": "targi",
+      "start_at": "2026-11-07T10:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/targi/olsztyn/curated-festiwal-smakow-regionalnych-sobota-olsztyn-2026-11-07-377157c3728c",
+      "source_url": "https://hala.olsztyn.eu/wydarzenia/festiwal-smakow-regionalnych",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "f0b1fb38-c695-40ef-a4dc-30f10f7e51c9",
+      "title": "Listopadowa Lekcja Muzyki X",
+      "city": "Bydgoszcz",
+      "city_slug": "bydgoszcz",
+      "category": "koncerty",
+      "start_at": "2026-11-11T13:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/bydgoszcz/curated-listopadowa-lekcja-muzyki-x-bydgoszcz-2026-11-11-8eab129cf917",
+      "source_url": "https://mck-bydgoszcz.pl/program/listopadowa-lekcja-muzyki-x",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "de80ad6a-5a0a-4568-a504-0bad0e907660",
+      "title": "Dzień Świętego Huberta — grodzieńskie spotkanie w CLZ",
+      "city": "Białystok",
+      "city_slug": "bialystok",
+      "category": "kultura",
+      "start_at": "2026-11-03T18:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/bialystok/curated-dzien-swietego-huberta-grodzienskie-spotkanie-w-clz-bialystok-2026-11-03-7dc14c133bda",
+      "source_url": "https://www.centrumzamenhofa.pl/art,1449,dzien-swietego-huberta",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "e61727cd-b0f2-4c16-9b00-660cb6d1dd37",
+      "title": "Grupa tekstylna — spotkanie twórcze",
+      "city": "Białystok",
+      "city_slug": "bialystok",
+      "category": "kultura",
+      "start_at": "2026-11-05T17:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/bialystok/curated-grupa-tekstylna-spotkanie-tworcze-bialystok-2026-11-05-3eb923f4b66b",
+      "source_url": "https://bok.bialystok.pl/wydarzenie/grupa-tekstylna-spotkanie",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "b87858db-cbcb-4e40-aabc-d3adc611ead1",
+      "title": "Wolna pracownia — otwarta przestrzeń twórcza",
+      "city": "Białystok",
+      "city_slug": "bialystok",
+      "category": "kultura",
+      "start_at": "2026-11-19T17:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/bialystok/curated-wolna-pracownia-otwarta-przestrzen-tworcza-bialystok-2026-11-19-e8e38f4a5e31",
+      "source_url": "https://www.centrumzamenhofa.pl/art,1440,wolna-pracownia-otwarta-przestrzen-tworcza",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "4b4d195f-4db7-471d-85eb-5fad2cec0a44",
+      "title": "Poranki Teatralne: C jak cyrk",
+      "city": "Gliwice",
+      "city_slug": "gliwice",
+      "category": "rodzinne",
+      "start_at": "2026-11-15T12:00:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/rodzinne/gliwice/curated-poranki-teatralne-c-jak-cyrk-gliwice-2026-11-15-936a58709ce8",
+      "source_url": "https://prezeroarenagliwice.pl/events/poranki-teatralne-c-jak-cyrk",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "b5030d93-367a-4280-aac5-5746c2a7b324",
+      "title": "Polska – Chorwacja: kwalifikacje MŚ w koszykówce mężczyzn 2027",
+      "city": "Gliwice",
+      "city_slug": "gliwice",
+      "category": "mecze",
+      "start_at": "2026-11-27T20:45:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/mecze/gliwice/curated-polska-chorwacja-kwalifikacje-ms-w-koszykowce-mezczyzn-2027-gliwice-2026-11-27-e3f8f86d436b",
+      "source_url": "https://prezeroarenagliwice.pl/events/kwalifikacje-do-mistrzostw-swiata-w-koszykowce-mezczyzn-2027-polska-chorwacja",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "386dc2d3-e036-4734-aa75-b7b12c068d2b",
+      "title": "Kto tu nie grał! — wystawa fotografii Lucjusza Cykarskiego",
+      "city": "Bielsko-Biała",
+      "city_slug": "bielsko-biala",
+      "category": "kultura",
+      "start_at": "2026-11-04T17:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/bielsko-biala/curated-kto-tu-nie-gral-wystawa-fotografii-lucjusza-cykarskiego-bielsko-biala-2026-11-04-58b996990980",
+      "source_url": "https://bck.bielsko-biala.pl/kto-tu-nie-gral-wystawa-fotografii-lucjusza-cykarskiego",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "7a68ae2b-cde3-4113-80d4-6918fb5187b9",
+      "title": "Soyka / Stańko — odsłuch albumu i rozmowa",
+      "city": "Bielsko-Biała",
+      "city_slug": "bielsko-biala",
+      "category": "kultura",
+      "start_at": "2026-11-07T14:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/bielsko-biala/curated-soyka-stanko-odsluch-albumu-i-rozmowa-bielsko-biala-2026-11-07-78cb5835c7e8",
+      "source_url": "https://bck.bielsko-biala.pl/soyka-stanko-arcydziela-z-archiwum-polskiego-radia-odsluch-plyty",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "77eb7014-69d0-4b7c-bc3b-c87a1cc7eeb2",
+      "title": "Od zabawy i słuchania do czytania: Bajkowy świat",
+      "city": "Gorzów Wielkopolski",
+      "city_slug": "gorzow-wielkopolski",
+      "category": "rodzinne",
+      "start_at": "2026-11-03T11:00:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/rodzinne/gorzow-wielkopolski/curated-od-zabawy-i-sluchania-do-czytania-bajkowy-swiat-gorzow-wielkopolski-2026-11-03-3671d2e79c32",
+      "source_url": "https://www.wimbp.gorzow.pl/kalendarz-wydarzen/od-zabawy-i-sluchania-do-czytania-bajkowy-swiat.html",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "0d64fd82-3e86-4b98-b123-9f57f553a6e3",
+      "title": "Spotkanie z Anną Brzezińską — 24. Opolska Jesień Literacka",
+      "city": "Opole",
+      "city_slug": "opole",
+      "category": "kultura",
+      "start_at": "2026-11-06T18:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/opole/curated-spotkanie-z-anna-brzezinska-24-opolska-jesien-literacka-opole-2026-11-06-c0f5482a2951",
+      "source_url": "https://mbp.opole.pl/wydarzenia/24-ojl-spotkanie-z-anna-brzezinska",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "b098bee8-e608-4a37-bdde-71cacf758248",
+      "title": "Katarzyna Groniec — Bliżej",
+      "city": "Zielona Góra",
+      "city_slug": "zielona-gora",
+      "category": "koncerty",
+      "start_at": "2026-11-29T19:00:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/koncerty/zielona-gora/curated-katarzyna-groniec-blizej-zielona-gora-2026-11-29-23ccd0a28f72",
+      "source_url": "https://zok.com.pl/katarzyna-groniec-blizej",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "98a967d7-7da3-4bd7-90d8-99f394717eff",
+      "title": "X Listopadowe Spotkanie z Historią — początki harcerstwa",
+      "city": "Rzeszów",
+      "city_slug": "rzeszow",
+      "category": "kultura",
+      "start_at": "2026-11-08T12:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/rzeszow/curated-x-listopadowe-spotkanie-z-historia-poczatki-harcerstwa-rzeszow-2026-11-08-bfa75d0b6903",
+      "source_url": "https://www.muzeum.rzeszow.pl/pl/2026/10/28/x-listopadowe-spotkanie-z-historia",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "c2c610c5-af9d-4a52-b58b-5c3bf503c99d",
+      "title": "Krajobraz pieśnią pisany — koncert na Święto Niepodległości",
+      "city": "Rzeszów",
+      "city_slug": "rzeszow",
+      "category": "koncerty",
+      "start_at": "2026-11-11T17:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/koncerty/rzeszow/curated-krajobraz-piesnia-pisany-koncert-na-swieto-niepodleglosci-rzeszow-2026-11-11-621529c73338",
+      "source_url": "https://teatrmuzycznyhalka.rzeszow.pl/2026/10/22/krajobraz-piesnia-pisany-koncert-z-okazji-swieta-11-listopada",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "c2178e3d-2499-4d3c-93a4-5342e3c1bdb6",
+      "title": "Wyśpiewaj z nami NIE-PODLEGŁOŚĆ",
+      "city": "Szczecin",
+      "city_slug": "szczecin",
+      "category": "koncerty",
+      "start_at": "2026-11-08T17:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/koncerty/szczecin/curated-wyspiewaj-z-nami-nie-podleglosc-szczecin-2026-11-08-4825979451d6",
+      "source_url": "https://www.akademiasztuki.eu/Product/wyspiewaj-z-nami-nie-podleglosc-6ae1e590a4324",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    }
+  ],
+  "skipped": [],
+  "voivodeships": [
+    "warmińsko-mazurskie",
+    "kujawsko-pomorskie",
+    "podlaskie",
+    "śląskie",
+    "lubuskie",
+    "opolskie",
+    "podkarpackie",
+    "zachodniopomorskie"
+  ],
+  "manual_duplicate_review": {
+    "same_city_day_existing": 0,
+    "identical_source_existing": 0,
+    "reviewed": 16,
+    "repeat_dry_run": {
+      "existing_published": 16,
+      "new_writes": 0
+    },
+    "note": "Brak nowych duplikatów w tej paczce. Nie jest to twierdzenie o braku historycznych duplikatów całego katalogu."
+  },
+  "rechecks": [
+    {
+      "title": "Szydełkiem i włóczką",
+      "start_at": "2026-11-03T18:00:00+01:00",
+      "source_url": "https://dks.art.pl/szydelkiem-i-wloczka-3-listopada",
+      "checked_at": "2026-10-30T15:26:24Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "Data, 18:00, Anielewicza 3/5 i wstęp wolny zgodne z paczką. Brak komunikatu o odwołaniu.",
+      "event_id": "9aa41cde-8b5d-45ee-b425-e2348f95263f"
+    },
+    {
+      "title": "Amanti dell'Opera — warsztaty chóralne",
+      "start_at": "2026-11-04T16:30:00+01:00",
+      "source_url": "https://www.opera.wroclaw.pl/repertuar?date=2026-11",
+      "checked_at": "2026-10-30T15:26:24Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "Data, 16:30 i bilet 20 zł nadal w oficjalnym repertuarze; brak komunikatu o odwołaniu.",
+      "event_id": "7823d712-01ff-4fd6-bd17-c324b4278727"
+    },
+    {
+      "title": "Nadmorskie finanse — jak zarządzać własnym portfelem",
+      "start_at": "2026-11-05T18:00:00+01:00",
+      "source_url": "https://100.gdynia.pl/en/aktualnosci/spotkajmy-sie-na-urodzinach-gdyni-w-listopadzie",
+      "checked_at": "2026-10-30T15:26:24Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "5 listopada, 18:00, Kielecka 7 i wstęp wolny nadal w miejskim programie. Brak komunikatu o odwołaniu.",
+      "event_id": "1ec85d29-0229-4a44-87de-c4d61e01a00b"
+    },
+    {
+      "title": "BOTO JAM: Zaduszki Jazzowe pamięci Dextera Gordona",
+      "start_at": "2026-11-05T21:00:00+01:00",
+      "source_url": "https://boto.art.pl/index.php/2026/09/05/boto-jam-zaduszki-jazzowe-pamieci-dextera-gordona/",
+      "evidence_urls": [
+        "https://stage24.pl/wydarzenia/piotr-jankowski-bartlomiej-brozda-teatr-boto-10154"
+      ],
+      "checked_at": "2026-10-30T15:26:24Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "Oficjalny BOTO nadal potwierdza 5.11 i bilety 40/20 zł; powiązana sprzedaż Stage24 potwierdza 21:00 i 43,90/22,90 zł z opłatą serwisową. Opis importu już zawiera informację o opłacie. Brak komunikatu o odwołaniu.",
+      "event_id": "e4170bb0-bde4-4a75-8a26-dc097485dbcd"
+    },
+    {
+      "title": "Sąsiedzi (1) — V Paderewski Festival 2026",
+      "start_at": "2026-11-06T19:00:00+01:00",
+      "source_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026/",
+      "checked_at": "2026-10-30T15:26:24Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "6.11.2026 godz.19, Aula Uniwersytecka, wstęp biletowany nadal w repertuarze. Brak komunikatu o odwołaniu.",
+      "event_id": "982b02c6-d5d6-4c7e-8df6-18a1b9184e1a"
+    },
+    {
+      "title": "J. Brahms — Ein Deutsches Requiem",
+      "start_at": "2026-11-06T19:00:00+01:00",
+      "source_url": "https://www.opera.wroclaw.pl/koncert-j-brahms-ein-deutsches-requiem?date=2026-11-06T19%3A00",
+      "checked_at": "2026-10-30T15:26:24Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "Data, 19:00 i bilety40–120 zł potwierdzone. Oficjalny kalendarz podaje80min, a szczegóły115min; batch nie zawiera końca, więc brak potrzeby korekty. Brak komunikatu o odwołaniu.",
+      "event_id": "96b6d31d-1117-440c-9f58-85dcde9a8bdb"
+    }
+  ],
+  "deferred": [
+    {
+      "title": "VATAHA wyciąga wtyczkę!",
+      "city": "Płock",
+      "start_at": "2026-11-07T19:00:00+01:00",
+      "source_url": "https://kalendarzimprez.plock.eu/event/vataha-wyciaga-wtyczke/",
+      "reason": "Termin, Jakubowskiego10 i bezpłatny wstęp potwierdzone, lecz brak rozstrzygnięcia pinezki; istniejące location ma według roota błędne współrzędne. Dodatkowa prasa podaje darmowe zaproszenia w bileterii — wymaga oficjalnego potwierdzenia warunku. Nie publikować w obecnym przebiegu."
+    },
+    {
+      "title": "Wielkie otwarcie Podkarpackiego Centrum Lekkiej Atletyki — Arena Mistrzów",
+      "start_at": "2026-11-07T19:00:00+01:00",
+      "source_url": "https://estrada.rzeszow.pl/badz-na-biezaco/wielkie-otwarcie-pcla-dolacz-do-wydarzenia,art1252/",
+      "reason": "Data,godzina,Wyspiańskiego22,wstępbezpłatnyzwejściówką potwierdzone,aleNominatimzwrócił tylkoodcinkiulicy,więcbrakwiarygodnejpinezki. Nieprzenosićkoordulicy. Systemwejściówekzwrócił403,nieobchodzono."
+    }
+  ],
+  "media": {
+    "main_image_url_empty": 16,
+    "ai_generated": 0,
+    "images_downloaded": 0,
+    "posters_copied": 0,
+    "production_component": "old fallback /background.png; EventVisual not deployed",
+    "checked_at": "2026-10-30T15:34:30.214Z",
+    "mobile_qa": {
+      "checked_at": "2026-10-30T15:42:48.786Z",
+      "url": "https://mapaimprez.pl/kultura/bialystok/curated-grupa-tekstylna-spotkanie-tworcze-bialystok-2026-11-05-3eb923f4b66b",
+      "width": 390,
+      "height": 844,
+      "document_scroll_width": 375,
+      "horizontal_overflow": false,
+      "hero_src": "/background.png",
+      "hero_loaded": true,
+      "event_visual_present": false,
+      "new_official_posters_crop_check": "not applicable: no official posters published",
+      "screenshot_saved": false,
+      "screenshot_save_limitation": "CUA filesystem write returned EPERM; visual observation completed, viewport reset."
+    },
+    "release_requires": "Explicit owner approval to transmit prepared private source and licensed assets to Vercel event-map and publish on mapaimprez.pl. No hosting change attempted in this run."
+  },
+  "legacy_location_observation": {
+    "location_id": "e187e68c-4096-49b6-a680-2e9bfa0cf3de",
+    "name": "Płocki Ośrodek Kultury i Sztuki",
+    "address": "Jana Zygmunta Jakubowskiego 10",
+    "latitude": 52.553263,
+    "longitude": 19.6948036,
+    "finding": "Istniejąca pinezka jest daleko poza Płockiem. Nową propozycję VATAHA odłożono; starego miejsca i cudzych wydarzeń nie zmieniano. Poprawna pinezka wymaga osobnego potwierdzenia."
+  },
+  "validation": {
+    "importer_tests_passed": 9,
+    "importer_tests_total": 9,
+    "apply_outcome": {
+      "inserted_and_published": 16,
+      "failed": 0
+    },
+    "no_schema_changes": true,
+    "no_existing_events_updated": true
+  }
+}

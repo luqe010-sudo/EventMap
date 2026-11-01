@@ -13,10 +13,10 @@ export type UserAccountData = {
   savedEventsError: string | null;
 };
 
-export async function getUserAccountData(): Promise<UserAccountData> {
+export async function getUserAccountData(next = "/account"): Promise<UserAccountData> {
   const supabase = await createSupabaseUserClient();
   const { data: authData, error: authError } = await supabase.auth.getUser();
-  if (authError || !authData.user) redirect("/login?next=/account");
+  if (authError || !authData.user) redirect(`/login?next=${encodeURIComponent(next)}`);
 
   const [{ data: profile, error: profileError }, savedResult] = await Promise.all([
     supabase
