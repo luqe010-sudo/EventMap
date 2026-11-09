@@ -999,14 +999,10 @@ export default function HomePage({
       0,
       maxViewIndex * viewportWidth
     );
-    const indicatorStart = openedEventId ? viewportWidth / 6 : viewportWidth / 4;
-    const indicatorStep = openedEventId ? viewportWidth / 3 : viewportWidth / 2;
-    const indicatorLeft = indicatorStart - 36 + (position / viewportWidth) * indicatorStep;
-
     page.style.setProperty("--mobile-list-drag-x", `${-position}px`);
     page.style.setProperty("--mobile-map-drag-x", `${viewportWidth - position}px`);
     page.style.setProperty("--mobile-event-drag-x", `${2 * viewportWidth - position}px`);
-    page.style.setProperty("--mobile-indicator-drag-left", `${indicatorLeft}px`);
+    page.style.setProperty("--mobile-indicator-drag-offset", `${(position / viewportWidth) * 100}%`);
     page.classList.add("mobileViewDragging");
   }
 
@@ -1051,7 +1047,7 @@ export default function HomePage({
       page.style.removeProperty("--mobile-map-drag-x");
       page.style.removeProperty("--mobile-list-drag-x");
       page.style.removeProperty("--mobile-event-drag-x");
-      page.style.removeProperty("--mobile-indicator-drag-left");
+      page.style.removeProperty("--mobile-indicator-drag-offset");
       dragSettleTimerRef.current = window.setTimeout(() => {
         page.classList.remove("mobileViewSettling");
         dragSettleTimerRef.current = null;
@@ -1406,45 +1402,33 @@ export default function HomePage({
 
       <div className={`mobileViewSwitcher ${openedEventId ? "mobileViewSwitcherWithEvent" : ""}`} role="group" aria-label="Widok wyników">
         <span
-          className={`mobileViewSwitcherIndicator ${
-            openedEventId
-              ? viewMode === "map"
-                ? "mobileViewSwitcherIndicatorMap"
-                : viewMode === "event"
-                ? "mobileViewSwitcherIndicatorEvent"
-                : ""
-              : viewMode === "map"
-              ? "mobileViewSwitcherIndicatorMap"
-              : ""
-          }`}
+          className="mobileViewSwitcherIndicator"
+          data-view={viewMode}
           aria-hidden="true"
         />
         <button
           type="button"
-          className={viewMode === "list" ? "active" : ""}
           onClick={showMobileList}
           aria-pressed={viewMode === "list"}
         >
-          <ListIcon size={18} strokeWidth={2.3} aria-hidden="true" />
+          <ListIcon size={20} strokeWidth={2.2} aria-hidden="true" />
           Lista
         </button>
         <button
           type="button"
-          className={viewMode === "map" ? "active" : ""}
           onClick={() => showMobileMap()}
           aria-pressed={viewMode === "map"}
         >
-          <MapIcon size={18} strokeWidth={2.3} aria-hidden="true" />
+          <MapIcon size={20} strokeWidth={2.2} aria-hidden="true" />
           Mapa
         </button>
         {openedEventId ? (
           <button
             type="button"
-            className={viewMode === "event" ? "active" : ""}
             onClick={showOpenedEvent}
             aria-pressed={viewMode === "event"}
           >
-            <CalendarDays size={18} strokeWidth={2.3} aria-hidden="true" />
+            <CalendarDays size={20} strokeWidth={2.2} aria-hidden="true" />
             Wydarzenie
           </button>
         ) : null}

@@ -221,8 +221,6 @@ html[data-theme] .homePage .searchSlider:focus-visible { outline: 3px solid var(
   html[data-theme] .homePage .eventCardHBottom { align-items: flex-start; }
   html[data-theme] .homePage .eventCardHPriceDist { margin-left: 0; }
   html[data-theme] .homePage .eventsList > .eventCarousel { padding: 14px; }
-  html[data-theme] .homePage .mobileViewSwitcher { background: var(--bg-card); border-top: 1px solid var(--border); box-shadow: none; }
-  html[data-theme] .homePage .mobileViewSwitcher button { font-weight: 600; }
   html[data-theme] .edEmbeddedClose { width: 44px; height: 44px; }
   html[data-theme] .mobileEventView .edShellEmbedded .edHeroInfo { width: 100%; padding-inline: 16px; }
   html[data-theme] .mobileEventView .edShellEmbedded .edImageActions { padding-inline: 16px; }

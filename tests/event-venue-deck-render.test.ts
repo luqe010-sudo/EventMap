@@ -97,11 +97,6 @@ it("mounts one ordinary interactive card with complete inert previews and access
   expect(html).not.toContain('aria-label="Wybierz kartę: Koncert a"');
   expect(html).toContain("Koncert b");
   expect(html).toContain("Koncert c");
-  expect(html).toContain("Wydarzenia w tym miejscu na liście: 3");
-  expect(html).not.toContain("Poprzednie wydarzenie:");
-  expect(html).not.toContain("Następne wydarzenie:");
-  expect(html).not.toContain("eventVenueDeckPeekLabel");
-  expect(html).not.toContain("eventVenueDeckNavigation");
 });
 
 it("keeps rear card information identical to a regular card for the same event", () => {
@@ -128,19 +123,19 @@ it("keeps rear card information identical to a regular card for the same event",
   expect(preview).toContain('alt=""');
 });
 
-it("labels the venue above its own deck and announces selection without visible footer controls", () => {
+it("shows navigation and position beside the venue and announces the selected event", () => {
   const html = renderToStaticMarkup(createElement(EventVenueDeck, { events: [item("a"), item("b"), item("c")], venue: "Klub" }));
   const header = html.match(/<header class="eventVenueDeckHeader">([\s\S]*?)<\/header>/)?.[1];
-  const counter = html.match(/<span class="eventVenueDeckCounter srOnly"([^>]*)>([\s\S]*?)<\/span>/);
+  const stageId = html.match(/<div id="([^"]+)" class="eventVenueDeckStage"/)?.[1];
   expect(header).toBeDefined();
   expect(header).toMatch(/<h3 id="[^"]+-venue">Klub<\/h3>/);
   expect(html.indexOf('class="eventVenueDeckHeader"')).toBeLessThan(html.indexOf('class="eventVenueDeckStage"'));
   expect(html).toMatch(/aria-labelledby="[^"]+-venue"/);
-  expect(html).not.toContain("eventVenueDeckFooter");
-  expect(html).not.toContain("eventVenueDeckNavigation");
-  expect(counter).not.toBeNull();
-  expect(counter?.[1]).toContain('aria-live="polite" aria-atomic="true"');
-  expect(counter?.[2]).toBe("Koncert a. Wydarzenie 1 z 3 na tej liście.");
+  expect(stageId).toBeDefined();
+  expect(header).toContain(`aria-controls="${stageId}" aria-label="Poprzednie wydarzenie"`);
+  expect(header).toContain(`aria-controls="${stageId}" aria-label="Następne wydarzenie"`);
+  expect(header).toContain('class="eventVenueDeckPosition" aria-hidden="true">1 / 3</span>');
+  expect(html).toContain('aria-live="polite" aria-atomic="true">Koncert a. Wydarzenie 1 z 3 na tej liście.</span>');
 });
 
 it("does not manufacture a second preview for a two-event group", () => {

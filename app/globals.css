@@ -6058,6 +6058,20 @@ a.edSourceItem:hover .edSourceArrow {
 }
 
 @media (max-width: 760px) {
+  .siteWrapper:has(.mobileViewSwitcher) {
+    --mobile-switcher-height: 64px;
+    --mobile-switcher-bottom: calc(10px + env(safe-area-inset-bottom));
+    --mobile-switcher-clearance: calc(var(--mobile-switcher-height) + var(--mobile-switcher-bottom));
+  }
+
+  .siteWrapper:has(.mobileViewSwitcher) > .siteFooter {
+    padding-bottom: calc(20px + var(--mobile-switcher-clearance));
+  }
+
+  .siteWrapper:has(.mobileViewSwitcher) > .cookieBanner {
+    bottom: calc(8px + var(--mobile-switcher-clearance));
+  }
+
   body.mobileMapActive .navbar {
     position: fixed;
     top: 0;
@@ -6077,7 +6091,7 @@ a.edSourceItem:hover .edSourceArrow {
   }
 
   .homePage.mobileListMode {
-    padding-bottom: calc(112px + env(safe-area-inset-bottom));
+    padding-bottom: calc(24px + var(--mobile-switcher-clearance));
   }
 
   .homePage.mobileMapMode,
@@ -6163,12 +6177,12 @@ a.edSourceItem:hover .edSourceArrow {
 
   .mobileMapView .maplibregl-ctrl-bottom-left,
   .mobileMapView .maplibregl-ctrl-bottom-right {
-    bottom: calc(64px + env(safe-area-inset-bottom));
+    bottom: var(--mobile-switcher-clearance);
   }
 
   .mobileMapView:has(.mobileMapPreview) .maplibregl-ctrl-bottom-left,
   .mobileMapView:has(.mobileMapPreview) .maplibregl-ctrl-bottom-right {
-    bottom: calc(274px + env(safe-area-inset-bottom));
+    bottom: calc(210px + var(--mobile-switcher-clearance));
   }
 
   .mobileMapCount {
@@ -6245,7 +6259,7 @@ a.edSourceItem:hover .edSourceArrow {
   .mobileMapPreview {
     position: absolute;
     right: 12px;
-    bottom: calc(82px + env(safe-area-inset-bottom));
+    bottom: calc(8px + var(--mobile-switcher-clearance));
     left: 12px;
     display: grid;
     grid-template-columns: 96px minmax(0, 1fr);
@@ -6354,7 +6368,7 @@ a.edSourceItem:hover .edSourceArrow {
     display: block;
     overflow-x: hidden;
     overflow-y: auto;
-    padding-bottom: calc(88px + env(safe-area-inset-bottom));
+    padding-bottom: calc(14px + var(--mobile-switcher-clearance));
     visibility: hidden;
     background: #f7f3ec;
     pointer-events: none;
@@ -6477,59 +6491,51 @@ a.edSourceItem:hover .edSourceArrow {
   }
 
   .mobileViewSwitcher {
+    --mobile-view-count: 2;
+    --mobile-view-inset: 5px;
     position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    right: max(12px, env(safe-area-inset-right));
+    bottom: var(--mobile-switcher-bottom);
+    left: max(12px, env(safe-area-inset-left));
     z-index: 960;
     display: grid;
-    width: 100%;
-    height: calc(64px + env(safe-area-inset-bottom));
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding: 0 0 env(safe-area-inset-bottom);
-    border: 0;
-    border-top: 1px solid rgba(39, 35, 34, 0.1);
-    border-radius: 0;
-    background: rgba(255, 253, 248, 0.97);
-    box-shadow: 0 -8px 24px rgba(39, 35, 34, 0.09);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    max-width: 416px;
+    height: var(--mobile-switcher-height);
+    grid-template-columns: repeat(var(--mobile-view-count), minmax(0, 1fr));
+    margin-inline: auto;
+    padding: var(--mobile-view-inset);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-md);
   }
 
   .mobileViewSwitcherWithEvent {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    --mobile-view-count: 3;
   }
 
   .mobileViewSwitcherIndicator {
     position: absolute;
-    top: -1px;
-    left: calc(25% - 36px);
-    width: 72px;
-    height: 3px;
-    border-radius: 0 0 999px 999px;
-    background: var(--brand);
-    box-shadow: 0 2px 8px rgba(238, 75, 34, 0.26);
-    transition: left 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    inset: var(--mobile-view-inset) auto var(--mobile-view-inset) var(--mobile-view-inset);
+    width: calc((100% - 2 * var(--mobile-view-inset)) / var(--mobile-view-count));
+    border: 1px solid color-mix(in srgb, var(--brand) 24%, transparent);
+    border-radius: var(--radius-sm);
+    background: var(--brand-light);
+    pointer-events: none;
+    transform: translateX(var(--mobile-indicator-offset, 0%));
+    transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .mobileViewSwitcherIndicatorMap {
-    left: calc(75% - 36px);
+  .mobileViewSwitcherIndicator[data-view="map"] {
+    --mobile-indicator-offset: 100%;
   }
 
-  .mobileViewSwitcherWithEvent .mobileViewSwitcherIndicator {
-    left: calc(16.6667% - 36px);
-  }
-
-  .mobileViewSwitcherWithEvent .mobileViewSwitcherIndicatorMap {
-    left: calc(50% - 36px);
-  }
-
-  .mobileViewSwitcherWithEvent .mobileViewSwitcherIndicatorEvent {
-    left: calc(83.3333% - 36px);
+  .mobileViewSwitcherIndicator[data-view="event"] {
+    --mobile-indicator-offset: 200%;
   }
 
   .homePage.mobileViewDragging .mobileViewSwitcherIndicator {
-    left: var(--mobile-indicator-drag-left);
+    transform: translateX(var(--mobile-indicator-drag-offset));
     transition: none;
   }
 
@@ -6537,24 +6543,32 @@ a.edSourceItem:hover .edSourceArrow {
     position: relative;
     z-index: 1;
     display: inline-flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 7px;
+    gap: 4px;
+    padding: 0 4px;
     border: 0;
-    border-radius: 0;
+    border-radius: var(--radius-sm);
     background: transparent;
-    color: #625d59;
-    font-size: 0.82rem;
-    font-weight: 850;
-    transition: color 220ms ease, background-color 220ms ease;
+    color: var(--ink-secondary);
+    font-size: 0.75rem;
+    font-weight: 650;
+    line-height: 1.15;
+    touch-action: manipulation;
+    transition: color 220ms ease;
   }
 
-  .mobileViewSwitcher button.active {
-    background: transparent;
-    color: var(--brand);
+  .mobileViewSwitcher button[aria-pressed="true"] {
+    color: var(--brand-dark);
+    font-weight: 750;
   }
 
-  .mobileViewSwitcher button:focus-visible,
+  .homePage .mobileViewSwitcher button:focus-visible {
+    outline: 2px solid var(--brand-dark);
+    outline-offset: -2px;
+  }
+
   .mobileMapPreviewClose:focus-visible,
   .mobileMapPreviewBody > button:focus-visible,
   .edEmbeddedClose:focus-visible,
@@ -9681,7 +9695,6 @@ html[data-theme="dark"] .siteFooter {
 html[data-theme="dark"] .footerNewsletter,
 html[data-theme="dark"] .emptyState,
 html[data-theme="dark"] .accountEmptyState,
-html[data-theme="dark"] .mobileViewSwitcher,
 html[data-theme="dark"] .mobileMapPreview,
 html[data-theme="dark"] .mobileMapEmpty,
 html[data-theme="dark"] .mobileMapCount,
@@ -9694,14 +9707,6 @@ html[data-theme="dark"] .schemaNotice {
 html[data-theme="dark"] .mobileMapView,
 html[data-theme="dark"] .mobileEventView {
   background: var(--dark-page);
-}
-
-html[data-theme="dark"] .mobileViewSwitcher button {
-  color: var(--ink-secondary);
-}
-
-html[data-theme="dark"] .mobileViewSwitcher button.active {
-  color: var(--brand-dark);
 }
 
 html[data-theme="dark"] .formError {

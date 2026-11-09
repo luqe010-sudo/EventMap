@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type CSSProperties, type PointerEvent } from "react";
-import { MapPin } from "lucide-react";
+import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import EventCard from "@/components/EventCard";
 import EventCardContent from "@/components/EventCardContent";
 import type { EventWithDistance } from "@/lib/event-groups";
@@ -75,7 +75,7 @@ export default function EventVenueDeck({ events, venue, onOpenEvent, onShowOnMap
   function moveGesture(event: PointerEvent<HTMLDivElement>) {
     const start = gesture.current;
     if (!start || start.pointerId !== event.pointerId) return;
-    if (event.buttons === 0) { finishGesture(event, true); return; }
+    if (event.pointerType !== "touch" && event.buttons === 0) { finishGesture(event, true); return; }
     if (start.axis === "vertical") return;
     const deltaX = event.clientX - start.x;
     const deltaY = event.clientY - start.y;
@@ -116,8 +116,28 @@ export default function EventVenueDeck({ events, venue, onOpenEvent, onShowOnMap
 
   return (
     <section className="eventVenueDeck" role="region" aria-roledescription="talia wydarzeń" aria-labelledby={`${id}-venue`}>
-      <header className="eventVenueDeckHeader"><MapPin size={16} aria-hidden="true" /><div><h3 id={`${id}-venue`}>{venueLabel}</h3><p>Wydarzenia w tym miejscu na liście: {events.length}</p></div></header>
-      <p className="srOnly" id={`${id}-instructions`}>Przesuń kartę lub wybierz odsłoniętą kartę z lewej albo prawej strony. Po ustawieniu fokusu na talii możesz też użyć strzałek klawiatury.</p>
+      <header className="eventVenueDeckHeader">
+        <div className="eventVenueDeckVenue">
+          <MapPin size={16} aria-hidden="true" />
+          <div>
+            <h3 id={`${id}-venue`}>{venueLabel}</h3>
+            <p className="eventVenueDeckHint">Wydarzenia w tym miejscu</p>
+            <p className="eventVenueDeckTouchHint">Przesuń kartę w bok</p>
+          </div>
+        </div>
+        <div className="eventVenueDeckNavigation" role="group" aria-label="Przeglądanie wydarzeń w tym miejscu">
+          <button type="button" className="eventVenueDeckStep" aria-controls={`${id}-cards`}
+            aria-label="Poprzednie wydarzenie" title="Poprzednie wydarzenie" onClick={() => advance(-1)}>
+            <ChevronLeft size={20} aria-hidden="true" />
+          </button>
+          <span className="eventVenueDeckPosition" aria-hidden="true">{index + 1} / {events.length}</span>
+          <button type="button" className="eventVenueDeckStep" aria-controls={`${id}-cards`}
+            aria-label="Następne wydarzenie" title="Następne wydarzenie" onClick={() => advance(1)}>
+            <ChevronRight size={20} aria-hidden="true" />
+          </button>
+        </div>
+      </header>
+      <p className="srOnly" id={`${id}-instructions`}>Przesuń kartę w bok, użyj przycisków nad talią albo ustaw fokus na talii i użyj strzałek klawiatury.</p>
       <div
         ref={stage}
         id={`${id}-cards`}
@@ -130,7 +150,10 @@ export default function EventVenueDeck({ events, venue, onOpenEvent, onShowOnMap
         onPointerMove={moveGesture}
         onPointerUp={event => finishGesture(event)}
         onPointerCancel={event => finishGesture(event, true)}
-        onLostPointerCapture={event => finishGesture(event, true)}
+        onLostPointerCapture={event => {
+          // Moving capture from a touched child to the stage bubbles a loss from the child.
+          if (event.target === event.currentTarget) finishGesture(event, true);
+        }}
         onPointerLeave={event => { if (!event.currentTarget.hasPointerCapture(event.pointerId)) finishGesture(event, true); }}
         onDragStart={event => { if (gesture.current) event.preventDefault(); }}
         onKeyDown={event => {
@@ -183,7 +206,7 @@ export default function EventVenueDeck({ events, venue, onOpenEvent, onShowOnMap
             onClick={() => selectCard(slot.id, slot.position)} />
         ))}
       </div>
-      <span className="eventVenueDeckCounter srOnly" aria-live="polite" aria-atomic="true">{active.event.title}. Wydarzenie {index + 1} z {events.length} na tej liście.</span>
+      <span className="srOnly" aria-live="polite" aria-atomic="true">{active.event.title}. Wydarzenie {index + 1} z {events.length} na tej liście.</span>
     </section>
   );
 }
