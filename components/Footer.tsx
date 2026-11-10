@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { listSeasons } from "@/lib/seasons";
 
 export default function Footer() {
   return (
@@ -31,6 +32,15 @@ export default function Footer() {
             <li><Link href="/koncerty">Koncerty</Link></li>
             <li><Link href="/wroclaw">Wydarzenia we Wrocławiu</Link></li>
             <li><Link href="/warszawa">Wydarzenia w Warszawie</Link></li>
+          </ul>
+        </div>
+
+        <div className="footerColumn">
+          <h3>Na sezon</h3>
+          <ul>
+            {listSeasons().map((season) => (
+              <li key={season.slug}><Link href={`/${season.slug}`}>{season.linkLabel}</Link></li>
+            ))}
           </ul>
         </div>
 
