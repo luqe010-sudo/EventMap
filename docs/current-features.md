@@ -537,7 +537,7 @@ EventVisual działa na produkcji. Potwierdzono listę, karuzele, szczegóły i m
 - Ceny mają dwie cyfry po przecinku. Podobne wydarzenia pochodzą z tego samego miasta i kategorii. Mapa szczegółów zaczyna przy punkcie wydarzenia z zoomem 14 i nie przechwytuje kółka.
 - Regulamin, stopka i podgląd mapy mają style ciemnego motywu; ustawienia cookies są w stopce poza obszarem mapy i filtrów.
 - Mobilny nagłówek jest niższy; długie sekcje SEO i linków mają ograniczoną wysokość z przewijaniem. Odbiór wizualny na urządzeniach pozostaje do wykonania.
-- Polecane są pod listą wyników. Pierwsza porcja listy ma 12 wydarzeń, kolejne dostępne przyciskiem „Pokaż więcej wydarzeń”.
+- Karuzela „Polecane wydarzenia” jest pod panelem filtrów, bezpośrednio nad listą wyników (nagłówkiem, sortowaniem i licznikiem), na desktopie i telefonie. Pierwsza porcja listy ma 12 wydarzeń, kolejne dostępne przyciskiem „Pokaż więcej wydarzeń”.
 
 ## Tytuły i opisy w wynikach wyszukiwania
 

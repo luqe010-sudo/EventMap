@@ -1168,6 +1168,9 @@ export default function HomePage({
       <div className="mainLayout">
         <div className="mainColumn">
 
+          {/* Recommended carousel leads the column, above the full results list */}
+          <FeaturedEvents events={featuredEvents} onOpenEvent={openMobileEvent} />
+
           <section className="mainEvents" id="events-list" aria-label="Lista wydarzeń" aria-busy={eventsLoading || eventsLoadingMore}>
             <div className="mainEventsHeader">
               <h2>{listHeading}</h2>
@@ -1244,7 +1247,6 @@ export default function HomePage({
           </section>
 
           {/* City categories tiles grid and quick timing links — below events */}
-          <FeaturedEvents events={featuredEvents} onOpenEvent={openMobileEvent} />
           {!activeCategory && activeLocation && (
             <section className="cityCategoriesSec">
               <div className="citySecHeader">

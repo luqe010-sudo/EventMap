@@ -26,6 +26,8 @@ html[data-theme] .homePage .heroQuickTileIcon svg { width: 24px; height: 24px; s
 
 /* One card system for rails, venue groups and the main list. */
 .eventCarousel { min-width: 0; max-width: 100%; margin: 0 0 28px; }
+/* The main column already spaces its sections with a flex gap. */
+.mainColumn > .eventCarousel { margin-bottom: 0; }
 .eventCarouselHeader { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 14px; }
 .eventCarouselHeader > div:first-child { min-width: 0; }
 .eventCarouselHeader h2 { margin: 0; font-size: 1.25rem; line-height: 1.3; font-weight: 700; letter-spacing: -.02em; color: var(--ink); overflow-wrap: anywhere; }
