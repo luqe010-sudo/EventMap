@@ -538,3 +538,12 @@ EventVisual działa na produkcji. Potwierdzono listę, karuzele, szczegóły i m
 - Regulamin, stopka i podgląd mapy mają style ciemnego motywu; ustawienia cookies są w stopce poza obszarem mapy i filtrów.
 - Mobilny nagłówek jest niższy; długie sekcje SEO i linków mają ograniczoną wysokość z przewijaniem. Odbiór wizualny na urządzeniach pozostaje do wykonania.
 - Polecane są pod listą wyników. Pierwsza porcja listy ma 12 wydarzeń, kolejne dostępne przyciskiem „Pokaż więcej wydarzeń”.
+
+## Tytuły i opisy w wynikach wyszukiwania
+
+Zmiana z 10 listopada 2026 r. wynika z danych Search Console. Karty koncertów były na pozycjach 6–10 przy CTR ok. 0,5%, ponieważ tytuł zawierał tylko nazwę wydarzenia.
+
+- Karta wydarzenia (`lib/event-metadata.ts`): tytuł `{nazwa} {w mieście} – {D.M.RRRR}`, bez powtarzania miasta obecnego już w nazwie. Segmenty pisane wielkimi literami i rozdzielone `|` są normalizowane. Sufiks „| MapaImprez” trafia do tytułu tylko wtedy, gdy całość ma do 70 znaków. Opis zaczyna się od dnia, godziny, miejsca, miasta i ceny („bilety od 89 zł”, „wstęp bezpłatny”), potem jest skrót opisu (do 160 znaków). Open Graph i Twitter używają tych samych tekstów.
+- Strona miasta (`lib/listing-seo.ts`): „Imprezy we Wrocławiu – listopad 2026: koncerty i wydarzenia” z bieżącym miesiącem.
+- `/{miasto}/dzis`, `/{miasto}/weekend`, `/{miasto}/ten-tydzien`: tytuły w formie pytań użytkowników z konkretną datą, np. „Co robić we Wrocławiu w weekend 14–15 listopada?”. Zakres weekendu odpowiada filtrowi `weekend`.
+- Strona główna: „Kalendarz imprez w Polsce – imprezy w okolicy dziś | MapaImprez.pl”, z dopasowanymi tagami Open Graph.

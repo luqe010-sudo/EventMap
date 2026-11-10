@@ -1,4 +1,5 @@
 import { listingMetadata } from "@/lib/listing-metadata";
+import { cityListingSeo } from "@/lib/listing-seo";
 import { redirectLowercasePath } from "@/lib/canonical-path";
 import { serializeJsonLd } from "@/lib/json-ld";
 import type { Metadata } from "next";
@@ -39,10 +40,8 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   // 2. Try city
   const cityLocation = await resolveCityLocation(categorySlug);
   if (cityLocation) {
-    const locationText = formatInCity(cityLocation.label);
     return listingMetadata({
-      title: `Wydarzenia ${locationText} | MapaImprez`,
-      description: `Najciekawsze wydarzenia i imprezy ${locationText}. Koncerty, sport, festiwale i kultura. Sprawdź na mapie!`,
+      ...cityListingSeo(cityLocation.label),
       alternates: {
         canonical: `/${cityLocation.slug ?? toSlug(cityLocation.label)}`
       }
