@@ -1,0 +1,193 @@
+/* Seasonal landing pages: /jarmarki-bozonarodzeniowe, /mikolajki, /koncerty-swiateczne, /sylwester */
+.seasonalPage {
+  padding-top: 28px;
+}
+
+.seasonalBreadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--ink-muted);
+  font-size: 0.86rem;
+}
+
+.seasonalBreadcrumbs a {
+  color: var(--ink-secondary);
+  text-decoration: none;
+}
+
+.seasonalBreadcrumbs a:hover {
+  color: var(--brand);
+}
+
+.seasonalHero {
+  max-width: 860px;
+  padding: 18px 0 22px;
+}
+
+.seasonalEyebrow {
+  margin: 0 0 10px;
+  color: var(--brand);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.seasonalHero h1 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  line-height: 1.02;
+}
+
+.seasonalHero p {
+  margin: 16px 0 0;
+  color: var(--ink-secondary);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.seasonalHero .seasonalSummary {
+  color: var(--ink);
+}
+
+.seasonalCities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 4px 0 26px;
+  border-bottom: 1px solid var(--border);
+}
+
+.seasonalCityChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.seasonalCityChip span {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  font-size: 0.78rem;
+}
+
+.seasonalCityChip:hover,
+.seasonalCityChip:focus-visible {
+  border-color: var(--brand);
+}
+
+.seasonalEmpty {
+  padding: 24px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--ink-secondary);
+}
+
+.seasonalCitySection {
+  padding-top: 30px;
+  scroll-margin-top: 90px;
+}
+
+.seasonalCityHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 20px;
+  margin-bottom: 14px;
+}
+
+.seasonalCityHeader h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+}
+
+.seasonalCityHeader a {
+  color: var(--brand);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.seasonalEventList {
+  display: grid;
+  gap: 14px;
+}
+
+.seasonalTips,
+.seasonalRelated {
+  max-width: 860px;
+  padding-top: 40px;
+}
+
+.seasonalTips h2,
+.seasonalRelated h2 {
+  margin: 0 0 14px;
+  color: var(--ink);
+  font-size: 1.4rem;
+}
+
+.seasonalTips details {
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+
+.seasonalTips summary {
+  color: var(--ink);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.seasonalTips details p {
+  margin: 10px 0 0;
+  color: var(--ink-secondary);
+  line-height: 1.7;
+}
+
+.seasonalRelated ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.seasonalRelated a {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.seasonalRelated a:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+@media (max-width: 760px) {
+  .seasonalPage {
+    width: calc(100% - 32px);
+    padding-top: 16px;
+  }
+}

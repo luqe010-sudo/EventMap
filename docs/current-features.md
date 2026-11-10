@@ -547,3 +547,24 @@ Zmiana z 10 listopada 2026 r. wynika z danych Search Console. Karty koncertów b
 - Strona miasta (`lib/listing-seo.ts`): „Imprezy we Wrocławiu – listopad 2026: koncerty i wydarzenia” z bieżącym miesiącem.
 - `/{miasto}/dzis`, `/{miasto}/weekend`, `/{miasto}/ten-tydzien`: tytuły w formie pytań użytkowników z konkretną datą, np. „Co robić we Wrocławiu w weekend 14–15 listopada?”. Zakres weekendu odpowiada filtrowi `weekend`.
 - Strona główna: „Kalendarz imprez w Polsce – imprezy w okolicy dziś | MapaImprez.pl”, z dopasowanymi tagami Open Graph.
+
+## Strony sezonowe
+
+Dodane 10 listopada 2026 r. Ich celem jest ruch z sezonowych zapytań, np. „jarmark bożonarodzeniowy 2026”, „mikołajki”, „koncerty świąteczne” i „sylwester 2026”.
+
+| URL | Okno dat (czas lokalny) | Dopasowanie po tytule |
+|---|---|---|
+| `/jarmarki-bozonarodzeniowe` | 1 listopada – 7 stycznia | „jarmark”/„kiermasz” oraz słowo świąteczne w tytule lub krótkim opisie |
+| `/mikolajki` | 28 listopada – 8 grudnia | „Mikołaj…” |
+| `/koncerty-swiateczne` | 20 listopada – 27 grudnia | kategoria koncerty albo „koncert”/„gala”/„kolęd…” oraz słowo świąteczne, bez jarmarków |
+| `/sylwester` | 26 grudnia – 15 stycznia | „sylwest…”, „noworoczn…”, „nowy rok” albo start 31 grudnia od 18:00 |
+
+- Definicje są w `lib/seasons.ts`, a odczyt w `lib/seasonal-events.ts`. Odczyt używa `searchPublicEvents`, więc zachowuje filtry `published`, `public` i nieanulowane oraz pomija zakończone wydarzenia. Nie potrzeba nowych tabel ani tagów.
+- Rok edycji przełącza się po końcu okna. Po 8 grudnia `/mikolajki` pokazuje edycję następnego roku.
+- Strona grupuje wydarzenia według miast: najpierw miasta z największą liczbą wydarzeń, przy remisie największe miasta. Zawiera chipy-kotwice miast, linki do stron miast, sekcję FAQ, linki do pozostałych sezonów oraz JSON-LD `CollectionPage`/`ItemList`, `BreadcrumbList` i `FAQPage`.
+- Przy mniej niż 3 wydarzeniach strona ma `noindex, follow` i nie trafia do `sitemap-main.xml`. Od 3 wydarzeń jest indeksowana i wpisana do mapy.
+- Stopka ma kolumnę „Na sezon” z linkami do wszystkich stron sezonowych.
+
+## Odmiana nazw miast
+
+`formatInCity` korzysta z `lib/city-locative.ts`: słownika wszystkich 88 aktywnych miast (stan z 10 listopada 2026 r.) i największych miast Polski. Dla nieznanych nazw działają reguły końcówek, z obsługą nazw wielowyrazowych i z łącznikiem („w Nowym Mieście Lubawskim”, „w Busku-Zdroju”). Wcześniejsza heurystyka dawała formy typu „w Piłie” czy „w Siedlcem”. Nowe miasta warto dopisywać do słownika.
