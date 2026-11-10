@@ -1,4 +1,5 @@
 import { listingMetadata } from "@/lib/listing-metadata";
+import { buildEventSeoDescription, buildEventSeoTitle } from "@/lib/event-metadata";
 import { redirectLowercasePath } from "@/lib/canonical-path";
 import { serializeJsonLd } from "@/lib/json-ld";
 import type { Metadata } from "next";
@@ -51,17 +52,21 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const event = await getEventBySlug(eventOrTime);
   if (!event) return {};
 
+  const title = buildEventSeoTitle(event);
+  const description = buildEventSeoDescription(event);
   return listingMetadata({
-    title: `${event.title} | MapaImprez`,
-    description: event.short_description || event.description || `Wydarzenie ${event.title} w miejscowości ${event.city}.`,
+    title,
+    description,
     alternates: {
       canonical: eventPath(event),
     },
     openGraph: {
-      title: `${event.title} | MapaImprez`,
-      description: event.short_description || event.description || `Wydarzenie ${event.title} w miejscowości ${event.city}.`,
+      title,
+      description,
       url: `https://mapaimprez.pl${eventPath(event)}`,
       type: "article",
+      locale: "pl_PL",
+      siteName: "MapaImprez.pl",
       ...(event.imageUrl ? {
         images: [{
           url: event.imageUrl,
@@ -73,8 +78,8 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     },
     twitter: {
       card: "summary_large_image",
-      title: `${event.title} | MapaImprez`,
-      description: event.short_description || event.description || `Wydarzenie ${event.title} w miejscowości ${event.city}.`,
+      title,
+      description,
       ...(event.imageUrl ? { images: [event.imageUrl] } : {}),
     },
   });

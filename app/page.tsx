@@ -4,16 +4,20 @@ import HomePage from "@/components/HomePage";
 import { getHomeData } from "@/lib/events";
 import { parsePublicFilterParams } from "@/lib/filters";
 import type { Metadata } from "next";
+import { listingMetadata } from "@/lib/listing-metadata";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "MapaImprez.pl - lokalne wydarzenia w Polsce",
-  description: "Znajdź koncerty, festyny, targi, wydarzenia sportowe, rodzinne i kulturalne w Polsce. Filtruj wydarzenia po dacie, mieście, kategorii, cenie i promieniu.",
+const HOME_TITLE = "Kalendarz imprez w Polsce – imprezy w okolicy dziś | MapaImprez.pl";
+const HOME_DESCRIPTION = "Imprezy, koncerty i festyny w Twojej okolicy – dziś, w weekend i w najbliższych dniach. Kalendarz wydarzeń w Polsce na mapie: filtruj po mieście, dacie i cenie.";
+
+export const metadata: Metadata = listingMetadata({
+  title: HOME_TITLE,
+  description: HOME_DESCRIPTION,
   alternates: {
     canonical: "/",
   },
-};
+});
 
 type SearchParams = Record<string, string | string[] | undefined>;
 

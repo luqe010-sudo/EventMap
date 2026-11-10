@@ -1,4 +1,5 @@
 import { listingMetadata } from "@/lib/listing-metadata";
+import { cityTimeListingSeo } from "@/lib/listing-seo";
 import { redirectLowercasePath } from "@/lib/canonical-path";
 import { serializeJsonLd } from "@/lib/json-ld";
 import type { Metadata } from "next";
@@ -77,12 +78,8 @@ export async function generateMetadata({
     const isTimeKeyword = citySlug === "dzis" || citySlug === "weekend" || citySlug === "ten-tydzien";
     if (!isTimeKeyword) return {};
 
-    const locationText = formatInCity(cityLocation.label);
-    const timeLabel = citySlug === "dzis" ? "dzisiaj" : citySlug === "weekend" ? "w weekend" : "w tym tygodniu";
-
     return listingMetadata({
-      title: `Wydarzenia ${locationText} ${timeLabel} | MapaImprez`,
-      description: `Imprezy i wydarzenia ${locationText} zaplanowane ${timeLabel}. Koncerty, teatr, sport. Sprawdź co robić ${timeLabel}!`,
+      ...cityTimeListingSeo(cityLocation.label, citySlug),
       alternates: {
         canonical: `/${cityLocation.slug ?? toSlug(cityLocation.label)}/${citySlug}`
       }
