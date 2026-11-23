@@ -3020,6 +3020,46 @@ select:focus {
   font-weight: 600;
 }
 
+.mapSpiderControls {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.mapSpiderControls span {
+  padding-inline: 5px;
+}
+
+.mapSpiderControls button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: var(--bg-soft);
+  color: inherit;
+  cursor: pointer;
+}
+
+.mapSpiderControls button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 .eventMarker,
 .locationMarker {
   display: grid;
@@ -6173,6 +6213,10 @@ a.edSourceItem:hover .edSourceArrow {
 
   .mobileMapLoading {
     background: #f4f0e8;
+  }
+
+  .mobileMapView .mapSpiderControls {
+    top: 54px;
   }
 
   .mobileMapView .maplibregl-ctrl-bottom-left,

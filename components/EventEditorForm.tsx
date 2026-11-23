@@ -5,6 +5,7 @@ import type { EditableEvent, EventEditorOptions } from "@/lib/event-editor";
 import { eventStatuses, formatEventStatus, toDateTimeLocal } from "@/lib/event-editor";
 import { eventTextLimits, type EventEditorState } from "@/lib/event-editor-validation";
 import LocationSection from "@/components/LocationSection";
+import { getDateKeyInAppTimeZone } from "@/lib/date-format";
 
 type EventEditorFormProps = {
   action: (state: EventEditorState, formData: FormData) => Promise<EventEditorState>;
@@ -146,10 +147,21 @@ export default function EventEditorForm({
           </label>
         ) : null}
         {mode === "admin" ? (
-          <label className="checkboxLabel">
-            <input name="is_featured" type="checkbox" defaultChecked={Boolean(event?.is_featured)} />
-            Promowane
-          </label>
+          <>
+            <label className="checkboxLabel">
+              <input name="is_featured" type="checkbox" defaultChecked={Boolean(event?.is_featured)} />
+              Promowane (płatne polecanie 39 zł)
+            </label>
+            <label>
+              Promowane do
+              <input
+                name="featured_until"
+                type="date"
+                defaultValue={event?.is_featured && event.featured_until ? getDateKeyInAppTimeZone(event.featured_until) : ""}
+              />
+              <span className="formHint">Puste = do dnia zakończenia wydarzenia, maks. 30 dni. Po tej dacie polecenie znika automatycznie.</span>
+            </label>
+          </>
         ) : null}
       </div>
 

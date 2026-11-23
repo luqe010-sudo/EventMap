@@ -73,6 +73,7 @@ afterEach(() => vi.unstubAllGlobals());
 describe("HomePage Back/Forward", () => {
   it("restores controls and fetches list, map and category counts for the earlier URL", async () => {
     render(); runEffects();
+    expect(fetchMock.mock.calls.some(([url]) => url.startsWith("/api/events/markers"))).toBe(false);
     await pop({ eventMapWorkspace: { view: "map", workspaceUrl: "/koncerty/warszawa?kiedy=custom&dataOd=2026-10-10&dataDo=2026-10-12&cena=max&cenaMax=80&radius=25&sort=nearest" } });
     fetchMock.mockClear();
     const controls = panel(render());

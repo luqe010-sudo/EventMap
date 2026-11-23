@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { PUBLIC_EVENT_MARKER_LIMIT, searchPublicEventMarkers } from "@/lib/events";
 import { PublicSearchInputError, publicSearchOptionsFromParams } from "@/lib/public-search-params";
 import { PUBLIC_EVENT_NO_STORE_HEADERS } from "@/lib/public-event-cache";
+import { readCachedPublicMarkerInventory } from "@/lib/public-map-cache";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,7 @@ export async function GET(request: NextRequest) {
     const markers = await searchPublicEventMarkers({
       ...publicSearchOptionsFromParams(params),
       maxResults: PUBLIC_EVENT_MARKER_LIMIT
-    });
+    }, readCachedPublicMarkerInventory);
 
     return NextResponse.json({ markers }, { headers: PUBLIC_EVENT_NO_STORE_HEADERS });
   } catch (error) {

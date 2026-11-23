@@ -1,0 +1,683 @@
+{
+  "verified_at": "2026-11-02T10:18:16.810Z",
+  "candidates": 16,
+  "published": 16,
+  "skipped_duplicates": 0,
+  "cities": {
+    "Suwałki": 2,
+    "Koszalin": 2,
+    "Słupsk": 2,
+    "Tarnów": 2,
+    "Radom": 2,
+    "Wałbrzych": 2,
+    "Toruń": 2,
+    "Zgorzelec": 2
+  },
+  "free": 10,
+  "anonymous_reads": 16,
+  "production_api_reads": 16,
+  "coordinates_confirmed": 16,
+  "markers_confirmed": 16,
+  "marker_checks": [
+    {
+      "city_slug": "suwalki",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "koszalin",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "slupsk",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "tarnow",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "radom",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "walbrzych",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "torun",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "zgorzelec",
+      "status": 200,
+      "confirmed": 2
+    }
+  ],
+  "html_checks": [
+    {
+      "url": "https://mapaimprez.pl/rodzinne/suwalki/curated-dziecieca-akademia-rekodziela-jesien-suwalki-2026-11-07-cb6f1c26a7af",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true
+    },
+    {
+      "url": "https://mapaimprez.pl/kultura/radom/curated-rozmowy-o-poezji-spotkanie-z-anna-lecka-radom-2026-11-03-fa2b016d0910",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true
+    },
+    {
+      "url": "https://mapaimprez.pl/sport/zgorzelec/curated-bieg-przy-pochodniach-2026-mostami-zgorzelca-i-gorlitz-zgorzelec-2026-11-13-dcbd7484c622",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true
+    }
+  ],
+  "events": [
+    {
+      "id": "adbc86d6-d06d-4116-9e61-f374f46aab13",
+      "title": "Dziecięca Akademia Rękodzieła „Jesień”",
+      "city": "Suwałki",
+      "city_slug": "suwalki",
+      "category": "rodzinne",
+      "start_at": "2026-11-07T11:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/rodzinne/suwalki/curated-dziecieca-akademia-rekodziela-jesien-suwalki-2026-11-07-cb6f1c26a7af",
+      "source_url": "https://soksuwalki.eu/class/dziecieca-akademia-rekodziela-jesien",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "77b01e09-02b5-4ebf-b413-362d7ea80e10",
+      "title": "X Międzypokoleniowy Przegląd Pieśni Patriotycznej",
+      "city": "Suwałki",
+      "city_slug": "suwalki",
+      "category": "koncerty",
+      "start_at": "2026-11-03T12:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/koncerty/suwalki/curated-x-miedzypokoleniowy-przeglad-piesni-patriotycznej-suwalki-2026-11-03-1aaf56ce6aed",
+      "source_url": "https://soksuwalki.eu/class/x-edycja-miedzypokoleniowego-przegladu-piesni-patriotycznej",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "55dcd33a-ea96-4cec-851a-9dadd5b349ec",
+      "title": "45. Festiwal Generacja — przegląd zespołów",
+      "city": "Koszalin",
+      "city_slug": "koszalin",
+      "category": "festiwale",
+      "start_at": "2026-11-13T19:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/festiwale/koszalin/curated-45-festiwal-generacja-przeglad-zespolow-koszalin-2026-11-13-4cbab59c05bf",
+      "source_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/45-festiwal-generacja-konkurs-przeglad-zespolow",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "d904deee-6151-4c9b-8d3e-7474f1791d06",
+      "title": "Z pieśnią patriotyczną ku Niepodległej",
+      "city": "Koszalin",
+      "city_slug": "koszalin",
+      "category": "koncerty",
+      "start_at": "2026-11-11T16:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/koncerty/koszalin/curated-z-piesnia-patriotyczna-ku-niepodleglej-koszalin-2026-11-11-373af933e1ab",
+      "source_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/z-piesnia-patriotyczna-ku-niepodleglej",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "a6ca897d-8c88-424e-a836-87aa02e8ab91",
+      "title": "50/15 — Miedziewski/Nowak. Wieczór Jubileuszowy",
+      "city": "Słupsk",
+      "city_slug": "slupsk",
+      "category": "kultura",
+      "start_at": "2026-11-07T18:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/kultura/slupsk/curated-50-15-miedziewski-nowak-wieczor-jubileuszowy-slupsk-2026-11-07-584da2078a32",
+      "source_url": "https://www.sok.slupsk.pl/index.php/kalendarium/3242-50-15-miedziewski-nowak-wieczor-jubileuszowy?date=2026-11-07-18-00",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "4d543092-be3c-4ccc-b8cc-9d7d454d15a7",
+      "title": "Kino rodzinne: Niesamowite przygody skarpetek 4. Do roboty!",
+      "city": "Słupsk",
+      "city_slug": "slupsk",
+      "category": "rodzinne",
+      "start_at": "2026-11-07T14:00:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/rodzinne/slupsk/curated-kino-rodzinne-niesamowite-przygody-skarpetek-4-do-roboty-slupsk-2026-11-07-e06c1613120f",
+      "source_url": "https://www.sok.slupsk.pl/index.php/kalendarium/3247-niesamowite-przygody-skarpetek-4-do-roboty?date=2026-11-07-14-00",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "3cde7008-be80-4217-b93b-bac0eeefc0d3",
+      "title": "Planszówki młodzieżówki — nocne granie",
+      "city": "Tarnów",
+      "city_slug": "tarnow",
+      "category": "kultura",
+      "start_at": "2026-11-06T19:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/tarnow/curated-planszowki-mlodziezowki-nocne-granie-tarnow-2026-11-06-db28e5291b7d",
+      "source_url": "https://dkwesterplatte.pl/wydarzenia/spotkania/spotkanie-planszowki-mlodziezowki-nocne-granie/56",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "e2012e93-69fe-4926-8511-91528cc8d950",
+      "title": "Rodzina na górce — Pierzaste i futrzaste",
+      "city": "Tarnów",
+      "city_slug": "tarnow",
+      "category": "rodzinne",
+      "start_at": "2026-11-08T10:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/rodzinne/tarnow/curated-rodzina-na-gorce-pierzaste-i-futrzaste-tarnow-2026-11-08-54a85516947e",
+      "source_url": "https://dkwesterplatte.pl/wydarzenia/warsztaty/warsztaty-rodzina-na-gorce-warsztaty-dla-rodzin-z-dziecmi-w-wieku-4-7-lat/59",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "42340f28-93b9-4908-aa7c-02bbe71361e5",
+      "title": "Rozmowy o poezji: spotkanie z Anną Łęcką",
+      "city": "Radom",
+      "city_slug": "radom",
+      "category": "kultura",
+      "start_at": "2026-11-03T17:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/radom/curated-rozmowy-o-poezji-spotkanie-z-anna-lecka-radom-2026-11-03-fa2b016d0910",
+      "source_url": "https://resursa.radom.pl/aktualnosci/spotkanie-autorskie-z-anna-lecka",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "dd0a658e-3437-4f23-ba63-e7f70c490bae",
+      "title": "Retrospotkanie 82 — Wywar. Z czasów i przestrzeni",
+      "city": "Radom",
+      "city_slug": "radom",
+      "category": "kultura",
+      "start_at": "2026-11-10T18:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/radom/curated-retrospotkanie-82-wywar-z-czasow-i-przestrzeni-radom-2026-11-10-dd208c4ef591",
+      "source_url": "https://resursa.radom.pl/wydarzenie/retrospotkanie-82-wywar-z-czasow-i-przestrzeni",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "0bdc3c36-6115-4754-b61a-83d546507b85",
+      "title": "Wałbrzych ma talent: Katarzyna Serdeczna & Kalluna",
+      "city": "Wałbrzych",
+      "city_slug": "walbrzych",
+      "category": "koncerty",
+      "start_at": "2026-11-06T18:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/koncerty/walbrzych/curated-walbrzych-ma-talent-katarzyna-serdeczna-kalluna-walbrzych-2026-11-06-8664a19e52bc",
+      "source_url": "https://starakopalnia.pl/wydarzenia/katarzyna-serdeczna-kalluna-live",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "6542336b-24a7-44f2-a06d-82526073e79d",
+      "title": "Roboty kosmiczne — warsztat Festiwalu Galaktyka Węgla",
+      "city": "Wałbrzych",
+      "city_slug": "walbrzych",
+      "category": "rodzinne",
+      "start_at": "2026-11-07T10:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/rodzinne/walbrzych/curated-roboty-kosmiczne-warsztat-festiwalu-galaktyka-wegla-walbrzych-2026-11-07-d33e0463cf0f",
+      "source_url": "https://starakopalnia.pl/wydarzenia/festiwal-kosmiczny-galaktyka-wegla-2",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "1c80478f-ab16-435f-871d-b767e979f6ba",
+      "title": "Poznaj, przećwicz, działaj — Masz te eMOCje!",
+      "city": "Toruń",
+      "city_slug": "torun",
+      "category": "kultura",
+      "start_at": "2026-11-05T17:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/torun/curated-poznaj-przecwicz-dzialaj-masz-te-emocje-torun-2026-11-05-90b5eea751df",
+      "source_url": "https://www.bptorun.edu.pl/1874/poznaj-przecwicz-dzialaj-masz-te-emocje-warsztaty-stacjonarne",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "3e726ca4-8252-4448-bf83-1fbc3ead8f7e",
+      "title": "Warsztaty scenariopisarskie — Kujawy i Pomorze jako przestrzeń akcji",
+      "city": "Toruń",
+      "city_slug": "torun",
+      "category": "kultura",
+      "start_at": "2026-11-17T18:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/kultura/torun/curated-warsztaty-scenariopisarskie-kujawy-i-pomorze-jako-przestrzen-akcji-torun-2026-11-17-e3943e843656",
+      "source_url": "https://www.torun.pl/pl/warsztaty-scenariopisarskie-w-kinie-csw",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "2a78b4af-d093-4816-87a8-188fa7aa1339",
+      "title": "Sportowy Patriotyzm na Tartanie — finał cyklu 3–2–1 START",
+      "city": "Zgorzelec",
+      "city_slug": "zgorzelec",
+      "category": "sport",
+      "start_at": "2026-11-11T14:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/sport/zgorzelec/curated-sportowy-patriotyzm-na-tartanie-final-cyklu-3-2-1-start-zgorzelec-2026-11-11-f2518acffd63",
+      "source_url": "https://zgorzelec.eu/kalendarz-wydarzen/sportowy-patriotyzm-na-tartanie-cykl-biegowy-3-2-1-start",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "c4eae2f2-ce2c-4d72-ae8d-030951176a55",
+      "title": "Bieg przy Pochodniach 2026 — mostami Zgorzelca i Görlitz",
+      "city": "Zgorzelec",
+      "city_slug": "zgorzelec",
+      "category": "sport",
+      "start_at": "2026-11-13T18:30:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/sport/zgorzelec/curated-bieg-przy-pochodniach-2026-mostami-zgorzelca-i-gorlitz-zgorzelec-2026-11-13-dcbd7484c622",
+      "source_url": "https://zgorzelec.eu/kalendarz-wydarzen/bieg-przy-pochodniach-2026",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    }
+  ],
+  "skipped": [],
+  "rechecks": [
+    {
+      "event_id": "1ec85d29-0229-4a44-87de-c4d61e01a00b",
+      "title": "Nadmorskie finanse — jak zarządzać własnym portfelem",
+      "source_url": "https://100.gdynia.pl/en/aktualnosci/spotkajmy-sie-na-urodzinach-gdyni-w-listopadzie",
+      "start_at": "2026-11-05T18:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "5.11.2026, 18:00, WSAiB Kielecka 7 i wstęp wolny nadal w miejskim programie stulecia. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "e4170bb0-bde4-4a75-8a26-dc097485dbcd",
+      "title": "BOTO JAM: Zaduszki Jazzowe pamięci Dextera Gordona",
+      "source_url": "https://boto.art.pl/index.php/2026/09/05/boto-jam-zaduszki-jazzowe-pamieci-dextera-gordona",
+      "start_at": "2026-11-05T21:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "5.11.2026 i bilety 40/20 zł nadal na stronie BOTO; oficjalnie powiązany Stage24 potwierdza21:00 i kwoty43,90/22,90 z opłatą. Opis wpisu już uwzględnia opłatę. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": [
+        "https://stage24.pl/wydarzenia/piotr-jankowski-bartlomiej-brozda-teatr-boto-10154"
+      ]
+    },
+    {
+      "event_id": "9aa41cde-8b5d-45ee-b425-e2348f95263f",
+      "title": "Szydełkiem i włóczką",
+      "source_url": "https://dks.art.pl/szydelkiem-i-wloczka-3-listopada",
+      "start_at": "2026-11-03T18:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "3.11.2026,18:00, Anielewicza3/5, Międzypokoleniowa Klubokawiarnia i wstęp wolny zgodne. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "f954ece5-dd53-4e19-a098-6ece76c18c4d",
+      "title": "Widmo wolności — Wielcy twórcy ekranu",
+      "source_url": "https://domsztuki.art.pl/kino/seans/304-widmo-wolnosci",
+      "start_at": "2026-11-08T19:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "8.11.2026,19:00, Wiolinowa14 i biletowany seans nadal na stronie kina; brak podstaw do dopisania kwoty. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "982b02c6-d5d6-4c7e-8df6-18a1b9184e1a",
+      "title": "Sąsiedzi (1) — V Paderewski Festival 2026",
+      "source_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026",
+      "start_at": "2026-11-06T19:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "6.11.2026,19:00, Aula Uniwersytecka i odpłatny wstęp CenaA nadal w repertuarze. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "b41d8013-3e73-469b-bb58-9446ce46b8f5",
+      "title": "Muzykoteka: Hej, hej ułani! — koncert rodzinny",
+      "source_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026",
+      "start_at": "2026-11-07T11:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "7.11.2026,11:00, Aula Uniwersytecka i odpłatny wstęp CenaC nadal w repertuarze. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "7823d712-01ff-4fd6-bd17-c324b4278727",
+      "title": "Amanti dell'Opera — warsztaty chóralne",
+      "source_url": "https://www.opera.wroclaw.pl/repertuar?date=2026-11",
+      "start_at": "2026-11-04T16:30:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "4.11.2026,16:30, warsztaty90 min, bilety20 zł zgodne z oficjalnym repertuarem. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "96b6d31d-1117-440c-9f58-85dcde9a8bdb",
+      "title": "J. Brahms — Ein Deutsches Requiem",
+      "source_url": "https://www.opera.wroclaw.pl/koncert-j-brahms-ein-deutsches-requiem?date=2026-11-06T19%3A00",
+      "start_at": "2026-11-06T19:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "6.11.2026,19:00, bilety40–120 zł zgodne. Repertuar i strona szczegółów teraz zgodnie wskazują80 min; rekord nie ma end_at, więc nie wymaga edycji. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "6a45d778-79cf-4a35-8f7a-ff779e0389f1",
+      "title": "W kontakcie | Sztuka Wrażliwości",
+      "source_url": "https://warsztatykultury.pl/pl/wydarzenia/w-kontakcie-sztuka-wrazliwosci-listopad-2026",
+      "start_at": "2026-11-07T11:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "7.11.2026,11:00–12:00, Grodzka5a sala widowiskowaIIpiętro, dzieci3–9zopiekunami, bezpłatny udział na zapisy zgodne. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "7df44892-6f36-4b92-8b6e-42b95add3595",
+      "title": "Salon Kobiet: Jacek Kałucki i Marek Siudym",
+      "source_url": "https://www.kck.com.pl/salon-kobiet-jacek-kalucki-i-marek-siudym",
+      "start_at": "2026-11-08T17:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "Publiczny odczyt bezpośredniHTTP 200:8XI2026,17:00, GaleriaWinda, bilet35 zł zgodne. Webopen miałcache miss. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "e3c12f38-ce0a-4007-a827-7c3a59501eab",
+      "title": "Festiwal Smaków Regionalnych — sobota",
+      "source_url": "https://hala.olsztyn.eu/wydarzenia/festiwal-smakow-regionalnych",
+      "start_at": "2026-11-07T10:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "7.11.2026,10:00–18:00, HalaUrania, bezpłatny wstęp zgodne. Wpis nadal dotyczy konkretnej soboty. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "de80ad6a-5a0a-4568-a504-0bad0e907660",
+      "title": "Dzień Świętego Huberta — grodzieńskie spotkanie w CLZ",
+      "source_url": "https://www.centrumzamenhofa.pl/art,1449,dzien-swietego-huberta",
+      "start_at": "2026-11-03T18:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "3.11.2026,18:00, wstęp wolny, CentrumZamenhofa zgodne. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "e61727cd-b0f2-4c16-9b00-660cb6d1dd37",
+      "title": "Grupa tekstylna — spotkanie twórcze",
+      "source_url": "https://bok.bialystok.pl/wydarzenie/grupa-tekstylna-spotkanie",
+      "start_at": "2026-11-05T17:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "5.11.2026,17:00, CLZ Warszawska19, wstęp wolny i własne materiały/narzędzia zgodne. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "386dc2d3-e036-4734-aa75-b7b12c068d2b",
+      "title": "Kto tu nie grał! — wystawa fotografii Lucjusza Cykarskiego",
+      "source_url": "https://bck.bielsko-biala.pl/kto-tu-nie-gral-wystawa-fotografii-lucjusza-cykarskiego",
+      "start_at": "2026-11-04T17:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "4.11.2026,17:00, BCK, wstęp wolny zgodne. Źródło nie określa wydarzenia wprost jako wernisażu. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "7a68ae2b-cde3-4113-80d4-6918fb5187b9",
+      "title": "Soyka / Stańko — odsłuch albumu i rozmowa",
+      "source_url": "https://bck.bielsko-biala.pl/soyka-stanko-arcydziela-z-archiwum-polskiego-radia-odsluch-plyty",
+      "start_at": "2026-11-07T14:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "7.11.2026,14:00, CafeMaria wBCK, wstęp wolny zgodne. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "77eb7014-69d0-4b7c-bc3b-c87a1cc7eeb2",
+      "title": "Od zabawy i słuchania do czytania: Bajkowy świat",
+      "source_url": "https://www.wimbp.gorzow.pl/kalendarz-wydarzen/od-zabawy-i-sluchania-do-czytania-bajkowy-swiat.html",
+      "start_at": "2026-11-03T11:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "3.11.2026,11:00, Sikorskiego107 OddziałDziecięcy, dzieci2–3lata niechodzące dożłobka/przedszkola, zapisy zgodne. Cena nadal niepodana. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "0d64fd82-3e86-4b98-b123-9f57f553a6e3",
+      "title": "Spotkanie z Anną Brzezińską — 24. Opolska Jesień Literacka",
+      "source_url": "https://mbp.opole.pl/wydarzenia/24-ojl-spotkanie-z-anna-brzezinska",
+      "start_at": "2026-11-06T18:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "MBPOpoleHTTP 200 potwierdza6.11.2026,18:00, Minorytów4, sala konferencyjna; miejskie źródło potwierdza wstęp wolny. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": [
+        "https://www.opole.pl/dla-mieszkanca/wydarzenie/24-opolska-jesien-literacka-spotkanie-z-anna-brzezinska-w-miejskiej"
+      ]
+    },
+    {
+      "event_id": "98a967d7-7da3-4bd7-90d8-99f394717eff",
+      "title": "X Listopadowe Spotkanie z Historią — początki harcerstwa",
+      "source_url": "https://www.muzeum.rzeszow.pl/pl/2026/10/28/x-listopadowe-spotkanie-z-historia",
+      "start_at": "2026-11-08T12:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "8.11.2026,12:00–15:00,3Maja19, wstęp na spotkanie wolny, oddzielne bilety na ekspozycje zgodne. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    },
+    {
+      "event_id": "c2178e3d-2499-4d3c-93a4-5342e3c1bdb6",
+      "title": "Wyśpiewaj z nami NIE-PODLEGŁOŚĆ",
+      "source_url": "https://www.akademiasztuki.eu/Product/wyspiewaj-z-nami-nie-podleglosc-6ae1e590a4324",
+      "start_at": "2026-11-08T17:00:00+01:00",
+      "checked_at": "2026-11-02T10:09:10Z",
+      "outcome": "confirmed_unchanged",
+      "finding": "Publiczny odczyt bezpośredniHTTP 200:8.11.2026,17:00, SalaPerłowa, al.Niepodległości40, wstęp wolny zgodne. Webopen miałcache miss. Na odczytanych stronach nie znaleziono komunikatu o odwołaniu.",
+      "evidence_urls": []
+    }
+  ],
+  "rechecks_count": 19,
+  "cancellations_found": 0,
+  "required_existing_event_updates": 0,
+  "deferred": [
+    {
+      "title": "XVIII Regionalny Rajd Niepodległości",
+      "city": "Kołobrzeg",
+      "start_at": "2026-11-07T09:45:00+01:00",
+      "source_url": "https://i-kolobrzeg.pl/wydarzenie-3493-xviii_regionalny_rajd_niepodleglosci-szczegoly-113326.html",
+      "reason": "Termin zgłoszeń drużyn upłynął 30 października. Brak potwierdzonej możliwości dołączenia po terminie; nie proponowano jako otwartej nowej rejestracji."
+    },
+    {
+      "title": "Historia zaklęta w zegarze — rodzinne warsztaty plastyczne",
+      "city": "Nysa",
+      "start_at": "2026-11-28T12:00:00+01:00",
+      "source_url": "https://informacja-turystyczna.nysa.pl/wydarzenia-w-nysie-listopad-2026-sprawdz-kalendarz-imprez/",
+      "reason": "Kalendarz PIT wskazuje Biskupa Jarosława1, inne oficjalne strony adres muzeum11. Bez bezpośredniego odczytu aktualnej zapowiedzi muzeum nie rozstrzygano rozbieżności w tym przebiegu."
+    },
+    {
+      "title": "Warsztaty scenariopisarskie — termin 3 listopada",
+      "source_url": "https://www.torun.pl/pl/warsztaty-scenariopisarskie-w-kinie-csw",
+      "reason": "Miejski kalendarz18:00 vs opis i nagłówek oficjalnej sprzedaży17:00. Nie publikować bez wyjaśnienia."
+    }
+  ],
+  "categories": {
+    "rodzinne": 4,
+    "koncerty": 3,
+    "festiwale": 1,
+    "kultura": 6,
+    "sport": 2
+  },
+  "duplicate_review": {
+    "manual_and_independent_review": true,
+    "same_city_day_existing": 0,
+    "identical_source_existing": 0,
+    "repeat_dry_run": {
+      "existing_published": 16,
+      "new_writes": 0
+    },
+    "scope": "Brak nowych duplikatów tej paczki, nie audyt wszystkich historycznych rekordów."
+  },
+  "media": {
+    "main_image_url_empty": 16,
+    "ai_generated": 0,
+    "posters_copied": 0,
+    "library_downloads_or_uploads": 0,
+    "server_rendered_covers": [
+      {
+        "id": "adbc86d6-d06d-4116-9e61-f374f46aab13",
+        "title": "Dziecięca Akademia Rękodzieła „Jesień”",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": true
+      },
+      {
+        "id": "77b01e09-02b5-4ebf-b413-362d7ea80e10",
+        "title": "X Międzypokoleniowy Przegląd Pieśni Patriotycznej",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": false
+      },
+      {
+        "id": "55dcd33a-ea96-4cec-851a-9dadd5b349ec",
+        "title": "45. Festiwal Generacja — przegląd zespołów",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": false
+      },
+      {
+        "id": "d904deee-6151-4c9b-8d3e-7474f1791d06",
+        "title": "Z pieśnią patriotyczną ku Niepodległej",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": false
+      },
+      {
+        "id": "a6ca897d-8c88-424e-a836-87aa02e8ab91",
+        "title": "50/15 — Miedziewski/Nowak. Wieczór Jubileuszowy",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": false
+      },
+      {
+        "id": "4d543092-be3c-4ccc-b8cc-9d7d454d15a7",
+        "title": "Kino rodzinne: Niesamowite przygody skarpetek 4. Do roboty!",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": true
+      },
+      {
+        "id": "3cde7008-be80-4217-b93b-bac0eeefc0d3",
+        "title": "Planszówki młodzieżówki — nocne granie",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": false
+      },
+      {
+        "id": "e2012e93-69fe-4926-8511-91528cc8d950",
+        "title": "Rodzina na górce — Pierzaste i futrzaste",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": false
+      },
+      {
+        "id": "42340f28-93b9-4908-aa7c-02bbe71361e5",
+        "title": "Rozmowy o poezji: spotkanie z Anną Łęcką",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": true
+      },
+      {
+        "id": "dd0a658e-3437-4f23-ba63-e7f70c490bae",
+        "title": "Retrospotkanie 82 — Wywar. Z czasów i przestrzeni",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": true
+      },
+      {
+        "id": "0bdc3c36-6115-4754-b61a-83d546507b85",
+        "title": "Wałbrzych ma talent: Katarzyna Serdeczna & Kalluna",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": false
+      },
+      {
+        "id": "6542336b-24a7-44f2-a06d-82526073e79d",
+        "title": "Roboty kosmiczne — warsztat Festiwalu Galaktyka Węgla",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": true
+      },
+      {
+        "id": "1c80478f-ab16-435f-871d-b767e979f6ba",
+        "title": "Poznaj, przećwicz, działaj — Masz te eMOCje!",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": false
+      },
+      {
+        "id": "3e726ca4-8252-4448-bf83-1fbc3ead8f7e",
+        "title": "Warsztaty scenariopisarskie — Kujawy i Pomorze jako przestrzeń akcji",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": true
+      },
+      {
+        "id": "2a78b4af-d093-4816-87a8-188fa7aa1339",
+        "title": "Sportowy Patriotyzm na Tartanie — finał cyklu 3–2–1 START",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": false
+      },
+      {
+        "id": "c4eae2f2-ce2c-4d72-ae8d-030951176a55",
+        "title": "Bieg przy Pochodniach 2026 — mostami Zgorzelca i Görlitz",
+        "status": 200,
+        "cover": true,
+        "illustrative_photo": false
+      }
+    ],
+    "mobile_visual_check": {
+      "completed": false,
+      "reason": "IAB unavailable and browser inventory empty. Native Computer Use was stopped automatically because it could not determine the current browser URL on Windows with enough confidence to enforce policy. No further app input attempted.",
+      "last_confirmed_responsive_release": "docs/event-media-release-2026-11-01.md"
+    },
+    "official_poster_crop_check": "Nie dotyczy nowych wpisów: nie publikowano oficjalnych plakatów. Istniejąca reguła contain zweryfikowana przy wdrożeniu1.11; dziś kod bez zmian."
+  },
+  "validation": {
+    "importer_tests_passed": 9,
+    "importer_tests_total": 9,
+    "eslint_errors": 0,
+    "apply_inserted_and_published": 16,
+    "apply_failed": 0,
+    "public_confirmed": 16,
+    "no_existing_event_writes": true,
+    "no_schema_rls_hosting_or_account_changes": true
+  }
+}

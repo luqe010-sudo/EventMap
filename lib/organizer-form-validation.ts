@@ -5,7 +5,6 @@ export type OrganizerFormState = {
   fieldErrors: Record<string, string>;
   error: string | null;
   success?: string;
-  creationUnconfirmed?: boolean;
 };
 
 export class OrganizerFormValidationError extends Error {
@@ -75,6 +74,7 @@ export function validateOrganizerAccountName(data: FormData, fallback?: string |
   const name = data.has("organizer_name") ? submitted : fallback?.trim() ?? null;
   if (!name) errors.organizer_name = "Podaj nazwę organizatora.";
   if (name && name.length > organizerTextLimits.organizer_name) errors.organizer_name = `Wpisz maksymalnie ${organizerTextLimits.organizer_name} znaków.`;
+  if (name && /\p{Cc}/u.test(name)) errors.organizer_name = "Podaj nazwę bez znaków sterujących.";
   if (name && !createSlug(name)) errors.organizer_name = "Nazwa musi zawierać litery albo cyfry.";
   rejectErrors(errors);
   return name!;

@@ -4,8 +4,10 @@ import { createElement } from "react";
 import { readFileSync } from "node:fs";
 
 vi.mock("next/navigation", () => ({ useRouter: () => ({ refresh: vi.fn() }) }));
+vi.mock("../lib/organizer-events", () => ({ organizerCancelEventAction: vi.fn(), organizerHideEventAction: vi.fn() }));
 
 import DeleteEventButton from "../components/DeleteEventButton";
+import OrganizerEventQuickAction from "../components/OrganizerEventQuickAction";
 import { formatEventStatus } from "../lib/event-editor";
 import { EventValidationError, validateEventForm } from "../lib/event-editor-validation";
 import { isPhotonSettlement, uniqueSuggestionsByLabel } from "../lib/location-suggestions";
@@ -21,6 +23,20 @@ function eventForm(startAt: string) {
 }
 
 describe("panel audit regressions", () => {
+  it("does not submit an organizer event cancellation directly from the table", () => {
+    const html = renderToStaticMarkup(createElement(OrganizerEventQuickAction, {
+      eventId: "event-a", eventTitle: "Koncert", intent: "cancel", available: true
+    }));
+    expect(html).toContain('type="button"');
+    expect(html).not.toContain('type="submit"');
+  });
+
+  it.each(["hide", "cancel"] as const)("hides an unavailable organizer event action: %s", (intent) => {
+    expect(renderToStaticMarkup(createElement(OrganizerEventQuickAction, {
+      eventId: "event-a", eventTitle: "Koncert", intent, available: false
+    }))).toBe("");
+  });
+
   it("does not submit an event delete directly from the admin table", () => {
     const html = renderToStaticMarkup(createElement(DeleteEventButton, { deleteAction: vi.fn(), eventTitle: "Koncert" }));
     expect(html).toContain('type="button"');

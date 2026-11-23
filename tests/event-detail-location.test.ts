@@ -13,7 +13,7 @@ const event: EventItem = {
   id: "event-one", title: "Koncert bez punktu", slug: "koncert-bez-punktu", description: "Opis", short_description: null,
   start_at: "2027-05-01T18:00:00Z", end_at: null, is_all_day: false, main_image_url: null,
   price_type: "unknown", price_min: null, price_max: null, currency: "PLN", status: "published", visibility: "public",
-  is_featured: false, is_verified: false, is_cancelled: false, updated_at: null, location: null, sources: [],
+  is_featured: false, featured_until: null, is_verified: false, is_cancelled: false, updated_at: null, location: null, sources: [],
   imageUrl: "https://example.invalid/event.jpg", startDate: "2027-05-01T18:00:00Z", address: "Sala, Warszawa",
   city: "Warszawa", citySlug: "warszawa", latitude: null, longitude: null, categoryName: "Koncerty",
   categorySlug: "koncerty", categoryRelation: null, category: "Koncerty", categoryColor: "#123456",

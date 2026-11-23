@@ -1,0 +1,356 @@
+{
+  "mode": "apply",
+  "checked_at": "2026-11-16T16:30:47.000Z",
+  "results": [
+    {
+      "title": "Korn — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/korn",
+      "outcome": "inserted_and_published",
+      "event_id": "bc54a03c-cf80-406c-a104-8e338be26466",
+      "slug": "curated-korn-koncert-w-krakowie-krakow-2026-11-17-f621f855da0a"
+    },
+    {
+      "title": "Golec uOrkiestra — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/golec-uorkiestra-2026",
+      "outcome": "inserted_and_published",
+      "event_id": "4b31529b-60ff-427b-9812-6d798b556e2d",
+      "slug": "curated-golec-uorkiestra-koncert-w-krakowie-krakow-2026-11-21-3a4666d429f7"
+    },
+    {
+      "title": "28. Małopolskie Targi Ślubne w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/28-malopolskie-targi-slubne",
+      "outcome": "inserted_and_published",
+      "event_id": "f0be10b1-f5c6-4c58-9c67-42c3333c159e",
+      "slug": "curated-28-malopolskie-targi-slubne-w-krakowie-krakow-2026-11-22-286198037092"
+    },
+    {
+      "title": "FRIENDZ: Wielki Finał DAILY 2 w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/friendz-wielki-final-daily-2",
+      "outcome": "inserted_and_published",
+      "event_id": "30d27037-7b85-45a5-a1c4-61c9a768deca",
+      "slug": "curated-friendz-wielki-final-daily-2-w-krakowie-krakow-2026-11-22-c00465eb0a9b"
+    },
+    {
+      "title": "Targi wędkarskie Bushcraft & Adventure w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/targi-wedkarskie-bushcraft-adventure",
+      "outcome": "inserted_and_published",
+      "event_id": "dc31798f-bbb0-4a80-aa0c-83ce034381cc",
+      "slug": "curated-targi-wedkarskie-bushcraft-adventure-w-krakowie-krakow-2026-12-05-b5e90c698ad8"
+    },
+    {
+      "title": "Kaśka Sochacka — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/kaska-sochacka-2026",
+      "outcome": "inserted_and_published",
+      "event_id": "627118da-9e60-41c0-87ca-34dbce02a2eb",
+      "slug": "curated-kaska-sochacka-koncert-w-krakowie-krakow-2026-12-11-2f12d4241997"
+    },
+    {
+      "title": "OKI — Moshpit Member Tour w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/oki-moshpit-member-tour-2026",
+      "outcome": "inserted_and_published",
+      "event_id": "0adf2f4d-6b91-4b91-bc6f-afe63a1230b6",
+      "slug": "curated-oki-moshpit-member-tour-w-krakowie-krakow-2026-12-12-139834f4d25c"
+    },
+    {
+      "title": "Gipsy Kings — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/gipsy-kings",
+      "outcome": "inserted_and_published",
+      "event_id": "7f2548dd-c93b-4589-bf81-d2df2f75e8a5",
+      "slug": "curated-gipsy-kings-koncert-w-krakowie-krakow-2026-12-13-9fac23f6dd8a"
+    },
+    {
+      "title": "Lord of the Dance — 30th Anniversary Tour w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/lord-of-the-dance-30th-anniversary-tour",
+      "outcome": "inserted_and_published",
+      "event_id": "ab07c530-50fb-49fb-89dd-2b4feb9e2958",
+      "slug": "curated-lord-of-the-dance-30th-anniversary-tour-w-krakowie-krakow-2026-12-15-d0c0cd2e04f6"
+    },
+    {
+      "title": "Home Alone Live in Concert — Kevin sam w domu z orkiestrą w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/home-alone-live-in-concert",
+      "outcome": "inserted_and_published",
+      "event_id": "3f2a2bcd-c967-4804-b840-aed82eab7b7b",
+      "slug": "curated-home-alone-live-in-concert-kevin-sam-w-domu-z-orkiestra-w-krakowie-krakow-2026-12-17-50c628d94f0f"
+    },
+    {
+      "title": "Champ’s Fighting Challenge — gala sportów walki w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/champs-fighting-challenge",
+      "outcome": "inserted_and_published",
+      "event_id": "71d15b3b-1f07-42fd-acba-50314023a4e7",
+      "slug": "curated-champ-s-fighting-challenge-gala-sportow-walki-w-krakowie-krakow-2026-12-18-10202f73b08e"
+    },
+    {
+      "title": "Vito Bambino — Polonia w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/vito-bambino-polonia",
+      "outcome": "inserted_and_published",
+      "event_id": "9b76b7f0-dbfa-4a2e-b5e9-fd5fdf474c73",
+      "slug": "curated-vito-bambino-polonia-w-krakowie-krakow-2026-12-19-89a8c1c5c66a"
+    },
+    {
+      "title": "Magic Christmas Concert — świąteczny koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/magic-christmas-concert-2026",
+      "outcome": "inserted_and_published",
+      "event_id": "63074ca2-a13c-4be8-a8bd-11261be735d0",
+      "slug": "curated-magic-christmas-concert-swiateczny-koncert-w-krakowie-krakow-2026-12-20-12226908d0cf"
+    },
+    {
+      "title": "Świąteczne Granie z Kubą — koncert świąteczny w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/swiateczne-granie-z-kuba-2026",
+      "outcome": "inserted_and_published",
+      "event_id": "70b3c4e4-9941-4cbc-b7a3-ea5dd6fc2bed",
+      "slug": "curated-swiateczne-granie-z-kuba-koncert-swiateczny-w-krakowie-krakow-2026-12-27-db1d8365148c"
+    },
+    {
+      "title": "Góralskie kolędowanie z Małą Armią Janosika w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/goralskie-koledowanie-z-mala-armia-janosika-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "5872ab32-c938-43cc-ab03-a142ddddefa3",
+      "slug": "curated-goralskie-koledowanie-z-mala-armia-janosika-w-krakowie-krakow-2027-01-03-c4f4ef122e72"
+    },
+    {
+      "title": "Amadeus Live — film z muzyką Mozarta na żywo w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/amadeus-live-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "ffcd106d-4843-4fea-be53-33e46fab5886",
+      "slug": "curated-amadeus-live-film-z-muzyka-mozarta-na-zywo-w-krakowie-krakow-2027-01-06-e86e579b0f3d"
+    },
+    {
+      "title": "Manowar — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/manowar",
+      "outcome": "inserted_and_published",
+      "event_id": "84a6bc41-a70d-43d0-9e9e-e8456e1e2184",
+      "slug": "curated-manowar-koncert-w-krakowie-krakow-2027-01-27-05a1bb21750c"
+    },
+    {
+      "title": "Notre Dame de Paris — musical w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/notre-dame-de-paris-2",
+      "outcome": "inserted_and_published",
+      "event_id": "f917aca7-400a-43c4-94c5-666b6e50012e",
+      "slug": "curated-notre-dame-de-paris-musical-w-krakowie-krakow-2027-03-06-c7b241decf40"
+    },
+    {
+      "title": "Freestyle Heroes — Total Action Tour 2027 w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/17-edycja-freestyle-heroes-total-action-tour-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "4222e4dd-5b44-4c2b-83fa-d2d5a33911ef",
+      "slug": "curated-freestyle-heroes-total-action-tour-2027-w-krakowie-krakow-2027-03-14-e4b0e130bcdc"
+    },
+    {
+      "title": "Al Bano — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/al-bano",
+      "outcome": "inserted_and_published",
+      "event_id": "42be88f6-6b37-40e8-b1a4-865d4e3b6620",
+      "slug": "curated-al-bano-koncert-w-krakowie-krakow-2027-03-21-ad0e92f8e2e7"
+    },
+    {
+      "title": "Rush — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/rush-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "a4b0d38e-0157-4dab-9d24-4f4223cfee76",
+      "slug": "curated-rush-koncert-w-krakowie-krakow-2027-03-27-828ad765b81b"
+    },
+    {
+      "title": "Megadeth — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/megadeth-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "c968b7e2-c81e-4e24-a4d9-77a97e240a87",
+      "slug": "curated-megadeth-koncert-w-krakowie-krakow-2027-04-02-801166051fe8"
+    },
+    {
+      "title": "Pacześ x Lotek Tour 2 — stand-up w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/paczes-x-lotek-tour-2-stand-up",
+      "outcome": "inserted_and_published",
+      "event_id": "8a9529f1-53ef-45c8-b020-e84c6671b425",
+      "slug": "curated-paczes-x-lotek-tour-2-stand-up-w-krakowie-krakow-2027-04-13-ced64e0d5f05"
+    },
+    {
+      "title": "Thirty Seconds to Mars — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/thirty-seconds-to-mars-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "0c700687-7b5e-4ed1-aa39-543fdea1a16e",
+      "slug": "curated-thirty-seconds-to-mars-koncert-w-krakowie-krakow-2027-04-15-233361a2580e"
+    },
+    {
+      "title": "Piotr Rubik — Psałterz wrześniowy w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/piotr-rubik-psalterz-wrzesniowy",
+      "outcome": "inserted_and_published",
+      "event_id": "84fba35c-c5fc-441b-a14f-0dc53ffa99f1",
+      "slug": "curated-piotr-rubik-psalterz-wrzesniowy-w-krakowie-krakow-2027-04-16-06844ad8f3d7"
+    },
+    {
+      "title": "The World of Hans Zimmer — A New Dimension w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/the-world-of-hans-zimmer-a-new-dimension",
+      "outcome": "inserted_and_published",
+      "event_id": "61e27e37-36f0-4640-9dc7-2df5ff11bd95",
+      "slug": "curated-the-world-of-hans-zimmer-a-new-dimension-w-krakowie-krakow-2027-04-17-ce6ec80f2951"
+    },
+    {
+      "title": "Clair Obscur: Expedition 33 — koncert muzyki z gry w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/clair-obscur-expedition-33",
+      "outcome": "inserted_and_published",
+      "event_id": "6d40d8fe-6cb4-4e9f-a261-bf4a632e30d4",
+      "slug": "curated-clair-obscur-expedition-33-koncert-muzyki-z-gry-w-krakowie-krakow-2027-05-04-bfa8da67e6b9"
+    },
+    {
+      "title": "André Rieu — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/kopia-andre-rieu-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "456b5f5d-fc1f-4f6a-a783-8e9971db9274",
+      "slug": "curated-andre-rieu-koncert-w-krakowie-krakow-2027-05-15-88f20f1a822b"
+    },
+    {
+      "title": "Harlem Globetrotters — pokaz koszykówki w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/harlem-globetrotters-2026",
+      "outcome": "inserted_and_published",
+      "event_id": "1a632797-df40-49f4-933b-c4697c92421c",
+      "slug": "curated-harlem-globetrotters-pokaz-koszykowki-w-krakowie-krakow-2027-05-16-54f417961147"
+    },
+    {
+      "title": "Daria Zawiałow — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/daria-zawialow-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "e3260b48-4124-4e2d-90a4-7244dff60fda",
+      "slug": "curated-daria-zawialow-koncert-w-krakowie-krakow-2027-05-22-07072d1fade2"
+    },
+    {
+      "title": "Scorpions — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/scorpions-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "74f33e5d-485c-4713-8316-8594cedde1bb",
+      "slug": "curated-scorpions-koncert-w-krakowie-krakow-2027-06-03-fa014bd981ed"
+    },
+    {
+      "title": "Musical Metro — jubileusz 35-lecia w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/musical-metroto-juz-35-lat",
+      "outcome": "inserted_and_published",
+      "event_id": "3b884647-0e79-4132-b152-41a83263987b",
+      "slug": "curated-musical-metro-jubileusz-35-lecia-w-krakowie-krakow-2027-06-05-108f677afd8a"
+    },
+    {
+      "title": "Sting 3.0 — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/sting-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "aeef3138-d2d5-46be-830e-eab4bbf32280",
+      "slug": "curated-sting-3-0-koncert-w-krakowie-krakow-2027-06-09-6237be9dd6cb"
+    },
+    {
+      "title": "Rod Stewart — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/rod-stewart-3",
+      "outcome": "inserted_and_published",
+      "event_id": "6e5a4ac7-7a44-4bc0-b7f2-a7ea87a88cf0",
+      "slug": "curated-rod-stewart-koncert-w-krakowie-krakow-2027-07-20-e3c816e5d89e"
+    },
+    {
+      "title": "Santana — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/santana-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "317cc0bd-fcbd-467c-b843-2f4db3cafef0",
+      "slug": "curated-santana-koncert-w-krakowie-krakow-2027-07-24-b46e5bbf0571"
+    },
+    {
+      "title": "Toto — koncert w Krakowie",
+      "source_url": "https://www.tauronarenakrakow.pl/event/toto-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "27743f83-ef91-4bac-bb44-82ec48751019",
+      "slug": "curated-toto-koncert-w-krakowie-krakow-2027-07-27-d5b2d1fcdefd"
+    },
+    {
+      "title": "Zawody wspinaczkowe osób z niepełną sprawnością — Memoriał Ryśka Pilcha w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/v-ogolnopolskie-zawody-wspinaczkowe-osob-z-niepelna-sprawnoscia-memorial-ryska-pilcha",
+      "outcome": "inserted_and_published",
+      "event_id": "a7ebf012-7442-4727-bb2d-c950cbe3d504",
+      "slug": "curated-zawody-wspinaczkowe-osob-z-niepelna-sprawnoscia-memorial-ryska-pilcha-w-gliwicach-gliwice-2026-11-18-c62f177ce8a9"
+    },
+    {
+      "title": "Polska Noc Kabaretowa 2026 — Siedmiu wspaniałych w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/polska-noc-kabaretowa-2026-siedmiu-wspanialych",
+      "outcome": "inserted_and_published",
+      "event_id": "c583b0e1-3830-4e0e-a0ea-e46c95665da0",
+      "slug": "curated-polska-noc-kabaretowa-2026-siedmiu-wspanialych-w-gliwicach-gliwice-2026-11-21-5f42e6ebceec"
+    },
+    {
+      "title": "Śląska Giełda Narciarska w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/slaska-gielda-narciarska-w-prezero-arenie-gliwice-15",
+      "outcome": "inserted_and_published",
+      "event_id": "83dcec7c-8ed6-4cc1-a4bd-87f3df4d1538",
+      "slug": "curated-slaska-gielda-narciarska-w-gliwicach-gliwice-2026-11-21-43df2d1276b6"
+    },
+    {
+      "title": "Ultra Fest One — Retro & EDM Music w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/ultra-fest-one-retro-edm-music",
+      "outcome": "inserted_and_published",
+      "event_id": "daa0d8f9-63b7-42f1-be3d-06017f67530a",
+      "slug": "curated-ultra-fest-one-retro-edm-music-w-gliwicach-gliwice-2026-11-28-3f4dfd0dfc55"
+    },
+    {
+      "title": "Mistrzostwa Świata SuperEnduro 2026 w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/mistrzostwa-swiata-superenduro-2026",
+      "outcome": "inserted_and_published",
+      "event_id": "af75cae4-118c-4282-856a-f715a4bb6a9f",
+      "slug": "curated-mistrzostwa-swiata-superenduro-2026-w-gliwicach-gliwice-2026-12-05-948beea26674"
+    },
+    {
+      "title": "Bryan Adams — koncert w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/bryan-adams",
+      "outcome": "inserted_and_published",
+      "event_id": "4c7d3b64-9f6e-4b52-aa46-9698fdb76197",
+      "slug": "curated-bryan-adams-koncert-w-gliwicach-gliwice-2026-12-11-f35ab4159c71"
+    },
+    {
+      "title": "Lord of the Dance — 30th Anniversary Tour w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/lord-of-the-dance-30th-anniversary-tour",
+      "outcome": "inserted_and_published",
+      "event_id": "d7e94c91-6441-48d6-958a-78dd8e6301a7",
+      "slug": "curated-lord-of-the-dance-30th-anniversary-tour-w-gliwicach-gliwice-2026-12-14-33eafdcad24e"
+    },
+    {
+      "title": "XTB KSW 124 — gala MMA w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/xtb-ksw-124",
+      "outcome": "inserted_and_published",
+      "event_id": "54d05358-67f7-4d52-add1-0fa5a381b04a",
+      "slug": "curated-xtb-ksw-124-gala-mma-w-gliwicach-gliwice-2026-12-19-4d6603a87995"
+    },
+    {
+      "title": "Góralskie kolędowanie z Małą Armią Janosika w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/goralskie-koledowanie-z-mala-armia-janosika",
+      "outcome": "inserted_and_published",
+      "event_id": "7be16c41-f4ed-4c5f-b65b-1813d0b884cb",
+      "slug": "curated-goralskie-koledowanie-z-mala-armia-janosika-w-gliwicach-gliwice-2026-12-27-9a06d97d848b"
+    },
+    {
+      "title": "Sandra — koncert w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/sandra-w-gliwicach",
+      "outcome": "inserted_and_published",
+      "event_id": "14350299-4a31-4f0b-b2cf-6d5bdb7ea31b",
+      "slug": "curated-sandra-koncert-w-gliwicach-gliwice-2027-01-23-f0e228c42582"
+    },
+    {
+      "title": "Silesia Fishing 2027 — targi wędkarskie w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/silesia-fishing-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "b34ec3fd-7ebd-45b8-9b54-88c800900571",
+      "slug": "curated-silesia-fishing-2027-targi-wedkarskie-w-gliwicach-gliwice-2027-01-30-719653cc38f7"
+    },
+    {
+      "title": "Legendary Rock Voices — koncert w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/legendary-rock-voices",
+      "outcome": "inserted_and_published",
+      "event_id": "7d008884-0d0f-49e8-88dd-7b08b65ee5fb",
+      "slug": "curated-legendary-rock-voices-koncert-w-gliwicach-gliwice-2027-02-01-947f7a86f858"
+    },
+    {
+      "title": "Nicole Scherzinger — koncert w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/koncert-nicole-scherzinger",
+      "outcome": "inserted_and_published",
+      "event_id": "adf809bd-3b40-44ce-8614-b8b2b4fab344",
+      "slug": "curated-nicole-scherzinger-koncert-w-gliwicach-gliwice-2027-02-14-45a45f6bec8d"
+    },
+    {
+      "title": "Cascada — koncert w Gliwicach",
+      "source_url": "https://prezeroarenagliwice.pl/events/cascada",
+      "outcome": "inserted_and_published",
+      "event_id": "8abd7de7-e5f7-4c30-94c7-46f2978ebaf7",
+      "slug": "curated-cascada-koncert-w-gliwicach-gliwice-2027-02-19-4c615e2702e3"
+    }
+  ]
+}

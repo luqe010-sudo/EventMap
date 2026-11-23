@@ -1,0 +1,547 @@
+{
+  "checked_at": "2026-11-04T10:02:33Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Cała Polska — luki katalogu i mniejsze miasta, osiem miast",
+  "events": [
+    {
+      "title": "Noctober CelloFest — koncert wiolonczelowy",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-06T18:00:00+01:00",
+      "description": "Wiolonczeliści z Polski, Litwy i Austrii spotkają się w Mrągowskim Centrum Kultury podczas piątej edycji festiwalu. Wspólnie zagrają młodzi muzycy i doświadczeni wykonawcy. Wstęp wolny.",
+      "location": {
+        "name": "Mrągowskie Centrum Kultury",
+        "address": "Warszawska 26",
+        "city": "Mrągowo",
+        "latitude": 53.865401,
+        "longitude": 21.304562,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/540/mragowskie-centrum-kultury",
+        "coordinate_note": "Dokładny nazwany punkt MCK z karty obiektu i FAQ współrzędnych. Adres potwierdza oficjalna stopka MCK. Odrzucono błędny szablonowy marker MCK w Warszawie (52.258277,20.972733)."
+      },
+      "source_name": "Urząd Miejski w Mrągowie",
+      "source_url": "https://www.mragowo.pl/kalendarz/1527,noctober-cellofest",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://mck.mragowo.pl/"
+      ],
+      "checked_at": "2026-11-04T10:02:30Z",
+      "short_description": "Wiolonczeliści z Polski, Litwy i Austrii spotkają się w Mrągowskim Centrum Kultury podczas piątej edycji festiwalu. Wspólnie zagrają młodzi muzycy i doświadczeni wykonawcy. Wstęp wolny.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:02:30Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Spotkania z Ludźmi Gór — Od Jelcza do Starego Base Campu",
+      "category_slug": "kultura",
+      "start_at": "2026-11-07T12:00:00+01:00",
+      "description": "Maciej Pietrowicz opowie o podróży historycznym Jelczem w Himalaje i powstaniu Starego Base Campu, miejsca gromadzącego pamiątki polskich wypraw. Spotkanie w sali kameralnej CK Muza. Wstęp wolny.",
+      "short_description": "Maciej Pietrowicz opowie o podróży historycznym Jelczem w Himalaje i powstaniu Starego Base Campu, miejsca gromadzącego pamiątki polskich wypraw. Spotkanie w sali kameralnej CK Muza. Wstęp wolny.",
+      "location": {
+        "name": "Centrum Kultury „Muza”",
+        "address": "Armii Krajowej 1",
+        "city": "Lubin",
+        "latitude": 51.39898,
+        "longitude": 16.20427,
+        "coordinate_source": "https://mapa.targeo.pl/centrum-kultury-muza-armii-krajowej-1-59-300-lubin~12267461/przedsiebiorstwo-firma/adres",
+        "coordinate_note": "Nazwany punkt CK Muza w Targeo i jego link dojazdu. Adres potwierdzony przez ckmuza.eu/kontakt/."
+      },
+      "source_name": "Centrum Kultury Muza w Lubinie",
+      "source_url": "https://ckmuza.eu/7-11-2026-spotkania-z-ludzmi-gor-od-jelcza-do-starego-base-campu-historia-ktora-nie-konczy-sie-po-powrocie/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://ckmuza.eu/imprezy/",
+        "https://ckmuza.eu/kontakt/"
+      ],
+      "checked_at": "2026-11-04T10:01:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:01:15Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Stilon Gorzów – ZAKSA Kędzierzyn-Koźle",
+      "category_slug": "mecze",
+      "start_at": "2026-11-07T15:00:00+01:00",
+      "description": "Stilon podejmie ZAKSĘ w Arenie Gorzów. Bilet normalny kosztuje 50 zł, ulgowy 35 zł. Ulga obejmuje uczniów i studentów do 26 lat oraz emerytów i rencistów. Dzieci do 6 lat mogą wejść bezpłatnie bez własnego miejsca. Bezpłatnie wchodzą też osoby ze znacznym stopniem niepełnosprawności z jednym opiekunem.",
+      "location": {
+        "name": "Arena Gorzów",
+        "address": "Słowiańska 16",
+        "city": "Gorzów Wielkopolski",
+        "latitude": 52.74475,
+        "longitude": 15.21643,
+        "coordinate_source": "https://mapcarta.com/W1257889624",
+        "coordinate_note": "Nazwany budynek Arena Gorzów z adresem Słowiańska 16. Adres potwierdzony w serwisie hali. Odrzucono punkt środka kamery w osadzonej mapie."
+      },
+      "source_name": "Stilon Gorzów",
+      "source_url": "https://ks.cuprum.pl/aktualnosci/do-trzech-razy-sztuka-bilety-na-zakse-do-kupienia/",
+      "price_type": "paid",
+      "price_min": 35,
+      "price_max": 50,
+      "evidence_urls": [
+        "https://arenagorzow.pl/wydarzenia/event-sportowy-29/",
+        "https://arenagorzow.pl/kontakt/",
+        "https://bilety.sportcrm.pl/stilongorzow"
+      ],
+      "checked_at": "2026-11-04T10:01:19Z",
+      "short_description": "Stilon podejmie ZAKSĘ w Arenie Gorzów. Bilet normalny kosztuje 50 zł, ulgowy 35 zł. Ulga obejmuje uczniów i studentów do 26 lat oraz emerytów i rencistów. Dzieci do 6 lat mogą wejść bezpłatnie bez własnego miejsca. Bezpłatnie wchodzą też osoby ze znacznym stopniem niepełnosprawności z jednym opiekunem.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:01:19Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Tur Basket Bielsk Podlaski – Znicz Basket Pruszków",
+      "category_slug": "mecze",
+      "start_at": "2026-11-07T19:00:00+01:00",
+      "description": "Tur Basket podejmie Znicz Basket Pruszków w rozgrywkach II ligi koszykówki mężczyzn. Mecz odbędzie się w hali Szkoły Podstawowej nr 3 przy Poniatowskiego 9. Wstęp wolny.",
+      "location": {
+        "name": "Hala Szkoły Podstawowej nr 3 im. Jarosława Kostycewicza",
+        "address": "Poniatowskiego 9",
+        "city": "Bielsk Podlaski",
+        "latitude": 52.766811,
+        "longitude": 23.192793,
+        "coordinate_source": "https://dostepnemiejsce.pl/pl/000106831/szkola-podstawowa-nr-3-z-dodatkowa-nauka-jezyka-bialoruskiego-im-jaroslawa-kostycewicza-w-bielsku-podlaskim",
+        "coordinate_note": "Nazwany punkt budynku szkoły z serwisu dostępności. Oficjalna zapowiedź i kontakt szkoły potwierdzają salę sportową oraz adres. Nie deklarowano osobnego wejścia do hali."
+      },
+      "source_name": "Urząd Miasta Bielsk Podlaski",
+      "source_url": "https://umbielskpodlaski.pl/wydarzenie/koszykarska-ii-liga-63/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://trojka.szkolnastrona.pl/p,146,kontakt"
+      ],
+      "checked_at": "2026-11-04T10:02:33Z",
+      "short_description": "Tur Basket podejmie Znicz Basket Pruszków w rozgrywkach II ligi koszykówki mężczyzn. Mecz odbędzie się w hali Szkoły Podstawowej nr 3 przy Poniatowskiego 9. Wstęp wolny.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:02:33Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Spotkania Trzech Pokoleń z Kulturą Łemkowską",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-08T16:00:00+01:00",
+      "description": "Zespoły zaprezentują muzyczne i taneczne tradycje Łemków. Gospodarzem koncertu będzie Zespół Pieśni i Tańca Łastiwoczka. Wydarzenie w dużej sali CK Muza, wstęp wolny.",
+      "short_description": "Zespoły zaprezentują muzyczne i taneczne tradycje Łemków. Gospodarzem koncertu będzie Zespół Pieśni i Tańca Łastiwoczka. Wydarzenie w dużej sali CK Muza, wstęp wolny.",
+      "location": {
+        "name": "Centrum Kultury „Muza”",
+        "address": "Armii Krajowej 1",
+        "city": "Lubin",
+        "latitude": 51.39898,
+        "longitude": 16.20427,
+        "coordinate_source": "https://mapa.targeo.pl/centrum-kultury-muza-armii-krajowej-1-59-300-lubin~12267461/przedsiebiorstwo-firma/adres",
+        "coordinate_note": "Nazwany punkt CK Muza w Targeo i jego link dojazdu. Adres potwierdzony przez ckmuza.eu/kontakt/."
+      },
+      "source_name": "Centrum Kultury Muza w Lubinie",
+      "source_url": "https://ckmuza.eu/8-11-2026-spotkania-trzech-pokolen-z-kultura-lemkowska-koncert/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://ckmuza.eu/imprezy/",
+        "https://ckmuza.eu/kontakt/"
+      ],
+      "checked_at": "2026-11-04T10:01:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:01:15Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki.",
+      "editorial_note": "Komunikat o odwołaniu pilatesu12XI w stopce dotyczy innych zajęć, nie koncertu."
+    },
+    {
+      "title": "Literackie ZaDuchy – spotkanie z Joanną Chachułą",
+      "category_slug": "kultura",
+      "start_at": "2026-11-10T18:00:00+01:00",
+      "description": "Poetka i bibliotekarka Joanna Chachuła porozmawia z publicznością w Klubie Jedynka. Spotkanie poprowadzi Beata Patrycja Klary-Stachowiak. Wstęp wolny.",
+      "location": {
+        "name": "Klub Kultury MCK Jedynka",
+        "address": "Bolesława Chrobrego 9",
+        "city": "Gorzów Wielkopolski",
+        "latitude": 52.7349991,
+        "longitude": 15.2352258,
+        "coordinate_source": "https://kartamiejska.um.gorzow.pl/wydarzenia/5085-literackie-zaduchy-spotkanie-z-joanna-chachula",
+        "coordinate_note": "Jawne współrzędne q= na osadzonej mapie miejsca wydarzenia w miejskiej karcie. Nazwa i adres potwierdzone przez MCK."
+      },
+      "source_name": "Miejskie Centrum Kultury w Gorzowie Wielkopolskim",
+      "source_url": "https://mckgorzow.pl/event/literackie-zaduchy-spotkanie-z-joanna-chachula/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://kartamiejska.um.gorzow.pl/wydarzenia/5085-literackie-zaduchy-spotkanie-z-joanna-chachula",
+        "https://mckgorzow.pl/venues/klub-kultury-mck-jedynka/"
+      ],
+      "checked_at": "2026-11-04T10:01:19Z",
+      "short_description": "Poetka i bibliotekarka Joanna Chachuła porozmawia z publicznością w Klubie Jedynka. Spotkanie poprowadzi Beata Patrycja Klary-Stachowiak. Wstęp wolny.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:01:19Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Na Zamku u Tiffaniego — wieczór taneczny KTT AIDA",
+      "category_slug": "imprezy",
+      "start_at": "2026-11-10T18:00:00+01:00",
+      "end_at": "2026-11-10T20:00:00+01:00",
+      "description": "Klub Tańca Towarzyskiego AIDA zaprasza na potańcówkę inspirowaną muzyką i modą lat 60. w Sali Południowej CK Zamek. Wstęp jest bezpłatny z wejściówką do odbioru w kasie Kina Wolność lub CK Zamek od 2 listopada.",
+      "location": {
+        "name": "Centrum Konferencyjne Zamek — Sala Południowa",
+        "address": "Mickiewicza 2",
+        "city": "Szczecinek",
+        "latitude": 53.706384692425,
+        "longitude": 16.693159428484,
+        "coordinate_source": "https://zabytek.pl/pl/obiekty/szczecinek-skrzydlo-poludniowe-zamku-ksiazat-pomorskich",
+        "coordinate_note": "Dokładny marker budynku południowego skrzydła z NID (gpx i destination), nie środek kamery. Oficjalny kontakt CKZ wskazuje Mickiewicza 2; NID historyczny numer 2a."
+      },
+      "source_name": "Urząd Miasta Szczecinek",
+      "source_url": "https://szczecinek.pl/kalendarz-wydarzen/na-zamku-u-tiffaniego-taneczny-wieczor-z-ktt-aida.html",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://zamek.szczecinek.pl/kontakt.html"
+      ],
+      "checked_at": "2026-11-04T10:02:31Z",
+      "short_description": "Klub Tańca Towarzyskiego AIDA zaprasza na potańcówkę inspirowaną muzyką i modą lat 60. w Sali Południowej CK Zamek. Wstęp jest bezpłatny z wejściówką do odbioru w kasie Kina Wolność lub CK Zamek od 2 listopada.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:02:31Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Melodie Otchłani — koncert muzyczno-filmowy",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-10T19:00:00+01:00",
+      "description": "Muzyka smyczków, fortepianu i perkusji zabrzmi z projekcją filmów ze strzelińskiego kamieniołomu granitu. Wstęp do Kinoteatru Zbyszek jest bezpłatny.",
+      "short_description": "Muzyka smyczków, fortepianu i perkusji zabrzmi z projekcją filmów ze strzelińskiego kamieniołomu granitu. Wstęp do Kinoteatru Zbyszek jest bezpłatny.",
+      "location": {
+        "name": "Kinoteatr Zbyszek w Dzierżoniowie",
+        "address": "Świdnicka 23",
+        "city": "Dzierżoniów",
+        "latitude": 50.7294858,
+        "longitude": 16.647542,
+        "coordinate_source": "https://mapy.com/en/?id=1080045156&source=osm",
+        "coordinate_note": "Istniejący punkt kompleksu Świdnicka 23, zgodny z nazwanym obiektem Mapy.com i współrzędnymi KupBilecik z dokładnością około1m. Nie udaje pinezki konkretnej sali."
+      },
+      "source_name": "Dzierżoniowski Ośrodek Kultury",
+      "source_url": "https://dok.pl/dok/wydarzenia/melodie-otchlani-koncert-inspirowany-glebia-strzelinskiego-granitu",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://dok.pl/dok/kontakt",
+        "https://www.kupbilecik.pl/pl/place/347/dzierzoniowski-osrodek-kultury-kinoteatr-zbyszek"
+      ],
+      "checked_at": "2026-11-04T10:01:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:01:15Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Lombard — W hołdzie Solidarności. Drogi do wolności",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-11T18:30:00+01:00",
+      "description": "Lombard wystąpi w sali widowiskowej MCK w programie przygotowanym z okazji Święta Niepodległości. Koncert łączy repertuar zespołu z opowieścią o polskiej drodze do wolności. Wstęp wolny.",
+      "location": {
+        "name": "Mrągowskie Centrum Kultury",
+        "address": "Warszawska 26",
+        "city": "Mrągowo",
+        "latitude": 53.865401,
+        "longitude": 21.304562,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/540/mragowskie-centrum-kultury",
+        "coordinate_note": "Dokładny nazwany punkt MCK z karty obiektu i FAQ współrzędnych. Adres potwierdza oficjalna stopka MCK. Odrzucono błędny szablonowy marker MCK w Warszawie (52.258277,20.972733)."
+      },
+      "source_name": "Mrągowskie Centrum Kultury",
+      "source_url": "https://mck.mragowo.pl/pl/news/info/3713/mragowskie-obchody-swieta-niepodleglosci.html",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://www.mragowo.pl/kalendarz/1528,mragowskie-obchody-swieta-niepodleglosci"
+      ],
+      "checked_at": "2026-11-04T10:02:31Z",
+      "short_description": "Lombard wystąpi w sali widowiskowej MCK w programie przygotowanym z okazji Święta Niepodległości. Koncert łączy repertuar zespołu z opowieścią o polskiej drodze do wolności. Wstęp wolny.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:02:31Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "GeoExpo – biżuteria, minerały i skamieniałości, sobota",
+      "category_slug": "targi",
+      "start_at": "2026-11-14T10:00:00+01:00",
+      "end_at": "2026-11-14T18:00:00+01:00",
+      "description": "W sali treningowej Areny Gorzów odbędą się targi minerałów, skamieniałości i biżuterii. Bilet normalny kosztuje 20 zł, ulgowy 15 zł. Ulga obejmuje emerytów, rencistów, młodzież do 18 lat oraz osoby z orzeczeniem o niepełnosprawności. Bilety są dostępne w oficjalnej sprzedaży BiletyExpo.",
+      "location": {
+        "name": "Arena Gorzów",
+        "address": "Słowiańska 16",
+        "city": "Gorzów Wielkopolski",
+        "latitude": 52.74475,
+        "longitude": 15.21643,
+        "coordinate_source": "https://mapcarta.com/W1257889624",
+        "coordinate_note": "Punkt nazwanego budynku hali z adresem. Opis doprecyzowuje salę treningową, pinezka wskazuje obiekt."
+      },
+      "source_name": "GeoExpo – oficjalna sprzedaż BiletyExpo",
+      "source_url": "https://biletyexpo.pl/kup-bilet/113",
+      "price_type": "paid",
+      "price_min": 15,
+      "price_max": 20,
+      "evidence_urls": [
+        "https://biletyexpo.pl/impreza/geoexpo",
+        "https://um.gorzow.pl/aktualnosci/arena-gorzow-prezentuje-sezon-20262027-muzyka-show-i-emocje.html",
+        "https://arenagorzow.pl/kontakt/"
+      ],
+      "checked_at": "2026-11-04T10:01:22Z",
+      "source_evidence": {
+        "edition_id": 113,
+        "dates": "14.11.2026–15.11.2026",
+        "hours": "10:00–18:00",
+        "place": "Arena Gorzów – sala treningowa, Słowiańska 16",
+        "note": "Terminy i godziny z publicznych danych edycji w HTML wyboru miasta BiletyExpo. Opublikowano konkretne sobotnie wystąpienie."
+      },
+      "short_description": "W sali treningowej Areny Gorzów odbędą się targi minerałów, skamieniałości i biżuterii. Bilet normalny kosztuje 20 zł, ulgowy 15 zł. Ulga obejmuje emerytów, rencistów, młodzież do 18 lat oraz osoby z orzeczeniem o niepełnosprawności. Bilety są dostępne w oficjalnej sprzedaży BiletyExpo.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:01:22Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki.",
+      "editorial_note": "Opis oparto na oficjalnej karcie sprzedaży edycji113. Pominięto warunki bezpłatnego wejścia najmłodszych i wspólnego biletu z wtórnych zapowiedzi, ponieważ nie zostały potwierdzone w odczytanej karcie źródłowej."
+    },
+    {
+      "title": "Jesienne rozgrzanie – warsztaty wege dla dorosłych",
+      "category_slug": "kultura",
+      "start_at": "2026-11-14T10:00:00+01:00",
+      "description": "Marta Dębska-Pawłosik poprowadzi warsztaty gotowania sycących potraw roślinnych w Klubie Zodiak. Udział kosztuje 45 zł, płatność gotówką. Obowiązują zapisy pod numerem 785 187 282, liczba miejsc jest ograniczona.",
+      "location": {
+        "name": "Klub Kultury MCK Zodiak",
+        "address": "Słoneczna 62a",
+        "city": "Gorzów Wielkopolski",
+        "latitude": 52.7252825,
+        "longitude": 15.2052371,
+        "coordinate_source": "https://kartamiejska.um.gorzow.pl/wydarzenia/5073-jesienne-rozgrzanie-warsztaty-wege-dla-doroslych",
+        "coordinate_note": "Jawny punkt q= w osadzonej mapie miejsca na miejskiej karcie. Aktualny adres Słoneczna 62a potwierdzony w karcie warsztatów i kontaktach MCK. Starsza zbiorcza strona klubów z adresem 63 nie została użyta."
+      },
+      "source_name": "Miejskie Centrum Kultury w Gorzowie Wielkopolskim",
+      "source_url": "https://mckgorzow.pl/event/jesienne-rozgrzanie-warsztaty-wege-dla-doroslych/",
+      "price_type": "paid",
+      "price_min": 45,
+      "price_max": 45,
+      "evidence_urls": [
+        "https://kartamiejska.um.gorzow.pl/wydarzenia/5073-jesienne-rozgrzanie-warsztaty-wege-dla-doroslych",
+        "https://mckgorzow.pl/klub-zodiak/"
+      ],
+      "checked_at": "2026-11-04T10:01:21Z",
+      "short_description": "Marta Dębska-Pawłosik poprowadzi warsztaty gotowania sycących potraw roślinnych w Klubie Zodiak. Udział kosztuje 45 zł, płatność gotówką. Obowiązują zapisy pod numerem 785 187 282, liczba miejsc jest ograniczona.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:01:21Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Błażej Król — Popiół",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-14T19:00:00+01:00",
+      "description": "Błażej Król zagra utwory z albumu Popiół w OWE Odra. Koncert przeniesiono z 30 kwietnia na 14 listopada, a wcześniej zakupione bilety zachowują ważność. Cena biletu 160 zł.",
+      "short_description": "Błażej Król zagra utwory z albumu Popiół w OWE Odra. Koncert przeniesiono z 30 kwietnia na 14 listopada, a wcześniej zakupione bilety zachowują ważność. Cena biletu 160 zł.",
+      "location": {
+        "name": "OWE Odra",
+        "address": "Młyńska 3",
+        "city": "Oława",
+        "latitude": 50.94193,
+        "longitude": 17.30052,
+        "coordinate_source": "https://mapa.targeo.pl/kino-owe-odra-mlynska-3-55-200-olawa~18877859/kino/adres",
+        "coordinate_note": "Nazwany punkt Kina OWE ODRA w linku dojazdu Targeo i adres z oficjalnej karty koncertu."
+      },
+      "source_name": "Centrum Sztuki w Oławie",
+      "source_url": "https://kultura.olawa.pl/wydarzenia/blazej-krol-popiol/",
+      "price_type": "paid",
+      "price_min": 160,
+      "price_max": 160,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://kultura-olawa.bilety24.pl/kup-bilety/?id=939285"
+      ],
+      "checked_at": "2026-11-04T10:01:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:01:15Z",
+        "no_cancellation_notice": true,
+        "confirmed_rescheduled_from": "2026-04-30",
+        "ticket_page_confirmed": "2026-11-14 19:00"
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Tyle słońca w naszym mieście — przeboje Anny Jantar i Jarosława Kukulskiego",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-14T19:00:00+01:00",
+      "description": "Lokalni wykonawcy przypomną piosenki Anny Jantar i Jarosława Kukulskiego podczas koncertu w Kinie Wolność. Wystąpią m.in. Tomasz Hepner, Marika Janowska i Michalina Ruckemann-Hepner. Bilety kosztują 60 zł i są dostępne w kasie kina oraz online.",
+      "location": {
+        "name": "Kino Wolność",
+        "address": "Wyszyńskiego 65",
+        "city": "Szczecinek",
+        "latitude": 53.70451,
+        "longitude": 16.69844,
+        "coordinate_source": "https://powiatszczecinecki.treespot.pl/93-powiatszczecinecki-kino-wolnosc",
+        "coordinate_note": "Nazwany marker obiektu Kina Wolność z data-latitude/data-longitude i linku Wyznacz trasę w oficjalnej mapie Powiatu Szczecineckiego."
+      },
+      "source_name": "Samorządowa Agencja Promocji i Kultury w Szczecinku",
+      "source_url": "https://sapik.szczecinek.pl/aktualnosci/tyle-slonca-w-naszym-miescie-muzyczny-wieczor-z-przebojami-anny-jantar-i-jaroslawa-kukulskiego.html",
+      "price_type": "paid",
+      "price_min": 60,
+      "price_max": 60,
+      "evidence_urls": [
+        "https://szczecinek.pl/kalendarz-wydarzen/koncert-tyle-slonca-w-calym-miescie.html",
+        "https://powiatszczecinecki.treespot.pl/93-powiatszczecinecki-kino-wolnosc"
+      ],
+      "checked_at": "2026-11-04T10:02:32Z",
+      "short_description": "Lokalni wykonawcy przypomną piosenki Anny Jantar i Jarosława Kukulskiego podczas koncertu w Kinie Wolność. Wystąpią m.in. Tomasz Hepner, Marika Janowska i Michalina Ruckemann-Hepner. Bilety kosztują 60 zł i są dostępne w kasie kina oraz online.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:02:32Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Maciej Lipina — Skazany na bluesa",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-21T19:00:00+01:00",
+      "description": "Maciej Lipina i muzycy Teatru Śląskiego wykonają repertuar ze spektaklu Skazany na bluesa, inspirowanego życiem Ryszarda Riedla. Bilet kosztuje 60 zł według zapowiedzi organizatora. Sprzedaż online może doliczać opłatę serwisową.",
+      "short_description": "Maciej Lipina i muzycy Teatru Śląskiego wykonają repertuar ze spektaklu Skazany na bluesa, inspirowanego życiem Ryszarda Riedla. Bilet kosztuje 60 zł według zapowiedzi organizatora. Sprzedaż online może doliczać opłatę serwisową.",
+      "location": {
+        "name": "Miejski Ośrodek Kultury w Nowej Rudzie",
+        "address": "Strzelecka 2a",
+        "city": "Nowa Ruda",
+        "latitude": 50.5766639,
+        "longitude": 16.5036906,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/2687/miejski-osrodek-kultury-w-nowej-rudzie",
+        "coordinate_note": "Istniejący punkt MOK, zgodny z nazwanym obiektem przy Strzeleckiej2A i markerem KupBilecik w granicach około4m."
+      },
+      "source_name": "Miejski Ośrodek Kultury w Nowej Rudzie",
+      "source_url": "https://bilety.nowaruda.pl/MSI/mvc/pl?date=2026-11-21&datestart=0&sort=Name",
+      "price_type": "paid",
+      "price_min": 60,
+      "price_max": 60,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/imprezy/220692/nowa-ruda/maciej-lipina/",
+        "https://visitziemiaklodzka.pl/wydarzenie/skazany-na-bluesa-koncert-z-utworami-ze-spektaklu-w-nowej-rudzie/"
+      ],
+      "checked_at": "2026-11-04T10:01:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:01:15Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki.",
+      "editorial_note": "Pominięto end_at. System organizatora podaje90min, regionalny portal19–21. KupBilecik InStock60PLN."
+    },
+    {
+      "title": "Coś na ząb — spektakl dla dzieci",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-22T13:00:00+01:00",
+      "description": "Zdrojowy Teatr Animacji pokaże historię dwóch trolli mieszkających w ustach chłopca, który lubi słodycze i unika szczotkowania zębów. Spektakl od 3 lat w dużej sali CK Muza. Bilet normalny kosztuje 55 zł, ulgowy dla dzieci i młodzieży do 15 lat z legitymacją 45 zł.",
+      "short_description": "Zdrojowy Teatr Animacji pokaże historię dwóch trolli mieszkających w ustach chłopca, który lubi słodycze i unika szczotkowania zębów. Spektakl od 3 lat w dużej sali CK Muza. Bilet normalny kosztuje 55 zł, ulgowy dla dzieci i młodzieży do 15 lat z legitymacją 45 zł.",
+      "location": {
+        "name": "Centrum Kultury „Muza”",
+        "address": "Armii Krajowej 1",
+        "city": "Lubin",
+        "latitude": 51.39898,
+        "longitude": 16.20427,
+        "coordinate_source": "https://mapa.targeo.pl/centrum-kultury-muza-armii-krajowej-1-59-300-lubin~12267461/przedsiebiorstwo-firma/adres",
+        "coordinate_note": "Nazwany punkt CK Muza w Targeo i jego link dojazdu. Adres potwierdzony przez ckmuza.eu/kontakt/."
+      },
+      "source_name": "Centrum Kultury Muza w Lubinie",
+      "source_url": "https://ckmuza.eu/22-11-2026-cos-na-zab-zdrojowy-teatr-animacji-w-jeleniej-gorze-im-bogdana-nauki/",
+      "price_type": "paid",
+      "price_min": 45,
+      "price_max": 55,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://ckmuza.eu/imprezy/",
+        "https://ckmuza.eu/kontakt/"
+      ],
+      "checked_at": "2026-11-04T10:01:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:01:15Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki.",
+      "end_at": "2026-11-22T14:00:00+01:00"
+    },
+    {
+      "title": "WALOR 2026 — otwarcie wystawy i wręczenie nagród",
+      "category_slug": "kultura",
+      "start_at": "2026-12-12T15:00:00+01:00",
+      "description": "W sali koncertowej DOK odbędzie się podsumowanie przeglądu plastyki nieprofesjonalnej WALOR z wręczeniem nagród i otwarciem wystawy. Zobaczyć będzie można malarstwo, rysunki i rzeźby twórców amatorów. Wstęp wolny.",
+      "short_description": "W sali koncertowej DOK odbędzie się podsumowanie przeglądu plastyki nieprofesjonalnej WALOR z wręczeniem nagród i otwarciem wystawy. Zobaczyć będzie można malarstwo, rysunki i rzeźby twórców amatorów. Wstęp wolny.",
+      "location": {
+        "name": "Dzierżoniowski Ośrodek Kultury — sala koncertowa",
+        "address": "Świdnicka 23",
+        "city": "Dzierżoniów",
+        "latitude": 50.7294858,
+        "longitude": 16.647542,
+        "coordinate_source": "https://mapy.com/en/?id=1080045156&source=osm",
+        "coordinate_note": "Istniejący punkt kompleksu Świdnicka 23, zgodny z nazwanym obiektem Mapy.com i współrzędnymi KupBilecik z dokładnością około1m. Nie udaje pinezki konkretnej sali."
+      },
+      "source_name": "Dzierżoniowski Ośrodek Kultury",
+      "source_url": "https://dok.pl/dok/wydarzenia/walor-2026",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://dok.pl/dok/kontakt"
+      ],
+      "checked_at": "2026-11-04T10:01:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-04T10:01:15Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono jawnego prawa publikacji konkretnego materiału z zapowiedzi. Wpis korzysta z wdrożonej okładki EventVisual i lokalnej licencjonowanej biblioteki.",
+      "editorial_note": "Pozycja dotyczy publicznego otwarcia wystawy12XII15:00, nie terminu nadsyłania prac9–23XI."
+    }
+  ]
+}

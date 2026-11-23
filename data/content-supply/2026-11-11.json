@@ -1,0 +1,570 @@
+{
+  "checked_at": "2026-11-11T12:10:15Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Tarnów, Elbląg, Chojnice, Dzierżoniów, Żywiec i Zamość. Priorytet dla wydarzeń rodzinnych, bezpłatnych i lokalnych.",
+  "geocoding_attribution": "© OpenStreetMap contributors. Punkty adresowe GUGiK wskazano przy lokalizacjach.",
+  "events": [
+    {
+      "title": "Kowboje — spotkanie z Patrycją Mnich i koncert STAFF",
+      "category_slug": "kultura",
+      "start_at": "2026-11-12T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Patrycja Mnich porozmawia z Karoliną Czerską o swoim zbiorze opowiadań.",
+      "description": "Patrycja Mnich porozmawia z Karoliną Czerską o swoim zbiorze opowiadań. Po spotkaniu STAFF zagra akustycznie. Wstęp wolny.",
+      "location": {
+        "name": "Piwnice Tarnowskiego Centrum Kultury",
+        "address": "Rynek 5",
+        "city": "Tarnów",
+        "city_slug": "tarnow",
+        "latitude": 50.012186,
+        "longitude": 20.9878632,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&address=Tarn%C3%B3w%2C+Rynek+5&srid=4326",
+        "coordinate_note": "Pinezka istniejącego obiektu o adresie zgodnym ze źródłem wydarzenia."
+      },
+      "source_name": "Tarnowskie Centrum Kultury",
+      "source_url": "https://old2.tck.pl/wydarzenia/498,kowboje-patrycji-mnich-spotkanie-autorskie-i-koncert-staff",
+      "evidence_urls": [
+        "https://kultura.tarnow.pl/wydarzenia/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:09:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:09:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Zamojskie Koncerty Organowe — koncert charytatywny",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-14T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Koncert z cyklu Zamojskie Koncerty Organowe w kościele franciszkanów.",
+      "description": "Koncert z cyklu Zamojskie Koncerty Organowe w kościele franciszkanów. Wstęp wolny. Podczas wydarzenia Fundacja Pure Heart będzie zbierać dobrowolne wpłaty na rehabilitację.",
+      "location": {
+        "name": "Kościół Zwiastowania Najświętszej Maryi Panny",
+        "address": "Stanisława Staszica 1",
+        "city": "Zamość",
+        "city_slug": "zamosc",
+        "latitude": 50.7161407661131,
+        "longitude": 23.2550765200467,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Zamo%C5%9B%C4%87%2C%20Stanis%C5%82awa%20Staszica%201",
+        "coordinate_note": "Punkt adresowy GUGiK w układzie WGS84. Adres potwierdzony przez źródło wydarzenia."
+      },
+      "source_name": "Biuro Informacji Turystycznej i Promocji Miasta w Zamościu",
+      "source_url": "https://zci.zamosc.pl/news/2610/zamojskie-koncerty-organowe-ndash-koncert-charytatywny-w.html",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:09:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:09:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Memoriał Piotra Tworza — turniej siatkówki w Dzierżoniowie",
+      "category_slug": "sport",
+      "start_at": "2026-11-15T10:00:00+01:00",
+      "end_at": "2026-11-15T15:00:00+01:00",
+      "short_description": "Otwarte zawody amatorskich drużyn siatkarskich w hali OSiR.",
+      "description": "Otwarte zawody amatorskich drużyn siatkarskich w hali OSiR. Pierwszy mecz o 10:00. Kibice wchodzą bezpłatnie. Termin zgłoszeń drużyn upłynął 5 listopada.",
+      "location": {
+        "name": "Hala OSiR w Dzierżoniowie",
+        "address": "Strumykowa 1",
+        "city": "Dzierżoniów",
+        "city_slug": "dzierzoniow",
+        "latitude": 50.7187565644975,
+        "longitude": 16.6438896325112,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Dzier%C5%BConi%C3%B3w%2C%20Strumykowa%201",
+        "coordinate_note": "Punkt adresowy GUGiK w układzie WGS84. Adres potwierdzony przez źródło wydarzenia."
+      },
+      "source_name": "Urząd Miasta Dzierżoniów",
+      "source_url": "https://dzierzoniow.pl/index.php/wydarzenia/xxv-memorial-im-piotra-tworza",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:09:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:09:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Alchemia Kina — spotkania z Andrzejem Sewerynem i Dorotą Chotecką",
+      "category_slug": "kultura",
+      "start_at": "2026-11-17T18:30:00+01:00",
+      "end_at": null,
+      "short_description": "Dwa wieczory filmowe w CKF Stylowy.",
+      "description": "Dwa wieczory filmowe w CKF Stylowy. 17 listopada o 18:30 pokaz „Syrenki Picassa” i rozmowa z Andrzejem Sewerynem. 18 listopada o 18:30 pokaz „Mistyczki” i spotkanie z Dorotą Chotecką. Bilety w cenie 22 lub 25 zł.",
+      "location": {
+        "name": "Centrum Kultury Filmowej „Stylowy”",
+        "address": "Odrodzenia 9",
+        "city": "Zamość",
+        "city_slug": "zamosc",
+        "latitude": 50.7139855223685,
+        "longitude": 23.269020493343,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Zamo%C5%9B%C4%87%2C%20Odrodzenia%209",
+        "coordinate_note": "Punkt adresowy GUGiK w układzie WGS84. Adres potwierdzony przez źródło wydarzenia."
+      },
+      "source_name": "Biuro Informacji Turystycznej i Promocji Miasta w Zamościu",
+      "source_url": "https://zci.zamosc.pl/news/2603/14-alchemia-kina.html",
+      "evidence_urls": [
+        "https://www.stylowy.net/events/334-gwiazdy-polskiego-kina-w-ckf-stylowy-andrzej-seweryn-dorota-chotecka-pazura-i-lukasz-maciejewski-goscmi-14-alchemii-kina.html"
+      ],
+      "price_type": "paid",
+      "price_min": 22,
+      "price_max": 25,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:10:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:10:15Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Wędrujcie z nami przez życie — wernisaż Zbigniewa T. Szmurły",
+      "category_slug": "kultura",
+      "start_at": "2026-11-18T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Wernisaż prac elbląskiego artysty w Galerii Nobilis i w galeriach na balkonach Światowida.",
+      "description": "Wernisaż prac elbląskiego artysty w Galerii Nobilis i w galeriach na balkonach Światowida. Wstęp wolny. Wystawę będzie można oglądać do 10 stycznia 2027 r.",
+      "location": {
+        "name": "Centrum Spotkań Europejskich „Światowid”",
+        "address": "Plac Kazimierza Jagiellończyka 1",
+        "city": "Elbląg",
+        "city_slug": "elblag",
+        "latitude": 54.1668613,
+        "longitude": 19.4045688,
+        "coordinate_source": "https://www.openstreetmap.org/node/12595305650",
+        "coordinate_note": "Pinezka istniejącego obiektu o adresie zgodnym ze źródłem wydarzenia."
+      },
+      "source_name": "Centrum Spotkań Europejskich „Światowid”",
+      "source_url": "https://swiatowid.elblag.pl/pl/aktualnosci13636,wedrujcie-z-nami-przez-zycie-malarstwo-zbigniewa-t-szmurlo-w-cse-swiatowid",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:09:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:09:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "John Porter — Helicopters ’45 w Chojnicach",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-19T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "John Porter z zespołem wróci do utworów z albumu „Helicopters” i zagra inne piosenki ze swojego repertuaru.",
+      "description": "John Porter z zespołem wróci do utworów z albumu „Helicopters” i zagra inne piosenki ze swojego repertuaru. Bilet kosztuje 120 zł, w kasie ChCK lub online.",
+      "location": {
+        "name": "Chojnickie Centrum Kultury",
+        "address": "Swarożyca 1",
+        "city": "Chojnice",
+        "city_slug": "chojnice",
+        "latitude": 53.6942,
+        "longitude": 17.56731,
+        "coordinate_source": "https://www.openstreetmap.org/way/66338498",
+        "coordinate_note": "Pinezka istniejącego obiektu o adresie zgodnym ze źródłem wydarzenia."
+      },
+      "source_name": "Chojnickie Centrum Kultury",
+      "source_url": "https://www.ckchojnice.pl/aktualnosc/koncert-johna-portera-helicopters-45",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 120,
+      "price_max": 120,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:09:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:09:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Kolorowe ptaki — rodzinne malowanie w Elblągu",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-21T09:00:00+01:00",
+      "end_at": "2026-11-21T13:00:00+01:00",
+      "short_description": "Dzieci i opiekunowie będą razem malować w pracowni Światowida.",
+      "description": "Dzieci i opiekunowie będą razem malować w pracowni Światowida. Pierwsza grupa maluje od 9:00 do 10:30, druga od 11:30 do 13:00. Udział dziecka z opiekunem kosztuje 50 zł. Obowiązują zapisy pod numerem podanym przez organizatora.",
+      "location": {
+        "name": "Centrum Spotkań Europejskich „Światowid”",
+        "address": "Plac Kazimierza Jagiellończyka 1",
+        "city": "Elbląg",
+        "city_slug": "elblag",
+        "latitude": 54.1668613,
+        "longitude": 19.4045688,
+        "coordinate_source": "https://www.openstreetmap.org/node/12595305650",
+        "coordinate_note": "Pinezka istniejącego obiektu o adresie zgodnym ze źródłem wydarzenia."
+      },
+      "source_name": "Centrum Spotkań Europejskich „Światowid”",
+      "source_url": "https://www.swiatowid.elblag.pl/pl/informacje/11667,kalendarz-wydarzen",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 50,
+      "price_max": 50,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:09:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:09:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Komikslandia — weekend anime i mangi w Tarnowie",
+      "category_slug": "festiwale",
+      "start_at": "2026-11-21T10:00:00+01:00",
+      "end_at": "2026-11-22T18:00:00+01:00",
+      "short_description": "Gry planszowe i karciane, tworzenie przypinek, stoiska z mangą i strefa poprawek kostiumów cosplay.",
+      "description": "Gry planszowe i karciane, tworzenie przypinek, stoiska z mangą i strefa poprawek kostiumów cosplay. W sobotę program trwa do 19:00, w niedzielę od 10:00 do 18:00. Wstęp bezpłatny po zapisaniu się przez stronę organizatora.",
+      "location": {
+        "name": "Dom Kultury Westerplatte",
+        "address": "Westerplatte 8a",
+        "city": "Tarnów",
+        "city_slug": "tarnow",
+        "latitude": 50.0273746,
+        "longitude": 21.0086257,
+        "coordinate_source": "https://maps.app.goo.gl/sCNaCLzWoMQg2LQW8",
+        "coordinate_note": "Pinezka istniejącego obiektu o adresie zgodnym ze źródłem wydarzenia."
+      },
+      "source_name": "Dom Kultury Westerplatte",
+      "source_url": "https://dkwesterplatte.pl/wydarzenia/spoleczne/event-anime-komikslandia-w-twoim-miescie/62",
+      "evidence_urls": [
+        "https://dkwesterplatte.pl/aktualnosci/informacje/listopad-w-domu-kultury-westerplatte/35"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:09:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:09:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Renata Przemyk — koncert w Poetyckiej Stajni",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-21T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Renata Przemyk wystąpi w sali koncertowej DOK w ramach cyklu Poetycka Stajnia.",
+      "description": "Renata Przemyk wystąpi w sali koncertowej DOK w ramach cyklu Poetycka Stajnia. Bilet w przedsprzedaży kosztuje 75 zł, z Kartą Mieszkańca 70 zł, a w dniu koncertu 110 zł.",
+      "location": {
+        "name": "Dzierżoniowski Ośrodek Kultury — sala koncertowa",
+        "address": "Świdnicka 23",
+        "city": "Dzierżoniów",
+        "city_slug": "dzierzoniow",
+        "latitude": 50.7294858,
+        "longitude": 16.647542,
+        "coordinate_source": "https://mapy.com/en/?id=1080045156&source=osm",
+        "coordinate_note": "Pinezka istniejącego obiektu o adresie zgodnym ze źródłem wydarzenia."
+      },
+      "source_name": "Dzierżoniowski Ośrodek Kultury",
+      "source_url": "https://dok.pl/dok/wydarzenia/renata-przemyk-koncert-w-poetyckiej-stajni",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 70,
+      "price_max": 110,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:10:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:10:15Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Gala Straussowska — Sinfonia Baltica w Chojnicach",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-22T16:00:00+01:00",
+      "end_at": null,
+      "short_description": "Orkiestra Polskiej Filharmonii Sinfonia Baltica pod batutą Aliny Ratkowskiej zagra w ramach cyklu Latająca Filharmonia.",
+      "description": "Orkiestra Polskiej Filharmonii Sinfonia Baltica pod batutą Aliny Ratkowskiej zagra w ramach cyklu Latająca Filharmonia. Bilety po 60 zł są dostępne w kasie ChCK i online.",
+      "location": {
+        "name": "Chojnickie Centrum Kultury",
+        "address": "Swarożyca 1",
+        "city": "Chojnice",
+        "city_slug": "chojnice",
+        "latitude": 53.6942,
+        "longitude": 17.56731,
+        "coordinate_source": "https://www.openstreetmap.org/way/66338498",
+        "coordinate_note": "Pinezka istniejącego obiektu o adresie zgodnym ze źródłem wydarzenia."
+      },
+      "source_name": "Chojnickie Centrum Kultury",
+      "source_url": "https://www.ckchojnice.pl/aktualnosc/koncert-polskiej-filharmonii-sinfonia-baltica-0",
+      "evidence_urls": [
+        "https://promocjachojnice.pl/calendar-inline"
+      ],
+      "price_type": "paid",
+      "price_min": 60,
+      "price_max": 60,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:09:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:09:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Wieża Ciśnień — Tarnowskie Spotkania z Fantastyką",
+      "category_slug": "festiwale",
+      "start_at": "2026-11-27T18:00:00+01:00",
+      "end_at": "2026-11-29T18:00:00+01:00",
+      "short_description": "Trzy dni planszówek, sesji RPG, prelekcji i konkursu cosplay.",
+      "description": "Trzy dni planszówek, sesji RPG, prelekcji i konkursu cosplay. Piątkowy program trwa od 18:00 do północy, sobotni od 11:00 do północy, niedzielny od 11:00 do 18:00. Udział bezpłatny. Zapisy przez ActiveNow na stronie domu kultury.",
+      "location": {
+        "name": "Dom Kultury Westerplatte",
+        "address": "Westerplatte 8a",
+        "city": "Tarnów",
+        "city_slug": "tarnow",
+        "latitude": 50.0273746,
+        "longitude": 21.0086257,
+        "coordinate_source": "https://maps.app.goo.gl/sCNaCLzWoMQg2LQW8",
+        "coordinate_note": "Pinezka istniejącego obiektu o adresie zgodnym ze źródłem wydarzenia."
+      },
+      "source_name": "Dom Kultury Westerplatte",
+      "source_url": "https://dkwesterplatte.pl/wydarzenia/spoleczne/konwent-wieza-cisnien/61",
+      "evidence_urls": [
+        "https://dkwesterplatte.pl/wydarzenia/spotkania"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:09:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:09:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Pułapka — spektakl w reżyserii Cezarego Żaka",
+      "category_slug": "kultura",
+      "start_at": "2026-11-29T15:30:00+01:00",
+      "end_at": "2026-11-29T20:30:00+01:00",
+      "short_description": "Kryminał o dwóch współautorach seriali, których wieloletnia współpraca zaczyna się rozpadać.",
+      "description": "Kryminał o dwóch współautorach seriali, których wieloletnia współpraca zaczyna się rozpadać. W obsadzie m.in. Piotr Głowacki i Leszek Lichota. Spektakle o 15:30–17:30 i 18:30–20:30, dla widzów powyżej 16 lat. Wstęp biletowany. Bilety od 110 zł z możliwą opłatą serwisową.",
+      "location": {
+        "name": "Kinoteatr Zbyszek w Dzierżoniowie",
+        "address": "Świdnicka 23",
+        "city": "Dzierżoniów",
+        "city_slug": "dzierzoniow",
+        "latitude": 50.7294858,
+        "longitude": 16.647542,
+        "coordinate_source": "https://mapy.com/en/?id=1080045156&source=osm",
+        "coordinate_note": "Pinezka istniejącego obiektu o adresie zgodnym ze źródłem wydarzenia."
+      },
+      "source_name": "Dzierżoniowski Ośrodek Kultury",
+      "source_url": "https://dok.pl/dok/wydarzenia/pulapka",
+      "evidence_urls": [
+        "https://bilety.io/rVh9n",
+        "https://www.kupbilecik.pl/pl/event/219176/dzierzoniow/pulapka-rez-cezary-zak",
+        "https://www.kupbilecik.pl/pl/event/219178/dzierzoniow/pulapka-rez-cezary-zak"
+      ],
+      "price_type": "paid",
+      "price_min": 110,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:10:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:10:15Z",
+        "no_cancellation_notice": true
+      },
+      "ticket_verification": [
+        {
+          "url": "https://www.kupbilecik.pl/pl/event/219176/dzierzoniow/pulapka-rez-cezary-zak",
+          "status": 200,
+          "checked_at": "2026-11-11T12:12:55Z",
+          "confirmed_price": true,
+          "unavailable": false
+        },
+        {
+          "url": "https://www.kupbilecik.pl/pl/event/219178/dzierzoniow/pulapka-rez-cezary-zak",
+          "status": 200,
+          "checked_at": "2026-11-11T12:12:55Z",
+          "confirmed_price": true,
+          "unavailable": false
+        }
+      ]
+    },
+    {
+      "title": "Muzyczne Krainy — koncert dla dzieci w Elblągu",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-06T15:00:00+01:00",
+      "end_at": null,
+      "short_description": "Trio z fortepianem, skrzypcami i trąbką zagra melodie z filmów animowanych i gier.",
+      "description": "Trio z fortepianem, skrzypcami i trąbką zagra melodie z filmów animowanych i gier. Dzieci wezmą udział w zagadkach i zadaniach rytmicznych. Bilety kosztują 20 zł ulgowy i 30 zł normalny.",
+      "location": {
+        "name": "Centrum Spotkań Europejskich „Światowid”",
+        "address": "Plac Kazimierza Jagiellończyka 1",
+        "city": "Elbląg",
+        "city_slug": "elblag",
+        "latitude": 54.1668613,
+        "longitude": 19.4045688,
+        "coordinate_source": "https://www.openstreetmap.org/node/12595305650",
+        "coordinate_note": "Pinezka istniejącego obiektu o adresie zgodnym ze źródłem wydarzenia."
+      },
+      "source_name": "Centrum Spotkań Europejskich „Światowid”",
+      "source_url": "https://kino.swiatowid.elblag.pl/31-koncert-muzyki-bajkowej-muzyczne-krainy",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 30,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:09:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:09:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Julia Pietrucha — Parsley X w Tarnowie",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-06T20:00:00+01:00",
+      "end_at": null,
+      "short_description": "Julia Pietrucha zagra nową wersję utworów ze swojego debiutu „Parsley”, przygotowaną na dziesięciolecie płyty.",
+      "description": "Julia Pietrucha zagra nową wersję utworów ze swojego debiutu „Parsley”, przygotowaną na dziesięciolecie płyty. Bilety po 80 zł w kasie Kina Marzenie i online. Organizator poleca koncert osobom od 13 lat.",
+      "location": {
+        "name": "Kino Marzenie",
+        "address": "Stanisława Staszica 4",
+        "city": "Tarnów",
+        "city_slug": "tarnow",
+        "latitude": 50.0118308780182,
+        "longitude": 20.9834252633823,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Tarn%C3%B3w%2C%20Staszica%204",
+        "coordinate_note": "Punkt adresowy GUGiK w układzie WGS84. Adres potwierdzony przez źródło wydarzenia."
+      },
+      "source_name": "Tarnowskie Centrum Kultury",
+      "source_url": "https://ftp.tck.pl/wydarzenia/482,koncert-julia-pietrucha-parsley-x",
+      "evidence_urls": [
+        "https://juliapietrucha.pl/terminarz/"
+      ],
+      "price_type": "paid",
+      "price_min": 80,
+      "price_max": 80,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:09:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:09:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Dziadek do orzechów — International Grand Ballet w Żywcu",
+      "category_slug": "kultura",
+      "start_at": "2026-12-14T18:30:00+01:00",
+      "end_at": null,
+      "short_description": "International Grand Ballet zatańczy balet Czajkowskiego o wigilijnej przygodzie Klary w sali widowiskowej MCK.",
+      "description": "International Grand Ballet zatańczy balet Czajkowskiego o wigilijnej przygodzie Klary w sali widowiskowej MCK. Wstęp biletowany. Bilety są dostępne w kasie MCK oraz przez KupBilecik. Cena online od 149 zł, z możliwą opłatą serwisową.",
+      "location": {
+        "name": "Miejskie Centrum Kultury w Żywcu — sala widowiskowa",
+        "address": "Aleja Wolności 4",
+        "city": "Żywiec",
+        "city_slug": "zywiec",
+        "latitude": 49.689779,
+        "longitude": 19.1945209,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=%C5%BBywiec%2C%20Aleja%20Wolno%C5%9Bci%204",
+        "coordinate_note": "Pinezka istniejącego obiektu o adresie zgodnym ze źródłem wydarzenia."
+      },
+      "source_name": "Miejskie Centrum Kultury w Żywcu",
+      "source_url": "https://mck.zywiec.pl/kalendarz-imprez/dziadek-do-orzechow,1464.html",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/event/205889/zywiec/international-grand-ballet-dziadek-do-orzechow"
+      ],
+      "price_type": "paid",
+      "price_min": 149,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:09:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:09:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Pani Śnieżynka i Pan Mroźna Minka — koncert rodzinny",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-20T16:00:00+01:00",
+      "end_at": "2026-12-20T17:00:00+01:00",
+      "short_description": "Godzinny koncert ze znanymi i autorskimi zimowymi piosenkami odbędzie się w sali koncertowej DOK.",
+      "description": "Godzinny koncert ze znanymi i autorskimi zimowymi piosenkami odbędzie się w sali koncertowej DOK. Bilety po 20 zł, a z Kartą Dzierżoniowianina po 16 zł. Miejsca są nienumerowane.",
+      "location": {
+        "name": "Dzierżoniowski Ośrodek Kultury — sala koncertowa",
+        "address": "Świdnicka 23",
+        "city": "Dzierżoniów",
+        "city_slug": "dzierzoniow",
+        "latitude": 50.7294858,
+        "longitude": 16.647542,
+        "coordinate_source": "https://mapy.com/en/?id=1080045156&source=osm",
+        "coordinate_note": "Pinezka istniejącego obiektu o adresie zgodnym ze źródłem wydarzenia."
+      },
+      "source_name": "Dzierżoniowski Ośrodek Kultury",
+      "source_url": "https://dok.pl/index.php/dok/wydarzenia/teatralna-niedziela-20122026-sala-koncertowa-dok-godz-1600-pani-sniezynka-i-pan",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 16,
+      "price_max": 20,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonej licencji na zdjęcie lub plakat. Okładka EventVisual.",
+      "checked_at": "2026-11-11T12:09:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-11T12:09:27Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

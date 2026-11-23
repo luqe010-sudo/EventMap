@@ -1,0 +1,356 @@
+{
+  "mode": "apply",
+  "checked_at": "2026-11-16T16:30:47.000Z",
+  "results": [
+    {
+      "title": "The Hardkiss + Felin — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/the-hardkiss-felin",
+      "outcome": "inserted_and_published",
+      "event_id": "5457fb57-f3e6-4640-aecb-d343bceca451",
+      "slug": "curated-the-hardkiss-felin-koncert-w-warszawie-warszawa-2026-11-18-904135b313c9"
+    },
+    {
+      "title": "Sam Garrett — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/sam-garrett",
+      "outcome": "inserted_and_published",
+      "event_id": "21e2578d-4b40-4e96-a534-d4144fa0b691",
+      "slug": "curated-sam-garrett-koncert-w-warszawie-warszawa-2026-11-22-3b54012b0da8"
+    },
+    {
+      "title": "Artemas — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/artemas",
+      "outcome": "inserted_and_published",
+      "event_id": "8917f69b-e3c0-4fa6-b0b1-e55bc00d6199",
+      "slug": "curated-artemas-koncert-w-warszawie-warszawa-2026-11-23-eb42d04adfae"
+    },
+    {
+      "title": "Kodak Black — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/kodak-black-richie-wess-yung-dred-2026",
+      "outcome": "inserted_and_published",
+      "event_id": "ac991e1f-b3d2-48da-be70-bd10c45c7669",
+      "slug": "curated-kodak-black-koncert-w-warszawie-warszawa-2026-11-25-ca435407a56f"
+    },
+    {
+      "title": "MUNA — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/muna",
+      "outcome": "inserted_and_published",
+      "event_id": "a069192c-6fc2-4629-b437-259be5a90266",
+      "slug": "curated-muna-koncert-w-warszawie-warszawa-2026-11-26-686688eba442"
+    },
+    {
+      "title": "Bracia Figo Fagot — urodziny Progresji w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/bracia-figo-fagot-urodziny-progresji-2026",
+      "outcome": "inserted_and_published",
+      "event_id": "cfe97f59-566e-4c55-94c8-9fa1a8c4a350",
+      "slug": "curated-bracia-figo-fagot-urodziny-progresji-w-warszawie-warszawa-2026-11-27-86073d1acb16"
+    },
+    {
+      "title": "Polyphia + Perturbator — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/polyphia",
+      "outcome": "inserted_and_published",
+      "event_id": "decd4a60-4dc4-4809-9a69-b4ec7f15c0a4",
+      "slug": "curated-polyphia-perturbator-koncert-w-warszawie-warszawa-2026-11-29-fd5b5f1e502d"
+    },
+    {
+      "title": "Chelsea Wolfe — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/chelsea-wolfe-a-a-williams",
+      "outcome": "inserted_and_published",
+      "event_id": "d57f55e9-581a-4094-8f8d-a200a8cff603",
+      "slug": "curated-chelsea-wolfe-koncert-w-warszawie-warszawa-2026-12-03-f179f476335a"
+    },
+    {
+      "title": "Guzior — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/guzior-2",
+      "outcome": "inserted_and_published",
+      "event_id": "492e2cd3-9115-438e-8f7e-a45f3420d0f2",
+      "slug": "curated-guzior-koncert-w-warszawie-warszawa-2026-12-04-17cacbe806e3"
+    },
+    {
+      "title": "TEDE — XXENDE MYLFFON, 20 lat płyty w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/tede-xxende-mylffon-20-lat-esende-mylffon-2026",
+      "outcome": "inserted_and_published",
+      "event_id": "5e2dbcef-cbe7-4aad-adb8-306c22872864",
+      "slug": "curated-tede-xxende-mylffon-20-lat-plyty-w-warszawie-warszawa-2026-12-05-fc81aa41a79c"
+    },
+    {
+      "title": "Hubert. & prawy brzeg — koncert w Warszawie (7 grudnia)",
+      "source_url": "https://progresja.com/wydarzenie/hubert-prawy-brzeg-2026",
+      "outcome": "inserted_and_published",
+      "event_id": "56bb914c-adb8-4210-a933-65dde8250519",
+      "slug": "curated-hubert-prawy-brzeg-koncert-w-warszawie-7-grudnia-warszawa-2026-12-07-f32156d3ed5a"
+    },
+    {
+      "title": "Hubert. & prawy brzeg — koncert w Warszawie (8 grudnia)",
+      "source_url": "https://progresja.com/wydarzenie/hubert-prawy-brzeg-2026-2",
+      "outcome": "inserted_and_published",
+      "event_id": "6f90034c-5c7e-4118-bf70-f38563aabf90",
+      "slug": "curated-hubert-prawy-brzeg-koncert-w-warszawie-8-grudnia-warszawa-2026-12-08-a3ec433790bc"
+    },
+    {
+      "title": "Boombox — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/boombox-2026",
+      "outcome": "inserted_and_published",
+      "event_id": "5e08343c-175e-40a5-bf24-d2670b3feef8",
+      "slug": "curated-boombox-koncert-w-warszawie-warszawa-2026-12-09-a3ee35900d51"
+    },
+    {
+      "title": "Wojtek Szumański — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/wojtek-szumanski",
+      "outcome": "inserted_and_published",
+      "event_id": "d873744f-f8da-4da1-945a-a6a44dbef266",
+      "slug": "curated-wojtek-szumanski-koncert-w-warszawie-warszawa-2026-12-10-0b6c17843dc8"
+    },
+    {
+      "title": "Lebanon Hanover — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/lebanon-hanover",
+      "outcome": "inserted_and_published",
+      "event_id": "477633ea-cc26-407c-ab86-0e8093fa1341",
+      "slug": "curated-lebanon-hanover-koncert-w-warszawie-warszawa-2026-12-11-d8d434a3ad1c"
+    },
+    {
+      "title": "Rów Babicze — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/row-babicze-2",
+      "outcome": "inserted_and_published",
+      "event_id": "aab69cc7-d951-4d5c-9c31-e6f31f2339b6",
+      "slug": "curated-row-babicze-koncert-w-warszawie-warszawa-2026-12-13-8c8477bdb143"
+    },
+    {
+      "title": "Metalowa Wigilia 2026 w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/metalowa-wigilia",
+      "outcome": "inserted_and_published",
+      "event_id": "87a747e0-3f56-407b-a0f3-4bc6e0984767",
+      "slug": "curated-metalowa-wigilia-2026-w-warszawie-warszawa-2026-12-17-d79716f41358"
+    },
+    {
+      "title": "Cosmic Gate — noc trance w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/cosmic-gate",
+      "outcome": "inserted_and_published",
+      "event_id": "99a42acd-3272-47f6-a73b-e20d56707c71",
+      "slug": "curated-cosmic-gate-noc-trance-w-warszawie-warszawa-2026-12-18-da848a5a619c"
+    },
+    {
+      "title": "Nocny Kochanek — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/nocny-kochanek-2",
+      "outcome": "inserted_and_published",
+      "event_id": "5165ccc4-25a7-4c3e-8934-4ab587330cbe",
+      "slug": "curated-nocny-kochanek-koncert-w-warszawie-warszawa-2026-12-19-9fe914ec4e69"
+    },
+    {
+      "title": "Dan & Phil — show w Warszawie (10 stycznia)",
+      "source_url": "https://progresja.com/wydarzenie/dan-phil-2",
+      "outcome": "inserted_and_published",
+      "event_id": "a8ed9aa3-1fba-4e07-8f57-d162bf2e6127",
+      "slug": "curated-dan-phil-show-w-warszawie-10-stycznia-warszawa-2027-01-10-8b0099c2b1a5"
+    },
+    {
+      "title": "Dan & Phil — show w Warszawie (11 stycznia)",
+      "source_url": "https://progresja.com/wydarzenie/dan-phil",
+      "outcome": "inserted_and_published",
+      "event_id": "8080b593-d68f-475d-8a96-35bde2a9e067",
+      "slug": "curated-dan-phil-show-w-warszawie-11-stycznia-warszawa-2027-01-11-6af2bb996aed"
+    },
+    {
+      "title": "Polish Metal Alliance + Aquilla — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/polish-metal-alliance-aquilla",
+      "outcome": "inserted_and_published",
+      "event_id": "52d59798-575c-4455-b4ee-32bbf04b775e",
+      "slug": "curated-polish-metal-alliance-aquilla-koncert-w-warszawie-warszawa-2027-01-16-33c26a4e82dc"
+    },
+    {
+      "title": "Floor Jansen — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/floor-jansen",
+      "outcome": "inserted_and_published",
+      "event_id": "6b1b14c8-6347-488c-a903-0936c591cb0d",
+      "slug": "curated-floor-jansen-koncert-w-warszawie-warszawa-2027-01-29-9ad145d350d9"
+    },
+    {
+      "title": "Imminence + August Burns Red — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/imminence-august-burns-red",
+      "outcome": "inserted_and_published",
+      "event_id": "5a66eba4-77ef-4297-bb37-e1ccd929a63d",
+      "slug": "curated-imminence-august-burns-red-koncert-w-warszawie-warszawa-2027-01-31-0efe8f500d94"
+    },
+    {
+      "title": "Night Lovell + 1nonly — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/night-lovell-1nonly-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "d02d3034-3005-498c-bd77-33279949bc6e",
+      "slug": "curated-night-lovell-1nonly-koncert-w-warszawie-warszawa-2027-02-05-0ae661dba6de"
+    },
+    {
+      "title": "Madmans Esprit — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/madmans-espirit-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "621f1fca-bafa-4d8c-b772-78893988cef7",
+      "slug": "curated-madmans-esprit-koncert-w-warszawie-warszawa-2027-02-07-a15748dd96ab"
+    },
+    {
+      "title": "Everlast — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/everlast-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "a6e39910-4d92-41db-ad81-f3edf0dd9724",
+      "slug": "curated-everlast-koncert-w-warszawie-warszawa-2027-02-11-1fcbab23100e"
+    },
+    {
+      "title": "Westbam, Leeroy Thornhill i goście — impreza w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/westbam-leeroy-thornhill-ex-the-prodigy-k-paul-dune-asys-hardy-hard-cirillo-hanna-von-beeskov-madame-kitty-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "7ff31812-3cd1-436c-8b90-43b74371fc75",
+      "slug": "curated-westbam-leeroy-thornhill-i-goscie-impreza-w-warszawie-warszawa-2027-02-13-c1818e4b027f"
+    },
+    {
+      "title": "U.D.O. — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/u-d-o",
+      "outcome": "inserted_and_published",
+      "event_id": "f0f36335-3de3-484d-b943-4abb6c3747d8",
+      "slug": "curated-u-d-o-koncert-w-warszawie-warszawa-2027-02-14-3285b99870ed"
+    },
+    {
+      "title": "Catch Your Breath — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/catch-your-breath",
+      "outcome": "inserted_and_published",
+      "event_id": "bf9e8514-fbf2-4414-97c7-90ca1113b461",
+      "slug": "curated-catch-your-breath-koncert-w-warszawie-warszawa-2027-02-17-47880feedcab"
+    },
+    {
+      "title": "Westside Gunn + Smoke DZA — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/westside-gunn-smoke-dza-feed-the-family-brother-tom-sos-dj-a-relly-rell-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "f285097d-4017-435f-99af-3714a825dd6f",
+      "slug": "curated-westside-gunn-smoke-dza-koncert-w-warszawie-warszawa-2027-02-18-18b2d96801d1"
+    },
+    {
+      "title": "Dead Poet Society — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/dead-poet-society-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "c174e3aa-67fd-4537-bb8d-7af12457899d",
+      "slug": "curated-dead-poet-society-koncert-w-warszawie-warszawa-2027-02-19-73f416054f39"
+    },
+    {
+      "title": "Enslaved + Sólstafir + Gaahls Wyrd — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/enslaved-solstafir-gaahls-wyrd-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "6107f55f-322f-4b1e-ba8d-344c8a34b776",
+      "slug": "curated-enslaved-solstafir-gaahls-wyrd-koncert-w-warszawie-warszawa-2027-02-26-cd3e7ca4cb21"
+    },
+    {
+      "title": "Polska Wersja — 15-lecie i finał trasy PW4EVER w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/15-lecie-polskiej-wersji-final-trasy-pw4ever-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "f5903d14-4db9-4bda-b645-985bad3aa59e",
+      "slug": "curated-polska-wersja-15-lecie-i-final-trasy-pw4ever-w-warszawie-warszawa-2027-02-27-b63401e1cf18"
+    },
+    {
+      "title": "Whitechapel + Sylosis — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/whitechapel-sylosis-200-stab-wounds-tribal-gaze",
+      "outcome": "inserted_and_published",
+      "event_id": "7fec57ef-fa1b-4b5f-b594-dd73f1cea334",
+      "slug": "curated-whitechapel-sylosis-koncert-w-warszawie-warszawa-2027-03-02-1790f6291275"
+    },
+    {
+      "title": "Oskar Med K — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/oskar-med-k-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "c6d03141-73ef-4acc-a40c-835c91c4a965",
+      "slug": "curated-oskar-med-k-koncert-w-warszawie-warszawa-2027-03-03-286c89b904d6"
+    },
+    {
+      "title": "Sokołowski — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/sokolowski-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "4e14f17b-1b2d-4a30-944d-3b2cec56e519",
+      "slug": "curated-sokolowski-koncert-w-warszawie-warszawa-2027-03-05-cafb00a458a7"
+    },
+    {
+      "title": "Tax Free — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/tax-free-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "9919e331-91ed-4495-8645-7b51800dd8f3",
+      "slug": "curated-tax-free-koncert-w-warszawie-warszawa-2027-03-06-f1d8f87ea5f2"
+    },
+    {
+      "title": "Decapitated + Septicflesh — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/decapitated-septicflesh-frontside-damnation-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "62e1b25f-50d3-4101-be68-390d73d7f080",
+      "slug": "curated-decapitated-septicflesh-koncert-w-warszawie-warszawa-2027-03-10-673d8ab4f2c7"
+    },
+    {
+      "title": "Palace — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/palace-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "9bc26001-ab78-4909-821a-fe6f14df7a47",
+      "slug": "curated-palace-koncert-w-warszawie-warszawa-2027-03-11-78c96aac896f"
+    },
+    {
+      "title": "Cult of Luna — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/cult-of-luna",
+      "outcome": "inserted_and_published",
+      "event_id": "f506e2e6-6606-4fad-85b2-2b0c32316301",
+      "slug": "curated-cult-of-luna-koncert-w-warszawie-warszawa-2027-03-12-db40c010b699"
+    },
+    {
+      "title": "The Halo Effect + Lacuna Coil — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/the-halo-effect-lacuna-coil-omnium-gatherum",
+      "outcome": "inserted_and_published",
+      "event_id": "b9ffb853-3b55-4168-8866-19cd798eba85",
+      "slug": "curated-the-halo-effect-lacuna-coil-koncert-w-warszawie-warszawa-2027-03-15-b199a736c247"
+    },
+    {
+      "title": "Warhaus — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/warhaus",
+      "outcome": "inserted_and_published",
+      "event_id": "8378b902-c6d9-4ecb-bced-d97b6f61fc69",
+      "slug": "curated-warhaus-koncert-w-warszawie-warszawa-2027-03-18-99b0b36ddb29"
+    },
+    {
+      "title": "Jan-rapowanie — koncert w Warszawie (19 marca)",
+      "source_url": "https://progresja.com/wydarzenie/jan-rapowanie-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "ac5ca411-4215-401f-b5ec-c945faf4ab9d",
+      "slug": "curated-jan-rapowanie-koncert-w-warszawie-19-marca-warszawa-2027-03-19-37f76081e3c5"
+    },
+    {
+      "title": "Jan-rapowanie — koncert w Warszawie (20 marca)",
+      "source_url": "https://progresja.com/wydarzenie/jan-rapowanie-2027-2",
+      "outcome": "inserted_and_published",
+      "event_id": "e6f4060c-c076-4c65-949c-496ad479947a",
+      "slug": "curated-jan-rapowanie-koncert-w-warszawie-20-marca-warszawa-2027-03-20-38c7768fda95"
+    },
+    {
+      "title": "Eivør — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/eivor-rabbitology",
+      "outcome": "inserted_and_published",
+      "event_id": "1d0976fa-4975-4b60-ad94-651d51c3d4cb",
+      "slug": "curated-eiv-r-koncert-w-warszawie-warszawa-2027-03-21-05b9c0a5779e"
+    },
+    {
+      "title": "KMFDM — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/kmfdm-lamashtu-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "aae931e5-9a4b-4bbe-90fc-06d17256746a",
+      "slug": "curated-kmfdm-koncert-w-warszawie-warszawa-2027-03-24-ad768345e01b"
+    },
+    {
+      "title": "The Doors Alive — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/the-doors-alive",
+      "outcome": "inserted_and_published",
+      "event_id": "79d1158f-3368-464d-9a48-f6297978a6d7",
+      "slug": "curated-the-doors-alive-koncert-w-warszawie-warszawa-2027-04-02-6b23ad3da4c0"
+    },
+    {
+      "title": "Paul van Dyk i goście — noc trance w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/paul-van-dyk-bryan-kearney-john-ocallaghan-marcus-schossow-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "eae86b98-7d69-46da-92ff-4d847241c8f9",
+      "slug": "curated-paul-van-dyk-i-goscie-noc-trance-w-warszawie-warszawa-2027-04-03-89b6eca76492"
+    },
+    {
+      "title": "Bitamina — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/bitamina-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "fa0516e5-104e-4372-93ec-13f02c9ab546",
+      "slug": "curated-bitamina-koncert-w-warszawie-warszawa-2027-04-04-871d40b20887"
+    }
+  ]
+}

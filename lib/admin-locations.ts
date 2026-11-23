@@ -8,6 +8,7 @@ import { createSupabaseUserClient } from "@/lib/supabase-user";
 import { formNumber, formString } from "@/lib/event-editor";
 import { resolveCityIdFromForm, type CitySummary } from "@/lib/cities";
 import { normalizeSearchText } from "@/lib/slugify";
+import { revalidatePublicMapMarkerCache } from "@/lib/public-event-cache";
 
 type Tables = Database["public"]["Tables"];
 type LocationRow = Tables["locations"]["Row"];
@@ -165,6 +166,7 @@ async function buildLocationPayload(formData: FormData): Promise<LocationInsert 
     defaultActive: true,
     updateExisting: true
   });
+  if (cityId) revalidatePublicMapMarkerCache();
 
   return {
     name: formString(formData, "location_name"),
@@ -272,6 +274,7 @@ function dateValue(value: string | null | undefined) {
 }
 
 function revalidateLocationPaths() {
+  revalidatePublicMapMarkerCache();
   revalidatePath("/admin");
   revalidatePath("/admin/locations");
   revalidatePath("/admin/cities");

@@ -1,0 +1,774 @@
+{
+  "checked_at": "2026-11-08T19:37:45Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Polska. Mniejsze miasta oraz miasta z nielicznymi nadchodzącymi wpisami, ze szczególnym uwzględnieniem oferty listopadowej i grudniowej.",
+  "events": [
+    {
+      "title": "Miejskie obchody Święta Niepodległości w Świętochłowicach",
+      "category_slug": "kultura",
+      "start_at": "2026-11-11T11:00:00+01:00",
+      "short_description": "Otwarte obchody w dzielnicy Zgoda. Po mszy uczestnicy przejdą do Muzeum Powstań Śląskich.",
+      "description": "Obchody rozpoczną się mszą w kościele św. Józefa Robotnika. Następnie uczestnicy przejdą do Muzeum Powstań Śląskich, gdzie o 12:00 zaplanowano miejską uroczystość. Miasto zaprasza mieszkańców do wspólnego udziału.",
+      "location": {
+        "name": "Kościół św. Józefa Robotnika",
+        "address": "Wojska Polskiego 13",
+        "city": "Świętochłowice",
+        "latitude": 50.283645307126,
+        "longitude": 18.92423412107,
+        "coordinate_source": "https://zabytek.pl/pl/obiekty/kosciol-par.-rzym.-kat.--893420",
+        "coordinate_note": "Punkt kościoła w metadanych mapy NID i odnośniku GPX. Miejski kalendarz podaje ten sam adres jako miejsce rozpoczęcia."
+      },
+      "source_name": "Urząd Miejski w Świętochłowicach",
+      "source_url": "https://swietochlowice.pl/wydarzenie/miejskie-obchody-narodowego-swieta-niepodleglosci-3/",
+      "evidence_urls": [
+        "https://swietochlowice.pl/swietochlowice-zapraszaja-na-miejskie-obchody-narodowego-swieta-niepodleglosci/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "checked_at": "2026-11-08T19:36:12Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:36:12Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-11-11"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Targi Wzory w Białymstoku",
+      "category_slug": "targi",
+      "start_at": "2026-11-14T10:00:00+01:00",
+      "end_at": "2026-11-15T18:00:00+01:00",
+      "short_description": "Dwa dni targów rzemiosła i wzornictwa w Chorten Arenie, ze stoiskami twórców i warsztatami dla dzieci.",
+      "description": "Na stoiskach pojawią się m.in. ceramika, biżuteria i ubrania od niezależnych projektantów. W programie są warsztaty i strefa dziecięca. Targi działają w sobotę 10:00–18:00 i w niedzielę 11:00–18:00. Organizator podaje cenę 15 zł i bezpłatny wstęp dla dzieci i młodzieży do 15 lat.",
+      "location": {
+        "name": "Stadion Miejski, Białystok",
+        "address": "ul. Słoneczna 1, 15-323 Białystok",
+        "city": "Białystok",
+        "latitude": 53.106032,
+        "longitude": 23.149052,
+        "coordinate_source": "https://mapcarta.com/W181135083",
+        "coordinate_note": "Użyto istniejącego punktu stadionu. Leży około 17 m od punktu bryły stadionu na mapie OSM i wskazuje tę samą arenę. Adres potwierdza Jagiellonia."
+      },
+      "source_name": "Wzory Targi",
+      "source_url": "https://wzorytargi.pl/targi-wzory-w-bialymstoku/",
+      "evidence_urls": [
+        "https://www.radio.bialystok.pl/patronaty/index/id/266458",
+        "https://jagiellonia.pl/stadion/",
+        "https://goingapp.pl/wydarzenie/targi-wzory-w-bialymstoku-14-15-listopada/bialystok-listopad-2026"
+      ],
+      "price_type": "paid",
+      "price_min": 15,
+      "price_max": 15,
+      "currency": "PLN",
+      "checked_at": "2026-11-08T19:36:12Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:36:12Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "admission_note": "Godziny i cena standardowa z materiału organizatora opublikowanego przez patrona. Karta sprzedaży online ładuje dostępność dynamicznie.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-11-14",
+          "2026-11-15"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Mama Na Obrotach — Niezły bajzel",
+      "category_slug": "stand-up",
+      "start_at": "2026-11-14T18:00:00+01:00",
+      "short_description": "Stand-up Klaudii Klimczyk o codziennych wpadkach i rodzinnym chaosie.",
+      "description": "Klaudia Klimczyk w nowym programie opowiada o rodzinnym chaosie i codziennych wpadkach. Wstęp dla pełnoletnich oraz osób powyżej 16 lat na warunkach podanych przez sprzedawcę. Bilety od 98 zł z możliwą opłatą serwisową.",
+      "location": {
+        "name": "MOKiS w Bielawie",
+        "address": "Piastowska 19a",
+        "city": "Bielawa",
+        "latitude": 50.6817622,
+        "longitude": 16.6071739,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&address=Bielawa%2C+Piastowska+19a&srid=4326",
+        "coordinate_note": "Zachowany istniejący punkt MOKiS, około 6 m od dokładnego punktu GUGiK. Adres potwierdza bileteria i urząd miasta."
+      },
+      "source_name": "KupBilecik — karta sprzedaży wydarzenia",
+      "source_url": "https://www.kupbilecik.pl/pl/event/197810/bielawa/stand-up-mama-na-obrotach",
+      "evidence_urls": [
+        "https://um.bielawa.pl/pl/kultura-i-sport/miejski-osrodek-kultury-i-sztuki",
+        "https://mokisbielawa.pl/kontakt/"
+      ],
+      "price_type": "paid",
+      "price_min": 98,
+      "price_max": null,
+      "currency": "PLN",
+      "checked_at": "2026-11-08T19:36:37Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:36:37Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-11-14"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Piosenka filmem pisana",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-15T17:00:00+01:00",
+      "short_description": "Dwie wokalistki i zespół G.R.A.M. wykonają na żywo piosenki filmowe.",
+      "description": "Ewelina Gorayska i Wiktoria Wlaźlik wykonają piosenki filmowe z zespołem G.R.A.M. Bilety można kupić w Domu Kultury i Centrum Aktywizacji Społecznej w Lubawce oraz w Wiejskim Domu Kultury w Chełmsku Śląskim.",
+      "location": {
+        "name": "Dom Kultury w Lubawce",
+        "address": "Kamiennogórska 19",
+        "city": "Lubawka",
+        "latitude": 50.7091426,
+        "longitude": 16.0006536,
+        "coordinate_source": "https://maps.app.goo.gl/QJQ65hATnpENJzZE7",
+        "coordinate_note": "Nazwany obiekt Dom Kultury z odnośnika w stopce organizatora. Dokładny punkt GUGiK dla numeru 19 leży około 7 m od pinezki."
+      },
+      "source_name": "Miejsko-Gminny Ośrodek Kultury w Lubawce",
+      "source_url": "https://kierunekkultura.pl/wydarzenie/koncert-piosenka-filmem-pisana/",
+      "evidence_urls": [
+        "https://services.gugik.gov.pl/uug?request=GetAddress&address=Lubawka%2C+Kamiennog%C3%B3rska+19&srid=4326",
+        "https://kierunekkultura.pl/"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "checked_at": "2026-11-08T19:35:47Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:35:47Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-11-15"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Wkręć się w kolaż — Jesienna nostalgia",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-22T11:00:00+01:00",
+      "short_description": "Rodzinne warsztaty tworzenia jesiennych kolaży z papieru, zdjęć i liści.",
+      "description": "Dzieci i rodzice stworzą kolaże z gazet, zdjęć i jesiennych liści. Bilet pojedynczy w kasie kosztuje 20 zł, a bilet dla rodzica z dzieckiem 40 zł. Zakup online może obejmować opłatę serwisową.",
+      "location": {
+        "name": "Amfiteatr — Pracownia Nowych Mediów",
+        "address": "Ignacego Daszyńskiego 5",
+        "city": "Radom",
+        "latitude": 51.42047222222222,
+        "longitude": 21.166555555555554,
+        "coordinate_source": "https://amfiteatr.radom.pl/kontakt/",
+        "coordinate_note": "Przeliczenie DMS 51°25′13.7″ N, 21°09′59.6″ E opublikowanych przez organizatora dla tej siedziby. Zgodne z punktem GUGiK w promieniu 9 m."
+      },
+      "source_name": "Amfiteatr. Miejski Ośrodek Kultury w Radomiu",
+      "source_url": "https://amfiteatr.radom.pl/wydarzenia/wkrec-sie-w-kolaz-jesienna-nostalgia/",
+      "evidence_urls": [
+        "https://biletyna.pl/inne/Wkrec-sie-w-kolaz-Jesienna-nostalgia",
+        "https://services.gugik.gov.pl/uug?request=GetAddress&address=Radom%2C+Daszy%C5%84skiego+5&srid=4326"
+      ],
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 40,
+      "currency": "PLN",
+      "checked_at": "2026-11-08T19:37:45Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:37:45Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-11-22"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Iluzjonista Adrian Mitoraj",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-22T16:00:00+01:00",
+      "short_description": "Pokaz scenicznej iluzji dla dzieci od 5 lat i dorosłych.",
+      "description": "Adrian Mitoraj pokaże sceniczne iluzje, między innymi znikanie przedmiotów i lewitację. MOK kieruje spektakl do widzów od 5 lat. Bileteria podaje dwie ceny miejsc.",
+      "location": {
+        "name": "Miejski Ośrodek Kultury im. A. Mickiewicza \"CENTRUM\"",
+        "address": "Piastowska 1",
+        "city": "Zawiercie",
+        "latitude": 50.4856686,
+        "longitude": 19.4314503,
+        "coordinate_source": "https://locatr.pl/zawiercie/piastowska/1/b/48052/ua/",
+        "coordinate_note": "Istniejący punkt budynku MOK jest około 6 m od mapy tego samego adresu. GUGiK potwierdza adres i ma punkt po drugiej stronie obiektu."
+      },
+      "source_name": "Miejski Ośrodek Kultury „Centrum” w Zawierciu",
+      "source_url": "https://www.mok.pl/artykuly/277",
+      "evidence_urls": [
+        "https://biletyna.pl/event/view/id/689962",
+        "https://www.bip.mok.pl/deklaracja_dostepnosci",
+        "https://services.gugik.gov.pl/uug?request=GetAddress&address=Zawiercie%2C+Piastowska+1&srid=4326"
+      ],
+      "price_type": "paid",
+      "price_min": 83.9,
+      "price_max": 94.52,
+      "currency": "PLN",
+      "checked_at": "2026-11-08T19:37:45Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:37:45Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-11-22"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Poza utartymi szlakami — spotkanie z Marzeną Dresler",
+      "category_slug": "kultura",
+      "start_at": "2026-11-25T17:00:00+01:00",
+      "short_description": "Podróżniczka Marzena Dresler opowie o wyprawach samochodami terenowymi. Wstęp wolny.",
+      "description": "Podczas festiwalu Miejsce Kobiet Marzena Dresler opowie o organizowaniu wypraw 4×4 i spotkaniach z ludźmi w drodze. Spotkanie odbędzie się w sali Tango. Wstęp wolny.",
+      "location": {
+        "name": "Emcek — sala Tango",
+        "city": "Słupsk",
+        "address": "Aleja 3 Maja 22",
+        "latitude": 54.4740463245739,
+        "longitude": 17.008204827718,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=S%C5%82upsk%2C%20aleja%203%20Maja%2022",
+        "coordinate_note": "Punkt adresowy GUGiK pokrywa się z budynkiem Emceku. Organizator wskazuje wejście do sali Tango z holu kina."
+      },
+      "source_name": "Słupski Ośrodek Kultury",
+      "source_url": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+      "evidence_urls": [
+        "https://sok.slupsk.pl/index.php/ot-rondo/emcek/4099-sierpniowe-spotkania-koralikow-bez-liku"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "checked_at": "2026-11-08T19:36:12Z",
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:36:12Z",
+        "no_cancellation_notice": true
+      },
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-11-25"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Duo Elvisy — muzyczna komedia kryminalna",
+      "category_slug": "kultura",
+      "start_at": "2026-11-26T18:00:00+01:00",
+      "short_description": "Komedia z piosenkami Elvisa Presleya i zagadką napadu na bank.",
+      "description": "Koncert duetu naśladowców Elvisa przerywa wiadomość o napadzie na bank. Śledztwo staje się pretekstem do wspomnień i kolejnych utworów Presleya. Na scenie wystąpią Dariusz Niebudek, Adam Lomania i Piotr Rybak. Bilety od 90 zł.",
+      "location": {
+        "name": "Centrum Kultury Śląskiej",
+        "address": "Krauzego 1",
+        "city": "Świętochłowice",
+        "latitude": 50.2831466,
+        "longitude": 18.9062425,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/373/centrum-kultury-slaskiej",
+        "coordinate_note": "Istniejąca pinezka leży około 11 m od punktu tej samej siedziby w nazwanej karcie obiektu. Oficjalny kontakt CKŚ potwierdza adres."
+      },
+      "source_name": "KupBilecik — oficjalna sprzedaż",
+      "source_url": "https://www.kupbilecik.pl/pl/event/215681/swietochlowice/duo-elvisy",
+      "evidence_urls": [
+        "https://cks.org.pl/kontakt"
+      ],
+      "price_type": "paid",
+      "price_min": 90,
+      "price_max": null,
+      "currency": "PLN",
+      "checked_at": "2026-11-08T19:36:12Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:36:12Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-11-26"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Światło Grenlandii — wernisaż Marzeny Safader",
+      "category_slug": "kultura",
+      "start_at": "2026-11-27T17:00:00+01:00",
+      "short_description": "Otwarcie wystawy fotografii Marzeny Safader w Emceku. Wstęp wolny.",
+      "description": "Marzena Safader pokaże fotografie z Grenlandii. Wernisaż w sali Tango jest częścią 21. edycji festiwalu Miejsce Kobiet. Wstęp wolny.",
+      "location": {
+        "name": "Emcek — sala Tango",
+        "city": "Słupsk",
+        "address": "Aleja 3 Maja 22",
+        "latitude": 54.4740463245739,
+        "longitude": 17.008204827718,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=S%C5%82upsk%2C%20aleja%203%20Maja%2022",
+        "coordinate_note": "Punkt adresowy GUGiK pokrywa się z budynkiem Emceku. Organizator wskazuje wejście do sali Tango z holu kina."
+      },
+      "source_name": "Słupski Ośrodek Kultury",
+      "source_url": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+      "evidence_urls": [
+        "https://sok.slupsk.pl/index.php/ot-rondo/emcek/4099-sierpniowe-spotkania-koralikow-bez-liku"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "checked_at": "2026-11-08T19:36:12Z",
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:36:12Z",
+        "no_cancellation_notice": true
+      },
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-11-27"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Spotkania z nauką — co się dzieje, gdy planetoida uderza w Ziemię?",
+      "category_slug": "kultura",
+      "start_at": "2026-11-27T18:00:00+01:00",
+      "short_description": "Dr Anna Łosiak opowie o zderzeniach planetoid, kraterach i obronie planetarnej.",
+      "description": "Geolożka planetarna dr Anna Łosiak opowie, jak powstają kratery uderzeniowe i jak naukowcy oceniają zagrożenie ze strony planetoid. Spotkanie poprowadzi Paweł Błach. Wstęp wolny, liczba miejsc ograniczona.",
+      "location": {
+        "name": "Amfiteatr — Kawiarnia Artystyczna",
+        "address": "Parkowa 1",
+        "city": "Radom",
+        "latitude": 51.4114887735897,
+        "longitude": 21.1502730824222,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&address=Radom%2C+Parkowa+1&srid=4326",
+        "coordinate_note": "Punkt adresowy GUGiK z pełną zgodnością miasta, ulicy i numeru. BIP potwierdza Kawiarnię Artystyczną w głównej siedzibie przy tym adresie."
+      },
+      "source_name": "Amfiteatr. Miejski Ośrodek Kultury w Radomiu",
+      "source_url": "https://amfiteatr.radom.pl/wydarzenia/spotkania-z-nauka-naturalne-ataki-z-kosmosu-co-sie-dzieje-gdy-planetoida-uderza-w-ziemie-dr-anna-losiak/",
+      "evidence_urls": [
+        "https://amfiteatr.radom.pl/o-nas/nasze-miejsca/",
+        "https://www.bip.amfiteatr.radom.pl/mok/wolnytekst/6987%2CDeklaracja-dostepnosci.html"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "checked_at": "2026-11-08T19:37:45Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:37:45Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-11-27"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Targ Lokalnych Specjałów w Chojnicach",
+      "category_slug": "targi",
+      "start_at": "2026-11-28T09:00:00+01:00",
+      "short_description": "Sobotni targ produktów od lokalnych wytwórców na placu przy firmie Karma. Wstęp wolny.",
+      "description": "Na placu przy firmie Karma spotkasz lokalnych producentów żywności i rękodzielników. Targ jest bezpłatny dla odwiedzających. Na miejscu jest parking.",
+      "location": {
+        "name": "Plac przy firmie Karma",
+        "city": "Chojnice",
+        "address": "Towarowa 17",
+        "latitude": 53.6907915692679,
+        "longitude": 17.5779071560601,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Chojnice%2C%20Towarowa%2017",
+        "coordinate_note": "Dokładny punkt GUGiK dla adresu firmy Karma. Fundacja wskazuje wydzielony plac przy firmie pod tym adresem."
+      },
+      "source_name": "Promocja Regionu Chojnickiego",
+      "source_url": "https://promocjachojnice.pl/calendar-inline",
+      "evidence_urls": [
+        "https://przestrzenpokolen.pl/targ-chojnice/",
+        "https://www.karmachojnice.pl/kontakt/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "checked_at": "2026-11-08T19:36:13Z",
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:36:13Z",
+        "no_cancellation_notice": true
+      },
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-11-28"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Świąteczna Cudotwórnia — naturalne choinki",
+      "category_slug": "kultura",
+      "start_at": "2026-12-04T17:00:00+01:00",
+      "short_description": "Warsztaty tworzenia świątecznych choinek z naturalnych materiałów.",
+      "description": "W filii Wilkowyja uczestnicy wykonają choinki z naturalnych materiałów. Formularz zgłoszeń ma zostać otwarty 9 listopada o 12:00. Udział kosztuje 150 zł, a z Rzeszowską Kartą Mieszkańca 80 zł. Zapisać można się tylko do jednej filii.",
+      "location": {
+        "name": "Rzeszowski Dom Kultury — filia Wilkowyja",
+        "address": "Jana Olbrachta 120",
+        "city": "Rzeszów",
+        "latitude": 50.0314771193261,
+        "longitude": 22.0611559868689,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&address=Rzesz%C3%B3w%2C+Olbrachta+120&srid=4326",
+        "coordinate_note": "GUGiK zwraca punkt dokładnego numeru 120 przy ul. Jana Olbrachta. Organizator i BIP potwierdzają siedzibę filii przy tym adresie."
+      },
+      "source_name": "Rzeszowski Dom Kultury",
+      "source_url": "https://rdk.rzeszow.pl/kalendarz/swiateczna-cudotwornia-swieta-lasem-pachnace-naturalne-choinki/",
+      "evidence_urls": [
+        "https://rdk.rzeszow.pl/swiateczna-cudotwornia-2026/",
+        "https://wilkowyja.rdk.rzeszow.pl/kontakt/",
+        "https://bip.erzeszow.pl/295-rzeszowski-dom-kultury/5012-rzeszowski-dom-kultury-filia-wilkowyja.html"
+      ],
+      "price_type": "paid",
+      "price_min": 80,
+      "price_max": 150,
+      "currency": "PLN",
+      "checked_at": "2026-11-08T19:35:22Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:35:22Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-12-04"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "10 Tenorów — 10 głosów, jedna scena",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-06T18:00:00+01:00",
+      "short_description": "Dziesięciu tenorów wystąpi z orkiestrą symfoniczną w Hali Centrum Park. Bilety od 130 zł.",
+      "description": "Międzynarodowy skład tenorów przedstawi program trasy „10 głosów, jedna scena” z towarzyszeniem orkiestry symfonicznej. Bilety w KupBilecik od 130 zł, z możliwą opłatą serwisową.",
+      "location": {
+        "name": "Hala Centrum Park",
+        "city": "Chojnice",
+        "address": "Huberta Wagnera 1",
+        "latitude": 53.6991250752184,
+        "longitude": 17.5690878838623,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Chojnice%2C%20Huberta%20Wagnera%201",
+        "coordinate_note": "Dokładny punkt GUGiK przy Huberta Wagnera 1, zgodny z adresem hali wskazanym przez sprzedawcę i miejski kalendarz."
+      },
+      "source_name": "Agencja Brussa — KupBilecik",
+      "source_url": "https://www.kupbilecik.pl/pl/event/205925/chojnice/10-tenorow",
+      "evidence_urls": [
+        "https://agencjabrussaz.kupbilecik.pl/pl",
+        "https://promocjachojnice.pl/calendar-inline",
+        "https://www.kupbilecik.pl/pl/place/616/hala-centrum-park"
+      ],
+      "price_type": "paid",
+      "price_min": 130,
+      "price_max": null,
+      "checked_at": "2026-11-08T19:36:11Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:36:11Z",
+        "no_cancellation_notice": true,
+        "ticket_availability": "InStock",
+        "ticket_event_status": "EventScheduled"
+      },
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-12-06"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Orkiestra Księżniczek — Koncert Wiedeński, część 1",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-06T19:00:00+01:00",
+      "short_description": "Mikołajkowy koncert w RCK z orkiestrą, solistami i baletem.",
+      "description": "Pierwsza część widowiska Orkiestry Księżniczek łączy muzykę na żywo z występami solistów i baletu. Organizator podaje start o 19:00. W sprawdzonej sprzedaży bilety zaczynały się od 219 zł, z możliwą opłatą serwisową.",
+      "location": {
+        "name": "Regionalne Centrum Kultury im. Zbigniewa Herberta",
+        "address": "Solna 1",
+        "city": "Kołobrzeg",
+        "latitude": 54.1819998,
+        "longitude": 15.5654614,
+        "coordinate_source": "https://latarnia.kolobrzeg.eu/10067-kolobrzeg-xv-rockfestiwal",
+        "coordinate_note": "Użyto istniejącej pinezki RCK, zgodnej do siedmiu miejsc dziesiętnych z nazwanym punktem na oficjalnej mapie miejskiej."
+      },
+      "source_name": "Tomczyk Art — Orkiestra Księżniczek",
+      "source_url": "https://www.orkiestraksiezniczek.pl/bilety/kolobrzeg/",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/event/212161/kolobrzeg/orkiestra-ksiezniczek-koncert-wiedenski-1-czesc-1",
+        "https://rck.kolobrzeg.eu/repertuar-wyszukaj/details/2026-12-06/1700-koncert-wiedenski-orkiestry-ksiezniczek-w-rck-w-kolobrzegu"
+      ],
+      "price_type": "paid",
+      "price_min": 219,
+      "price_max": null,
+      "currency": "PLN",
+      "checked_at": "2026-11-08T19:36:12Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:36:12Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-12-06"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Jazzowa Jesień w TCK — Piotr Pociask Quartet",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-11T19:30:00+01:00",
+      "short_description": "Finał Jazzowej Jesieni i jubileusz 35 lat pracy artystycznej Piotra Pociaska.",
+      "description": "Piotr Pociask zamknie tegoroczną Jazzową Jesień koncertem autorskich utworów i uczci 35 lat pracy artystycznej. Zagrają z nim Joachim Mencel, Dariusz Ziółek i Paweł Dobrowolski. Bilety po 50 zł w sprzedaży online i w kasie TCK.",
+      "location": {
+        "name": "Piwnice Tarnowskiego Centrum Kultury",
+        "address": "Rynek 5",
+        "city": "Tarnów",
+        "latitude": 50.0121859878988,
+        "longitude": 20.9878632302183,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&address=Tarn%C3%B3w%2C+Rynek+5&srid=4326",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK przy Rynku 5, zgodny z zapowiedzią i kartą sprzedaży."
+      },
+      "source_name": "Tarnowskie Centrum Kultury",
+      "source_url": "https://old.tck.pl/wydarzenia/494,jazzowa-jesien-w-tck-piotr-pociask-quartet",
+      "evidence_urls": [
+        "https://kultura.tarnow.pl/wydarzenie/piotr-pociask-quartet-jazzowa-jesien-w-tck/",
+        "https://ekobilet.pl/e/piotr-pociask-quartet-11-12-2026-jazzowa-jesien-w-tck-641729?evt=641729"
+      ],
+      "price_type": "paid",
+      "price_min": 50,
+      "price_max": 50,
+      "currency": "PLN",
+      "checked_at": "2026-11-08T19:37:45Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:37:45Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-12-11"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Edyta Geppert — recital w Ostródzie",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-12T18:00:00+01:00",
+      "short_description": "Edyta Geppert wystąpi w audytorium Lake Hill Mazury. Bilety od 169 zł.",
+      "description": "Edyta Geppert wystąpi z recitalem w hotelowym audytorium przy ulicy Turystycznej. Bilety w KupBilecik od 169 zł, z możliwą opłatą serwisową.",
+      "location": {
+        "name": "Lake Hill Mazury Resort & Spa — audytorium",
+        "city": "Ostróda",
+        "address": "Turystyczna 15",
+        "latitude": 53.7076068246202,
+        "longitude": 19.9433749195736,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Ostr%C3%B3da%2C%20Turystyczna%2015",
+        "coordinate_note": "Dokładny punkt GUGiK przy Turystycznej 15. Strona hotelu potwierdza adres, karta sprzedaży wskazuje audytorium."
+      },
+      "source_name": "UniKultura — KupBilecik",
+      "source_url": "https://www.kupbilecik.pl/pl/event/215918/ostroda/edyta-geppert",
+      "evidence_urls": [
+        "https://unikultura.kupbilecik.pl/pl",
+        "https://www.lakehillmazury.pl/kontakt"
+      ],
+      "price_type": "paid",
+      "price_min": 169,
+      "price_max": null,
+      "checked_at": "2026-11-08T19:36:11Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:36:11Z",
+        "no_cancellation_notice": true,
+        "ticket_availability": "InStock",
+        "ticket_event_status": "EventScheduled"
+      },
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-12-12"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "Familijny Park Sztuki — Dziś nam zima się zaczyna",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-20T12:00:00+01:00",
+      "end_at": "2026-12-20T13:00:00+01:00",
+      "short_description": "Rodzinny koncert o zimie z orkiestrą Filharmonii Koszalińskiej.",
+      "description": "Maciej Śmietański poprowadzi rodzinny koncert z muzyką inspirowaną zimą. Orkiestrą pokieruje Ernest Pikulski. Bilety normalne kosztują 15–20 zł, z Pakietem Dużej Rodziny Koszalińskiej Karty Mieszkańca 12–17 zł. Sprzedaż online może doliczyć opłatę.",
+      "location": {
+        "name": "Filharmonia Koszalińska im. Stanisława Moniuszki",
+        "city": "Koszalin",
+        "address": "Piastowska 2",
+        "latitude": 54.1912739967459,
+        "longitude": 16.1879842232148,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Koszalin%2C%20Piastowska%202",
+        "coordinate_note": "Dokładne dopasowanie adresu Piastowska 2 w wynikach GUGiK. Pominięto dodatkowy wynik przy innej ulicy."
+      },
+      "source_name": "Filharmonia Koszalińska",
+      "source_url": "https://filharmoniakoszalinska.pl/wydarzenie/familijny-park-sztuki-dzis-nam-zima-sie-zaczyna/",
+      "evidence_urls": [
+        "https://filharmoniakoszalinska.pl/kontakt/",
+        "https://filharmoniakoszalinska.bilety24.pl/?b24_day=2026-12-20",
+        "https://filharmoniakoszalinska.bilety24.pl/wydarzenie/?id=162604"
+      ],
+      "price_type": "paid",
+      "price_min": 12,
+      "price_max": 20,
+      "checked_at": "2026-11-08T19:36:40Z",
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:36:40Z",
+        "no_cancellation_notice": true
+      },
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-12-20"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    },
+    {
+      "title": "XVII Koszaliński Bieg Sylwestrowy — 5 km",
+      "category_slug": "sport",
+      "start_at": "2026-12-31T11:00:00+01:00",
+      "short_description": "Bieg na 5 km ze startem i metą przy hali przy Śniadeckich. Obowiązują zapisy.",
+      "description": "Bieg główny rozpoczyna się o 11:00 przy Hali Widowiskowo-Sportowej. Udział od 14 lat. Niepełnoletni potrzebują obecności opiekuna przy weryfikacji. Zapisy online do 28 grudnia lub do wyczerpania limitu. Opłata wynosi 80 zł do końca listopada, potem 90 zł przy zapisie online.",
+      "location": {
+        "name": "Hala Widowiskowo-Sportowa w Koszalinie",
+        "city": "Koszalin",
+        "address": "Śniadeckich 4",
+        "latitude": 54.2059869,
+        "longitude": 16.2021536,
+        "coordinate_source": "https://pl.aroundus.com/p/12384995-hala-widowiskowo-sportowa-w-koszalinie",
+        "coordinate_note": "Ponowne użycie istniejącej pinezki hali, ok. 6 m od punktu nazwanego obiektu i ok. 30 m od punktu GUGiK dla adresu. Regulamin wskazuje halę jako miejsce startu i mety."
+      },
+      "source_name": "Koszalińskie Towarzystwo Krzewienia Kultury Fizycznej",
+      "source_url": "https://biegikoszalin.eu/Biegi_Koszalin_2016/bieg_sylwestrowy",
+      "evidence_urls": [
+        "https://biegikoszalin.eu/Biegi_Koszalin_2016/biegsyl2025",
+        "https://biegikoszalin.eu/Biegi_Koszalin_2016/zapisy_na_31122026__xvii_koszalinski_bieg_sylwestrowy__5km",
+        "https://zos.koszalin.ibip.pl/public/?id=247221",
+        "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Koszalin%2C%20%C5%9Aniadeckich%204"
+      ],
+      "price_type": "paid",
+      "price_min": 80,
+      "price_max": 90,
+      "checked_at": "2026-11-08T19:36:38Z",
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-08T19:36:38Z",
+        "no_cancellation_notice": true
+      },
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+        "same_city_days": [
+          "2026-12-31"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy katalogu w mieście i w dniach wydarzenia oraz zgodność źródeł."
+      }
+    }
+  ]
+}

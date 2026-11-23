@@ -75,11 +75,14 @@ function getEventImageFile(formData: FormData) {
 export async function saveEventSource(
   eventId: string,
   formData: FormData,
-  defaultSourceType: string
+  defaultSourceType: string,
+  { clearWhenBlank = false }: { clearWhenBlank?: boolean } = {}
 ) {
   const sourceUrl = formString(formData, "source_url");
   const sourceName = formString(formData, "source_name");
-  if (!sourceUrl && !sourceName) return;
+  const hasSource = Boolean(sourceUrl || sourceName);
+  const submittedSourceFields = typeof formData.get("source_name") === "string" && typeof formData.get("source_url") === "string";
+  if (!hasSource && !(clearWhenBlank && submittedSourceFields)) return;
 
   const supabase = await createSupabaseUserClient();
   const { data: existing, error: existingError } = await supabase
@@ -92,18 +95,22 @@ export async function saveEventSource(
     .maybeSingle();
 
   if (existingError) throw new Error(`Nie udalo sie sprawdzic zrodla: ${existingError.message}`);
+  const existingId = existing?.id;
+  if (!existingId && !hasSource) return;
 
+  const sourceType = formString(formData, "source_type");
   const payload = {
     source_url: sourceUrl,
     source_name: sourceName,
-    source_type: formString(formData, "source_type") ?? defaultSourceType,
-    last_seen_at: new Date().toISOString(),
-    is_active: true
+    ...(hasSource ? { last_seen_at: new Date().toISOString(), is_active: true } : {})
   };
 
-  const response = existing?.id
-    ? await supabase.from("event_sources").update(payload).eq("id", existing.id).eq("event_id", eventId).select("id").maybeSingle()
-    : await supabase.from("event_sources").insert({ ...payload, event_id: eventId }).select("id").single();
+  const response = existingId
+    ? await supabase.from("event_sources")
+        .update({ ...payload, ...(hasSource && sourceType ? { source_type: sourceType } : {}) })
+        .eq("id", existingId).eq("event_id", eventId).select("id").maybeSingle()
+    : await supabase.from("event_sources")
+        .insert({ ...payload, source_type: sourceType ?? defaultSourceType, event_id: eventId }).select("id").single();
 
   if (response.error) throw new Error(`Nie udalo sie zapisac zrodla: ${response.error.message}`);
   if (!response.data) throw new Error("Nie udało się potwierdzić zapisu źródła wydarzenia.");

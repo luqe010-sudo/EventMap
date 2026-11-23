@@ -22,6 +22,7 @@ export default function Footer() {
             <li><Link href="/">Odkryj wydarzenia</Link></li>
             <li><Link href="/#mapa">Mapa i lista</Link></li>
             <li><Link href="/organizer">Panel organizatora</Link></li>
+            <li><Link href="/promowanie-wydarzen">Promuj wydarzenie – 39 zł</Link></li>
             <li><Link href="/regulamin">Regulamin i prywatność</Link></li>
           </ul>
         </div>

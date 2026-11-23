@@ -9,6 +9,7 @@ import {
 } from "@/lib/organizer-events";
 import { formatPolishDate } from "@/lib/date-format";
 import OrganizerStatisticsNotice from "@/components/OrganizerStatisticsNotice";
+import PromotionOffer from "@/components/PromotionOffer";
 
 export const dynamic = "force-dynamic";
 
@@ -57,6 +58,11 @@ export default async function OrganizerDashboardPage() {
         <StatCard label="Wyswietlenia w tym miesiacu" value={dashboard.stats.monthViews} />
         <StatCard label="Kliknięcia kontaktu w tym miesiącu" value={dashboard.stats.contactClicks} />
       </section>
+
+      <PromotionOffer
+        variant="organizer"
+        action={<Link href="/organizer/events" className="primaryButton">Wybierz wydarzenie do polecenia</Link>}
+      />
 
       <div className="organizerDashboardGrid">
         <section className="managementPanel">

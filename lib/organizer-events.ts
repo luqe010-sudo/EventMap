@@ -3,23 +3,23 @@
 import { randomUUID } from "node:crypto";
 import { redirect, unstable_rethrow } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { getCurrentUserContext, getPrimaryOrganizerId, requireOrganizerAccess, type OrganizerMembership } from "@/lib/auth";
+import { getCurrentUserContext, getPrimaryOrganizerId, listOrganizerMemberships, requireOrganizerAccess, requireSignedInUser, type OrganizerMembership } from "@/lib/auth";
 import { createSupabaseUserClient } from "@/lib/supabase-user";
 import type { Database } from "@/database.types";
-import { createSlug, editableEventSelect, formString, type EditableEvent } from "@/lib/event-editor";
+import { editableEventSelect, formString, type EditableEvent } from "@/lib/event-editor";
 import { buildEventWritePayload, eventPreparationFailure, saveEventSource } from "@/lib/event-editor-server";
-import { EventValidationError, eventValidationState, type EventEditorState } from "@/lib/event-editor-validation";
+import { EventValidationError, eventTextLimits, eventValidationState, type EventEditorState } from "@/lib/event-editor-validation";
 import { completeEventWrite, eventWriteFailure } from "@/lib/event-save-feedback";
 import { revalidatePublicEventCache } from "@/lib/public-event-cache";
 import { readCompleteOrganizerDataset, readOrganizerStatistics } from "@/lib/organizer-statistics";
 import type { OrganizerEventActionState } from "@/lib/organizer-event-action-state";
 import { validateOrganizerAccountName, validateOrganizerDisplayName, validateOrganizerProfileForm } from "@/lib/organizer-form-validation";
 import { organizerEventDateBounds } from "@/lib/organizer-event-filters";
+import { upgradeOrganizerAccount } from "@/lib/organizer-account";
 
 type Tables = Database["public"]["Tables"];
 type EventInsert = Tables["events"]["Insert"];
 type EventUpdate = Tables["events"]["Update"];
-type OrganizerInsert = Tables["organizers"]["Insert"];
 type OrganizerUpdate = Tables["organizers"]["Update"];
 type ProfileUpdate = Tables["profiles"]["Update"];
 type NotificationRow = Tables["notifications"]["Row"];
@@ -34,6 +34,8 @@ const ORGANIZER_EVENT_LIST_SELECT = `
   visibility,
   review_note,
   is_cancelled,
+  is_featured,
+  featured_until,
   main_image_url,
   description,
   short_description,
@@ -57,6 +59,8 @@ export type OrganizerEventListItem = {
   visibility: string | null;
   review_note: string | null;
   is_cancelled: boolean | null;
+  is_featured: boolean | null;
+  featured_until: string | null;
   main_image_url: string | null;
   description: string | null;
   short_description: string | null;
@@ -111,8 +115,7 @@ export type OrganizerNotification = Pick<
 >;
 
 export async function getOrganizerEntryContext() {
-  const context = await getCurrentUserContext();
-  if (!context) redirect("/login");
+  const context = await requireSignedInUser("/organizer");
 
   if (context.profile?.role !== "organizer") {
     return {
@@ -122,7 +125,7 @@ export async function getOrganizerEntryContext() {
     };
   }
 
-  const memberships = await listOrganizerMembershipsForUser(context.userId);
+  const memberships = await listOrganizerMemberships(context.userId);
   return {
     ...context,
     isOrganizer: true,
@@ -182,8 +185,8 @@ export async function getOrganizerDashboard() {
   };
 }
 
-export async function listOrganizerEvents(filters: OrganizerEventFilters = {}) {
-  const access = await requireOrganizerAccess();
+export async function listOrganizerEvents(filters: OrganizerEventFilters = {}, next = "/organizer/events") {
+  const access = await requireOrganizerAccess(next);
   const organizerIds = getOrganizerIds(access.memberships);
   if (!organizerIds.length) return [];
 
@@ -192,7 +195,8 @@ export async function listOrganizerEvents(filters: OrganizerEventFilters = {}) {
   const result = await readCompleteOrganizerDataset((offset, size, head) => {
     let query = supabase.from("events").select(ORGANIZER_EVENT_LIST_SELECT, { count: "exact", head })
       .in("submitted_by_organizer_id", organizerIds);
-    if (filters.status) query = query.eq("status", filters.status);
+    if (filters.status === "draft") query = query.or("status.eq.draft,status.is.null");
+    else if (filters.status) query = query.eq("status", filters.status);
     if (dateFrom) query = query.gte("start_at", dateFrom);
     if (dateUntil) query = query.lt("start_at", dateUntil);
     return query.order("start_at", { ascending: false }).order("id", { ascending: true })
@@ -265,11 +269,10 @@ export async function getOrganizerProfileData() {
 }
 
 export async function getOrganizerSettingsData() {
-  const context = await getCurrentUserContext();
-  if (!context) redirect("/login");
+  const context = await requireSignedInUser("/organizer/settings");
 
   const memberships = context.profile?.role === "organizer"
-    ? await listOrganizerMembershipsForUser(context.userId)
+    ? await listOrganizerMemberships(context.userId)
     : [];
 
   return {
@@ -306,7 +309,7 @@ export async function getOrganizerEventEditorOptions(next = "/organizer") {
 }
 
 export async function getOrganizerEventForEdit(eventId: string) {
-  const access = await requireOrganizerAccess();
+  const access = await requireOrganizerAccess(`/organizer/events/${encodeURIComponent(eventId)}/edit`);
   const organizerIds = getOrganizerIds(access.memberships);
   if (!organizerIds.length) return null;
 
@@ -346,23 +349,32 @@ export async function getOrganizerEventModerationLogs(eventId: string) {
 }
 
 export async function organizerCreateEventAction(_previous: EventEditorState, formData: FormData): Promise<EventEditorState> {
-  const access = await requireOrganizerAccess();
-  const organizerId = getAllowedOrganizerId(formData, access.memberships.map((item) => item.organizer_id).filter(Boolean) as string[]);
+  const access = await requireOrganizerAccess("/organizer/events/new");
+  const organizerIds = getOrganizerIds(access.memberships);
+  if (!organizerIds.length) redirect("/organizer");
+  const organizerId = getAllowedOrganizerId(formData, organizerIds);
   const supabase = await createSupabaseUserClient();
-  let event;
+  let event: EventInsert;
   try {
     event = await buildEventWritePayload(formData, {
       mode: "create", organizerId, status: "pending_review", createdBy: access.userId
-    });
+    }) as EventInsert;
   } catch (error) { return eventPreparationFailure(error); }
 
   const eventId = randomUUID();
+  const insertEvent = (slug: string) => supabase
+    .from("events")
+    .insert({ ...event, id: eventId, slug })
+    .select("id")
+    .single();
   try {
-    const { data, error } = await supabase
-      .from("events")
-      .insert({ ...event as EventInsert, id: eventId })
-      .select("id")
-      .single();
+    const slug = event.slug || organizerEventSlugWithSuffix("wydarzenie", eventId);
+    let { data, error } = await insertEvent(slug);
+    if (isEventSlugConflict(error) && event.slug && !formString(formData, "slug")) {
+      // PostgreSQL rejected the first insert. Reuse its prepared data and ID.
+      ({ data, error } = await insertEvent(organizerEventSlugWithSuffix(event.slug, eventId)));
+    }
+    if (isEventSlugConflict(error)) return eventSlugConflictState();
     if (error) throw error;
     if (!data || data.id !== eventId) throw new Error("Event insert was not confirmed");
   } catch (error) { revalidateOrganizerPaths(); return eventWriteFailure(error, "organizer", eventId); }
@@ -375,7 +387,7 @@ export async function organizerCreateEventAction(_previous: EventEditorState, fo
 }
 
 export async function organizerUpdateEventAction(eventId: string, _previous: EventEditorState, formData: FormData): Promise<EventEditorState> {
-  const access = await requireOrganizerAccess();
+  const access = await requireOrganizerAccess(`/organizer/events/${encodeURIComponent(eventId)}/edit`);
   const organizerIds = getOrganizerIds(access.memberships);
   const existing = await getOrganizerEventForEdit(eventId);
   if (!existing || !existing.submitted_by_organizer_id || !organizerIds.includes(existing.submitted_by_organizer_id)) {
@@ -397,24 +409,34 @@ export async function organizerUpdateEventAction(eventId: string, _previous: Eve
   try {
     const { data: updated, error } = await supabase
       .from("events")
-      .update(event as EventUpdate)
+      .update({
+        ...event,
+        slug: event.slug || existing.slug || organizerEventSlugWithSuffix("wydarzenie", eventId),
+        updated_at: new Date().toISOString()
+      })
       .eq("id", eventId)
       .eq("submitted_by_organizer_id", existing.submitted_by_organizer_id)
+      // A hide, cancellation or moderation can commit while the form is being prepared.
+      .filter("status", existing.status === null ? "is" : "eq", existing.status)
+      .filter("visibility", existing.visibility === null ? "is" : "eq", existing.visibility)
+      .is("is_cancelled", existing.is_cancelled)
+      .filter("updated_at", existing.updated_at === null ? "is" : "eq", existing.updated_at)
       .select("id")
       .maybeSingle();
+    if (isEventSlugConflict(error)) return eventSlugConflictState();
     if (error) throw error;
-    if (!updated) throw new Error("Event update affected no visible rows");
+    if (updated?.id !== eventId) throw new Error("Event update affected no matching row");
   } catch (error) { revalidateOrganizerPaths(); return eventWriteFailure(error, "organizer", eventId); }
   revalidateOrganizerPaths();
   const incomplete = await completeEventWrite("organizer", eventId, [
-    { label: "źródła", run: () => saveEventSource(eventId, formData, "organizer") }
+    { label: "źródła", run: () => saveEventSource(eventId, formData, "organizer", { clearWhenBlank: true }) }
   ]);
   if (incomplete) return incomplete;
   redirect("/organizer");
 }
 
 export async function organizerDuplicateEventAction(eventId: string) {
-  const access = await requireOrganizerAccess();
+  const access = await requireOrganizerAccess("/organizer/events");
   const organizerIds = getOrganizerIds(access.memberships);
   const existing = await getOrganizerEventForEdit(eventId);
   if (!existing || !existing.submitted_by_organizer_id || !organizerIds.includes(existing.submitted_by_organizer_id)) {
@@ -422,9 +444,10 @@ export async function organizerDuplicateEventAction(eventId: string) {
   }
 
   const supabase = await createSupabaseUserClient();
+  const duplicateId = randomUUID();
   const duplicated: EventInsert = {
     title: `Kopia - ${existing.title}`,
-    slug: `${existing.slug}-kopia-${Date.now().toString(36)}`,
+    slug: organizerEventSlugWithSuffix(`${existing.slug}-kopia`, duplicateId),
     description: existing.description,
     short_description: existing.short_description,
     start_at: existing.start_at,
@@ -446,7 +469,6 @@ export async function organizerDuplicateEventAction(eventId: string) {
     created_by: access.userId
   };
 
-  const duplicateId = randomUUID();
   try {
     const { data, error } = await supabase
       .from("events")
@@ -504,7 +526,7 @@ export async function organizerCancelEventAction(eventId: string): Promise<Organ
 }
 
 export async function organizerUpdateProfileAction(organizerId: string, formData: FormData, stayOnForm = false) {
-  const access = await requireOrganizerAccess();
+  const access = await requireOrganizerAccess("/organizer/profile");
   const organizerIds = getOrganizerIds(access.memberships);
   if (!organizerIds.includes(organizerId)) redirect("/organizer/profile");
 
@@ -565,61 +587,7 @@ export async function createOrganizerAccountAction(formData: FormData) {
   const supabase = await createSupabaseUserClient();
   const { data: authData, error: authError } = await supabase.auth.getUser();
   if (authError || !authData.user || authData.user.id !== context.userId) redirect("/login?next=%2Forganizer");
-  const slug = await createUniqueOrganizerSlug(createSlug(name));
-
-  const organizerId = randomUUID();
-  const organizer: OrganizerInsert = {
-    id: organizerId,
-    name,
-    slug,
-    email: authData.user?.email ?? null,
-    is_verified: false
-  };
-
-  const { data, error } = await supabase
-    .from("organizers")
-    .insert(organizer)
-    .select("id")
-    .single();
-
-  if (error) throw new Error(`Nie udalo sie utworzyc organizatora: ${error.message}`);
-  if (!data || data.id !== organizerId) throw new Error("Nie udało się potwierdzić utworzenia organizatora.");
-
-  const { data: membership, error: memberError } = await supabase
-    .from("organizer_users")
-    .insert({
-      organizer_id: organizerId,
-      user_id: context.userId,
-      role: "owner"
-    })
-    .select("id, organizer_id, user_id")
-    .single();
-
-  if (memberError) throw new Error(`Nie udalo sie powiazac konta z organizatorem: ${memberError.message}`);
-  if (!membership?.id || membership.organizer_id !== organizerId || membership.user_id !== context.userId) throw new Error("Nie udało się potwierdzić dostępu do organizatora.");
-
-  if (context.profile) {
-    const { data: profile, error: profileError } = await supabase
-      .from("profiles")
-      .update({ role: "organizer" })
-      .eq("id", context.userId)
-      .select("id, role")
-      .maybeSingle();
-    if (profileError) throw new Error(`Nie udalo sie zaktualizowac roli profilu: ${profileError.message}`);
-    if (!profile || profile.id !== context.userId || profile.role !== "organizer") throw new Error("Nie udało się potwierdzić zmiany roli konta.");
-  } else {
-    const { data: profile, error: profileError } = await supabase
-      .from("profiles")
-      .insert({
-        id: context.userId,
-        display_name: name,
-        role: "organizer"
-      })
-      .select("id, role")
-      .single();
-    if (profileError) throw new Error(`Nie udalo sie utworzyc profilu uzytkownika: ${profileError.message}`);
-    if (!profile || profile.id !== context.userId || profile.role !== "organizer") throw new Error("Nie udało się potwierdzić utworzenia profilu konta.");
-  }
+  await upgradeOrganizerAccount(supabase, name);
 
   revalidatePath("/organizer");
   revalidatePath("/organizer/settings");
@@ -627,10 +595,23 @@ export async function createOrganizerAccountAction(formData: FormData) {
 }
 
 function getAllowedOrganizerId(formData: FormData, allowedOrganizerIds: string[]) {
-  if (!allowedOrganizerIds.length) throw new Error("Brakuje organizatora przypisanego do konta.");
   const requested = formString(formData, "organizer_id");
   if (requested && allowedOrganizerIds.includes(requested)) return requested;
   return allowedOrganizerIds[0];
+}
+
+function organizerEventSlugWithSuffix(base: string, eventId: string) {
+  const suffix = eventId.replaceAll("-", "").slice(0, 12);
+  const prefix = base.slice(0, eventTextLimits.slug - suffix.length - 1).replace(/-+$/, "");
+  return `${prefix}-${suffix}`;
+}
+
+function isEventSlugConflict(error: { code: string; message: string } | null) {
+  return error?.code === "23505" && error.message.includes('"events_slug_key"');
+}
+
+function eventSlugConflictState() {
+  return eventValidationState(new EventValidationError({ slug: "Ten adres wydarzenia jest już zajęty. Wpisz inny." }));
 }
 
 function revalidateOrganizerPaths() {
@@ -641,7 +622,7 @@ function revalidateOrganizerPaths() {
 }
 
 async function updateOrganizerOwnedEvent(eventId: string, payload: EventUpdate) {
-  const access = await requireOrganizerAccess();
+  const access = await requireOrganizerAccess("/organizer/events");
   const organizerIds = getOrganizerIds(access.memberships);
   if (!organizerIds.length) redirect("/organizer");
 
@@ -661,18 +642,6 @@ async function updateOrganizerOwnedEvent(eventId: string, payload: EventUpdate) 
 
   if (error) throw new Error(`Nie udalo sie zaktualizowac wydarzenia: ${error.message}`);
   if (data?.id !== eventId) throw new Error("Nie potwierdzono zmiany własnego wydarzenia.");
-}
-
-async function listOrganizerMembershipsForUser(userId: string) {
-  const supabase = await createSupabaseUserClient();
-  const { data, error } = await supabase
-    .from("organizer_users")
-    .select("id, organizer_id, user_id, role, created_at, organizer:organizers(id, name, slug)")
-    .eq("user_id", userId)
-    .returns<OrganizerMembership[]>();
-
-  if (error) throw new Error(`Nie udalo sie pobrac organizatorow uzytkownika: ${error.message}`);
-  return data ?? [];
 }
 
 function getOrganizerIds(memberships: OrganizerMembership[]) {
@@ -764,17 +733,4 @@ async function getOrganizerStatsSummary(eventIds: string[], now = new Date()) {
 
 function getAnalyticsCount(countsByEvent: Map<string, Map<string, number>> | null, eventId: string, eventType: string) {
   return countsByEvent ? countsByEvent.get(eventId)?.get(eventType) ?? 0 : null;
-}
-
-async function createUniqueOrganizerSlug(baseSlug: string) {
-  const supabase = await createSupabaseUserClient();
-  const fallback = baseSlug || "organizator";
-  const { data, error } = await supabase
-    .from("organizers")
-    .select("slug")
-    .eq("slug", fallback)
-    .maybeSingle();
-
-  if (error || data) return `${fallback}-${Date.now().toString(36)}`;
-  return fallback;
 }

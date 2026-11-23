@@ -1,0 +1,545 @@
+{
+  "checked_at": "2026-11-05T15:04:06Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Cała Polska — mniejsze miasta i luki katalogu, od Mazur po Małopolskę i Lubuskie",
+  "events": [
+    {
+      "title": "Nie tylko o miłości — recital Zbigniewa Zamachowskiego",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-06T18:00:00+01:00",
+      "description": "Zbigniew Zamachowski zaprezentuje piosenki autorskie i utwory znanych twórców w kameralnej formule recitalu. Przy fortepianie zasiądzie Roman Hudaszek. Bilety od 123 zł w sprzedaży wskazanej przez Kartuskie Centrum Kultury.",
+      "location": {
+        "name": "Kartuskie Centrum Kultury",
+        "address": "Klasztorna 1",
+        "city": "Kartuzy",
+        "latitude": 54.3355310221287,
+        "longitude": 18.194583,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/374/kartuskie-centrum-kultury",
+        "coordinate_note": "Nazwany obiekt i jawne współrzędne z karty KupBilecik; adres potwierdzony na oficjalnej stronie kontaktowej KCK. Oficjalna mapa KCK obejmuje ten sam budynek."
+      },
+      "source_name": "Kartuskie Centrum Kultury",
+      "source_url": "https://kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/nie-tylko-o-milosci-recital-zbigniewa-zamachowskiego-153698.html",
+      "price_type": "paid",
+      "price_min": 123,
+      "price_max": null,
+      "evidence_urls": [
+        "https://www.bilety24.pl/kup-bilet-na--nie-tylko-o-milosci-recital-zbigniewa-zamachowskiego-153698?id=914496",
+        "https://kartuskiecentrum.kultury.pl/kontakt.html"
+      ],
+      "checked_at": "2026-11-05T15:03:45Z",
+      "short_description": "Zbigniew Zamachowski zaprezentuje piosenki autorskie i utwory znanych twórców w kameralnej formule recitalu. Przy fortepianie zasiądzie Roman Hudaszek. Bilety od 123 zł w sprzedaży wskazanej przez Kartuskie Centrum Kultury.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:03:45Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-05.json",
+        "same_city_day": [],
+        "decision": "Ręczny przegląd: brak podobnego wydarzenia w tym mieście i dniu w katalogu."
+      }
+    },
+    {
+      "title": "Koncert Niepodległościowy w Bazylice Katedralnej",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-08T14:00:00+01:00",
+      "description": "Chór Pueri et Puellae Cantores Plocenses wystąpi w płockiej katedrze pod dyrekcją Anny Bramskiej. Na organach zagra Wiktor Bramski. Koncert rozpoczyna się o 14:00; wcześniejsza msza o 13:00 jest osobnym punktem programu. Wstęp wolny.",
+      "location": {
+        "name": "Bazylika Katedralna w Płocku",
+        "address": "Tumska 1",
+        "city": "Płock",
+        "latitude": 52.54097,
+        "longitude": 19.6896,
+        "coordinate_source": "https://mapcarta.com/W238335336",
+        "coordinate_note": "Nazwany budynek Katedry Płockiej, OSM way 238335336, otwarta karta Mapcarta podaje 52.54097,19.6896. Adres Tumska 1 potwierdza oficjalny przewodnik Płockiej Lokalnej Organizacji Turystycznej, strona 8 PDF."
+      },
+      "source_name": "Kalendarz Imprez Płock — miejski kalendarz",
+      "source_url": "https://kalendarzimprez.plock.eu/event/koncert-niepodleglosciowy-w-bazylice-katedralnej/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "checked_at": "2026-11-05T15:04:03Z",
+      "evidence_urls": [
+        "https://turystykaplock.eu/wp-content/uploads/2026/01/19474-2025-PLOT-przewodnik-2026.pdf"
+      ],
+      "editorial_note": "Źródło jednoznacznie podaje niedzielę 8 listopada 2026 i godzinę koncertu 14:00, wstęp wolny. Brak komunikatu o odwołaniu, JSON-LD EventScheduled. Nie skopiowano zdjęcia ani plakatu.",
+      "short_description": "Chór Pueri et Puellae Cantores Plocenses wystąpi w płockiej katedrze pod dyrekcją Anny Bramskiej. Na organach zagra Wiktor Bramski. Koncert rozpoczyna się o 14:00; wcześniejsza msza o 13:00 jest osobnym punktem programu. Wstęp wolny.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:04:03Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Święto Niepodległości w Twierdzy Boyen",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-11T09:00:00+01:00",
+      "end_at": "2026-11-11T16:00:00+01:00",
+      "description": "Rodzinne obchody w zabytkowej twierdzy obejmą zwiedzanie, warsztaty kreatywne i grę terenową. W programie są też jesienna herbata oraz ogniska. Tego dnia wejście na teren obiektu jest bezpłatne dla wszystkich.",
+      "location": {
+        "name": "Twierdza Boyen",
+        "address": "Turystyczna 1",
+        "city": "Giżycko",
+        "latitude": 54.0343624,
+        "longitude": 21.7498238,
+        "coordinate_source": "https://www.labiryntarium.pl/polska/warminskomazurskie/2666-gizycko-twierdza-boyen.html",
+        "coordinate_note": "Jawny nazwany punkt Twierdzy Boyen przy relacji wejścia Bramą Giżycką. Oficjalna karta miasta i wydarzenia potwierdzają Turystyczną 1. Istniejący punkt locations:d9b3f4a8-6853-48d9-a98b-9d57e66ab839 leży ok. 27 m obok przy tym samym wejściu; importer może go ponownie użyć. W paczce przyjęto dokładnie współrzędne istniejącej pinezki kompleksu po kontroli położenia, zgodne z punktem wejścia z dokładnością około 27 m."
+      },
+      "source_name": "Urząd Miejski w Giżycku",
+      "source_url": "https://gizycko.pl/obchody-swieta-niepodleglosci-w-twierdzy-boyen/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://gizycko.pl/twierdza-boyen-2433/"
+      ],
+      "checked_at": "2026-11-05T15:03:44Z",
+      "short_description": "Rodzinne obchody w zabytkowej twierdzy obejmą zwiedzanie, warsztaty kreatywne i grę terenową. W programie są też jesienna herbata oraz ogniska. Tego dnia wejście na teren obiektu jest bezpłatne dla wszystkich.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:03:44Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-05.json",
+        "same_city_day": [],
+        "decision": "Ręczny przegląd: brak podobnego wydarzenia w tym mieście i dniu w katalogu."
+      }
+    },
+    {
+      "title": "W mundurze niepodległej — patriotyczne spotkanie w Arsenale",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-11T14:00:00+01:00",
+      "description": "Spotkanie edukacyjne przybliży mundury i tradycje wojskowe związane z odzyskaniem niepodległości. Uczestnicy poznają historię oficerów i wezmą udział w zabawach przygotowanych przez muzeum. Udział bezpłatny, wymagana wcześniejsza rezerwacja; liczba miejsc jest ograniczona. Formularz zapisów znajduje się w zapowiedzi organizatora.",
+      "location": {
+        "name": "Muzeum Fortyfikacji i Broni Arsenał",
+        "address": "Zamkowa 2",
+        "city": "Zamość",
+        "latitude": 50.716805338222,
+        "longitude": 23.248035747662,
+        "coordinate_source": "https://zabytek.pl/pl/obiekty/zamosc-arsenal",
+        "coordinate_note": "Dokładny punkt budynku Arsenału w linku Wyznacz drogę Narodowego Instytutu Dziedzictwa. Historyczny adres na karcie NID to Szczebrzeska 4, a aktualny adres muzeum Zamkowa 2 potwierdza oficjalna karta Muzeum Zamojskiego; opis obu kart identyfikuje ten sam Arsenał."
+      },
+      "source_name": "Zamojskie Centrum Informacji Turystycznej i Historycznej",
+      "source_url": "https://zci.zamosc.pl/news/2606/w-mundurze-niepodleglej-ndash-patriotyczne-spotkanie-z.html",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://www.muzeum-zamojskie.pl/o-muzeum/muzeum-fortyfikacji-i-broni-arsenal/",
+        "https://forms.gle/3kHYkysi1YWtRbsR6"
+      ],
+      "checked_at": "2026-11-05T15:03:45Z",
+      "short_description": "Spotkanie edukacyjne przybliży mundury i tradycje wojskowe związane z odzyskaniem niepodległości. Uczestnicy poznają historię oficerów i wezmą udział w zabawach przygotowanych przez muzeum. Udział bezpłatny, wymagana wcześniejsza rezerwacja; liczba miejsc jest ograniczona. Formularz zapisów znajduje się w zapowiedzi organizatora.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:03:45Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-05.json",
+        "same_city_day": [],
+        "decision": "Ręczny przegląd: brak podobnego wydarzenia w tym mieście i dniu w katalogu."
+      },
+      "booking_verification": {
+        "url": "https://forms.gle/3kHYkysi1YWtRbsR6",
+        "resolved_url": "https://docs.google.com/forms/d/e/1FAIpQLSftr0QpwsTEzv7pL5CC84acWBYHALHfBFSUcxr6gqaUN0SSvg/viewform?usp=send_form",
+        "status": 200,
+        "checked_at": "2026-11-05T15:06:07Z",
+        "registration_open": true,
+        "note": "Publiczny odczyt formularza: aktywne wymagane pola uczestnika/opiekuna i przycisk Dalej, brak komunikatu zamknięcia. Formularz potwierdza 11.11.2026 o 14:00, bezpłatny udział i ograniczoną liczbę miejsc. Bez wysyłania formularza. Opcjonalne logowanie służy zapisaniu postępów."
+      }
+    },
+    {
+      "title": "Śpiewam dla Ciebie Ojczyzno! — koncert o 15:00",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-11T15:00:00+01:00",
+      "description": "Koncert słowno-muzyczny w Kartuskim Centrum Kultury jest częścią miejscowych obchodów Święta Niepodległości. Bezpłatne wejściówki wydaje kasa Kina Kartuzy. Organizatorzy proszą też o potwierdzenie obecności pod numerem 58 684 02 01 lub 506 590 022; dostępność miejsc należy sprawdzić przed przyjściem.",
+      "location": {
+        "name": "Kartuskie Centrum Kultury",
+        "address": "Klasztorna 1",
+        "city": "Kartuzy",
+        "latitude": 54.3355310221287,
+        "longitude": 18.194583,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/374/kartuskie-centrum-kultury",
+        "coordinate_note": "Nazwany obiekt i jawne współrzędne z karty KupBilecik; adres potwierdzony na oficjalnej stronie kontaktowej KCK. Oficjalna mapa KCK obejmuje ten sam budynek."
+      },
+      "source_name": "Kartuskie Centrum Kultury",
+      "source_url": "https://kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/spiewam-dla-ciebie-ojczyzno.html",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://kartuskipowiat.pl/powiatowo-gminne-obchody-narodowego-swieta-niepodleglosci/",
+        "https://kartuskiecentrum.kultury.pl/images/ojczyzno2026.jpg",
+        "https://kartuskiecentrum.kultury.pl/kontakt.html"
+      ],
+      "checked_at": "2026-11-05T15:03:46Z",
+      "short_description": "Koncert słowno-muzyczny w Kartuskim Centrum Kultury jest częścią miejscowych obchodów Święta Niepodległości. Bezpłatne wejściówki wydaje kasa Kina Kartuzy. Organizatorzy proszą też o potwierdzenie obecności pod numerem 58 684 02 01 lub 506 590 022; dostępność miejsc należy sprawdzić przed przyjściem.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:03:46Z",
+        "no_cancellation_notice": true,
+        "note": "Rok 2026, terminy 15:00 i 17:00 oraz bezpłatne wejściówki od 27.10.2026 odczytano z oficjalnego plakatu na stronie KCK. Publikowana jest wyłącznie odsłona 15:00, potwierdzona także przez Powiat Kartuski. Sam plakat nie będzie publikowany."
+      },
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-05.json",
+        "same_city_day": [],
+        "decision": "Ręczny przegląd: brak podobnego wydarzenia w tym mieście i dniu w katalogu."
+      }
+    },
+    {
+      "title": "Narodowe Święto Niepodległości — Płocka Orkiestra Symfoniczna",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-11T19:00:00+01:00",
+      "description": "Płocka Orkiestra Symfoniczna pod batutą Tomasza Tokarczyka zagra z Katarzyną Oleś-Blachą i Łukaszem Załęskim. Program obejmuje polską muzykę, m.in. Moniuszki, Chopina i Kilara. Koncert w sali PSM przy Kolegialnej 23. Bilet kosztuje 50 zł, a z Płocką Kartą Mieszkańca 40 zł; sprzedaż w kasie POS i Bilety24.",
+      "location": {
+        "name": "Sala koncertowa Państwowej Szkoły Muzycznej im. Karola Szymanowskiego",
+        "address": "Kolegialna 23",
+        "city": "Płock",
+        "latitude": 52.5420693,
+        "longitude": 19.6971168,
+        "coordinate_source": "https://maps.app.goo.gl/BYUkKiM6sxW5q1Kz7",
+        "coordinate_note": "Link „Sala koncertowa — Zobacz na mapie” w oficjalnej stopce organizatora prowadzi do Google Maps, nazwanego adresu Kolegialna 23, Płock. Użyto współrzędnych markera !3d52.5420693!4d19.6971168, nie środka kamery. Adres powtórzony w konkretnej zapowiedzi."
+      },
+      "source_name": "Płocka Orkiestra Symfoniczna — organizator",
+      "source_url": "https://orkiestraplock.pl/wydarzenie/narodowe-swieto-niepodleglosci-2/",
+      "price_type": "paid",
+      "price_min": 40,
+      "price_max": 50,
+      "checked_at": "2026-11-05T15:04:05Z",
+      "evidence_urls": [
+        "https://kalendarzimprez.plock.eu/event/narodowe-swieto-niepodleglosci-9/",
+        "https://www.gov.pl/web/psmplock/dane-kontaktowe"
+      ],
+      "editorial_note": "Bezpośrednia zapowiedź organizatora i jej JSON-LD potwierdzają 11 XI 2026 o 19:00. Użyto cen z treści organizatora: 50 zł i 40 zł z PKM. Odrzucono błędne pole „Bezpłatne” w metadanych miejskiego kalendarza; także jego właściwa treść wymienia 50/40 zł. Brak komunikatu o odwołaniu.",
+      "short_description": "Płocka Orkiestra Symfoniczna pod batutą Tomasza Tokarczyka zagra z Katarzyną Oleś-Blachą i Łukaszem Załęskim. Program obejmuje polską muzykę, m.in. Moniuszki, Chopina i Kilara. Koncert w sali PSM przy Kolegialnej 23. Bilet kosztuje 50 zł, a z Płocką Kartą Mieszkańca 40 zł; sprzedaż w kasie POS i Bilety24.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:04:05Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Cztery pory roku z literaturą — Maciej Siembieda",
+      "category_slug": "kultura",
+      "start_at": "2026-11-12T18:00:00+01:00",
+      "end_at": "2026-11-12T20:00:00+01:00",
+      "description": "Maciej Siembieda spotka się z czytelnikami w sali nr 2 Giżyckiego Centrum Kultury. Rozmowę z autorem powieści sensacyjnych i historycznych poprowadzi Krzysztof Kossakowski. Wstęp wolny.",
+      "location": {
+        "name": "Giżyckie Centrum Kultury",
+        "address": "Konarskiego 8",
+        "city": "Giżycko",
+        "latitude": 54.038106,
+        "longitude": 21.767351,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/678/gizyckie-centrum-kultury",
+        "coordinate_note": "Karta nazwanego GCK podaje jawnie punkt i Konarskiego 8. Oficjalna zapowiedź miasta potwierdza ten adres i salę nr 2."
+      },
+      "source_name": "Urząd Miejski w Giżycku",
+      "source_url": "https://www.gizycko.pl/cztery-pory-roku-z-literatura--3437/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [],
+      "checked_at": "2026-11-05T15:03:44Z",
+      "short_description": "Maciej Siembieda spotka się z czytelnikami w sali nr 2 Giżyckiego Centrum Kultury. Rozmowę z autorem powieści sensacyjnych i historycznych poprowadzi Krzysztof Kossakowski. Wstęp wolny.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:03:44Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-05.json",
+        "same_city_day": [],
+        "decision": "Ręczny przegląd: brak podobnego wydarzenia w tym mieście i dniu w katalogu."
+      }
+    },
+    {
+      "title": "Bridgertonowie – koncert przy świecach",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-14T19:00:00+01:00",
+      "description": "Kwartet smyczkowy wykona aranżacje piosenek znanych z serialu Bridgertonowie. Koncert odbędzie się w MOKiS. W oficjalnej bileterii bilety są dostępne od 119 zł. Wejście na salę od 18:30. Do ceny może dojść opłata serwisowa.",
+      "location": {
+        "name": "Myślenicki Ośrodek Kultury i Sportu",
+        "address": "M.J. Piłsudskiego 20",
+        "city": "Myślenice",
+        "latitude": 49.8294782,
+        "longitude": 19.9427192,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/509/myslenicki-osrodek-kultury-i-sportu",
+        "coordinate_note": "Wykorzystano istniejącą pinezkę kompleksu MOKiS. Nazwany punkt bileterii przy tym samym adresie znajduje się około 29 m dalej w obrębie obiektu. Nie deklarowano lokalizacji pojedynczego miejsca na sali."
+      },
+      "source_name": "Myślenicki Ośrodek Kultury i Sportu",
+      "source_url": "https://www.mokis.myslenice.pl/?id=1197&ram=news-show",
+      "price_type": "paid",
+      "price_min": 119,
+      "price_max": null,
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/event/207760/myslenice/bridgertonowie-koncert-przy-swiecach"
+      ],
+      "checked_at": "2026-11-05T15:02:15Z",
+      "short_description": "Kwartet smyczkowy wykona aranżacje piosenek znanych z serialu Bridgertonowie. Koncert odbędzie się w MOKiS. W oficjalnej bileterii bilety są dostępne od 119 zł. Wejście na salę od 18:30. Do ceny może dojść opłata serwisowa.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:02:15Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Marsz do Wolności — koncert pieśni patriotycznych",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-15T15:00:00+01:00",
+      "description": "W zamojskim Arsenale zabrzmią pieśni patriotyczne i wojskowe. Koncert towarzyszy muzealnym opowieściom o tradycjach oficerskich II Rzeczypospolitej. Wstęp wolny.",
+      "location": {
+        "name": "Muzeum Fortyfikacji i Broni Arsenał",
+        "address": "Zamkowa 2",
+        "city": "Zamość",
+        "latitude": 50.716805338222,
+        "longitude": 23.248035747662,
+        "coordinate_source": "https://zabytek.pl/pl/obiekty/zamosc-arsenal",
+        "coordinate_note": "Dokładny punkt budynku Arsenału w linku Wyznacz drogę Narodowego Instytutu Dziedzictwa. Historyczny adres na karcie NID to Szczebrzeska 4, a aktualny adres muzeum Zamkowa 2 potwierdza oficjalna karta Muzeum Zamojskiego; opis obu kart identyfikuje ten sam Arsenał."
+      },
+      "source_name": "Zamojskie Centrum Informacji Turystycznej i Historycznej",
+      "source_url": "https://zci.zamosc.pl/news/2608/bdquomarsz-do-wolnoscirdquo-ndash-koncert-piesni-patriotycznych-w-zam.html",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://www.muzeum-zamojskie.pl/o-muzeum/muzeum-fortyfikacji-i-broni-arsenal/"
+      ],
+      "checked_at": "2026-11-05T15:03:45Z",
+      "short_description": "W zamojskim Arsenale zabrzmią pieśni patriotyczne i wojskowe. Koncert towarzyszy muzealnym opowieściom o tradycjach oficerskich II Rzeczypospolitej. Wstęp wolny.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:03:45Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-05.json",
+        "same_city_day": [],
+        "decision": "Ręczny przegląd: brak podobnego wydarzenia w tym mieście i dniu w katalogu."
+      }
+    },
+    {
+      "title": "Bieszczady. Niekończąca się podróż — Urszula Wałachowska",
+      "category_slug": "kultura",
+      "start_at": "2026-11-18T17:30:00+01:00",
+      "description": "Urszula Wałachowska opowie o Bieszczadach z perspektywy osoby, która związała z nimi codzienne życie. Spotkanie podróżnicze w bibliotece przy Bankowej 3. Wstęp wolny.",
+      "location": {
+        "name": "Miejska Biblioteka Publiczna im. Edwarda Stachury",
+        "address": "Bankowa 3",
+        "city": "Nowa Sól",
+        "latitude": 51.79986983290384,
+        "longitude": 15.713998831965105,
+        "coordinate_source": "https://sprawdzadres.pl/lubuskie/nowa-sol/bankowa/3",
+        "coordinate_note": "Dokładny punkt adresowy Bankowa 3 z karty adresu i GeoCoordinates, odczyt live 200 dnia 5.11.2026. Oficjalne źródła obu spotkań podają ten adres biblioteki; kalendarz biblioteki potwierdza Galerię pod Tekstem dla spotkania 18 XI. Nie użyto punktu Targeo 51.80006,15.71347 położonego przy sąsiednim numerze 1."
+      },
+      "source_name": "Stowarzyszenie Twórcze Horyzonty — współorganizator",
+      "source_url": "https://tworczehoryzonty.pl/wpis/bieszczady-niekonczaca-sie-podroz-8/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "checked_at": "2026-11-05T15:04:00Z",
+      "evidence_urls": [
+        "https://www.bibliotekanowasol.pl/index.php?Itemid=101&id=419%3Aspotkanie-z-podrozniczka-urszula-walachowska&option=com_icagenda&view=event",
+        "https://www.bibliotekanowasol.pl/"
+      ],
+      "editorial_note": "Otwarta konkretna zapowiedź współorganizatora: 18 listopada 2026, środa, 17:30, Bankowa 3, wstęp wolny. Oficjalny kalendarz biblioteki podaje identyczny początek i Galerię pod Tekstem. Pominięto szablonowy koniec 23:01 z kalendarza.",
+      "short_description": "Urszula Wałachowska opowie o Bieszczadach z perspektywy osoby, która związała z nimi codzienne życie. Spotkanie podróżnicze w bibliotece przy Bankowej 3. Wstęp wolny.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:04:00Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Cztery Pory Miłowania – koncert w Myślenicach",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-18T19:00:00+01:00",
+      "description": "Michał Miotke, Patryk Wendrowski i Malwina Groenwald wystąpią z repertuarem zespołu Cztery Pory Miłowania, łączącym poezję śpiewaną i folk. Koncert w MOKiS. W oficjalnej sprzedaży internetowej ceny biletów zaczynają się od 159 zł. Do ceny może dojść opłata serwisowa.",
+      "location": {
+        "name": "Myślenicki Ośrodek Kultury i Sportu",
+        "address": "M.J. Piłsudskiego 20",
+        "city": "Myślenice",
+        "latitude": 49.8294782,
+        "longitude": 19.9427192,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/509/myslenicki-osrodek-kultury-i-sportu",
+        "coordinate_note": "Wykorzystano istniejącą pinezkę kompleksu MOKiS. Nazwany punkt bileterii przy tym samym adresie znajduje się około 29 m dalej w obrębie obiektu. Nie deklarowano lokalizacji pojedynczego miejsca na sali."
+      },
+      "source_name": "Myślenicki Ośrodek Kultury i Sportu",
+      "source_url": "https://www.mokis.myslenice.pl/?id=1203&ram=news-show",
+      "price_type": "paid",
+      "price_min": 159,
+      "price_max": null,
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/event/206120/myslenice/cztery-pory-milowania"
+      ],
+      "checked_at": "2026-11-05T15:02:15Z",
+      "short_description": "Michał Miotke, Patryk Wendrowski i Malwina Groenwald wystąpią z repertuarem zespołu Cztery Pory Miłowania, łączącym poezję śpiewaną i folk. Koncert w MOKiS. W oficjalnej sprzedaży internetowej ceny biletów zaczynają się od 159 zł. Do ceny może dojść opłata serwisowa.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:02:15Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Żeromski i Wajda – Niedziela w Muzeum",
+      "category_slug": "kultura",
+      "start_at": "2026-11-22T12:00:00+01:00",
+      "description": "Paulina Bies poprowadzi wykład w Muzeum Stefana Żeromskiego poświęcony Żeromskiemu i Wajdzie. Spotkanie dla dorosłych w ramach cyklu Niedziela w Muzeum. Wstęp bezpłatny.",
+      "location": {
+        "name": "Muzeum Stefana Żeromskiego",
+        "address": "Jana Pawła II 5",
+        "city": "Kielce",
+        "latitude": 50.8677852,
+        "longitude": 20.6294997,
+        "coordinate_source": "https://mnki.pl/pl/muzeum-stefana-zeromskiego",
+        "coordinate_note": "Dokładny nazwany marker !3d/!4d po przekierowaniu linku Jak dojechać? z oficjalnej karty oddziału, nie kamera @. Link skrócony https://maps.app.goo.gl/4sfwJsoDkUrBJdXM8."
+      },
+      "source_name": "Muzeum Narodowe w Kielcach",
+      "source_url": "https://mnki.pl/index.php/pl/aktualnosci/harmonogram-niedziela-w-muzeum-2026",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://mnki.pl/pl/muzeum-stefana-zeromskiego"
+      ],
+      "checked_at": "2026-11-05T15:02:15Z",
+      "short_description": "Paulina Bies poprowadzi wykład w Muzeum Stefana Żeromskiego poświęcony Żeromskiemu i Wajdzie. Spotkanie dla dorosłych w ramach cyklu Niedziela w Muzeum. Wstęp bezpłatny.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:02:15Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Z plecakiem przez Etiopię — Agnieszka Wasztyl",
+      "category_slug": "kultura",
+      "start_at": "2026-11-24T18:00:00+01:00",
+      "end_at": "2026-11-24T20:00:00+01:00",
+      "description": "Agnieszka Wasztyl pokaże zdjęcia i opowie o podróży przez Etiopię: Kotlinę Danakilską, dolinę Omo i skalne kościoły Lalibeli. Spotkanie Klubu „Podróże” im. Tony’ego Halika odbędzie się w Domu Darmstadt. Wstęp wolny.",
+      "location": {
+        "name": "Dom Darmstadt",
+        "address": "Stary Rynek 8",
+        "city": "Płock",
+        "latitude": 52.5446309181725,
+        "longitude": 19.6846968355825,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/6359/dom-darmstadt",
+        "coordinate_note": "Otwarta nazwana karta Domu Darmstadt: dokładny adres Stary Rynek 8 i FAQ podające obie współrzędne. Adres zgodny z treścią oficjalnej zapowiedzi."
+      },
+      "source_name": "Kalendarz Imprez Płock — miejski kalendarz",
+      "source_url": "https://kalendarzimprez.plock.eu/event/z-plecakiem-przez-etiopie-agnieszka-wasztyl-gosciem-klubu-podroze-im-tonyego-halika-w-plocku/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "checked_at": "2026-11-05T15:04:06Z",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/place/6359/dom-darmstadt"
+      ],
+      "editorial_note": "Konkretna strona i JSON-LD: 24 XI 2026, 18:00–20:00, Dom Darmstadt, Stary Rynek 8, wstęp wolny, EventScheduled. Ceny 55/40 zł dotyczą opcjonalnej książki i ebooka, a nie udziału w wydarzeniu.",
+      "short_description": "Agnieszka Wasztyl pokaże zdjęcia i opowie o podróży przez Etiopię: Kotlinę Danakilską, dolinę Omo i skalne kościoły Lalibeli. Spotkanie Klubu „Podróże” im. Tony’ego Halika odbędzie się w Domu Darmstadt. Wstęp wolny.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:04:06Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Polityka zagraniczna Zygmunta III Wazy – Niedziela w Muzeum",
+      "category_slug": "kultura",
+      "start_at": "2026-11-29T12:00:00+01:00",
+      "description": "Oskar Tokarczyk opowie o polityce zagranicznej Zygmunta III Wazy podczas wykładu w Dawnym Pałacu Biskupów Krakowskich. Spotkanie dla dorosłych z cyklu Niedziela w Muzeum. Wstęp bezpłatny.",
+      "location": {
+        "name": "Dawny Pałac Biskupów Krakowskich – Muzeum Narodowe w Kielcach",
+        "address": "Plac Zamkowy 1",
+        "city": "Kielce",
+        "latitude": 50.86905,
+        "longitude": 20.62762,
+        "coordinate_source": "https://mapcarta.com/N2350022809",
+        "coordinate_note": "Nazwany punkt Muzeum Narodowego w pałacu. Oficjalna karta oddziału potwierdza Plac Zamkowy 1."
+      },
+      "source_name": "Muzeum Narodowe w Kielcach",
+      "source_url": "https://mnki.pl/index.php/pl/aktualnosci/harmonogram-niedziela-w-muzeum-2026",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://mnki.pl/pl/dawny-palac-biskupow-krakowskich"
+      ],
+      "checked_at": "2026-11-05T15:02:15Z",
+      "short_description": "Oskar Tokarczyk opowie o polityce zagranicznej Zygmunta III Wazy podczas wykładu w Dawnym Pałacu Biskupów Krakowskich. Spotkanie dla dorosłych z cyklu Niedziela w Muzeum. Wstęp bezpłatny.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:02:15Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki."
+    },
+    {
+      "title": "Chile. Rowerem przez pustynię Atacama — Marcin Korzonek",
+      "category_slug": "kultura",
+      "start_at": "2026-12-09T17:30:00+01:00",
+      "description": "Marcin Korzonek przedstawi swoją samotną wyprawę rowerową przez chilijską pustynię Atacama i próbę wjazdu na wysokość 5900 metrów. Opowie także o warunkach podróży i napotkanych trudnościach. Spotkanie w bibliotece przy Bankowej 3. Wstęp wolny.",
+      "location": {
+        "name": "Miejska Biblioteka Publiczna im. Edwarda Stachury",
+        "address": "Bankowa 3",
+        "city": "Nowa Sól",
+        "latitude": 51.79986983290384,
+        "longitude": 15.713998831965105,
+        "coordinate_source": "https://sprawdzadres.pl/lubuskie/nowa-sol/bankowa/3",
+        "coordinate_note": "Dokładny punkt adresowy Bankowa 3 z karty adresu i GeoCoordinates, odczyt live 200 dnia 5.11.2026. Oficjalne źródła obu spotkań podają ten adres biblioteki; kalendarz biblioteki potwierdza Galerię pod Tekstem dla spotkania 18 XI. Nie użyto punktu Targeo 51.80006,15.71347 położonego przy sąsiednim numerze 1."
+      },
+      "source_name": "Stowarzyszenie Twórcze Horyzonty — współorganizator",
+      "source_url": "https://tworczehoryzonty.pl/wpis/chile-rowerem-przez-pustynie-atacama-2/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "checked_at": "2026-11-05T15:04:03Z",
+      "evidence_urls": [
+        "https://tworczehoryzonty.pl/cat/podroze/nowa-sol/",
+        "https://www.bibliotekanowasol.pl/"
+      ],
+      "editorial_note": "Konkretna zapowiedź współorganizatora podaje 9 grudnia 2026, środa, 17:30, Biblioteka w Nowej Soli, Bankowa 3, wstęp wolny. Sala nie została nazwana w zapowiedzi grudniowej: na etapie scalania użyć nazwy całej biblioteki dla obu wydarzeń, jeżeli wymagane jest ścisłe odzwierciedlenie nazwy w źródle.",
+      "short_description": "Marcin Korzonek przedstawi swoją samotną wyprawę rowerową przez chilijską pustynię Atacama i próbę wjazdu na wysokość 5900 metrów. Opowie także o warunkach podróży i napotkanych trudnościach. Spotkanie w bibliotece przy Bankowej 3. Wstęp wolny.",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-05T15:04:03Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Nie potwierdzono prawa publikacji konkretnych materiałów z zapowiedzi. Pole main_image_url puste; wpis korzysta z wdrożonego EventVisual i lokalnej licencjonowanej biblioteki."
+    }
+  ]
+}

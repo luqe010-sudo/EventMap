@@ -1,8 +1,9 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NextRequest } from "next/server";
 
 const mocks = vi.hoisted(() => ({
   revalidatePath: vi.fn(),
+  revalidateTag: vi.fn(),
   search: vi.fn(),
   markers: vi.fn(),
   counts: vi.fn(),
@@ -14,7 +15,11 @@ const mocks = vi.hoisted(() => ({
   cities: vi.fn()
 }));
 
-vi.mock("next/cache", () => ({ revalidatePath: mocks.revalidatePath }));
+vi.mock("next/cache", () => ({
+  revalidatePath: mocks.revalidatePath,
+  revalidateTag: mocks.revalidateTag,
+  unstable_cache: (callback: unknown) => callback
+}));
 vi.mock("@/components/HomePage", () => ({ default: () => null }));
 vi.mock("@/components/EventDetailView", () => ({ default: () => null }));
 vi.mock("@/lib/geocoding", () => ({ searchAddress: vi.fn() }));
@@ -43,9 +48,10 @@ vi.mock("@/lib/supabase", () => ({
   })
 }));
 
-import { revalidatePublicEventCache } from "@/lib/public-event-cache";
+import { PUBLIC_MAP_MARKER_CACHE_TAG, revalidatePublicEventCache } from "@/lib/public-event-cache";
 import * as searchRoute from "../app/api/events/search/route";
 import * as markerRoute from "../app/api/events/markers/route";
+import { POST as revalidateMarkers } from "../app/api/events/markers/revalidate/route";
 import * as countRoute from "../app/api/events/category-counts/route";
 import * as detailRoute from "../app/api/events/[id]/route";
 import * as singularAlias from "../app/wydarzenie/[slug]/route";
@@ -63,6 +69,7 @@ import * as eventPage from "../app/[category]/[city]/[event]/page";
 import * as locationPage from "../app/lokalizacja/page";
 
 beforeEach(() => {
+  vi.stubEnv("EVENTMAP_MAP_CACHE_SECRET", undefined);
   vi.resetAllMocks();
   vi.spyOn(console, "error").mockImplementation(() => {});
   mocks.search.mockResolvedValue({ events: [{ id: "event" }], totalCount: 1 });
@@ -76,11 +83,21 @@ beforeEach(() => {
   mocks.cities.mockResolvedValue({ data: [] });
 });
 
+afterEach(() => {
+  vi.unstubAllEnvs();
+});
+
 function expectFresh(response: Response) {
   expect(response.headers.get("Cache-Control")).toBe("no-store, max-age=0");
 }
 
 describe("publication invalidation", () => {
+  it("also invalidates the shared marker inventory when configured", () => {
+    vi.stubEnv("EVENTMAP_MAP_CACHE_SECRET", "test-map-secret");
+    revalidatePublicEventCache();
+    expect(mocks.revalidateTag).toHaveBeenCalledExactlyOnceWith(PUBLIC_MAP_MARKER_CACHE_TAG);
+  });
+
   it("invalidates all detail/listing placements so old and new URLs cannot survive a move", () => {
     revalidatePublicEventCache();
     for (const path of ["/", "/lokalizacja", "/[category]", "/[category]/[city]", "/[category]/[city]/[event]"]) {
@@ -103,6 +120,40 @@ describe("publication invalidation", () => {
     for (const path of ["/sitemap.xml", "/sitemap-main.xml", "/sitemap-events.xml", "/sitemap-cities.xml", "/sitemap-category-cities.xml", "/sitemap-categories.xml"]) {
       expect(mocks.revalidatePath).toHaveBeenCalledWith(path);
     }
+  });
+});
+
+describe("map marker invalidation webhook", () => {
+  function request(authorization?: string) {
+    return new Request("https://example.invalid/api/events/markers/revalidate", {
+      method: "POST",
+      headers: authorization ? { Authorization: authorization } : undefined,
+      body: "unused webhook body"
+    });
+  }
+
+  it("is unavailable until the server secret is configured", async () => {
+    const response = await revalidateMarkers(request("Bearer test-map-secret"));
+    expect(response.status).toBe(404);
+    expectFresh(response);
+    expect(mocks.revalidateTag).not.toHaveBeenCalled();
+  });
+
+  it.each([undefined, "Bearer test-map-secrex", "Bearer wrong"])("rejects invalid authorization %j", async (authorization) => {
+    vi.stubEnv("EVENTMAP_MAP_CACHE_SECRET", "test-map-secret");
+    const response = await revalidateMarkers(request(authorization));
+    expect(response.status).toBe(401);
+    expectFresh(response);
+    expect(mocks.revalidateTag).not.toHaveBeenCalled();
+  });
+
+  it("invalidates only the marker tag and ignores the webhook body", async () => {
+    vi.stubEnv("EVENTMAP_MAP_CACHE_SECRET", "test-map-secret");
+    const response = await revalidateMarkers(request("Bearer test-map-secret"));
+    expect(response.status).toBe(204);
+    expectFresh(response);
+    expect(mocks.revalidateTag).toHaveBeenCalledExactlyOnceWith(PUBLIC_MAP_MARKER_CACHE_TAG);
+    expect(mocks.revalidatePath).not.toHaveBeenCalled();
   });
 });
 

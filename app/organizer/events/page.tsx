@@ -7,12 +7,14 @@ import {
   organizerDuplicateEventAction
 } from "@/lib/organizer-events";
 import { formatPolishDate } from "@/lib/date-format";
+import { normalizeOrganizerEventFilters } from "@/lib/organizer-event-filters";
 import { toPluralCategorySlug } from "@/lib/slugs";
+import { PROMOTION_PAGE_PATH, PROMOTION_PRICE_LABEL, buildPromotionOrderMailto, getPromotionState } from "@/lib/promotion";
 
 type SearchParams = {
-  status?: string;
-  dateFrom?: string;
-  dateTo?: string;
+  status?: string | string[];
+  dateFrom?: string | string[];
+  dateTo?: string | string[];
   save?: string | string[];
 };
 
@@ -24,11 +26,14 @@ export default async function OrganizerEventsPage({
   searchParams: Promise<SearchParams>;
 }) {
   const params = await searchParams;
-  const events = await listOrganizerEvents({
-    status: params.status || undefined,
-    dateFrom: params.dateFrom || undefined,
-    dateTo: params.dateTo || undefined
-  });
+  const filters = normalizeOrganizerEventFilters(params);
+  const query = new URLSearchParams();
+  if (filters.status) query.set("status", filters.status);
+  if (filters.dateFrom) query.set("dateFrom", filters.dateFrom);
+  if (filters.dateTo) query.set("dateTo", filters.dateTo);
+  const filterQuery = query.toString();
+  const next = filterQuery ? `/organizer/events?${filterQuery}` : "/organizer/events";
+  const events = await listOrganizerEvents(filters, next);
 
   return (
     <main className="appShell managementShell">
@@ -47,7 +52,7 @@ export default async function OrganizerEventsPage({
         <form className="formGrid">
           <label>
             Status
-            <select name="status" defaultValue={params.status ?? ""}>
+            <select name="status" defaultValue={filters.status ?? ""}>
               <option value="">Wszystkie</option>
               <option value="draft">Szkic</option>
               <option value="pending_review">Oczekuje</option>
@@ -58,11 +63,11 @@ export default async function OrganizerEventsPage({
           </label>
           <label>
             Od daty
-            <input name="dateFrom" type="date" defaultValue={params.dateFrom ?? ""} />
+            <input name="dateFrom" type="date" defaultValue={filters.dateFrom ?? ""} />
           </label>
           <label>
             Do daty
-            <input name="dateTo" type="date" defaultValue={params.dateTo ?? ""} />
+            <input name="dateTo" type="date" defaultValue={filters.dateTo ?? ""} />
           </label>
           <div className="managementActions organizerFilterActions">
             <button type="submit" className="primaryButton">Filtruj</button>
@@ -72,6 +77,10 @@ export default async function OrganizerEventsPage({
       </section>
 
       <section className="managementPanel">
+        <p className="promotionTableNote">
+          Chcesz, żeby więcej osób zobaczyło Twoje wydarzenie? Zamów polecenie za <strong>{PROMOTION_PRICE_LABEL}</strong> – wydarzenie trafi do karuzeli „Polecane wydarzenia” do dnia wydarzenia (maks. 30 dni).{" "}
+          <Link href={PROMOTION_PAGE_PATH}>Szczegóły</Link>
+        </p>
         <div className="managementTableWrap">
           <table className="managementTable">
             <thead>
@@ -82,6 +91,7 @@ export default async function OrganizerEventsPage({
                 <th>Kategoria</th>
                 <th>Status</th>
                 <th>Jakosc</th>
+                <th>Polecenie</th>
                 <th>Akcje</th>
               </tr>
             </thead>
@@ -104,11 +114,14 @@ export default async function OrganizerEventsPage({
                       <QualityScore event={event} />
                     </td>
                     <td>
+                      <PromotionCell event={event} publicPath={publicPath} />
+                    </td>
+                    <td>
                       <div className="tableActions">
                         <Link href={`/organizer/events/${event.id}/edit`}>Edytuj</Link>
                         {publicPath ? <Link href={publicPath}>Podglad</Link> : null}
-                        <OrganizerEventQuickAction eventId={event.id} intent="hide" />
-                        <OrganizerEventQuickAction eventId={event.id} intent="cancel" />
+                        <OrganizerEventQuickAction eventId={event.id} eventTitle={event.title} intent="hide" available={!event.is_cancelled && event.visibility !== "private"} />
+                        <OrganizerEventQuickAction eventId={event.id} eventTitle={event.title} intent="cancel" available={!event.is_cancelled} />
                         <form action={organizerDuplicateEventAction.bind(null, event.id)}>
                           <button type="submit">Duplikuj</button>
                         </form>
@@ -119,7 +132,7 @@ export default async function OrganizerEventsPage({
               })}
               {!events.length ? (
                 <tr>
-                  <td colSpan={7} className="emptyTableCell">Brak wydarzeń dla wybranych filtrow.</td>
+                  <td colSpan={8} className="emptyTableCell">Brak wydarzeń dla wybranych filtrow.</td>
                 </tr>
               ) : null}
             </tbody>
@@ -131,6 +144,30 @@ export default async function OrganizerEventsPage({
 }
 
 type EventForTable = Awaited<ReturnType<typeof listOrganizerEvents>>[number];
+
+function PromotionCell({ event, publicPath }: { event: EventForTable; publicPath: string | null }) {
+  const state = getPromotionState(event);
+  if (state === "featured") {
+    return (
+      <span className="successPill">
+        Polecane{event.featured_until ? ` do ${formatPolishDate(event.featured_until, { day: "2-digit", month: "2-digit" })}` : ""}
+      </span>
+    );
+  }
+  if (state === "unavailable") {
+    return <span className="tableSubtext" title="Polecić można tylko publiczne, nieodwołane i niezakończone wydarzenie">Niedostępne</span>;
+  }
+  const href = buildPromotionOrderMailto(event, {
+    organizerName: event.organizer?.name,
+    publicUrl: publicPath ? `https://mapaimprez.pl${publicPath}` : null
+  });
+  return (
+    <a href={href} className="promotionOrderLink">
+      Zamów polecenie
+      <span>{PROMOTION_PRICE_LABEL}</span>
+    </a>
+  );
+}
 
 function QualityScore({ event }: { event: EventForTable }) {
   const items = getQualityChecklist(event);

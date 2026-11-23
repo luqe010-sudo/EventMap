@@ -1,0 +1,356 @@
+{
+  "mode": "apply",
+  "checked_at": "2026-11-16T16:30:47.000Z",
+  "results": [
+    {
+      "title": "The Engineers Band — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/the-engineers-band-137196.html",
+      "outcome": "inserted_and_published",
+      "event_id": "022183d6-5860-4003-ba8a-9d170234909b",
+      "slug": "curated-the-engineers-band-koncert-w-warszawie-warszawa-2026-11-17-5dc0224096d7"
+    },
+    {
+      "title": "Tommy Emmanuel — Living in the Light Tour w Szczecinie",
+      "source_url": "https://www.stodola.pl/koncerty/tommy-emmanuel-cgp-living-in-the-light-tour-szczecin-137015.html",
+      "outcome": "inserted_and_published",
+      "event_id": "5b684665-7c44-48ac-810b-6887becc8e25",
+      "slug": "curated-tommy-emmanuel-living-in-the-light-tour-w-szczecinie-szczecin-2026-11-17-8e102edba836"
+    },
+    {
+      "title": "Lech Janerka — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/lech-janerka-136993.html",
+      "outcome": "inserted_and_published",
+      "event_id": "f9c0fd96-86c1-4c7d-99c8-d55a919ab86d",
+      "slug": "curated-lech-janerka-koncert-w-warszawie-warszawa-2026-11-18-062841e63bcb"
+    },
+    {
+      "title": "Kult — Trasa Pomarańczowa w Warszawie (20 listopada)",
+      "source_url": "https://www.stodola.pl/koncerty/kult-137050.html",
+      "outcome": "inserted_and_published",
+      "event_id": "5b8888bf-e9c8-4d7f-b65c-fa877b8b1105",
+      "slug": "curated-kult-trasa-pomaranczowa-w-warszawie-20-listopada-warszawa-2026-11-20-80b0beba4bbd"
+    },
+    {
+      "title": "Kult — Trasa Pomarańczowa w Warszawie (21 listopada)",
+      "source_url": "https://www.stodola.pl/koncerty/kult-137051.html",
+      "outcome": "inserted_and_published",
+      "event_id": "e4461116-3869-4afd-87cc-a28d57a28883",
+      "slug": "curated-kult-trasa-pomaranczowa-w-warszawie-21-listopada-warszawa-2026-11-21-0facb1d07c14"
+    },
+    {
+      "title": "The Dumplings — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/the-dumplings-137111.html",
+      "outcome": "inserted_and_published",
+      "event_id": "050bb576-8c7a-4591-a176-7e1d0f892935",
+      "slug": "curated-the-dumplings-koncert-w-warszawie-warszawa-2026-11-22-4cbd5212af86"
+    },
+    {
+      "title": "Volkanov — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/volkanov-137078.html",
+      "outcome": "inserted_and_published",
+      "event_id": "186c6f85-3b92-4d15-ae60-6a4011f6c6c2",
+      "slug": "curated-volkanov-koncert-w-warszawie-warszawa-2026-11-24-46b1ccaea7cf"
+    },
+    {
+      "title": "Klimakterium 2, czyli menopauzy szał — spektakl w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/klimakterium-2-czyli-menopauzy-szal-137020.html",
+      "outcome": "inserted_and_published",
+      "event_id": "ee3a1159-b42c-4413-a8ec-52ab554351a6",
+      "slug": "curated-klimakterium-2-czyli-menopauzy-szal-spektakl-w-warszawie-warszawa-2026-11-25-f730dff52d4a"
+    },
+    {
+      "title": "IRA — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/ira-137016.html",
+      "outcome": "inserted_and_published",
+      "event_id": "6c7d79cb-58d9-428a-937a-606209afa0ac",
+      "slug": "curated-ira-koncert-w-warszawie-warszawa-2026-11-27-0aed3e98427d"
+    },
+    {
+      "title": "T.Love — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/t-love-137003.html",
+      "outcome": "inserted_and_published",
+      "event_id": "efc3309b-52fe-4925-818b-857256e03695",
+      "slug": "curated-t-love-koncert-w-warszawie-warszawa-2026-11-28-f8b5ef4da890"
+    },
+    {
+      "title": "Kasia Kowalska — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/kasia-kowalska-137012.html",
+      "outcome": "inserted_and_published",
+      "event_id": "f905171e-afd1-4995-bf94-5f68315ab28e",
+      "slug": "curated-kasia-kowalska-koncert-w-warszawie-warszawa-2026-11-29-1db75fdbf4a7"
+    },
+    {
+      "title": "Historia kabaretu „Stodoła” i Eli Jodłowskiej — wieczór w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/historia-kabaretu-stodola-i-historia-zycia-eli-jodlowskiej-137183.html",
+      "outcome": "inserted_and_published",
+      "event_id": "2c20a091-cc22-4633-8fb9-85d38c5e4586",
+      "slug": "curated-historia-kabaretu-stodola-i-eli-jodlowskiej-wieczor-w-warszawie-warszawa-2026-12-03-55dda08cefc8"
+    },
+    {
+      "title": "Dżem — koncert w Warszawie (4 grudnia)",
+      "source_url": "https://www.stodola.pl/koncerty/dzem-137010.html",
+      "outcome": "inserted_and_published",
+      "event_id": "3c5e9008-d833-4ab3-9952-bfdb9b4e2c2b",
+      "slug": "curated-dzem-koncert-w-warszawie-4-grudnia-warszawa-2026-12-04-1d0da1b3ff99"
+    },
+    {
+      "title": "Dżem — koncert w Warszawie (5 grudnia)",
+      "source_url": "https://www.stodola.pl/koncerty/dzem-137011.html",
+      "outcome": "inserted_and_published",
+      "event_id": "5b27b18c-d78b-4dde-af44-fdb91cb6c284",
+      "slug": "curated-dzem-koncert-w-warszawie-5-grudnia-warszawa-2026-12-05-f58f0c17a151"
+    },
+    {
+      "title": "Ich Troje & Przyjaciele — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/ich-troje-przyjaciele-136979.html",
+      "outcome": "inserted_and_published",
+      "event_id": "d2f9d5ee-c7d1-4765-9103-0df1d5b505e8",
+      "slug": "curated-ich-troje-przyjaciele-koncert-w-warszawie-warszawa-2026-12-05-c68ad3caed26"
+    },
+    {
+      "title": "Marcin Masecki & Boleros — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/marcin-masecki-boleros-137108.html",
+      "outcome": "inserted_and_published",
+      "event_id": "08d6c842-ba62-485f-8d16-b420dbc98506",
+      "slug": "curated-marcin-masecki-boleros-koncert-w-warszawie-warszawa-2026-12-06-c1a09749a8dd"
+    },
+    {
+      "title": "Kasia Lins — Obywatelka K.L. w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/kasia-lins-obywatelka-k-l-137057.html",
+      "outcome": "inserted_and_published",
+      "event_id": "c568c6b2-38e9-47c0-8559-aa04267aea7c",
+      "slug": "curated-kasia-lins-obywatelka-k-l-w-warszawie-warszawa-2026-12-07-63f9a1edf553"
+    },
+    {
+      "title": "Andrzej Piaseczny — Kochajmy się zimą w Toruniu",
+      "source_url": "https://www.stodola.pl/koncerty/andrzej-piaseczny-kochajmy-sie-zima-torun-137068.html",
+      "outcome": "inserted_and_published",
+      "event_id": "82bb6560-4811-404b-b5e8-42f9de5ab477",
+      "slug": "curated-andrzej-piaseczny-kochajmy-sie-zima-w-toruniu-torun-2026-12-09-c16e8d64e017"
+    },
+    {
+      "title": "Myslovitz — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/myslovitz-137008.html",
+      "outcome": "inserted_and_published",
+      "event_id": "c49c9aeb-4b0e-4869-9052-b6d9ce4c66c7",
+      "slug": "curated-myslovitz-koncert-w-warszawie-warszawa-2026-12-11-05242ba78dd8"
+    },
+    {
+      "title": "Andrzej Piaseczny — Kochajmy się zimą w Katowicach",
+      "source_url": "https://www.stodola.pl/koncerty/andrzej-piaseczny-kochajmy-sie-zima-katowice-137069.html",
+      "outcome": "inserted_and_published",
+      "event_id": "61f0789c-325a-4780-9532-18cb89e4990a",
+      "slug": "curated-andrzej-piaseczny-kochajmy-sie-zima-w-katowicach-katowice-2026-12-12-37b55d591b6a"
+    },
+    {
+      "title": "Nosowska — NOSOWSKA.XXX w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/nosowska-nosowska-xxx-137085.html",
+      "outcome": "inserted_and_published",
+      "event_id": "ca2f1511-e7da-44fe-938f-18200915e720",
+      "slug": "curated-nosowska-nosowska-xxx-w-warszawie-warszawa-2026-12-13-a1988261c086"
+    },
+    {
+      "title": "Andrzej Piaseczny — Kochajmy się zimą w Bielsku-Białej",
+      "source_url": "https://www.stodola.pl/koncerty/andrzej-piaseczny-kochajmy-sie-zima-bielsko-biala-137070.html",
+      "outcome": "inserted_and_published",
+      "event_id": "71b5844a-b9f3-43b4-9468-ba8fcf0848d8",
+      "slug": "curated-andrzej-piaseczny-kochajmy-sie-zima-w-bielsku-bialej-bielsko-biala-2026-12-15-02a1e4aed7c6"
+    },
+    {
+      "title": "Maryla Rodowicz — koncert w Gdańsku",
+      "source_url": "https://www.stodola.pl/koncerty/maryla-rodowicz-gdansk-137026.html",
+      "outcome": "inserted_and_published",
+      "event_id": "ac0db4ac-0496-4e05-b5bf-d847cc8b3d9d",
+      "slug": "curated-maryla-rodowicz-koncert-w-gdansku-gdansk-2026-12-15-2d69a9febf11"
+    },
+    {
+      "title": "Rogucki & Normalni Ludzie — Transmutacje w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/rogucki-normalni-ludzie-transmutacje-137112.html",
+      "outcome": "inserted_and_published",
+      "event_id": "eda94b16-0ed0-4f8b-89f9-0f1159b81437",
+      "slug": "curated-rogucki-normalni-ludzie-transmutacje-w-warszawie-warszawa-2026-12-15-9e0175881a0d"
+    },
+    {
+      "title": "Małgorzata Ostrowska — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/malgorzata-ostrowska-136997.html",
+      "outcome": "inserted_and_published",
+      "event_id": "296a83b7-91ab-4bc1-b8a1-1a874651aeb6",
+      "slug": "curated-malgorzata-ostrowska-koncert-w-warszawie-warszawa-2026-12-16-84aa5a7d448d"
+    },
+    {
+      "title": "Maryla Rodowicz — koncert w Warszawie (17 grudnia)",
+      "source_url": "https://www.stodola.pl/koncerty/maryla-rodowicz-137023.html",
+      "outcome": "inserted_and_published",
+      "event_id": "6a2597b7-fb81-41b0-a3ac-e9cfe55ed204",
+      "slug": "curated-maryla-rodowicz-koncert-w-warszawie-17-grudnia-warszawa-2026-12-17-383011e76cb0"
+    },
+    {
+      "title": "Maryla Rodowicz — koncert w Warszawie (18 grudnia)",
+      "source_url": "https://www.stodola.pl/koncerty/maryla-rodowicz-137024.html",
+      "outcome": "inserted_and_published",
+      "event_id": "b25a207d-2a21-43b7-acf4-615f1d629826",
+      "slug": "curated-maryla-rodowicz-koncert-w-warszawie-18-grudnia-warszawa-2026-12-18-b83fdcc04bf7"
+    },
+    {
+      "title": "Fuck Off Festival w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/fuck-off-festival-137041.html",
+      "outcome": "inserted_and_published",
+      "event_id": "c5a4b76e-ba2e-477b-bebe-38ebcab1e66d",
+      "slug": "curated-fuck-off-festival-w-warszawie-warszawa-2026-12-19-0e7630219810"
+    },
+    {
+      "title": "Andrzej Piaseczny — Kochajmy się zimą w Poznaniu",
+      "source_url": "https://www.stodola.pl/koncerty/andrzej-piaseczny-kochajmy-sie-zima-poznan-137071.html",
+      "outcome": "inserted_and_published",
+      "event_id": "752f9bde-4ad8-43d1-9510-b298d6ded0f8",
+      "slug": "curated-andrzej-piaseczny-kochajmy-sie-zima-w-poznaniu-poznan-2026-12-21-32832fbba78a"
+    },
+    {
+      "title": "Sylwester w Warszawie — Berek, czyli upiór w moherze (18:00)",
+      "source_url": "https://www.stodola.pl/koncerty/sylwester-w-warszawie-berek-czyli-upior-w-moherze-137180.html",
+      "outcome": "inserted_and_published",
+      "event_id": "d080a03c-d351-4a52-995e-5f8a3064bd5b",
+      "slug": "curated-sylwester-w-warszawie-berek-czyli-upior-w-moherze-18-00-warszawa-2026-12-31-f8ef7d8f501d"
+    },
+    {
+      "title": "Sylwester w Warszawie — Berek, czyli upiór w moherze (21:30)",
+      "source_url": "https://www.stodola.pl/koncerty/sylwester-w-warszawie-berek-czyli-upior-w-moherze-137182.html",
+      "outcome": "inserted_and_published",
+      "event_id": "f24308a2-32ba-402f-93ee-89ec651ca086",
+      "slug": "curated-sylwester-w-warszawie-berek-czyli-upior-w-moherze-21-30-warszawa-2026-12-31-5a4517fe0309"
+    },
+    {
+      "title": "Andrzej Piaseczny — Kochajmy się zimą w Szczecinie",
+      "source_url": "https://www.stodola.pl/koncerty/andrzej-piaseczny-kochajmy-sie-zima-szczecin-137072.html",
+      "outcome": "inserted_and_published",
+      "event_id": "910cc161-7a7c-4e05-ae27-2a5d29b6354f",
+      "slug": "curated-andrzej-piaseczny-kochajmy-sie-zima-w-szczecinie-szczecin-2027-01-05-a326e4959401"
+    },
+    {
+      "title": "Human — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/human-137159.html",
+      "outcome": "inserted_and_published",
+      "event_id": "c12f3e00-06fd-4a47-8fce-e4b821c204d2",
+      "slug": "curated-human-koncert-w-warszawie-warszawa-2027-01-15-aeaf1b41cfa3"
+    },
+    {
+      "title": "De Mono — 40-lecie zespołu w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/de-mono-40-lecie-zespolu-137172.html",
+      "outcome": "inserted_and_published",
+      "event_id": "a138515b-ea73-4771-9661-2e6d665650c3",
+      "slug": "curated-de-mono-40-lecie-zespolu-w-warszawie-warszawa-2027-01-16-01a99114d02b"
+    },
+    {
+      "title": "Andrzej Piaseczny — Kochajmy się zimą w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/andrzej-piaseczny-kochajmy-sie-zima-137073.html",
+      "outcome": "inserted_and_published",
+      "event_id": "4d089526-ded1-40e4-9f0a-65c8dc949927",
+      "slug": "curated-andrzej-piaseczny-kochajmy-sie-zima-w-warszawie-warszawa-2027-01-17-500be2213d24"
+    },
+    {
+      "title": "Andrzej Piaseczny — Kochajmy się zimą we Wrocławiu",
+      "source_url": "https://www.stodola.pl/koncerty/andrzej-piaseczny-kochajmy-sie-zima-wroclaw-137075.html",
+      "outcome": "inserted_and_published",
+      "event_id": "7f7f1ed3-76eb-4db8-8ca3-ea2bb277d2c0",
+      "slug": "curated-andrzej-piaseczny-kochajmy-sie-zima-we-wroclawiu-wroclaw-2027-01-22-2d0595d65b7c"
+    },
+    {
+      "title": "Andrzej Piaseczny — Kochajmy się zimą w Łodzi",
+      "source_url": "https://www.stodola.pl/koncerty/andrzej-piaseczny-kochajmy-sie-zima-lodz-137076.html",
+      "outcome": "inserted_and_published",
+      "event_id": "545a8836-dfeb-4f5a-9665-127d52f8505f",
+      "slug": "curated-andrzej-piaseczny-kochajmy-sie-zima-w-lodzi-lodz-2027-01-23-fbede49ac6b7"
+    },
+    {
+      "title": "The Cassino — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/the-cassino-137141.html",
+      "outcome": "inserted_and_published",
+      "event_id": "6fb4c6e9-8f75-4b82-b867-515b9662d207",
+      "slug": "curated-the-cassino-koncert-w-warszawie-warszawa-2027-01-29-ab0880867634"
+    },
+    {
+      "title": "Black Veil Brides — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/black-veil-brides-137110.html",
+      "outcome": "inserted_and_published",
+      "event_id": "02d9fc18-98cc-477b-90aa-ad17bc459073",
+      "slug": "curated-black-veil-brides-koncert-w-warszawie-warszawa-2027-01-30-95ca04a1ca05"
+    },
+    {
+      "title": "Rhapsody of Fire + Serious Black — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/motorcultor-across-europe-tour-2027-rhapsody-of-fire-serious-black-supports-137080.html",
+      "outcome": "inserted_and_published",
+      "event_id": "7fa21aff-bb60-4c00-b355-5e333dd58515",
+      "slug": "curated-rhapsody-of-fire-serious-black-koncert-w-warszawie-warszawa-2027-02-06-d9fd98b3e5b5"
+    },
+    {
+      "title": "Monatik — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/monatik-137149.html",
+      "outcome": "inserted_and_published",
+      "event_id": "c55a3368-480c-4be1-9c4c-6f44cbb80335",
+      "slug": "curated-monatik-koncert-w-warszawie-warszawa-2027-02-12-8fcb1fa72338"
+    },
+    {
+      "title": "Kamil Bednarek — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/kamil-bednarek-137178.html",
+      "outcome": "inserted_and_published",
+      "event_id": "1fee3c57-e95f-41bb-b7ce-3bb524a5a915",
+      "slug": "curated-kamil-bednarek-koncert-w-warszawie-warszawa-2027-02-13-efb4e5f0b316"
+    },
+    {
+      "title": "J:Mors — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/j-mors-137179.html",
+      "outcome": "inserted_and_published",
+      "event_id": "5badc687-f317-4145-ab81-f493f118e361",
+      "slug": "curated-j-mors-koncert-w-warszawie-warszawa-2027-02-14-a02b58af1a2a"
+    },
+    {
+      "title": "Julian Lage — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/julian-lage-137154.html",
+      "outcome": "inserted_and_published",
+      "event_id": "ce398297-7d47-41c8-bdd0-7d38a8aef47f",
+      "slug": "curated-julian-lage-koncert-w-warszawie-warszawa-2027-02-15-8c8fab4a9e84"
+    },
+    {
+      "title": "Paweł Domagała — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/pawel-domagala-137195.html",
+      "outcome": "inserted_and_published",
+      "event_id": "b4e64701-5f91-43e9-9bbd-f8f936a50816",
+      "slug": "curated-pawel-domagala-koncert-w-warszawie-warszawa-2027-02-26-41b8d383d428"
+    },
+    {
+      "title": "Szczyl — przedwczoraj, dzisiaj, pojutrze na żywo w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/szczyl-przedwczoraj-dzisiaj-pojutrze-na-zywo-warszawa-137205.html",
+      "outcome": "inserted_and_published",
+      "event_id": "f0efc75a-8844-436e-abbd-3a3997953e74",
+      "slug": "curated-szczyl-przedwczoraj-dzisiaj-pojutrze-na-zywo-w-warszawie-warszawa-2027-02-27-b0493a89532d"
+    },
+    {
+      "title": "Rafał Rutkowski — Wehikuł czasu, stand-up w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/stand-up-warszawa-rafal-rutkowski-w-programie-wehikul-czasu-137119.html",
+      "outcome": "inserted_and_published",
+      "event_id": "8bdd2f12-afb1-47d0-8924-9e2fb4f47d10",
+      "slug": "curated-rafal-rutkowski-wehikul-czasu-stand-up-w-warszawie-warszawa-2027-02-28-303140e0ceb6"
+    },
+    {
+      "title": "Lady Pank — 45 lat, koncert finałowy w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/45-lat-lady-pank-na-final-137006.html",
+      "outcome": "inserted_and_published",
+      "event_id": "9ef54254-2c5f-47e4-92ee-9331740b5020",
+      "slug": "curated-lady-pank-45-lat-koncert-finalowy-w-warszawie-warszawa-2027-03-05-3213d3ac73bb"
+    },
+    {
+      "title": "Edyta Geppert — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/edyta-geppert-137214.html",
+      "outcome": "inserted_and_published",
+      "event_id": "b25b6e29-7d51-448d-90ae-be1f066e181c",
+      "slug": "curated-edyta-geppert-koncert-w-warszawie-warszawa-2027-03-05-5c939418f0fc"
+    },
+    {
+      "title": "Świetliki — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/swietliki-137165.html",
+      "outcome": "inserted_and_published",
+      "event_id": "23f3987a-bda1-40fc-89fd-df6371cf1c8f",
+      "slug": "curated-swietliki-koncert-w-warszawie-warszawa-2027-03-11-d69be6b8697f"
+    }
+  ]
+}

@@ -17,9 +17,11 @@ import { createOrganizerAccountFormAction, organizerUpdateAccountFormAction, org
 import { validateOrganizerProfileForm, OrganizerFormValidationError } from "../lib/organizer-form-validation";
 
 const initial = { fieldErrors: {}, error: null };
-const query = { update: vi.fn(), insert: vi.fn(), select: vi.fn(), eq: vi.fn(), maybeSingle: vi.fn(), single: vi.fn() };
+const query = { update: vi.fn(), select: vi.fn(), eq: vi.fn(), maybeSingle: vi.fn() };
 const from = vi.fn();
 const getUser = vi.fn();
+const rpc = vi.fn();
+const organizerId = "581267a2-de6f-4420-b1a9-7d1efb5b21de";
 function form(values: Record<string, string>) {
   const data = new FormData();
   for (const [key, value] of Object.entries(values)) data.set(key, value);
@@ -32,12 +34,12 @@ beforeEach(() => {
   vi.mocked(redirect).mockImplementation(path => { throw new Error(`Redirect: ${path}`); });
   vi.mocked(getCurrentUserContext).mockResolvedValue({ userId: "user-a", profile: { id: "user-a", role: "user", display_name: "A", created_at: null } });
   vi.mocked(requireOrganizerAccess).mockResolvedValue({ userId: "user-a", profile: null, isAdmin: false, memberships: [{ id: "m-a", organizer_id: "org-a", user_id: "user-a", role: "owner", created_at: null, organizer: null }] });
-  for (const method of [query.update, query.insert, query.select, query.eq]) method.mockReturnValue(query);
+  for (const method of [query.update, query.select, query.eq]) method.mockReturnValue(query);
   query.maybeSingle.mockResolvedValue({ data: null, error: null });
-  query.single.mockResolvedValue({ data: null, error: { code: "42501", message: "RLS private schema diagnostic" } });
   from.mockReturnValue(query);
   getUser.mockResolvedValue({ data: { user: { id: "user-a", email: "a@example.com" } }, error: null });
-  vi.mocked(createSupabaseUserClient).mockResolvedValue({ from, auth: { getUser } } as unknown as Awaited<ReturnType<typeof createSupabaseUserClient>>);
+  rpc.mockResolvedValue({ data: organizerId, error: null });
+  vi.mocked(createSupabaseUserClient).mockResolvedValue({ from, auth: { getUser }, rpc } as unknown as Awaited<ReturnType<typeof createSupabaseUserClient>>);
 });
 afterEach(() => { vi.restoreAllMocks(); });
 
@@ -95,82 +97,59 @@ describe("organizer profile and account form outcomes", () => {
     vi.mocked(getCurrentUserContext).mockResolvedValue({ userId: "user-a", profile: { id: "user-a", role, display_name: "A", created_at: null } });
     await expect(createOrganizerAccountFormAction(initial, form({ organizer_name: "A" }))).rejects.toThrow("Redirect: /organizer");
     expect(createSupabaseUserClient).not.toHaveBeenCalled();
-    expect(query.insert).not.toHaveBeenCalled();
-    expect(query.update).not.toHaveBeenCalled();
+    expect(rpc).not.toHaveBeenCalled();
   });
-  it("keeps invalid upgrade names retryable without starting writes", async () => {
-    const result = await createOrganizerAccountFormAction(initial, form({ organizer_name: "🙂" }));
+  it.each(["🙂", "Fundacja\nPrzykład"])("keeps invalid upgrade names retryable without starting writes (%j)", async name => {
+    const result = await createOrganizerAccountFormAction(initial, form({ organizer_name: name }));
     expect(result.fieldErrors.organizer_name).toBeTruthy();
-    expect(result.creationUnconfirmed).toBeUndefined();
-    expect(query.insert).not.toHaveBeenCalled();
+    expect(rpc).not.toHaveBeenCalled();
   });
-  it("makes denied organizer creation an unconfirmed result without exposing database errors or blindly retrying", async () => {
+  it("keeps denied organizer creation retryable without exposing database errors", async () => {
+    rpc.mockResolvedValue({ data: null, error: { code: "42501", message: "RLS private schema diagnostic" } });
     const result = await createOrganizerAccountFormAction(initial, form({ organizer_name: "A" }));
-    expect(result).toMatchObject({ creationUnconfirmed: true, error: expect.stringContaining("Sprawdź panel") });
+    expect(result).toMatchObject({ fieldErrors: {}, error: expect.stringContaining("ponowić próbę") });
     expect(result.error).not.toMatch(/RLS|private schema/);
-    expect(query.insert).toHaveBeenCalledOnce();
-    expect(query.update).not.toHaveBeenCalled();
-  });
-  it.each([
-    ["organizer", "missing"], ["organizer", "foreign"],
-    ["membership", "missing"], ["membership", "foreign"],
-    ["role", "missing"], ["role", "foreign"]
-  ])("does not complete upgrade when %s confirmation is %s", async (stage, resultType) => {
-    query.single.mockImplementation(async () => {
-      const payload = query.insert.mock.calls.at(-1)?.[0];
-      if (query.insert.mock.calls.length === 1) return {
-        data: stage === "organizer" ? resultType === "missing" ? null : { id: "foreign-org" } : { id: payload.id }, error: null
-      };
-      return {
-        data: stage === "membership" ? resultType === "missing" ? null : { id: "m-a", organizer_id: payload.organizer_id, user_id: "user-b" } : { id: "m-a", organizer_id: payload.organizer_id, user_id: "user-a" }, error: null
-      };
-    });
-    query.maybeSingle.mockResolvedValueOnce({ data: null, error: null }).mockResolvedValue({ data: resultType === "missing" ? null : { id: "user-b" }, error: null });
-    const result = await createOrganizerAccountFormAction(initial, form({ organizer_name: "A" }));
-    expect(result.creationUnconfirmed).toBe(true);
-    expect(result.error).toContain("potwierdzić");
+    expect(rpc).toHaveBeenCalledOnce();
+    expect(from).not.toHaveBeenCalled();
     expect(redirect).not.toHaveBeenCalled();
     expect(revalidatePath).not.toHaveBeenCalled();
-    if (stage !== "role") expect(query.update).not.toHaveBeenCalled();
   });
-  it("redirects to the panel only after all three upgrade rows are confirmed", async () => {
-    query.single.mockImplementation(async () => {
-      const payload = query.insert.mock.calls.at(-1)?.[0];
-      return { data: query.insert.mock.calls.length === 1 ? { id: payload.id } : { id: "m-a", organizer_id: payload.organizer_id, user_id: "user-a" }, error: null };
-    });
-    query.maybeSingle.mockResolvedValueOnce({ data: null, error: null }).mockResolvedValue({ data: { id: "user-a", role: "organizer" }, error: null });
-    await expect(createOrganizerAccountFormAction(initial, form({ organizer_name: "A" }))).rejects.toThrow("Redirect: /organizer");
-    expect(query.insert).toHaveBeenCalledTimes(2);
-    expect(query.update).toHaveBeenCalledExactlyOnceWith({ role: "organizer" });
+  it.each([null, "", "invalid", { id: organizerId }])("requires an organizer UUID to complete the upgrade (%o)", async data => {
+    rpc.mockResolvedValue({ data, error: null });
+    const result = await createOrganizerAccountFormAction(initial, form({ organizer_name: "A" }));
+    expect(result.error).toContain("potwierdzić");
+    expect(from).not.toHaveBeenCalled();
+    expect(redirect).not.toHaveBeenCalled();
+    expect(revalidatePath).not.toHaveBeenCalled();
+  });
+  it("uses one atomic RPC with only the validated name and redirects to the panel", async () => {
+    await expect(createOrganizerAccountFormAction(initial, form({ organizer_name: " A ", role: "admin", user_id: "user-b", organizer_id: "org-b" }))).rejects.toThrow("Redirect: /organizer");
+    expect(rpc).toHaveBeenCalledExactlyOnceWith("upgrade_my_organizer_account", { p_organizer_name: "A" });
+    expect(from).not.toHaveBeenCalled();
     expect(revalidatePath).toHaveBeenCalledWith("/organizer");
   });
-  it("does not report upgrade success if the returned profile kept its regular role", async () => {
-    query.single.mockImplementation(async () => {
-      const payload = query.insert.mock.calls.at(-1)?.[0];
-      return { data: query.insert.mock.calls.length === 1 ? { id: payload.id } : { id: "m-a", organizer_id: payload.organizer_id, user_id: "user-a" }, error: null };
-    });
-    query.maybeSingle.mockResolvedValueOnce({ data: null, error: null }).mockResolvedValue({ data: { id: "user-a", role: "user" }, error: null });
-    expect(await createOrganizerAccountFormAction(initial, form({ organizer_name: "A" }))).toMatchObject({ creationUnconfirmed: true });
-    expect(redirect).not.toHaveBeenCalled();
-    expect(revalidatePath).not.toHaveBeenCalled();
+  it("allows the same operation to be retried after a response was lost", async () => {
+    rpc.mockRejectedValueOnce(new Error("Network response lost"));
+    const data = form({ organizer_name: "A" });
+    const result = await createOrganizerAccountFormAction(initial, data);
+    expect(result.error).toContain("ponowić");
+    await expect(createOrganizerAccountFormAction(result, data)).rejects.toThrow("Redirect: /organizer");
+    expect(rpc.mock.calls).toEqual([
+      ["upgrade_my_organizer_account", { p_organizer_name: "A" }],
+      ["upgrade_my_organizer_account", { p_organizer_name: "A" }]
+    ]);
+    expect(from).not.toHaveBeenCalled();
   });
-  it("also requires a confirmed profile insert when the account has no profile row", async () => {
+  it("leaves profile initialization to the same RPC when the account has no profile row", async () => {
     vi.mocked(getCurrentUserContext).mockResolvedValue({ userId: "user-a", profile: null });
-    query.single.mockImplementation(async () => {
-      const payload = query.insert.mock.calls.at(-1)?.[0];
-      if (query.insert.mock.calls.length === 1) return { data: { id: payload.id }, error: null };
-      if (query.insert.mock.calls.length === 2) return { data: { id: "m-a", organizer_id: payload.organizer_id, user_id: "user-a" }, error: null };
-      return { data: null, error: null };
-    });
-    const result = await createOrganizerAccountFormAction(initial, form({ organizer_name: "A" }));
-    expect(result.creationUnconfirmed).toBe(true);
-    expect(query.insert).toHaveBeenCalledTimes(3);
-    expect(revalidatePath).not.toHaveBeenCalled();
+    await expect(createOrganizerAccountFormAction(initial, form({ organizer_name: "A" }))).rejects.toThrow("Redirect: /organizer");
+    expect(rpc).toHaveBeenCalledExactlyOnceWith("upgrade_my_organizer_account", { p_organizer_name: "A" });
+    expect(from).not.toHaveBeenCalled();
   });
   it("preserves the upgrade return path when Auth no longer confirms the same user", async () => {
     getUser.mockResolvedValue({ data: { user: { id: "user-b" } }, error: null });
     await expect(createOrganizerAccountFormAction(initial, form({ organizer_name: "A" }))).rejects.toThrow("Redirect: /login?next=%2Forganizer");
-    expect(query.insert).not.toHaveBeenCalled();
+    expect(rpc).not.toHaveBeenCalled();
   });
 });
 

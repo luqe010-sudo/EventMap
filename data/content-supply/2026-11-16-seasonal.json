@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-11-16T15:29:13Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Ponowne sprawdzenie jarmarków bożonarodzeniowych odłożonych 10 listopada 2026. Oficjalne potwierdzenie daty, godziny rozpoczęcia i miejsca uzyskano tylko dla Bydgoszczy.",
+  "events": [
+    {
+      "title": "Bydgoski Jarmark Świąteczny 2026",
+      "category_slug": "targi",
+      "start_at": "2026-11-20T13:00:00+01:00",
+      "end_at": "2026-12-21T20:00:00+01:00",
+      "short_description": "Miejski jarmark na Starym Rynku i ul. Mostowej, od 20 listopada do 21 grudnia.",
+      "description": "Ósma edycja jarmarku organizowanego przez Miasto Bydgoszcz zajmie Stary Rynek i okolice ul. Mostowej. Na placu Teatralnym stanie zimowe wesołe miasteczko. Stoiska są czynne codziennie w godz. 13:00–20:00, a w piątki i soboty do 21:00. W dniu otwarcia, 20 listopada, o 17:00 rozbłysną choinka i iluminacje, a scena przy amfiteatrze obok Muzeum Okręgowego ruszy około 18:15. Od 6 grudnia na Rybim Rynku będzie można zobaczyć szopkę.",
+      "location": {
+        "name": "Stary Rynek w Bydgoszczy",
+        "address": "Stary Rynek, Bydgoszcz",
+        "city": "Bydgoszcz",
+        "latitude": 53.12111,
+        "longitude": 17.99944,
+        "coordinate_source": "https://en.wikipedia.org/wiki/Old_Market_Square,_Bydgoszcz",
+        "coordinate_note": "Współrzędne nazwanego Starego Rynku z artykułu Wikipedii. Miasto wskazuje Stary Rynek jako główne miejsce jarmarku."
+      },
+      "source_name": "Bydgoszcz Informuje (Urząd Miasta Bydgoszczy)",
+      "source_url": "https://bydgoszczinformuje.pl/rudolf-i-ciastek-zapraszaja-na-bydgoski-jarmark-swiateczny-2026-poznalismy-nowe-atrakcje-beda-piosenki-z-teatralnego-przeboju-zdjecia/",
+      "evidence_urls": [],
+      "seo_intent": "jarmark świąteczny Bydgoszcz 2026 godziny otwarcia i atrakcje",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki jarmarku na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-16T15:29:13Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T15:29:13Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

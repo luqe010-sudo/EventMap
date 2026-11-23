@@ -24,6 +24,7 @@ type WindowWithIdleCallback = Window & {
 type SidebarProps = {
   events: Array<{ event: EventItem; distanceKm: number }>;
   mapEvents: EventMapMarker[];
+  onRequestMap?: () => void;
   categoryCounts: Array<{ category: EventCategory; count: number; color?: string | null }>;
   onCategorySelect: (category: EventCategory | "Wszystkie") => void;
   selectedCategory: EventCategory | "Wszystkie";
@@ -40,6 +41,7 @@ type SidebarProps = {
 export default function Sidebar({
   events,
   mapEvents,
+  onRequestMap,
   categoryCounts,
   onCategorySelect,
   selectedCategory,
@@ -59,8 +61,9 @@ export default function Sidebar({
 
   const loadMapNow = useCallback(() => {
     loadScheduledRef.current = true;
+    onRequestMap?.();
     setMapLoadState("loaded");
-  }, []);
+  }, [onRequestMap]);
 
   useEffect(() => {
     const mapElement = mapWrapRef.current;
@@ -73,6 +76,7 @@ export default function Sidebar({
 
       loadScheduledRef.current = true;
       setMapLoadState("queued");
+      onRequestMap?.();
 
       const connection = "connection" in navigator
         ? (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
@@ -117,7 +121,7 @@ export default function Sidebar({
         idleWindow.cancelIdleCallback?.(idleCallbackId);
       }
     };
-  }, []);
+  }, [onRequestMap]);
 
   return (
     <aside className="sidebar" aria-label="Panel boczny">

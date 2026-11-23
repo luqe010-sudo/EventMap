@@ -55,6 +55,8 @@ Baza nadal ma wieloetapowy zapis. Pełne A04 i ochrona przed konfliktami wymagaj
 
 Aplikacja korzysta z istniejącego projektu Vercel `event-map` (Node.js 24.x), obsługującego `https://mapaimprez.pl` oraz `https://www.mapaimprez.pl`. `NEXT_PUBLIC_SITE_URL=https://mapaimprez.pl` jest ustawione w środowisku Production. Publikacja przez CLI przesyła źródła i wykonuje build na Vercel; lokalny `.next`, `.env*`, importery, dane scrapingu, konfiguracja Supabase CLI i diagnostyka są wykluczone przez `.vercelignore`. Gotowy deployment z Production można sprawdzić przed przełączeniem domen przez `--skip-domain`, a następnie promować. Baza i konfiguracja Auth pozostają osobnym systemem; raport wdrożenia znajduje się w [deployment](deployment.md).
 
+Raport skuteczności Google `scripts/gsc-report.mjs` to oddzielne narzędzie Node.js. Czyta Search Console przez OAuth `webmasters.readonly` i nie korzysta z sesji logowania do portalu, Supabase ani runtime Next.js. [Konfiguracja i odczyt](search-console.md).
+
 ## Odzyskiwanie hasła i wiarygodny stan konta — 2026-10-06
 
 `lib/auth-password-actions.ts` zawiera żądanie wiadomości (`resetPasswordForEmail`) i zapis nowego hasła (`updateUser`). `lib/auth-origin.ts` jest wspólnym źródłem originu dla odzyskiwania oraz Google OAuth: produkcja wymaga poprawnego `NEXT_PUBLIC_SITE_URL`, a development może korzystać z nagłówków żądania. `safeNextPath` ogranicza cel powrotu do lokalnej ścieżki. Formularz `/forgot-password` nie ujawnia istnienia konta; sam komunikat sukcesu nie potwierdza dostarczenia wiadomości.
@@ -107,7 +109,7 @@ Wyniki lokalnego buildu i odbioru tego pakietu są zapisane w [postępie MVP](mv
 
 ## Stany wyników i autocomplete — trzeci pakiet MVP
 
-`HomePage` rozróżnia pobieranie pierwszej paczki i kolejnych. Przy zastąpieniu wyników usuwa poprzednią listę, zachowuje ją przy doładowaniu i zapisuje numer nieudanej paczki do ponowienia. Identyfikatory żądań chronią stan przed spóźnioną odpowiedzią. Markery mają własne ładowanie/błąd przekazywane do `Sidebar` i `MobileMapView`; są czyszczone przed pobraniem nowych filtrów. Szósty pakiet uzupełnił liczniki kategorii o własne ładowanie, komunikat błędu i ponowienie.
+`HomePage` rozróżnia pobieranie pierwszej paczki i kolejnych. Przy zastąpieniu wyników usuwa poprzednią listę, zachowuje ją przy doładowaniu i zapisuje numer nieudanej paczki do ponowienia. Identyfikatory żądań chronią stan przed spóźnioną odpowiedzią. Pierwsze żądanie pinezek następuje, gdy `Sidebar` zaczyna przygotowywać mapę lub użytkownik otwiera `MobileMapView`. Pinezki mają osobne stany ładowania i błędu. Nowe filtry czyszczą dotychczasowe punkty przed pobraniem. Szósty pakiet uzupełnił liczniki kategorii o własne ładowanie, komunikat błędu i ponowienie.
 
 `SearchPanel` steruje wyłącznie lokalnym rozwinięciem ceny i kategorii; ich wartości i wyszukiwanie pozostają w `HomePage`. `CityAutocomplete` używa debounced Photon z `AbortController`, lokalnymi podpowiedziami i ochroną przed aktualizacją anulowanego żądania. Zewnętrzny fallback Nominatim został usunięty także z tej odrębnej implementacji.
 
@@ -182,7 +184,8 @@ Client components odpowiadają za interakcję UI:
 - Mobilny workspace zapisuje aktywny widok, ostatnie wydarzenie i URL listy w History API. Kanoniczny URL wydarzenia pojawia sie bez demontowania listy i mapy, a mapa pozostaje zaparkowana pod szczegolami, zachowujac zoom, pozycje oraz zaznaczona pinezke.
 - `components/FeaturedEvents.tsx` - karuzela wyróżnionych wydarzeń; nie renderuje mapy.
 - `components/Sidebar.tsx` - osobne karty mapy MapLibre, nadchodzących wydarzeń i popularnych kategorii; publiczny sidebar nie zawiera CTA powiadomień.
-- `components/MapLibreMap.tsx` - wspólny komponent mapy dla strony głównej, eksploratora i szczegółów; używa GeoJSON source z `cluster: true`, warstw klastrów, warstw pojedynczych pinesek oraz ikon kategorii. Po załadowaniu stylu dokłada kolorowane województwa i ich granice z lokalnego `public/data/wojewodztwa-min.geojson`, wyraźne granice powiatów z wektorowych kafelków OpenMapTiles (`boundary`, `admin_level=6`) oraz numery budynków (`housenumber`). Gdy mapa nie dostaje lokalizacji, kadruje stałe bounds całej Polski.
+- `components/MapLibreMap.tsx` - wspólny komponent mapy dla strony głównej, eksploratora i szczegółów. Każda kategoria ma osobne źródło GeoJSON z `cluster: true`. Skupisko i pojedyncza pinezka mają ikonę kategorii i biały obrys. Skupisko ma dodatkową poświatę, a jego promień zależy od `point_count`. Kliknięcie skupiska pobiera poziom rozwinięcia z jego źródła MapLibre. Po załadowaniu stylu mapa dokłada kolorowane województwa z `public/data/wojewodztwa-min.geojson`, granice powiatów z kafelków OpenMapTiles (`boundary`, `admin_level=6`) i numery budynków (`housenumber`). Bez wskazanej lokalizacji kadruje całą Polskę.
+- Od poziomu zbliżenia 12 mapa przelicza współrzędne wydarzeń na pozycje na ekranie. `lib/map-spider-layout.ts` automatycznie rozsuwa nachodzące na siebie pinezki, uwzględniając sąsiednie grupy i dostępne miejsce. Osobne źródło GeoJSON wyświetla pinezki z ich ikonami i rysuje linie do rzeczywistych współrzędnych. Układ przelicza się przy przesuwaniu i zbliżaniu mapy.
 - `components/LocationPickerMap.tsx` - interaktywny picker lokalizacji z mini-mapą MapLibre, wyszukiwaniem adresów przez Nominatim i przesuwalną pinezką; renderuje ukryte inputy formularza.
 - `components/LocationSection.tsx` - wrapper obsługujący przełączanie między wyborem istniejącej lokalizacji a tworzeniem nowej przez LocationPickerMap.
 - `components/EventExplorer.tsx` - starszy komponent filtrów/listy/mapy zachowany w repozytorium; aktualne publiczne trasy kategorii i miasta korzystają z `HomePage`.
@@ -240,7 +243,7 @@ Zapytania Supabase są wydzielone poza UI:
 - czyta i ustawia cookies przez `next/headers`;
 - jest używany w ścieżkach wymagających sesji użytkownika.
 
-Globalny middleware nie jest obecnie używany. Ścieżki wymagające sesji korzystają z `createSupabaseUserClient()` bezpośrednio w server components, server actions i route handlers.
+`middleware.ts` odnawia sesję Supabase dla `/organizer` i podstron. Przekazuje odświeżone cookies do bieżącego renderu oraz do przeglądarki z nagłówkami zapobiegającymi buforowaniu. Odczyt sesji i sprawdzanie uprawnień nadal odbywa się po stronie serwera przez `createSupabaseUserClient()` i guardy w `lib/auth.ts`. [Supabase SSR w Next.js](https://supabase.com/docs/guides/auth/server-side/creating-a-client?queryGroups=framework&framework=nextjs).
 
 Globalny navbar nie czyta sesji w server component root layoutu. Publiczny HTML renderuje stan niezalogowany, a prywatny stan profilu jest pobierany po stronie klienta przez `GET /api/account/navbar` z nagłówkiem `private, no-store`. Dzięki temu publiczne strony nie stają się dynamiczne tylko przez cookies użytkownika.
 
@@ -272,6 +275,12 @@ W widokach `/{category}`, `/{city}`, `/{category}/{city}` i geolokalizacji pocz�
 Publiczne strony wydarzeń/listingów, geolokalizacja i sitemapy mają `dynamic = "force-dynamic"`. Publiczne API, sitemap i aliasy zwracają `Cache-Control: no-store, max-age=0`, również dla obsłużonych błędów/404. Widoki wyszukiwania odczytują `searchParams` dla filtrowanych wyników SSR; stan zapisu wydarzenia nadal korzysta z prywatnego API. Po mutacjach publiczne trasy odświeża wspólny `revalidatePublicEventCache()`; już załadowana lista nie jest automatycznie aktualizowana.
 
 MapLibre używa stylu wektorowego i po załadowaniu stylu próbuje preferować pola `name:pl`, a potem `name`, `name:latin` i `name:nonlatin` dla warstw etykiet. Dzięki temu etykiety mapy są możliwie polskie bez dodatkowego klucza API.
+
+### Cache punktów mapy
+
+Po ustawieniu `EVENTMAP_MAP_CACHE_SECRET` `/api/events/markers` korzysta z jednego ogólnopolskiego pakietu lekkich danych w Next.js Data Cache (`unstable_cache`). Pakiet obejmuje opublikowane, publiczne i nieanulowane wydarzenia. Serwer stosuje aktualne filtry i granice czasu przy każdym żądaniu, więc zakończone wydarzenie wypada z wyników bez zapisu w bazie. Odpowiedź HTTP zachowuje `no-store`. Przy braku konfiguracji, niedostępnym cache lub zbyt dużym pakiecie endpoint wykonuje bezpośrednie zapytanie z filtrami.
+
+Zapisy wydarzeń, kategorii, lokalizacji i miast w panelach unieważniają wspólny tag mapy. Zewnętrzne zapisy, w tym import redakcyjny, korzystają z uwierzytelnionego `POST /api/events/markers/revalidate` wywoływanego przez Supabase Database Webhooks. Kolejne żądanie odbudowuje pakiet po unieważnieniu, a po 5 minutach odczyt wymaga świeżych danych również przy opóźnieniu lub awarii webhooka. [Konfiguracja i odbiór](deployment.md#cache-punktów-mapy).
 
 ## Routing i SEO
 

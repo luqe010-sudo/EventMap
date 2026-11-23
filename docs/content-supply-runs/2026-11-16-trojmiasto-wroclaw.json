@@ -1,0 +1,41 @@
+{
+  "mode": "apply",
+  "checked_at": "2026-11-16T16:30:47.000Z",
+  "results": [
+    {
+      "title": "Kabaret Neo-Nówka: Pokolenie DNA w ERGO ARENIE",
+      "source_url": "https://ergoarena.pl/wydarzenia-lista/kabaret-neo-nowka-pokolenie-dna",
+      "outcome": "inserted_and_published",
+      "event_id": "c76ede4a-12bf-4bb8-bc92-925605377495",
+      "slug": "curated-kabaret-neo-nowka-pokolenie-dna-w-ergo-arenie-gdansk-sopot-2026-11-21-3c9058280375"
+    },
+    {
+      "title": "Energa Trefl Sopot – Zastal Zielona Góra — koszykówka w ERGO ARENIE",
+      "source_url": "https://ergoarena.pl/wydarzenia-lista/energa-trefl-sopot-zastal-zielona-gora",
+      "outcome": "inserted_and_published",
+      "event_id": "d15766ef-482a-46d9-b37c-b2f3db12ebcf",
+      "slug": "curated-energa-trefl-sopot-zastal-zielona-gora-koszykowka-w-ergo-arenie-gdansk-sopot-2026-12-06-d7ae47362aa7"
+    },
+    {
+      "title": "Rafał Rutkowski — Wehikuł czasu, stand-up we Wrocławiu",
+      "source_url": "https://halastulecia.pl/wydarzenie/rafal-rutkowski-wehikul-czasu",
+      "outcome": "inserted_and_published",
+      "event_id": "ab86c31c-c05f-41ad-a30e-87ec707ee35a",
+      "slug": "curated-rafal-rutkowski-wehikul-czasu-stand-up-we-wroclawiu-wroclaw-2026-11-22-4b529f7c0fc1"
+    },
+    {
+      "title": "Accantus Live — koncert we Wrocławiu",
+      "source_url": "https://halastulecia.pl/wydarzenie/accantus-live",
+      "outcome": "inserted_and_published",
+      "event_id": "6d297d5c-5f81-41d2-8591-5c37a4e12ccd",
+      "slug": "curated-accantus-live-koncert-we-wroclawiu-wroclaw-2026-11-27-fe30fb7b1997"
+    },
+    {
+      "title": "Kabaret Neo-Nówka: Pokolenie DNA we Wrocławiu",
+      "source_url": "https://halastulecia.pl/wydarzenie/kabaret-neo-nowka-pokolenie-dna",
+      "outcome": "inserted_and_published",
+      "event_id": "a95d536d-8e29-40e6-a6ac-10509367e67a",
+      "slug": "curated-kabaret-neo-nowka-pokolenie-dna-we-wroclawiu-wroclaw-2026-11-29-a8503634b216"
+    }
+  ]
+}

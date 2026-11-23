@@ -1,0 +1,687 @@
+{
+  "verified_at": "2026-11-19T18:40:44.872Z",
+  "events": [
+    {
+      "id": "0d4aa59d-5a7c-447b-a50e-f634a8dc7414",
+      "title": "Rzeźba typu ludowego — spotkanie wokół Henryka Jaśkiewicza",
+      "url": "https://mapaimprez.pl/kultura/aleksandrow-lodzki/curated-rzezba-typu-ludowego-spotkanie-wokol-henryka-jaskiewicza-aleksandrow-lodzki-2026-11-25-bc56584d3abe",
+      "source_url": "https://ackkultura.pl/rzezba-typu-ludowego-spotkanie-ze-sztuka-ludowa-naszego-regionu/",
+      "city": "Aleksandrów Łódzki",
+      "city_slug": "aleksandrow-lodzki",
+      "category": "kultura",
+      "start_at": "2026-11-25T18:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "ba478021-1d60-4bad-959f-9b36d8fda4e9",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "c1552828-c140-44a9-b264-1ca2644fe6d3",
+      "title": "Malowanie kurtek jeansowych — warsztaty z Bogną Stępień",
+      "url": "https://mapaimprez.pl/kultura/aleksandrow-lodzki/curated-malowanie-kurtek-jeansowych-warsztaty-z-bogna-stepien-aleksandrow-lodzki-2026-11-28-bb63084e58ae",
+      "source_url": "https://ackkultura.pl/warsztat-z-ozdabiania-kurtki-jeansowej/",
+      "city": "Aleksandrów Łódzki",
+      "city_slug": "aleksandrow-lodzki",
+      "category": "kultura",
+      "start_at": "2026-11-28T12:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 150,
+      "price_max": 150,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "ba478021-1d60-4bad-959f-9b36d8fda4e9",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "135fb508-1d76-4e80-93db-80f9fec8bbcc",
+      "title": "Chodź do muzeum — rodzinne spotkanie z Martyną Rejkowicz",
+      "url": "https://mapaimprez.pl/rodzinne/aleksandrow-lodzki/curated-chodz-do-muzeum-rodzinne-spotkanie-z-martyna-rejkowicz-aleksandrow-lodzki-2026-11-28-6d40beef14ee",
+      "source_url": "https://ackkultura.pl/czy-wizyta-w-muzeum-kojarzy-wam-sie-z-kilometrami-korytarzy-obrazami-zawieszonymi-zbyt-wysoko-dla-dzieciecego-wzroku-i-poczuciem-ze-jako-dorosli-musicie-zamienic-sie-w-encyklopedie-sztuki/",
+      "city": "Aleksandrów Łódzki",
+      "city_slug": "aleksandrow-lodzki",
+      "category": "rodzinne",
+      "start_at": "2026-11-28T16:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "ba478021-1d60-4bad-959f-9b36d8fda4e9",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "24a2fec3-16f2-493e-ae5e-6491be6d1927",
+      "title": "Mozaikowe pudełeczka na świąteczne prezenty — warsztaty w ACK",
+      "url": "https://mapaimprez.pl/kultura/aleksandrow-lodzki/curated-mozaikowe-pudeleczka-na-swiateczne-prezenty-warsztaty-w-ack-aleksandrow-lodzki-2026-12-05-e73cec92a123",
+      "source_url": "https://ackkultura.pl/warsztat-z-tworzenia-mozaiki/",
+      "city": "Aleksandrów Łódzki",
+      "city_slug": "aleksandrow-lodzki",
+      "category": "kultura",
+      "start_at": "2026-12-05T10:15:00+01:00",
+      "end_at": "2026-12-05T14:15:00+01:00",
+      "price_type": "paid",
+      "price_min": 100,
+      "price_max": 100,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "ba478021-1d60-4bad-959f-9b36d8fda4e9",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "b66714a5-d5d3-400c-b754-ab86dde558d6",
+      "title": "Mapa Marzeń — twórcze planowanie nowego roku w ACK",
+      "url": "https://mapaimprez.pl/kultura/aleksandrow-lodzki/curated-mapa-marzen-tworcze-planowanie-nowego-roku-w-ack-aleksandrow-lodzki-2026-12-12-0a8d0cf5fb83",
+      "source_url": "https://ackkultura.pl/warsztat-tworzenia-mapy-marzen/",
+      "city": "Aleksandrów Łódzki",
+      "city_slug": "aleksandrow-lodzki",
+      "category": "kultura",
+      "start_at": "2026-12-12T12:00:00+01:00",
+      "end_at": "2026-12-12T15:00:00+01:00",
+      "price_type": "paid",
+      "price_min": 123,
+      "price_max": 123,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "ba478021-1d60-4bad-959f-9b36d8fda4e9",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "3233a4ee-8fc4-4fa9-a579-03d34ae6a6f0",
+      "title": "Jeszcze nie wszystko stracone — bezpłatny recital w Kartuzach",
+      "url": "https://mapaimprez.pl/koncerty/kartuzy/curated-jeszcze-nie-wszystko-stracone-bezplatny-recital-w-kartuzach-kartuzy-2026-12-10-f14d35b5a0c4",
+      "source_url": "https://www.kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/jeszcze-nie-wszystko-stracone.html",
+      "city": "Kartuzy",
+      "city_slug": "kartuzy",
+      "category": "koncerty",
+      "start_at": "2026-12-10T18:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "2e2d38c6-bfa2-4df4-968b-70e102aab1e1",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "4eb959df-aed7-4d49-a4aa-1499dc0e19ee",
+      "title": "Seks dla opornych — komedia Michele Riml w Kartuzach",
+      "url": "https://mapaimprez.pl/kultura/kartuzy/curated-seks-dla-opornych-komedia-michele-riml-w-kartuzach-kartuzy-2026-12-12-d8d61c26182f",
+      "source_url": "https://www.kartuskiecentrum.kultury.pl/kck-wydarzenia/spektakl/seks-dla-opornych-165629.html",
+      "city": "Kartuzy",
+      "city_slug": "kartuzy",
+      "category": "kultura",
+      "start_at": "2026-12-12T18:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 123,
+      "price_max": 123,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "2e2d38c6-bfa2-4df4-968b-70e102aab1e1",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "2b052700-499c-461d-9e4b-ab419f6df32f",
+      "title": "Najpiękniejsze przeboje świąteczne i kolędy — koncert w Kartuzach",
+      "url": "https://mapaimprez.pl/koncerty/kartuzy/curated-najpiekniejsze-przeboje-swiateczne-i-koledy-koncert-w-kartuzach-kartuzy-2026-12-19-e8bdff495b85",
+      "source_url": "https://www.kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/najpiekniejsze-przeboje-swiateczne-oraz-koledy.html",
+      "city": "Kartuzy",
+      "city_slug": "kartuzy",
+      "category": "koncerty",
+      "start_at": "2026-12-19T19:00:00+01:00",
+      "end_at": null,
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "2e2d38c6-bfa2-4df4-968b-70e102aab1e1",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "4cd3c78a-521f-4f1e-80e7-acdf077adb82",
+      "title": "Ostatni seans filmowy — bezpłatny pokaz Kina Znicz",
+      "url": "https://mapaimprez.pl/kultura/bielsk-podlaski/curated-ostatni-seans-filmowy-bezplatny-pokaz-kina-znicz-bielsk-podlaski-2026-11-23-9d061bc54ce9",
+      "source_url": "https://umbielskpodlaski.pl/wydarzenie/bdk-klub-filmowy-29/",
+      "city": "Bielsk Podlaski",
+      "city_slug": "bielsk-podlaski",
+      "category": "kultura",
+      "start_at": "2026-11-23T18:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "20de52c9-f41f-42d9-a566-190bc203b85f",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "1c87c623-f216-4f7b-8ecc-64a3335dd4e5",
+      "title": "Pomiędzy Wiarą a Rozumem — otwarcie wystawy Krzesimira Wiatera",
+      "url": "https://mapaimprez.pl/kultura/kielce/curated-pomiedzy-wiara-a-rozumem-otwarcie-wystawy-krzesimira-wiatera-kielce-2026-12-01-5aa181875fae",
+      "source_url": "https://www.mnki.pl/index.php/pl/aktualnosci/pomiedzy-wiara-rozumem-wystawa-rzezb-krzesimira-wiatera",
+      "city": "Kielce",
+      "city_slug": "kielce",
+      "category": "kultura",
+      "start_at": "2026-12-01T17:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "2bf1ba5e-ced8-4e94-a033-47bb1b856294",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "92e23309-d38b-492a-9cd3-32c64aa8dd7d",
+      "title": "Heraldyka Dawnego Pałacu Biskupów Krakowskich — Niedziela w Muzeum",
+      "url": "https://mapaimprez.pl/kultura/kielce/curated-heraldyka-dawnego-palacu-biskupow-krakowskich-niedziela-w-muzeum-kielce-2026-12-06-865b590dbc4c",
+      "source_url": "https://www.mnki.pl/index.php/pl/aktualnosci/harmonogram-niedziela-w-muzeum-2026",
+      "city": "Kielce",
+      "city_slug": "kielce",
+      "category": "kultura",
+      "start_at": "2026-12-06T12:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "5fac0f01-fe19-4c83-a8c2-0068828c051d",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    }
+  ],
+  "published_count": 11,
+  "free_count": 6,
+  "batch": "data/content-supply/2026-11-19.json",
+  "import": {
+    "mode": "apply",
+    "checked_at": "2026-11-19T18:37:49.000Z",
+    "results": [
+      {
+        "title": "Rzeźba typu ludowego — spotkanie wokół Henryka Jaśkiewicza",
+        "source_url": "https://ackkultura.pl/rzezba-typu-ludowego-spotkanie-ze-sztuka-ludowa-naszego-regionu",
+        "outcome": "inserted_and_published",
+        "event_id": "0d4aa59d-5a7c-447b-a50e-f634a8dc7414",
+        "slug": "curated-rzezba-typu-ludowego-spotkanie-wokol-henryka-jaskiewicza-aleksandrow-lodzki-2026-11-25-bc56584d3abe"
+      },
+      {
+        "title": "Malowanie kurtek jeansowych — warsztaty z Bogną Stępień",
+        "source_url": "https://ackkultura.pl/warsztat-z-ozdabiania-kurtki-jeansowej",
+        "outcome": "inserted_and_published",
+        "event_id": "c1552828-c140-44a9-b264-1ca2644fe6d3",
+        "slug": "curated-malowanie-kurtek-jeansowych-warsztaty-z-bogna-stepien-aleksandrow-lodzki-2026-11-28-bb63084e58ae"
+      },
+      {
+        "title": "Chodź do muzeum — rodzinne spotkanie z Martyną Rejkowicz",
+        "source_url": "https://ackkultura.pl/czy-wizyta-w-muzeum-kojarzy-wam-sie-z-kilometrami-korytarzy-obrazami-zawieszonymi-zbyt-wysoko-dla-dzieciecego-wzroku-i-poczuciem-ze-jako-dorosli-musicie-zamienic-sie-w-encyklopedie-sztuki",
+        "outcome": "inserted_and_published",
+        "event_id": "135fb508-1d76-4e80-93db-80f9fec8bbcc",
+        "slug": "curated-chodz-do-muzeum-rodzinne-spotkanie-z-martyna-rejkowicz-aleksandrow-lodzki-2026-11-28-6d40beef14ee"
+      },
+      {
+        "title": "Mozaikowe pudełeczka na świąteczne prezenty — warsztaty w ACK",
+        "source_url": "https://ackkultura.pl/warsztat-z-tworzenia-mozaiki",
+        "outcome": "inserted_and_published",
+        "event_id": "24a2fec3-16f2-493e-ae5e-6491be6d1927",
+        "slug": "curated-mozaikowe-pudeleczka-na-swiateczne-prezenty-warsztaty-w-ack-aleksandrow-lodzki-2026-12-05-e73cec92a123"
+      },
+      {
+        "title": "Mapa Marzeń — twórcze planowanie nowego roku w ACK",
+        "source_url": "https://ackkultura.pl/warsztat-tworzenia-mapy-marzen",
+        "outcome": "inserted_and_published",
+        "event_id": "b66714a5-d5d3-400c-b754-ab86dde558d6",
+        "slug": "curated-mapa-marzen-tworcze-planowanie-nowego-roku-w-ack-aleksandrow-lodzki-2026-12-12-0a8d0cf5fb83"
+      },
+      {
+        "title": "Jeszcze nie wszystko stracone — bezpłatny recital w Kartuzach",
+        "source_url": "https://www.kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/jeszcze-nie-wszystko-stracone.html",
+        "outcome": "inserted_and_published",
+        "event_id": "3233a4ee-8fc4-4fa9-a579-03d34ae6a6f0",
+        "slug": "curated-jeszcze-nie-wszystko-stracone-bezplatny-recital-w-kartuzach-kartuzy-2026-12-10-f14d35b5a0c4"
+      },
+      {
+        "title": "Seks dla opornych — komedia Michele Riml w Kartuzach",
+        "source_url": "https://www.kartuskiecentrum.kultury.pl/kck-wydarzenia/spektakl/seks-dla-opornych-165629.html",
+        "outcome": "inserted_and_published",
+        "event_id": "4eb959df-aed7-4d49-a4aa-1499dc0e19ee",
+        "slug": "curated-seks-dla-opornych-komedia-michele-riml-w-kartuzach-kartuzy-2026-12-12-d8d61c26182f"
+      },
+      {
+        "title": "Najpiękniejsze przeboje świąteczne i kolędy — koncert w Kartuzach",
+        "source_url": "https://www.kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/najpiekniejsze-przeboje-swiateczne-oraz-koledy.html",
+        "outcome": "inserted_and_published",
+        "event_id": "2b052700-499c-461d-9e4b-ab419f6df32f",
+        "slug": "curated-najpiekniejsze-przeboje-swiateczne-i-koledy-koncert-w-kartuzach-kartuzy-2026-12-19-e8bdff495b85"
+      },
+      {
+        "title": "Ostatni seans filmowy — bezpłatny pokaz Kina Znicz",
+        "source_url": "https://umbielskpodlaski.pl/wydarzenie/bdk-klub-filmowy-29",
+        "outcome": "inserted_and_published",
+        "event_id": "4cd3c78a-521f-4f1e-80e7-acdf077adb82",
+        "slug": "curated-ostatni-seans-filmowy-bezplatny-pokaz-kina-znicz-bielsk-podlaski-2026-11-23-9d061bc54ce9"
+      },
+      {
+        "title": "Pomiędzy Wiarą a Rozumem — otwarcie wystawy Krzesimira Wiatera",
+        "source_url": "https://www.mnki.pl/index.php/pl/aktualnosci/pomiedzy-wiara-rozumem-wystawa-rzezb-krzesimira-wiatera",
+        "outcome": "inserted_and_published",
+        "event_id": "1c87c623-f216-4f7b-8ecc-64a3335dd4e5",
+        "slug": "curated-pomiedzy-wiara-a-rozumem-otwarcie-wystawy-krzesimira-wiatera-kielce-2026-12-01-5aa181875fae"
+      },
+      {
+        "title": "Heraldyka Dawnego Pałacu Biskupów Krakowskich — Niedziela w Muzeum",
+        "source_url": "https://www.mnki.pl/index.php/pl/aktualnosci/harmonogram-niedziela-w-muzeum-2026",
+        "outcome": "inserted_and_published",
+        "event_id": "92e23309-d38b-492a-9cd3-32c64aa8dd7d",
+        "slug": "curated-heraldyka-dawnego-palacu-biskupow-krakowskich-niedziela-w-muzeum-kielce-2026-12-06-865b590dbc4c"
+      }
+    ]
+  },
+  "post_import": {
+    "mode": "dry-run",
+    "checked_at": "2026-11-19T18:37:49.000Z",
+    "results": [
+      {
+        "title": "Rzeźba typu ludowego — spotkanie wokół Henryka Jaśkiewicza",
+        "source_url": "https://ackkultura.pl/rzezba-typu-ludowego-spotkanie-ze-sztuka-ludowa-naszego-regionu",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "0d4aa59d-5a7c-447b-a50e-f634a8dc7414",
+        "category_id": "91c0c821-486a-448a-91fe-14116a09a70d",
+        "city_id": "1092603b-b51f-4765-84bc-2c8e47afb453",
+        "location_id": "ba478021-1d60-4bad-959f-9b36d8fda4e9",
+        "creates_location": false,
+        "slug": "curated-rzezba-typu-ludowego-spotkanie-wokol-henryka-jaskiewicza-aleksandrow-lodzki-2026-11-25-bc56584d3abe"
+      },
+      {
+        "title": "Malowanie kurtek jeansowych — warsztaty z Bogną Stępień",
+        "source_url": "https://ackkultura.pl/warsztat-z-ozdabiania-kurtki-jeansowej",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "c1552828-c140-44a9-b264-1ca2644fe6d3",
+        "category_id": "91c0c821-486a-448a-91fe-14116a09a70d",
+        "city_id": "1092603b-b51f-4765-84bc-2c8e47afb453",
+        "location_id": "ba478021-1d60-4bad-959f-9b36d8fda4e9",
+        "creates_location": false,
+        "slug": "curated-malowanie-kurtek-jeansowych-warsztaty-z-bogna-stepien-aleksandrow-lodzki-2026-11-28-bb63084e58ae"
+      },
+      {
+        "title": "Chodź do muzeum — rodzinne spotkanie z Martyną Rejkowicz",
+        "source_url": "https://ackkultura.pl/czy-wizyta-w-muzeum-kojarzy-wam-sie-z-kilometrami-korytarzy-obrazami-zawieszonymi-zbyt-wysoko-dla-dzieciecego-wzroku-i-poczuciem-ze-jako-dorosli-musicie-zamienic-sie-w-encyklopedie-sztuki",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "135fb508-1d76-4e80-93db-80f9fec8bbcc",
+        "category_id": "40e0d806-0091-4c4a-a3ff-12800d3dce6b",
+        "city_id": "1092603b-b51f-4765-84bc-2c8e47afb453",
+        "location_id": "ba478021-1d60-4bad-959f-9b36d8fda4e9",
+        "creates_location": false,
+        "slug": "curated-chodz-do-muzeum-rodzinne-spotkanie-z-martyna-rejkowicz-aleksandrow-lodzki-2026-11-28-6d40beef14ee"
+      },
+      {
+        "title": "Mozaikowe pudełeczka na świąteczne prezenty — warsztaty w ACK",
+        "source_url": "https://ackkultura.pl/warsztat-z-tworzenia-mozaiki",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "24a2fec3-16f2-493e-ae5e-6491be6d1927",
+        "category_id": "91c0c821-486a-448a-91fe-14116a09a70d",
+        "city_id": "1092603b-b51f-4765-84bc-2c8e47afb453",
+        "location_id": "ba478021-1d60-4bad-959f-9b36d8fda4e9",
+        "creates_location": false,
+        "slug": "curated-mozaikowe-pudeleczka-na-swiateczne-prezenty-warsztaty-w-ack-aleksandrow-lodzki-2026-12-05-e73cec92a123"
+      },
+      {
+        "title": "Mapa Marzeń — twórcze planowanie nowego roku w ACK",
+        "source_url": "https://ackkultura.pl/warsztat-tworzenia-mapy-marzen",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "b66714a5-d5d3-400c-b754-ab86dde558d6",
+        "category_id": "91c0c821-486a-448a-91fe-14116a09a70d",
+        "city_id": "1092603b-b51f-4765-84bc-2c8e47afb453",
+        "location_id": "ba478021-1d60-4bad-959f-9b36d8fda4e9",
+        "creates_location": false,
+        "slug": "curated-mapa-marzen-tworcze-planowanie-nowego-roku-w-ack-aleksandrow-lodzki-2026-12-12-0a8d0cf5fb83"
+      },
+      {
+        "title": "Jeszcze nie wszystko stracone — bezpłatny recital w Kartuzach",
+        "source_url": "https://www.kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/jeszcze-nie-wszystko-stracone.html",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "3233a4ee-8fc4-4fa9-a579-03d34ae6a6f0",
+        "category_id": "91c006e7-5d8d-49bb-9941-f935a90f383d",
+        "city_id": "75e46a7f-aff8-40fa-b02e-e9fc97057ab4",
+        "location_id": "2e2d38c6-bfa2-4df4-968b-70e102aab1e1",
+        "creates_location": false,
+        "slug": "curated-jeszcze-nie-wszystko-stracone-bezplatny-recital-w-kartuzach-kartuzy-2026-12-10-f14d35b5a0c4"
+      },
+      {
+        "title": "Seks dla opornych — komedia Michele Riml w Kartuzach",
+        "source_url": "https://www.kartuskiecentrum.kultury.pl/kck-wydarzenia/spektakl/seks-dla-opornych-165629.html",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "4eb959df-aed7-4d49-a4aa-1499dc0e19ee",
+        "category_id": "91c0c821-486a-448a-91fe-14116a09a70d",
+        "city_id": "75e46a7f-aff8-40fa-b02e-e9fc97057ab4",
+        "location_id": "2e2d38c6-bfa2-4df4-968b-70e102aab1e1",
+        "creates_location": false,
+        "slug": "curated-seks-dla-opornych-komedia-michele-riml-w-kartuzach-kartuzy-2026-12-12-d8d61c26182f"
+      },
+      {
+        "title": "Najpiękniejsze przeboje świąteczne i kolędy — koncert w Kartuzach",
+        "source_url": "https://www.kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/najpiekniejsze-przeboje-swiateczne-oraz-koledy.html",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "2b052700-499c-461d-9e4b-ab419f6df32f",
+        "category_id": "91c006e7-5d8d-49bb-9941-f935a90f383d",
+        "city_id": "75e46a7f-aff8-40fa-b02e-e9fc97057ab4",
+        "location_id": "2e2d38c6-bfa2-4df4-968b-70e102aab1e1",
+        "creates_location": false,
+        "slug": "curated-najpiekniejsze-przeboje-swiateczne-i-koledy-koncert-w-kartuzach-kartuzy-2026-12-19-e8bdff495b85"
+      },
+      {
+        "title": "Ostatni seans filmowy — bezpłatny pokaz Kina Znicz",
+        "source_url": "https://umbielskpodlaski.pl/wydarzenie/bdk-klub-filmowy-29",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "4cd3c78a-521f-4f1e-80e7-acdf077adb82",
+        "category_id": "91c0c821-486a-448a-91fe-14116a09a70d",
+        "city_id": "48decc01-a81e-45b8-be44-b41bb7938938",
+        "location_id": "20de52c9-f41f-42d9-a566-190bc203b85f",
+        "creates_location": false,
+        "slug": "curated-ostatni-seans-filmowy-bezplatny-pokaz-kina-znicz-bielsk-podlaski-2026-11-23-9d061bc54ce9"
+      },
+      {
+        "title": "Pomiędzy Wiarą a Rozumem — otwarcie wystawy Krzesimira Wiatera",
+        "source_url": "https://www.mnki.pl/index.php/pl/aktualnosci/pomiedzy-wiara-rozumem-wystawa-rzezb-krzesimira-wiatera",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "1c87c623-f216-4f7b-8ecc-64a3335dd4e5",
+        "category_id": "91c0c821-486a-448a-91fe-14116a09a70d",
+        "city_id": "0bb7be02-64a3-494b-8dd3-4ea1176ba515",
+        "location_id": "2bf1ba5e-ced8-4e94-a033-47bb1b856294",
+        "creates_location": false,
+        "slug": "curated-pomiedzy-wiara-a-rozumem-otwarcie-wystawy-krzesimira-wiatera-kielce-2026-12-01-5aa181875fae"
+      },
+      {
+        "title": "Heraldyka Dawnego Pałacu Biskupów Krakowskich — Niedziela w Muzeum",
+        "source_url": "https://www.mnki.pl/index.php/pl/aktualnosci/harmonogram-niedziela-w-muzeum-2026",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "92e23309-d38b-492a-9cd3-32c64aa8dd7d",
+        "category_id": "91c0c821-486a-448a-91fe-14116a09a70d",
+        "city_id": "0bb7be02-64a3-494b-8dd3-4ea1176ba515",
+        "location_id": "5fac0f01-fe19-4c83-a8c2-0068828c051d",
+        "creates_location": false,
+        "slug": "curated-heraldyka-dawnego-palacu-biskupow-krakowskich-niedziela-w-muzeum-kielce-2026-12-06-865b590dbc4c"
+      }
+    ]
+  },
+  "mobile": [
+    {
+      "url": "https://mapaimprez.pl/kultura/aleksandrow-lodzki/curated-rzezba-typu-ludowego-spotkanie-wokol-henryka-jaskiewicza-aleksandrow-lodzki-2026-11-25-bc56584d3abe",
+      "width": 390,
+      "title": "Rzeźba typu ludowego — spotkanie wokół Henryka Jaśkiewicza",
+      "city": "Aleksandrów Łódzki",
+      "date": "25 lis 2026 · 18:00",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": true
+    },
+    {
+      "url": "https://mapaimprez.pl/rodzinne/aleksandrow-lodzki/curated-chodz-do-muzeum-rodzinne-spotkanie-z-martyna-rejkowicz-aleksandrow-lodzki-2026-11-28-6d40beef14ee",
+      "width": 390,
+      "title": "Chodź do muzeum — rodzinne spotkanie z Martyną Rejkowicz",
+      "city": "Aleksandrów Łódzki",
+      "date": "28 lis 2026 · 16:00",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": true
+    },
+    {
+      "url": "https://mapaimprez.pl/kultura/aleksandrow-lodzki/curated-mozaikowe-pudeleczka-na-swiateczne-prezenty-warsztaty-w-ack-aleksandrow-lodzki-2026-12-05-e73cec92a123",
+      "width": 390,
+      "title": "Mozaikowe pudełeczka na świąteczne prezenty — warsztaty w ACK",
+      "city": "Aleksandrów Łódzki",
+      "date": "5 gru 2026 · 10:15",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": true
+    },
+    {
+      "url": "https://mapaimprez.pl/koncerty/kartuzy/curated-najpiekniejsze-przeboje-swiateczne-i-koledy-koncert-w-kartuzach-kartuzy-2026-12-19-e8bdff495b85",
+      "width": 390,
+      "title": "Najpiękniejsze przeboje świąteczne i kolędy — koncert w Kartuzach",
+      "city": "Kartuzy",
+      "date": "19 gru 2026 · 19:00",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": null
+    },
+    {
+      "url": "https://mapaimprez.pl/kultura/bielsk-podlaski/curated-ostatni-seans-filmowy-bezplatny-pokaz-kina-znicz-bielsk-podlaski-2026-11-23-9d061bc54ce9",
+      "width": 390,
+      "title": "Ostatni seans filmowy — bezpłatny pokaz Kina Znicz",
+      "city": "Bielsk Podlaski",
+      "date": "23 lis 2026 · 18:00",
+      "lines": 3,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": true
+    },
+    {
+      "url": "https://mapaimprez.pl/kultura/kielce/curated-heraldyka-dawnego-palacu-biskupow-krakowskich-niedziela-w-muzeum-kielce-2026-12-06-865b590dbc4c",
+      "width": 390,
+      "title": "Heraldyka Dawnego Pałacu Biskupów Krakowskich — Niedziela w Muzeum",
+      "city": "Kielce",
+      "date": "6 gru 2026 · 12:00",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": null
+    }
+  ],
+  "recheck": {
+    "events_due": 80,
+    "urls_total": 74,
+    "urls_accessible": 69,
+    "events_with_accessible_source": 75,
+    "unconfirmed": [
+      {
+        "url": "https://lff.lublin.pl/events/fokus-granice-nie-pozwol-mi-odejsc",
+        "status": 0,
+        "blocked": "robots.txt",
+        "events": [
+          {
+            "id": "2f3d28d5-04d9-4e22-8b70-9273e7349c40",
+            "title": "Lubelski Festiwal Filmowy — „Nie pozwól mi odejść”",
+            "start_at": "2026-11-20T18:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://sklep.otop.org.pl/pl/products/21-11-26-r-09-00-12-00-gdynia-kamienna-gora-spacer-ornitologiczny-322.html",
+        "status": 0,
+        "blocked": "robots.txt",
+        "events": [
+          {
+            "id": "5900f597-a8b6-4b97-ba6d-2d2735a9d01b",
+            "title": "Spacer ornitologiczny — Gdynia, Kamienna Góra",
+            "start_at": "2026-11-21T08:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/slaska-gielda-narciarska-w-prezero-arenie-gliwice-15",
+        "status": 0,
+        "blocked": "robots.txt",
+        "events": [
+          {
+            "id": "83dcec7c-8ed6-4cc1-a4bd-87f3df4d1538",
+            "title": "Śląska Giełda Narciarska w Gliwicach",
+            "start_at": "2026-11-21T07:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/polska-noc-kabaretowa-2026-siedmiu-wspanialych",
+        "status": 0,
+        "blocked": "robots.txt",
+        "events": [
+          {
+            "id": "c583b0e1-3830-4e0e-a0ea-e46c95665da0",
+            "title": "Polska Noc Kabaretowa 2026 — Siedmiu wspaniałych w Gliwicach",
+            "start_at": "2026-11-21T18:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://bikeexpo.pl/katowice",
+        "status": 0,
+        "blocked": "robots.txt",
+        "events": [
+          {
+            "id": "cf97a2b7-683a-41e7-b0fe-4fb4138b0076",
+            "title": "PEKAO BIKE EXPO Winter Edition i SNOW EXPO 2026 w Katowicach",
+            "start_at": "2026-11-21T08:00:00+00:00"
+          }
+        ]
+      }
+    ],
+    "confirmed_new_cancellations": [],
+    "confirmed_new_date_changes": [],
+    "sold_out": [
+      "Kult — Warszawa, 20.11",
+      "Kult — Warszawa, 21.11",
+      "Artemas — Warszawa, 23.11",
+      "LEGO Build the Change — Łódź, 22.11",
+      "MTV. Hity z satelity — Wałbrzych, 21.11"
+    ],
+    "notes": [
+      "Oznaczenia wyprzedania znane z wcześniejszych raportów, bez zmiany statusów wydarzeń.",
+      "Komunikat o odwołaniu kursu rysunku 20.11 w MUZIE nie dotyczy spektaklu Coś na ząb 22.11.",
+      "Czas na Oskary: przeniesienie z 8–9.11 na 22–23.11 jest już uwzględnione w katalogu.",
+      "Wzmianki o przeniesieniu Lewe interesy na stronie filharmonii to sekcja innych wydarzeń; nie dotyczą DAGADANY."
+    ]
+  },
+  "exclusions": [
+    {
+      "title": "Pół na pół — Kartuzy, 29.11",
+      "reason": "Istnieje już: 228bcc8e-44e2-4f6b-bf23-8ffafa73495d."
+    },
+    {
+      "title": "Polityka zagraniczna Zygmunta III Wazy — Kielce, 29.11",
+      "reason": "Istnieje już: 195d6df1-2fd1-4c1d-99fb-6770b6b0997e."
+    },
+    {
+      "title": "Czerwone Gitary / Paranienormalni — Bielsk Podlaski",
+      "reason": "Oba przyszłe wydarzenia są już w katalogu; nie powielano ich z listingu BDK."
+    },
+    {
+      "title": "Miłość w Paryżu — Kartuzy, 21 listopada",
+      "reason": "Karta i plakat nie podają jawnego roku. Strona organizatora blokuje odczyt robots.txt. Pominięto zamiast dopowiadać rok."
+    },
+    {
+      "title": "Bezpłatne warsztaty świąteczne — Aleksandrów Łódzki, 6.12",
+      "reason": "Potwierdzono godziny i zasady zapisów w zapowiedzi miasta, ale dokładny adres tych konkretnych zajęć wymaga osobnego potwierdzenia."
+    },
+    {
+      "title": "Case Studio Fest 2 — Aleksandrów Łódzki, 12.12",
+      "reason": "Ogłoszenie miasta potwierdza dzień i scenę MDK; brak jednoznacznej godziny rozpoczęcia i warunków wejścia."
+    }
+  ]
+}

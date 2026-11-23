@@ -9,7 +9,7 @@ Status: **workflow wysłany i odebrany na GitHub, 2026-10-08**. `.github/workflo
 | `npm ci --no-audit --no-fund` | Instalacja dokładnie z `package-lock.json`; niespójność manifestu i locka kończy się błędem. |
 | `npm run lint` | ESLint aplikacji, konfiguracji i testów; błędy blokują, ostrzeżenia pozostają widoczne. |
 | `npm test` | Vitest w środowisku Node, wyłącznie `tests/**/*.test.ts`; klient Supabase, Auth, upload i geokodowanie są mockowane w wymagających ich testach. |
-| `npm run typecheck` | `tsc --noEmit --incremental false`, ścisłe typy bez zapisu lokalnego cache. |
+| `npm run typecheck` | `tsc --noEmit --incremental false`, ścisłe typy bez zapisu lokalnego cache. Katalog `scratch/` zawiera kopie pomocnicze poza zakresem kompilacji. |
 | `npm run build` | Produkcyjny build Next.js, włącznie z jego kontrolami lint/typów i generacją tras. |
 | `npm run check` | Kolejno lint, testy, typy i build; zatrzymuje się na pierwszym błędzie. |
 

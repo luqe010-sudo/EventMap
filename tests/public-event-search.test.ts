@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("@/lib/supabase", () => ({ createSupabaseServerClient: vi.fn() }));
 
 import { createSupabaseServerClient } from "../lib/supabase";
-import { getActiveCityLocations, listPublicEventsByIds, mapCityPageToLocation, resolveCityLocation, searchPublicEventCategoryCounts, searchPublicEventMarkers, searchPublicEvents, type CityPage } from "../lib/events";
+import { getActiveCityLocations, listPublicEventsByIds, mapCityPageToLocation, readPublicMarkerInventory, resolveCityLocation, searchPublicEventCategoryCounts, searchPublicEventMarkers, searchPublicEvents, type CityPage } from "../lib/events";
 
 type Row = Record<string, unknown>;
 type Trace = { table: string; selection: string; methods: Array<[string, ...unknown[]]>; from: number; to: number };
@@ -192,6 +192,47 @@ describe("global public search", () => {
     expect(lastPage).toMatchObject({ totalCount: 3, shownCount: 2, hasMore: false });
     const beyond = await searchPublicEvents({ page: 3, pageSize: 1, maxResults: 2 });
     expect(beyond).toMatchObject({ events: [], totalCount: 3, shownCount: 2, hasMore: false });
+  });
+});
+
+describe("shared map inventory", () => {
+  it("loads only public coordinates and applies the current date, category, price and radius after reading the inventory", async () => {
+    const start = "2026-10-07T10:00:00Z";
+    const end = "2026-10-07T14:00:00Z";
+    const otherCity = { ...city, id: "other-city", latitude: city.latitude + 0.01 };
+    mockDatabase([
+      event("ongoing", { end_at: end, price_type: "bezplatne" }),
+      event("ended", { end_at: "2026-10-07T12:00:00Z" }),
+      event("neighbor", {
+        end_at: end, price_type: "paid", price_min: null, price_max: 20,
+        location: { city_id: otherCity.id, city: otherCity, latitude: otherCity.latitude, longitude: otherCity.longitude }
+      }),
+      event("too-expensive", { end_at: end, price_type: "paid", price_min: 35, price_max: null }),
+      event("other-category", { end_at: end, category_id: "sport-id" }),
+      event("without-coordinates", { end_at: end, location: null }),
+      event("draft", { end_at: end, status: "draft" }),
+      event("private", { end_at: end, visibility: "private" }),
+      event("cancelled", { end_at: end, is_cancelled: true })
+    ], [city], { maxRows: 2 });
+
+    const inventory = await readPublicMarkerInventory(start);
+    expect(inventory.records.map(record => record.id)).toEqual([
+      "ended", "neighbor", "ongoing", "other-category", "too-expensive"
+    ]);
+    traces.length = 0;
+    const read = async () => inventory;
+    const filters = { categoryId: "concert-id", citySlug: city.slug, dateFrom: "2026-10-07T12:00:00Z" };
+    expect((await searchPublicEventMarkers({ ...filters, priceMode: "free" }, read)).map(item => item.id)).toEqual(["ongoing"]);
+    expect((await searchPublicEventMarkers({ ...filters, radiusKm: 5, priceMode: "max", maxPrice: 20 }, read)).map(item => item.id)).toEqual(["neighbor", "ongoing"]);
+    expect(await searchPublicEventMarkers({ ...filters, dateFrom: end }, read)).toEqual([]);
+    expect(traces.filter(trace => trace.table === "events")).toEqual([]);
+  });
+
+  it("falls back to the narrowed live query when the inventory is unavailable", async () => {
+    mockDatabase([event("wanted"), event("other", { category_id: "sport-id" })]);
+    const markers = await searchPublicEventMarkers({ categoryId: "concert-id" }, async () => null);
+    expect(markers.map(item => item.id)).toEqual(["wanted"]);
+    expect(traces[0].methods).toContainEqual(["eq", "category_id", "concert-id"]);
   });
 });
 

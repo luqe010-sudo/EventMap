@@ -1,0 +1,222 @@
+{
+  "checked_at": "2026-11-10T11:12:35Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Dodatkowa paczka SEO. Rozpoznawalne wydarzenia z konkretną lokalizacją, sezonowym terminem i praktycznymi pytaniami o godziny oraz wstęp. Potencjał oceniono jakościowo na podstawie wyników wyszukiwania i odrębnych luk w katalogu.",
+  "events": [
+    {
+      "title": "Jarmark Świąteczny na Targach w Poznaniu 2026",
+      "category_slug": "targi",
+      "start_at": "2026-11-14T11:00:00+01:00",
+      "end_at": "2026-12-20T21:00:00+01:00",
+      "short_description": "Bezpłatny jarmark na terenie MTP przy ul. Głogowskiej, od 14 listopada do 20 grudnia.",
+      "description": "Wstęp na teren jarmarku jest bezpłatny. Stoiska działają od wtorku do czwartku 15:00–21:00, w piątek i sobotę 11:00–22:00, a w niedzielę 11:00–21:00. W poniedziałki jarmark jest zamknięty. Pierwszego dnia o 17:00 rozświetlona zostanie choinka. Na terenie MTP są stoiska z rękodziełem i jedzeniem, karuzele oraz program muzyczny.",
+      "location": {
+        "name": "MTP - Międzynarodowe Targi Poznańskie",
+        "address": "Głogowska 14",
+        "city": "Poznań",
+        "latitude": 52.4030144,
+        "longitude": 16.9079869,
+        "coordinate_source": "https://www.mtp.pl/pl/kontakt/",
+        "coordinate_note": "Istniejąca pinezka obiektu przy wejściu od strony Głogowskiej. Adres zgodny z informacjami MTP i kartą PIK."
+      },
+      "source_name": "Grupa MTP",
+      "source_url": "https://jarmark.poznan.pl/pl",
+      "evidence_urls": [
+        "https://pik.poznan.pl/jarmark-bozonarodzeniowy-na-targach-w-poznaniu/",
+        "https://upload.epoznan.pl/news-news-181792-w_sobote_wielkie_otwarcie_pierwszego_jarmarku_swiatecznego_w_poznaniu_podano_kto_wystapi"
+      ],
+      "seo_intent": "jarmark świąteczny MTP Poznań 2026 godziny, otwarcie i wstęp",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do publikacji oficjalnej grafiki na EventMap w krótkim przeglądzie. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:12:34Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:12:34Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Łódzkie Targi Książki i Sztuki 2026",
+      "category_slug": "targi",
+      "start_at": "2026-11-20T10:00:00+01:00",
+      "end_at": "2026-11-22T17:00:00+01:00",
+      "short_description": "Bezpłatne targi książki, sztuki i rzemiosła na dworcu Łódź Fabryczna, 20–22 listopada.",
+      "description": "Na Łodzi Fabrycznej spotkają się wydawcy, autorzy, księgarnie, antykwariaty i twórcy. Organizator przygotował spotkania autorskie, warsztaty i strefy sztuki oraz rzemiosła. Wstęp wolny. W piątek i sobotę targi działają 10:00–19:00, a w niedzielę 10:00–17:00.",
+      "location": {
+        "name": "Dworzec Łódź Fabryczna",
+        "address": "plac Bronisława Sałacińskiego 1",
+        "city": "Łódź",
+        "latitude": 51.7693946180857,
+        "longitude": 19.4674654297924,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=%C5%81%C3%B3d%C5%BA%2C%20plac%20Bronis%C5%82awa%20Sa%C5%82aci%C5%84skiego%201",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK z numerem 1. Organizator wskazuje halę dworca."
+      },
+      "source_name": "Łódzkie Targi Książki i Sztuki",
+      "source_url": "https://lodzkietargiksiazki.pl/dla-zwiedzajacych/",
+      "evidence_urls": [
+        "https://lodzkietargiksiazki.pl/dla-mediow/",
+        "https://lodzkietargiksiazki.pl/targi-ksiazki/"
+      ],
+      "seo_intent": "targi książki Łódź 2026 godziny, Fabryczna i wstęp",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do publikacji oficjalnej grafiki na EventMap w krótkim przeglądzie. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:12:35Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:12:35Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Jarmark Bożonarodzeniowy we Wrocławiu 2026",
+      "category_slug": "targi",
+      "start_at": "2026-11-20T10:00:00+01:00",
+      "end_at": "2027-01-07T21:00:00+01:00",
+      "short_description": "Bezpłatny jarmark na wrocławskim Rynku, od 20 listopada do 7 stycznia.",
+      "description": "Stoiska z rękodziełem i jedzeniem zajmą Rynek oraz sąsiednie ulice i plac Solny. Wstęp na teren jest wolny. Zwykłe godziny to 10:00–21:00. Jarmark jest zamknięty 24 i 25 grudnia oraz 1 stycznia. 26 grudnia rusza o 13:00. W Sylwestra stoiska z wyrobami działają do 17:00, a gastronomia do 2:00. Oficjalne otwarcie odbędzie się 20 listopada o 17:00.",
+      "location": {
+        "name": "Rynek we Wrocławiu",
+        "address": "Rynek",
+        "city": "Wrocław",
+        "latitude": 51.11,
+        "longitude": 17.031944444444,
+        "coordinate_source": "https://en.wikipedia.org/wiki/Market_Square,_Wroc%C5%82aw",
+        "coordinate_note": "Współrzędne nazwanego Rynku podane dla placu i przeliczone z DMS. Program organizatora wskazuje wszystkie pierzeje Rynku."
+      },
+      "source_name": "Wrocławski Jarmark Bożonarodzeniowy",
+      "source_url": "https://www.jarmarkbozonarodzeniowy.com/program",
+      "evidence_urls": [
+        "https://www.wroclaw.pl/go/wydarzenia/eventy/1417327-jarmark-bozonarodzeniowy-2026"
+      ],
+      "seo_intent": "jarmark bożonarodzeniowy Wrocław 2026, godziny otwarcia i święta",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do publikacji oficjalnej grafiki na EventMap w krótkim przeglądzie. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:12:34Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:12:34Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Jarmark Bożonarodzeniowy w Warszawie 2026 — Plac Defilad",
+      "category_slug": "targi",
+      "start_at": "2026-11-20T11:00:00+01:00",
+      "end_at": "2027-01-06T22:00:00+01:00",
+      "short_description": "Bezpłatny Jarmark Warszawski pod Pałacem Kultury i Nauki, od 20 listopada do 6 stycznia.",
+      "description": "Wstęp na teren jarmarku jest wolny. Stoiska, gastronomia i rodzinne atrakcje zajmą Plac Defilad oraz część Placu Centralnego. Jarmark działa zwykle 11:00–22:00. W Wigilię będzie zamknięty, 25 i 26 grudnia otworzy się o 12:00, 31 grudnia zamknie o 18:00, a 1 stycznia otworzy się o 14:00. Wejścia m.in. od Marszałkowskiej i Złotej.",
+      "location": {
+        "name": "Plac Centralny — Plac Defilad",
+        "address": "Plac Defilad",
+        "city": "Warszawa",
+        "latitude": 52.2321366,
+        "longitude": 21.0079257,
+        "coordinate_source": "https://www.openstreetmap.org/way/1186511534",
+        "coordinate_note": "Nazwany Plac Centralny w OpenStreetMap, współrzędne z dopasowanego obiektu Nominatim. Organizator potwierdza tę część terenu."
+      },
+      "source_name": "Jarmark Warszawski",
+      "source_url": "https://www.jarmark.waw.pl/",
+      "evidence_urls": [
+        "https://go2warsaw.pl/events/jarmark-warszawski-na-placu-defilad/",
+        "https://pik.warszawa.pl/inne/jarmark-bozonarodzeniowy-w-warszawie/"
+      ],
+      "seo_intent": "jarmark Warszawa Plac Defilad 2026 godziny, PKiN i wstęp",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do publikacji oficjalnej grafiki na EventMap w krótkim przeglądzie. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:12:35Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:12:35Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Jarmark Bożonarodzeniowy w Gdańsku 2026",
+      "category_slug": "targi",
+      "start_at": "2026-11-20T12:00:00+01:00",
+      "end_at": "2026-12-23T20:00:00+01:00",
+      "short_description": "Bezpłatny jarmark na Targu Węglowym i w sąsiednich częściach Głównego Miasta.",
+      "description": "Jarmark trwa od 20 listopada do 23 grudnia. Stoiska są otwarte od niedzieli do czwartku 12:00–20:00, a w piątek i sobotę 12:00–21:00. Wstęp na teren jest bezpłatny. Poza Targiem Węglowym stoiska znajdą się m.in. w Zbrojowni, przy ul. Bogusławskiego oraz na dziedzińcu Forum Gdańsk.",
+      "location": {
+        "name": "Targ Węglowy",
+        "address": "Targ Węglowy",
+        "city": "Gdańsk",
+        "latitude": 54.351,
+        "longitude": 18.648,
+        "coordinate_source": "https://commons.wikimedia.org/wiki/Category:Targ_W%C4%99glowy",
+        "coordinate_note": "Współrzędne nazwanego placu z mapy Wikimedia, przeliczone z DMS. Organizator wymienia plac jako jedną z głównych lokalizacji."
+      },
+      "source_name": "Międzynarodowe Targi Gdańskie",
+      "source_url": "https://bozonarodzeniowy.pl/faq-pytania-i-odpowiedzi/",
+      "evidence_urls": [
+        "https://bozonarodzeniowy.pl/",
+        "https://www.gdansk.pl/wiadomosci/Przygotowania-do-Jarmarku-Bozonarodzeniowego-rozpoczete,a,321805"
+      ],
+      "seo_intent": "jarmark bożonarodzeniowy Gdańsk 2026, Targ Węglowy, godziny i wstęp",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do publikacji oficjalnej grafiki na EventMap w krótkim przeglądzie. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:12:35Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:12:35Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "POZnań Ice Festival 2026 — główny konkurs rzeźby lodowej",
+      "category_slug": "festiwale",
+      "start_at": "2026-12-13T09:00:00+01:00",
+      "end_at": "2026-12-13T17:00:00+01:00",
+      "short_description": "Bezpłatny pokaz konkursowego rzeźbienia w lodzie na Starym Rynku w Poznaniu.",
+      "description": "Główna konkurencja 20. Poznań Ice Festival potrwa w niedzielę od 9:00 do 17:00. Dwuosobowe zespoły będą na oczach publiczności tworzyć rzeźby z kilku brył lodu. Oglądanie jest bezpłatne. Pełny festiwal trwa od 11 do 13 grudnia. Program pozostałych konkurencji podaje organizator.",
+      "location": {
+        "name": "Stary Rynek w Poznaniu",
+        "address": "Stary Rynek",
+        "city": "Poznań",
+        "latitude": 52.408258333333,
+        "longitude": 16.933538888889,
+        "coordinate_source": "https://commons.wikimedia.org/wiki/Category:Stary_Rynek_w_Poznaniu",
+        "coordinate_note": "Współrzędne nazwanego placu z mapy Wikimedia, przeliczone z DMS. Lokalizację zawodów potwierdza regulamin miasta."
+      },
+      "source_name": "Miasto Poznań — POZnań Ice Festival",
+      "source_url": "https://icefestival.pl/mim/icefestival/regulations.html",
+      "evidence_urls": [
+        "https://icefestival.pl/",
+        "https://pik.poznan.pl/ice-festiwal-poznan/"
+      ],
+      "seo_intent": "Poznań Ice Festival 2026 program, Stary Rynek i konkurs główny",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do publikacji oficjalnej grafiki na EventMap w krótkim przeglądzie. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:12:34Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:12:34Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

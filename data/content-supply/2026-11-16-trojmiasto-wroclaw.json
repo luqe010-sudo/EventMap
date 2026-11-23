@@ -1,0 +1,169 @@
+{
+  "checked_at": "2026-11-16T16:30:47Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "ERGO ARENA i Hala Stulecia: kabaret, stand-up, koncert i mecz.",
+  "geocoding_attribution": "Istniejące lokalizacje EventMap; nowe obiekty: © OpenStreetMap contributors (ODbL) zweryfikowane z punktami adresowymi GUGiK.",
+  "legal_note": "Tylko fakty (termin, miejsce, cena, status) ze stron organizatorów i obiektów; opisy redakcyjne własne; bez obrazów ze źródeł.",
+  "events": [
+    {
+      "title": "Kabaret Neo-Nówka: Pokolenie DNA w ERGO ARENIE",
+      "category_slug": "kabaret",
+      "start_at": "2026-11-21T20:00:00+01:00",
+      "end_at": null,
+      "short_description": "Kabaret Neo-Nówka pokaże program „Pokolenie DNA” w hali na granicy Gdańska i Sopotu.",
+      "description": "Kabaret Neo-Nówka pokaże program „Pokolenie DNA” w hali na granicy Gdańska i Sopotu. Początek o 20:00. Wstęp biletowany; aktualne ceny i dostępność podaje organizator. Miejsce: ERGO ARENA, Plac Dwóch Miast 1, Gdańsk/Sopot.",
+      "location": {
+        "name": "ERGO ARENA",
+        "city": "Gdańsk/Sopot",
+        "city_slug": "gdansk-sopot",
+        "address": "Plac Dwóch Miast 1",
+        "latitude": 54.4262782,
+        "longitude": 18.579723,
+        "coordinate_source": "https://ergoarena.pl/",
+        "coordinate_note": "Istniejąca lokalizacja EventMap dla tego obiektu (ta sama nazwa i adres); miejsce potwierdzone na stronie wydarzenia."
+      },
+      "source_name": "ERGO ARENA",
+      "source_url": "https://ergoarena.pl/wydarzenia-lista/kabaret-neo-nowka-pokolenie-dna/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie przenoszono plakatów ani zdjęć ze źródła; okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T16:30:47Z",
+      "source_verification": {
+        "checked_at": "2026-11-16T16:30:47Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Energa Trefl Sopot – Zastal Zielona Góra — koszykówka w ERGO ARENIE",
+      "category_slug": "mecze",
+      "start_at": "2026-12-06T17:30:00+01:00",
+      "end_at": null,
+      "short_description": "Mecz koszykarzy Trefla Sopot z Zastalem Zielona Góra.",
+      "description": "Mecz koszykarzy Trefla Sopot z Zastalem Zielona Góra. Początek o 17:30. Wstęp biletowany; aktualne ceny i dostępność podaje organizator. Miejsce: ERGO ARENA, Plac Dwóch Miast 1, Gdańsk/Sopot.",
+      "location": {
+        "name": "ERGO ARENA",
+        "city": "Gdańsk/Sopot",
+        "city_slug": "gdansk-sopot",
+        "address": "Plac Dwóch Miast 1",
+        "latitude": 54.4262782,
+        "longitude": 18.579723,
+        "coordinate_source": "https://ergoarena.pl/",
+        "coordinate_note": "Istniejąca lokalizacja EventMap dla tego obiektu (ta sama nazwa i adres); miejsce potwierdzone na stronie wydarzenia."
+      },
+      "source_name": "ERGO ARENA",
+      "source_url": "https://ergoarena.pl/wydarzenia-lista/energa-trefl-sopot-zastal-zielona-gora/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie przenoszono plakatów ani zdjęć ze źródła; okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T16:30:47Z",
+      "source_verification": {
+        "checked_at": "2026-11-16T16:30:47Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Rafał Rutkowski — Wehikuł czasu, stand-up we Wrocławiu",
+      "category_slug": "stand-up",
+      "start_at": "2026-11-22T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Rafał Rutkowski przyjedzie do Hali Stulecia z programem „Wehikuł czasu”.",
+      "description": "Rafał Rutkowski przyjedzie do Hali Stulecia z programem „Wehikuł czasu”. Początek o 17:00. Wstęp biletowany; aktualne ceny i dostępność podaje organizator. Miejsce: Hala Stulecia, Wystawowa 1, Wrocław.",
+      "location": {
+        "name": "Hala Stulecia",
+        "city": "Wrocław",
+        "city_slug": "wroclaw",
+        "address": "Wystawowa 1",
+        "latitude": 51.1068875,
+        "longitude": 17.0773185,
+        "coordinate_source": "https://halastulecia.pl/",
+        "coordinate_note": "Istniejąca lokalizacja EventMap dla tego obiektu (ta sama nazwa i adres); miejsce potwierdzone na stronie wydarzenia."
+      },
+      "source_name": "Hala Stulecia",
+      "source_url": "https://halastulecia.pl/wydarzenie/rafal-rutkowski-wehikul-czasu/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie przenoszono plakatów ani zdjęć ze źródła; okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T16:30:47Z",
+      "source_verification": {
+        "checked_at": "2026-11-16T16:30:47Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Accantus Live — koncert we Wrocławiu",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-27T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Grupa wokalna Accantus, znana z polskich wersji piosenek z musicali i filmów, wystąpi w Hali Stulecia.",
+      "description": "Grupa wokalna Accantus, znana z polskich wersji piosenek z musicali i filmów, wystąpi w Hali Stulecia. Początek o 19:00. Wstęp biletowany; aktualne ceny i dostępność podaje organizator. Miejsce: Hala Stulecia, Wystawowa 1, Wrocław.",
+      "location": {
+        "name": "Hala Stulecia",
+        "city": "Wrocław",
+        "city_slug": "wroclaw",
+        "address": "Wystawowa 1",
+        "latitude": 51.1068875,
+        "longitude": 17.0773185,
+        "coordinate_source": "https://halastulecia.pl/",
+        "coordinate_note": "Istniejąca lokalizacja EventMap dla tego obiektu (ta sama nazwa i adres); miejsce potwierdzone na stronie wydarzenia."
+      },
+      "source_name": "Hala Stulecia",
+      "source_url": "https://halastulecia.pl/wydarzenie/accantus-live/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie przenoszono plakatów ani zdjęć ze źródła; okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T16:30:47Z",
+      "source_verification": {
+        "checked_at": "2026-11-16T16:30:47Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Kabaret Neo-Nówka: Pokolenie DNA we Wrocławiu",
+      "category_slug": "kabaret",
+      "start_at": "2026-11-29T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Kabaret Neo-Nówka pokaże program „Pokolenie DNA” w Hali Stulecia.",
+      "description": "Kabaret Neo-Nówka pokaże program „Pokolenie DNA” w Hali Stulecia. Początek o 19:00. Wstęp biletowany; aktualne ceny i dostępność podaje organizator. Miejsce: Hala Stulecia, Wystawowa 1, Wrocław.",
+      "location": {
+        "name": "Hala Stulecia",
+        "city": "Wrocław",
+        "city_slug": "wroclaw",
+        "address": "Wystawowa 1",
+        "latitude": 51.1068875,
+        "longitude": 17.0773185,
+        "coordinate_source": "https://halastulecia.pl/",
+        "coordinate_note": "Istniejąca lokalizacja EventMap dla tego obiektu (ta sama nazwa i adres); miejsce potwierdzone na stronie wydarzenia."
+      },
+      "source_name": "Hala Stulecia",
+      "source_url": "https://halastulecia.pl/wydarzenie/kabaret-neo-nowka-pokolenie-dna/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie przenoszono plakatów ani zdjęć ze źródła; okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T16:30:47Z",
+      "source_verification": {
+        "checked_at": "2026-11-16T16:30:47Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

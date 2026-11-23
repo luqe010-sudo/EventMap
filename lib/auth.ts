@@ -36,16 +36,20 @@ export const getCurrentUserContext = cache(async (): Promise<CurrentUserContext 
   };
 });
 
-export async function requireAdmin(next = "/admin") {
+export async function requireSignedInUser(next: string) {
   const context = await getCurrentUserContext();
   if (!context) redirect(`/login?next=${encodeURIComponent(safeNextPath(next))}`);
+  return context;
+}
+
+export async function requireAdmin(next = "/admin") {
+  const context = await requireSignedInUser(next);
   if (context.profile?.role !== "admin") redirect("/");
   return context;
 }
 
 export async function requireOrganizerAccess(next = "/organizer") {
-  const context = await getCurrentUserContext();
-  if (!context) redirect(`/login?next=${encodeURIComponent(safeNextPath(next))}`);
+  const context = await requireSignedInUser(next);
 
   if (context.profile?.role === "admin") {
     return {

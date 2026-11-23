@@ -1,6 +1,7 @@
 import Link from "next/link";
 import DeleteEventButton from "@/components/DeleteEventButton";
 import { formatEventStatus } from "@/lib/event-editor";
+import { isPromotionActive } from "@/lib/promotion";
 import { requireAdmin } from "@/lib/auth";
 import AdminSectionNav from "@/components/AdminSectionNav";
 import AdminTableFilters from "@/components/AdminTableFilters";
@@ -102,7 +103,7 @@ export default async function AdminEventsPage({ searchParams }: { searchParams: 
                   <td>{event.category?.name ?? "-"}</td>
                   <td>{event.organizer?.name ?? "-"}</td>
                   <td><span className="statusPill">{formatEventStatus(event.status)}</span></td>
-                  <td>{event.is_featured ? <span className="successPill">tak</span> : "-"}</td>
+                  <td><FeaturedCell isFeatured={event.is_featured} featuredUntil={event.featured_until ?? null} /></td>
                   <td>
                     <div className="tableActions">
                       <Link href={`/admin/events/${event.id}/edit`}>Edytuj</Link>
@@ -160,3 +161,12 @@ const featuredOptions = [
   { label: "Tak", value: "yes" },
   { label: "Nie", value: "no" }
 ];
+
+function FeaturedCell({ isFeatured, featuredUntil }: { isFeatured: boolean | null; featuredUntil: string | null }) {
+  if (!isFeatured) return <>-</>;
+  const until = featuredUntil ? formatPolishDate(featuredUntil, { day: "2-digit", month: "2-digit", year: "numeric" }) : null;
+  if (isPromotionActive({ is_featured: isFeatured, featured_until: featuredUntil })) {
+    return <span className="successPill">do {until}</span>;
+  }
+  return <span className="warningPill" title="Polecenie nie jest już wyświetlane publicznie">{until ? `wygasło ${until}` : "brak daty"}</span>;
+}

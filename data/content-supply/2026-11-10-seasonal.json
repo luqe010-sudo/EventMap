@@ -1,0 +1,143 @@
+{
+  "checked_at": "2026-11-10T14:55:59Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Paczka sezonowa: jarmarki bożonarodzeniowe w dużych miastach brakujących na stronie /jarmarki-bozonarodzeniowe. Dodano tylko pozycje z potwierdzonym w oficjalnym źródle terminem, godziną rozpoczęcia i miejscem. Kraków, Łódź, Lublin, Szczecin, Bydgoszcz, Opole, Rzeszów i Gdynia odłożono, bo brakowało oficjalnej daty albo godzin.",
+  "events": [
+    {
+      "title": "Jarmark Bożonarodzeniowy w Katowicach 2026",
+      "category_slug": "targi",
+      "start_at": "2026-11-20T11:00:00+01:00",
+      "end_at": "2027-01-06T20:00:00+01:00",
+      "short_description": "Bezpłatny jarmark na katowickim Rynku i placu Obrońców Katowic, od 20 listopada.",
+      "description": "Świąteczne domki z rękodziełem i jedzeniem staną na Rynku oraz na nowym terenie przy placu Obrońców Katowic. Wstęp jest wolny. Stoiska handlowe działają od poniedziałku do czwartku w godz. 10:00–20:00, a od piątku do niedzieli w godz. 10:00–21:00. Gastronomia jest czynna do 22:00. Według PIK Katowice w Wigilię jarmark działa w godz. 10:00–14:00, w Sylwestra w godz. 10:00–16:00, a 1 stycznia w godz. 12:00–20:00. Miejska informacja podaje 6 stycznia jako ostatni dzień, a organizator zapowiada jarmark do 10 stycznia.",
+      "location": {
+        "name": "Rynek w Katowicach",
+        "address": "Rynek, 40-003 Katowice",
+        "city": "Katowice",
+        "latitude": 50.259253,
+        "longitude": 19.021736,
+        "coordinate_source": "https://pl.wikipedia.org/wiki/Rynek_w_Katowicach",
+        "coordinate_note": "Współrzędne nazwanego Rynku z artykułu Wikipedii. PIK Katowice wskazuje Rynek jako główną lokalizację jarmarku."
+      },
+      "source_name": "PIK Katowice",
+      "source_url": "https://pik.katowice.pl/jarmark-bozonarodzeniowy-w-katowicach/",
+      "evidence_urls": [
+        "https://www.jarmarkslaski.pl/jarmark-bozonarodzeniowy-w-katowicach-2026/"
+      ],
+      "seo_intent": "jarmark bożonarodzeniowy Katowice 2026 godziny otwarcia, Wigilia i Sylwester",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki jarmarku na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T14:55:59Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T14:55:59Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Toruński Jarmark Bożonarodzeniowy 2026",
+      "category_slug": "targi",
+      "start_at": "2026-11-20T12:30:00+01:00",
+      "end_at": "2026-12-20T21:00:00+01:00",
+      "short_description": "Jarmark na Rynku Staromiejskim z około 100 wystawcami i programem na scenie.",
+      "description": "Toruński jarmark zajmie Rynek Staromiejski. Stoiska działają od poniedziałku do czwartku w godz. 12:30–20:30, w piątki w godz. 12:30–22:00, w soboty w godz. 10:00–22:00 i w niedziele w godz. 10:00–21:00. Uroczysta inauguracja z koncertem Sary Pach odbędzie się w sobotę 21 listopada o 20:00. Na stronie organizatora widnieje termin do 20 grudnia, a w zapowiedzi miasta i w części materiałów organizatora – do 6 stycznia 2027 roku.",
+      "location": {
+        "name": "Rynek Staromiejski",
+        "address": "Rynek Staromiejski, Toruń",
+        "city": "Toruń",
+        "latitude": 53.010592,
+        "longitude": 18.604428,
+        "coordinate_source": "https://pl.wikipedia.org/wiki/Rynek_Staromiejski_w_Toruniu",
+        "coordinate_note": "Współrzędne nazwanego Rynku z artykułu Wikipedii. Organizator wskazuje Rynek Staromiejski jako miejsce jarmarku."
+      },
+      "source_name": "Toruński Jarmark Bożonarodzeniowy",
+      "source_url": "https://jarmarktorun.pl/",
+      "evidence_urls": [
+        "https://www.torun.com.pl/99529/torunski-jarmark-bozonarodzeniowy-20262027-niemal-50-dni-swiatecznych-atrakcji-100-wy"
+      ],
+      "seo_intent": "jarmark bożonarodzeniowy Toruń 2026 godziny otwarcia i do kiedy",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki jarmarku na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T14:55:59Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T14:55:59Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Jarmark Bożonarodzeniowy Betlejem Poznańskie 2026 — otwarcie",
+      "category_slug": "targi",
+      "start_at": "2026-11-20T18:00:00+01:00",
+      "short_description": "Otwarcie poznańskiego jarmarku: plac Wolności do 6 stycznia, Stary Rynek od 21 listopada.",
+      "description": "Program organizatora zapowiada oficjalne otwarcie Betlejem Poznańskiego na placu Wolności w piątek 20 listopada o 18:00. Świąteczne stoiska na placu Wolności działają od 20 listopada 2026 do 6 stycznia 2027 roku, a na Starym Rynku od 21 listopada do 6 stycznia. Organizator nie opublikował jeszcze godzin otwarcia stoisk na ten sezon.",
+      "location": {
+        "name": "Plac Wolności",
+        "address": "Plac Wolności, Poznań",
+        "city": "Poznań",
+        "latitude": 52.408111,
+        "longitude": 16.927611,
+        "coordinate_source": "https://pl.wikipedia.org/wiki/Plac_Wolno%C5%9Bci_w_Poznaniu",
+        "coordinate_note": "Współrzędne nazwanego placu z artykułu Wikipedii. Program wskazuje plac Wolności jako miejsce otwarcia."
+      },
+      "source_name": "Betlejem Poznańskie",
+      "source_url": "https://betlejempoznanskie.pl/",
+      "evidence_urls": [],
+      "seo_intent": "Betlejem Poznańskie 2026 otwarcie, plac Wolności i Stary Rynek",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki jarmarku na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T14:55:59Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T14:55:59Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Jarmark Nowy Świąteczny Targ we Wrocławiu 2026 — otwarcie",
+      "category_slug": "targi",
+      "start_at": "2026-11-20T15:00:00+01:00",
+      "short_description": "Bezpłatny jarmark na placu Nowy Targ, od 20 listopada do 20 grudnia.",
+      "description": "Plac Nowy Targ zmieni się w świąteczny targ z rękodziełem lokalnych twórców i ofertą gastronomiczną. Pierwszy dzień rusza w piątek 20 listopada o 15:00, a jarmark potrwa do 20 grudnia. Wstęp jest wolny. To osobny jarmark, niezależny od jarmarku na wrocławskim Rynku. Godziny w kolejne dni nie zostały jeszcze opublikowane.",
+      "location": {
+        "name": "Plac Nowy Targ",
+        "address": "Plac Nowy Targ, Wrocław",
+        "city": "Wrocław",
+        "latitude": 51.111232,
+        "longitude": 17.038199,
+        "coordinate_source": "https://pl.wikipedia.org/wiki/Plac_Nowy_Targ_we_Wroc%C5%82awiu",
+        "coordinate_note": "Współrzędne nazwanego placu z artykułu Wikipedii. Miejski kalendarz wskazuje plac Nowy Targ jako miejsce jarmarku."
+      },
+      "source_name": "Wrocław — kalendarz wydarzeń",
+      "source_url": "https://www.wroclaw.pl/go/wydarzenia/rozrywka/1417760-jarmark-bozonarodzeniowy-nowy-swiateczny-targ",
+      "evidence_urls": [
+        "http://www.jarmarkwroclaw.pl"
+      ],
+      "seo_intent": "jarmark Nowy Targ Wrocław 2026, termin i wstęp",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki jarmarku na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T14:55:59Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T14:55:59Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

@@ -1,5 +1,14 @@
 # Current Features
 
+## Płatne polecanie wydarzeń — 2026-11-23
+
+- Nowa publiczna strona `/promowanie-wydarzen` (w `sitemap-main.xml`): cena 39 zł brutto za wydarzenie, sprzedawca zwolniony z VAT, wyróżnienie do dnia zakończenia wydarzenia (maks. 30 dni), korzyści, kroki zamówienia i dane sprzedawcy. Linki: stopka („Promuj wydarzenie – 39 zł”), `/dla-organizatorow`, notka pod karuzelą „Polecane wydarzenia”.
+- Karuzela „Polecane wydarzenia” oznacza rekordy `is_featured` etykietą „Promowane” i informuje w opisie, że płatne wyróżnienia są pokazywane najpierw.
+- Panel organizatora: na dashboardzie ramka z ofertą; w „Moje wydarzenia” notka i kolumna „Polecenie” (`Polecane` / `Zamów polecenie` / `Niedostępne`). „Zamów polecenie” otwiera gotowy e-mail na `kontakt@mapaimprez.pl` z danymi wydarzenia i polami na dane do rachunku.
+- Panel użytkownika `/account`: ramka z ofertą i przyciskiem „Zostań organizatorem”.
+- Koniec polecenia jest w `events.featured_until`: admin ma pole „Promowane do”, lista admina pokazuje datę lub „wygasło”, organizator widzi „Polecane do DD.MM”. Po terminie polecenie znika samo.
+- Regulamin: punkt 10 „Płatne polecanie wydarzeń” (`#platne-polecanie`), dane sprzedawcy w punkcie 1, dane rozliczeniowe w polityce prywatności. Szczegóły procesu: `docs/paid-promotion.md`.
+
 ## Poprawki panelu po audycie — 2026-11-01
 
 Usuwanie wydarzenia w panelu admina wymaga potwierdzenia. Nowe wydarzenie admina startuje jako szkic, a organizatora trzeba wybrać. Formularz odrzuca daty późniejsze niż 3 lata od dziś. Statusy są opisane po polsku, a „Opublikuj” nie pojawia się przy opublikowanych. `/admin/cities` listuje rekordy `cities`; `city_pages` przechowuje opcjonalne treści SEO, a identyfikator w adresie edycji to id miasta.
@@ -37,7 +46,7 @@ Listy admina/moderacji mają pełny licznik i nawigację po 50 rekordów z zacho
 
 Formularz admina/organizatora zachowuje dane i plik po niepotwierdzonym lub częściowym zapisie. Pokazuje, czy samo wydarzenie się zapisało, oraz linki do edytora i listy w nowych kartach. Pola pozostają dostępne do skopiowania, ale potwierdzonego częściowego zapisu nie można ponownie wysłać tym formularzem. Przy nieznanym wyniku ponowienie jest dostępne dopiero po świadomym sprawdzeniu braku zapisu. Awaria źródła nie pomija decyzji moderacyjnej; kopiowanie i szybka zmiana statusu mają własne czytelne ostrzeżenia. Edytor i zapis wybierają to samo pierwsze źródło.
 
-Nowe żądania publicznej listy, mapy, szczegółów, aliasów i sitemap odczytują aktualną publikację bez wielominutowego cache ISR/CDN. Actions odświeżają wszystkie publiczne trasy również po częściowym zapisie. Już wczytany widok wymaga odświeżenia; aplikacja nie wysyła aktualizacji na żywo.
+Publiczne strony, API, aliasy i sitemapy pozostają dynamiczne. Po włączeniu cache mapy nowe żądania punktów korzystają ze wspólnego pakietu po stronie serwera. Zapis w panelu lub webhook Supabase odświeża pakiet przy kolejnym odczycie, a zapasowy limit świeżości to 5 minut. Już wczytany widok aktualizuje się przy kolejnym pobraniu punktów. [Konfiguracja cache mapy](deployment.md#cache-punktów-mapy).
 
 328 testów, TypeScript i build przeszły. Statyczny formularz z syntetycznymi danymi potwierdził oba stany/motywy przy 360/390/768/1440 px bez overflow; nie zastępuje realnego odbioru sesji. Nowy pakiet pozostaje lokalny. Pełne transakcje/idempotencja A04 i staging nadal są otwarte; [projekt rozwiązania bazy](event-write-transaction-proposal.md) nie został wykonany.
 
@@ -160,12 +169,12 @@ Strona główna `/`:
 - w sidebarze pokazuje osobne karty z mapą MapLibre, nadchodzącymi wydarzeniami i popularnymi kategoriami;
 - wydarzenia w sekcji `Nadchodzące wydarzenia` linkują do swoich stron szczegółowych, a odnośnik `Zobacz kalendarz wydarzeń` przewija bieżącą stronę do pełnej listy;
 - ikony serca w sekcji `Nadchodzące wydarzenia` używają tej samej logiki `saved_events`, co przyciski zapisu na głównych kartach wydarzeń;
-- mapa w sidebarze ładuje się automatycznie dopiero po zbliżeniu panelu mapy do viewportu oraz po krótkim idle/delay, żeby pierwsze ładowanie strony nie pobierało od razu MapLibre, pinesek i kafelków mapowych; przycisk w placeholderze pozwala przyspieszyć ładowanie ręcznie;
+- pobieranie pinezek zaczyna się po zbliżeniu do mapy w panelu bocznym lub po otwarciu mapy. MapLibre i kafelki panelu bocznego ładują się po krótkim odczekaniu. Przycisk pozwala otworzyć mapę wcześniej;
 - mapa w sidebarze po załadowaniu jest osadzona w osobnej karcie z nagłówkiem, wewnętrznym marginesem i zaokrągleniem;
 - mapa na starcie używa zasięgu `Cała Polska`, obejmuje kadrem całą Polskę i pokazuje wydarzenia bez ograniczenia promieniem;
-- mapa grupuje blisko położone wydarzenia w klastry; klastry mają ograniczony promień i rozbijają się na pojedyncze pineski przy średnim przybliżeniu, a kliknięcie klastra przybliża widok.
+- mapa grupuje blisko położone wydarzenia osobno dla każdej kategorii. Skupisko ma tę samą ikonę i podobny biały obrys co pojedyncza pinezka. Delikatna poświata wyróżnia skupisko, a jego średnica rośnie wraz z liczbą wydarzeń. Kliknięcie przybliża widok.
 - mapa pobiera osobny lekki zestaw punktów z poprawnymi współrzędnymi dla aktualnych filtrów, niezależnie od paginowanej listy kart. Powyżej 10 000 punktów zgłasza błąd zamiast przycinać zestaw; licznik „na mapie” może być mniejszy od liczby wyników listy.
-- pojedyncze pineski i klastry są kompaktowe, używają koloru oraz ikon kategorii wydarzeń i mają wyraźną przezroczystość; zaznaczona pinezka pozostaje mocniejsza, a wydarzenia z tymi samymi współrzędnymi są lekko rozsuwane wizualnie, żeby nie nachodziły idealnie na siebie.
+- przy dużym zbliżeniu pinezki, które nachodziłyby na siebie, rozsuwają się automatycznie. Linie wskazują rzeczywiste położenie wydarzeń, a każda pinezka zachowuje swoją ikonę i kolor. Gdy w grupie jest więcej pinezek, niż mieści się w dostępnym miejscu, można przejść do kolejnych.
 - popup pojedynczej pineski pokazuje zdjęcie wydarzenia, klikalny tytuł prowadzący do szczegółów, adres i krótki opis.
 - podstrony zakończonych, nadal opublikowanych wydarzeń pozostają dostępne i indeksowalne; zdjęcie jest wyszarzone, a komunikat kieruje do przyszłych podobnych wydarzeń. Nieaktualny link do biletów jest na takim widoku ukryty.
 - publiczne szczegóły wydarzeń są renderowane jako statyczne ISR z krótką rewalidacją; prywatny stan przycisku zapisu jest dociągany po stronie klienta, aby nie wymuszać dynamicznego HTML dla botów i niezalogowanych użytkowników.
@@ -193,7 +202,7 @@ Starszy komponent `EventExplorer`, zachowany w repozytorium:
 
 - aktualne publiczne trasy kategorii i miasta używają `HomePage`; `EventExplorer` nie jest do nich podłączony;
 - pokazuje listę i mapę MapLibre;
-- grupuje markery wydarzeń w klastry i pozwala wybierać pojedyncze wydarzenia z mapy;
+- grupuje wydarzenia w skupiska według kategorii i pozwala wybierać pojedyncze wydarzenia z mapy;
 - pozwala filtrować po presetach daty albo niestandardowym zakresie dat;
 - pozwala wybrać wydarzenie i zobaczyć szczegóły w panelu.
 
@@ -325,7 +334,7 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 - `/register` obsluguje rejestracje przez Google OAuth oraz email/haslo, z wyborem roli: Widz (rola `user`) lub Organizator (rola `organizer`), wymaganym checkboxem akceptacji regulaminu oraz osobnym potwierdzeniem zapoznania sie z polityka prywatnosci / RODO i polityka cookies. Dla organizatorów automatycznie tworzy profil organizacyjny (`organizers` i `organizer_users`).
 - Callback `/auth/callback` wymienia kod Google na sesje SSR i wykrywa, gdy pierwsze "logowanie" Google w rzeczywistosci utworzylo konto Auth.
 - Nowe konto rozpoczęte z `/login` trafia obowiązkowo na `/auth/onboarding`, gdzie użytkownik akceptuje dokumenty i wybiera rolę przed utworzeniem/uzupełnieniem profilu aplikacyjnego.
-- Przepływ Google nie pozwala nadać roli `admin`; dla roli organizatora tworzy wymagane `organizers` i `organizer_users`.
+- Przy rejestracji Google organizator otrzymuje profil organizacji, członkostwo i rolę przez `upgrade_my_organizer_account`. Aktualizacja aplikacji wymaga wcześniejszego wdrożenia tej funkcji w Supabase. [Kolejność wdrożenia](organizer-account-upgrade-proposal.md).
 - `signInAction()`, `signInWithGoogleAction()` oraz `signUpAction()` używają Supabase Auth.
 - `/account` jest panelem konta Widza: pozwala ustawić `profiles.display_name` oraz wyświetlać i usuwać zapisane wydarzenia; organizatora przekierowuje do `/organizer`.
 - Organizator edytuje nazwę użytkownika w `/organizer/settings`, a zapisane wydarzenia przegląda w osobnej zakładce `/organizer/saved` swojego panelu.
@@ -408,6 +417,8 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 
 ## Panel organizatora
 
+Po zalogowaniu użytkownik wraca do otwieranej podstrony panelu. Lista wydarzeń zachowuje w adresie poprawne filtry. Odnowienie sesji na trasach panelu przekazuje aktualne cookies do przeglądarki.
+
 `/organizer`:
 
 - pokazuje statusy wydarzeń;
@@ -434,15 +445,15 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 - pelni role dashboardu organizatora;
 - pokazuje liczniki aktywnych wydarzen, wydarzen do zatwierdzenia, miesiecznych wyswietlen i klikniec kontaktu;
 - pokazuje najblizsze wydarzenia, powiadomienia panelowe / komunikaty wynikajace z odrzuconych wydarzen, miejsca uzywane w wydarzeniach oraz podstawowe statystyki;
-- zwykly zalogowany uzytkownik moze z tego miejsca rozszerzyc konto o konto organizatora, co tworzy `organizers`, `organizer_users` i zmienia role profilu na `organizer`;
+- zalogowany użytkownik może rozszerzyć konto. Supabase tworzy organizację, członkostwo `owner` i nadaje rolę `organizer` w jednej transakcji przez `upgrade_my_organizer_account`;
 - pokazuje empty state, jesli konto ma role `organizer`, ale nie ma wpisu w `organizer_users`.
 
 `/organizer/events`:
 
 - lista wydarzen organizatora;
-- filtrowanie po statusie oraz zakresie dat;
+- filtrowanie po statusie oraz zakresie dat w `Europe/Warsaw`. Filtr „Szkic” obejmuje również starsze wydarzenia bez zapisanego statusu;
 - statusy prezentowane jako: szkic, oczekuje, opublikowane, odrzucone, archiwalne;
-- szybkie akcje: edytuj, ukryj, anuluj, duplikuj;
+- szybkie akcje edycji, ukrycia, anulowania i duplikacji. Anulowanie wymaga potwierdzenia. Akcje ukrycia i anulowania znikają, gdy operacja została już wykonana;
 - podglad publiczny dostepny tylko dla wydarzen opublikowanych, publicznych i nieanulowanych;
 - przy odrzuconych wydarzeniach pokazuje ostatnia uwage admina z `events.review_note`;
 - mini-checklista jakosci wydarzenia.
@@ -451,6 +462,7 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 
 - dodaje wydarzenie ze statusem `pending_review`;
 - przypisuje wydarzenie do organizatora uzytkownika;
+- przy kolizji automatycznego adresu zapisuje wydarzenie z unikalnym dopiskiem. Kolizja ręcznie wpisanego adresu pokazuje błąd przy polu;
 - interaktywny picker lokalizacji z mini-mapa, wyszukiwaniem adresow i automatycznym geokodowaniem;
 - pozwala wybrac znane miejsce z listy lokalizacji przed wpisywaniem nowej lokalizacji;
 - pozwala wgrac obraz wydarzenia do Cloudinary albo podac zewnetrzny link.
@@ -459,6 +471,8 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 
 - edytuje tylko wlasne wydarzenie;
 - po edycji opublikowanego wydarzenia ustawia `pending_review`;
+- wykrywa zmianę statusu, widoczności, anulowania lub czasu aktualizacji, która nastąpi w trakcie zapisu formularza. Po konflikcie pozostawia dane w formularzu;
+- wyczyszczenie obu pól źródła usuwa nazwę i URL pierwszego źródła;
 - pozwala zmienic obraz wydarzenia przez upload do Cloudinary albo zewnetrzny link;
 - pokazuje checkliste jakosci: tytul, data, lokalizacja, opis minimum 300 znakow, zdjecie glowne, kategoria, link do biletow / strony i cena.
 - pokazuje historie moderacji z `event_moderation_logs`.
@@ -484,6 +498,8 @@ Gdy użytkownik wywoła adres URL z miastem, które nie istnieje w bazie danych 
 - pozwala zaktualizowac nazwe kontaktowa profilu;
 - pokazuje powiazanych organizatorow;
 - dla zwyklego konta udostepnia rozszerzenie do konta organizatora.
+
+Produkcyjny Supabase ma reguły edycji własnej organizacji, ukrywania opublikowanego wydarzenia i ochrony właściciela. Panel i onboarding Google na produkcji korzystają z funkcji rozszerzania konta. [Ochrona zapisu organizatora](organizer-write-hardening-proposal.md) · [Rozszerzenie konta](organizer-account-upgrade-proposal.md).
 
 ## Stany techniczne
 

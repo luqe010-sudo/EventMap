@@ -125,6 +125,14 @@ Przy edycji:
 - jeśli wydarzenie było `published`, status wraca na `pending_review`;
 - jeśli wydarzenie miało inny status, pozostaje przy dotychczasowym statusie albo `pending_review`.
 
+## Płatne polecanie
+
+- Cena: 39 zł brutto za jedno wydarzenie; sprzedawca (DevilEnergy Łukasz Szypuła) jest zwolniony z VAT, więc 39 zł to cena końcowa.
+- Wyróżnienie = `events.is_featured = true` i `events.featured_until > now()`, ustawiane wyłącznie przez admina po zaksięgowaniu wpłaty. Organizator nie może ustawić tych pól.
+- Domyślnie trwa do końca dnia zakończenia wydarzenia (Europe/Warsaw), maks. 30 dni od włączenia; po `featured_until` wygasa automatycznie.
+- Zamówić można dla wydarzenia `published` lub `pending_review`, publicznego, nieodwołanego i niezakończonego (`getPromotionState` w `lib/promotion.ts`).
+- Każde wyróżnione wydarzenie w karuzeli musi mieć widoczną etykietę „Promowane” (oznaczenie płatnego pozycjonowania).
+
 ## Usuwanie wydarzeń
 
 Admin deletion w `adminDeleteEventAction()` usuwa kolejno:

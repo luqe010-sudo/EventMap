@@ -1,10 +1,11 @@
 import { PublicSearchInputError } from "./public-search-params";
 import { resolveDateRange } from "./date-range";
-import { publicDateLowerBoundExpression } from "./event-dates";
+import { eventOverlapsWindow, publicDateLowerBoundExpression } from "./event-dates";
 import type { Database } from "@/database.types";
 import { createSupabaseServerClient } from "@/lib/supabase";
 import { toPluralCategoryName, toPluralCategorySlug, toSlug } from "@/lib/slugs";
 import { toAppDate } from "@/lib/date-format";
+import { isPromotionActive } from "@/lib/promotion";
 import { slugify } from "@/lib/slugify";
 import type { DateFilter, PriceFilterMode } from "@/lib/filters";
 import { comparePublicSearchItems, distanceBetweenCoordinates, hasLocationCoordinates, radiusBoundingBox, type Coordinates, type PublicEventSort } from "./event-search";
@@ -44,6 +45,7 @@ export type EventWithRelations = Pick<
   | "status"
   | "visibility"
   | "is_featured"
+  | "featured_until"
   | "is_verified"
   | "is_cancelled"
   | "updated_at"
@@ -218,6 +220,15 @@ type PublicSearchRecord = SupabaseEventMarkerRecord & {
   location: (NonNullable<SupabaseEventMarkerRecord["location"]> & Pick<LocationRow, "id">) | null;
 };
 
+type PublicMarkerInventoryRecord = PublicSearchRecord & Pick<
+  EventRow, "end_at" | "category_id" | "price_type" | "price_min" | "price_max"
+>;
+
+export type PublicMarkerInventory = {
+  dateFrom: string;
+  records: PublicMarkerInventoryRecord[];
+};
+
 type SupabaseEventSitemapRecord = Pick<EventRow, "slug" | "start_at" | "updated_at"> & {
   category: Pick<CategoryRow, "slug"> | null;
   location: {
@@ -250,6 +261,7 @@ const EVENT_SELECT = `
   status,
   visibility,
   is_featured,
+  featured_until,
   is_verified,
   is_cancelled,
   updated_at,
@@ -276,6 +288,7 @@ const EVENT_SELECT_WITH_INNER_LOCATION = `
   status,
   visibility,
   is_featured,
+  featured_until,
   is_verified,
   is_cancelled,
   updated_at,
@@ -401,10 +414,14 @@ export async function searchPublicEvents(options: PublicEventSearchOptions = {})
   };
 }
 
-export async function searchPublicEventMarkers(options: PublicEventSearchOptions = {}): Promise<EventMapMarker[]> {
+export async function searchPublicEventMarkers(
+  options: PublicEventSearchOptions = {},
+  readInventory?: () => Promise<PublicMarkerInventory | null>
+): Promise<EventMapMarker[]> {
   const context = await resolvePublicSearchContext(options);
   if (!context) return [];
-  const records = await collectPublicSearchRecords(context);
+  const cachedRecords = readInventory ? await filterPublicMarkerInventory(context, readInventory) : null;
+  const records = cachedRecords ?? await collectPublicSearchRecords(context);
   const markers = records.map(mapEventMarkerRecord).filter(hasMarkerCoordinates);
   const markerLimit = clampPublicInteger(options.maxResults, PUBLIC_EVENT_MARKER_LIMIT, 1, PUBLIC_EVENT_MARKER_LIMIT);
   if (markers.length > markerLimit) {
@@ -567,7 +584,7 @@ function buildPublicSearchQuery(context: PublicSearchContext, select: string) {
       query = query.gte("location.longitude", bounds.minLongitude).lte("location.longitude", bounds.maxLongitude);
     }
   }
-  if (context.options.featuredOnly) query = query.eq("is_featured", true);
+  if (context.options.featuredOnly) query = query.eq("is_featured", true).gt("featured_until", new Date().toISOString());
   return applyPublicPriceFilters(query, context.options);
 }
 
@@ -623,6 +640,45 @@ async function collectPublicSearchRecords(context: PublicSearchContext) {
   return context.radiusKm == null ? records : records.filter(record =>
     distanceBetweenCoordinates(context.origin, getSearchRecordCoordinates(record)) <= context.radiusKm!
   );
+}
+
+export async function readPublicMarkerInventory(dateFrom: string): Promise<PublicMarkerInventory> {
+  const context: PublicSearchContext = { options: {}, dateRange: { dateFrom } };
+  const select = `${PUBLIC_SEARCH_SELECT_WITH_INNER_LOCATION}, end_at, category_id, price_type, price_min, price_max`;
+  const records = await readAllPublicRows((from, to) => buildPublicSearchQuery(context, select)
+    .gte("location.latitude", -90).lte("location.latitude", 90)
+    .gte("location.longitude", -180).lte("location.longitude", 180)
+    .range(from, to).returns<PublicMarkerInventoryRecord[]>());
+  return { dateFrom, records };
+}
+
+async function filterPublicMarkerInventory(
+  context: PublicSearchContext,
+  readInventory: () => Promise<PublicMarkerInventory | null>
+) {
+  const { options, dateRange, categoryId, cityId, origin, radiusKm } = context;
+  if (!dateRange.dateFrom || options.includeCancelled || options.featuredOnly) return null;
+
+  const from = toAppDate(dateRange.dateFrom);
+  const to = dateRange.dateTo ? toAppDate(dateRange.dateTo) : null;
+  const inventory = await readInventory();
+  if (!inventory || !(from >= toAppDate(inventory.dateFrom))) return null;
+
+  const maxPrice = clampPublicMaxPrice(options.maxPrice ?? 100);
+  return inventory.records.filter(record => {
+    if (categoryId && categoryId !== record.category_id) return false;
+    if (cityId && cityId !== record.location?.city_id) return false;
+    if (!eventOverlapsWindow(record.start_at, record.end_at, from, to)) return false;
+    if (radiusKm != null && distanceBetweenCoordinates(origin, getSearchRecordCoordinates(record)) > radiusKm) return false;
+
+    const isFree = record.price_type === "free" || record.price_type === "bezplatne";
+    if (options.priceMode === "free") return isFree;
+    if (options.priceMode === "max") {
+      return isFree || (record.price_min != null && record.price_min <= maxPrice)
+        || (record.price_max != null && record.price_max <= maxPrice);
+    }
+    return true;
+  });
 }
 
 async function readPublicSearchPage(context: PublicSearchContext, selectedRecords: PublicSearchRecord[]) {
@@ -1018,6 +1074,7 @@ function mapEventRecord(record: SupabaseEventRecord): EventItem {
     status: record.status,
     visibility: record.visibility,
     is_featured: record.is_featured,
+    featured_until: record.featured_until,
     is_verified: record.is_verified,
     is_cancelled: record.is_cancelled,
     updated_at: record.updated_at,
@@ -1050,7 +1107,7 @@ function mapEventRecord(record: SupabaseEventRecord): EventItem {
     price: formatPrice(record),
     tags: [],
     sourceType: "supabase",
-    isFeatured: Boolean(record.is_featured)
+    isFeatured: isPromotionActive(record)
   };
 }
 

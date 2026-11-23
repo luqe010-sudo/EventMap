@@ -1,0 +1,684 @@
+{
+  "checked_at": "2026-11-10T10:58:09Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Polska. Województwa dolnośląskie, kujawsko-pomorskie, lubelskie, lubuskie, małopolskie, podkarpackie, pomorskie, śląskie, świętokrzyskie, warmińsko-mazurskie, wielkopolskie i zachodniopomorskie. Miasta z małą ofertą i różne formy wydarzeń.",
+  "events": [
+    {
+      "title": "Potańcówka Niepodległościowa",
+      "category_slug": "imprezy",
+      "start_at": "2026-11-11T14:00:00+01:00",
+      "end_at": "2026-11-11T16:00:00+01:00",
+      "short_description": "Otwarta potańcówka i wspólna nauka poloneza na Targu Rybnym.",
+      "description": "Miejski Ośrodek Kultury zaprasza na plenerowe tańce na olsztyńskiej Starówce. W programie jest wspólna nauka kroków poloneza. Wstęp wolny.",
+      "location": {
+        "city": "Olsztyn",
+        "name": "Targ Rybny",
+        "address": "Targ Rybny",
+        "latitude": 53.7773,
+        "longitude": 20.4764,
+        "coordinate_source": "https://commons.wikimedia.org/wiki/Category:Rybny_Square_in_Olsztyn",
+        "coordinate_note": "Współrzędne nazwanego placu na mapie Wikimedia/OpenStreetMap. MOK wskazuje sam plac jako miejsce potańcówki."
+      },
+      "source_name": "MOK Olsztyn",
+      "source_url": "https://mok.olsztyn.pl/wydarzenia/potancowka-niepodleglosciowa/",
+      "evidence_urls": [
+        "https://gen.warmia.mazury.pl/wydarzenie/potancowka-niepodleglosciowa-olsztyn/"
+      ],
+      "checked_at": "2026-11-10T10:55:43Z",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę zapewnia EventVisual.",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:55:43Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Yehuda Prokopowicz — recital fortepianowy",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-11T17:00:00+01:00",
+      "short_description": "Recital fortepianowy z utworami Chopina, Mozarta i Bartóka.",
+      "description": "Yehuda Prokopowicz, laureat nagrody za wykonanie mazurków w XIX Konkursie Chopinowskim, zagra w Nowosolskim Domu Kultury. Wieczór poprowadzi krytyk muzyczny Jan Popis. Bilety online od 22 zł.",
+      "location": {
+        "name": "Nowosolski Dom Kultury",
+        "address": "Marszałka Józefa Piłsudskiego 49",
+        "city": "Nowa Sól",
+        "latitude": 51.8090610989895,
+        "longitude": 15.7122921073345,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Nowa%20S%C3%B3l%2C%20Marsza%C5%82ka%20J%C3%B3zefa%20Pi%C5%82sudskiego%2049",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK. Miasto, ulica i numer zgodne z adresem obiektu."
+      },
+      "source_name": "Nowosolski Dom Kultury — Bilety24",
+      "source_url": "https://nowosolski.bilety24.pl/wydarzenie/?id=168151",
+      "evidence_urls": [
+        "https://www.bilety24.pl/kup-bilet-na-1679-yehuda-prokopowicz-recital-fortepianowy--168151?id=1008385"
+      ],
+      "price_type": "paid",
+      "price_min": 22,
+      "price_max": null,
+      "currency": "PLN",
+      "checked_at": "2026-11-10T10:55:34Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:55:34Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd źródeł nie potwierdził prawa do publikacji oficjalnych materiałów na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Przyroda w dzień i w nocy — wernisaż Ewy Mikuły",
+      "category_slug": "kultura",
+      "start_at": "2026-11-13T16:30:00+01:00",
+      "short_description": "Bezpłatne otwarcie wystawy malarstwa w filii Pobitno.",
+      "description": "Ewa Mikuła pokazuje obrazy inspirowane ogrodami, drzewami i pejzażami. Wstęp na wernisaż jest wolny. Później wystawę można oglądać do 3 grudnia w dni robocze od 13:00 do 20:00.",
+      "location": {
+        "name": "Rzeszowski Dom Kultury — filia Pobitno",
+        "address": "Konfederatów Barskich 43a",
+        "city": "Rzeszów",
+        "latitude": 50.0460818159605,
+        "longitude": 22.0270178323953,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Rzesz%C3%B3w%2C%20Konfederat%C3%B3w%20Barskich%2043a",
+        "coordinate_note": "GUGiK UUG, dokładna miejscowość, ulica i numer budynku."
+      },
+      "source_name": "Rzeszowski Dom Kultury",
+      "source_url": "https://rdk.rzeszow.pl/od-13-listopada-do-3-grudnia-2026-wystawa-malarstwa-ewy-mikuly-przyroda-w-dzien-i-w-nocy/",
+      "evidence_urls": [
+        "https://rdk.rzeszow.pl/kalendarz/wernisaz-wystawy-malarstwa-ewy-mikuly-przyroda-w-dzien-i-w-nocy/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "checked_at": "2026-11-10T10:54:53Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:54:53Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Spotkanie z pieśnią — koncert kameralny",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-14T19:00:00+01:00",
+      "end_at": "2026-11-14T20:00:00+01:00",
+      "short_description": "Pieśni i muzyka fortepianowa w Filharmonii Gorzowskiej.",
+      "description": "Gabriela Stolińska i Aleksander Kaczuk-Jagielnik wystąpią z pianistami Małgorzatą Rusak-Mietlińską i Pawłem Popką. Program obejmuje m.in. pieśni Schuberta i Moniuszki, a wprowadzenie wygłosi prof. Joanna Subel. Wstęp na bezpłatne wejściówki.",
+      "location": {
+        "name": "Filharmonia Gorzowska",
+        "address": "Dziewięciu Muz 10",
+        "city": "Gorzów Wielkopolski",
+        "latitude": 52.7359839042272,
+        "longitude": 15.2471397860072,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Gorz%C3%B3w%20Wielkopolski%2C%20Dziewi%C4%99ciu%20Muz%2010",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK. Miasto, ulica i numer zgodne z adresem obiektu."
+      },
+      "source_name": "Karta Miejska Gorzów Wielkopolski",
+      "source_url": "https://kartamiejska.um.gorzow.pl/wydarzenia/5146-spotkanie-z-piesnia-koncert-kameralny",
+      "evidence_urls": [
+        "https://akjfoundation.com/spotkaniezpiesnia",
+        "https://www.filharmoniagorzowska.pl/kontakt"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "checked_at": "2026-11-10T10:55:33Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:55:33Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd źródeł nie potwierdził prawa do publikacji oficjalnych materiałów na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Spotkanie z Renatą Dancewicz",
+      "category_slug": "kultura",
+      "start_at": "2026-11-16T17:00:00+01:00",
+      "short_description": "Rozmowa z aktorką w szczecineckiej bibliotece przy Wyszyńskiego 34.",
+      "description": "Renata Dancewicz opowie o pracy w filmie, telewizji i teatrze. Organizator zapowiada możliwość zadawania pytań. Wstęp jest bezpłatny.",
+      "location": {
+        "city": "Szczecinek",
+        "name": "Miejska Biblioteka Publiczna im. B. Horodyskiego",
+        "address": "Wyszyńskiego 34",
+        "latitude": 53.7072546791801,
+        "longitude": 16.6989708230317,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Szczecinek%2C%20Wyszy%C5%84skiego%2034",
+        "coordinate_note": "Jedyny dokładny punkt adresowy GUGiK dla Wyszyńskiego 34. Miejski kalendarz wskazuje siedzibę biblioteki pod tym adresem."
+      },
+      "source_name": "Miasto Szczecinek",
+      "source_url": "https://szczecinek.pl/kalendarz-wydarzen/1525-renata-dancewicz-gosciem-miejskiej-biblioteki-publicznej.html",
+      "evidence_urls": [
+        "https://sapik.szczecinek.pl/kalendarz-wydarzen/spotkanie-z-renata-dancewicz.html"
+      ],
+      "checked_at": "2026-11-10T10:56:11Z",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę zapewnia EventVisual.",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:56:11Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Polska – Turcja — kwalifikacje do EuroBasketu kobiet 2027",
+      "category_slug": "mecze",
+      "start_at": "2026-11-17T17:00:00+01:00",
+      "short_description": "Mecz reprezentacji Polski koszykarek w Arenie Gorzów.",
+      "description": "Polska podejmie Turcję w drugiej rundzie kwalifikacji do mistrzostw Europy kobiet w 2027 roku. Mecz rozpocznie się o 17:00 w Arenie Gorzów. Bilety w eBilet od 21,90 zł.",
+      "location": {
+        "name": "Arena Gorzów",
+        "address": "Słowiańska 16",
+        "city": "Gorzów Wielkopolski",
+        "latitude": 52.74475,
+        "longitude": 15.21643,
+        "coordinate_source": "https://arenagorzow.pl/",
+        "coordinate_note": "Istniejąca pinezka Areny Gorzów. Słowiańska 16 zgodna z danymi obiektu i kartą sprzedaży."
+      },
+      "source_name": "Polski Związek Koszykówki",
+      "source_url": "https://pzkosz.pl/aktualnosci/n/70024/",
+      "evidence_urls": [
+        "https://um.gorzow.pl/aktualnosci/rosnijmy-/polskaturcja-w-arenie-gorzow.html",
+        "https://www.ebilet.pl/sport/sporty-druzynowe/koszykowka-kobiet?city=Gorz%C3%B3w+Wielkopolski"
+      ],
+      "price_type": "paid",
+      "price_min": 21.9,
+      "price_max": null,
+      "currency": "PLN",
+      "checked_at": "2026-11-10T10:56:21Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:56:21Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd źródeł nie potwierdził prawa do publikacji oficjalnych materiałów na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Planszówki w WDK",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-18T15:00:00+01:00",
+      "end_at": "2026-11-18T20:00:00+01:00",
+      "short_description": "Bezpłatne spotkanie z grami planszowymi w dolnym holu WDK.",
+      "description": "Na miejscu będą gry dla początkujących i bardziej doświadczonych. Animator pomoże poznać zasady. Dzieci poniżej 12 lat mogą grać z opiekunem. Spotkanie jest otwarte dla osób indywidualnych i rodzin, bez udziału zorganizowanych grup szkolnych i świetlic.",
+      "location": {
+        "name": "Wojewódzki Dom Kultury im. Józefa Piłsudskiego w Kielcach",
+        "address": "Księdza Piotra Ściegiennego 2",
+        "city": "Kielce",
+        "latitude": 50.8632484319233,
+        "longitude": 20.6269621863223,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Kielce%2C%20Ksi%C4%99dza%20Piotra%20%C5%9Aciegiennego%202",
+        "coordinate_note": "GUGiK UUG, dokładna miejscowość, ulica i numer budynku."
+      },
+      "source_name": "Wojewódzki Dom Kultury w Kielcach",
+      "source_url": "https://wdkkielce.pl/index.php/events/planszowki-w-wdk/",
+      "evidence_urls": [
+        "https://wdkkielce.pl/index.php/kalendarz-wydarzen/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "checked_at": "2026-11-10T10:55:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:55:16Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Sprawa znikającego obrazu — warsztaty familijne",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-22T12:00:00+01:00",
+      "end_at": "2026-11-22T14:00:00+01:00",
+      "short_description": "Zagadki detektywistyczne i cyjanotypia dla rodzin z dziećmi w wieku 5–8 lat.",
+      "description": "Dzieci z opiekunami poszukają tropów zaginionego obrazu i przygotują własne odbitki techniką cyjanotypii. Zajęcia odbędą się na drugim piętrze budynku C CEZiB. Udział kosztuje 20 zł od osoby. Obowiązują zapisy telefoniczne podane w zapowiedzi.",
+      "location": {
+        "name": "SOWA Gorzów — CEZiB",
+        "address": "Warszawska 48",
+        "city": "Gorzów Wielkopolski",
+        "latitude": 52.7337713566672,
+        "longitude": 15.2523619609523,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Gorz%C3%B3w%20Wielkopolski%2C%20Warszawska%2048",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK. Miasto, ulica i numer zgodne z adresem obiektu."
+      },
+      "source_name": "Karta Miejska Gorzów Wielkopolski",
+      "source_url": "https://kartamiejska.um.gorzow.pl/wydarzenia/5144-warsztaty-familijne-sprawa-znikajacego-obrazu",
+      "evidence_urls": [
+        "https://mckgorzow.pl/dojazd-sowa/"
+      ],
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 20,
+      "currency": "PLN",
+      "checked_at": "2026-11-10T10:55:33Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:55:33Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd źródeł nie potwierdził prawa do publikacji oficjalnych materiałów na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Kości zostały rzucone — 33. weekend z grami bez prądu",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-27T19:00:00+01:00",
+      "end_at": "2026-11-29T18:00:00+01:00",
+      "short_description": "Bezpłatny weekend z planszówkami, grami bitewnymi, karcianymi i RPG.",
+      "description": "W CK Muza czeka ponad 450 planszówek i pomoc przy wyborze gry oraz poznaniu zasad. Sale są otwarte w piątek 19:00–1:00, w sobotę 12:00–19:00 i w niedzielę 12:00–18:00. Wstęp wolny. Na wybrane sesje i turnieje obowiązują zapisy wskazane przez organizatora.",
+      "location": {
+        "name": "Centrum Kultury „Muza”",
+        "address": "Armii Krajowej 1",
+        "city": "Lubin",
+        "latitude": 51.39898,
+        "longitude": 16.20427,
+        "coordinate_source": "https://mapa.targeo.pl/centrum-kultury-muza-armii-krajowej-1-59-300-lubin~12267461/przedsiebiorstwo-firma/adres",
+        "coordinate_note": "Istniejąca pinezka nazwanego obiektu. Adres w zakładce Kontakt CK Muza."
+      },
+      "source_name": "Centrum Kultury „Muza” w Lubinie",
+      "source_url": "https://ckmuza.eu/27-11-29-11-2026-kosci-zostaly-rzucone-czyli-33-weekend-z-grami-bez-pradu/",
+      "evidence_urls": [
+        "https://ckmuza.eu/kontakt/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "checked_at": "2026-11-10T10:55:34Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:55:34Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd źródeł nie potwierdził prawa do publikacji oficjalnych materiałów na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Targi Hurty & Detale vol. 5",
+      "category_slug": "targi",
+      "start_at": "2026-11-28T10:00:00+01:00",
+      "end_at": "2026-11-29T17:00:00+01:00",
+      "short_description": "Bezpłatne targi sztuki użytkowej w Instytucie Dizajnu.",
+      "description": "Na stoiskach będą m.in. ceramika, plakaty i tekstylia. Wśród wystawców są twórcy z województwa świętokrzyskiego. Targi działają w sobotę i niedzielę od 10:00 do 17:00. Wstęp bezpłatny.",
+      "location": {
+        "name": "Instytut Dizajnu w Kielcach",
+        "address": "Zamkowa 3",
+        "city": "Kielce",
+        "latitude": 50.867961722966,
+        "longitude": 20.627029538155,
+        "coordinate_source": "https://kielce.travel/informator_turystyczny/zabytki/instytut_dizajnu_w_kielcach",
+        "coordinate_note": "Nazwany obiekt z adresem i współrzędnymi w regionalnym informatorze Kielce Travel."
+      },
+      "source_name": "Instytut Dizajnu w Kielcach",
+      "source_url": "https://idkielce.pl/targi-hurty-detale-vol-5/",
+      "evidence_urls": [
+        "https://kielce.travel/informator_turystyczny/zabytki/instytut_dizajnu_w_kielcach"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "checked_at": "2026-11-10T10:55:14Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:55:14Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "ChceMisie — Sobota pełna dobrych chwil",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-28T15:00:00+01:00",
+      "short_description": "Bezpłatne rodzinne koncerty i rzeźbienie misia na placu Wojska Polskiego.",
+      "description": "Popołudnie otworzy dziecięcy koncert Centrum Uśmiechu. W planie jest też rzeźbienie dużego misia oraz występy Majki Jeżowskiej i Alien x Majtis. Finał z DJ-em i saksofonem zacznie się o 21:00 przy ul. Ratuszowej 3. Wstęp wolny.",
+      "location": {
+        "name": "Plac Wojska Polskiego",
+        "address": "plac Wojska Polskiego",
+        "city": "Bielsko-Biała",
+        "latitude": 49.82344,
+        "longitude": 19.05092,
+        "coordinate_source": "https://atrakcje.slask.pl/atrakcje/bielsko-biala-plac-wojska-polskiego-w-bielsku-bialej-26908.html",
+        "coordinate_note": "Punkt nazwanego placu z mapy regionalnego przewodnika, potwierdzony przez Wikidata Q11819188 i plan miejskiego punktu 28. Tu zaczyna się program."
+      },
+      "source_name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
+      "source_url": "https://bck.bielsko-biala.pl/chcemisie-sobota-pelna-dobrych-chwil",
+      "evidence_urls": [
+        "https://bck.bielsko-biala.pl/repertuar",
+        "https://it.bielsko.pl/wp-content/uploads/2016/02/Mapa-MSI-2014.pdf"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "checked_at": "2026-11-10T10:56:25Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:56:25Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Pół na pół — spektakl w Kartuzach",
+      "category_slug": "kultura",
+      "start_at": "2026-11-29T16:00:00+01:00",
+      "short_description": "Czarna komedia w reżyserii Tomasza Podsiadłego na scenie Kartuskiego Centrum Kultury.",
+      "description": "Mateusz Deskiewicz i Jakub Firewicz grają braci, którzy próbują uwolnić się od wpływu matki. Ich pomysły szybko wymykają się spod kontroli. Organizator poleca spektakl widzom od 16 lat. Bilety online od 123 zł.",
+      "location": {
+        "city": "Kartuzy",
+        "name": "Kartuskie Centrum Kultury",
+        "address": "Klasztorna 1",
+        "latitude": 54.335531,
+        "longitude": 18.194583,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Kartuzy%2C%20Klasztorna%201",
+        "coordinate_note": "Pinezka istniejącej sali odpowiada punktowi GUGiK Klasztorna 1 w promieniu ok. 7 m."
+      },
+      "source_name": "Kartuskie Centrum Kultury",
+      "source_url": "https://kartuskiecentrum.bilety24.pl/b24-do-wydarzenia-2/?id=964803",
+      "evidence_urls": [
+        "https://www.bilety24.pl/index.php/kup-bilet-na-1364-pol-na-pol-161091?id=964803"
+      ],
+      "checked_at": "2026-11-10T10:56:57Z",
+      "price_type": "paid",
+      "price_min": 123,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę zapewnia EventVisual.",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:56:57Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Listopadowe wspomnienia — Kiermasy na Warmii",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-29T17:00:00+01:00",
+      "short_description": "Bezpłatny koncert zespołu wokalnego Moderato w Kamienicy Naujacka.",
+      "description": "Zespół Wokalny Moderato im. Włodzimierza Jarmołowicza zaśpiewa pieśni i piosenki przywołujące muzykę sprzed lat. Koncert odbędzie się w Kamienicy Naujacka. Wstęp wolny.",
+      "location": {
+        "city": "Olsztyn",
+        "name": "Kamienica Naujacka",
+        "address": "Dąbrowszczaków 3",
+        "latitude": 53.7788736970482,
+        "longitude": 20.482606707762,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Olsztyn%2C%20D%C4%85browszczak%C3%B3w%203",
+        "coordinate_note": "Jedyny dokładny punkt adresowy GUGiK dla ulicy i numeru podanych przez MOK."
+      },
+      "source_name": "MOK Olsztyn",
+      "source_url": "https://mok.olsztyn.pl/wydarzenia/listopadowe-wspomnienia-kiermasy-na-warmii/",
+      "evidence_urls": [
+        "https://cogdziekiedy.olsztyn.pl/features/lista/koncerty/listopadowe-wspomnienia-kiermasy-na-warmii"
+      ],
+      "checked_at": "2026-11-10T10:55:43Z",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę zapewnia EventVisual.",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:55:43Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Świąteczne Skrzaty — warsztaty mikołajkowe",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-06T10:30:00+01:00",
+      "short_description": "Warsztaty plastyczne z okazji mikołajek dla dzieci od 7 do 11 lat.",
+      "description": "Dzieci w wieku 7–11 lat przygotują własne prace o świątecznej tematyce. Bilet kosztuje 10 zł. Liczba miejsc jest ograniczona, a zapisy prowadzi kasa Regionalnego Centrum Kultury osobiście i telefonicznie.",
+      "location": {
+        "city": "Piła",
+        "name": "Regionalne Centrum Kultury – Fabryka Emocji",
+        "address": "Plac Staszica 1",
+        "latitude": 53.1459,
+        "longitude": 16.743968,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Pi%C5%82a%2C%20plac%20Staszica%201",
+        "coordinate_note": "Istniejąca pinezka obiektu jest ok. 14 m od punktu GUGiK. Oficjalny program RCK rozwija kod lokalizacji TM jako Teatr Miejski przy placu Staszica 1."
+      },
+      "source_name": "Regionalne Centrum Kultury – Fabryka Emocji w Pile",
+      "source_url": "https://rck.pila.pl/component/content/article/3029-%C5%9Bwi%C4%85teczne-skrzaty.html?Itemid=435&catid=274",
+      "evidence_urls": [
+        "https://www.rck.pila.pl/component/content/article/2850-ferie-2026.html?Itemid=435&catid=274",
+        "https://pilaon.pl/swiateczne-skrzaty-warsztaty-mikolajkowe-dla-dzieci-w-pile/"
+      ],
+      "checked_at": "2026-11-10T10:56:11Z",
+      "price_type": "paid",
+      "price_min": 10,
+      "price_max": 10,
+      "media_review": "Zapowiedź oznacza swoją grafikę jako stworzoną z użyciem AI. Nie użyto jej w EventMap. Okładkę zapewnia EventVisual.",
+      "currency": "PLN",
+      "main_image_url": null,
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:56:11Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Fascynując się życiem — finisaż malarstwa Kamili Wiśniewskiej",
+      "category_slug": "kultura",
+      "start_at": "2026-12-06T12:00:00+01:00",
+      "end_at": "2026-12-06T16:00:00+01:00",
+      "short_description": "Ostatni dzień wystawy malarstwa Kamili Wiśniewskiej w Galerii Klubu Akcent.",
+      "description": "Galeria Klubu Akcent zaprasza na zakończenie wystawy malarstwa Kamili Wiśniewskiej. Ekspozycję będzie można odwiedzić między 12:00 a 16:00. Wstęp wolny.",
+      "location": {
+        "city": "Grudziądz",
+        "name": "Klub Akcent",
+        "address": "Józefa Wybickiego 38",
+        "latitude": 53.495392244705,
+        "longitude": 18.7558969385478,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Grudzi%C4%85dz%2C%20J%C3%B3zefa%20Wybickiego%2038",
+        "coordinate_note": "Dokładny punkt GUGiK dla Wybickiego 38 w Grudziądzu. Karty CKT wskazują nr 38, a wizytówka klubu nr 38/40."
+      },
+      "source_name": "Centrum Kultury Teatr w Grudziądzu",
+      "source_url": "https://teatr.grudziadz.pl/wydarzenie/finisaz-malarstwa-kamili-wisniewskiej-pt-fascynujac-sie-zyciem/",
+      "evidence_urls": [
+        "https://teatr.grudziadz.pl/o-nas-klub-akcent/"
+      ],
+      "checked_at": "2026-11-10T10:55:45Z",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę zapewnia EventVisual.",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:55:45Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Czarnoksiężnik z Krainy Oz — Mikołajki w Muzie",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-06T13:00:00+01:00",
+      "end_at": "2026-12-06T14:10:00+01:00",
+      "short_description": "Mikołajkowy spektakl dla dzieci od 5 lat z muzyką na żywo.",
+      "description": "Teatr Lalki i Aktora w Wałbrzychu pokaże przygody Dorotki na podstawie powieści Lymana F. Bauma. Przedstawienie trwa 70 minut bez przerwy. W kasie CK Muza bilet normalny kosztuje 60 zł, a ulgowy 50 zł dla uprawnionych dzieci i młodzieży. Online ceny zaczynają się od 53 zł.",
+      "location": {
+        "name": "Centrum Kultury „Muza”",
+        "address": "Armii Krajowej 1",
+        "city": "Lubin",
+        "latitude": 51.39898,
+        "longitude": 16.20427,
+        "coordinate_source": "https://mapa.targeo.pl/centrum-kultury-muza-armii-krajowej-1-59-300-lubin~12267461/przedsiebiorstwo-firma/adres",
+        "coordinate_note": "Istniejąca pinezka nazwanego obiektu. Adres w zakładce Kontakt CK Muza."
+      },
+      "source_name": "Centrum Kultury „Muza” w Lubinie",
+      "source_url": "https://ckmuza.eu/6-12-2026-czarnoksieznik-z-krainy-oz-teatr-lalki-i-aktora-w-walbrzychu/",
+      "evidence_urls": [
+        "https://ckmuza.eu/kontakt/",
+        "https://www.bilety24.pl/kup-bilet-na-1375-czarnoksieznik-z-krainy-oz-teatr-lalki-i-aktora-w-walbrzychu-160424?id=959802"
+      ],
+      "price_type": "paid",
+      "price_min": 50,
+      "price_max": 60,
+      "currency": "PLN",
+      "checked_at": "2026-11-10T10:56:05Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:56:05Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd źródeł nie potwierdził prawa do publikacji oficjalnych materiałów na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "KSU — koncert w Klubie Akcent",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-12T19:00:00+01:00",
+      "short_description": "Koncert punkrockowej grupy z Ustrzyk Dolnych w Grudziądzu.",
+      "description": "KSU zagra w Klubie Akcent. Organizator podaje 110 zł w przedsprzedaży stacjonarnej i 130 zł w dniu koncertu. Sprzedaż online na Bilety24 zaczyna się od 115,50 zł.",
+      "location": {
+        "city": "Grudziądz",
+        "name": "Klub Akcent",
+        "address": "Józefa Wybickiego 38",
+        "latitude": 53.495392244705,
+        "longitude": 18.7558969385478,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Grudzi%C4%85dz%2C%20J%C3%B3zefa%20Wybickiego%2038",
+        "coordinate_note": "Dokładny punkt GUGiK dla Wybickiego 38 w Grudziądzu. Karty CKT wskazują nr 38, a wizytówka klubu nr 38/40."
+      },
+      "source_name": "Centrum Kultury Teatr w Grudziądzu",
+      "source_url": "https://teatr.grudziadz.pl/wydarzenie/ksu-koncert/",
+      "evidence_urls": [
+        "https://www.bilety24.pl/koncert/1345-ksu-156716?id=932079",
+        "https://teatr.grudziadz.pl/o-nas-klub-akcent/"
+      ],
+      "checked_at": "2026-11-10T10:55:42Z",
+      "price_type": "paid",
+      "price_min": 110,
+      "price_max": 130,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki wydarzenia na EventMap. Okładkę zapewnia EventVisual.",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:55:42Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Piotr Zola Szulowski — Atlas",
+      "category_slug": "stand-up",
+      "start_at": "2026-12-16T19:00:00+01:00",
+      "short_description": "Stand-up o codziennych sprawach, które potrafią przytłoczyć.",
+      "description": "Piotr Zola Szulowski opowiada o pracy, rodzinie i presji oczekiwań w autorskim programie komediowym. Występ jest dla osób pełnoletnich. Bilety od 99 zł, z możliwą opłatą serwisową.",
+      "location": {
+        "name": "Myślenicki Ośrodek Kultury i Sportu",
+        "address": "M.J. Piłsudskiego 20",
+        "city": "Myślenice",
+        "latitude": 49.8294782,
+        "longitude": 19.9427192,
+        "coordinate_source": "https://www.mokis.myslenice.pl/?id=1204&ram=news-show",
+        "coordinate_note": "Współrzędne istniejącego rekordu miejsca w EventMap, którego adres potwierdza strona obiektu lub bileteria."
+      },
+      "source_name": "Myślenicki Ośrodek Kultury i Sportu",
+      "source_url": "https://www.mokis.myslenice.pl/?id=1204&ram=news-show",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/event/219144/myslenice/piotr-zola-szulowski"
+      ],
+      "price_type": "paid",
+      "price_min": 99,
+      "price_max": null,
+      "currency": "PLN",
+      "checked_at": "2026-11-10T10:56:24Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:56:24Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Noworoczna Gala — Koncert Wiedeński",
+      "category_slug": "koncerty",
+      "start_at": "2027-01-03T15:00:00+01:00",
+      "short_description": "Koncert operetkowy i musicalowy z orkiestrą, solistami i baletem.",
+      "description": "W Zamojskim Domu Kultury zabrzmią walce Johanna Straussa oraz utwory operowe, operetkowe i musicalowe. Zagra orkiestra, wystąpią soliści i pary baletowe. Bilety na występ o 15:00 kosztują 179 zł na balkonie i 209 zł na parterze.",
+      "location": {
+        "name": "Zamojski Dom Kultury",
+        "address": "Partyzantów 13",
+        "city": "Zamość",
+        "latitude": 50.7136456188707,
+        "longitude": 23.2646469562237,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Zamo%C5%9B%C4%87%2C%20Partyzant%C3%B3w%2013",
+        "coordinate_note": "GUGiK UUG, dokładna miejscowość, ulica i numer budynku."
+      },
+      "source_name": "Agencja Artystyczna Muza",
+      "source_url": "https://bilety.agencjamuza.pl/event/view/id/672178",
+      "evidence_urls": [
+        "https://agencjamuza.pl/noworoczna-gala-koncert-wiedenski-2027/",
+        "https://bilety.agencjamuza.pl/event/sector/id/1642382",
+        "https://www.bipzdk.zamosc.pl/",
+        "https://bilety.agencjamuza.pl/event/sector/id/1642383"
+      ],
+      "price_type": "paid",
+      "price_min": 179,
+      "price_max": 209,
+      "currency": "PLN",
+      "checked_at": "2026-11-10T10:58:09Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:58:09Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Koncert noworoczny Zespołu Pieśni i Tańca Bielsko",
+      "category_slug": "koncerty",
+      "start_at": "2027-01-08T18:00:00+01:00",
+      "short_description": "Polskie pieśni i tańce ludowe w wykonaniu grup zespołu Bielsko.",
+      "description": "W noworocznym programie na scenie Bielskiego Centrum Kultury wystąpią wszystkie grupy Zespołu Pieśni i Tańca Bielsko. Bilet kosztuje 40 zł.",
+      "location": {
+        "name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
+        "address": "Juliusza Słowackiego 27",
+        "city": "Bielsko-Biała",
+        "latitude": 49.8270983,
+        "longitude": 19.0392914,
+        "coordinate_source": "https://bck.bielsko-biala.pl/koncert-noworoczny-w-wykonaniu-zespolu-piesni-i-tanca-bielsko",
+        "coordinate_note": "Współrzędne istniejącego rekordu miejsca w EventMap, którego adres potwierdza strona obiektu lub bileteria."
+      },
+      "source_name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
+      "source_url": "https://bck.bielsko-biala.pl/koncert-noworoczny-w-wykonaniu-zespolu-piesni-i-tanca-bielsko",
+      "evidence_urls": [
+        "https://bilety.bck.bielsko.pl/index.php/kup-bilet/koncert-noworoczny-w-wykonaniu-zespolu-piesni-i-tanca-bielsko-2027-01-08-18-00"
+      ],
+      "price_type": "paid",
+      "price_min": 40,
+      "price_max": 40,
+      "currency": "PLN",
+      "checked_at": "2026-11-10T10:55:55Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T10:55:55Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual."
+    }
+  ]
+}

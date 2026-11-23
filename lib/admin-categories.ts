@@ -7,6 +7,7 @@ import { createSupabaseUserClient } from "@/lib/supabase-user";
 import type { Database } from "@/database.types";
 import { createSlug, formSlug, formString, formNumber } from "@/lib/event-editor";
 import { normalizeSearchText } from "@/lib/slugify";
+import { revalidatePublicMapMarkerCache } from "@/lib/public-event-cache";
 
 type Tables = Database["public"]["Tables"];
 type CategoryRow = Tables["categories"]["Row"];
@@ -169,6 +170,7 @@ function dateValue(value: string | null | undefined) {
 }
 
 function revalidateCategoryPaths() {
+  revalidatePublicMapMarkerCache();
   revalidatePath("/admin/categories");
   revalidatePath("/admin/events/new");
   revalidatePath("/admin/events");

@@ -1,0 +1,678 @@
+{
+  "checked_at": "2026-11-09T20:04:31Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Polska. Mniejsze miasta i miasta z ubogą ofertą nadchodzących wydarzeń. Województwa pomorskie, warmińsko-mazurskie, kujawsko-pomorskie, podlaskie, mazowieckie, dolnośląskie, opolskie i śląskie.",
+  "events": [
+    {
+      "title": "Bieg Niepodległości w Giżycku",
+      "category_slug": "sport",
+      "start_at": "2026-11-11T11:11:00+01:00",
+      "short_description": "Bezpłatny bieg i marsz ze startem na placu Piłsudskiego.",
+      "description": "Uczestnicy ruszą z placu Piłsudskiego o 11:11. Trasę można pokonać biegiem albo marszem. Udział jest bezpłatny i wymaga zgłoszenia. Numery startowe i ewentualne zapisy na miejscu przewidziano w biurze zawodów na placu od 9:00 do 11:00.",
+      "location": {
+        "name": "Plac Marszałka Józefa Piłsudskiego",
+        "address": "Plac Marszałka Józefa Piłsudskiego",
+        "city": "Giżycko",
+        "latitude": 54.040220929882466,
+        "longitude": 21.769849061965942,
+        "coordinate_source": "https://www.nocowanie.pl/plac_marszalka_jozefa_pilsudskiego_w_gizycku%2C167670.html",
+        "coordinate_note": "Nazwany punkt placu z danych GeoCoordinates i mapy. Organizator wskazuje plac jako miejsce startu i biura zawodów."
+      },
+      "source_name": "Miasto Giżycko",
+      "source_url": "https://www.gizycko.pl/bieg-niepodleglosci-7579-5338/",
+      "evidence_urls": [
+        "https://www.gizycko.pl/11-listopada-narodowe-swieto-niepodleglosci-8488-2092-1702/",
+        "https://goz.gizycko.pl/j-pilsudskiego-w-gizycku-zostanie-wylaczony-z-uzytku-ze-wzgledu-na-organizacje-i-przygotowania-do-oficjalnych-miejskich-obchodow-narodowego-swieta-niepodleglosci-/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "checked_at": "2026-11-09T20:02:28Z",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:02:28Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Warsztaty filcowych pasków — część II",
+      "category_slug": "kultura",
+      "start_at": "2026-11-12T12:00:00+01:00",
+      "short_description": "Bezpłatne warsztaty rękodzieła w filii Starej Kopalni na Piaskowej Górze.",
+      "description": "Druga część zajęć z tworzenia filcowych pasków inspirowanych wzornictwem ludowym. Wstęp jest bezpłatny. Informacje o zapisach podaje Stara Kopalnia w ogłoszeniu.",
+      "location": {
+        "name": "Stara Kopalnia — filia na Piaskowej Górze",
+        "address": "Władysława Broniewskiego 65A",
+        "city": "Wałbrzych",
+        "latitude": 50.8092091147923,
+        "longitude": 16.2811700778689,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Wa%C5%82brzych%2C%20W%C5%82adys%C5%82awa%20Broniewskiego%2065A",
+        "coordinate_note": "Dokładny punkt adresowy filii z GUGiK. Adres w programie i stopce organizatora."
+      },
+      "source_name": "Stara Kopalnia w Wałbrzychu",
+      "source_url": "https://starakopalnia.pl/wydarzenia/czwartkowe-spotkania-z-kultura-i-sztuka-listopad-pelen-inspiracji-2/",
+      "evidence_urls": [],
+      "price_min": 0,
+      "price_max": 0,
+      "checked_at": "2026-11-09T20:04:31Z",
+      "admission_note": "Organizator wskazuje telefon i e-mail do zapisów i informacji w karcie wydarzenia.",
+      "price_type": "free",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:04:31Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótkie sprawdzenie materiałów organizatora nie potwierdziło prawa do publikacji grafiki na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-09.json",
+        "same_city_days": [
+          "2026-11-12"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy i sprawdzono zgodność źródeł. Brak wpisów w tym mieście i dniu."
+      }
+    },
+    {
+      "title": "FALE — targi mody i designu",
+      "category_slug": "targi",
+      "start_at": "2026-11-14T11:00:00+01:00",
+      "end_at": "2026-11-15T18:00:00+01:00",
+      "short_description": "Niezależna moda, biżuteria i rękodzieło w Sali Słonecznej przy Mamuszki 14.",
+      "description": "W Sali Słonecznej na drugim piętrze swoje prace pokażą niezależni projektanci i rękodzielnicy. Na stoiskach znajdą się m.in. ubrania, biżuteria i dodatki do wnętrz. Targi są otwarte w sobotę i niedzielę od 11:00 do 18:00. Wstęp wolny.",
+      "location": {
+        "name": "Mamuszki 14",
+        "address": "Sopot, Mamuszki 14",
+        "city": "Sopot",
+        "latitude": 54.450072,
+        "longitude": 18.567104,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Sopot%2C%20Mamuszki%2014",
+        "coordinate_note": "Istniejąca pinezka Mamuszki 14 leży ok. 7 m od punktu GUGiK dla al. Franciszka Mamuszki 14 i wskazuje ten sam budynek."
+      },
+      "source_name": "Miasto Sopot",
+      "source_url": "https://www.sopot.pl/aktualnosc/13475/fale-2026-w-sopocie-targi-mody-i-designu-nad-morzem",
+      "evidence_urls": [
+        "https://kalendarz.sopot.pl/event-type/bezplatne/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "checked_at": "2026-11-09T20:02:28Z",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:02:28Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "KKS Tur Basket Bielsk Podlaski – AZS AWF Warszawa",
+      "category_slug": "mecze",
+      "start_at": "2026-11-15T16:00:00+01:00",
+      "short_description": "Mecz II ligi koszykówki mężczyzn w hali Szkoły Podstawowej nr 3.",
+      "description": "Tur Basket podejmie AZS AWF Warszawa w meczu II ligi koszykówki mężczyzn. Spotkanie odbędzie się w hali Szkoły Podstawowej nr 3 przy Poniatowskiego 9. Wstęp wolny.",
+      "location": {
+        "name": "Hala Szkoły Podstawowej nr 3 im. Jarosława Kostycewicza",
+        "address": "Poniatowskiego 9",
+        "city": "Bielsk Podlaski",
+        "latitude": 52.766811,
+        "longitude": 23.192793,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Bielsk%20Podlaski%2C%20Poniatowskiego%209",
+        "coordinate_note": "Punkt istniejącej hali jest około 5 m od dokładnego adresu szkoły w GUGiK. Miejski kalendarz potwierdza halę i adres."
+      },
+      "source_name": "Urząd Miasta Bielsk Podlaski",
+      "source_url": "https://umbielskpodlaski.pl/wydarzenie/koszykarska-ii-liga-64/",
+      "evidence_urls": [
+        "https://rozgrywki.pzkosz.pl/liga/4/druzyny/d/8598/azs-awf-warszawa/terminarz.html"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "checked_at": "2026-11-09T20:03:24Z",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:03:24Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd zapowiedzi nie potwierdził prawa do publikacji materiałów organizatora. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Niekompletni na ludowo",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-26T19:00:00+01:00",
+      "end_at": "2026-11-26T20:00:00+01:00",
+      "short_description": "Kameralny koncert zespołu Niekompletni z nowymi aranżacjami polskich pieśni ludowych.",
+      "description": "Czworo wokalistów zespołu Niekompletni zaśpiewa polskie pieśni ludowe w kameralnym składzie z gitarą i fortepianem. Bilety kosztują 25 zł w kasie MOK i przez Biletynę.",
+      "location": {
+        "name": "Sala Biała MOK",
+        "address": "Kazimierza Pułaskiego 6",
+        "city": "Siedlce",
+        "latitude": 52.1675452567973,
+        "longitude": 22.2804729546323,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Siedlce%2C%20Kazimierza%20Pu%C5%82askiego%206",
+        "coordinate_note": "Dokładne dopasowanie miasta, ulicy i numeru w GUGiK. Adres i nazwę sali potwierdzają karta MOK oraz portal miasta."
+      },
+      "source_name": "Miejski Ośrodek Kultury w Siedlcach",
+      "source_url": "https://www.mok.siedlce.pl/pl/repertuar/koncert-niekompletni-na-ludowo",
+      "evidence_urls": [
+        "https://siedlce.pl/wydarzenia/2026/11-2026/niekompletni-na-ludowo-koncert-zespolu-niekompletni",
+        "https://biletyna.pl/event/view/id/714802",
+        "https://www.mok.siedlce.pl/pl/sala-biala"
+      ],
+      "price_type": "paid",
+      "price_min": 25,
+      "price_max": 25,
+      "checked_at": "2026-11-09T20:03:24Z",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:03:24Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd zapowiedzi nie potwierdził prawa do publikacji materiałów organizatora. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Farben Lehre akustycznie",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-03T19:00:00+01:00",
+      "end_at": "2026-12-03T21:00:00+01:00",
+      "short_description": "Farben Lehre w akustycznych aranżacjach na 40-lecie zespołu.",
+      "description": "Zespół zaprezentuje swoje utwory w akustycznych aranżacjach podczas jubileuszowej trasy. Wejście na salę od 18:30. DOK podaje 80 zł w przedsprzedaży i 100 zł w dniu koncertu. Sprzedaż online może doliczyć opłatę.",
+      "location": {
+        "name": "Dzierżoniowski Ośrodek Kultury — sala koncertowa",
+        "address": "Świdnicka 23",
+        "city": "Dzierżoniów",
+        "latitude": 50.7294858,
+        "longitude": 16.647542,
+        "coordinate_source": "https://mapy.com/en/?id=1080045156&source=osm",
+        "coordinate_note": "Zachowano istniejącą pinezkę sali DOK. Odpowiada punktowi DOK na Mapy.com, a oficjalny kontakt potwierdza adres."
+      },
+      "source_name": "Dzierżoniowski Ośrodek Kultury",
+      "source_url": "https://dok.pl/dok/wydarzenia/koncert-farben-lehre",
+      "evidence_urls": [
+        "https://biletyna.pl/koncert/FARBEN-LEHRE-AKUSTYCZNIE/Dzierzoniow",
+        "https://dok.pl/dok/kontakt"
+      ],
+      "price_min": 80,
+      "price_max": 100,
+      "checked_at": "2026-11-09T20:01:14Z",
+      "admission_note": "Aktywna sprzedaż Biletyna przy sprawdzeniu 20:02 UTC. Cena 85,96 zł online obejmowała opłaty.",
+      "price_type": "paid",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:01:14Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótkie sprawdzenie materiałów organizatora nie potwierdziło prawa do publikacji grafiki na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-09.json",
+        "same_city_days": [
+          "2026-12-03"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy i sprawdzono zgodność źródeł. Brak wpisów w tym mieście i dniu."
+      }
+    },
+    {
+      "title": "Czerwone Gitary — Diamentowy koncert 60-lecia",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-04T19:00:00+01:00",
+      "short_description": "Jubileuszowy koncert Czerwonych Gitar w Bielskim Domu Kultury.",
+      "description": "Czerwone Gitary zagrają utwory z różnych etapów działalności, od znanych przebojów po nowsze piosenki. Bilety w oficjalnej sprzedaży od 135 zł. Sprzedawca może doliczyć opłatę serwisową.",
+      "location": {
+        "name": "Bielski Dom Kultury",
+        "address": "3 Maja 2",
+        "city": "Bielsk Podlaski",
+        "latitude": 52.7695434,
+        "longitude": 23.1896317,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Bielsk%20Podlaski%2C%203%20Maja%202",
+        "coordinate_note": "Punkt istniejącego Bielskiego Domu Kultury odpowiada współrzędnym dokładnego adresu GUGiK po zaokrągleniu do siedmiu miejsc."
+      },
+      "source_name": "Urząd Miasta Bielsk Podlaski",
+      "source_url": "https://umbielskpodlaski.pl/wydarzenie/bdk-czerwone-gitary-2/",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/event/155996/bielsk-podlaski/czerwone-gitary",
+        "https://www.czerwonegitary.com.pl/koncerty.php",
+        "https://www.bdkbielsk.pl/wydarzenia.html"
+      ],
+      "price_type": "paid",
+      "price_min": 135,
+      "price_max": null,
+      "checked_at": "2026-11-09T20:01:02Z",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:01:02Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd zapowiedzi nie potwierdził prawa do publikacji materiałów organizatora. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Mama, Tata i Ja — suwalskie ozdoby bożonarodzeniowe",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-05T10:30:00+01:00",
+      "end_at": "2026-12-05T14:30:00+01:00",
+      "short_description": "Bezpłatne warsztaty ozdób choinkowych dla dzieci od 6 lat i ich opiekunów.",
+      "description": "Członkinie Klubu Twórców Tradycyjnych pokażą rodzinom, jak zrobić suwalskie jeżyki i inne ozdoby choinkowe. Organizator zapewnia materiały. Tury odbędą się o 10:30–12:00 i 13:00–14:30. Wstęp bezpłatny dla dzieci od 6 lat z opiekunami po zgłoszeniu mailowym do 3 grudnia. Liczba miejsc jest ograniczona.",
+      "location": {
+        "name": "Suwalski Ośrodek Kultury — Kawiarenka Artystyczna",
+        "address": "Teofila Noniewicza 71",
+        "city": "Suwałki",
+        "latitude": 54.1010488555494,
+        "longitude": 22.9318101656147,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Suwa%C5%82ki%2C%20Teofila%20Noniewicza%2071",
+        "coordinate_note": "Jedyny dokładny punkt adresowy GUGiK. Miejska karta rewitalizacji wskazuje Kawiarnię Artystyczną w budynku SOK pod tym adresem."
+      },
+      "source_name": "Suwalski Ośrodek Kultury",
+      "source_url": "https://soksuwalki.eu/class/mama-tata-i-ja-rodzinne-warsztaty-tradycyjnych-ozdob-bozonarodzeniowych-67/",
+      "evidence_urls": [
+        "https://soksuwalki.eu/class/mama-tata-i-ja-rodzinne-warsztaty-tradycyjnych-ozdob-bozonarodzeniowych-78/",
+        "https://rewitalizacja.suwalki.eu/aktualnosci/zimowa-wizyta-samorzadowcow-z-sasiedniego-wojewodztwa/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "checked_at": "2026-11-09T20:01:59Z",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:01:59Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd zapowiedzi nie potwierdził prawa do publikacji materiałów organizatora. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Bieg Mikołajka — biegi dla dzieci",
+      "category_slug": "sport",
+      "start_at": "2026-12-05T12:00:00+01:00",
+      "short_description": "Mikołajkowe biegi na 60–400 m dla dzieci w wieku od 3 do 12 lat.",
+      "description": "Pierwszy start odbędzie się o 12:00 na parkingu Galerii Copernicus. Dystans zależy od kategorii wiekowej. Dziecko zgłasza rodzic lub opiekun, a pakiety startowe wydawane są od 9:45 do 11:45 na Placu Rotundy. Wpisowe wynosi 60 zł, a za drugie i każde kolejne dziecko z rodzeństwa 30 zł.",
+      "location": {
+        "name": "Galeria Copernicus",
+        "address": "Hetmana Stanisława Żółkiewskiego 15",
+        "city": "Toruń",
+        "latitude": 53.024836,
+        "longitude": 18.638753,
+        "coordinate_source": "https://mapcarta.com/W242825758",
+        "coordinate_note": "Punkt nazwanego kompleksu galerii z OSM way 242825758. Regulamin wskazuje parking kompleksu jako miejsce biegu i Plac Rotundy jako biuro zawodów."
+      },
+      "source_name": "Stowarzyszenie Kultury Fizycznej Maraton Toruński",
+      "source_url": "https://biegmikolajow.pl/regulamin-biegu-mikolajka-2026/",
+      "evidence_urls": [
+        "https://elektronicznezapisy.pl/event/16086.html",
+        "https://elektronicznezapisy.pl/event/16086/signup.html",
+        "https://www.galeriacopernicus.pl/kontakt"
+      ],
+      "price_type": "paid",
+      "price_min": 30,
+      "price_max": 60,
+      "checked_at": "2026-11-09T20:03:09Z",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:03:09Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Dziadek do orzechów — Królewski Balet Klasyczny",
+      "category_slug": "kultura",
+      "start_at": "2026-12-05T19:00:00+01:00",
+      "short_description": "Balet do muzyki Piotra Czajkowskiego na scenie Nyskiego Domu Kultury.",
+      "description": "Królewski Balet Klasyczny opowie tańcem historię Klary i jej świątecznego prezentu. W repertuarze muzyka Piotra Czajkowskiego. W jednym z kanałów sprzedaży bilety kosztują od 130 zł, z możliwą opłatą serwisową.",
+      "location": {
+        "name": "Nyski Dom Kultury — sala widowiskowa",
+        "address": "Wałowa 7",
+        "city": "Nysa",
+        "latitude": 50.4748437,
+        "longitude": 17.3365829,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Nysa%2C%20Wa%C5%82owa%207",
+        "coordinate_note": "Zachowano istniejącą pinezkę NDK, ok. 3 m od dokładnego punktu adresowego GUGiK."
+      },
+      "source_name": "Nyski Dom Kultury",
+      "source_url": "https://ndk.nysa.pl/wydarzenie-1728-dziadek_do_orzechow.html",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/event/205496/nysa/krolewski-balet-klasyczny-dziadek-do-orzechow",
+        "https://ndk.systembiletowy.pl/index.php/kup-bilet/dziadek-do-orzechow-2026-12-05-19-00",
+        "https://ndk.nysa.pl/strona-71-kontakt.html"
+      ],
+      "price_min": 130,
+      "price_max": null,
+      "checked_at": "2026-11-09T20:01:16Z",
+      "admission_note": "KupBilecik oznaczył wydarzenie jako zaplanowane i dostępne od 130 zł. Bileteria NDK wskazywała także miejsca za 140 i 150 zł.",
+      "price_type": "paid",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:01:16Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótkie sprawdzenie materiałów organizatora nie potwierdziło prawa do publikacji grafiki na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-09.json",
+        "same_city_days": [
+          "2026-12-05"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy i sprawdzono zgodność źródeł. Brak wpisów w tym mieście i dniu."
+      }
+    },
+    {
+      "title": "Wolny Jarmark Toruński i Pchli Targ — 6 grudnia",
+      "category_slug": "targi",
+      "start_at": "2026-12-06T10:00:00+01:00",
+      "end_at": "2026-12-06T15:00:00+01:00",
+      "short_description": "Niedzielne stoiska lokalnych producentów, rzemieślników i sprzedawców rzeczy z drugiej ręki.",
+      "description": "Na Rynku Nowomiejskim będzie można kupić m.in. pieczywo, sery i rękodzieło bezpośrednio od lokalnych wystawców. Jarmarkowi towarzyszy pchli targ. Wstęp bezpłatny.",
+      "location": {
+        "name": "Rynek Nowomiejski",
+        "address": "Rynek Nowomiejski",
+        "city": "Toruń",
+        "latitude": 53.011973,
+        "longitude": 18.611463,
+        "coordinate_source": "https://visittorun.com/pl/content/rynek-nowomiejski",
+        "coordinate_note": "Punkt przypisany do Rynku Nowomiejskiego w osadzonej mapie oficjalnego Ośrodka Informacji Turystycznej. Miasto wskazuje ten plac jako miejsce stoisk."
+      },
+      "source_name": "Miasto Toruń",
+      "source_url": "https://www.torun.pl/pl/aktualnosc/300-edycji-wolnego-jarmarku-torunskiego",
+      "evidence_urls": [
+        "https://www.torun.pl/en/node/76218",
+        "https://visittorun.com/pl/content/rynek-nowomiejski"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "checked_at": "2026-11-09T20:02:28Z",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:02:28Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Zdjęcie w zapowiedzi jest oznaczone CC BY-NC 4.0. Nie potwierdzono, że zakres obejmuje wykorzystanie w EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Gwiazdka Mikołaja — Ruphert i Rico",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-06T16:00:00+01:00",
+      "short_description": "Rodzinne widowisko mikołajkowe z udziałem duetu Ruphert i Rico.",
+      "description": "Ruphert i Rico włączą dzieci do wspólnej zabawy w programie „Wigilijna podróż Mikołaja”, z muzyką, tańcem i konkursami. Bilety w cenie 40 zł do 15 listopada i 50 zł od 16 listopada.",
+      "location": {
+        "name": "Sala widowiskowa „Podlasie” MOK",
+        "address": "Henryka Sienkiewicza 63",
+        "city": "Siedlce",
+        "latitude": 52.1648127,
+        "longitude": 22.2697005,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Siedlce%2C%20Henryka%20Sienkiewicza%2063",
+        "coordinate_note": "Istniejący punkt sali MOK leży około 15 m od dokładnego punktu adresowego GUGiK. Kartę sali i adres potwierdza organizator."
+      },
+      "source_name": "Miejski Ośrodek Kultury w Siedlcach",
+      "source_url": "https://mok.siedlce.pl/pl/repertuar/gwiazdka-mikolaja-czyli-mikolaj-dla-wszystkich-i-ruphert-i-rico",
+      "evidence_urls": [
+        "https://biletyna.pl/event/view/id/712645"
+      ],
+      "price_type": "paid",
+      "price_min": 40,
+      "price_max": 50,
+      "checked_at": "2026-11-09T20:02:39Z",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:02:39Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd zapowiedzi nie potwierdził prawa do publikacji materiałów organizatora. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Krystyna Stańko Sextet — Return to Revisited",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-09T19:00:00+01:00",
+      "short_description": "Sekstet Krystyny Stańko interpretuje kompozycje Chicka Corei na finał Sopot Jazz Festival.",
+      "description": "Krystyna Stańko i jej sekstet zagrają w Mamuszki 14 utwory Chicka Corei, m.in. „Spain” i „Crystal Silence”. Bilety w Bilety24 od 65 zł. Sprzedawca podaje ulgi dla studentów, posiadaczy Karty Sopockiej i Karty Dużej Rodziny.",
+      "location": {
+        "name": "Mamuszki 14",
+        "address": "Sopot, Mamuszki 14",
+        "city": "Sopot",
+        "latitude": 54.450072,
+        "longitude": 18.567104,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Sopot%2C%20Mamuszki%2014",
+        "coordinate_note": "Istniejąca pinezka Mamuszki 14 leży ok. 7 m od punktu GUGiK dla al. Franciszka Mamuszki 14 i wskazuje ten sam budynek."
+      },
+      "source_name": "Sopot Jazz Festival — BART",
+      "source_url": "https://sopotjazz.pl/program/sopot-jazz-festival-2026-krystyna-stanko-sextet",
+      "evidence_urls": [
+        "https://www.bilety24.pl/koncert/1486-sopot-jazz-festival-2026-krystyna-stanko-sextet-164422?id=986629",
+        "https://visit.sopot.pl/en/news/sopot-jazz-festival-2026-janke-i-sextet-stanko-na-scenie-mamuszki-14-32787928"
+      ],
+      "price_type": "paid",
+      "price_min": 65,
+      "price_max": null,
+      "checked_at": "2026-11-09T20:02:30Z",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:02:30Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Kabaret Paranienormalni — Ostre cięcie",
+      "category_slug": "kabaret",
+      "start_at": "2026-12-10T19:00:00+01:00",
+      "short_description": "Program kabaretowy Paranienormalnych w Bielskim Domu Kultury.",
+      "description": "Paranienormalni wystąpią w Bielskim Domu Kultury z programem „Ostre cięcie”. Bilety w sprawdzonej sprzedaży od 100 zł. Sprzedawca może doliczyć opłatę serwisową.",
+      "location": {
+        "name": "Bielski Dom Kultury",
+        "address": "3 Maja 2",
+        "city": "Bielsk Podlaski",
+        "latitude": 52.7695434,
+        "longitude": 23.1896317,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Bielsk%20Podlaski%2C%203%20Maja%202",
+        "coordinate_note": "Punkt istniejącego Bielskiego Domu Kultury odpowiada współrzędnym dokładnego adresu GUGiK po zaokrągleniu do siedmiu miejsc."
+      },
+      "source_name": "Urząd Miasta Bielsk Podlaski",
+      "source_url": "https://umbielskpodlaski.pl/wydarzenie/bdk-kabaret-paranienormalni/",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/event/189041/bielsk-podlaski/kabaret-paranienormalni",
+        "https://www.bdkbielsk.pl/wydarzenia.html"
+      ],
+      "price_type": "paid",
+      "price_min": 100,
+      "price_max": null,
+      "checked_at": "2026-11-09T20:01:59Z",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:01:59Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd zapowiedzi nie potwierdził prawa do publikacji materiałów organizatora. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Magic Mitoraj — rodzinny pokaz iluzji",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-11T18:00:00+01:00",
+      "short_description": "Sceniczny pokaz iluzji Adriana Mitoraja dla rodzin z dziećmi od piątego roku życia.",
+      "description": "Adrian Mitoraj wystąpi w sali widowiskowej MCK z rodzinnym pokazem magii. Organizator poleca program widzom od piątego roku życia. Bilety od 59 zł z możliwą opłatą serwisową.",
+      "location": {
+        "name": "Miejskie Centrum Kultury w Żywcu — sala widowiskowa",
+        "address": "Aleja Wolności 4",
+        "city": "Żywiec",
+        "latitude": 49.6897789607568,
+        "longitude": 19.1945209473743,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=%C5%BBywiec%2C%20Aleja%20Wolno%C5%9Bci%204",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK. Adres MCK potwierdza statut w BIP."
+      },
+      "source_name": "Miejskie Centrum Kultury w Żywcu",
+      "source_url": "https://mck.zywiec.pl/kalendarz-imprez/magic-mitoraj-pokaz-iluzji-dla-calej-rodziny,1441.html",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/event/216636/zywiec/iluzjonista-adrian-mitoraj",
+        "https://www.bip.mck.zywiec.pl/item/4"
+      ],
+      "price_min": 59,
+      "price_max": null,
+      "checked_at": "2026-11-09T20:01:14Z",
+      "admission_note": "KupBilecik oznaczył wydarzenie jako zaplanowane, z biletami w sprzedaży.",
+      "price_type": "paid",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:01:14Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótkie sprawdzenie materiałów organizatora nie potwierdziło prawa do publikacji grafiki na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-09.json",
+        "same_city_days": [
+          "2026-12-11"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy i sprawdzono zgodność źródeł. Brak wpisów w tym mieście i dniu."
+      }
+    },
+    {
+      "title": "Mamma Mia — widowisko z piosenkami ABBY",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-11T19:00:00+01:00",
+      "short_description": "Teatr Variete Muza z Koszalina wykonuje na żywo przeboje szwedzkiego kwartetu.",
+      "description": "Muzyczne widowisko poświęcone zespołowi ABBA. Artyści Teatru Variete Muza zagrają na żywo m.in. „Waterloo”, „SOS” i „Dancing Queen”. Bilety kosztują 130 zł w systemie Nyskiego Domu Kultury.",
+      "location": {
+        "name": "Nyski Dom Kultury — sala widowiskowa",
+        "address": "Wałowa 7",
+        "city": "Nysa",
+        "latitude": 50.4748437,
+        "longitude": 17.3365829,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Nysa%2C%20Wa%C5%82owa%207",
+        "coordinate_note": "Zachowano istniejącą pinezkę NDK, ok. 3 m od dokładnego punktu adresowego GUGiK."
+      },
+      "source_name": "Nyski Dom Kultury",
+      "source_url": "https://ndk.nysa.pl/wydarzenie-1758-mamma_mia-szczegoly-65032.html",
+      "evidence_urls": [
+        "https://ndk.systembiletowy.pl/index.php/kup-bilet/2026-12-11-19-00",
+        "https://ndk.nysa.pl/strona-71-kontakt.html"
+      ],
+      "price_min": 130,
+      "price_max": 130,
+      "checked_at": "2026-11-09T20:04:15Z",
+      "admission_note": "Bezpośredni odnośnik NDK prowadził do interaktywnego wyboru biletów z ceną 130 zł.",
+      "price_type": "paid",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:04:15Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótkie sprawdzenie materiałów organizatora nie potwierdziło prawa do publikacji grafiki na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-09.json",
+        "same_city_days": [
+          "2026-12-11"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy i sprawdzono zgodność źródeł. Brak wpisów w tym mieście i dniu."
+      }
+    },
+    {
+      "title": "Walc, szampan i wielkie przeboje — koncert sylwestrowy",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-31T20:00:00+01:00",
+      "end_at": "2026-12-31T23:00:00+01:00",
+      "short_description": "Sylwestrowy koncert Suwalskiej Orkiestry Kameralnej z sopranistką Agnieszką Sokolnicką.",
+      "description": "Suwalska Orkiestra Kameralna pod batutą Kazimierza Dąbrowskiego wykona walce, polki oraz utwory z operetek, musicali i filmów. Wystąpi sopranistka Agnieszka Sokolnicka. Wstęp biletowany, miejsca wybiera się w systemie SOK.",
+      "location": {
+        "name": "Suwalski Ośrodek Kultury — sala im. Andrzeja Wajdy",
+        "address": "Papieża Jana Pawła II 5",
+        "city": "Suwałki",
+        "latitude": 54.1122387,
+        "longitude": 22.9366214,
+        "coordinate_source": "https://www.google.com/maps/place/Suwalski+O%C5%9Brodek+Kultury/@54.1122418,22.9321367,17z/data=!3m1!4b1!4m5!3m4!1s0x46e10245bfef0299:0x45a9f1d09e11d997!8m2!3d54.1122387!4d22.9366214",
+        "coordinate_note": "Współrzędne nazwanego punktu obiektu (!3d i !4d) z odnośnika organizatora potwierdzają istniejącą pinezkę sali."
+      },
+      "source_name": "Suwalski Ośrodek Kultury",
+      "source_url": "https://soksuwalki.eu/class/walc-szampan-i-wielkie-przeboje-koncert-sylwestrowy/",
+      "evidence_urls": [
+        "https://bilety.soksuwalki.eu/rezerwacja/numerowane.html?d=3&id=2325&idt=74cd30a291856a630e38bf5bb6953655",
+        "https://bilety.soksuwalki.eu/rezerwacja/termin.html?back=1&m=12&y=2026"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "checked_at": "2026-11-09T20:02:39Z",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:02:39Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd zapowiedzi nie potwierdził prawa do publikacji materiałów organizatora. Okładkę wyświetla EventVisual."
+    },
+    {
+      "title": "Gala Sylwestrowa — Najpiękniejsze melodie świata",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-31T21:00:00+01:00",
+      "short_description": "Sylwestrowy koncert orkiestry Telemanna i solistów w żywieckim MCK.",
+      "description": "Orkiestra Telemanna i soliści wystąpią z programem złożonym z utworów operetkowych, melodii filmowych i muzyki wiedeńskiej. Bilety kosztują 130 zł i są dostępne przez MCK.",
+      "location": {
+        "name": "Miejskie Centrum Kultury w Żywcu — sala widowiskowa",
+        "address": "Aleja Wolności 4",
+        "city": "Żywiec",
+        "latitude": 49.6897789607568,
+        "longitude": 19.1945209473743,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=%C5%BBywiec%2C%20Aleja%20Wolno%C5%9Bci%204",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK. Adres MCK potwierdza statut w BIP."
+      },
+      "source_name": "Miejskie Centrum Kultury w Żywcu",
+      "source_url": "https://mck.zywiec.pl/wielka-gala-sylwestrowa-bilety-juz-w-sprzedazy-zapraszamy,5867,akt.html",
+      "evidence_urls": [
+        "https://mck.zywiec.pl/kalendarz-imprez/sylwester,1462.html",
+        "https://mck.zywiec.pl/zarezerwuj-bilet",
+        "https://www.bip.mck.zywiec.pl/item/4"
+      ],
+      "price_min": 130,
+      "price_max": 130,
+      "checked_at": "2026-11-09T20:01:14Z",
+      "admission_note": "Oficjalny komunikat ogłasza sprzedaż. Gala była na aktualnej liście w formularzu rezerwacji MCK.",
+      "price_type": "paid",
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-09T20:01:14Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótkie sprawdzenie materiałów organizatora nie potwierdziło prawa do publikacji grafiki na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-09.json",
+        "same_city_days": [
+          "2026-12-31"
+        ],
+        "same_city_day": [],
+        "decision": "Przejrzano wszystkie statusy i sprawdzono zgodność źródeł. Brak wpisów w tym mieście i dniu."
+      }
+    }
+  ]
+}

@@ -11,6 +11,7 @@ import { EventValidationError, eventValidationState, eventTextLimits, type Event
 import { buildEventWritePayload, deleteEventRelations, eventPreparationFailure, saveEventSource } from "@/lib/event-editor-server";
 import { completeEventWrite, eventWriteFailure } from "@/lib/event-save-feedback";
 import { revalidatePublicEventCache } from "@/lib/public-event-cache";
+import { resolveFeaturedFields } from "@/lib/promotion";
 import {
   ADMIN_EVENT_POOL_LIMIT, adminEventDateBounds, adminEventPageInfo, filterAdminEventPool,
   needsAdminEventPool, normalizeAdminEventListFilters, sortAdminEventPool,
@@ -21,7 +22,6 @@ export type { AdminEventListFilters, AdminEventListItem, AdminEventListPage } fr
 
 type Tables = Database["public"]["Tables"];
 type EventInsert = Tables["events"]["Insert"];
-type EventUpdate = Tables["events"]["Update"];
 type ModerationLogInsert = Tables["event_moderation_logs"]["Insert"];
 type NotificationInsert = Tables["notifications"]["Insert"];
 
@@ -36,6 +36,7 @@ const ADMIN_EVENT_LIST_SELECT = `
   visibility,
   review_note,
   is_featured,
+  featured_until,
   submitted_by_organizer_id,
   category:categories(name),
   location:locations(city:cities(name)),
@@ -186,7 +187,10 @@ export async function adminCreateEventAction(_previous: EventEditorState, formDa
     });
   } catch (error) { return eventPreparationFailure(error); }
   event.review_note = status === "rejected" ? formString(formData, "review_note") : null;
-  event.is_featured = formBoolean(formData, "is_featured");
+  Object.assign(event, resolveFeaturedFields(
+    { isFeatured: formBoolean(formData, "is_featured"), untilDate: formString(formData, "featured_until") },
+    { start_at: event.start_at ?? "", end_at: event.end_at }
+  ));
 
   // Keep the attempted ID even if the connection is lost after COMMIT.
   const eventId = randomUUID();
@@ -223,12 +227,15 @@ export async function adminUpdateEventAction(eventId: string, _previous: EventEd
     });
   } catch (error) { return eventPreparationFailure(error); }
   event.review_note = status === "rejected" ? reviewNote : reviewNote ?? null;
-  event.is_featured = formBoolean(formData, "is_featured");
+  Object.assign(event, resolveFeaturedFields(
+    { isFeatured: formBoolean(formData, "is_featured"), untilDate: formString(formData, "featured_until") },
+    { start_at: event.start_at ?? "", end_at: event.end_at }
+  ));
 
   try {
     const { data: updated, error } = await supabase
       .from("events")
-      .update(event as EventUpdate)
+      .update({ ...event, updated_at: new Date().toISOString() })
       .eq("id", eventId)
       .select("id")
       .maybeSingle();
@@ -237,7 +244,7 @@ export async function adminUpdateEventAction(eventId: string, _previous: EventEd
   } catch (error) { revalidateAdminPaths(); return eventWriteFailure(error, "admin", eventId); }
 
   revalidateAdminPaths();
-  const followups = [{ label: "źródła", run: () => saveEventSource(eventId, formData, "manual") }];
+  const followups = [{ label: "źródła", run: () => saveEventSource(eventId, formData, "manual", { clearWhenBlank: true }) }];
   if (existing?.status !== status || reviewNote) {
     followups.push({ label: "historii moderacji i powiadomień", run: () => recordModerationDecision({
       eventId,
@@ -268,7 +275,8 @@ export async function adminSetEventStatusAction(eventId: string, status: EventSt
       .update({
         status,
         review_note: status === "rejected" ? note : null,
-        published_at: eventPublicationTimestamp(status, existing.published_at)
+        published_at: eventPublicationTimestamp(status, existing.published_at),
+        updated_at: new Date().toISOString()
       })
       .eq("id", eventId)
       .select("id")

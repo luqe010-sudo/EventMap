@@ -1,0 +1,620 @@
+{
+  "checked_at": "2026-11-12T18:44:31Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Giżycko, Koszalin, Nowa Sól, Oława, Piła, Suwałki i Zgorzelec. Priorytet dla małych katalogów, wydarzeń rodzinnych, bezpłatnych i sportu.",
+  "geocoding_attribution": "Geoportal GUGiK, Narodowy Instytut Dziedzictwa i © OpenStreetMap contributors. Szczegóły przy miejscach.",
+  "events": [
+    {
+      "title": "Miejsca — wernisaż Roberta Motelskiego w Suwałkach",
+      "category_slug": "kultura",
+      "start_at": "2026-11-13T18:00:00+01:00",
+      "end_at": "2026-11-13T19:00:00+01:00",
+      "short_description": "Robert Motelski pokaże obrazy inspirowane krajobrazem Suwalszczyzny.",
+      "description": "Robert Motelski pokaże obrazy inspirowane krajobrazem Suwalszczyzny. Bezpłatne otwarcie odbędzie się w Galerii Chłodna 20 przy Noniewicza 71. Wystawa potrwa do 16 stycznia.",
+      "location": {
+        "name": "Galeria Sztuki Współczesnej Chłodna 20",
+        "city": "Suwałki",
+        "city_slug": "suwalki",
+        "address": "Teofila Noniewicza 71",
+        "latitude": 54.1010489,
+        "longitude": 22.9318102,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Suwa%C5%82ki%2C%20Teofila%20Noniewicza%2071",
+        "coordinate_note": "Pinezka istniejącego budynku pod tym samym adresem. Nazwę sali podaje oficjalne ogłoszenie."
+      },
+      "source_name": "Suwalski Ośrodek Kultury",
+      "source_url": "https://soksuwalki.eu/class/wernisaz-wystawy-roberta-motelskiego-bledne-gwiazdy-wielkiej-niedzwiedzicy/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:56Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:56Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Grupa A+ i Kwazar — koncert w Magazynie Solnym",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-13T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Kwazar otworzy wieczór pop-rockowym setem, a Grupa A+ zagra autorskie utwory na styku rocka, country i bluesa.",
+      "description": "Kwazar otworzy wieczór pop-rockowym setem, a Grupa A+ zagra autorskie utwory na styku rocka, country i bluesa. Bilety online od 22 zł.",
+      "location": {
+        "name": "Magazyn Solny",
+        "city": "Nowa Sól",
+        "city_slug": "nowa-sol",
+        "address": "Plac Solny 1",
+        "latitude": 51.80531861566,
+        "longitude": 15.723702063844,
+        "coordinate_source": "https://zabytek.pl/pl/obiekty/g-214161",
+        "coordinate_note": "Pinezka zabytkowego budynku obok placu Solnego z mapy NID. Katalog wydarzeń podaje Plac Solny 1. Punkt porównano z kartą obiektu Loudspot."
+      },
+      "source_name": "Nowosolski Dom Kultury — Bilety24",
+      "source_url": "https://www.bilety24.pl/koncert/1679-grupy-a-i-kwazar-169694?id=1017381",
+      "evidence_urls": [
+        "https://nowosolski.bilety24.pl/sprzedaz-biletow/",
+        "https://www.bilety24.pl/kup-bilet-na-1679-grupy-a-i-kwazar-169694?id=1017381",
+        "https://www.bilety24.pl/index.php/obiekt/magazyn-solny-1453.html",
+        "https://www.loudspot.pl/miejsca/magazyn-solny/",
+        "https://nowasol.pl/aktualnosci/magazyn-solny/urodzil-sie-magazyn-solny/16-10-2024"
+      ],
+      "price_type": "paid",
+      "price_min": 22,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:07Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:07Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Doktor Miłość — komedia muzyczna w Zgorzelcu",
+      "category_slug": "kultura",
+      "start_at": "2026-11-14T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Komedia rozgrywa się w gabinecie psychoterapeuty.",
+      "description": "Komedia rozgrywa się w gabinecie psychoterapeuty. W spektaklu zabrzmią piosenki znane z Kabaretu Starszych Panów i repertuaru Kaliny Jędrusik. Bilety po 69 zł w MDK i online.",
+      "location": {
+        "name": "Miejski Dom Kultury w Zgorzelcu",
+        "city": "Zgorzelec",
+        "city_slug": "zgorzelec",
+        "address": "Parkowa 1",
+        "latitude": 51.147061027894,
+        "longitude": 15.0028079711203,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Zgorzelec%2C%20Parkowa%201",
+        "coordinate_note": "Dokładny punkt adresowy Geoportalu GUGiK w WGS84. Adres obiektu potwierdza zapowiedź lub sprzedaż."
+      },
+      "source_name": "Miejski Dom Kultury w Zgorzelcu",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/11/02/doktor-milosc-komedia-muzyczna/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 69,
+      "price_max": 69,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:01Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:01Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Enea KS Piła – NTSK PANS Komunalnik Nysa",
+      "category_slug": "mecze",
+      "start_at": "2026-11-14T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Mecz 8. kolejki I ligi siatkarek w hali MOSiR.",
+      "description": "Mecz 8. kolejki I ligi siatkarek w hali MOSiR. Bilety online z opłatą kosztują 27,75 zł lub 17,45 zł z ulgą. Dzieci do 5. roku życia z opiekunem i opiekunowie osób z niepełnosprawnością wchodzą bezpłatnie.",
+      "location": {
+        "name": "Hala Widowiskowo-Sportowa MOSiR w Pile",
+        "city": "Piła",
+        "city_slug": "pila",
+        "address": "Żeromskiego 90",
+        "latitude": 53.1412444369101,
+        "longitude": 16.7133722735403,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Pi%C5%82a%2C%20Stefana%20%C5%BBeromskiego%2090",
+        "coordinate_note": "Dokładny punkt adresowy Geoportalu GUGiK w WGS84. Adres obiektu potwierdza zapowiedź lub sprzedaż."
+      },
+      "source_name": "abilet.pl — sprzedaż KS Piła",
+      "source_url": "https://abilet.pl/wydarzenie/enea-klub-siatkarski-pila-vs-ntsk-pans-komunalnik-nysa-17456",
+      "evidence_urls": [
+        "https://abilet.pl/sektor/enea-klub-siatkarski-pila-vs-ntsk-pans-komunalnik-nysa-71608",
+        "https://www.pila.pl/kalendarz-wydarzen/mecz-siatkarski-enea-klub-siatkarski-pila-ntsk-pans-komunalnik-nysa.html",
+        "https://www.kspila.pl/terminarz/"
+      ],
+      "price_type": "paid",
+      "price_min": 17.45,
+      "price_max": 27.75,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:44:31Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:44:31Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Dom z powyłamywanymi nogami — Teatr Hybrydowy",
+      "category_slug": "kultura",
+      "start_at": "2026-11-19T19:00:00+01:00",
+      "end_at": "2026-11-19T20:30:00+01:00",
+      "short_description": "Suwalski Teatr Hybrydowy sięga do wspomnień z dzieciństwa i motywu powrotu do domu.",
+      "description": "Suwalski Teatr Hybrydowy sięga do wspomnień z dzieciństwa i motywu powrotu do domu. Spektakl w sali kameralnej SOK jest biletowany i przeznaczony dla widzów od 15 lat.",
+      "location": {
+        "name": "Suwalski Ośrodek Kultury — sala kameralna",
+        "city": "Suwałki",
+        "city_slug": "suwalki",
+        "address": "Papieża Jana Pawła II 5",
+        "latitude": 54.1121054747403,
+        "longitude": 22.9368527094315,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Suwa%C5%82ki%2C%20Papie%C5%BCa%20Jana%20Paw%C5%82a%20II%205",
+        "coordinate_note": "Dokładny punkt adresowy Geoportalu GUGiK w WGS84. Adres obiektu potwierdza zapowiedź lub sprzedaż."
+      },
+      "source_name": "Suwalski Ośrodek Kultury",
+      "source_url": "https://soksuwalki.eu/class/teatr-hybrydowy-dom-z-powylamywanymi-nogami11/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:04Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:04Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Amadeus jubileuszowo — koncert w Pile",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-20T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Orkiestra Amadeus pod batutą Agnieszki Duczmal wystąpi z wiolonczelistką Karoliną Jaroszewską.",
+      "description": "Orkiestra Amadeus pod batutą Agnieszki Duczmal wystąpi z wiolonczelistką Karoliną Jaroszewską. W programie m.in. Haydn, Szymanowski i Liszt. Bilet kosztuje 50 zł.",
+      "location": {
+        "name": "Regionalne Centrum Kultury – Fabryka Emocji",
+        "city": "Piła",
+        "city_slug": "pila",
+        "address": "Plac Staszica 1",
+        "latitude": 53.1459,
+        "longitude": 16.743968,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Pi%C5%82a%2C%20plac%20Staszica%201",
+        "coordinate_note": "Pinezka istniejącego obiektu. Adres potwierdza organizator."
+      },
+      "source_name": "Regionalne Centrum Kultury – Fabryka Emocji",
+      "source_url": "https://bilet.rck.pila.pl/amadeus-jubileuszowo/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 50,
+      "price_max": 50,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:07Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:07Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Wieczory Lisztowskie — recital Tomasza Kamieniaka",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-23T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Tomasz Kamieniak wystąpi z recitalem fortepianowym w OWE Odra.",
+      "description": "Tomasz Kamieniak wystąpi z recitalem fortepianowym w OWE Odra. W programie m.in. rzadko wykonywane wariacje Friedricha Kalkbrennera na temat mazurka Chopina. Bilety po 20 zł.",
+      "location": {
+        "name": "OWE Odra",
+        "city": "Oława",
+        "city_slug": "olawa",
+        "address": "Młyńska 3",
+        "latitude": 50.94193,
+        "longitude": 17.30052,
+        "coordinate_source": "https://mapa.targeo.pl/kino-owe-odra-mlynska-3-55-200-olawa~18877859/kino/adres",
+        "coordinate_note": "Pinezka istniejącego obiektu. Adres potwierdza organizator."
+      },
+      "source_name": "Centrum Sztuki w Oławie",
+      "source_url": "https://kultura.olawa.pl/wydarzenia/32812/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 20,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:04Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:04Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Cebula — spektakl Teatru Nowego w Giżycku",
+      "category_slug": "kultura",
+      "start_at": "2026-11-26T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Spektakl w reżyserii Marka Ślosarskiego opowiada o porozumieniu i codzienności rodziny osoby z niepełnosprawnością.",
+      "description": "Spektakl w reżyserii Marka Ślosarskiego opowiada o porozumieniu i codzienności rodziny osoby z niepełnosprawnością. Bezpłatne wejściówki wydaje kasa GCK.",
+      "location": {
+        "name": "Giżyckie Centrum Kultury",
+        "city": "Giżycko",
+        "city_slug": "gizycko",
+        "address": "Konarskiego 8",
+        "latitude": 54.038106,
+        "longitude": 21.767351,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/678/gizyckie-centrum-kultury",
+        "coordinate_note": "Pinezka istniejącego obiektu. Adres potwierdza organizator."
+      },
+      "source_name": "Giżyckie Centrum Kultury",
+      "source_url": "https://gck.gizycko.pl/cebula-spektakl-o-milosci-emocjach-i-probie-zrozumienia-drugiego-czlowieka/",
+      "evidence_urls": [
+        "https://gck.gizycko.pl/kultura-ktora-slucha-prezentacje-teatrow-inkluzyjnych-w-gizycku/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:01Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:01Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Nadprzyrodzone w sztuce — wernisaż prac Bô Yin Râ",
+      "category_slug": "kultura",
+      "start_at": "2026-11-27T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "W dawnej Hali Chwały pokazane zostaną reprodukcje pejzaży Bô Yin Râ, którego obrazy wystawiano w tym budynku w 1919 r.",
+      "description": "W dawnej Hali Chwały pokazane zostaną reprodukcje pejzaży Bô Yin Râ, którego obrazy wystawiano w tym budynku w 1919 r. Wernisaż jest bezpłatny. Wystawę zapowiedziano do 14 lutego 2027 r.",
+      "location": {
+        "name": "Miejski Dom Kultury w Zgorzelcu",
+        "city": "Zgorzelec",
+        "city_slug": "zgorzelec",
+        "address": "Parkowa 1",
+        "latitude": 51.147061027894,
+        "longitude": 15.0028079711203,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Zgorzelec%2C%20Parkowa%201",
+        "coordinate_note": "Dokładny punkt adresowy Geoportalu GUGiK w WGS84. Adres obiektu potwierdza zapowiedź lub sprzedaż."
+      },
+      "source_name": "Miejski Dom Kultury w Zgorzelcu",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/11/04/nadprzyrodzone-w-sztuce-rekonstrukcja-wystawy-obrazow-malarza-i-mistyka-bo-yin-ra/",
+      "evidence_urls": [
+        "https://www.mdk.zgorzelec.eu/2026/10/30/listopad-w-mdk/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:01Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:01Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Jestem stąd — Kazimierz Pichlak i Jacek Szreniawa Band",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-27T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Zespół Jacka Szreniawy zagra autorskie kompozycje do tekstów Kazimierza Pichlaka.",
+      "description": "Zespół Jacka Szreniawy zagra autorskie kompozycje do tekstów Kazimierza Pichlaka. Gościnnie wystąpi Julia Radkiewicz. Wstęp wolny.",
+      "location": {
+        "name": "Miejski Dom Kultury w Zgorzelcu",
+        "city": "Zgorzelec",
+        "city_slug": "zgorzelec",
+        "address": "Parkowa 1",
+        "latitude": 51.147061027894,
+        "longitude": 15.0028079711203,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Zgorzelec%2C%20Parkowa%201",
+        "coordinate_note": "Dokładny punkt adresowy Geoportalu GUGiK w WGS84. Adres obiektu potwierdza zapowiedź lub sprzedaż."
+      },
+      "source_name": "Miejski Dom Kultury w Zgorzelcu",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/11/04/koncert-jestem-stad-dr-kazimierza-pichlaka-i-jacek-szreniawa-band/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:04Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:04Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Suwalszczyzna na bis — jubileusz 75-lecia zespołu",
+      "category_slug": "kultura",
+      "start_at": "2026-11-28T19:00:00+01:00",
+      "end_at": "2026-11-28T21:00:00+01:00",
+      "short_description": "Zespół Pieśni i Tańca „Suwalszczyzna” wraca z jubileuszowym programem w sali im.",
+      "description": "Zespół Pieśni i Tańca „Suwalszczyzna” wraca z jubileuszowym programem w sali im. Andrzeja Wajdy. Bilety po 50 zł w kasie SOK i online.",
+      "location": {
+        "name": "Suwalski Ośrodek Kultury — sala im. Andrzeja Wajdy",
+        "city": "Suwałki",
+        "city_slug": "suwalki",
+        "address": "Papieża Jana Pawła II 5",
+        "latitude": 54.1122387,
+        "longitude": 22.9366214,
+        "coordinate_source": "https://www.google.com/maps/place/Suwalski+O%C5%9Brodek+Kultury/@54.1122418,22.9321367,17z/data=!3m1!4b1!4m5!3m4!1s0x46e10245bfef0299:0x45a9f1d09e11d997!8m2!3d54.1122387!4d22.9366214",
+        "coordinate_note": "Pinezka istniejącego obiektu. Adres potwierdza organizator."
+      },
+      "source_name": "Suwalski Ośrodek Kultury",
+      "source_url": "https://soksuwalki.eu/class/jubileusz-75-lecia-zpitsuwalszczyzna-na-bis/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 50,
+      "price_max": 50,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:04Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:04Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Sekrety Pana Dyrygenta — Familijny Park Sztuki",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-29T12:00:00+01:00",
+      "end_at": "2026-11-29T13:00:00+01:00",
+      "short_description": "Ernest Pikulski poprowadzi orkiestrę Filharmonii Koszalińskiej, a Iwona Wyszyńska przybliży dzieciom pracę dyrygenta.",
+      "description": "Ernest Pikulski poprowadzi orkiestrę Filharmonii Koszalińskiej, a Iwona Wyszyńska przybliży dzieciom pracę dyrygenta. Bilety 15–20 zł, z Pakietem Dużej Rodziny Koszalińskiej Karty Mieszkańca 12–17 zł.",
+      "location": {
+        "name": "Filharmonia Koszalińska im. Stanisława Moniuszki",
+        "city": "Koszalin",
+        "city_slug": "koszalin",
+        "address": "Piastowska 2",
+        "latitude": 54.191274,
+        "longitude": 16.1879842,
+        "coordinate_source": "https://filharmoniakoszalinska.pl/wydarzenie/koncert-symfoniczny-42/",
+        "coordinate_note": "Pinezka istniejącego obiektu. Adres potwierdza organizator."
+      },
+      "source_name": "Filharmonia Koszalińska",
+      "source_url": "https://filharmoniakoszalinska.pl/wydarzenie/familijny-park-sztuki-sekrety-pana-dyrygenta/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 12,
+      "price_max": 20,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:56Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:56Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Awantura o ser — andrzejkowa gra terenowa w Twierdzy Boyen",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-29T13:00:00+01:00",
+      "end_at": null,
+      "short_description": "Do gry terenowej można dołączyć między 13:00 a 15:00.",
+      "description": "Do gry terenowej można dołączyć między 13:00 a 15:00. Udział kosztuje 15 zł, z Giżycką Kartą Mieszkańca 12 zł, a dzieci do 7 lat wchodzą bezpłatnie. Organizator zapowiada ognisko po grze i prosi o własny prowiant.",
+      "location": {
+        "name": "Twierdza Boyen",
+        "city": "Giżycko",
+        "city_slug": "gizycko",
+        "address": "Turystyczna 1",
+        "latitude": 54.0343624,
+        "longitude": 21.7498238,
+        "coordinate_source": "https://www.labiryntarium.pl/polska/warminskomazurskie/2666-gizycko-twierdza-boyen.html",
+        "coordinate_note": "Pinezka istniejącego obiektu. Adres potwierdza organizator."
+      },
+      "source_name": "Twierdza Boyen",
+      "source_url": "https://twierdza.gizycko.pl/andrzejkowa-gra-terenowa-29-11-2026/",
+      "evidence_urls": [
+        "https://gim1.gizycko.pl/terenowa-gra-andrzejkowa-ii-edycja/"
+      ],
+      "price_type": "paid",
+      "price_min": 12,
+      "price_max": 15,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:01Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:01Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Young Stage 18 — Timeless Music w Pile",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-30T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Młodzi wykonawcy z Piły sięgną po przeboje różnych pokoleń w sali widowiskowej RCK.",
+      "description": "Młodzi wykonawcy z Piły sięgną po przeboje różnych pokoleń w sali widowiskowej RCK. Bilet normalny kosztuje 40 zł, ulgowy 20 zł.",
+      "location": {
+        "name": "Regionalne Centrum Kultury – Fabryka Emocji",
+        "city": "Piła",
+        "city_slug": "pila",
+        "address": "Plac Staszica 1",
+        "latitude": 53.1459,
+        "longitude": 16.743968,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Pi%C5%82a%2C%20plac%20Staszica%201",
+        "coordinate_note": "Pinezka istniejącego obiektu. Adres potwierdza organizator."
+      },
+      "source_name": "Regionalne Centrum Kultury – Fabryka Emocji",
+      "source_url": "https://rck.pila.pl/component/content/article/3028-young-stage-18.html?Itemid=435&catid=266",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 40,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:07Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:07Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Zofia Anna Olesik i Tomasz Chmiel — koncert symfoniczny",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-04T18:30:00+01:00",
+      "end_at": "2026-12-04T20:30:00+01:00",
+      "short_description": "Zofia Anna Olesik zagra II Koncert skrzypcowy Wieniawskiego.",
+      "description": "Zofia Anna Olesik zagra II Koncert skrzypcowy Wieniawskiego. Orkiestra pod batutą Tomasza Chmiela wykona także utwory Rossiniego i Beethovena. Ceny w kasie filharmonii wynoszą 37–47 zł zależnie od strefy i ulgi.",
+      "location": {
+        "name": "Filharmonia Koszalińska im. Stanisława Moniuszki",
+        "city": "Koszalin",
+        "city_slug": "koszalin",
+        "address": "Piastowska 2",
+        "latitude": 54.191274,
+        "longitude": 16.1879842,
+        "coordinate_source": "https://filharmoniakoszalinska.pl/wydarzenie/koncert-symfoniczny-42/",
+        "coordinate_note": "Pinezka istniejącego obiektu. Adres potwierdza organizator."
+      },
+      "source_name": "Filharmonia Koszalińska",
+      "source_url": "https://filharmoniakoszalinska.pl/wydarzenie/koncert-symfoniczny-42/",
+      "evidence_urls": [
+        "https://filharmoniakoszalinska.bilety24.pl/wydarzenie/?id=160855"
+      ],
+      "price_type": "paid",
+      "price_min": 37,
+      "price_max": 47,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:56Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:56Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Pilski Jarmark Bożonarodzeniowy 2026",
+      "category_slug": "targi",
+      "start_at": "2026-12-10T12:00:00+01:00",
+      "end_at": "2026-12-13T19:00:00+01:00",
+      "short_description": "Grudniowy jarmark obejmie plac Konstytucji 3 Maja, ul. 14 Lutego i plac Staszica.",
+      "description": "Grudniowy jarmark obejmie plac Konstytucji 3 Maja, ul. 14 Lutego i plac Staszica. Impreza zaczyna się 10 grudnia o 12:00 i kończy 13 grudnia o 19:00. Wstęp wolny.",
+      "location": {
+        "name": "Plac Konstytucji 3 Maja",
+        "city": "Piła",
+        "city_slug": "pila",
+        "address": "Plac Konstytucji 3 Maja",
+        "latitude": 53.146723,
+        "longitude": 16.7387069,
+        "coordinate_source": "https://www.openstreetmap.org/way/1339671453",
+        "coordinate_note": "Punkt nazwanego placu z OpenStreetMap. Organizator wskazuje plac jako główne miejsce jarmarku."
+      },
+      "source_name": "Regionalne Centrum Kultury – Fabryka Emocji",
+      "source_url": "https://rck.pila.pl/component/content/article/3004-pilski-jarmark-bo%C5%BConarodzeniowy.html?Itemid=435&catid=270",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:07Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:07Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Piękna i Bestia — Teatr Czy TAK czy NIE w Giżycku",
+      "category_slug": "kultura",
+      "start_at": "2026-12-10T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Teatr Fundacji Dorotkowo z Torunia wystąpi w sali widowiskowej GCK na zakończenie cyklu „Kultura, która słucha”.",
+      "description": "Teatr Fundacji Dorotkowo z Torunia wystąpi w sali widowiskowej GCK na zakończenie cyklu „Kultura, która słucha”. Wstęp bezpłatny. Organizator podaje wejście od ul. Mickiewicza.",
+      "location": {
+        "name": "Giżyckie Centrum Kultury",
+        "city": "Giżycko",
+        "city_slug": "gizycko",
+        "address": "Konarskiego 8",
+        "latitude": 54.038106,
+        "longitude": 21.767351,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/678/gizyckie-centrum-kultury",
+        "coordinate_note": "Pinezka istniejącego obiektu. Adres potwierdza organizator."
+      },
+      "source_name": "Giżyckie Centrum Kultury",
+      "source_url": "https://gck.gizycko.pl/kultura-ktora-slucha-prezentacje-teatrow-inkluzyjnych-w-gizycku/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:01Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:01Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Góralski wieczór kolęd — Staszek z Gór w Oławie",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-12T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Stanisław Karpiel-Bułecka z zespołem zagra kolędy w aranżacjach nawiązujących do muzyki Podhala.",
+      "description": "Stanisław Karpiel-Bułecka z zespołem zagra kolędy w aranżacjach nawiązujących do muzyki Podhala. Bilet kosztuje 110 zł, w kasie OWE Odra lub online.",
+      "location": {
+        "name": "OWE Odra",
+        "city": "Oława",
+        "city_slug": "olawa",
+        "address": "Młyńska 3",
+        "latitude": 50.94193,
+        "longitude": 17.30052,
+        "coordinate_source": "https://mapa.targeo.pl/kino-owe-odra-mlynska-3-55-200-olawa~18877859/kino/adres",
+        "coordinate_note": "Pinezka istniejącego obiektu. Adres potwierdza organizator."
+      },
+      "source_name": "Centrum Sztuki w Oławie",
+      "source_url": "https://kultura.olawa.pl/wydarzenia/staszek-z-gor-goralski-wieczor-koled/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 110,
+      "price_max": 110,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonych praw do plakatu lub fotografii. Okładka EventVisual.",
+      "checked_at": "2026-11-12T18:43:04Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-12T18:43:04Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

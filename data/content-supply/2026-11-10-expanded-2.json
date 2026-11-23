@@ -1,0 +1,781 @@
+{
+  "checked_at": "2026-11-10T21:03:39Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Dodatkowa paczka na prośbę właściciela. Pierwszeństwo miały miasta pominięte w poprzedniej paczce, rozpoznawalne wydarzenia i propozycje rodzinne.",
+  "geocoding_attribution": "© OpenStreetMap contributors oraz inne źródła wymienione przy lokalizacjach.",
+  "events": [
+    {
+      "title": "Jezioro łabędzie — Królewski Balet Klasyczny w Rzeszowie",
+      "category_slug": "kultura",
+      "start_at": "2026-11-12T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Klasyczny balet Piotra Czajkowskiego opowiada historię Odetty i księcia Zygfryda.",
+      "description": "Klasyczny balet Piotra Czajkowskiego opowiada historię Odetty i księcia Zygfryda. Spektakl trwa około dwóch godzin z przerwą. Bilety kosztują 140–190 zł.",
+      "location": {
+        "name": "Filharmonia Podkarpacka im. Artura Malawskiego",
+        "address": "Chopina 30",
+        "city": "Rzeszów",
+        "latitude": 50.0335311,
+        "longitude": 22.0041879,
+        "coordinate_source": "https://filharmonia.rzeszow.pl/kontakt/",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku przy adresie potwierdzonym przez filharmonię."
+      },
+      "source_name": "Filharmonia Podkarpacka",
+      "source_url": "https://filharmonia.rzeszow.pl/produkt/jezioro-labedzie/",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/event/200248/rzeszow/krolewski-balet-klasyczny-jezioro-labedzie"
+      ],
+      "price_type": "paid",
+      "price_min": 140,
+      "price_max": 190,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:11Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:11Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Dżem — The Best Of w Radomiu",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-13T20:00:00+01:00",
+      "end_at": null,
+      "short_description": "Zespół Dżem zagra w hali Enea RCS.",
+      "description": "Zespół Dżem zagra w hali Enea RCS. Program „The Best Of” gromadzi utwory z pogranicza bluesa i rocka, z Sebastianem Riedlem na wokalu. Wstęp biletowany.",
+      "location": {
+        "name": "Enea Radomskie Centrum Sportu — hala widowiskowo-sportowa",
+        "address": "Andrzeja Struga 63",
+        "city": "Radom",
+        "latitude": 51.4090392,
+        "longitude": 21.1714255,
+        "coordinate_source": "https://www.openstreetmap.org/way/620498375",
+        "coordinate_note": "Obrys hali Enea RCS przy ul. Struga, zgodny z kartą organizatora."
+      },
+      "source_name": "eBilet — koncert Dżemu w Radomiu",
+      "source_url": "https://www.ebilet.pl/muzyka/jazz-blues/dzem?city=Radom",
+      "evidence_urls": [
+        "https://www.radom.pl/wydarzenia/dzem/",
+        "https://www.kupbilecik.pl/pl/event/204686/radom/dzem"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:11Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:11Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Adam Golicki The Great Time — Rzeszów Jazz Festiwal",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-13T20:00:00+01:00",
+      "end_at": null,
+      "short_description": "Koncert projektu perkusisty Adama Golickiego w sali Filharmonii Podkarpackiej.",
+      "description": "Koncert projektu perkusisty Adama Golickiego w sali Filharmonii Podkarpackiej. Organizator przewiduje około 90 minut bez przerwy. Bilety od 89 zł, możliwa opłata serwisowa.",
+      "location": {
+        "name": "Filharmonia Podkarpacka im. Artura Malawskiego",
+        "address": "Chopina 30",
+        "city": "Rzeszów",
+        "latitude": 50.0335311,
+        "longitude": 22.0041879,
+        "coordinate_source": "https://filharmonia.rzeszow.pl/kontakt/",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku przy adresie potwierdzonym przez filharmonię."
+      },
+      "source_name": "Filharmonia Podkarpacka",
+      "source_url": "https://filharmonia.rzeszow.pl/produkt/adam-golicki-the-great-time-rzeszow-jazz-festiwal-2026/",
+      "evidence_urls": [
+        "https://niezla-sztuka.pl/bilety/"
+      ],
+      "price_type": "paid",
+      "price_min": 89,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:11Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:11Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Kayah Jazzayah — Rzeszów Jazz Festiwal",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-14T20:00:00+01:00",
+      "end_at": null,
+      "short_description": "Kayah zaśpiewa swoje utwory w nowych aranżacjach oraz sięgnie po polskie i amerykańskie standardy jazzowe.",
+      "description": "Kayah zaśpiewa swoje utwory w nowych aranżacjach oraz sięgnie po polskie i amerykańskie standardy jazzowe. Bilety od 149 zł, możliwa opłata serwisowa.",
+      "location": {
+        "name": "Filharmonia Podkarpacka im. Artura Malawskiego",
+        "address": "Chopina 30",
+        "city": "Rzeszów",
+        "latitude": 50.0335311,
+        "longitude": 22.0041879,
+        "coordinate_source": "https://filharmonia.rzeszow.pl/kontakt/",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku przy adresie potwierdzonym przez filharmonię."
+      },
+      "source_name": "Filharmonia Podkarpacka",
+      "source_url": "https://filharmonia.rzeszow.pl/produkt/kayah-jazzayah-rzeszow-jazz-festiwal-2026/",
+      "evidence_urls": [
+        "https://niezla-sztuka.pl/bilety/"
+      ],
+      "price_type": "paid",
+      "price_min": 149,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:13Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:13Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Radomskie Targi Ślubne 2026 — trzecia edycja",
+      "category_slug": "targi",
+      "start_at": "2026-11-15T10:00:00+01:00",
+      "end_at": "2026-11-15T18:00:00+01:00",
+      "short_description": "W hali Enea RCS spotkają się dostawcy usług ślubnych, od mody i fotografii po muzykę i organizację wesela.",
+      "description": "W hali Enea RCS spotkają się dostawcy usług ślubnych, od mody i fotografii po muzykę i organizację wesela. Dorośli płacą 30 zł, dzieci od 8 lat 15 zł, a młodsze wchodzą bezpłatnie.",
+      "location": {
+        "name": "Enea Radomskie Centrum Sportu — hala widowiskowo-sportowa",
+        "address": "Andrzeja Struga 63",
+        "city": "Radom",
+        "latitude": 51.4090392,
+        "longitude": 21.1714255,
+        "coordinate_source": "https://www.openstreetmap.org/way/620498375",
+        "coordinate_note": "Obrys hali Enea RCS przy ul. Struga, zgodny z kartą organizatora."
+      },
+      "source_name": "Organizator Radomskich Targów Ślubnych",
+      "source_url": "https://www.targi.radom.pl/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 30,
+      "price_max": 30,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:12Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:12Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Lubelski Festiwal Filmowy — „Nie pozwól mi odejść”",
+      "category_slug": "kultura",
+      "start_at": "2026-11-20T19:00:00+01:00",
+      "end_at": "2026-11-20T21:00:00+01:00",
+      "short_description": "Polska premiera filmu Andreia Epure w Kinie CK.",
+      "description": "Polska premiera filmu Andreia Epure w Kinie CK. Po seansie przewidziano rozmowę. Organizator oznacza film jako 15+. Bilet kosztuje 15 zł.",
+      "location": {
+        "name": "Kino CK — Centrum Kultury w Lublinie",
+        "address": "Peowiaków 12",
+        "city": "Lublin",
+        "latitude": 51.246513,
+        "longitude": 22.557638,
+        "coordinate_source": "https://erfp.pl/teatry-sale-koncertowe/lublin/centrum-kultury-328372",
+        "coordinate_note": "Punkt Centrum Kultury przy Peowiaków 12, adres potwierdzony w karcie pokazu."
+      },
+      "source_name": "Lubelski Festiwal Filmowy",
+      "source_url": "https://lff.lublin.pl/events/fokus-granice-nie-pozwol-mi-odejsc/",
+      "evidence_urls": [
+        "https://lff.lublin.pl/harmonogram/"
+      ],
+      "price_type": "paid",
+      "price_min": 15,
+      "price_max": 15,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:12Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:12Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Polska Noc Kabaretowa 2026 — Siedmiu wspaniałych w Radomiu",
+      "category_slug": "kabaret",
+      "start_at": "2026-11-20T20:00:00+01:00",
+      "end_at": null,
+      "short_description": "Wieczór kabaretowy w hali Enea RCS.",
+      "description": "Wieczór kabaretowy w hali Enea RCS. W programie nowe skecze przygotowane na trasę „Siedmiu wspaniałych”. Obowiązują bilety z wyborem miejsca.",
+      "location": {
+        "name": "Enea Radomskie Centrum Sportu — hala widowiskowo-sportowa",
+        "address": "Andrzeja Struga 63",
+        "city": "Radom",
+        "latitude": 51.4090392,
+        "longitude": 21.1714255,
+        "coordinate_source": "https://www.openstreetmap.org/way/620498375",
+        "coordinate_note": "Obrys hali Enea RCS przy ul. Struga, zgodny z kartą organizatora."
+      },
+      "source_name": "Polska Noc Kabaretowa",
+      "source_url": "https://polskanockabaretowa.pl/radom-2026",
+      "evidence_urls": [
+        "https://www.enearcs.radom.pl/kalendarz-imprez/"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:12Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:12Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "PEKAO BIKE EXPO Winter Edition i SNOW EXPO 2026 w Katowicach",
+      "category_slug": "targi",
+      "start_at": "2026-11-21T09:00:00+01:00",
+      "end_at": "2026-11-22T17:00:00+01:00",
+      "short_description": "Jeden bilet obejmuje targi rowerowe i zimowe w MCK.",
+      "description": "Jeden bilet obejmuje targi rowerowe i zimowe w MCK. W programie sprzęt, spotkania z Mają Włoszczowską i Tomaszem Marczyńskim oraz warsztaty lawinowe. Sobota 9:00–18:00, niedziela 9:00–17:00. Bilety indywidualne 25–35 zł zależnie od rodzaju.",
+      "location": {
+        "name": "Międzynarodowe Centrum Kongresowe w Katowicach",
+        "address": "Plac Sławika i Antalla 1",
+        "city": "Katowice",
+        "latitude": 50.2662477,
+        "longitude": 19.0276219,
+        "coordinate_source": "https://bikeexpo.pl/regulamin/",
+        "coordinate_note": "Pinezka istniejącego budynku MCK. Regulamin potwierdza MCK jako miejsce targów."
+      },
+      "source_name": "PEKAO BIKE EXPO",
+      "source_url": "https://bikeexpo.pl/katowice/",
+      "evidence_urls": [
+        "https://bikeexpo.pl/regulamin/"
+      ],
+      "price_type": "paid",
+      "price_min": 25,
+      "price_max": 35,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:14Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:14Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Rycerskość wieśniacza i Pajace — wieczór operowy w Bydgoszczy",
+      "category_slug": "kultura",
+      "start_at": "2026-11-21T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Opera Nova pokazuje podczas jednego wieczoru dwa włoskie dzieła, „Rycerskość wieśniaczą” Pietra Mascagniego i „Pajace” Ruggera Leoncavalla.",
+      "description": "Opera Nova pokazuje podczas jednego wieczoru dwa włoskie dzieła, „Rycerskość wieśniaczą” Pietra Mascagniego i „Pajace” Ruggera Leoncavalla. Wstęp biletowany.",
+      "location": {
+        "name": "Opera Nova w Bydgoszczy",
+        "address": "Focha 5",
+        "city": "Bydgoszcz",
+        "latitude": 53.1243914,
+        "longitude": 17.9977638,
+        "coordinate_source": "https://www.opera.bydgoszcz.pl/kontakt.html",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku Opery Nova przy Focha 5."
+      },
+      "source_name": "Opera Nova",
+      "source_url": "https://www.opera.bydgoszcz.pl/spektakle/opera/rycerskosc-wiesniacza-pajace-cavalleria-rusticana-i-pagliacci.html",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:15Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "MTV. Hity z satelity — spektakl w Wałbrzychu",
+      "category_slug": "kultura",
+      "start_at": "2026-11-21T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Tomasz Jękot wraca do czasów telewizji muzycznej i wspólnego oglądania teledysków.",
+      "description": "Tomasz Jękot wraca do czasów telewizji muzycznej i wspólnego oglądania teledysków. Spektakl trwa 90 minut i odbywa się na Scenie Kameralnej. Wstęp biletowany.",
+      "location": {
+        "name": "Teatr Dramatyczny im. Jerzego Szaniawskiego w Wałbrzychu",
+        "address": "plac Teatralny 1",
+        "city": "Wałbrzych",
+        "latitude": 50.767604,
+        "longitude": 16.2748895,
+        "coordinate_source": "https://bilety.teatr.walbrzych.pl/rezerwacja/wydarzenie.html",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku Teatru Dramatycznego przy placu Teatralnym 1."
+      },
+      "source_name": "Teatr Dramatyczny w Wałbrzychu",
+      "source_url": "https://teatr.walbrzych.pl/spektakl/mtv-hity-z-satelity/",
+      "evidence_urls": [
+        "https://teatr.walbrzych.pl/repertuar/?miesiac=2026-11"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:15Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Diamenty to węgiel, który wziął się do roboty — spektakl w Wałbrzychu",
+      "category_slug": "kultura",
+      "start_at": "2026-11-28T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Sztuka Pawła Demirskiego w reżyserii Pameli Leończyk na Dużej Scenie.",
+      "description": "Sztuka Pawła Demirskiego w reżyserii Pameli Leończyk na Dużej Scenie. Teatr podaje 115 minut oraz oznaczenie wiekowe 16+. Wstęp biletowany.",
+      "location": {
+        "name": "Teatr Dramatyczny im. Jerzego Szaniawskiego w Wałbrzychu",
+        "address": "plac Teatralny 1",
+        "city": "Wałbrzych",
+        "latitude": 50.767604,
+        "longitude": 16.2748895,
+        "coordinate_source": "https://bilety.teatr.walbrzych.pl/rezerwacja/wydarzenie.html",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku Teatru Dramatycznego przy placu Teatralnym 1."
+      },
+      "source_name": "Teatr Dramatyczny w Wałbrzychu",
+      "source_url": "https://teatr.walbrzych.pl/spektakl/diamenty-to-wegiel-ktory-wzial-sie-do-roboty/",
+      "evidence_urls": [
+        "https://teatr.walbrzych.pl/repertuar/?miesiac=2026-11"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:14Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:14Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Dziadek do orzechów — balet w Operze Nova",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-01T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Balet Piotra Czajkowskiego w choreografii Paula Chalmera.",
+      "description": "Balet Piotra Czajkowskiego w choreografii Paula Chalmera. W świąteczny wieczór Klara wyrusza w niezwykłą podróż z ożywioną zabawką. Wstęp biletowany. Opera podaje też inne grudniowe terminy.",
+      "location": {
+        "name": "Opera Nova w Bydgoszczy",
+        "address": "Focha 5",
+        "city": "Bydgoszcz",
+        "latitude": 53.1243914,
+        "longitude": 17.9977638,
+        "coordinate_source": "https://www.opera.bydgoszcz.pl/kontakt.html",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku Opery Nova przy Focha 5."
+      },
+      "source_name": "Opera Nova",
+      "source_url": "https://opera.bydgoszcz.pl/spektakle/balet/dziadek-do-orzechow.html",
+      "evidence_urls": [
+        "https://www.opera.bydgoszcz.pl/aktualnosci/clienteval-node-properties-title-4.html"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:14Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:14Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "34. Wrocławskie Targi Dobrych Książek",
+      "category_slug": "targi",
+      "start_at": "2026-12-04T10:00:00+01:00",
+      "end_at": "2026-12-06T18:00:00+01:00",
+      "short_description": "Trzy dni z wydawcami i literaturą w Hali Stulecia.",
+      "description": "Trzy dni z wydawcami i literaturą w Hali Stulecia. Targi są otwarte w piątek i sobotę od 10:00 do 19:00, w niedzielę od 10:00 do 18:00. Wstęp biletowany.",
+      "location": {
+        "name": "Hala Stulecia",
+        "address": "Wystawowa 1",
+        "city": "Wrocław",
+        "latitude": 51.1068875,
+        "longitude": 17.0773185,
+        "coordinate_source": "https://targiksiazek.pl/o-targach",
+        "coordinate_note": "Pinezka Hali Stulecia już istniejąca w katalogu. Organizator potwierdza dokładny adres."
+      },
+      "source_name": "Wrocławskie Targi Dobrych Książek",
+      "source_url": "https://targiksiazek.pl/o-targach",
+      "evidence_urls": [
+        "https://www.wroclaw.pl/kultura/wroclawskie-targi-dobrych-ksiazek-2026-data-bilety-program"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:16Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Richard Bona — finał Metropolis Jazz Festival w Toruniu",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-04T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Kameruński basista i wokalista Richard Bona zamknie cykl koncertów w CKK Jordanki.",
+      "description": "Kameruński basista i wokalista Richard Bona zamknie cykl koncertów w CKK Jordanki. Jego muzyka łączy jazz z tradycjami afrykańskimi. Wstęp biletowany.",
+      "location": {
+        "name": "Centrum Kulturalno-Kongresowe Jordanki",
+        "address": "aleja Solidarności 3–13",
+        "city": "Toruń",
+        "latitude": 53.0139607,
+        "longitude": 18.6014001,
+        "coordinate_source": "https://www.openstreetmap.org/way/382748062",
+        "coordinate_note": "Obrys CKK Jordanki przy al. Solidarności 3–13."
+      },
+      "source_name": "Dwór Artusa",
+      "source_url": "https://artus.torun.pl/events/richard-bona-metropolis-jazz-festival/",
+      "evidence_urls": [
+        "https://artus.torun.pl/mjf-2026/"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:16Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "CeramikFest — zimowe targi ceramiki we Wrocławiu, sobota",
+      "category_slug": "targi",
+      "start_at": "2026-12-05T09:00:00+01:00",
+      "end_at": "2026-12-05T20:00:00+01:00",
+      "short_description": "Na targach w Bulvarach można obejrzeć ręcznie robione naczynia, biżuterię i dekoracje.",
+      "description": "Na targach w Bulvarach można obejrzeć ręcznie robione naczynia, biżuterię i dekoracje. Wstęp wolny. W sobotę targi działają od 9:00 do 20:00. Miasto zapowiada również niedzielną odsłonę.",
+      "location": {
+        "name": "Bulvary",
+        "address": "Księcia Witolda 11–29",
+        "city": "Wrocław",
+        "latitude": 51.1151522,
+        "longitude": 17.0300937,
+        "coordinate_source": "https://www.openstreetmap.org/node/12788499940",
+        "coordinate_note": "Nazwany punkt Bulvary w obrębie kompleksu przy Księcia Witolda 11–29."
+      },
+      "source_name": "Miasto Wrocław",
+      "source_url": "https://www.wroclaw.pl/go/wydarzenia/wydarzenia-handlowe/1417473-ceramikfest",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:16Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Koncert mikołajkowy dla rodzin w Filharmonii Podkarpackiej",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-06T12:00:00+01:00",
+      "end_at": null,
+      "short_description": "Śpiewające elfy poprowadzą publiczność w muzyczne poszukiwania Świętego Mikołaja.",
+      "description": "Śpiewające elfy poprowadzą publiczność w muzyczne poszukiwania Świętego Mikołaja. Wystąpią m.in. Monika Urlik i orkiestra pod batutą Alicji Pacześniak-Słoty. Bilet 40 zł.",
+      "location": {
+        "name": "Filharmonia Podkarpacka im. Artura Malawskiego",
+        "address": "Chopina 30",
+        "city": "Rzeszów",
+        "latitude": 50.0335311,
+        "longitude": 22.0041879,
+        "coordinate_source": "https://filharmonia.rzeszow.pl/kontakt/",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku przy adresie potwierdzonym przez filharmonię."
+      },
+      "source_name": "Filharmonia Podkarpacka",
+      "source_url": "https://filharmonia.rzeszow.pl/produkt/koncerty-mikolajkowe-w-filharmonii-podkarpackiej-bilety-indywidualne-3/",
+      "evidence_urls": [
+        "https://filharmonia.rzeszow.pl/blog/2026/09/14/koncerty-mikolajkowe-w-filharmonii-podkarpackiej-2/"
+      ],
+      "price_type": "paid",
+      "price_min": 40,
+      "price_max": 40,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:16Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Podróż zimowa — Schubert i Barańczak w Operze Nova",
+      "category_slug": "kultura",
+      "start_at": "2026-12-08T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Kameralny spektakl muzyczny łączy pieśni Franza Schuberta z poezją Stanisława Barańczaka.",
+      "description": "Kameralny spektakl muzyczny łączy pieśni Franza Schuberta z poezją Stanisława Barańczaka. Wstęp biletowany.",
+      "location": {
+        "name": "Opera Nova w Bydgoszczy",
+        "address": "Focha 5",
+        "city": "Bydgoszcz",
+        "latitude": 53.1243914,
+        "longitude": 17.9977638,
+        "coordinate_source": "https://www.opera.bydgoszcz.pl/kontakt.html",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku Opery Nova przy Focha 5."
+      },
+      "source_name": "Opera Nova",
+      "source_url": "https://www.opera.bydgoszcz.pl/spektakle/spektakl-muzyczny/podroz-zimowa.html",
+      "evidence_urls": [
+        "https://www.opera.bydgoszcz.pl/aktualnosci/clienteval-node-properties-title-4.html"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:18Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:18Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Karłowicz Fest 2026 — koncert inauguracyjny",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-11T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Otwarcie festiwalu poświęconego Mieczysławowi Karłowiczowi.",
+      "description": "Otwarcie festiwalu poświęconego Mieczysławowi Karłowiczowi. Na scenie Alexandra Conunowa i szczecińscy symfonicy pod batutą Przemysława Neumanna. Program obejmuje m.in. Symfonię „Odrodzenie”. Wstęp biletowany.",
+      "location": {
+        "name": "Filharmonia im. Mieczysława Karłowicza w Szczecinie",
+        "address": "Małopolska 48",
+        "city": "Szczecin",
+        "latitude": 53.4293931,
+        "longitude": 14.5581298,
+        "coordinate_source": "https://www.openstreetmap.org/way/314897702",
+        "coordinate_note": "Obrys filharmonii pod adresem Małopolska 48."
+      },
+      "source_name": "Filharmonia w Szczecinie",
+      "source_url": "https://filharmonia.szczecin.pl/wydarzenia/2561-KARLOWICZ_FEST__Inauguracja_festiwalu",
+      "evidence_urls": [
+        "https://bilety.filharmonia.szczecin.pl/rezerwacja/termin.html?gw=1&m=12&y=2026"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:39Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:39Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Targi Dobry Design — Gwiazdka w Concordia Design",
+      "category_slug": "targi",
+      "start_at": "2026-12-12T11:00:00+01:00",
+      "end_at": "2026-12-13T18:00:00+01:00",
+      "short_description": "Świąteczne targi niezależnych projektantów i twórców na Wyspie Słodowej.",
+      "description": "Świąteczne targi niezależnych projektantów i twórców na Wyspie Słodowej. Można znaleźć m.in. ceramikę, biżuterię, ilustracje i przedmioty do domu. W oba dni 11:00–18:00. Wstęp bezpłatny.",
+      "location": {
+        "name": "Concordia Design",
+        "address": "Wyspa Słodowa 7",
+        "city": "Wrocław",
+        "latitude": 51.11617,
+        "longitude": 17.03932,
+        "coordinate_source": "https://www.wroclaw.pl/beta2/files/dokumenty/65592/wyspa-ogloszenie-o-przetargu.pdf",
+        "coordinate_note": "Oficjalne współrzędne nieruchomości Wyspa Słodowa 7 podane przez miasto."
+      },
+      "source_name": "Miasto Wrocław",
+      "source_url": "https://www.wroclaw.pl/go/wydarzenia/wydarzenia-handlowe/1417667-targi-dobry-design-gwiazdka",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:18Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:18Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Góra-dół — być jak Karłowicz, spektakl rodzinny w Szczecinie",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-12T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Muzyczne przedstawienie dla dzieci z opiekunami.",
+      "description": "Muzyczne przedstawienie dla dzieci z opiekunami. Pięć postaci symbolizujących emocje pomaga poznać twórczość Mieczysława Karłowicza. Wstęp biletowany. Sugerowany wiek dziecka to 5+.",
+      "location": {
+        "name": "Filharmonia im. Mieczysława Karłowicza w Szczecinie",
+        "address": "Małopolska 48",
+        "city": "Szczecin",
+        "latitude": 53.4293931,
+        "longitude": 14.5581298,
+        "coordinate_source": "https://www.openstreetmap.org/way/314897702",
+        "coordinate_note": "Obrys filharmonii pod adresem Małopolska 48."
+      },
+      "source_name": "Filharmonia w Szczecinie",
+      "source_url": "https://filharmonia.szczecin.pl/wydarzenia/2625-KARLOWICZ_FEST__Gora-dol__byc_jak_Karlowicz",
+      "evidence_urls": [
+        "https://filharmonia.szczecin.pl/news/2854-Karlowicz_Fest_takze_dla_najmlodszych_Rodzinne_spotkania_z_muzyka"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:39Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:39Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Łucja z Lammermooru — opera w Bydgoszczy",
+      "category_slug": "kultura",
+      "start_at": "2026-12-12T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Opera Gaetana Donizettiego w inscenizacji Thaddeusa Strassbergera.",
+      "description": "Opera Gaetana Donizettiego w inscenizacji Thaddeusa Strassbergera. Historia Łucji i Edgara rozgrywa się wśród konfliktów szkockich rodów. Wstęp biletowany.",
+      "location": {
+        "name": "Opera Nova w Bydgoszczy",
+        "address": "Focha 5",
+        "city": "Bydgoszcz",
+        "latitude": 53.1243914,
+        "longitude": 17.9977638,
+        "coordinate_source": "https://www.opera.bydgoszcz.pl/kontakt.html",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku Opery Nova przy Focha 5."
+      },
+      "source_name": "Opera Nova",
+      "source_url": "https://operanova.bydgoszcz.pl/spektakle/opera/lucja-z-lammermooru.html",
+      "evidence_urls": [
+        "https://www.opera.bydgoszcz.pl/aktualnosci/clienteval-node-properties-title-4.html"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:17Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:17Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Koncert sylwestrowy 2026 w Filharmonii Podkarpackiej",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-31T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Orkiestra pod batutą Tadeusza Wicherka oraz wokaliści Sylwia Grobelna i Michał Grobelny wykonają popularne przeboje, m.in. „Mamma Mia”.",
+      "description": "Orkiestra pod batutą Tadeusza Wicherka oraz wokaliści Sylwia Grobelna i Michał Grobelny wykonają popularne przeboje, m.in. „Mamma Mia”. Bilet kosztuje 200 zł.",
+      "location": {
+        "name": "Filharmonia Podkarpacka im. Artura Malawskiego",
+        "address": "Chopina 30",
+        "city": "Rzeszów",
+        "latitude": 50.0335311,
+        "longitude": 22.0041879,
+        "coordinate_source": "https://filharmonia.rzeszow.pl/kontakt/",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku przy adresie potwierdzonym przez filharmonię."
+      },
+      "source_name": "Filharmonia Podkarpacka",
+      "source_url": "https://filharmonia.rzeszow.pl/produkt/koncert-sylwestrowy-3/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 200,
+      "price_max": 200,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:19Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:19Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "American Swing — koncert sylwestrowy 2026 w Szczecinie",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-31T20:00:00+01:00",
+      "end_at": null,
+      "short_description": "Amerykańskie standardy swingowe w aranżacjach symfonicznych.",
+      "description": "Amerykańskie standardy swingowe w aranżacjach symfonicznych. Orkiestrę poprowadzi Kuba Wnuk, a zaśpiewają Natalia Muianga i Maciej Pawlak. Wstęp biletowany.",
+      "location": {
+        "name": "Filharmonia im. Mieczysława Karłowicza w Szczecinie",
+        "address": "Małopolska 48",
+        "city": "Szczecin",
+        "latitude": 53.4293931,
+        "longitude": 14.5581298,
+        "coordinate_source": "https://www.openstreetmap.org/way/314897702",
+        "coordinate_note": "Obrys filharmonii pod adresem Małopolska 48."
+      },
+      "source_name": "Filharmonia w Szczecinie",
+      "source_url": "https://filharmonia.szczecin.pl/wydarzenia/2567-American_swing__Koncert_sylwestrowy",
+      "evidence_urls": [
+        "https://bilety.filharmonia.szczecin.pl/rezerwacja/termin.html?gw=1&m=12&y=2026"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:03:39Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:03:39Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

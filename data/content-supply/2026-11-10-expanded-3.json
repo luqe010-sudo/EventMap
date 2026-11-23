@@ -1,0 +1,760 @@
+{
+  "checked_at": "2026-11-10T21:25:56Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Trzecia dodatkowa paczka na prośbę właściciela. Priorytet dla rodzin, mniejszych miast, wydarzeń bezpłatnych i lokalnych programów kulturalnych.",
+  "geocoding_attribution": "© OpenStreetMap contributors; inne źródła podano przy lokalizacjach.",
+  "events": [
+    {
+      "title": "Śladami Niepodległej 2.0 — rodzinne warsztaty w Gdyni",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-14T11:00:00+01:00",
+      "end_at": null,
+      "short_description": "Dzieci od 6 lat i ich opiekunowie sprawdzą, jak w ciągu ostatniego stulecia zmieniały się transport, edukacja i energetyka.",
+      "description": "Dzieci od 6 lat i ich opiekunowie sprawdzą, jak w ciągu ostatniego stulecia zmieniały się transport, edukacja i energetyka. Warsztaty trwają około godziny. Bilet na zajęcia kosztuje 20 zł, a z wystawami Experymentu 35 zł.",
+      "location": {
+        "name": "Centrum Nauki Experyment",
+        "address": "aleja Zwycięstwa 96/98",
+        "city": "Gdynia",
+        "latitude": 54.4948431,
+        "longitude": 18.5384205,
+        "coordinate_source": "https://www.openstreetmap.org/node/5108811093",
+        "coordinate_note": "Nazwany punkt Experymentu, adres potwierdzony przez instytucję."
+      },
+      "source_name": "Centrum Nauki Experyment",
+      "source_url": "https://experyment.gdynia.pl/wydarzenia/warsztaty-rodzinne-sladami-niepodleglej-2-0/",
+      "evidence_urls": [
+        "https://experyment.gdynia.pl/kontakt/"
+      ],
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 35,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:49Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:49Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Dni, które nam odebrali — musical w Lubinie",
+      "category_slug": "kultura",
+      "start_at": "2026-11-17T17:30:00+01:00",
+      "end_at": null,
+      "short_description": "Musical o losach polskich rodzin w czasie II wojny światowej.",
+      "description": "Musical o losach polskich rodzin w czasie II wojny światowej. Spektakl dla widzów od 16 lat trwa około 90 minut. Bilet indywidualny kosztuje 25 zł, grupowy od 10 osób 15 zł za osobę.",
+      "location": {
+        "name": "Centrum Kultury „Muza”",
+        "address": "Armii Krajowej 1",
+        "city": "Lubin",
+        "latitude": 51.39898,
+        "longitude": 16.20427,
+        "coordinate_source": "https://ckmuza.eu/",
+        "coordinate_note": "Pinezka istniejącego obiektu przy Armii Krajowej 1."
+      },
+      "source_name": "Centrum Kultury Muza",
+      "source_url": "https://ckmuza.eu/17-11-2026-dni-ktore-nam-odebrali-musical/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 25,
+      "price_max": 25,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:48Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:48Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Bolesława i Edmund Zdanowscy — wykład w Muzeum Miasta Gdyni",
+      "category_slug": "kultura",
+      "start_at": "2026-11-18T17:30:00+01:00",
+      "end_at": null,
+      "short_description": "Małgorzata Taraszkiewicz-Zwolicka opowie o fotografach, którzy z Wilna przenieśli się po wojnie do Gdyni.",
+      "description": "Małgorzata Taraszkiewicz-Zwolicka opowie o fotografach, którzy z Wilna przenieśli się po wojnie do Gdyni. Wykład towarzyszy wystawie „Światło Gdyni”. Wstęp biletowany.",
+      "location": {
+        "name": "Muzeum Miasta Gdyni",
+        "address": "Zawiszy Czarnego 1A",
+        "city": "Gdynia",
+        "latitude": 54.5159606,
+        "longitude": 18.5473029,
+        "coordinate_source": "https://muzeumgdynia.pl/wydarzenie/",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku muzeum, adres zgodny ze stroną instytucji."
+      },
+      "source_name": "Muzeum Miasta Gdyni",
+      "source_url": "https://muzeumgdynia.pl/wydarzenie/boleslawa-i-edmund-zdanowscy-proba-biografii-wyklad-dr-malgorzaty-taraszkiewicz-zwolickiej/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:49Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:49Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Noc Wilka — Karolina Skrzyńska w Słupsku",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-20T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Karolina Skrzyńska i zespół zagrają w sali pARTer Emceku w ramach festiwalu Miejsce Kobiet.",
+      "description": "Karolina Skrzyńska i zespół zagrają w sali pARTer Emceku w ramach festiwalu Miejsce Kobiet. Koncert opiera się na jej trzecim solowym albumie. Bilety kosztują 40 lub 50 zł.",
+      "location": {
+        "name": "Emcek — sala pARTer",
+        "address": "Aleja 3 Maja 22",
+        "city": "Słupsk",
+        "latitude": 54.4740463,
+        "longitude": 17.0082048,
+        "coordinate_source": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+        "coordinate_note": "Punkt budynku Emceku z istniejącego katalogu. Zapowiedź wskazuje salę pARTer w tym samym obiekcie."
+      },
+      "source_name": "Słupski Ośrodek Kultury",
+      "source_url": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 40,
+      "price_max": 50,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:49Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:49Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Z własnego podwórka — rodzinne projektowanie wzorów w Gdyni",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-21T11:00:00+01:00",
+      "end_at": null,
+      "short_description": "Dzieci w wieku 6–12 lat z opiekunami przygotują szablony i własne wzory inspirowane kaszubskim zdobnictwem.",
+      "description": "Dzieci w wieku 6–12 lat z opiekunami przygotują szablony i własne wzory inspirowane kaszubskim zdobnictwem. Wstęp biletowany przez muzeum.",
+      "location": {
+        "name": "Muzeum Miasta Gdyni",
+        "address": "Zawiszy Czarnego 1A",
+        "city": "Gdynia",
+        "latitude": 54.5159606,
+        "longitude": 18.5473029,
+        "coordinate_source": "https://muzeumgdynia.pl/wydarzenie/",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku muzeum, adres zgodny ze stroną instytucji."
+      },
+      "source_name": "Muzeum Miasta Gdyni",
+      "source_url": "https://muzeumgdynia.pl/wydarzenie/dzien-rodzinny-z-wlasnego-podworka-warsztaty-z-projektowania-wzoru/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:49Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:49Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Czy jestem taką kobietą, jaką chciałam być? — warsztaty w Słupsku",
+      "category_slug": "kultura",
+      "start_at": "2026-11-24T17:00:00+01:00",
+      "end_at": "2026-11-24T19:00:00+01:00",
+      "short_description": "Marta Sałapata poprowadzi warsztat o marzeniach, własnych wyborach i oczekiwaniach otoczenia.",
+      "description": "Marta Sałapata poprowadzi warsztat o marzeniach, własnych wyborach i oczekiwaniach otoczenia. Spotkanie festiwalu Miejsce Kobiet jest bezpłatne. Obowiązują zapisy.",
+      "location": {
+        "name": "Emcek — sala Tango",
+        "address": "Aleja 3 Maja 22",
+        "city": "Słupsk",
+        "latitude": 54.4740463,
+        "longitude": 17.0082048,
+        "coordinate_source": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+        "coordinate_note": "Zgodna pinezka sali Tango już w katalogu. Organizator wskazuje salę i adres Emceku."
+      },
+      "source_name": "Słupski Ośrodek Kultury",
+      "source_url": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:49Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:49Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Między nami mamami — spotkanie w Emceku",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-26T10:00:00+01:00",
+      "end_at": "2026-11-26T12:00:00+01:00",
+      "short_description": "Kameralne spotkanie dla mam dzieci do trzeciego roku życia o codziennych potrzebach i granicach.",
+      "description": "Kameralne spotkanie dla mam dzieci do trzeciego roku życia o codziennych potrzebach i granicach. Prowadzi Kamila Rudnik. Można przyjść z dzieckiem. Udział bezpłatny po zapisaniu się.",
+      "location": {
+        "name": "Emcek — Studio Inicjatyw",
+        "address": "Aleja 3 Maja 22",
+        "city": "Słupsk",
+        "latitude": 54.4740463,
+        "longitude": 17.0082048,
+        "coordinate_source": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+        "coordinate_note": "Punkt budynku Emceku z istniejącego katalogu. Zapowiedź wskazuje Studio Inicjatyw w tym samym obiekcie."
+      },
+      "source_name": "Słupski Ośrodek Kultury",
+      "source_url": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:49Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:49Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "OPI — pokaz przedpremierowy i spotkanie z Martą Giec w Słupsku",
+      "category_slug": "kultura",
+      "start_at": "2026-11-26T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Kino Rejs pokaże film „OPI” w ramach festiwalu Miejsce Kobiet.",
+      "description": "Kino Rejs pokaże film „OPI” w ramach festiwalu Miejsce Kobiet. Po seansie Edyta Lubiak poprowadzi rozmowę z reżyserką Martą Giec. Bilety kosztują 18–26 zł zależnie od rodzaju.",
+      "location": {
+        "name": "Kino Rejs — Emcek",
+        "address": "Aleja 3 Maja 22",
+        "city": "Słupsk",
+        "latitude": 54.4740028,
+        "longitude": 17.0083058,
+        "coordinate_source": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+        "coordinate_note": "Pinezka istniejącego kina. Organizator potwierdza adres."
+      },
+      "source_name": "Słupski Ośrodek Kultury",
+      "source_url": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 18,
+      "price_max": 26,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:49Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:49Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Światło Gdyni — oprowadzanie po wystawie fotografii Zdanowskich",
+      "category_slug": "kultura",
+      "start_at": "2026-11-29T14:00:00+01:00",
+      "end_at": null,
+      "short_description": "Historyk Dawid Gajos oprowadzi po wystawie zdjęć portu i miasta z pierwszych dekad po wojnie.",
+      "description": "Historyk Dawid Gajos oprowadzi po wystawie zdjęć portu i miasta z pierwszych dekad po wojnie. Wstęp biletowany.",
+      "location": {
+        "name": "Muzeum Miasta Gdyni",
+        "address": "Zawiszy Czarnego 1A",
+        "city": "Gdynia",
+        "latitude": 54.5159606,
+        "longitude": 18.5473029,
+        "coordinate_source": "https://muzeumgdynia.pl/wydarzenie/",
+        "coordinate_note": "Pinezka istniejącego w katalogu budynku muzeum, adres zgodny ze stroną instytucji."
+      },
+      "source_name": "Muzeum Miasta Gdyni",
+      "source_url": "https://muzeumgdynia.pl/wydarzenie/swiatlo-gdyni-fotografie-boleslawy-i-edmunda-zdanowskich-1945-1970-oprowadzanie-z-przewodnikiem-po-wystawie-3/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:49Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:49Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Młody Sherlock Holmes z muzyką na żywo — Elbląg",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-01T19:30:00+01:00",
+      "end_at": null,
+      "short_description": "Pokaz z muzyką na żywo Orkiestry Ludwika Sarskiego w Kinie Światowid.",
+      "description": "Pokaz z muzyką na żywo Orkiestry Ludwika Sarskiego w Kinie Światowid. Wieczór otwiera Festiwal Filmów Familijnych. Cena biletu w oficjalnej sprzedaży to 20 zł.",
+      "location": {
+        "name": "Centrum Spotkań Europejskich „Światowid”",
+        "address": "Plac Kazimierza Jagiellończyka 1",
+        "city": "Elbląg",
+        "latitude": 54.1668613,
+        "longitude": 19.4045688,
+        "coordinate_source": "https://swiatowid.elblag.pl/",
+        "coordinate_note": "Pinezka istniejącego Światowida. Kino działa w budynku centrum."
+      },
+      "source_name": "Kino Światowid",
+      "source_url": "https://bilet.swiatowid.elblag.pl/index.php/kup-bilet/mlody-sherlock-z-orkiestra-ludwika-sarskiego-2026-12-01-19-30",
+      "evidence_urls": [
+        "https://bilet.swiatowid.elblag.pl/"
+      ],
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 20,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:50Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:50Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Gospodarstwo zwierząt. Opowieść — bezpłatny spektakl w Lubinie",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-03T12:00:00+01:00",
+      "end_at": null,
+      "short_description": "Teatr Polski we Wrocławiu pokaże adaptację „Folwarku zwierzęcego” w reżyserii Marty Streker.",
+      "description": "Teatr Polski we Wrocławiu pokaże adaptację „Folwarku zwierzęcego” w reżyserii Marty Streker. Spektakl przeznaczony jest dla widzów od 7 lat. Bezpłatne wejściówki wymagają wcześniejszej rezerwacji telefonicznej.",
+      "location": {
+        "name": "Centrum Kultury „Muza”",
+        "address": "Armii Krajowej 1",
+        "city": "Lubin",
+        "latitude": 51.39898,
+        "longitude": 16.20427,
+        "coordinate_source": "https://ckmuza.eu/",
+        "coordinate_note": "Pinezka istniejącego obiektu przy Armii Krajowej 1."
+      },
+      "source_name": "Centrum Kultury Muza",
+      "source_url": "https://ckmuza.eu/3-12-2026-gospodarstwo-zwierzat-opowiesc-teatr-polski-wroclaw/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:50Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:50Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Shrek i spotkanie ze Zbigniewem Zamachowskim — Elbląg",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-04T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Pokaz „Shreka” i spotkanie z aktorem, który podkłada głos głównemu bohaterowi w polskiej wersji.",
+      "description": "Pokaz „Shreka” i spotkanie z aktorem, który podkłada głos głównemu bohaterowi w polskiej wersji. Wydarzenie jest częścią Festiwalu Filmów Familijnych. Cena biletu w oficjalnej sprzedaży to 10 zł.",
+      "location": {
+        "name": "Centrum Spotkań Europejskich „Światowid”",
+        "address": "Plac Kazimierza Jagiellończyka 1",
+        "city": "Elbląg",
+        "latitude": 54.1668613,
+        "longitude": 19.4045688,
+        "coordinate_source": "https://swiatowid.elblag.pl/",
+        "coordinate_note": "Pinezka istniejącego Światowida. Kino działa w budynku centrum."
+      },
+      "source_name": "Kino Światowid",
+      "source_url": "https://bilet.swiatowid.elblag.pl/index.php/kup-bilet/shrek-2001-2026-12-04-17-00",
+      "evidence_urls": [
+        "https://bilet.swiatowid.elblag.pl/"
+      ],
+      "price_type": "paid",
+      "price_min": 10,
+      "price_max": 10,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:50Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:50Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Akademia Pana Kleksa — rodzinny spektakl w Bielsku-Białej",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-04T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Sceniczna wersja powieści Jana Brzechwy z projekcjami i elementami interaktywnymi.",
+      "description": "Sceniczna wersja powieści Jana Brzechwy z projekcjami i elementami interaktywnymi. Spektakl odbywa się w Bielskim Centrum Kultury. Wstęp biletowany.",
+      "location": {
+        "name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
+        "address": "Juliusza Słowackiego 27",
+        "city": "Bielsko-Biała",
+        "latitude": 49.8270983,
+        "longitude": 19.0392914,
+        "coordinate_source": "https://bck.bielsko-biala.pl/repertuar",
+        "coordinate_note": "Pinezka istniejącego BCK, zgodna z adresem podanym przez instytucję."
+      },
+      "source_name": "Bielskie Centrum Kultury",
+      "source_url": "https://bck.bielsko-biala.pl/spektakl-akademia-pana-kleksa",
+      "evidence_urls": [
+        "https://bck.bielsko-biala.pl/repertuar"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:51Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:51Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Warsztaty dubbingu dla dzieci 8–11 lat — Elbląg",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-05T10:00:00+01:00",
+      "end_at": null,
+      "short_description": "Podczas Festiwalu Filmów Familijnych dzieci mogą spróbować pracy głosem i nagrać dialog do sceny filmowej.",
+      "description": "Podczas Festiwalu Filmów Familijnych dzieci mogą spróbować pracy głosem i nagrać dialog do sceny filmowej. Warsztaty prowadzi Studio Tercja. Cena biletu w oficjalnej sprzedaży to 20 zł.",
+      "location": {
+        "name": "Centrum Spotkań Europejskich „Światowid”",
+        "address": "Plac Kazimierza Jagiellończyka 1",
+        "city": "Elbląg",
+        "latitude": 54.1668613,
+        "longitude": 19.4045688,
+        "coordinate_source": "https://swiatowid.elblag.pl/",
+        "coordinate_note": "Pinezka istniejącego Światowida. Kino działa w budynku centrum."
+      },
+      "source_name": "Kino Światowid",
+      "source_url": "https://bilet.swiatowid.elblag.pl/index.php/kup-bilet/warsztaty-dubbing-dla-dzieci-8-11-6-fff-2026-12-05-10-00",
+      "evidence_urls": [
+        "https://bilet.swiatowid.elblag.pl/"
+      ],
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 20,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:50Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:50Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Przesyłka z zaświatów — komedia w Bielsku-Białej",
+      "category_slug": "kultura",
+      "start_at": "2026-12-05T16:00:00+01:00",
+      "end_at": null,
+      "short_description": "W komedii o przyjaźni, wyreżyserowanej przez Cezarego Żaka, wystąpią m.in.",
+      "description": "W komedii o przyjaźni, wyreżyserowanej przez Cezarego Żaka, wystąpią m.in. Kinga Preis i Katarzyna Żak. Karta dotyczy pokazu o 16:00. Wstęp biletowany.",
+      "location": {
+        "name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
+        "address": "Juliusza Słowackiego 27",
+        "city": "Bielsko-Biała",
+        "latitude": 49.8270983,
+        "longitude": 19.0392914,
+        "coordinate_source": "https://bck.bielsko-biala.pl/repertuar",
+        "coordinate_note": "Pinezka istniejącego BCK, zgodna z adresem podanym przez instytucję."
+      },
+      "source_name": "Bielskie Centrum Kultury",
+      "source_url": "https://bck.bielsko-biala.pl/spektakl-przesylka-z-zaswiatow-g-1600",
+      "evidence_urls": [
+        "https://bck.bielsko-biala.pl/repertuar"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:52Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:52Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Muzyczna podróż po świecie — koncert charytatywny w Koszalinie",
+      "category_slug": "charytatywne",
+      "start_at": "2026-12-06T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Soliści i Appassionata Ensemble wykonają utwory operetkowe, musicalowe i popularne przeboje.",
+      "description": "Soliści i Appassionata Ensemble wykonają utwory operetkowe, musicalowe i popularne przeboje. Dochód wspiera budowę centrum na Górze Chełmskiej. Wstęp z cegiełką za 100 lub 130 zł.",
+      "location": {
+        "name": "Filharmonia Koszalińska im. Stanisława Moniuszki",
+        "address": "Piastowska 2",
+        "city": "Koszalin",
+        "latitude": 54.191274,
+        "longitude": 16.1879842,
+        "coordinate_source": "https://filharmoniakoszalinska.pl/",
+        "coordinate_note": "Pinezka istniejącego budynku filharmonii przy Piastowskiej 2."
+      },
+      "source_name": "Fundacja Przymierze",
+      "source_url": "https://fundacja-przymierze.pl/440-vii-swiateczny-koncert-charytatywny-muzyczna-podroz-po-swiecie.html",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 100,
+      "price_max": 130,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:52Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:52Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Magia Świąt II — Cleo i Płocka Orkiestra Symfoniczna",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-15T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "W ORLEN Arenie wystąpią m.in.",
+      "description": "W ORLEN Arenie wystąpią m.in. Cleo, Barbara Kurdej-Szatan i Mateusz Ziółko z orkiestrą i chórami dziecięcymi. Bilety 25–70 zł, sprzedaż od 18 listopada o 11:00. Drzwi otworzą się o 17:00.",
+      "location": {
+        "name": "ORLEN Arena",
+        "address": "Plac Celebry Papieskiej 1",
+        "city": "Płock",
+        "latitude": 52.5600233,
+        "longitude": 19.6835272,
+        "coordinate_source": "https://www.openstreetmap.org/way/230956990",
+        "coordinate_note": "Obrys hali; adres potwierdza MOSiR Płock."
+      },
+      "source_name": "Płocka Orkiestra Symfoniczna",
+      "source_url": "https://orkiestraplock.pl/aktualnosci/magia-swiat-ii-wyjatkowy-koncert-w-orlen-arenie/",
+      "evidence_urls": [
+        "https://mosirplock.pl/kontakt/"
+      ],
+      "price_type": "paid",
+      "price_min": 25,
+      "price_max": 70,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:54Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:54Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Offbeat Organ — Tribute to Metallica w Bielsku-Białej",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-16T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Scream Inc. wykona utwory Metalliki z Wacławem Golonką na organach.",
+      "description": "Scream Inc. wykona utwory Metalliki z Wacławem Golonką na organach. Wstęp biletowany.",
+      "location": {
+        "name": "Bielskie Centrum Kultury im. Marii Koterbskiej",
+        "address": "Juliusza Słowackiego 27",
+        "city": "Bielsko-Biała",
+        "latitude": 49.8270983,
+        "longitude": 19.0392914,
+        "coordinate_source": "https://bck.bielsko-biala.pl/repertuar",
+        "coordinate_note": "Pinezka istniejącego BCK, zgodna z adresem podanym przez instytucję."
+      },
+      "source_name": "Bielskie Centrum Kultury",
+      "source_url": "https://bck.bielsko-biala.pl/offbeat-organ-tribute-metallica",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:53Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:53Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Miedza — otwarcie wystawy Justyny Gross i koncert",
+      "category_slug": "kultura",
+      "start_at": "2026-12-17T18:00:00+01:00",
+      "end_at": "2026-12-17T20:00:00+01:00",
+      "short_description": "W Klubie Akcent otwarciu wystawy Justyny Gross będzie towarzyszył koncert.",
+      "description": "W Klubie Akcent otwarciu wystawy Justyny Gross będzie towarzyszył koncert. Wstęp wolny.",
+      "location": {
+        "name": "Klub Akcent",
+        "address": "Józefa Wybickiego 38",
+        "city": "Grudziądz",
+        "latitude": 53.4953922,
+        "longitude": 18.7558969,
+        "coordinate_source": "https://teatr.grudziadz.pl/wydarzenie/otwarcie-wystawy-koncert-5/",
+        "coordinate_note": "Pinezka istniejącego Klubu Akcent zgodna z miejscem z zapowiedzi."
+      },
+      "source_name": "Centrum Kultury Teatr w Grudziądzu",
+      "source_url": "https://teatr.grudziadz.pl/wydarzenie/otwarcie-wystawy-koncert-5/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:52Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:52Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Opowieść wigilijna — spektakl rodzinny w Zielonej Górze",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-19T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Lubuski Teatr wystawi historię Scrooge’a i trzech duchów w adaptacji Joanny Zdrady.",
+      "description": "Lubuski Teatr wystawi historię Scrooge’a i trzech duchów w adaptacji Joanny Zdrady. Spektakl z piosenkami jest przeznaczony dla widzów od 7 lat i trwa około 90 minut. Wstęp biletowany.",
+      "location": {
+        "name": "Lubuski Teatr im. Leona Kruczkowskiego",
+        "address": "aleja Niepodległości 3/5",
+        "city": "Zielona Góra",
+        "latitude": 51.9402668,
+        "longitude": 15.5072821,
+        "coordinate_source": "https://www.openstreetmap.org/way/383304563",
+        "coordinate_note": "Obrys budynku Lubuskiego Teatru; adres potwierdza przewodnik instytucji."
+      },
+      "source_name": "Lubuski Teatr",
+      "source_url": "https://teatr.zgora.pl/spektakle/1398-opowiesc-wigilijna",
+      "evidence_urls": [
+        "https://www.teatr.zgora.pl/aktualnosci/1399-pierwsze-spotkanie-tworcow-opowiesci-wigilijnej"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:52Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:52Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Farben Lehre akustycznie — koncert w Płocku",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-19T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Farben Lehre zagra w POKiS akustyczne wersje swoich utworów z okazji 40-lecia zespołu.",
+      "description": "Farben Lehre zagra w POKiS akustyczne wersje swoich utworów z okazji 40-lecia zespołu. Koncert zaczyna się o 19:00, wejście od 18:00. Bilety 80 zł w przedsprzedaży lub 100 zł w dniu koncertu.",
+      "location": {
+        "name": "Płocki Ośrodek Kultury i Sztuki",
+        "address": "Jana Zygmunta Jakubowskiego 10",
+        "city": "Płock",
+        "latitude": 52.553263,
+        "longitude": 19.6948036,
+        "coordinate_source": "https://kalendarzimprez.plock.eu/event/farben-lehre-akustycznie/",
+        "coordinate_note": "Pinezka istniejącego POKiS, dokładny adres wskazany na karcie wydarzenia."
+      },
+      "source_name": "Kalendarz Imprez Płock",
+      "source_url": "https://kalendarzimprez.plock.eu/event/farben-lehre-akustycznie/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 80,
+      "price_max": 100,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:55Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:55Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Sylwester z Orkiestrą — koncert w Płocku o 21:00",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-31T21:00:00+01:00",
+      "end_at": null,
+      "short_description": "Płocka Orkiestra Symfoniczna zagra sylwestrowy koncert w sali Państwowej Szkoły Muzycznej.",
+      "description": "Płocka Orkiestra Symfoniczna zagra sylwestrowy koncert w sali Państwowej Szkoły Muzycznej. Ten wpis dotyczy wieczornego wykonania o 21:00. Wstęp biletowany.",
+      "location": {
+        "name": "Sala koncertowa Państwowej Szkoły Muzycznej im. Karola Szymanowskiego",
+        "address": "Kolegialna 23",
+        "city": "Płock",
+        "latitude": 52.5420693,
+        "longitude": 19.6971168,
+        "coordinate_source": "https://orkiestraplock.pl/wydarzenie/sylwester-z-orkiestra-3/2026-12-31/2/",
+        "coordinate_note": "Pinezka istniejącej sali koncertowej PSM, zgodna z adresem organizatora."
+      },
+      "source_name": "Płocka Orkiestra Symfoniczna",
+      "source_url": "https://orkiestraplock.pl/wydarzenie/sylwester-z-orkiestra-3/2026-12-31/2/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:56Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:56Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Koncert sylwestrowy z Grażyną Brodzińską w Grudziądzu",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-31T21:00:00+01:00",
+      "end_at": "2027-01-01T01:00:00+01:00",
+      "short_description": "Grażyna Brodzińska wystąpi z Ksenią Tomkiewicz, Łukaszem Kostką i Orkiestrą Symfoników Bydgoskich.",
+      "description": "Grażyna Brodzińska wystąpi z Ksenią Tomkiewicz, Łukaszem Kostką i Orkiestrą Symfoników Bydgoskich. Program obejmuje trzy części i powitanie Nowego Roku o północy. Bilety kosztują 250–300 zł.",
+      "location": {
+        "name": "Centrum Kultury Teatr",
+        "address": "Teatralna 1",
+        "city": "Grudziądz",
+        "latitude": 53.4851056,
+        "longitude": 18.7560139,
+        "coordinate_source": "https://teatr.grudziadz.pl/wydarzenie/sylwester-w-teatrze-4/",
+        "coordinate_note": "Pinezka istniejącej siedziby Teatru przy Teatralnej 1."
+      },
+      "source_name": "Centrum Kultury Teatr w Grudziądzu",
+      "source_url": "https://teatr.grudziadz.pl/wydarzenie/sylwester-w-teatrze-4/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 250,
+      "price_max": 300,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W krótkim przeglądzie brak potwierdzonego prawa do publikacji grafiki. Okładka EventVisual.",
+      "checked_at": "2026-11-10T21:25:55Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T21:25:55Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

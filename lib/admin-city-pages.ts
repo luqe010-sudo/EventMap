@@ -8,6 +8,7 @@ import { createSupabaseUserClient } from "@/lib/supabase-user";
 import { formString } from "@/lib/event-editor";
 import { buildCityPayloadFromForm, resolveCityIdFromForm, type CitySummary } from "@/lib/cities";
 import { normalizeSearchText } from "@/lib/slugify";
+import { revalidatePublicMapMarkerCache } from "@/lib/public-event-cache";
 
 type Tables = Database["public"]["Tables"];
 type UserClient = Awaited<ReturnType<typeof createSupabaseUserClient>>;
@@ -94,6 +95,7 @@ export async function adminCreateCityPageAction(formData: FormData) {
   const supabase = await createSupabaseUserClient();
   const cityId = await resolveCityIdFromForm(supabase, formData, CITY_FORM_SOURCE);
   if (!cityId) throw new Error("Nazwa miasta jest wymagana.");
+  revalidatePublicMapMarkerCache();
   await saveCityPageContent(supabase, cityId, formData);
 
   revalidateCityPagePaths();
@@ -116,6 +118,7 @@ export async function adminUpdateCityPageAction(cityId: string, formData: FormDa
 
   if (error) throw new Error(`Nie udało się zapisać miasta: ${error.message}`);
   if (!data) throw new Error("Nie potwierdzono zapisu miasta.");
+  revalidatePublicMapMarkerCache();
   await saveCityPageContent(supabase, cityId, formData);
 
   revalidateCityPagePaths();

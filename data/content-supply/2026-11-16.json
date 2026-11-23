@@ -1,0 +1,703 @@
+{
+  "checked_at": "2026-11-16T14:27:17Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Gorzów Wielkopolski, Grudziądz, Kołobrzeg, Nysa, Piła, Siedlce i Wałbrzych. Priorytet dla małych katalogów, targów, rodzinnych spektakli i grudniowych koncertów.",
+  "geocoding_attribution": "Istniejące punkty adresowe EventMap z dowodami lokalizacji. Szczegóły przy miejscach.",
+  "events": [
+    {
+      "title": "Vintage & Craft — targi rękodzieła i rzeczy z drugiej ręki w Wałbrzychu",
+      "category_slug": "targi",
+      "start_at": "2026-11-28T11:00:00+01:00",
+      "end_at": "2026-11-28T18:00:00+01:00",
+      "short_description": "W Sali Łańcuszkowej Starej Kopalni pojawią się stoiska z odzieżą vintage, rękodziełem, książkami i dodatkami.",
+      "description": "W Sali Łańcuszkowej Starej Kopalni pojawią się stoiska z odzieżą vintage, rękodziełem, książkami i dodatkami. Wstęp dla odwiedzających jest bezpłatny. Na miejscu działa strefa gastronomiczna.",
+      "location": {
+        "name": "Stara Kopalnia",
+        "city": "Wałbrzych",
+        "city_slug": "walbrzych",
+        "address": "Wysockiego 29",
+        "latitude": 50.7723905,
+        "longitude": 16.2614471,
+        "coordinate_source": "https://starakopalnia.pl/biznes/lokalizacja/",
+        "coordinate_note": "Punkt istniejącej lokalizacji de521f5e-24c1-4b3c-bacf-40ea6c248a18 w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Stara Kopalnia",
+      "source_url": "https://starakopalnia.pl/wydarzenia/iii-edycja-vintagecraft/",
+      "evidence_urls": [
+        "https://starakopalnia.pl/biznes/lokalizacja/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:26:22Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:25:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Parostatkiem w piękny rejs — polskie przeboje symfonicznie w Nysie",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-29T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Morningstar Orchestra i wokaliści teatrów muzycznych zagrają utwory z repertuaru m.in. Krzysztofa Krawczyka, Maanamu i Andrzeja Zauchy.",
+      "description": "Morningstar Orchestra i wokaliści teatrów muzycznych zagrają utwory z repertuaru m.in. Krzysztofa Krawczyka, Maanamu i Andrzeja Zauchy. Listopadowy termin zastępuje koncert pierwotnie planowany na 1 lutego. Bilety w systemie NDK kosztują 140–169 zł przed ewentualnym rabatem.",
+      "location": {
+        "name": "Nyski Dom Kultury — sala widowiskowa",
+        "city": "Nysa",
+        "city_slug": "nysa",
+        "address": "Wałowa 7",
+        "latitude": 50.4748437,
+        "longitude": 17.3365829,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Nysa%2C%20Wa%C5%82owa%207",
+        "coordinate_note": "Punkt istniejącej lokalizacji de544bdb-daf1-4169-b789-d909d828a8ec w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Nyski Dom Kultury",
+      "source_url": "https://www.ndk.nysa.pl/wydarzenie-1647-parostatkiem_w_piekny_rejs_koncert-szczegoly-65041.html",
+      "evidence_urls": [
+        "https://ndk.systembiletowy.pl/index.php/repertoire.html?id=499"
+      ],
+      "price_type": "paid",
+      "price_min": 140,
+      "price_max": 169,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:27:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:26:22Z",
+        "no_cancellation_notice": true,
+        "confirmed_rescheduled_date": true
+      }
+    },
+    {
+      "title": "Łowcy Gwiazd — mikołajkowy koncert K-pop w Siedlcach",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-01T16:30:00+01:00",
+      "end_at": null,
+      "short_description": "Rodzinne widowisko z muzyką z filmu „K-Pop Demon Hunters” i choreografiami, do których może dołączyć publiczność.",
+      "description": "Rodzinne widowisko z muzyką z filmu „K-Pop Demon Hunters” i choreografiami, do których może dołączyć publiczność. Organizator poleca koncert dzieciom od 6 lat. To pokaz o 16:30 w sali Podlasie.",
+      "location": {
+        "name": "Sala widowiskowa „Podlasie” MOK",
+        "city": "Siedlce",
+        "city_slug": "siedlce",
+        "address": "Henryka Sienkiewicza 63",
+        "latitude": 52.1648127,
+        "longitude": 22.2697005,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Siedlce%2C%20Henryka%20Sienkiewicza%2063",
+        "coordinate_note": "Punkt istniejącej lokalizacji 5d1d9913-615f-4da0-860e-d29ca0e59ddd w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Miejski Ośrodek Kultury w Siedlcach",
+      "source_url": "https://www.mok.siedlce.pl/pl/repertuar/k-pop-koncert-taneczna-mikolajkowa-misja-pt-lowcy-gwiazd",
+      "evidence_urls": [
+        "https://biletyna.pl/event/view/id/711008"
+      ],
+      "price_type": "paid",
+      "price_min": 129,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:27:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:25:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Danse, Danse Paris! — widowisko inspirowane Moulin Rouge w Siedlcach",
+      "category_slug": "kultura",
+      "start_at": "2026-12-01T20:00:00+01:00",
+      "end_at": null,
+      "short_description": "Taniec i śpiew przeniosą publiczność sali Podlasie do świata paryskiej bohemy.",
+      "description": "Taniec i śpiew przeniosą publiczność sali Podlasie do świata paryskiej bohemy. W obsadzie siedleckiego pokazu organizator zapowiada Julię Kozłowską. Wstęp biletowany.",
+      "location": {
+        "name": "Sala widowiskowa „Podlasie” MOK",
+        "city": "Siedlce",
+        "city_slug": "siedlce",
+        "address": "Henryka Sienkiewicza 63",
+        "latitude": 52.1648127,
+        "longitude": 22.2697005,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Siedlce%2C%20Henryka%20Sienkiewicza%2063",
+        "coordinate_note": "Punkt istniejącej lokalizacji 5d1d9913-615f-4da0-860e-d29ca0e59ddd w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Miejski Ośrodek Kultury w Siedlcach",
+      "source_url": "https://mok.siedlce.pl/pl/repertuar/danse-danse-paris-show-inspirowane-moulin-rouge",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 139,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:25:21Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:25:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "John Porter — Helicopters ’45 w Siedlcach",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-04T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "John Porter wróci do kompozycji z albumu „Helicopters” podczas jubileuszowego koncertu w sali Podlasie.",
+      "description": "John Porter wróci do kompozycji z albumu „Helicopters” podczas jubileuszowego koncertu w sali Podlasie. Bilety kosztują 110–120 zł do końca listopada i 140–150 zł od 1 grudnia.",
+      "location": {
+        "name": "Sala widowiskowa „Podlasie” MOK",
+        "city": "Siedlce",
+        "city_slug": "siedlce",
+        "address": "Henryka Sienkiewicza 63",
+        "latitude": 52.1648127,
+        "longitude": 22.2697005,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Siedlce%2C%20Henryka%20Sienkiewicza%2063",
+        "coordinate_note": "Punkt istniejącej lokalizacji 5d1d9913-615f-4da0-860e-d29ca0e59ddd w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Miejski Ośrodek Kultury w Siedlcach",
+      "source_url": "https://www.mok.siedlce.pl/pl/repertuar/koncert-johna-portera-pt-helicopters-45",
+      "evidence_urls": [
+        "https://biletyna.pl/event/view/id/711409"
+      ],
+      "price_type": "paid",
+      "price_min": 110,
+      "price_max": 150,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:27:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:25:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "NieBłękitna Rapsodia — koncert w Pile",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-05T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Regionalne Centrum Kultury zaprasza na koncert NieBłękitna Rapsodia w Teatrze Miejskim przy placu Staszica.",
+      "description": "Regionalne Centrum Kultury zaprasza na koncert NieBłękitna Rapsodia w Teatrze Miejskim przy placu Staszica. Bilety kosztują 50 zł w sprzedaży RCK.",
+      "location": {
+        "name": "Regionalne Centrum Kultury – Fabryka Emocji",
+        "city": "Piła",
+        "city_slug": "pila",
+        "address": "Plac Staszica 1",
+        "latitude": 53.1459,
+        "longitude": 16.743968,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Pi%C5%82a%2C%20Plac%20Staszica%201",
+        "coordinate_note": "Punkt istniejącej lokalizacji b89c2e29-2179-406b-b9b3-d1e7c33993e3 w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Regionalne Centrum Kultury w Pile",
+      "source_url": "https://bilet.rck.pila.pl/nieblekitna-rapsodia/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 50,
+      "price_max": 50,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:25:21Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:25:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Bassbórka — noc muzyki basowej w Starej Kopalni",
+      "category_slug": "imprezy",
+      "start_at": "2026-12-05T21:00:00+01:00",
+      "end_at": "2026-12-06T03:00:00+01:00",
+      "short_description": "DJ-e spotkają się w Sztygarówce na czwartej edycji imprezy w ramach Festiwalu Tradycji Górniczych.",
+      "description": "DJ-e spotkają się w Sztygarówce na czwartej edycji imprezy w ramach Festiwalu Tradycji Górniczych. Wejście kosztuje 35 zł. Organizator sprzedaje bilety przy wejściu od 21:00, w ramach dostępnych miejsc.",
+      "location": {
+        "name": "Kawiarnia Sztygarówka — Stara Kopalnia",
+        "city": "Wałbrzych",
+        "city_slug": "walbrzych",
+        "address": "Wysockiego 29",
+        "latitude": 50.7723905,
+        "longitude": 16.2614471,
+        "coordinate_source": "https://starakopalnia.pl/biznes/lokalizacja/",
+        "coordinate_note": "Punkt istniejącej lokalizacji a798d4d5-6b0c-4994-9728-f19d28607eda w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Stara Kopalnia",
+      "source_url": "https://starakopalnia.pl/wydarzenia/bassborka/",
+      "evidence_urls": [
+        "https://starakopalnia.pl/biznes/lokalizacja/"
+      ],
+      "price_type": "paid",
+      "price_min": 35,
+      "price_max": 35,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:26:22Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:25:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Sklep z facetami — komedia w Nyskim Domu Kultury",
+      "category_slug": "kultura",
+      "start_at": "2026-12-06T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Po rozstaniu w dniu urodzin Marzena rusza z siostrą w przygodę, która może zmienić jej podejście do związków.",
+      "description": "Po rozstaniu w dniu urodzin Marzena rusza z siostrą w przygodę, która może zmienić jej podejście do związków. W oficjalnej sprzedaży NDK bilet na balkon kosztuje 100 zł, a na parter 120 zł.",
+      "location": {
+        "name": "Nyski Dom Kultury — sala widowiskowa",
+        "city": "Nysa",
+        "city_slug": "nysa",
+        "address": "Wałowa 7",
+        "latitude": 50.4748437,
+        "longitude": 17.3365829,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Nysa%2C%20Wa%C5%82owa%207",
+        "coordinate_note": "Punkt istniejącej lokalizacji de544bdb-daf1-4169-b789-d909d828a8ec w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Nyski Dom Kultury",
+      "source_url": "https://www.ndk.nysa.pl/wydarzenie-1730-sklep_z_facetami-szczegoly-64985.html",
+      "evidence_urls": [
+        "https://ndk.systembiletowy.pl/index.php/kup-bilet/sklep-z-facetami-2026-12-06-18-00"
+      ],
+      "price_type": "paid",
+      "price_min": 100,
+      "price_max": 120,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:27:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:26:22Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Na Górze — koncert w Pile",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-08T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Zespół Na Górze wystąpi w Teatrze Miejskim w Pile.",
+      "description": "Zespół Na Górze wystąpi w Teatrze Miejskim w Pile. Bilety kosztują 10 zł w sprzedaży Regionalnego Centrum Kultury.",
+      "location": {
+        "name": "Regionalne Centrum Kultury – Fabryka Emocji",
+        "city": "Piła",
+        "city_slug": "pila",
+        "address": "Plac Staszica 1",
+        "latitude": 53.1459,
+        "longitude": 16.743968,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Pi%C5%82a%2C%20Plac%20Staszica%201",
+        "coordinate_note": "Punkt istniejącej lokalizacji b89c2e29-2179-406b-b9b3-d1e7c33993e3 w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Regionalne Centrum Kultury w Pile",
+      "source_url": "https://bilet.rck.pila.pl/na-gorze-2/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 10,
+      "price_max": 10,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:25:21Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:25:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Miłość to niebo na ziemi — koncert mikołajkowy w Kołobrzegu",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-10T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Soliści Polskiej Sceny Muzycznej w Łodzi wykonają arie i utwory z musicali w sali widowiskowej RCK.",
+      "description": "Soliści Polskiej Sceny Muzycznej w Łodzi wykonają arie i utwory z musicali w sali widowiskowej RCK. Bilet normalny kosztuje 55 zł, ulgowy lub z Kartą Mieszkańca 45 zł.",
+      "location": {
+        "name": "Regionalne Centrum Kultury im. Zbigniewa Herberta",
+        "city": "Kołobrzeg",
+        "city_slug": "kolobrzeg",
+        "address": "Solna 1",
+        "latitude": 54.1819998,
+        "longitude": 15.5654614,
+        "coordinate_source": "https://latarnia.kolobrzeg.eu/10067-kolobrzeg-xv-rockfestiwal",
+        "coordinate_note": "Punkt istniejącej lokalizacji 93872a67-3def-4493-bee2-50f5e5357c38 w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Regionalne Centrum Kultury w Kołobrzegu",
+      "source_url": "https://rck.kolobrzeg.eu/repertuar-wyszukaj/details/2026-12-10/1834-kameralny-koncert-mikolajkowy-milosc-to-niebo-na-ziemi",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 45,
+      "price_max": 55,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:26:22Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:26:22Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "W poszukiwaniu Świętego Mikołaja — spektakl w Wałbrzychu",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-12T12:00:00+01:00",
+      "end_at": null,
+      "short_description": "Świąteczne widowisko z multimedialną oprawą w Starej Kopalni. Organizator poleca spektakl dzieciom od 3 do 10 lat.",
+      "description": "Świąteczne widowisko z multimedialną oprawą w Starej Kopalni. Organizator poleca spektakl dzieciom od 3 do 10 lat. Bilety online kosztują 58,41–90,27 zł.",
+      "location": {
+        "name": "Stara Kopalnia",
+        "city": "Wałbrzych",
+        "city_slug": "walbrzych",
+        "address": "Wysockiego 29",
+        "latitude": 50.7723905,
+        "longitude": 16.2614471,
+        "coordinate_source": "https://starakopalnia.pl/biznes/lokalizacja/",
+        "coordinate_note": "Punkt istniejącej lokalizacji de521f5e-24c1-4b3c-bacf-40ea6c248a18 w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Stara Kopalnia",
+      "source_url": "https://starakopalnia.pl/wydarzenia/w-poszukiwaniu-swietego-mikolaja/",
+      "evidence_urls": [
+        "https://koncerty-widowiska.pl/mikolaj-walbrzych/",
+        "https://starakopalnia.pl/biznes/lokalizacja/",
+        "https://biletyna.pl/event/view/id/690724"
+      ],
+      "price_type": "paid",
+      "price_min": 58.41,
+      "price_max": 90.27,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:27:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:25:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Kombii — Białe Święta w Wałbrzychu",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-12T20:00:00+01:00",
+      "end_at": null,
+      "short_description": "Kombii zagra świąteczny koncert w Starej Kopalni. Obok zimowych piosenek zespół zapowiada swoje przeboje.",
+      "description": "Kombii zagra świąteczny koncert w Starej Kopalni. Obok zimowych piosenek zespół zapowiada swoje przeboje. Bilety online kosztują 179,48–211,34 zł.",
+      "location": {
+        "name": "Stara Kopalnia",
+        "city": "Wałbrzych",
+        "city_slug": "walbrzych",
+        "address": "Wysockiego 29",
+        "latitude": 50.7723905,
+        "longitude": 16.2614471,
+        "coordinate_source": "https://starakopalnia.pl/biznes/lokalizacja/",
+        "coordinate_note": "Punkt istniejącej lokalizacji de521f5e-24c1-4b3c-bacf-40ea6c248a18 w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Stara Kopalnia",
+      "source_url": "https://starakopalnia.pl/wydarzenia/kombii/",
+      "evidence_urls": [
+        "https://hypeglobal.pro/kombii-walbrzych/",
+        "https://starakopalnia.pl/biznes/lokalizacja/",
+        "https://biletyna.pl/event/view/id/664683"
+      ],
+      "price_type": "paid",
+      "price_min": 179.48,
+      "price_max": 211.34,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:27:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:25:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Czerwony Kapturek i wilk — spektakl rodzinny w Grudziądzu",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-13T11:00:00+01:00",
+      "end_at": null,
+      "short_description": "Teatr w Grudziądzu pokaże swoją wersję baśni w reżyserii Zbigniewa Kulwickiego.",
+      "description": "Teatr w Grudziądzu pokaże swoją wersję baśni w reżyserii Zbigniewa Kulwickiego. Pokaz przeniesiono z 8 listopada na 13 grudnia. Wcześniej kupione bilety zachowują ważność.",
+      "location": {
+        "name": "Centrum Kultury Teatr",
+        "city": "Grudziądz",
+        "city_slug": "grudziadz",
+        "address": "Teatralna 1",
+        "latitude": 53.4851056,
+        "longitude": 18.7560139,
+        "coordinate_source": "https://teatr.grudziadz.pl/wydarzenie/sylwester-w-teatrze-4/",
+        "coordinate_note": "Punkt istniejącej lokalizacji 6fbb27ae-80f0-43e8-abcc-f00c1c818540 w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Centrum Kultury Teatr w Grudziądzu",
+      "source_url": "https://teatr.grudziadz.pl/wydarzenie/czerwony-kapturek-i-wilk-rez-zbigniew-kulwicki-premiera-ckt-przelozony-na-13-12-2026-1100/",
+      "evidence_urls": [
+        "https://www.bilety24.pl/teatr/1345-czerwony-kapturek-i-wilk-centrum-kultury-teatr-w-grudziadzu-166636?id=1001694"
+      ],
+      "price_type": "paid",
+      "price_min": 25,
+      "price_max": 30,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:27:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:25:21Z",
+        "no_cancellation_notice": true,
+        "confirmed_rescheduled_date": true
+      }
+    },
+    {
+      "title": "Christmas Time Is Here — koncert w Filharmonii Gorzowskiej",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-13T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Filharmonia Gorzowska zaprasza na grudniowy koncert z cyklu Scena light.",
+      "description": "Filharmonia Gorzowska zaprasza na grudniowy koncert z cyklu Scena light. Standardy jazzowe i świąteczne piosenki wykonają soliści Zuzanna Babiak, Aleksandra Pieczkowska i Piotr Zubek z Filary Jazz Big Band oraz orkiestrą filharmonii. Bilet kosztuje 150 zł.",
+      "location": {
+        "name": "Filharmonia Gorzowska",
+        "city": "Gorzów Wielkopolski",
+        "city_slug": "gorzow-wielkopolski",
+        "address": "Dziewięciu Muz 10",
+        "latitude": 52.7359839,
+        "longitude": 15.2471398,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Gorz%C3%B3w%20Wielkopolski%2C%20Dziewi%C4%99ciu%20Muz%2010",
+        "coordinate_note": "Punkt istniejącej lokalizacji 267d04b3-8b52-4489-b0eb-b8e07bc499ec w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Filharmonia Gorzowska",
+      "source_url": "https://www.filharmoniagorzowska.pl/repertuar/christmas-time-is-here",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 150,
+      "price_max": 150,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:27:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:27:16Z",
+        "no_cancellation_notice": true,
+        "program_change": "Filharmonia potwierdza koncert z nowymi solistami."
+      }
+    },
+    {
+      "title": "Patrycja Markowska — akustyczny koncert 25-lecia w Wałbrzychu",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-13T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Patrycja Markowska wróci do piosenek z różnych etapów swojej kariery w akustycznych aranżacjach.",
+      "description": "Patrycja Markowska wróci do piosenek z różnych etapów swojej kariery w akustycznych aranżacjach. Bilety online kosztują 253,82–317,54 zł.",
+      "location": {
+        "name": "Stara Kopalnia",
+        "city": "Wałbrzych",
+        "city_slug": "walbrzych",
+        "address": "Wysockiego 29",
+        "latitude": 50.7723905,
+        "longitude": 16.2614471,
+        "coordinate_source": "https://starakopalnia.pl/biznes/lokalizacja/",
+        "coordinate_note": "Punkt istniejącej lokalizacji de521f5e-24c1-4b3c-bacf-40ea6c248a18 w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Stara Kopalnia",
+      "source_url": "https://starakopalnia.pl/wydarzenia/patrycja-markowska/",
+      "evidence_urls": [
+        "https://hypeglobal.pro/pm-walbrzych/",
+        "https://starakopalnia.pl/biznes/lokalizacja/",
+        "https://biletyna.pl/event/view/id/666589"
+      ],
+      "price_type": "paid",
+      "price_min": 253.82,
+      "price_max": 317.54,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:27:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:25:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Śpiewajmy i Grajmy Mu — finał konkursu kolęd w Grudziądzu",
+      "category_slug": "kultura",
+      "start_at": "2026-12-17T18:00:00+01:00",
+      "end_at": "2026-12-17T20:00:00+01:00",
+      "short_description": "Centrum Kultury Teatr przy Teatralnej 1 zaprasza na finał konkursu kolęd i pastorałek.",
+      "description": "Centrum Kultury Teatr przy Teatralnej 1 zaprasza na finał konkursu kolęd i pastorałek. Wstęp na galę jest wolny.",
+      "location": {
+        "name": "Centrum Kultury Teatr",
+        "city": "Grudziądz",
+        "city_slug": "grudziadz",
+        "address": "Teatralna 1",
+        "latitude": 53.4851056,
+        "longitude": 18.7560139,
+        "coordinate_source": "https://teatr.grudziadz.pl/wydarzenie/sylwester-w-teatrze-4/",
+        "coordinate_note": "Punkt istniejącej lokalizacji 6fbb27ae-80f0-43e8-abcc-f00c1c818540 w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Centrum Kultury Teatr w Grudziądzu",
+      "source_url": "https://teatr.grudziadz.pl/wydarzenie/konkurs-koled-i-pastoralek-spiewajmy-i-grajmy-mu-gala-finalowa/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:27:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:27:16Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Dziadek do orzechów — International Grand Ballet w Nysie",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-17T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "International Grand Ballet zatańczy do muzyki Czajkowskiego w Nyskim Domu Kultury.",
+      "description": "International Grand Ballet zatańczy do muzyki Czajkowskiego w Nyskim Domu Kultury. Bilety w systemie NDK kosztują 130–169 zł przed ewentualnym rabatem.",
+      "location": {
+        "name": "Nyski Dom Kultury — sala widowiskowa",
+        "city": "Nysa",
+        "city_slug": "nysa",
+        "address": "Wałowa 7",
+        "latitude": 50.4748437,
+        "longitude": 17.3365829,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Nysa%2C%20Wa%C5%82owa%207",
+        "coordinate_note": "Punkt istniejącej lokalizacji de544bdb-daf1-4169-b789-d909d828a8ec w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Nyski Dom Kultury",
+      "source_url": "https://www.ndk.nysa.pl/wydarzenie-1695-international_grand_ballet_dziadek_do-szczegoly-64967.html",
+      "evidence_urls": [
+        "https://ndk.systembiletowy.pl/index.php/kup-bilet/dziadek-do-orzechow-2026-12-17-19-00"
+      ],
+      "price_type": "paid",
+      "price_min": 130,
+      "price_max": 169,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:27:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:26:22Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Farben Lehre akustycznie — koncert w Siedlcach",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-18T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Farben Lehre zagra w sali Podlasie akustyczne wersje swoich utworów, m.in. „Anioły i Demony” oraz „Pogodną”.",
+      "description": "Farben Lehre zagra w sali Podlasie akustyczne wersje swoich utworów, m.in. „Anioły i Demony” oraz „Pogodną”. Bilety kosztują 80 zł w przedsprzedaży do 17 grudnia i 90 zł w dniu koncertu.",
+      "location": {
+        "name": "Sala widowiskowa „Podlasie” MOK",
+        "city": "Siedlce",
+        "city_slug": "siedlce",
+        "address": "Henryka Sienkiewicza 63",
+        "latitude": 52.1648127,
+        "longitude": 22.2697005,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Siedlce%2C%20Henryka%20Sienkiewicza%2063",
+        "coordinate_note": "Punkt istniejącej lokalizacji 5d1d9913-615f-4da0-860e-d29ca0e59ddd w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Miejski Ośrodek Kultury w Siedlcach",
+      "source_url": "https://mok.siedlce.pl/pl/repertuar/koncert-farben-lehre-akustycznie",
+      "evidence_urls": [
+        "https://biletyna.pl/event/view/id/713940"
+      ],
+      "price_type": "paid",
+      "price_min": 80,
+      "price_max": 90,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:27:17Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:25:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "W świetle księżyca — koncert i wystawa w Grudziądzu",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-20T12:00:00+01:00",
+      "end_at": null,
+      "short_description": "Pianistka Weronika Chodakowska i sopranistka Julia Lewiuk wystąpią w niedzielnym cyklu Centrum Kultury Teatr.",
+      "description": "Pianistka Weronika Chodakowska i sopranistka Julia Lewiuk wystąpią w niedzielnym cyklu Centrum Kultury Teatr. W programie są utwory Beethovena, Chopina i kolędy. W przerwie będzie można obejrzeć wystawę Piotra Kamińskiego.",
+      "location": {
+        "name": "Centrum Kultury Teatr",
+        "city": "Grudziądz",
+        "city_slug": "grudziadz",
+        "address": "Teatralna 1",
+        "latitude": 53.4851056,
+        "longitude": 18.7560139,
+        "coordinate_source": "https://teatr.grudziadz.pl/wydarzenie/sylwester-w-teatrze-4/",
+        "coordinate_note": "Punkt istniejącej lokalizacji 6fbb27ae-80f0-43e8-abcc-f00c1c818540 w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Centrum Kultury Teatr w Grudziądzu",
+      "source_url": "https://teatr.grudziadz.pl/wydarzenie/koncert-niedzielny-63/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 30,
+      "price_max": 40,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:25:21Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:25:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Jedna Noc w Wiedniu — gala noworoczna w Nysie",
+      "category_slug": "koncerty",
+      "start_at": "2027-01-09T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Orchestre de la Cour, soliści i tancerze wystąpią z programem walców, arii i operetkowych przebojów.",
+      "description": "Orchestre de la Cour, soliści i tancerze wystąpią z programem walców, arii i operetkowych przebojów. Bilety w systemie NDK kosztują 140–160 zł przed ewentualnym rabatem.",
+      "location": {
+        "name": "Nyski Dom Kultury — sala widowiskowa",
+        "city": "Nysa",
+        "city_slug": "nysa",
+        "address": "Wałowa 7",
+        "latitude": 50.4748437,
+        "longitude": 17.3365829,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Nysa%2C%20Wa%C5%82owa%207",
+        "coordinate_note": "Punkt istniejącej lokalizacji de544bdb-daf1-4169-b789-d909d828a8ec w tym samym budynku i pod tym samym adresem. Miejsce sprawdzono w zapowiedzi lub oficjalnej sprzedaży."
+      },
+      "source_name": "Nyski Dom Kultury",
+      "source_url": "https://www.ndk.nysa.pl/wydarzenie-1756-wielka_gala_noworoczna_jedna_noc_w-szczegoly-65017.html",
+      "evidence_urls": [
+        "https://ndk.systembiletowy.pl/index.php/kup-bilet/jedna-noc-w-wiedniu-z-orchestre-de-la-cour-2027-01-09-18-00"
+      ],
+      "price_type": "paid",
+      "price_min": 140,
+      "price_max": 160,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "W dostępnych materiałach brak potwierdzonej licencji do użycia plakatu lub fotografii na EventMap. Okładkę dobiera EventVisual.",
+      "checked_at": "2026-11-16T14:27:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-16T14:26:22Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

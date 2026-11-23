@@ -1,0 +1,735 @@
+{
+  "checked_at": "2026-11-06T14:01:30Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Polska. Uzupełnienie oferty mniejszych miast i miast z nielicznymi wydarzeniami.",
+  "events": [
+    {
+      "title": "Next-Ex — część druga",
+      "category_slug": "kultura",
+      "start_at": "2026-11-08T17:00:00+01:00",
+      "short_description": "Grupa seniorów Zamojskiego Studia Teatralnego pokaże drugą część komedii Juliusza Machulskiego o rodzinnej konfrontacji wokół zaręczyn. Reżyseria Bartłomieja Miernika. Wstęp wolny, po spektaklu można przekazać dobrowolny datek.",
+      "description": "Grupa seniorów Zamojskiego Studia Teatralnego pokaże drugą część komedii Juliusza Machulskiego o rodzinnej konfrontacji wokół zaręczyn. Reżyseria Bartłomieja Miernika. Wstęp wolny, po spektaklu można przekazać dobrowolny datek.",
+      "location": {
+        "name": "Kino Skarb",
+        "address": "Partyzantów 26A",
+        "city": "Zwierzyniec",
+        "latitude": 50.6139331018717,
+        "longitude": 22.9730299505288,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&address=Zwierzyniec%2C+Partyzant%C3%B3w+26A&srid=4326",
+        "coordinate_note": "WGS84 z usługi UUG GUGiK dla dokładnego adresu Partyzantów 26a, jeden wynik, zgodność 1. Adres jest zgodny z kartą kina na stronie centrum kultury."
+      },
+      "source_name": "Centrum Kultury i Biblioteka Publiczna w Zwierzyńcu",
+      "source_url": "https://kultura-zwierzyniec.pl/2026/11/03/next-ex-druga-czesc-kino-skarb/",
+      "evidence_urls": [
+        "https://kultura-zwierzyniec.pl/?eventDisplay=list&post_type=tribe_venue&tribe_venue=kino-skarb",
+        "https://services.gugik.gov.pl/uug?request=GetAddress&address=Zwierzyniec%2C+Partyzant%C3%B3w+26A&srid=4326",
+        "https://kultura-zwierzyniec.pl/wp-content/uploads/2026/11/Plakat-Next-Ex_20261103_095725_0000-724x1024.png"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "checked_at": "2026-11-06T13:58:48Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T13:58:48Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Święto Lubuskiego Młodego Wina",
+      "category_slug": "targi",
+      "start_at": "2026-11-11T12:00:00+01:00",
+      "end_at": "2026-11-11T18:00:00+01:00",
+      "location": {
+        "name": "Restauracja Winiarnia Srebrna Góra",
+        "address": "Plac Słowiański 10",
+        "city": "Zielona Góra",
+        "latitude": 51.9362962,
+        "longitude": 15.5036609,
+        "coordinate_source": "https://srebrna-gora.com/kontakt",
+        "coordinate_note": "Współrzędne obiektu SREBRNA GÓRA z nazwanego rekordu osadzonej mapy Google, place CID 1857211201462196735, zgodny numer 10."
+      },
+      "source_name": "Urząd Miasta Zielona Góra",
+      "source_url": "https://www.zielona-gora.pl/events/swieto-lubuskiego-mlodego-wina/",
+      "evidence_urls": [
+        "https://lubuskie.pl/wiadomosci/27219/swieto-lubuskiego-mlodego-wina-2026",
+        "https://srebrna-gora.com/winiarnia"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "short_description": "Lubuskie winnice i lokalni producenci spotkają się na stoiskach w Srebrnej Górze. Wstęp wolny.",
+      "description": "W piwnicach i na dziedzińcu Srebrnej Góry wystawią się lubuscy winiarze oraz producenci regionalni. Zaplanowano degustację gęsiny, rozstrzygnięcie konkursu na młode wino oraz występ jazzowego tria Popławski, Chyła, Pruszyński. Wstęp wolny.",
+      "currency": "PLN",
+      "checked_at": "2026-11-06T14:01:29Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T14:01:29Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Powiatowe obchody Święta Niepodległości w Aleksandrowie Łódzkim",
+      "category_slug": "kultura",
+      "start_at": "2026-11-11T13:30:00+01:00",
+      "short_description": "Plenerowe obchody w Parku Miejskim z orkiestrą dętą, rekonstruktorami i pokazem konnym.",
+      "description": "Uroczystość zacznie się przy pomniku Tadeusza Kościuszki. W parku będzie można zajrzeć na stanowiska rekonstruktorów i zagrać w grę historyczną, a o 15:00 na terenie obok parku zaplanowano pokaz konny. Część plenerowa jest otwarta. Na oddzielny koncert w MDK wszystkie wejściówki zostały rozdane.",
+      "location": {
+        "name": "Park Miejski przy pomniku Tadeusza Kościuszki",
+        "address": "Plac Tadeusza Kościuszki",
+        "city": "Aleksandrów Łódzki",
+        "latitude": 51.820362,
+        "longitude": 19.302828,
+        "coordinate_source": "https://atrakcje.relaxguide.pl/aleksandrow-lodzki/zabytki/pomnik-tadeusza-kosciuszki-aleksandrow-lodzki",
+        "coordinate_note": "Współrzędne z GeoCoordinates nazwanego pomnika w Parku Miejskim, ok. 18 m od punktu tego parku na mapie opartej na OSM. Miejski program wskazuje pomnik jako początek obchodów."
+      },
+      "source_name": "Urząd Miejski w Aleksandrowie Łódzkim",
+      "source_url": "https://aleksandrow-lodzki.pl/wydarzenia/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim/",
+      "evidence_urls": [
+        "https://aleksandrow-lodzki.pl/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim/",
+        "https://www.mypacer.com/parks/209387/park-miejski-aleksandrow-lodzki",
+        "https://aleksandrow-lodzki.pl/wp-content/uploads/2021/12/Strategia-Rozwoju-Gminy-Aleksandrow-Lodzki-po-konsultacjach.pdf"
+      ],
+      "checked_at": "2026-11-06T13:57:21Z",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T13:57:21Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Marszobieg Niepodległościowy",
+      "category_slug": "sport",
+      "start_at": "2026-11-11T15:00:00+01:00",
+      "location": {
+        "name": "Park Tysiąclecia",
+        "address": "Wazów",
+        "city": "Zielona Góra",
+        "latitude": 51.9424,
+        "longitude": 15.5166,
+        "coordinate_source": "https://mapcarta.com/W220590136",
+        "coordinate_note": "Punkt oznaczonego obszaru Parku Tysiąclecia z OSM way 220590136. Regulamin wskazuje teren parku przy Wazów jako start i metę bez dokładniejszego punktu."
+      },
+      "source_name": "Oficjalny portal turystyczny Zielonej Góry",
+      "source_url": "https://visitzielonagora.pl/wydarzenia/marszobieg-niepodleglosciowy/",
+      "evidence_urls": [
+        "https://super-sport.com.pl/zapisy/regulamin/20261111_regulaminMarszobieg.pdf",
+        "https://super-sport.com.pl/zapisy-formularze/4822-marszobieg-niepodleglosciowy-2026.html",
+        "https://super-sport.com.pl/zapisy/4820-marszobieg-niepodleglosciowy-2026-zapisy"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "short_description": "Dwie pętle w Parku Tysiąclecia, łącznie 2,2 km biegiem albo marszem. Udział bezpłatny po zgłoszeniu.",
+      "description": "Dzieci i dorośli pokonają 2,2 km w Parku Tysiąclecia, biegiem lub marszem. Biuro zawodów otwiera się o 14:00. Zgłoszenia internetowe do 9 listopada, a w dniu wydarzenia w biurze w ramach limitu 300 osób. Osoby niepełnoletnie potrzebują zgody opiekuna. Udział bezpłatny.",
+      "currency": "PLN",
+      "checked_at": "2026-11-06T14:01:30Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T14:01:30Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Święto Niepodległości w Mareckim Ośrodku Kultury",
+      "category_slug": "kultura",
+      "start_at": "2026-11-11T15:00:00+01:00",
+      "short_description": "Spotkanie z prelekcją o polskich naukowcach i wspólnym śpiewaniem pieśni patriotycznych.",
+      "description": "Agnieszka Lużyńska opowie o polskich naukowcach i ich odkryciach. Po prelekcji Anna Starowicz i Adam Tkaczyk będą akompaniować na skrzypcach i gitarze podczas wspólnego śpiewania. Wstęp wolny.",
+      "location": {
+        "name": "Marecki Ośrodek Kultury im. Tadeusza Lużyńskiego",
+        "address": "Fabryczna 2",
+        "city": "Marki",
+        "latitude": 52.321002524607,
+        "longitude": 21.103696813544,
+        "coordinate_source": "https://zabytek.pl/pl/obiekty/marki-szkola-ob-marecki-osrodek-kultury",
+        "coordinate_note": "Punkt nazwanej siedziby przy Fabrycznej 2 z warstwy mapy i parametrów GPX NID."
+      },
+      "source_name": "Marecki Ośrodek Kultury im. Tadeusza Lużyńskiego",
+      "source_url": "https://mokmarki.pl/repertuar/2026/10/narodowe-swieto-niepodleglosci-9/",
+      "evidence_urls": [
+        "https://mokmarki.pl/kontakt/"
+      ],
+      "checked_at": "2026-11-06T13:57:21Z",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T13:57:21Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Wolność brzmi — LutosAir Quintet",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-11T19:00:00+01:00",
+      "short_description": "Kwintet dęty LutosAir zagra podczas 23. Otwockiego Festiwalu Muzycznego im. Jana Staniendy. W programie są m.in. utwory Wojciecha Kilara i Davida Maslanki. Bezpłatne wejściówki można odebrać w kasie teatru od 18:00.",
+      "description": "Kwintet dęty LutosAir zagra podczas 23. Otwockiego Festiwalu Muzycznego im. Jana Staniendy. W programie są m.in. utwory Wojciecha Kilara i Davida Maslanki. Bezpłatne wejściówki można odebrać w kasie teatru od 18:00.",
+      "location": {
+        "name": "Amatorski Teatr Miejski im. Stefana Jaracza",
+        "address": "Armii Krajowej 4",
+        "city": "Otwock",
+        "latitude": 52.104639,
+        "longitude": 21.267611,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/1820/amatorski-teatr-miejski-im-stefana-jaracza",
+        "coordinate_note": "Punkt nazwanego teatru z karty obiektu sprzedawcy biletów. Potwierdzony zgodnym adresem teatru i punktem adresowym GUGiK oddalonym o ok. 10 m."
+      },
+      "source_name": "Miasto Otwock — Otwocki Festiwal Muzyczny",
+      "source_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy",
+      "evidence_urls": [
+        "https://otwock.pl/images/galeria_zdj_aktualnosci/3446/5906/23-OFM-ulotka-B.png",
+        "https://www.kupbilecik.pl/pl/place/1820/amatorski-teatr-miejski-im-stefana-jaracza",
+        "https://services.gugik.gov.pl/uug?request=GetAddress&address=Otwock%2C+Armii+Krajowej+4&srid=4326",
+        "https://iotwock.info/artykul/otwocki-festiwal-muzyczny-n1875069"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "checked_at": "2026-11-06T13:59:59Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T13:59:59Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Jesienna etnobotanika — warsztaty rodzinne",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-14T12:00:00+01:00",
+      "location": {
+        "name": "Ratusz — Muzeum Częstochowskie",
+        "address": "Aleja Najświętszej Maryi Panny 45",
+        "city": "Częstochowa",
+        "latitude": 50.811318739491,
+        "longitude": 19.113152495147,
+        "coordinate_source": "https://zabytek.pl/pl/obiekty/czestochowa-ratusz",
+        "coordinate_note": "Współrzędne z metadanych mapy Narodowego Instytutu Dziedzictwa dla ratusza przy alei NMP 45."
+      },
+      "source_name": "Muzeum Częstochowskie",
+      "source_url": "https://www.muzeumczestochowa.pl/wydarzenia/jesienna-etnobotanika/130",
+      "evidence_urls": [
+        "https://sklep.muzeumczestochowa.pl/produkt/jesienna-etnobotanika,112",
+        "https://plus.czestochowa.pl/wydarzenia/4899-jesienna-etnobotanika-warsztaty-rodzinne"
+      ],
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 20,
+      "short_description": "Rodzinne zajęcia z rozpoznawania ziół i tworzenia ozdób z suszonych kwiatów. Od 5 lat, bilet 20 zł.",
+      "description": "Na warsztatach w ratuszu rodziny wykorzystają suszone kwiaty do wykonania naklejek i zakładek, a także spróbują rozpoznać zioła i inne rośliny. Zajęcia trwają do półtorej godziny i są przeznaczone dla osób od 5 lat. Muzeum oferuje 25 miejsc, bilety kosztują 20 zł.",
+      "currency": "PLN",
+      "checked_at": "2026-11-06T14:01:29Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T14:01:29Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Musica da camera — Otwocki Festiwal Muzyczny",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-14T19:00:00+01:00",
+      "short_description": "Wieczór kameralny w ramach festiwalu im. Jana Staniendy. Jarosław Nadrzycki, Maria Stanienda, Magdalena Bojanowicz i Kama Grott-Tomaszek zagrają utwory Dohnányiego, Pendereckiego i Arnolda. Bezpłatne wejściówki od 18:00 w kasie teatru.",
+      "description": "Wieczór kameralny w ramach festiwalu im. Jana Staniendy. Jarosław Nadrzycki, Maria Stanienda, Magdalena Bojanowicz i Kama Grott-Tomaszek zagrają utwory Dohnányiego, Pendereckiego i Arnolda. Bezpłatne wejściówki od 18:00 w kasie teatru.",
+      "location": {
+        "name": "Amatorski Teatr Miejski im. Stefana Jaracza",
+        "address": "Armii Krajowej 4",
+        "city": "Otwock",
+        "latitude": 52.104639,
+        "longitude": 21.267611,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/1820/amatorski-teatr-miejski-im-stefana-jaracza",
+        "coordinate_note": "Punkt nazwanego teatru z karty obiektu sprzedawcy biletów. Potwierdzony zgodnym adresem teatru i punktem adresowym GUGiK oddalonym o ok. 10 m."
+      },
+      "source_name": "Miasto Otwock — Otwocki Festiwal Muzyczny",
+      "source_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy",
+      "evidence_urls": [
+        "https://otwock.pl/images/galeria_zdj_aktualnosci/3446/5906/23-OFM-ulotka-B.png",
+        "https://www.kupbilecik.pl/pl/place/1820/amatorski-teatr-miejski-im-stefana-jaracza",
+        "https://services.gugik.gov.pl/uug?request=GetAddress&address=Otwock%2C+Armii+Krajowej+4&srid=4326",
+        "https://iotwock.info/artykul/otwocki-festiwal-muzyczny-n1875069"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "checked_at": "2026-11-06T13:59:59Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T13:59:59Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Gdy świat mówi ciszą… — wernisaż fotograficzny",
+      "category_slug": "kultura",
+      "start_at": "2026-11-17T18:00:00+01:00",
+      "location": {
+        "name": "Zagłębiowska Mediateka",
+        "address": "Kościelna 11",
+        "city": "Sosnowiec",
+        "latitude": 50.2721501,
+        "longitude": 19.1295005,
+        "coordinate_source": "https://www.wikidata.org/wiki/Q105675332",
+        "coordinate_note": "Pinezka budynku biblioteki Q105675332 z ulicą i numerem, OSM way 219156503. Adres i nazwa zgodne ze stroną biblioteki."
+      },
+      "source_name": "Miejska Biblioteka Publiczna w Sosnowcu",
+      "source_url": "https://www.biblioteka.sosnowiec.pl/aktualnosci/2347",
+      "evidence_urls": [
+        "https://www.biblioteka.sosnowiec.pl/aktualnosci/zaglebiowska-mediateka/1981"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "short_description": "Wernisaż Stowarzyszenia Miłośników Fotografii w galerii Pod Świetlikiem. Wstęp wolny.",
+      "description": "Członkowie sosnowieckiego Stowarzyszenia Miłośników Fotografii pokażą własne interpretacje ciszy. Wernisaż odbędzie się w galerii Pod Świetlikiem w Zagłębiowskiej Mediatece, a wystawę można oglądać do 30 listopada. Wstęp wolny.",
+      "currency": "PLN",
+      "checked_at": "2026-11-06T14:01:29Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T14:01:29Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Kobiecy Piątek w Mareckim Ośrodku Kultury",
+      "category_slug": "inne",
+      "start_at": "2026-11-20T19:15:00+01:00",
+      "short_description": "Spotkanie z Beatą Sasinowską poświęcone pielęgnacji twarzy, z sesją relaksu przy dźwiękach mis.",
+      "description": "Beata Sasinowska przedstawi techniki samodzielnego masażu twarzy. W programie znalazła się też sesja relaksacyjna z misami tybetańskimi. Bezpłatne wejściówki można odbierać w sekretariacie MOK i przez Biletomat.",
+      "location": {
+        "name": "Marecki Ośrodek Kultury im. Tadeusza Lużyńskiego",
+        "address": "Fabryczna 2",
+        "city": "Marki",
+        "latitude": 52.321002524607,
+        "longitude": 21.103696813544,
+        "coordinate_source": "https://zabytek.pl/pl/obiekty/marki-szkola-ob-marecki-osrodek-kultury",
+        "coordinate_note": "Punkt nazwanej siedziby przy Fabrycznej 2 z warstwy mapy i parametrów GPX NID."
+      },
+      "source_name": "Marecki Ośrodek Kultury im. Tadeusza Lużyńskiego",
+      "source_url": "https://mokmarki.pl/repertuar/2026/10/kobiecy-piatek/",
+      "evidence_urls": [
+        "https://mokmarki.pl/kontakt/",
+        "https://biletomat.pl/wydarzenia/kobiecy-piatek-34368?eventId=360765"
+      ],
+      "checked_at": "2026-11-06T13:57:51Z",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T13:57:51Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "KrymiNOW — rodzinne atrakcje konwentu kryminalnego",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-21T10:00:00+01:00",
+      "end_at": "2026-11-21T16:30:00+01:00",
+      "location": {
+        "name": "Zagłębiowska Mediateka",
+        "address": "Kościelna 11",
+        "city": "Sosnowiec",
+        "latitude": 50.2721501,
+        "longitude": 19.1295005,
+        "coordinate_source": "https://www.wikidata.org/wiki/Q105675332",
+        "coordinate_note": "Pinezka budynku biblioteki Q105675332 z ulicą i numerem, OSM way 219156503. Adres i nazwa zgodne ze stroną biblioteki."
+      },
+      "source_name": "Miejska Biblioteka Publiczna w Sosnowcu",
+      "source_url": "https://www.biblioteka.sosnowiec.pl/wydarzenie/kryminow-zaglebiowski-konwent-kryminalny-ndash-atrakcje-dla-dzieci-i-mlodziezy",
+      "evidence_urls": [
+        "https://www.biblioteka.sosnowiec.pl/aktualnosci/zaglebiowska-mediateka/2335"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "short_description": "Gry detektywistyczne dla dzieci, pokaz samoobrony i warsztaty daktyloskopijne. Na warsztaty obowiązują zapisy.",
+      "description": "Sobotni program KrymiNOW w Zagłębiowskiej Mediatece obejmuje zabawy detektywistyczne dla dzieci od 10:00 i pokaz samoobrony dla dorosłych o 11:00. O 15:00 rozpoczną się warsztaty daktyloskopijne dla dzieci w wieku 10–14 lat. Wstęp wolny, na warsztaty obowiązują zapisy w wypożyczalni dla dzieci i limit 20 miejsc.",
+      "currency": "PLN",
+      "checked_at": "2026-11-06T14:01:29Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T14:01:29Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Markowe planszówki",
+      "category_slug": "inne",
+      "start_at": "2026-11-21T16:00:00+01:00",
+      "end_at": "2026-11-21T23:00:00+01:00",
+      "short_description": "Otwarte spotkanie przy grach planszowych dla dorosłych i młodzieży od 16 lat.",
+      "description": "W MOK można dołączyć do rozgrywek przy kilku stołach. Listę gier, godziny i wolne miejsca pokazuje strona zapisów Markowych Planszówek. Wstęp wolny.",
+      "location": {
+        "name": "Marecki Ośrodek Kultury im. Tadeusza Lużyńskiego",
+        "address": "Fabryczna 2",
+        "city": "Marki",
+        "latitude": 52.321002524607,
+        "longitude": 21.103696813544,
+        "coordinate_source": "https://zabytek.pl/pl/obiekty/marki-szkola-ob-marecki-osrodek-kultury",
+        "coordinate_note": "Punkt nazwanej siedziby przy Fabrycznej 2 z warstwy mapy i parametrów GPX NID."
+      },
+      "source_name": "Marecki Ośrodek Kultury im. Tadeusza Lużyńskiego",
+      "source_url": "https://mokmarki.pl/repertuar/2026/10/markowe-planszowki-87/",
+      "evidence_urls": [
+        "https://mokmarki.pl/kontakt/",
+        "https://mokmarki.pl/zajecia-stale/dla-dzieci/2023/02/markowe-planszowki-3/",
+        "https://markowe.zapisynagry.pl/"
+      ],
+      "checked_at": "2026-11-06T13:57:51Z",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T13:57:51Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Klimakterium… i już",
+      "category_slug": "kultura",
+      "start_at": "2026-11-22T16:00:00+01:00",
+      "short_description": "Cztery bohaterki komedii Elżbiety Jodłowskiej rozmawiają o dojrzewaniu, związkach i zmianach, które przynosi menopauza. Spektakl dla widzów od 18 lat. Bilety od 140 zł w aktywnej sprzedaży KupBilecik.",
+      "description": "Cztery bohaterki komedii Elżbiety Jodłowskiej rozmawiają o dojrzewaniu, związkach i zmianach, które przynosi menopauza. Spektakl dla widzów od 18 lat. Bilety od 140 zł w aktywnej sprzedaży KupBilecik.",
+      "location": {
+        "name": "Centrum Kultury i Turystyki w Iłży",
+        "address": "Orła Białego 2",
+        "city": "Iłża",
+        "latitude": 51.1571386701074,
+        "longitude": 21.2345480178107,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/4790/centrum-kultury-i-turystyki-w-ilzy",
+        "coordinate_note": "Punkt nazwanego obiektu z karty sprzedawcy biletów. Adres potwierdzają miejski informator i dokładny punkt adresowy GUGiK oddalony o ok. 17 m."
+      },
+      "source_name": "KupBilecik — Agencja Artystyczna MUZA",
+      "source_url": "https://www.kupbilecik.pl/pl/event/200583/ilza/klimakterium-i-juz",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/place/4790/centrum-kultury-i-turystyki-w-ilzy",
+        "https://ilza.pl/opis-24-centrum_kultury_i_turystyki_w_ilzy.html",
+        "https://services.gugik.gov.pl/uug?request=GetAddress&address=I%C5%82%C5%BCa%2C+Or%C5%82a+Bia%C5%82ego+2&srid=4326",
+        "https://agencjamuza.pl/wydarzenia/spektakle/"
+      ],
+      "price_type": "paid",
+      "price_min": 140,
+      "price_max": null,
+      "currency": "PLN",
+      "checked_at": "2026-11-06T14:00:00Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T14:00:00Z",
+        "no_cancellation_notice": true,
+        "ticket_availability": "InStock",
+        "ticket_event_status": "EventScheduled"
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Andrzejkowa Noc Przebojów — Scena Pod Regałem",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-27T19:00:00+01:00",
+      "end_at": "2026-11-27T21:00:00+01:00",
+      "location": {
+        "name": "Teatr Zdrojowy Polanica-Zdrój",
+        "address": "Parkowa 2",
+        "city": "Polanica-Zdrój",
+        "latitude": 50.4079682,
+        "longitude": 16.5115257,
+        "coordinate_source": "https://teatr.polanica.pl/kontakt/",
+        "coordinate_note": "Oficjalny kontakt potwierdza teatr i adres Parkowa 2. Wykorzystano współrzędne istniejącej, zgodnej lokalizacji w katalogu."
+      },
+      "source_name": "Teatr Zdrojowy w Polanicy-Zdroju",
+      "source_url": "https://teatr.polanica.pl/wydarzenie/koncert-andrzejkowy-scena-pod-regalem/",
+      "evidence_urls": [
+        "https://biletyna.pl/event/view/id/715652",
+        "https://teatr.polanica.pl/kontakt/",
+        "https://mapcarta.com/W220375958"
+      ],
+      "price_type": "paid",
+      "price_min": 70,
+      "price_max": 80,
+      "short_description": "Andrzejkowy koncert wrocławskiej Sceny Pod Regałem. Teatr podaje ceny biletów 70–80 zł.",
+      "description": "Artyści wrocławskiej Sceny Pod Regałem wystąpią w Teatrze Zdrojowym z andrzejkowym koncertem. Teatr podaje ceny 70–80 zł, a w internetowej sprzedaży z opłatą serwisową widnieją kwoty 74,34–84,96 zł.",
+      "currency": "PLN",
+      "checked_at": "2026-11-06T14:01:30Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T14:01:30Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Kryzys złotego wieku — Kabaret Trzecia Strona Medalu",
+      "category_slug": "kabaret",
+      "start_at": "2026-12-04T19:00:00+01:00",
+      "short_description": "Trzecia Strona Medalu przyjeżdża do Iłży z programem skeczów „Kryzys złotego wieku”. Występ dla osób od 16 lat. Bilety od 90 zł w KupBilecik.",
+      "description": "Trzecia Strona Medalu przyjeżdża do Iłży z programem skeczów „Kryzys złotego wieku”. Występ dla osób od 16 lat. Bilety od 90 zł w KupBilecik.",
+      "location": {
+        "name": "Centrum Kultury i Turystyki w Iłży",
+        "address": "Orła Białego 2",
+        "city": "Iłża",
+        "latitude": 51.1571386701074,
+        "longitude": 21.2345480178107,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/4790/centrum-kultury-i-turystyki-w-ilzy",
+        "coordinate_note": "Punkt nazwanego obiektu z karty sprzedawcy biletów. Adres potwierdzają miejski informator i dokładny punkt adresowy GUGiK oddalony o ok. 17 m."
+      },
+      "source_name": "KupBilecik — Kabaret Trzecia Strona Medalu",
+      "source_url": "https://www.kupbilecik.pl/pl/event/198135/ilza/kabaret-trzecia-strona-medalu",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/place/4790/centrum-kultury-i-turystyki-w-ilzy",
+        "https://ilza.pl/opis-24-centrum_kultury_i_turystyki_w_ilzy.html",
+        "https://services.gugik.gov.pl/uug?request=GetAddress&address=I%C5%82%C5%BCa%2C+Or%C5%82a+Bia%C5%82ego+2&srid=4326"
+      ],
+      "price_type": "paid",
+      "price_min": 90,
+      "price_max": null,
+      "currency": "PLN",
+      "checked_at": "2026-11-06T13:59:59Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T13:59:59Z",
+        "no_cancellation_notice": true,
+        "ticket_availability": "InStock",
+        "ticket_event_status": "EventScheduled"
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Klimakterium 2, czyli menopauzy szał",
+      "category_slug": "kultura",
+      "start_at": "2026-12-12T16:00:00+01:00",
+      "short_description": "Dalszy ciąg komedii o przyjaciółkach, które żartują z codziennych kłopotów i zmian związanych z menopauzą. Spektakl dla widzów od 18 lat. Bilety od 140 zł w KupBilecik.",
+      "description": "Dalszy ciąg komedii o przyjaciółkach, które żartują z codziennych kłopotów i zmian związanych z menopauzą. Spektakl dla widzów od 18 lat. Bilety od 140 zł w KupBilecik.",
+      "location": {
+        "name": "Centrum Kultury i Turystyki w Iłży",
+        "address": "Orła Białego 2",
+        "city": "Iłża",
+        "latitude": 51.1571386701074,
+        "longitude": 21.2345480178107,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/4790/centrum-kultury-i-turystyki-w-ilzy",
+        "coordinate_note": "Punkt nazwanego obiektu z karty sprzedawcy biletów. Adres potwierdzają miejski informator i dokładny punkt adresowy GUGiK oddalony o ok. 17 m."
+      },
+      "source_name": "KupBilecik — Agencja Artystyczna MUZA",
+      "source_url": "https://www.kupbilecik.pl/pl/event/200585/ilza/klimakterium-2",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/place/4790/centrum-kultury-i-turystyki-w-ilzy",
+        "https://ilza.pl/opis-24-centrum_kultury_i_turystyki_w_ilzy.html",
+        "https://services.gugik.gov.pl/uug?request=GetAddress&address=I%C5%82%C5%BCa%2C+Or%C5%82a+Bia%C5%82ego+2&srid=4326",
+        "https://ckit.ilza.pl/wydarzenia/"
+      ],
+      "price_type": "paid",
+      "price_min": 140,
+      "price_max": null,
+      "currency": "PLN",
+      "checked_at": "2026-11-06T13:59:59Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T13:59:59Z",
+        "no_cancellation_notice": true,
+        "ticket_availability": "InStock",
+        "ticket_event_status": "EventScheduled"
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Zacznijmy jeszcze raz — Teatr Kamienica",
+      "category_slug": "kultura",
+      "start_at": "2026-12-19T17:30:00+01:00",
+      "short_description": "Komedia Teatru Kamienica o spotkaniu terapeutki par z pacjentem, który próbuje naprawić swoje małżeństwo. Wieczorny pokaz o 17:30 dla widzów od 16 lat. Bilety od 120 zł w KupBilecik.",
+      "description": "Komedia Teatru Kamienica o spotkaniu terapeutki par z pacjentem, który próbuje naprawić swoje małżeństwo. Wieczorny pokaz o 17:30 dla widzów od 16 lat. Bilety od 120 zł w KupBilecik.",
+      "location": {
+        "name": "Amatorski Teatr Miejski im. Stefana Jaracza",
+        "address": "Armii Krajowej 4",
+        "city": "Otwock",
+        "latitude": 52.104639,
+        "longitude": 21.267611,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/1820/amatorski-teatr-miejski-im-stefana-jaracza",
+        "coordinate_note": "Punkt nazwanego teatru z karty obiektu sprzedawcy biletów. Potwierdzony zgodnym adresem teatru i punktem adresowym GUGiK oddalonym o ok. 10 m."
+      },
+      "source_name": "KupBilecik — Teatr Kamienica",
+      "source_url": "https://www.kupbilecik.pl/pl/event/195239/otwock/zacznijmy-jeszcze-raz",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/place/1820/amatorski-teatr-miejski-im-stefana-jaracza",
+        "https://services.gugik.gov.pl/uug?request=GetAddress&address=Otwock%2C+Armii+Krajowej+4&srid=4326",
+        "https://docs.moktis.pl/struktura/amatorski-teatr-miejski-im-stefana-jaracza-w-otwocku/siedziba-i-godziny-otwarcia-teatr",
+        "https://docs.moktis.pl/wydarzenia"
+      ],
+      "price_type": "paid",
+      "price_min": 120,
+      "price_max": null,
+      "currency": "PLN",
+      "checked_at": "2026-11-06T14:00:00Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T14:00:00Z",
+        "no_cancellation_notice": true,
+        "ticket_availability": "InStock",
+        "ticket_event_status": "EventScheduled"
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    },
+    {
+      "title": "Tenorzy w Bieli i Diva — gala operetkowo-musicalowa",
+      "category_slug": "koncerty",
+      "start_at": "2027-01-02T16:30:00+01:00",
+      "location": {
+        "name": "Teatr Zdrojowy Polanica-Zdrój",
+        "address": "Parkowa 2",
+        "city": "Polanica-Zdrój",
+        "latitude": 50.4079682,
+        "longitude": 16.5115257,
+        "coordinate_source": "https://teatr.polanica.pl/kontakt/",
+        "coordinate_note": "Oficjalny kontakt potwierdza teatr i adres Parkowa 2. Wykorzystano współrzędne istniejącej, zgodnej lokalizacji w katalogu."
+      },
+      "source_name": "Teatr Zdrojowy w Polanicy-Zdroju",
+      "source_url": "https://teatr.polanica.pl/tenorzy-w-bieli-i-diva-gala-operetkowo-musicalowa/",
+      "evidence_urls": [
+        "https://www.kupbilecik.pl/pl/event/220438/polanica-zdroj/tenorzy-w-bieli-i-diva",
+        "https://teatr.polanica.pl/kontakt/",
+        "https://mapcarta.com/W220375958"
+      ],
+      "price_type": "paid",
+      "price_min": 129,
+      "price_max": null,
+      "short_description": "Noworoczna gala z muzyką operetkową i musicalową. U wskazanego sprzedawcy bilety od 129 zł.",
+      "description": "Tenorzy w Bieli i Diva wystąpią z galą operetkowo-musicalową w Teatrze Zdrojowym. Teatr podaje ceny 80–129 zł. W sprawdzonej sprzedaży online dostępne bilety zaczynały się od 129 zł, z możliwą opłatą serwisową.",
+      "currency": "PLN",
+      "checked_at": "2026-11-06T14:01:30Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-06T14:01:30Z",
+        "no_cancellation_notice": true
+      },
+      "main_image_url": null,
+      "media_review": "Krótki przegląd materiałów organizatora nie potwierdził prawa do ich publikacji na EventMap. Okładkę wyświetla EventVisual.",
+      "duplicate_review": {
+        "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+        "same_city_day": [],
+        "decision": "Sprawdzono wszystkie statusy w mieście i dniu, podobne tytuły i identyczne źródła w katalogu."
+      }
+    }
+  ]
+}

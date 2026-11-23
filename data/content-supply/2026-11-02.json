@@ -1,0 +1,496 @@
+{
+  "checked_at": "2026-11-02T10:11:25Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Cała Polska — mniejsze miasta i luki katalogu: Suwałki, Koszalin, Słupsk, Tarnów, Radom, Wałbrzych, Toruń, Zgorzelec",
+  "events": [
+    {
+      "title": "Dziecięca Akademia Rękodzieła „Jesień”",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-07T11:00:00+01:00",
+      "end_at": "2026-11-07T13:00:00+01:00",
+      "description": "Dzieci wykonają własne świece podczas jesiennych warsztatów na patio Suwalskiego Ośrodka Kultury. Zajęcia prowadzi Lidia Żyniewicz. Udział kosztuje 20 zł za dziecko; liczba miejsc jest ograniczona, obowiązują bilety.",
+      "location": {
+        "address": "Papieża Jana Pawła II 5",
+        "city": "Suwałki",
+        "latitude": 54.1122387,
+        "longitude": 22.9366214,
+        "coordinate_source": "https://www.google.com/maps/place/Suwalski+O%C5%9Brodek+Kultury/@54.1122418,22.9321367,17z/data=!3m1!4b1!4m5!3m4!1s0x46e10245bfef0299:0x45a9f1d09e11d997!8m2!3d54.1122387!4d22.9366214",
+        "coordinate_note": "Marker !3d/!4d w linku z oficjalnej stopki SOK, nie współrzędne kamery @.",
+        "name": "Suwalski Ośrodek Kultury — Patio"
+      },
+      "source_name": "Suwalski Ośrodek Kultury",
+      "source_url": "https://soksuwalki.eu/class/dziecieca-akademia-rekodziela-jesien/",
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 20,
+      "evidence_urls": [
+        "https://bilety.soksuwalki.eu/rezerwacja/termin.html?back=1&m=11&y=2026"
+      ],
+      "checked_at": "2026-11-02T10:12:09Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-02T10:12:09Z",
+        "no_cancellation_notice": true
+      },
+      "currency": "PLN",
+      "short_description": "Dzieci wykonają własne świece podczas jesiennych warsztatów na patio Suwalskiego Ośrodka Kultury. Zajęcia prowadzi Lidia Żyniewicz. Udział kosztuje 20 zł za dziecko; liczba miejsc jest ograniczona, obowiązują bilety.",
+      "media_review": "Nie potwierdzono prawa publikacji konkretnego plakatu. Bez main_image_url, bez AI i pobierania obrazów. Wdrożony EventVisual zapewnia lokalną okładkę."
+    },
+    {
+      "title": "X Międzypokoleniowy Przegląd Pieśni Patriotycznej",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-03T12:00:00+01:00",
+      "description": "Zespoły dziecięce, młodzieżowe i seniorskie spotkają się na przeglądzie polskich pieśni patriotycznych w sali im. Andrzeja Wajdy. Wstęp z bezpłatną wejściówką dostępną w kasie SOK oraz online.",
+      "location": {
+        "address": "Papieża Jana Pawła II 5",
+        "city": "Suwałki",
+        "latitude": 54.1122387,
+        "longitude": 22.9366214,
+        "coordinate_source": "https://www.google.com/maps/place/Suwalski+O%C5%9Brodek+Kultury/@54.1122418,22.9321367,17z/data=!3m1!4b1!4m5!3m4!1s0x46e10245bfef0299:0x45a9f1d09e11d997!8m2!3d54.1122387!4d22.9366214",
+        "coordinate_note": "Marker !3d/!4d w linku z oficjalnej stopki SOK, nie współrzędne kamery @.",
+        "name": "Suwalski Ośrodek Kultury — sala im. Andrzeja Wajdy"
+      },
+      "source_name": "Suwalski Ośrodek Kultury",
+      "source_url": "https://soksuwalki.eu/class/x-edycja-miedzypokoleniowego-przegladu-piesni-patriotycznej/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://bilety.soksuwalki.eu/rezerwacja/termin.html?back=1&m=11&y=2026"
+      ],
+      "checked_at": "2026-11-02T10:12:09Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-02T10:12:09Z",
+        "no_cancellation_notice": true
+      },
+      "currency": "PLN",
+      "short_description": "Zespoły dziecięce, młodzieżowe i seniorskie spotkają się na przeglądzie polskich pieśni patriotycznych w sali im. Andrzeja Wajdy. Wstęp z bezpłatną wejściówką dostępną w kasie SOK oraz online.",
+      "media_review": "Nie potwierdzono prawa publikacji konkretnego plakatu. Bez main_image_url, bez AI i pobierania obrazów. Wdrożony EventVisual zapewnia lokalną okładkę."
+    },
+    {
+      "title": "45. Festiwal Generacja — przegląd zespołów",
+      "category_slug": "festiwale",
+      "start_at": "2026-11-13T19:00:00+01:00",
+      "description": "Wieczór konkursowych występów zespołów grających autorski repertuar w Club105. Publiczność może poznać nowych wykonawców pierwszego dnia Festiwalu Generacja. Wstęp na piątkowy przegląd jest wolny; sobotni koncert festiwalowy ma osobne bilety.",
+      "location": {
+        "address": "Zwycięstwa 105",
+        "city": "Koszalin",
+        "latitude": 54.1904826,
+        "longitude": 16.1878472,
+        "coordinate_source": "https://www.openstreetmap.org/way/133616757",
+        "name": "Club105 — Centrum Kultury 105"
+      },
+      "source_name": "Centrum Kultury 105 w Koszalinie",
+      "source_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/45-festiwal-generacja-konkurs-przeglad-zespolow",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://ck105.koszalin.pl/"
+      ],
+      "checked_at": "2026-11-02T10:12:10Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-02T10:12:10Z",
+        "no_cancellation_notice": true
+      },
+      "currency": "PLN",
+      "short_description": "Wieczór konkursowych występów zespołów grających autorski repertuar w Club105. Publiczność może poznać nowych wykonawców pierwszego dnia Festiwalu Generacja. Wstęp na piątkowy przegląd jest wolny; sobotni koncert festiwalowy ma osobne bilety.",
+      "media_review": "Nie potwierdzono prawa publikacji konkretnego plakatu. Bez main_image_url, bez AI i pobierania obrazów. Wdrożony EventVisual zapewnia lokalną okładkę."
+    },
+    {
+      "title": "Z pieśnią patriotyczną ku Niepodległej",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-11T16:00:00+01:00",
+      "description": "Koncert z okazji Narodowego Święta Niepodległości w sali widowiskowej CK105. Wystąpią Gracja, męska grupa śpiewacza Karpaty oraz duet Ania i Tomek Trust. Wstęp wolny.",
+      "location": {
+        "address": "Zwycięstwa 105",
+        "city": "Koszalin",
+        "latitude": 54.1904826,
+        "longitude": 16.1878472,
+        "coordinate_source": "https://www.openstreetmap.org/way/133616757",
+        "name": "Centrum Kultury 105 — sala widowiskowa"
+      },
+      "source_name": "Centrum Kultury 105 w Koszalinie",
+      "source_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/z-piesnia-patriotyczna-ku-niepodleglej",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://ck105.koszalin.pl/"
+      ],
+      "checked_at": "2026-11-02T10:12:10Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-02T10:12:10Z",
+        "no_cancellation_notice": true
+      },
+      "currency": "PLN",
+      "short_description": "Koncert z okazji Narodowego Święta Niepodległości w sali widowiskowej CK105. Wystąpią Gracja, męska grupa śpiewacza Karpaty oraz duet Ania i Tomek Trust. Wstęp wolny.",
+      "media_review": "Nie potwierdzono prawa publikacji konkretnego plakatu. Bez main_image_url, bez AI i pobierania obrazów. Wdrożony EventVisual zapewnia lokalną okładkę."
+    },
+    {
+      "title": "50/15 — Miedziewski/Nowak. Wieczór Jubileuszowy",
+      "category_slug": "kultura",
+      "start_at": "2026-11-07T18:00:00+01:00",
+      "description": "Jubileuszowy wieczór współpracy Stanisława Miedziewskiego i Mateusza Nowaka w Teatrze Rondo. W programie monodram „Pan Tadeusz” w wykonaniu Mateusza Nowaka. Bilety 30 zł w kasie Ronda oraz przez ekobilet.pl.",
+      "location": {
+        "name": "Ośrodek Teatralny Rondo",
+        "address": "Mieczysława Niedziałkowskiego 5A",
+        "city": "Słupsk",
+        "latitude": 54.46821,
+        "longitude": 17.02516,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/3364/teatr-rondo",
+        "coordinate_note": "Nazwana para współrzędnych teatru w odczytanej stronie; adres zgodny z oficjalnym kontaktem SOK."
+      },
+      "source_name": "Słupski Ośrodek Kultury",
+      "source_url": "https://www.sok.slupsk.pl/index.php/kalendarium/3242-50-15-miedziewski-nowak-wieczor-jubileuszowy?date=2026-11-07-18-00",
+      "price_type": "paid",
+      "price_min": 30,
+      "price_max": 30,
+      "evidence_urls": [
+        "https://www.sok.slupsk.pl/index.php/historia/13-pracownie/teatr/179-kontakt-rondo",
+        "https://www.kupbilecik.pl/pl/place/3364/teatr-rondo"
+      ],
+      "checked_at": "2026-11-02T10:12:09Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-02T10:12:09Z",
+        "no_cancellation_notice": true
+      },
+      "currency": "PLN",
+      "short_description": "Jubileuszowy wieczór współpracy Stanisława Miedziewskiego i Mateusza Nowaka w Teatrze Rondo. W programie monodram „Pan Tadeusz” w wykonaniu Mateusza Nowaka. Bilety 30 zł w kasie Ronda oraz przez ekobilet.pl.",
+      "media_review": "Nie potwierdzono prawa publikacji konkretnego plakatu. Bez main_image_url, bez AI i pobierania obrazów. Wdrożony EventVisual zapewnia lokalną okładkę."
+    },
+    {
+      "title": "Kino rodzinne: Niesamowite przygody skarpetek 4. Do roboty!",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-07T14:00:00+01:00",
+      "description": "Pokaz czwartej części animowanych przygód skarpetek w kinie Rejs. Opowieści o pomysłowych bohaterach są przeznaczone dla widzów od 5 lat. Wstęp biletowany; aktualną cenę podaje kasa kina.",
+      "location": {
+        "name": "Kino Rejs — Emcek",
+        "address": "Aleja 3 Maja 22",
+        "city": "Słupsk",
+        "latitude": 54.4740028,
+        "longitude": 17.0083058,
+        "coordinate_source": "https://www.openstreetmap.org/node/2113065051"
+      },
+      "source_name": "Słupski Ośrodek Kultury / Kino Rejs",
+      "source_url": "https://www.sok.slupsk.pl/index.php/kalendarium/3247-niesamowite-przygody-skarpetek-4-do-roboty?date=2026-11-07-14-00",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "evidence_urls": [
+        "https://www.sok.slupsk.pl/index.php/kino-rejs/cennik-kasa-kina"
+      ],
+      "checked_at": "2026-11-02T10:12:09Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-02T10:12:09Z",
+        "no_cancellation_notice": true
+      },
+      "currency": "PLN",
+      "short_description": "Pokaz czwartej części animowanych przygód skarpetek w kinie Rejs. Opowieści o pomysłowych bohaterach są przeznaczone dla widzów od 5 lat. Wstęp biletowany; aktualną cenę podaje kasa kina.",
+      "media_review": "Nie potwierdzono prawa publikacji konkretnego plakatu. Bez main_image_url, bez AI i pobierania obrazów. Wdrożony EventVisual zapewnia lokalną okładkę."
+    },
+    {
+      "title": "Planszówki młodzieżówki — nocne granie",
+      "category_slug": "kultura",
+      "start_at": "2026-11-06T19:00:00+01:00",
+      "description": "Otwarty wieczór gier planszowych: od strategii i kooperacji po gry imprezowe. Można skorzystać ze zbiorów domu kultury lub przynieść własne tytuły; dostępna jest także strefa cichego grania. Wstęp bezpłatny.",
+      "location": {
+        "name": "Dom Kultury Westerplatte",
+        "address": "Westerplatte 8a",
+        "city": "Tarnów",
+        "city_slug": "tarnow",
+        "latitude": 50.0273746,
+        "longitude": 21.0086257,
+        "coordinate_source": "https://dkwesterplatte.pl/aktualnosci/informacje/listopad-w-domu-kultury-westerplatte/35 (oficjalny link Jak dojechać: https://maps.app.goo.gl/sCNaCLzWoMQg2LQW8; obiekt Dom Kultury Westerplatte z !3d50.0273746!4d21.0086257)"
+      },
+      "source_name": "Dom Kultury Westerplatte / Tarnowskie Centrum Kultury",
+      "source_url": "https://dkwesterplatte.pl/wydarzenia/spotkania/spotkanie-planszowki-mlodziezowki-nocne-granie/56",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://dkwesterplatte.pl/aktualnosci/informacje/listopad-w-domu-kultury-westerplatte/35"
+      ],
+      "checked_at": "2026-11-02T10:11:25Z",
+      "short_description": "Otwarty wieczór gier planszowych: od strategii i kooperacji po gry imprezowe. Można skorzystać ze zbiorów domu kultury lub przynieść własne tytuły; dostępna jest także strefa cichego grania. Wstęp bezpłatny.",
+      "currency": "PLN",
+      "media_review": "Nie ustalono jawnego prawa do publikacji materiału oficjalnego. main_image_url pominięte; bez pobierania obrazów i bez AI. EventVisual zapewnia okładkę."
+    },
+    {
+      "title": "Rodzina na górce — Pierzaste i futrzaste",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-08T10:00:00+01:00",
+      "end_at": "2026-11-08T12:00:00+01:00",
+      "description": "Rodzinne działania plastyczne i eksperymenty inspirowane zwierzętami przygotowującymi się do zimy. Zajęcia dla dzieci 4–7 lat z aktywnym udziałem rodzica. Koszt: 20 zł za pierwsze dziecko, 10 zł za kolejne z rodzeństwa. Wymagane zapisy w ActiveNow; dla zniżki rodzeństwa organizator podaje kod RODZINA.",
+      "location": {
+        "name": "Dom Kultury Westerplatte",
+        "address": "Westerplatte 8a",
+        "city": "Tarnów",
+        "city_slug": "tarnow",
+        "latitude": 50.0273746,
+        "longitude": 21.0086257,
+        "coordinate_source": "https://dkwesterplatte.pl/aktualnosci/informacje/listopad-w-domu-kultury-westerplatte/35 (oficjalny link Jak dojechać: https://maps.app.goo.gl/sCNaCLzWoMQg2LQW8; obiekt Dom Kultury Westerplatte z !3d50.0273746!4d21.0086257)"
+      },
+      "source_name": "Dom Kultury Westerplatte / Tarnowskie Centrum Kultury",
+      "source_url": "https://dkwesterplatte.pl/wydarzenia/warsztaty/warsztaty-rodzina-na-gorce-warsztaty-dla-rodzin-z-dziecmi-w-wieku-4-7-lat/59",
+      "price_type": "paid",
+      "price_min": 10,
+      "price_max": 20,
+      "evidence_urls": [
+        "https://dkwesterplatte.pl/aktualnosci/informacje/listopad-w-domu-kultury-westerplatte/35"
+      ],
+      "checked_at": "2026-11-02T10:11:26Z",
+      "short_description": "Rodzinne działania plastyczne i eksperymenty inspirowane zwierzętami przygotowującymi się do zimy. Zajęcia dla dzieci 4–7 lat z aktywnym udziałem rodzica. Koszt: 20 zł za pierwsze dziecko, 10 zł za kolejne z rodzeństwa. Wymagane zapisy w ActiveNow; dla zniżki rodzeństwa organizator podaje kod RODZINA.",
+      "currency": "PLN",
+      "media_review": "Nie ustalono jawnego prawa do publikacji materiału oficjalnego. main_image_url pominięte; bez pobierania obrazów i bez AI. EventVisual zapewnia okładkę."
+    },
+    {
+      "title": "Rozmowy o poezji: spotkanie z Anną Łęcką",
+      "category_slug": "kultura",
+      "start_at": "2026-11-03T17:00:00+01:00",
+      "description": "Wieczór poetycki z Anną Łęcką i prowadzącym Adrianem Szarym. W programie wiersze poświęcone pamięci zmarłych oraz występy młodych recytatorów związanych z Radomiem. Wstęp wolny.",
+      "location": {
+        "name": "Ośrodek Kultury i Sztuki Resursa Obywatelska",
+        "address": "Jacka Malczewskiego 16",
+        "city": "Radom",
+        "city_slug": "radom",
+        "latitude": 51.4041421,
+        "longitude": 21.1501765,
+        "coordinate_source": "https://resursa.radom.pl/kontakt/ (oficjalny iframe https://maps.google.com/maps?q=Resursa%20ul.%20Malczewskiego%2016%2C%20Radom&t=m&z=12&output=embed&iwloc=near; nazwany obiekt Resursa Obywatelska przy Jacka Malczewskiego16, jawny punkt51.4041421,21.1501765)"
+      },
+      "source_name": "Ośrodek Kultury i Sztuki Resursa Obywatelska",
+      "source_url": "https://resursa.radom.pl/aktualnosci/spotkanie-autorskie-z-anna-lecka/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://resursa.radom.pl/kontakt/"
+      ],
+      "checked_at": "2026-11-02T10:11:28Z",
+      "short_description": "Wieczór poetycki z Anną Łęcką i prowadzącym Adrianem Szarym. W programie wiersze poświęcone pamięci zmarłych oraz występy młodych recytatorów związanych z Radomiem. Wstęp wolny.",
+      "currency": "PLN",
+      "media_review": "Nie ustalono jawnego prawa do publikacji materiału oficjalnego. main_image_url pominięte; bez pobierania obrazów i bez AI. EventVisual zapewnia okładkę."
+    },
+    {
+      "title": "Retrospotkanie 82 — Wywar. Z czasów i przestrzeni",
+      "category_slug": "kultura",
+      "start_at": "2026-11-10T18:00:00+01:00",
+      "description": "Rozmowa z dr Marią Pierzchalską o rodzinnych wspomnieniach zapisanych w książce „Wywar. Z czasów i przestrzeni”. Spotkanie połączy historię Radomia i okolic z losami kolejnych pokoleń rodziny autorki. Wstęp wolny.",
+      "location": {
+        "name": "Ośrodek Kultury i Sztuki Resursa Obywatelska",
+        "address": "Jacka Malczewskiego 16",
+        "city": "Radom",
+        "city_slug": "radom",
+        "latitude": 51.4041421,
+        "longitude": 21.1501765,
+        "coordinate_source": "https://resursa.radom.pl/kontakt/ (oficjalny iframe https://maps.google.com/maps?q=Resursa%20ul.%20Malczewskiego%2016%2C%20Radom&t=m&z=12&output=embed&iwloc=near; nazwany obiekt Resursa Obywatelska przy Jacka Malczewskiego16, jawny punkt51.4041421,21.1501765)"
+      },
+      "source_name": "Ośrodek Kultury i Sztuki Resursa Obywatelska",
+      "source_url": "https://resursa.radom.pl/wydarzenie/retrospotkanie-82-wywar-z-czasow-i-przestrzeni/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://resursa.radom.pl/kontakt/"
+      ],
+      "checked_at": "2026-11-02T10:11:30Z",
+      "short_description": "Rozmowa z dr Marią Pierzchalską o rodzinnych wspomnieniach zapisanych w książce „Wywar. Z czasów i przestrzeni”. Spotkanie połączy historię Radomia i okolic z losami kolejnych pokoleń rodziny autorki. Wstęp wolny.",
+      "currency": "PLN",
+      "media_review": "Nie ustalono jawnego prawa do publikacji materiału oficjalnego. main_image_url pominięte; bez pobierania obrazów i bez AI. EventVisual zapewnia okładkę."
+    },
+    {
+      "title": "Wałbrzych ma talent: Katarzyna Serdeczna & Kalluna",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-06T18:00:00+01:00",
+      "description": "Katarzyna Serdeczna i lokalny zespół Kalluna zagrają w kawiarni Sztygarówka na terenie Starej Kopalni. Muzycy łączą rockowe ballady z progresywnymi aranżacjami. Koncert w cyklu Wałbrzych ma talent; wstęp wolny.",
+      "location": {
+        "name": "Kawiarnia Sztygarówka — Stara Kopalnia",
+        "address": "Wysockiego 29",
+        "city": "Wałbrzych",
+        "city_slug": "walbrzych",
+        "latitude": 50.7723905,
+        "longitude": 16.2614471,
+        "coordinate_source": "Istniejące locations:de521f5e-24c1-4b3c-bacf-40ea6c248a18; porównanie z https://en.wikipedia.org/wiki/Old_Mine_in_Wa%C5%82brzych (50.77262,16.26180), około36m różnicy w tym samym kompleksie; adres https://starakopalnia.pl/biznes/lokalizacja/"
+      },
+      "source_name": "Centrum Nauki, Kultury i Sztuki Stara Kopalnia",
+      "source_url": "https://starakopalnia.pl/wydarzenia/katarzyna-serdeczna-kalluna-live/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://starakopalnia.pl/biznes/lokalizacja/",
+        "https://en.wikipedia.org/wiki/Old_Mine_in_Wa%C5%82brzych"
+      ],
+      "checked_at": "2026-11-02T10:11:31Z",
+      "short_description": "Katarzyna Serdeczna i lokalny zespół Kalluna zagrają w kawiarni Sztygarówka na terenie Starej Kopalni. Muzycy łączą rockowe ballady z progresywnymi aranżacjami. Koncert w cyklu Wałbrzych ma talent; wstęp wolny.",
+      "currency": "PLN",
+      "media_review": "Nie ustalono jawnego prawa do publikacji materiału oficjalnego. main_image_url pominięte; bez pobierania obrazów i bez AI. EventVisual zapewnia okładkę."
+    },
+    {
+      "title": "Roboty kosmiczne — warsztat Festiwalu Galaktyka Węgla",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-07T10:00:00+01:00",
+      "end_at": "2026-11-07T11:00:00+01:00",
+      "description": "Praktyczne zajęcia z robotyki dla dzieci 8–14 lat prowadzone przez Antoniego Ligockiego. Uczestnicy poznają kosmiczne zastosowania robotów oraz spróbują samodzielnego tworzenia i programowania. Warsztat jest bezpłatny; wymagana wcześniejsza rezerwacja bezpłatnej wejściówki. Liczba miejsc ograniczona.",
+      "location": {
+        "name": "Stara Kopalnia",
+        "address": "Wysockiego 29",
+        "city": "Wałbrzych",
+        "city_slug": "walbrzych",
+        "latitude": 50.7723905,
+        "longitude": 16.2614471,
+        "coordinate_source": "Istniejące locations:de521f5e-24c1-4b3c-bacf-40ea6c248a18; porównanie z https://en.wikipedia.org/wiki/Old_Mine_in_Wa%C5%82brzych (50.77262,16.26180), około36m różnicy w tym samym kompleksie; adres https://starakopalnia.pl/biznes/lokalizacja/"
+      },
+      "source_name": "Centrum Nauki, Kultury i Sztuki Stara Kopalnia",
+      "source_url": "https://starakopalnia.pl/wydarzenia/festiwal-kosmiczny-galaktyka-wegla-2/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "evidence_urls": [
+        "https://starakopalnia.pl/biznes/lokalizacja/",
+        "https://en.wikipedia.org/wiki/Old_Mine_in_Wa%C5%82brzych"
+      ],
+      "checked_at": "2026-11-02T10:11:32Z",
+      "short_description": "Praktyczne zajęcia z robotyki dla dzieci 8–14 lat prowadzone przez Antoniego Ligockiego. Uczestnicy poznają kosmiczne zastosowania robotów oraz spróbują samodzielnego tworzenia i programowania. Warsztat jest bezpłatny; wymagana wcześniejsza rezerwacja bezpłatnej wejściówki. Liczba miejsc ograniczona.",
+      "currency": "PLN",
+      "media_review": "Nie ustalono jawnego prawa do publikacji materiału oficjalnego. main_image_url pominięte; bez pobierania obrazów i bez AI. EventVisual zapewnia okładkę."
+    },
+    {
+      "title": "Poznaj, przećwicz, działaj — Masz te eMOCje!",
+      "category_slug": "kultura",
+      "start_at": "2026-11-05T17:00:00+01:00",
+      "end_at": "2026-11-05T19:00:00+01:00",
+      "short_description": "Praktyczne warsztaty o wspieraniu emocji dzieci w edukacji wczesnoszkolnej. Spotkanie dla nauczycieli, pedagogów, psychologów i innych zainteresowanych osób. Udział bezpłatny; wymagana wcześniejsza rejestracja, liczba miejsc ograniczona.",
+      "description": "Praktyczne warsztaty o wspieraniu emocji dzieci w edukacji wczesnoszkolnej. Emilia Aksamit i Marta Giziewska pokażą sposoby pracy ze scenariuszami zajęć i ćwiczeniami dla klas 1–3. Spotkanie dla nauczycieli, pedagogów, psychologów i innych zainteresowanych osób. Udział bezpłatny; wymagana wcześniejsza rejestracja, liczba miejsc ograniczona.",
+      "location": {
+        "name": "Biblioteka Pedagogiczna im. Elżbiety Zawackiej",
+        "address": "Generała Jana Henryka Dąbrowskiego 4",
+        "city": "Toruń",
+        "city_slug": "torun",
+        "latitude": 53.0143041,
+        "longitude": 18.6122927,
+        "coordinate_source": "https://www.openstreetmap.org/node/11027914272",
+        "note": "Dokładny nazwany obiekt biblioteki zwrócony przez Nominatim 2026-11-02T10:12:52.295Z na tej samej ulicy i w tym samym mieście. Numer4 potwierdza oficjalne źródło i formularz rejestracji. Nie użyto środka viewportu Google ani interpolowanego punktu katalogu firm."
+      },
+      "source_name": "Biblioteka Pedagogiczna w Toruniu",
+      "source_url": "https://www.bptorun.edu.pl/1874/poznaj-przecwicz-dzialaj-masz-te-emocje-warsztaty-stacjonarne",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://www.bptorun.edu.pl/lime26/index.php/891461?lang=pl",
+        "https://www.bptorun.edu.pl/7/lokalizacja",
+        "https://nominatim.openstreetmap.org/search?q=Biblioteka+Pedagogiczna%2C+Toru%C5%84%2C+Polska&format=jsonv2&addressdetails=1&limit=5"
+      ],
+      "checked_at": "2026-11-02T10:13:16Z",
+      "media_review": "Brak potwierdzenia praw do plakatu; main_image_url puste, lokalna okładka EventVisual."
+    },
+    {
+      "title": "Warsztaty scenariopisarskie — Kujawy i Pomorze jako przestrzeń akcji",
+      "category_slug": "kultura",
+      "start_at": "2026-11-17T18:00:00+01:00",
+      "short_description": "Zajęcia z Radosławem Osińskim o budowaniu filmowych historii, postaci i konfliktu dramatycznego. Warsztaty dla młodzieży i dorosłych w nowym budynku CSW. Koszt według organizatora: 20 zł; wcześniejsze zgłoszenie, limit 15 osób.",
+      "description": "Zajęcia z Radosławem Osińskim o budowaniu filmowych historii, postaci i konfliktu dramatycznego. Warsztaty dla młodzieży i dorosłych w nowym budynku CSW przy Wałach gen. Sikorskiego 13. Koszt według organizatora: 20 zł; wcześniejsze zgłoszenie, limit 15 osób. Ten wpis dotyczy spotkania 17 listopada.",
+      "location": {
+        "name": "Centrum Sztuki Współczesnej Znaki Czasu",
+        "address": "Wały Generała Władysława Sikorskiego 13",
+        "city": "Toruń",
+        "city_slug": "torun",
+        "latitude": 53.01218,
+        "longitude": 18.60076,
+        "coordinate_source": "https://pl.wikipedia.org/wiki/Centrum_Sztuki_Wsp%C3%B3%C5%82czesnej_Znaki_Czasu",
+        "note": "Współrzędne kompleksu CSW z otwartej strony encyklopedii; identyczny adres instytucji potwierdzono w miejskim kalendarzu i oficjalnej sprzedaży CSW. Nie przypisano punktu konkretnej sali."
+      },
+      "source_name": "Miasto Toruń / Centrum Sztuki Współczesnej Znaki Czasu",
+      "source_url": "https://www.torun.pl/pl/warsztaty-scenariopisarskie-w-kinie-csw",
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 20,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://cswtorun.bilety24.pl/b24-do-wydarzenia-2/?id=1006706"
+      ],
+      "checked_at": "2026-11-02T10:13:16Z",
+      "media_review": "Brak potwierdzenia praw do plakatu; main_image_url puste, lokalna okładka EventVisual.",
+      "verification_note": "Termin17.11 godz18:00 zgodny w miejskiej stronie i opisie oficjalnej sprzedaży. Termin3.11 ma sprzeczne17vs18, nie wybrano go. Czas trwania1.5h w mieście vs2h w opisie sprzedaży; end_at pominięto."
+    },
+    {
+      "title": "Sportowy Patriotyzm na Tartanie — finał cyklu 3–2–1 START",
+      "category_slug": "sport",
+      "start_at": "2026-11-11T14:00:00+01:00",
+      "end_at": "2026-11-11T16:00:00+01:00",
+      "short_description": "Listopadowy finał otwartego cyklu biegowego na stadionie. Dzieci zaczynają od 400 m o 14:00, a później odbywają się biegi na 1, 2 i 3 km. Udział bezpłatny; szczegółowy regulamin udostępnia EDI Team.",
+      "description": "Listopadowy finał otwartego cyklu biegowego na stadionie. Dzieci zaczynają od 400 m o 14:00, a kolejne starty na 1, 2 i 3 km zaplanowano odpowiednio na 14:15, 14:40 i 15:10. Można wystartować na kilku dystansach. Udział bezpłatny; szczegółowy regulamin udostępnia EDI Team.",
+      "location": {
+        "name": "Stadion Miejski im. Józefa Wiatrowskiego",
+        "address": "Maratońska",
+        "city": "Zgorzelec",
+        "latitude": 51.145,
+        "longitude": 15.0125,
+        "coordinate_source": "https://pl.wikipedia.org/wiki/Stadion_Miejski_im._J%C3%B3zefa_Wiatrowskiego_w_Zgorzelcu"
+      },
+      "source_name": "Miasto Zgorzelec",
+      "source_url": "https://zgorzelec.eu/kalendarz-wydarzen/sportowy-patriotyzm-na-tartanie-cykl-biegowy-3-2-1-start/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://zgorzelec.eu/wydarzenia-zgorzelec/",
+        "https://www.editeam.pl/"
+      ],
+      "media_review": "Brak potwierdzonej licencji konkretnego plakatu; main_image_url puste. Bez pobierania mediów i generowania AI.",
+      "source_verification": {
+        "title": "Sportowy Patriotyzm na Tartanie — finał cyklu 3–2–1 START",
+        "url": "https://zgorzelec.eu/kalendarz-wydarzen/sportowy-patriotyzm-na-tartanie-cykl-biegowy-3-2-1-start/",
+        "status": 200,
+        "checked_at": "2026-11-02T10:13:42Z",
+        "year2026": true,
+        "cancellation_mentions": []
+      },
+      "checked_at": "2026-11-02T10:13:42Z"
+    },
+    {
+      "title": "Bieg przy Pochodniach 2026 — mostami Zgorzelca i Görlitz",
+      "category_slug": "sport",
+      "start_at": "2026-11-13T18:30:00+01:00",
+      "short_description": "Wieczorny bieg transgraniczny ze startem i metą na Moście Staromiejskim. Dystans 9 km startuje o 18:30, a 4,5 km o 18:40. Wpisowe 20 zł lub 5 euro, płatne gotówką przy odbiorze numeru; obowiązują zgłoszenia.",
+      "description": "Wieczorny bieg transgraniczny ze startem i metą na Moście Staromiejskim. Dystans 9 km startuje o 18:30, a 4,5 km o 18:40. Zgłoszenia internetowe do 10 listopada; organizator przewiduje też rejestrację w dniu biegu między 16:45 a 18:00. Wpisowe z chipem wynosi 20 zł lub 5 euro, płatne gotówką przy odbiorze numeru. Trasa prowadzi przez Zgorzelec i Görlitz.",
+      "location": {
+        "name": "Most Staromiejski — start i meta biegu",
+        "address": "Most Staromiejski",
+        "city": "Zgorzelec",
+        "latitude": 51.158083,
+        "longitude": 14.994167,
+        "coordinate_source": "https://pl.wikipedia.org/wiki/Most_staromiejski_Zgorzelec-G%C3%B6rlitz",
+        "note": "Punkt obiektu mostowego na granicy; nie deklaruje konkretnego stanowiska wydawania numerów. Trasa biegu prowadzi po obu stronach granicy."
+      },
+      "source_name": "Miasto Zgorzelec",
+      "source_url": "https://zgorzelec.eu/kalendarz-wydarzen/bieg-przy-pochodniach-2026/",
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 20,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://zgorzelec.eu/wydarzenia-zgorzelec/",
+        "https://my.raceresult.com/429884/registration"
+      ],
+      "media_review": "Brak potwierdzonej licencji konkretnego plakatu; main_image_url puste. Bez pobierania mediów i generowania AI.",
+      "source_verification": {
+        "title": "Bieg przy Pochodniach 2026 — mostami Zgorzelca i Görlitz",
+        "url": "https://zgorzelec.eu/kalendarz-wydarzen/bieg-przy-pochodniach-2026/",
+        "status": 200,
+        "checked_at": "2026-11-02T10:13:42Z",
+        "year2026": true,
+        "cancellation_mentions": []
+      },
+      "checked_at": "2026-11-02T10:13:42Z"
+    }
+  ]
+}

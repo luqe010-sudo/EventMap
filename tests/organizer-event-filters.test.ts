@@ -1,5 +1,20 @@
 import { describe, expect, it } from "vitest";
-import { organizerEventDateBounds } from "../lib/organizer-event-filters";
+import { normalizeOrganizerEventFilters, organizerEventDateBounds } from "../lib/organizer-event-filters";
+
+describe("organizer event filter parameters", () => {
+  it("takes the first value of each repeated parameter", () => {
+    expect(normalizeOrganizerEventFilters({
+      status: ["draft", "published"],
+      dateFrom: ["2026-10-08", "2026-10-12"],
+      dateTo: ["2026-10-09", "2026-10-10"]
+    })).toEqual({ status: "draft", dateFrom: "2026-10-08", dateTo: "2026-10-09" });
+  });
+
+  it("ignores unknown statuses and invalid date parameters", () => {
+    expect(normalizeOrganizerEventFilters({ status: "invalid", dateFrom: "2026-02-30", dateTo: "" }))
+      .toEqual({ status: undefined, dateFrom: undefined, dateTo: undefined });
+  });
+});
 
 describe("organizer event calendar filters", () => {
   it.each([
@@ -26,6 +41,12 @@ describe("organizer event calendar filters", () => {
   it("uses the following calendar day across a month/year boundary", () => {
     expect(organizerEventDateBounds({ dateTo: "2026-12-31" })).toEqual({
       from: null, until: "2026-12-31T23:00:00.000Z"
+    });
+  });
+
+  it("includes the last calendar day of the largest supported year", () => {
+    expect(organizerEventDateBounds({ dateTo: "9999-12-31" })).toEqual({
+      from: null, until: "9999-12-31T23:00:00.000Z"
     });
   });
 

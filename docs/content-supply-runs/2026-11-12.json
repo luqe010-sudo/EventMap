@@ -1,0 +1,1038 @@
+{
+  "verified_at": "2026-11-12T18:51:10.322Z",
+  "candidate_count": 18,
+  "confirmed": 18,
+  "free": 6,
+  "cities": {
+    "suwalki": 3,
+    "nowa-sol": 1,
+    "zgorzelec": 3,
+    "pila": 4,
+    "olawa": 2,
+    "gizycko": 3,
+    "koszalin": 2
+  },
+  "duplicate_check": 18,
+  "sitemap_status": 200,
+  "events": [
+    {
+      "id": "48f98173-b977-4f66-a47a-da0f7eb0f48b",
+      "title": "Miejsca — wernisaż Roberta Motelskiego w Suwałkach",
+      "url": "https://mapaimprez.pl/kultura/suwalki/curated-miejsca-wernisaz-roberta-motelskiego-w-suwalkach-suwalki-2026-11-13-55db55eba3db",
+      "source_url": "https://soksuwalki.eu/class/wernisaz-wystawy-roberta-motelskiego-bledne-gwiazdy-wielkiej-niedzwiedzicy",
+      "source_name": "Suwalski Ośrodek Kultury",
+      "city": "Suwałki",
+      "city_slug": "suwalki",
+      "category": "kultura",
+      "start_at": "2026-11-13T18:00:00+01:00",
+      "end_at": "2026-11-13T19:00:00+01:00",
+      "latitude": 54.1010489,
+      "longitude": 22.9318102,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "b0b691f9-ade4-4e3d-b938-969e411ac10d",
+      "title": "Grupa A+ i Kwazar — koncert w Magazynie Solnym",
+      "url": "https://mapaimprez.pl/koncerty/nowa-sol/curated-grupa-a-i-kwazar-koncert-w-magazynie-solnym-nowa-sol-2026-11-13-a1404eb7e256",
+      "source_url": "https://www.bilety24.pl/koncert/1679-grupy-a-i-kwazar-169694?id=1017381",
+      "source_name": "Nowosolski Dom Kultury — Bilety24",
+      "city": "Nowa Sól",
+      "city_slug": "nowa-sol",
+      "category": "koncerty",
+      "start_at": "2026-11-13T19:00:00+01:00",
+      "end_at": null,
+      "latitude": 51.80531861566,
+      "longitude": 15.723702063844,
+      "price_type": "paid",
+      "price_min": 22,
+      "price_max": null,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "f4734cc0-64e5-4711-bb45-303356e899ed",
+      "title": "Doktor Miłość — komedia muzyczna w Zgorzelcu",
+      "url": "https://mapaimprez.pl/kultura/zgorzelec/curated-doktor-milosc-komedia-muzyczna-w-zgorzelcu-zgorzelec-2026-11-14-3da655e1253c",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/11/02/doktor-milosc-komedia-muzyczna",
+      "source_name": "Miejski Dom Kultury w Zgorzelcu",
+      "city": "Zgorzelec",
+      "city_slug": "zgorzelec",
+      "category": "kultura",
+      "start_at": "2026-11-14T18:00:00+01:00",
+      "end_at": null,
+      "latitude": 51.147061027894,
+      "longitude": 15.0028079711203,
+      "price_type": "paid",
+      "price_min": 69,
+      "price_max": 69,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "ec039309-8f21-49b8-b2e1-f14aa9c1f132",
+      "title": "Enea KS Piła – NTSK PANS Komunalnik Nysa",
+      "url": "https://mapaimprez.pl/mecze/pila/curated-enea-ks-pila-ntsk-pans-komunalnik-nysa-pila-2026-11-14-e6cfe649f7a4",
+      "source_url": "https://abilet.pl/wydarzenie/enea-klub-siatkarski-pila-vs-ntsk-pans-komunalnik-nysa-17456",
+      "source_name": "abilet.pl — sprzedaż KS Piła",
+      "city": "Piła",
+      "city_slug": "pila",
+      "category": "mecze",
+      "start_at": "2026-11-14T18:00:00+01:00",
+      "end_at": null,
+      "latitude": 53.1412444369101,
+      "longitude": 16.7133722735403,
+      "price_type": "paid",
+      "price_min": 17.45,
+      "price_max": 27.75,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "26a28a08-2816-4a88-9016-8a7b8e00e1a8",
+      "title": "Dom z powyłamywanymi nogami — Teatr Hybrydowy",
+      "url": "https://mapaimprez.pl/kultura/suwalki/curated-dom-z-powylamywanymi-nogami-teatr-hybrydowy-suwalki-2026-11-19-123d64f6aca2",
+      "source_url": "https://soksuwalki.eu/class/teatr-hybrydowy-dom-z-powylamywanymi-nogami11",
+      "source_name": "Suwalski Ośrodek Kultury",
+      "city": "Suwałki",
+      "city_slug": "suwalki",
+      "category": "kultura",
+      "start_at": "2026-11-19T19:00:00+01:00",
+      "end_at": "2026-11-19T20:30:00+01:00",
+      "latitude": 54.1121054747403,
+      "longitude": 22.9368527094315,
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "fa34a148-1777-41e5-851c-0224d2077702",
+      "title": "Amadeus jubileuszowo — koncert w Pile",
+      "url": "https://mapaimprez.pl/koncerty/pila/curated-amadeus-jubileuszowo-koncert-w-pile-pila-2026-11-20-dbe197b048a2",
+      "source_url": "https://bilet.rck.pila.pl/amadeus-jubileuszowo",
+      "source_name": "Regionalne Centrum Kultury – Fabryka Emocji",
+      "city": "Piła",
+      "city_slug": "pila",
+      "category": "koncerty",
+      "start_at": "2026-11-20T18:00:00+01:00",
+      "end_at": null,
+      "latitude": 53.1459,
+      "longitude": 16.743968,
+      "price_type": "paid",
+      "price_min": 50,
+      "price_max": 50,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "7bfa8902-4c31-4f6d-8cda-c6de1b274841",
+      "title": "Wieczory Lisztowskie — recital Tomasza Kamieniaka",
+      "url": "https://mapaimprez.pl/koncerty/olawa/curated-wieczory-lisztowskie-recital-tomasza-kamieniaka-olawa-2026-11-23-319e9f031314",
+      "source_url": "https://kultura.olawa.pl/wydarzenia/32812",
+      "source_name": "Centrum Sztuki w Oławie",
+      "city": "Oława",
+      "city_slug": "olawa",
+      "category": "koncerty",
+      "start_at": "2026-11-23T18:00:00+01:00",
+      "end_at": null,
+      "latitude": 50.94193,
+      "longitude": 17.30052,
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 20,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "2f5ac21f-ac95-422c-82dd-484355da7298",
+      "title": "Cebula — spektakl Teatru Nowego w Giżycku",
+      "url": "https://mapaimprez.pl/kultura/gizycko/curated-cebula-spektakl-teatru-nowego-w-gizycku-gizycko-2026-11-26-764cb0ce9a5f",
+      "source_url": "https://gck.gizycko.pl/cebula-spektakl-o-milosci-emocjach-i-probie-zrozumienia-drugiego-czlowieka",
+      "source_name": "Giżyckie Centrum Kultury",
+      "city": "Giżycko",
+      "city_slug": "gizycko",
+      "category": "kultura",
+      "start_at": "2026-11-26T17:00:00+01:00",
+      "end_at": null,
+      "latitude": 54.038106,
+      "longitude": 21.767351,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "7f1d89cb-dc32-48e4-a15f-99a827fedaa6",
+      "title": "Nadprzyrodzone w sztuce — wernisaż prac Bô Yin Râ",
+      "url": "https://mapaimprez.pl/kultura/zgorzelec/curated-nadprzyrodzone-w-sztuce-wernisaz-prac-bo-yin-ra-zgorzelec-2026-11-27-8be3ccbd6b2c",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/11/04/nadprzyrodzone-w-sztuce-rekonstrukcja-wystawy-obrazow-malarza-i-mistyka-bo-yin-ra",
+      "source_name": "Miejski Dom Kultury w Zgorzelcu",
+      "city": "Zgorzelec",
+      "city_slug": "zgorzelec",
+      "category": "kultura",
+      "start_at": "2026-11-27T17:00:00+01:00",
+      "end_at": null,
+      "latitude": 51.147061027894,
+      "longitude": 15.0028079711203,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "51f7bf0b-1d89-420a-a1c5-e75a1f46c605",
+      "title": "Jestem stąd — Kazimierz Pichlak i Jacek Szreniawa Band",
+      "url": "https://mapaimprez.pl/koncerty/zgorzelec/curated-jestem-stad-kazimierz-pichlak-i-jacek-szreniawa-band-zgorzelec-2026-11-27-74ea22cab44d",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/11/04/koncert-jestem-stad-dr-kazimierza-pichlaka-i-jacek-szreniawa-band",
+      "source_name": "Miejski Dom Kultury w Zgorzelcu",
+      "city": "Zgorzelec",
+      "city_slug": "zgorzelec",
+      "category": "koncerty",
+      "start_at": "2026-11-27T18:00:00+01:00",
+      "end_at": null,
+      "latitude": 51.147061027894,
+      "longitude": 15.0028079711203,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "5ed5e698-0627-45fe-9472-a40040d2834e",
+      "title": "Suwalszczyzna na bis — jubileusz 75-lecia zespołu",
+      "url": "https://mapaimprez.pl/kultura/suwalki/curated-suwalszczyzna-na-bis-jubileusz-75-lecia-zespolu-suwalki-2026-11-28-6ddc692fc620",
+      "source_url": "https://soksuwalki.eu/class/jubileusz-75-lecia-zpitsuwalszczyzna-na-bis",
+      "source_name": "Suwalski Ośrodek Kultury",
+      "city": "Suwałki",
+      "city_slug": "suwalki",
+      "category": "kultura",
+      "start_at": "2026-11-28T19:00:00+01:00",
+      "end_at": "2026-11-28T21:00:00+01:00",
+      "latitude": 54.1122387,
+      "longitude": 22.9366214,
+      "price_type": "paid",
+      "price_min": 50,
+      "price_max": 50,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "90e7fa09-9b33-439a-ad2a-c9687e657e32",
+      "title": "Sekrety Pana Dyrygenta — Familijny Park Sztuki",
+      "url": "https://mapaimprez.pl/rodzinne/koszalin/curated-sekrety-pana-dyrygenta-familijny-park-sztuki-koszalin-2026-11-29-cb8770c6e771",
+      "source_url": "https://filharmoniakoszalinska.pl/wydarzenie/familijny-park-sztuki-sekrety-pana-dyrygenta",
+      "source_name": "Filharmonia Koszalińska",
+      "city": "Koszalin",
+      "city_slug": "koszalin",
+      "category": "rodzinne",
+      "start_at": "2026-11-29T12:00:00+01:00",
+      "end_at": "2026-11-29T13:00:00+01:00",
+      "latitude": 54.191274,
+      "longitude": 16.1879842,
+      "price_type": "paid",
+      "price_min": 12,
+      "price_max": 20,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "f9e244c5-13bd-4ef7-a454-eb0a9411aa99",
+      "title": "Awantura o ser — andrzejkowa gra terenowa w Twierdzy Boyen",
+      "url": "https://mapaimprez.pl/rodzinne/gizycko/curated-awantura-o-ser-andrzejkowa-gra-terenowa-w-twierdzy-boyen-gizycko-2026-11-29-55e607825c40",
+      "source_url": "https://twierdza.gizycko.pl/andrzejkowa-gra-terenowa-29-11-2026",
+      "source_name": "Twierdza Boyen",
+      "city": "Giżycko",
+      "city_slug": "gizycko",
+      "category": "rodzinne",
+      "start_at": "2026-11-29T13:00:00+01:00",
+      "end_at": null,
+      "latitude": 54.0343624,
+      "longitude": 21.7498238,
+      "price_type": "paid",
+      "price_min": 12,
+      "price_max": 15,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "aeb65f87-fdb0-46e4-9d1b-0a40732fa9dc",
+      "title": "Young Stage 18 — Timeless Music w Pile",
+      "url": "https://mapaimprez.pl/koncerty/pila/curated-young-stage-18-timeless-music-w-pile-pila-2026-11-30-bcdbd1e88b9a",
+      "source_url": "https://rck.pila.pl/component/content/article/3028-young-stage-18.html?Itemid=435&catid=266",
+      "source_name": "Regionalne Centrum Kultury – Fabryka Emocji",
+      "city": "Piła",
+      "city_slug": "pila",
+      "category": "koncerty",
+      "start_at": "2026-11-30T18:00:00+01:00",
+      "end_at": null,
+      "latitude": 53.1459,
+      "longitude": 16.743968,
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 40,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "e23426c2-f2bc-4c5a-b9af-c0435b0fc708",
+      "title": "Zofia Anna Olesik i Tomasz Chmiel — koncert symfoniczny",
+      "url": "https://mapaimprez.pl/koncerty/koszalin/curated-zofia-anna-olesik-i-tomasz-chmiel-koncert-symfoniczny-koszalin-2026-12-04-66d170f876fe",
+      "source_url": "https://filharmoniakoszalinska.pl/wydarzenie/koncert-symfoniczny-42",
+      "source_name": "Filharmonia Koszalińska",
+      "city": "Koszalin",
+      "city_slug": "koszalin",
+      "category": "koncerty",
+      "start_at": "2026-12-04T18:30:00+01:00",
+      "end_at": "2026-12-04T20:30:00+01:00",
+      "latitude": 54.191274,
+      "longitude": 16.1879842,
+      "price_type": "paid",
+      "price_min": 37,
+      "price_max": 47,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "c3649d77-4179-422a-9d26-16627949efa1",
+      "title": "Pilski Jarmark Bożonarodzeniowy 2026",
+      "url": "https://mapaimprez.pl/targi/pila/curated-pilski-jarmark-bozonarodzeniowy-2026-pila-2026-12-10-fdc049120f56",
+      "source_url": "https://rck.pila.pl/component/content/article/3004-pilski-jarmark-bo%C5%BConarodzeniowy.html?Itemid=435&catid=270",
+      "source_name": "Regionalne Centrum Kultury – Fabryka Emocji",
+      "city": "Piła",
+      "city_slug": "pila",
+      "category": "targi",
+      "start_at": "2026-12-10T12:00:00+01:00",
+      "end_at": "2026-12-13T19:00:00+01:00",
+      "latitude": 53.146723,
+      "longitude": 16.7387069,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "b21c3433-9fd9-46e3-bff1-33c0654ff87f",
+      "title": "Piękna i Bestia — Teatr Czy TAK czy NIE w Giżycku",
+      "url": "https://mapaimprez.pl/kultura/gizycko/curated-piekna-i-bestia-teatr-czy-tak-czy-nie-w-gizycku-gizycko-2026-12-10-2a18b7a20c36",
+      "source_url": "https://gck.gizycko.pl/kultura-ktora-slucha-prezentacje-teatrow-inkluzyjnych-w-gizycku",
+      "source_name": "Giżyckie Centrum Kultury",
+      "city": "Giżycko",
+      "city_slug": "gizycko",
+      "category": "kultura",
+      "start_at": "2026-12-10T17:00:00+01:00",
+      "end_at": null,
+      "latitude": 54.038106,
+      "longitude": 21.767351,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "1e0fa4c0-fc70-4670-95d4-c346584d164c",
+      "title": "Góralski wieczór kolęd — Staszek z Gór w Oławie",
+      "url": "https://mapaimprez.pl/koncerty/olawa/curated-goralski-wieczor-koled-staszek-z-gor-w-olawie-olawa-2026-12-12-c60526af1c6e",
+      "source_url": "https://kultura.olawa.pl/wydarzenia/staszek-z-gor-goralski-wieczor-koled",
+      "source_name": "Centrum Sztuki w Oławie",
+      "city": "Oława",
+      "city_slug": "olawa",
+      "category": "koncerty",
+      "start_at": "2026-12-12T19:00:00+01:00",
+      "end_at": null,
+      "latitude": 50.94193,
+      "longitude": 17.30052,
+      "price_type": "paid",
+      "price_min": 110,
+      "price_max": 110,
+      "api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    }
+  ],
+  "errors": [],
+  "checks": {
+    "anonymous_reads": 18,
+    "api_reads": 18,
+    "unique_markers": 18,
+    "dry_run_before": 18,
+    "dry_run_after": 18,
+    "manual_duplicates": [
+      {
+        "title": "Doktor Miłość — komedia muzyczna w Zgorzelcu",
+        "city": "Zgorzelec",
+        "day": "2026-11-14",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Nadprzyrodzone w sztuce — wernisaż prac Bô Yin Râ",
+        "city": "Zgorzelec",
+        "day": "2026-11-27",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Jestem stąd — Kazimierz Pichlak i Jacek Szreniawa Band",
+        "city": "Zgorzelec",
+        "day": "2026-11-27",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Cebula — spektakl Teatru Nowego w Giżycku",
+        "city": "Giżycko",
+        "day": "2026-11-26",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Awantura o ser — andrzejkowa gra terenowa w Twierdzy Boyen",
+        "city": "Giżycko",
+        "day": "2026-11-29",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Piękna i Bestia — Teatr Czy TAK czy NIE w Giżycku",
+        "city": "Giżycko",
+        "day": "2026-12-10",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Miejsca — wernisaż Roberta Motelskiego w Suwałkach",
+        "city": "Suwałki",
+        "day": "2026-11-13",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Dom z powyłamywanymi nogami — Teatr Hybrydowy",
+        "city": "Suwałki",
+        "day": "2026-11-19",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Suwalszczyzna na bis — jubileusz 75-lecia zespołu",
+        "city": "Suwałki",
+        "day": "2026-11-28",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Amadeus jubileuszowo — koncert w Pile",
+        "city": "Piła",
+        "day": "2026-11-20",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Young Stage 18 — Timeless Music w Pile",
+        "city": "Piła",
+        "day": "2026-11-30",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Pilski Jarmark Bożonarodzeniowy 2026",
+        "city": "Piła",
+        "day": "2026-12-10",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Enea KS Piła – NTSK PANS Komunalnik Nysa",
+        "city": "Piła",
+        "day": "2026-11-14",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Wieczory Lisztowskie — recital Tomasza Kamieniaka",
+        "city": "Oława",
+        "day": "2026-11-23",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Góralski wieczór kolęd — Staszek z Gór w Oławie",
+        "city": "Oława",
+        "day": "2026-12-12",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Sekrety Pana Dyrygenta — Familijny Park Sztuki",
+        "city": "Koszalin",
+        "day": "2026-11-29",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Zofia Anna Olesik i Tomasz Chmiel — koncert symfoniczny",
+        "city": "Koszalin",
+        "day": "2026-12-04",
+        "same_day": [],
+        "same_source": []
+      },
+      {
+        "title": "Grupa A+ i Kwazar — koncert w Magazynie Solnym",
+        "city": "Nowa Sól",
+        "day": "2026-11-13",
+        "same_day": [],
+        "same_source": []
+      }
+    ],
+    "importer_tests": {
+      "passed": 9,
+      "total": 9
+    }
+  },
+  "recheck": {
+    "event_count": 48,
+    "sources": [
+      {
+        "url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy",
+        "checked_at": "2026-11-12T18:39:58.386Z",
+        "status": 200,
+        "final_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy",
+        "flags": []
+      },
+      {
+        "url": "https://www.ckchojnice.pl/aktualnosc/koncert-johna-portera-helicopters-45",
+        "checked_at": "2026-11-12T18:39:58.401Z",
+        "status": 200,
+        "final_url": "https://www.ckchojnice.pl/aktualnosc/koncert-johna-portera-helicopters-45",
+        "flags": []
+      },
+      {
+        "url": "https://zci.zamosc.pl/news/2603/14-alchemia-kina.html",
+        "checked_at": "2026-11-12T18:39:58.398Z",
+        "status": 200,
+        "final_url": "https://zci.zamosc.pl/news/2603/14-alchemia-kina.html",
+        "flags": []
+      },
+      {
+        "url": "https://zci.zamosc.pl/news/2608/bdquomarsz-do-wolnoscirdquo-ndash-koncert-piesni-patriotycznych-w-zam.html",
+        "checked_at": "2026-11-12T18:39:58.397Z",
+        "status": 200,
+        "final_url": "https://zci.zamosc.pl/news/2608/bdquomarsz-do-wolnoscirdquo-ndash-koncert-piesni-patriotycznych-w-zam.html",
+        "flags": []
+      },
+      {
+        "url": "https://craftticket.pl/produkt/targi-rzeczy-wyjatkowych-wroclaw-11-2026",
+        "checked_at": "2026-11-12T18:39:58.401Z",
+        "status": 200,
+        "final_url": "https://craftticket.pl/produkt/targi-rzeczy-wyjatkowych-wroclaw-11-2026/",
+        "flags": []
+      },
+      {
+        "url": "https://szczecinek.pl/kalendarz-wydarzen/1525-renata-dancewicz-gosciem-miejskiej-biblioteki-publicznej.html",
+        "checked_at": "2026-11-12T18:39:58.403Z",
+        "status": 200,
+        "final_url": "https://szczecinek.pl/kalendarz-wydarzen/1525-renata-dancewicz-gosciem-miejskiej-biblioteki-publicznej.html",
+        "flags": []
+      },
+      {
+        "url": "https://polsatplusarena.gdynia.pl/kalendarz-wydarzen/exotic-fest-2",
+        "checked_at": "2026-11-12T18:39:58.399Z",
+        "status": 200,
+        "final_url": "https://polsatplusarena.gdynia.pl/kalendarz-wydarzen/exotic-fest-2",
+        "flags": []
+      },
+      {
+        "url": "https://rdk.rzeszow.pl/od-13-listopada-do-3-grudnia-2026-wystawa-malarstwa-ewy-mikuly-przyroda-w-dzien-i-w-nocy",
+        "checked_at": "2026-11-12T18:39:58.402Z",
+        "status": 200,
+        "final_url": "https://rdk.rzeszow.pl/od-13-listopada-do-3-grudnia-2026-wystawa-malarstwa-ewy-mikuly-przyroda-w-dzien-i-w-nocy/",
+        "flags": []
+      },
+      {
+        "url": "https://www.torun.pl/pl/warsztaty-scenariopisarskie-w-kinie-csw",
+        "checked_at": "2026-11-12T18:39:58.407Z",
+        "status": 200,
+        "final_url": "https://www.torun.pl/pl/warsztaty-scenariopisarskie-w-kinie-csw",
+        "flags": []
+      },
+      {
+        "url": "https://kartamiejska.um.gorzow.pl/wydarzenia/5146-spotkanie-z-piesnia-koncert-kameralny",
+        "checked_at": "2026-11-12T18:39:58.406Z",
+        "status": 200,
+        "final_url": "https://kartamiejska.um.gorzow.pl/wydarzenia/5146-spotkanie-z-piesnia-koncert-kameralny",
+        "flags": []
+      },
+      {
+        "url": "https://experyment.gdynia.pl/wydarzenia/warsztaty-rodzinne-sladami-niepodleglej-2-0",
+        "checked_at": "2026-11-12T18:39:58.395Z",
+        "status": 200,
+        "final_url": "https://experyment.gdynia.pl/wydarzenia/warsztaty-rodzinne-sladami-niepodleglej-2-0/",
+        "flags": [
+          "ina: 13:00 Dostępne miejsca: 15 Godzina: 15:00 Dostępne miejsca: 20 Kup bilet * Brak wolnych miejsc na wybraną godzinę bilety dostępne są również w sprzedaży stacjonarnej, w kasach Cent"
+        ]
+      },
+      {
+        "url": "https://filharmonia.rzeszow.pl/produkt/kayah-jazzayah-rzeszow-jazz-festiwal-2026",
+        "checked_at": "2026-11-12T18:39:58.404Z",
+        "status": 200,
+        "final_url": "https://filharmonia.rzeszow.pl/produkt/kayah-jazzayah-rzeszow-jazz-festiwal-2026/",
+        "flags": []
+      },
+      {
+        "url": "https://zci.zamosc.pl/news/2610/zamojskie-koncerty-organowe-ndash-koncert-charytatywny-w.html",
+        "checked_at": "2026-11-12T18:40:00.819Z",
+        "status": 200,
+        "final_url": "https://zci.zamosc.pl/news/2610/zamojskie-koncerty-organowe-ndash-koncert-charytatywny-w.html",
+        "flags": []
+      },
+      {
+        "url": "https://www.targi.radom.pl/",
+        "checked_at": "2026-11-12T18:40:00.812Z",
+        "status": 200,
+        "final_url": "https://www.targi.radom.pl/",
+        "flags": []
+      },
+      {
+        "url": "https://biletyexpo.pl/kup-bilet/113",
+        "checked_at": "2026-11-12T18:40:00.813Z",
+        "status": 200,
+        "final_url": "https://biletyexpo.pl/kup-bilet/113",
+        "flags": []
+      },
+      {
+        "url": "https://dzierzoniow.pl/index.php/wydarzenia/xxv-memorial-im-piotra-tworza",
+        "checked_at": "2026-11-12T18:40:00.821Z",
+        "status": 200,
+        "final_url": "https://dzierzoniow.pl/index.php/wydarzenia/xxv-memorial-im-piotra-tworza",
+        "flags": []
+      },
+      {
+        "url": "https://www.kupbilecik.pl/pl/event/197810/bielawa/stand-up-mama-na-obrotach",
+        "checked_at": "2026-11-12T18:40:00.810Z",
+        "status": 200,
+        "final_url": "https://www.kupbilecik.pl/pl/event/197810/bielawa/stand-up-mama-na-obrotach",
+        "flags": [
+          "Do zapisania zamówienia: 10 minut Po tym czasie niezapisane zamówienie zostanie anulowane. Miejsca Dostawa Dane Płatność Zgody Podsumowanie Rozliczenie Sposób otrzymania biletu Wybierz "
+        ]
+      },
+      {
+        "url": "https://www.mokis.myslenice.pl/?id=1203&ram=news-show",
+        "checked_at": "2026-11-12T18:40:00.820Z",
+        "status": 200,
+        "final_url": "https://www.mokis.myslenice.pl/?id=1203&ram=news-show",
+        "flags": []
+      },
+      {
+        "url": "https://www.mokis.myslenice.pl/?id=1197&ram=news-show",
+        "checked_at": "2026-11-12T18:40:00.816Z",
+        "status": 200,
+        "final_url": "https://www.mokis.myslenice.pl/?id=1197&ram=news-show",
+        "flags": []
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/poranki-teatralne-c-jak-cyrk",
+        "checked_at": "2026-11-12T18:40:00.811Z",
+        "status": 200,
+        "final_url": "https://prezeroarenagliwice.pl/events/poranki-teatralne-c-jak-cyrk/",
+        "flags": [
+          "arzenia * 14 maj 2027 Koncert André Rieu dowiedz się więcej 21 luty 2025 Bilety wyprzedane: Jubileuszowa trasa Bullet for My Valentine i Trivium z jednym przystankiem w Polsce dowiedz s"
+        ]
+      },
+      {
+        "url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/45-festiwal-generacja-konkurs-przeglad-zespolow",
+        "checked_at": "2026-11-12T18:40:00.814Z",
+        "status": 200,
+        "final_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/45-festiwal-generacja-konkurs-przeglad-zespolow",
+        "flags": []
+      },
+      {
+        "url": "https://kultura.olawa.pl/wydarzenia/blazej-krol-popiol",
+        "checked_at": "2026-11-12T18:40:00.819Z",
+        "status": 200,
+        "final_url": "https://kultura.olawa.pl/wydarzenia/blazej-krol-popiol/",
+        "flags": [
+          "Data: 14.11.2026 Miejsce: OWE Odra, ul. Młyńska 3 Kup bilet Tweet Opis UWAGA!!! ZMIANA TERMINU KONCERTU BŁAŻEJA KRÓLA. KONCERT ODBĘDZIE SIĘ W DNIU 14 LISTOPADA BR., A NIE 30 KWIETNIA BR"
+        ]
+      },
+      {
+        "url": "https://www.i-kolobrzeg.pl/wydarzenie-3491-eska_music_tour_kolobrzeg_2026_young-szczegoly-113320.html",
+        "checked_at": "2026-11-12T18:40:00.818Z",
+        "status": 200,
+        "final_url": "https://www.i-kolobrzeg.pl/wydarzenie-3491-eska_music_tour_kolobrzeg_2026_young-szczegoly-113320.html",
+        "flags": [
+          "IBLIOTEK kołobrzeskich Wystawa fotografii Grzegorza Milewskiego „Ameryka” 18:00 ODWOŁANY - „Kumotry” - Weekend z DKF Sztorm Kliknij, aby przejść do wydarzeń z dnia 16-11-2026 Lis 16 Pon",
+          "IBLIOTEK kołobrzeskich Wystawa fotografii Grzegorza Milewskiego „Ameryka” 18:00 ODWOŁANY - „Kumotry” - Weekend z DKF Sztorm Kliknij, aby przejść do wydarzeń z dnia 16-11-2026 Lis 16 Pon"
+        ]
+      },
+      {
+        "url": "https://tworczehoryzonty.pl/wpis/bieszczady-niekonczaca-sie-podroz-8",
+        "checked_at": "2026-11-12T18:40:00.815Z",
+        "status": 200,
+        "final_url": "https://tworczehoryzonty.pl/wpis/bieszczady-niekonczaca-sie-podroz-8/",
+        "flags": []
+      },
+      {
+        "url": "https://kierunekkultura.pl/wydarzenie/koncert-piosenka-filmem-pisana",
+        "checked_at": "2026-11-12T18:40:05.825Z",
+        "status": 200,
+        "final_url": "https://kierunekkultura.pl/wydarzenie/koncert-piosenka-filmem-pisana",
+        "flags": []
+      },
+      {
+        "url": "https://www.sopot.pl/aktualnosc/13475/fale-2026-w-sopocie-targi-mody-i-designu-nad-morzem",
+        "checked_at": "2026-11-12T18:40:05.828Z",
+        "status": 200,
+        "final_url": "https://www.sopot.pl/aktualnosc/13475/fale-2026-w-sopocie-targi-mody-i-designu-nad-morzem",
+        "flags": []
+      },
+      {
+        "url": "https://sapik.szczecinek.pl/aktualnosci/tyle-slonca-w-naszym-miescie-muzyczny-wieczor-z-przebojami-anny-jantar-i-jaroslawa-kukulskiego.html",
+        "checked_at": "2026-11-12T18:40:05.823Z",
+        "status": 200,
+        "final_url": "https://sapik.szczecinek.pl/aktualnosci/tyle-slonca-w-naszym-miescie-muzyczny-wieczor-z-przebojami-anny-jantar-i-jaroslawa-kukulskiego.html",
+        "flags": []
+      },
+      {
+        "url": "https://jarmark.poznan.pl/pl",
+        "checked_at": "2026-11-12T18:40:05.822Z",
+        "status": 200,
+        "final_url": "https://jarmark.poznan.pl/pl",
+        "flags": []
+      },
+      {
+        "url": "https://wdkkielce.pl/index.php/events/planszowki-w-wdk",
+        "checked_at": "2026-11-12T18:40:05.821Z",
+        "status": 200,
+        "final_url": "https://wdkkielce.pl/index.php/events/planszowki-w-wdk/",
+        "flags": []
+      },
+      {
+        "url": "https://hobbycon.pl/pl",
+        "checked_at": "2026-11-12T18:40:05.822Z",
+        "status": 200,
+        "final_url": "https://hobbycon.pl/pl",
+        "flags": []
+      },
+      {
+        "url": "https://ckmuza.eu/17-11-2026-dni-ktore-nam-odebrali-musical",
+        "checked_at": "2026-11-12T18:40:05.824Z",
+        "status": 200,
+        "final_url": "https://ckmuza.eu/17-11-2026-dni-ktore-nam-odebrali-musical/",
+        "flags": [
+          " CK MUZA dla studentów Uniwersytetu Senioralnego: Pilates i Zdrowy kręgosłup są odwołane. Przepraszamy za niedogodności. • 13.11 (pt.) warsztaty Nordic Walking z P. Lucyną Stępień dla s",
+          "y Nordic Walking z P. Lucyną Stępień dla studentów Uniwersytetu Senioralnego są odwołane. Przepraszamy za niedogodności. Restauracja MUZA: • 20.11 (pt.) jest czynna do godz. 18:00. • 21"
+        ]
+      },
+      {
+        "url": "https://swiatowid.elblag.pl/pl/aktualnosci13589,kobieta-to-ja-trzy-dni-artystycznych-inspiracji-w-cse-swiatowid-13-15112026",
+        "checked_at": "2026-11-12T18:40:05.828Z",
+        "status": 200,
+        "final_url": "https://swiatowid.elblag.pl/pl/aktualnosci13589,kobieta-to-ja-trzy-dni-artystycznych-inspiracji-w-cse-swiatowid-13-15112026",
+        "flags": [
+          "zmienia nasze życie?&rdquo; panel dyskusyjny, Galeria Nobilis, PANEL DYSKUSYJNY ODWOŁANY 16.30 17.15 &bdquo;Wewnętrzny kompas&rdquo; blok I: &bdquo;Poznaj Siebie&rdquo;, Galeria Nobilis"
+        ]
+      },
+      {
+        "url": "https://umbielskpodlaski.pl/wydarzenie/koszykarska-ii-liga-64",
+        "checked_at": "2026-11-12T18:40:05.827Z",
+        "status": 200,
+        "final_url": "https://umbielskpodlaski.pl/wydarzenie/koszykarska-ii-liga-64/",
+        "flags": []
+      },
+      {
+        "url": "https://filharmonia.rzeszow.pl/produkt/adam-golicki-the-great-time-rzeszow-jazz-festiwal-2026",
+        "checked_at": "2026-11-12T18:40:05.830Z",
+        "status": 200,
+        "final_url": "https://filharmonia.rzeszow.pl/produkt/adam-golicki-the-great-time-rzeszow-jazz-festiwal-2026/",
+        "flags": []
+      },
+      {
+        "url": "https://wzorytargi.pl/targi-wzory-w-bialymstoku",
+        "checked_at": "2026-11-12T18:40:05.829Z",
+        "status": 200,
+        "final_url": "https://wzorytargi.pl/targi-wzory-w-bialymstoku/",
+        "flags": []
+      },
+      {
+        "url": "https://muzeumgdynia.pl/wydarzenie/boleslawa-i-edmund-zdanowscy-proba-biografii-wyklad-dr-malgorzaty-taraszkiewicz-zwolickiej",
+        "checked_at": "2026-11-12T18:40:05.826Z",
+        "status": 200,
+        "final_url": "https://muzeumgdynia.pl/wydarzenie/boleslawa-i-edmund-zdanowscy-proba-biografii-wyklad-dr-malgorzaty-taraszkiewicz-zwolickiej/",
+        "flags": []
+      },
+      {
+        "url": "https://swiatowid.elblag.pl/pl/aktualnosci13636,wedrujcie-z-nami-przez-zycie-malarstwo-zbigniewa-t-szmurlo-w-cse-swiatowid",
+        "checked_at": "2026-11-12T18:40:08.598Z",
+        "status": 200,
+        "final_url": "https://swiatowid.elblag.pl/pl/aktualnosci13636,wedrujcie-z-nami-przez-zycie-malarstwo-zbigniewa-t-szmurlo-w-cse-swiatowid",
+        "flags": []
+      },
+      {
+        "url": "https://www.centrumzamenhofa.pl/art,1440,wolna-pracownia-otwarta-przestrzen-tworcza",
+        "checked_at": "2026-11-12T18:40:08.592Z",
+        "status": 200,
+        "final_url": "https://www.centrumzamenhofa.pl/art,1440,wolna-pracownia-otwarta-przestrzen-tworcza",
+        "flags": [
+          "awy czasowe Wystawy do wypożyczenia Wydawnictwa i gadżety Wydawnictwa drukowane Wyprzedane gadżety Publikacje elektroniczne Gry i gadżety Mediateka CLZ Bilety Godziny otwarcia Białostoc"
+        ]
+      },
+      {
+        "url": "https://www.muzeumczestochowa.pl/wydarzenia/jesienna-etnobotanika/130",
+        "checked_at": "2026-11-12T18:40:08.599Z",
+        "status": 200,
+        "final_url": "https://www.muzeumczestochowa.pl/wydarzenia/jesienna-etnobotanika/130",
+        "flags": []
+      },
+      {
+        "url": "https://pzkosz.pl/aktualnosci/n/70024",
+        "checked_at": "2026-11-12T18:40:08.601Z",
+        "status": 200,
+        "final_url": "https://pzkosz.pl/aktualnosci/n/70024",
+        "flags": []
+      },
+      {
+        "url": "https://www.biblioteka.sosnowiec.pl/aktualnosci/2347",
+        "checked_at": "2026-11-12T18:40:08.600Z",
+        "status": 200,
+        "final_url": "https://www.biblioteka.sosnowiec.pl/aktualnosci/2347",
+        "flags": []
+      },
+      {
+        "url": "https://ec1lodz.pl/eventy/warsztaty-lego-build-the-change",
+        "checked_at": "2026-11-12T18:40:08.602Z",
+        "status": 200,
+        "final_url": "https://ec1lodz.pl/eventy/warsztaty-lego-build-the-change",
+        "flags": []
+      },
+      {
+        "url": "https://mckgorzow.pl/event/jesienne-rozgrzanie-warsztaty-wege-dla-doroslych",
+        "checked_at": "2026-11-12T18:40:08.597Z",
+        "status": 200,
+        "final_url": "https://mckgorzow.pl/event/jesienne-rozgrzanie-warsztaty-wege-dla-doroslych/",
+        "flags": []
+      },
+      {
+        "url": "https://www.ebilet.pl/muzyka/jazz-blues/dzem?city=Radom",
+        "checked_at": "2026-11-12T18:40:08.595Z",
+        "status": 200,
+        "final_url": "https://www.ebilet.pl/muzyka/jazz-blues/dzem?city=Radom",
+        "flags": []
+      },
+      {
+        "url": "https://ergoarena.pl/wydarzenia-lista/genzie-404-tour",
+        "checked_at": "2026-11-12T18:40:08.596Z",
+        "status": 200,
+        "final_url": "https://ergoarena.pl/wydarzenia-lista/genzie-404-tour/",
+        "flags": []
+      },
+      {
+        "url": "https://ergoarena.pl/wydarzenia-lista/energa-trefl-gdansk-aluron-cmc-warta-zawiercie-2",
+        "checked_at": "2026-11-12T18:40:08.593Z",
+        "status": 200,
+        "final_url": "https://ergoarena.pl/wydarzenia-lista/energa-trefl-gdansk-aluron-cmc-warta-zawiercie-2/",
+        "flags": []
+      },
+      {
+        "url": "https://zgorzelec.eu/kalendarz-wydarzen/bieg-przy-pochodniach-2026",
+        "checked_at": "2026-11-12T18:40:08.594Z",
+        "status": 200,
+        "final_url": "https://zgorzelec.eu/kalendarz-wydarzen/bieg-przy-pochodniach-2026/",
+        "flags": []
+      },
+      {
+        "url": "https://www.gdansk.pl/wydarzenia/Polski-Chor-Kameralny-koncert-J-S-Bach-Wielkie-motety,w,43841",
+        "checked_at": "2026-11-12T18:40:08.598Z",
+        "status": 200,
+        "final_url": "https://www.gdansk.pl/wydarzenia/Polski-Chor-Kameralny-koncert-J-S-Bach-Wielkie-motety,w,43841",
+        "flags": []
+      }
+    ],
+    "changes": [
+      {
+        "city": "Gdynia",
+        "event_id": "04dc2bdd-0494-4469-ba3a-597676efe875",
+        "url": "https://experyment.gdynia.pl/wydarzenia/warsztaty-rodzinne-sladami-niepodleglej-2-0/",
+        "checked_at": "2026-11-12T18:43:56Z",
+        "places_2026_11_14": [
+          [
+            "11:00",
+            0
+          ],
+          [
+            "13:00",
+            2
+          ],
+          [
+            "15:00",
+            0
+          ]
+        ],
+        "details": "Przy 11:00 nadal zero miejsc online. Formularz pokazał dwa miejsca na 13:00 i zero na 15:00. Organizator wskazuje także sprzedaż w kasie."
+      },
+      {
+        "city": "Elbląg",
+        "event_id": "b09cb577-92b7-4bb7-8c67-f4861df98ba0",
+        "url": "https://swiatowid.elblag.pl/pl/aktualnosci13589,kobieta-to-ja-trzy-dni-artystycznych-inspiracji-w-cse-swiatowid-13-15112026",
+        "details": "Spotkanie z Katarzyną Figurą pozostaje w programie. Wcześniejsze odwołanie dotyczy panelu Sztuka kobiet."
+      },
+      {
+        "city": "Oława",
+        "event_id": "695bac55-11fd-4d86-8848-48b0fdcc4bc8",
+        "url": "https://kultura.olawa.pl/wydarzenia/blazej-krol-popiol/",
+        "details": "Źródło nadal potwierdza listopadową datę po wcześniejszym przeniesieniu koncertu."
+      }
+    ]
+  },
+  "coordinate_correction": {
+    "event_id": "b0b691f9-ade4-4e3d-b938-969e411ac10d",
+    "location_id": "2c79ba95-ac8f-44a3-ad8b-c0a963a6d25e",
+    "checked_at": "2026-11-12T18:50:43.744Z",
+    "previous": {
+      "latitude": 51.800085076545,
+      "longitude": 15.719082301544,
+      "coordinate_source": "https://zabytek.pl/pl/obiekty/nowa-sol-magazyn-solny"
+    },
+    "latitude": 51.80531861566,
+    "longitude": 15.723702063844,
+    "coordinate_source": "https://zabytek.pl/pl/obiekty/g-214161"
+  },
+  "mobile": {
+    "checked_at": "2026-11-12T18:48:54.179Z",
+    "checks": [
+      {
+        "url": "https://mapaimprez.pl/koncerty/olawa/curated-wieczory-lisztowskie-recital-tomasza-kamieniaka-olawa-2026-11-23-319e9f031314",
+        "viewport": 390,
+        "title": "Wieczory Lisztowskie — recital Tomasza Kamieniaka",
+        "page_title": "Wieczory Lisztowskie — recital Tomasza Kamieniaka",
+        "footer": "23 lis 2026 · 18:00Oława",
+        "fits": true,
+        "title_fits": true,
+        "lines": 3,
+        "photo": null,
+        "photo_loaded": null
+      },
+      {
+        "url": "https://mapaimprez.pl/rodzinne/gizycko/curated-awantura-o-ser-andrzejkowa-gra-terenowa-w-twierdzy-boyen-gizycko-2026-11-29-55e607825c40",
+        "viewport": 390,
+        "title": "Awantura o ser — andrzejkowa gra terenowa w Twierdzy Boyen",
+        "page_title": "Awantura o ser — andrzejkowa gra terenowa w Twierdzy Boyen",
+        "footer": "29 lis 2026 · 13:00Giżycko",
+        "fits": true,
+        "title_fits": true,
+        "lines": 4,
+        "photo": null,
+        "photo_loaded": null
+      },
+      {
+        "url": "https://mapaimprez.pl/targi/pila/curated-pilski-jarmark-bozonarodzeniowy-2026-pila-2026-12-10-fdc049120f56",
+        "viewport": 390,
+        "title": "Pilski Jarmark Bożonarodzeniowy 2026",
+        "page_title": "Pilski Jarmark Bożonarodzeniowy 2026",
+        "footer": "10 gru 2026 · 12:00Piła",
+        "fits": true,
+        "title_fits": true,
+        "lines": 3,
+        "photo": null,
+        "photo_loaded": null
+      }
+    ]
+  },
+  "deferred": [
+    {
+      "title": "Jarmark Bożonarodzeniowy w Zgorzelcu",
+      "reason": "Dokument organizatora potwierdza miejsce i godziny, lecz opisuje udział wystawców. Brak potwierdzonych zasad wstępu dla zwiedzających.",
+      "url": "https://www.mdk.zgorzelec.eu/wp-content/uploads/2026/10/REGULAMIN_Jarmark-Bozonarodzeniowy-2026.pdf"
+    },
+    {
+      "title": "Tour d’Aznavour w Giżycku",
+      "reason": "Kalendarz miejski podaje dzień bez godziny i warunków wstępu.",
+      "url": "https://gizycko.pl/-tour-d-aznavour-koncert-w-wykonaniu-francois-martineau-i-mateusza-gurgula/"
+    },
+    {
+      "title": "Ślepsk Malow Suwałki – ZAKSA Kędzierzyn-Koźle",
+      "reason": "Strona ligi potwierdza godzinę. Klubowa sprzedaż zwraca HTTP 403.",
+      "url": "https://www.tauronliga.pl/games/action/show/id/1104846/tour/53/nocookies/1.html"
+    }
+  ]
+}

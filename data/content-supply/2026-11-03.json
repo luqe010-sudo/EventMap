@@ -1,0 +1,606 @@
+{
+  "checked_at": "2026-11-03T14:32:56Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Cała Polska — mniejsze miasta i luki katalogu: Piła, Elbląg, Kołobrzeg, Chojnice, Nysa, Siedlce, Żywiec, Grudziądz, Zgorzelec",
+  "events": [
+    {
+      "title": "Bardowskie Zaduszki — Yanistan",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-06T18:00:00+01:00",
+      "description": "Janusz Kasprowicz i Stanisław Marinczenko zagrają utwory bardów, m.in. Włodzimierza Wysockiego, Leonarda Cohena i Jacka Kaczmarskiego. Bilety kosztują 60 zł.",
+      "short_description": "Janusz Kasprowicz i Stanisław Marinczenko zagrają utwory bardów, m.in. Włodzimierza Wysockiego, Leonarda Cohena i Jacka Kaczmarskiego. Bilety kosztują 60 zł.",
+      "location": {
+        "name": "Nyski Dom Kultury — sala widowiskowa",
+        "address": "Wałowa 7",
+        "city": "Nysa",
+        "latitude": 50.474843664665,
+        "longitude": 17.336582946138,
+        "coordinate_source": "https://i.nysa.pl/24-nysa-nyski-dom-kultury-im-wandy-pawlik",
+        "coordinate_note": "Punkt nazwanej karty Nyskiego Domu Kultury przy Wałowej 7, z atrybutów data-latitude i data-longitude. Zgodny co do budynku z pinezką repertuaru KupBilecik."
+      },
+      "source_name": "Nyski Dom Kultury",
+      "source_url": "https://ndk.systembiletowy.pl/index.php/kup-bilet/bardowskie-zaduszki-2026-11-06-18-00",
+      "price_type": "paid",
+      "price_min": 60,
+      "price_max": 60,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://informacja-turystyczna.nysa.pl/wydarzenia-w-nysie-listopad-2026-sprawdz-kalendarz-imprez/",
+        "https://ndk.systembiletowy.pl/",
+        "https://www.kupbilecik.pl/pl/place/218/nyski-dom-kultury"
+      ],
+      "checked_at": "2026-11-03T14:31:41Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:31:41Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "WATCH DOCS: Jeśli dzisiaj umrę — pokaz i spotkanie",
+      "category_slug": "kultura",
+      "start_at": "2026-11-06T18:00:00+01:00",
+      "description": "Dokument Camilli Arlien śledzi losy młodego rapera, który po wyjściu z więzienia próbuje ułożyć sobie życie. Po seansie spotkanie z Przemysławem Staniszewskim. Pokaz od 15 lat, obowiązują bezpłatne wejściówki.",
+      "short_description": "Dokument Camilli Arlien śledzi losy młodego rapera, który po wyjściu z więzienia próbuje ułożyć sobie życie. Po seansie spotkanie z Przemysławem Staniszewskim. Pokaz od 15 lat, obowiązują bezpłatne wejściówki.",
+      "location": {
+        "name": "Kino Janosik",
+        "address": "Jana III Sobieskiego 1",
+        "city": "Żywiec",
+        "latitude": 49.68942,
+        "longitude": 19.20007,
+        "coordinate_source": "https://mapcarta.com/W285743675",
+        "coordinate_note": "Punkt nazwanego budynku Kino Janosik, OSM way 285743675, przy Sobieskiego 1."
+      },
+      "source_name": "Kino Janosik",
+      "source_url": "https://kinojanosik.pl/repertuar/watch-docs-prawa-czlowieka-w-filmie-jesli-dzisiaj-umre-spotkanie-z-przemyslawem-staniszewskim/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://www.watchdocs.pl/festiwal-objazdowy/jesien-2026/zywiec",
+        "https://kinojanosik.pl/kontakt/"
+      ],
+      "checked_at": "2026-11-03T14:31:41Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:31:41Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "Biało-Czerwony parkrun Grudziądz",
+      "category_slug": "sport",
+      "start_at": "2026-11-07T09:00:00+01:00",
+      "description": "W Lesie Komunalnym można przebiec, przetruchtać lub przejść pięciokilometrową trasę. Start przy parkingu leśnym obok ronda ks. Popiełuszki. Udział jest bezpłatny. Przed pierwszym startem zarejestruj się w parkrun i zabierz kod uczestnika, jeśli chcesz mieć zapisany wynik.",
+      "short_description": "W Lesie Komunalnym można przebiec, przetruchtać lub przejść pięciokilometrową trasę. Start przy parkingu leśnym obok ronda ks. Popiełuszki. Udział jest bezpłatny. Przed pierwszym startem zarejestruj się w parkrun i zabierz kod uczestnika, jeśli chcesz mieć zapisany wynik.",
+      "location": {
+        "name": "Las Komunalny – parking leśny przy rondzie ks. Popiełuszki",
+        "address": "Konarskiego, przy rondzie ks. Jerzego Popiełuszki",
+        "city": "Grudziądz",
+        "latitude": 53.46698,
+        "longitude": 18.75338,
+        "coordinate_source": "https://mapa.targeo.pl/parking-lesny-rondo-popieluszki-jerzego-bl-ks-55-86-300-grudziadz~10511961/lesny-parking/adres",
+        "coordinate_note": "Punkt obiektu Parking Leśny w linku nawigacyjnym Targeo; miejski program i opis zbiórki potwierdzają ten parking."
+      },
+      "source_name": "Grudziądz Miasto Otwarte",
+      "source_url": "https://karta.grudziadzmiastootwarte.pl/pl/wydarzenia/bialo---czerwony-parkrun-grudziadz-8125?dataFiltra=2026-10-18",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://grudziadz.pl/wydarzenie/49/25075/108-rocznica-odzyskania-przez-polske-niepodleglosci",
+        "https://wrotagrudziadza.pl/wydarzenie/bialo-czerwony-parkrun-grudziadz-w-lesie"
+      ],
+      "checked_at": "2026-11-03T14:32:11Z",
+      "source_verification": {
+        "no_cancellation_notice": true,
+        "checked_at": "2026-11-03T14:32:11Z"
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "67. Siedleckie Zaduszki Jazzowe",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-07T18:00:00+01:00",
+      "description": "W sali Podlasie zagrają Wojtek Pilichowski Slap Jazz, Hanna Banaszak z zespołem i Maciej Sikała Trio. Bilet kosztuje 150 zł według cennika organizatora.",
+      "short_description": "W sali Podlasie zagrają Wojtek Pilichowski Slap Jazz, Hanna Banaszak z zespołem i Maciej Sikała Trio. Bilet kosztuje 150 zł według cennika organizatora.",
+      "location": {
+        "name": "Sala widowiskowa „Podlasie” MOK",
+        "address": "Henryka Sienkiewicza 63",
+        "city": "Siedlce",
+        "latitude": 52.1648127,
+        "longitude": 22.2697005,
+        "coordinate_source": "https://www.siedlce.pl/wydarzenia/2026/11-2026/final-ii-ogolnopolskiego-konkursu-z-dziedziny-sztuk-wizualnych-quot-still-alive-quot",
+        "coordinate_note": "Adres i punkt docelowy destination z oficjalnej trasy dojazdu do tej samej sali w portalu miasta."
+      },
+      "source_name": "Miejski Ośrodek Kultury w Siedlcach",
+      "source_url": "https://mok.siedlce.pl/pl/repertuar/67-siedleckie-zaduszki-jazzowe",
+      "price_type": "paid",
+      "price_min": 150,
+      "price_max": 150,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://www.siedlce.pl/wydarzenia/2026/11-2026/67-siedleckie-zaduszki-jazzowe",
+        "https://biletyna.pl/event/view/id/683506"
+      ],
+      "checked_at": "2026-11-03T14:31:43Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:31:43Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "Bruno Schulz. Fetyszysta",
+      "category_slug": "kultura",
+      "start_at": "2026-11-07T18:00:00+01:00",
+      "end_at": null,
+      "description": "Teatr Fredry z Gniezna pokazuje spektakl o Brunonie Schulzu, jego twórczości i przekraczaniu obyczajowych granic epoki. Przedstawienie odbędzie się w sali widowiskowej RCK. Bilety kosztują 50 zł.",
+      "short_description": "Teatr Fredry z Gniezna pokazuje spektakl o Brunonie Schulzu, jego twórczości i przekraczaniu obyczajowych granic epoki. Przedstawienie odbędzie się w sali widowiskowej RCK. Bilety kosztują 50 zł.",
+      "location": {
+        "city": "Piła",
+        "name": "Regionalne Centrum Kultury – Fabryka Emocji",
+        "address": "Plac Staszica 1",
+        "latitude": 53.1459,
+        "longitude": 16.743968,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/273/regionalne-centrum-kultury-fabryka-emocji",
+        "coordinate_note": "Marker nazwanej sali w katalogu biletowym. Adres z kontaktu RCK."
+      },
+      "source_name": "Regionalne Centrum Kultury – Fabryka Emocji",
+      "source_url": "https://rck.pila.pl/program-imprez.html?catid=269%3Aspektakle2026&id=2946%3Abruno-schulz-fetyszysta&view=article",
+      "price_type": "paid",
+      "price_min": 50,
+      "price_max": 50,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://www.rck.pila.pl/kontakt-info.html",
+        "https://www.bilety.rck.pila.pl/"
+      ],
+      "checked_at": "2026-11-03T14:32:40Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:32:40Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "Strażacy Dzieciom — koncert charytatywny",
+      "category_slug": "charytatywne",
+      "start_at": "2026-11-08T14:30:00+01:00",
+      "end_at": null,
+      "description": "Lokalni wykonawcy wystąpią podczas koncertu ochotniczych straży pożarnych. Zaplanowano też animacje rodzinne i licytacje wspierające dzieci z chorobami nowotworowymi oraz bydgoski oddział szpitalny. Wstęp wolny.",
+      "short_description": "Lokalni wykonawcy wystąpią podczas koncertu ochotniczych straży pożarnych. Zaplanowano też animacje rodzinne i licytacje wspierające dzieci z chorobami nowotworowymi oraz bydgoski oddział szpitalny. Wstęp wolny.",
+      "location": {
+        "city": "Chojnice",
+        "name": "Chojnickie Centrum Kultury",
+        "address": "Swarożyca 1",
+        "latitude": 53.6942,
+        "longitude": 17.56731,
+        "coordinate_source": "https://mapa.targeo.pl/chojnickie-centrum-kultury-swarozyca-1-89-600-chojnice~4498562/kino/adres",
+        "coordinate_note": "Marker nazwanego ChCK w Targeo, zgodny z budynkiem OSM way 66338498. Adres z kontaktu ChCK."
+      },
+      "source_name": "Chojnickie Centrum Kultury",
+      "source_url": "https://www.ckchojnice.pl/aktualnosc/koncert-charytatywny-strazacy-dzieciom",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://www.ckchojnice.pl/contact",
+        "https://promocjachojnice.pl/a/koncert-charytatywny-strazacy-dzieciom",
+        "https://www.openstreetmap.org/way/66338498"
+      ],
+      "checked_at": "2026-11-03T14:32:40Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:32:40Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "Rozkwitały pąki białych róż — koncert Chóru Halka",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-08T16:00:00+01:00",
+      "end_at": null,
+      "description": "Chór Halka zaprasza do sali kameralnej RCK na koncert z okazji Święta Niepodległości. Publiczność może dołączyć do wspólnego śpiewania pieśni patriotycznych. Wstęp wolny.",
+      "short_description": "Chór Halka zaprasza do sali kameralnej RCK na koncert z okazji Święta Niepodległości. Publiczność może dołączyć do wspólnego śpiewania pieśni patriotycznych. Wstęp wolny.",
+      "location": {
+        "city": "Piła",
+        "name": "Regionalne Centrum Kultury – Fabryka Emocji",
+        "address": "Plac Staszica 1",
+        "latitude": 53.1459,
+        "longitude": 16.743968,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/273/regionalne-centrum-kultury-fabryka-emocji",
+        "coordinate_note": "Marker nazwanej sali w katalogu biletowym. Adres z kontaktu RCK."
+      },
+      "source_name": "Regionalne Centrum Kultury – Fabryka Emocji",
+      "source_url": "https://rck.pila.pl/program-imprez.html?catid=266%3Akoncerty2026&id=3013%3Arozkwita%C5%82y-p%C4%85ki-bia%C5%82ych-r%C3%B3%C5%BC&view=article",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://www.rck.pila.pl/kontakt-info.html",
+        "https://rck.pila.pl/program-imprez.html"
+      ],
+      "checked_at": "2026-11-03T14:32:40Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:32:40Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "Barwy niepodległości — koncert Chodowiaków",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-08T17:00:00+01:00",
+      "description": "Zespół Chodowiacy zaprezentuje polskie tańce narodowe i pieśni patriotyczne. Publiczność dostanie śpiewniki do wspólnego śpiewania. Bilety po 30 zł.",
+      "short_description": "Zespół Chodowiacy zaprezentuje polskie tańce narodowe i pieśni patriotyczne. Publiczność dostanie śpiewniki do wspólnego śpiewania. Bilety po 30 zł.",
+      "location": {
+        "name": "Sala widowiskowa „Podlasie” MOK",
+        "address": "Henryka Sienkiewicza 63",
+        "city": "Siedlce",
+        "latitude": 52.1648127,
+        "longitude": 22.2697005,
+        "coordinate_source": "https://www.siedlce.pl/wydarzenia/2026/11-2026/final-ii-ogolnopolskiego-konkursu-z-dziedziny-sztuk-wizualnych-quot-still-alive-quot",
+        "coordinate_note": "Adres i punkt docelowy destination z oficjalnej trasy dojazdu do tej samej sali w portalu miasta."
+      },
+      "source_name": "Miejski Ośrodek Kultury w Siedlcach",
+      "source_url": "https://mok.siedlce.pl/pl/repertuar/barwy-niepodleglosci-koncert-zespolu-piesni-i-tanca-ziemi-siedleckiej-chodowiacy-im-alicji-siwkiewicz",
+      "price_type": "paid",
+      "price_min": 30,
+      "price_max": 30,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://siedlce.pl/aktualnosci/2026/10-2026/narodowe-swieto-niepodleglosci/show",
+        "https://biletyna.pl/event/view/id/712956"
+      ],
+      "checked_at": "2026-11-03T14:31:43Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:31:43Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "Siedleckie Biegi Niepodległościowe — sztafeta OPEN 10 km",
+      "category_slug": "sport",
+      "start_at": "2026-11-11T12:00:00+01:00",
+      "description": "W Parku Aleksandria wystartują dwuosobowe sztafety na 10 km. Każdy zawodnik pokonuje pięć pętli po kilometrze. Udział od 12 lat, opłata 20 zł od zespołu. Zapisy online do 10 listopada do 20:00, w dniu biegu przy wolnych miejscach. Osoby niepełnoletnie potrzebują pisemnej zgody opiekuna.",
+      "short_description": "W Parku Aleksandria wystartują dwuosobowe sztafety na 10 km. Każdy zawodnik pokonuje pięć pętli po kilometrze. Udział od 12 lat, opłata 20 zł od zespołu. Zapisy online do 10 listopada do 20:00, w dniu biegu przy wolnych miejscach. Osoby niepełnoletnie potrzebują pisemnej zgody opiekuna.",
+      "location": {
+        "name": "Park miejski Aleksandria — okolice altany",
+        "address": "Stanisława Konarskiego",
+        "city": "Siedlce",
+        "latitude": 52.17077,
+        "longitude": 22.28566,
+        "coordinate_source": "https://turystyka.siedlce.pl/park-aleksandria",
+        "coordinate_note": "Punkt pawilonu ogrodowego w miejskiej mapie Parku Aleksandria (planData id 328). Regulamin i strona biegu wskazują okolice altany."
+      },
+      "source_name": "Siedlecki Klub Sportowy Feniks",
+      "source_url": "https://fenikssiedlce.pl/zawody/biegi-11-listopada/",
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 20,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://siedlce.pl/aktualnosci/2026/10-2026/narodowe-swieto-niepodleglosci/show",
+        "https://fenikssiedlce.pl/zawody/biegi-11-listopada/regulamin/"
+      ],
+      "checked_at": "2026-11-03T14:31:41Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:31:41Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "Polska – moja miłość. W świecie piosenek Mieczysława Fogga",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-11T17:00:00+01:00",
+      "description": "Piosenki Mieczysława Fogga wykonają Marcin Pomykała i Chór Tibi Mariae z towarzyszeniem fortepianu, kontrabasu i skrzypiec. Na koncert obowiązują bezpłatne wejściówki, które teatr wydaje od 3 listopada od godz. 16:00.",
+      "short_description": "Piosenki Mieczysława Fogga wykonają Marcin Pomykała i Chór Tibi Mariae z towarzyszeniem fortepianu, kontrabasu i skrzypiec. Na koncert obowiązują bezpłatne wejściówki, które teatr wydaje od 3 listopada od godz. 16:00.",
+      "location": {
+        "name": "Centrum Kultury Teatr",
+        "address": "Teatralna 1",
+        "city": "Grudziądz",
+        "latitude": 53.485105555555556,
+        "longitude": 18.756013888888887,
+        "coordinate_source": "https://radiopolska.pl/wykaz/obiekt/367",
+        "coordinate_note": "Współrzędne nadajnika na budynku Centrum Kultury Teatr przy Teatralnej 1."
+      },
+      "source_name": "Urząd Miejski w Grudziądzu",
+      "source_url": "https://grudziadz.pl/wydarzenie/49/25075/108-rocznica-odzyskania-przez-polske-niepodleglosci",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://bip.teatr.grudziadz.pl/",
+        "https://grudziadzmiastootwarte.pl/2026/10/19/narodowe-swieto-niepodleglosci/"
+      ],
+      "checked_at": "2026-11-03T14:31:19Z",
+      "source_verification": {
+        "no_cancellation_notice": true,
+        "checked_at": "2026-11-03T14:31:19Z"
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "Płyń, Wisełko — Warszawska Orkiestra Sentymentalna",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-11T19:00:00+01:00",
+      "end_at": null,
+      "description": "Warszawska Orkiestra Sentymentalna zagra w sali widowiskowej RCK koncert na Święto Niepodległości. W programie polskie piosenki, w tym repertuar inspirowany dwudziestoleciem międzywojennym. Bilet normalny kosztuje 15 zł, ulgowy lub z Kartą Mieszkańca 10 zł.",
+      "short_description": "Warszawska Orkiestra Sentymentalna zagra w sali widowiskowej RCK koncert na Święto Niepodległości. W programie polskie piosenki, w tym repertuar inspirowany dwudziestoleciem międzywojennym. Bilet normalny kosztuje 15 zł, ulgowy lub z Kartą Mieszkańca 10 zł.",
+      "location": {
+        "city": "Kołobrzeg",
+        "name": "Regionalne Centrum Kultury im. Zbigniewa Herberta",
+        "address": "Solna 1",
+        "latitude": 54.181999764072,
+        "longitude": 15.565461400835,
+        "coordinate_source": "https://latarnia.kolobrzeg.eu/8527-kolobrzeg-plusk-1-zanurz-sie-w-dzwiekach-coals-hubert",
+        "coordinate_note": "Marker RCK z data-latitude i data-longitude w oficjalnym portalu miejskim."
+      },
+      "source_name": "Urząd Miasta Kołobrzeg",
+      "source_url": "https://www.i-kolobrzeg.pl/wydarzenie-3500-warszawska_orkiestra_sentymentalna_11-szczegoly-113832.html",
+      "price_type": "paid",
+      "price_min": 10,
+      "price_max": 15,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://latarnia.kolobrzeg.eu/8527-kolobrzeg-plusk-1-zanurz-sie-w-dzwiekach-coals-hubert"
+      ],
+      "checked_at": "2026-11-03T14:32:42Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:32:42Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "Spotkanie z Katarzyną Figurą — Kobieta to ja",
+      "category_slug": "kultura",
+      "start_at": "2026-11-14T18:00:00+01:00",
+      "end_at": null,
+      "description": "Katarzyna Figura spotka się z publicznością w Galerii Nobilis w ramach programu „Kobieta to ja”. Wstęp jest bezpłatny z wejściówką. Liczba miejsc jest ograniczona, a wejściówki wydaje kasa Kina Światowid.",
+      "short_description": "Katarzyna Figura spotka się z publicznością w Galerii Nobilis w ramach programu „Kobieta to ja”. Wstęp jest bezpłatny z wejściówką. Liczba miejsc jest ograniczona, a wejściówki wydaje kasa Kina Światowid.",
+      "location": {
+        "city": "Elbląg",
+        "name": "Centrum Spotkań Europejskich „Światowid”",
+        "address": "Plac Kazimierza Jagiellończyka 1",
+        "latitude": 54.1668613,
+        "longitude": 19.4045688,
+        "coordinate_source": "https://www.openstreetmap.org/node/12595305650",
+        "coordinate_note": "Nazwany węzeł centrum kultury OSM. Numer budynku potwierdzony na stronie Światowida."
+      },
+      "source_name": "Centrum Spotkań Europejskich „Światowid”",
+      "source_url": "https://swiatowid.elblag.pl/pl/aktualnosci13589,kobieta-to-ja-trzy-dni-artystycznych-inspiracji-w-cse-swiatowid-13-15112026",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://www.swiatowid.elblag.pl/pl/informacje/11519,kontakt",
+        "https://swiatowid.elblag.pl/pl/informacje/11667,kalendarz-wydarzen"
+      ],
+      "checked_at": "2026-11-03T14:32:51Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:32:51Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "ESKA Music Tour — Young Leosia, Fukaj i Brokies",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-14T19:00:00+01:00",
+      "end_at": null,
+      "description": "Na jednej scenie w Hali Milenium wystąpią Young Leosia, Fukaj i Brokies. W serwisie eBilet ceny zaczynają się od 49 zł z obowiązkowymi opłatami.",
+      "short_description": "Na jednej scenie w Hali Milenium wystąpią Young Leosia, Fukaj i Brokies. W serwisie eBilet ceny zaczynają się od 49 zł z obowiązkowymi opłatami.",
+      "location": {
+        "city": "Kołobrzeg",
+        "name": "Hala Milenium MOSiR",
+        "address": "Łopuskiego 38",
+        "latitude": 54.174675529248,
+        "longitude": 15.565681784124,
+        "coordinate_source": "https://latarnia.kolobrzeg.eu/59-kolobrzeg-milenium-osrodek-sportowy",
+        "coordinate_note": "Marker nazwanego ośrodka w portalu miejskim, obok wejścia do hali. Oficjalny adres MOSiR."
+      },
+      "source_name": "Urząd Miasta Kołobrzeg",
+      "source_url": "https://www.i-kolobrzeg.pl/wydarzenie-3491-eska_music_tour_kolobrzeg_2026_young-szczegoly-113320.html",
+      "price_type": "paid",
+      "price_min": 49,
+      "price_max": null,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://latarnia.kolobrzeg.eu/59-kolobrzeg-milenium-osrodek-sportowy",
+        "https://www.ebilet.pl/muzyka/festiwale/eska-music-tour"
+      ],
+      "checked_at": "2026-11-03T14:32:42Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:32:42Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "Zdrowie, uroda, trening — wyzwania przyszłości",
+      "category_slug": "inne",
+      "start_at": "2026-11-20T09:30:00+01:00",
+      "description": "W hali PANS odbędzie się konferencja poświęcona zdrowiu, treningowi i pielęgnacji. Udział jest bezpłatny po rejestracji na stronie uczelni.",
+      "short_description": "W hali PANS odbędzie się konferencja poświęcona zdrowiu, treningowi i pielęgnacji. Udział jest bezpłatny po rejestracji na stronie uczelni.",
+      "location": {
+        "name": "Hala Sportowa AZS PANS w Nysie",
+        "address": "Głuchołaska 12",
+        "city": "Nysa",
+        "latitude": 50.458324643222,
+        "longitude": 17.347999796295,
+        "coordinate_source": "https://i.nysa.pl/42-nysa-pwsz-hala-sportowa-azs",
+        "coordinate_note": "Punkt obiektu z atrybutów data-latitude i data-longitude karty Hali Sportowej AZS."
+      },
+      "source_name": "Państwowa Akademia Nauk Stosowanych w Nysie",
+      "source_url": "https://konferencje.pans.nysa.pl/pl/wydarzenie/zdrowie-uroda-trening-wyzwania-przyszlosci",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://informacja-turystyczna.nysa.pl/wydarzenia-w-nysie-listopad-2026-sprawdz-kalendarz-imprez/",
+        "https://www.pans.nysa.pl/kontakt"
+      ],
+      "checked_at": "2026-11-03T14:31:41Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:31:41Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "Baw się razem z nami: Kolory emocji",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-21T11:00:00+01:00",
+      "description": "Anna Paszkiewicz poprowadzi rodzinne zajęcia o emocjach w czytelni czasopism nyskiej biblioteki. Udział bezpłatny po zapisaniu się w Oddziale Dziecięcym lub telefonicznie.",
+      "short_description": "Anna Paszkiewicz poprowadzi rodzinne zajęcia o emocjach w czytelni czasopism nyskiej biblioteki. Udział bezpłatny po zapisaniu się w Oddziale Dziecięcym lub telefonicznie.",
+      "location": {
+        "name": "Miejska i Gminna Biblioteka Publiczna w Nysie — Czytelnia Czasopism",
+        "city": "Nysa",
+        "address": "Sukiennicza 2",
+        "latitude": 50.473298282405,
+        "longitude": 17.332774813502,
+        "coordinate_source": "https://i.nysa.pl/1443-nysa-miejska-i-gminna-biblioteka-publiczna-w-nysie-im-wladyslawa-broniewskiego",
+        "coordinate_note": "Punkt nazwanej biblioteki przy Sukienniczej 2 z atrybutów data-latitude i data-longitude."
+      },
+      "source_name": "Punkt Informacji Turystycznej w Nysie",
+      "source_url": "https://informacja-turystyczna.nysa.pl/wydarzenia-w-nysie-listopad-2026-sprawdz-kalendarz-imprez/",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://cdw.nysa.pl/kontakt-2/",
+        "https://zabytek.pl/pl/obiekty/nysa-dom-wagi-miejskiej-ob-biblioteka"
+      ],
+      "checked_at": "2026-11-03T14:32:56Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:32:56Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "Jarmark św. Mikołaja w Grudziądzu – otwarcie stoisk pierwszego dnia",
+      "category_slug": "targi",
+      "start_at": "2026-12-03T08:30:00+01:00",
+      "description": "Na Rynku i ulicach Starego Miasta pojawią się stoiska z ozdobami, rękodziełem i regionalną żywnością. Regulamin wyznacza otwarcie stoisk o 8:30. Jarmark jest otwarty dla odwiedzających i potrwa do 6 grudnia. Program koncertów i warsztatów organizator publikuje osobno.",
+      "short_description": "Na Rynku i ulicach Starego Miasta pojawią się stoiska z ozdobami, rękodziełem i regionalną żywnością. Regulamin wyznacza otwarcie stoisk o 8:30. Jarmark jest otwarty dla odwiedzających i potrwa do 6 grudnia. Program koncertów i warsztatów organizator publikuje osobno.",
+      "location": {
+        "name": "Rynek w Grudziądzu",
+        "address": "Rynek",
+        "city": "Grudziądz",
+        "latitude": 53.492222,
+        "longitude": 18.748889,
+        "coordinate_source": "https://wmgrudziadz.pl/przewodnik/rynek-w-grudziadzu",
+        "coordinate_note": "Współrzędne placu Rynek z przewodnika, zgodnie z opisem miejsca na stronie cyklu."
+      },
+      "source_name": "Centrum Kultury Teatr w Grudziądzu",
+      "source_url": "https://teatr.grudziadz.pl/wydarzenie/jarmark-sw-mikolaja-2026/",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://teatr.grudziadz.pl/cykliczne/jarmark-sw-mikolaja/",
+        "https://teatr.grudziadz.pl/wp-content/uploads/2026/09/Regulamin-2026.pdf"
+      ],
+      "checked_at": "2026-11-03T14:31:19Z",
+      "source_verification": {
+        "no_cancellation_notice": true,
+        "checked_at": "2026-11-03T14:31:19Z"
+      },
+      "editorial_note": "08:30 to otwarcie stoisk według § IV pkt 6 regulaminu, nie godzina uroczystej inauguracji. Oficjalna strona określa jarmark jako otwarty dla wszystkich, bez jednoznacznej informacji cenowej dla odwiedzających; cena nieoznaczona.",
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "Melodie pod choinkę – Halina Mlynkova i Zgorzelecka Orkiestra Mandolinistów",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-05T18:00:00+01:00",
+      "description": "Halina Mlynkova wystąpi ze Zgorzelecką Orkiestrą Mandolinistów w programie z kolędami w orkiestrowych aranżacjach. Bilet kosztuje 80 zł w kasach MDK i CSR. Sprzedaż online może doliczać opłatę serwisową.",
+      "short_description": "Halina Mlynkova wystąpi ze Zgorzelecką Orkiestrą Mandolinistów w programie z kolędami w orkiestrowych aranżacjach. Bilet kosztuje 80 zł w kasach MDK i CSR. Sprzedaż online może doliczać opłatę serwisową.",
+      "location": {
+        "name": "PGE Turów Arena",
+        "address": "Lubańska 9a",
+        "city": "Zgorzelec",
+        "latitude": 51.158828,
+        "longitude": 15.0144864,
+        "coordinate_source": "https://mapcarta.com/N5506003541",
+        "coordinate_note": "Użyto istniejącego punktu PGE Turów Arena, zgodnego z nazwą i adresem obiektu oraz punktem OSM 5506003541 z dokładnością około 2 m."
+      },
+      "source_name": "Miejski Dom Kultury w Zgorzelcu",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/10/13/melodie-pod-choinke-czyli-halina-mlynkova-i-zgorzelecka-orkiestra-mandolinistow/",
+      "price_type": "paid",
+      "price_min": 80,
+      "price_max": 80,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://pgeturowarena.eu/kontakt-arena",
+        "https://www.kupbilecik.pl/imprezy/223370/zgorzelec/melodie+pod+choinke/"
+      ],
+      "checked_at": "2026-11-03T14:31:20Z",
+      "source_verification": {
+        "no_cancellation_notice": true,
+        "checked_at": "2026-11-03T14:31:20Z"
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    },
+    {
+      "title": "SztukaTERRiA — Warmińsko-Mazurski Jarmark Wyrobów Artystycznych",
+      "category_slug": "targi",
+      "start_at": "2026-12-13T10:00:00+01:00",
+      "end_at": "2026-12-13T17:00:00+01:00",
+      "description": "Grudniowy jarmark w Światowidzie łączy stoiska regionalnych rzemieślników i producentów żywności. Będzie można znaleźć m.in. biżuterię, ceramikę, ozdoby świąteczne, miody i przetwory. Wstęp wolny.",
+      "short_description": "Grudniowy jarmark w Światowidzie łączy stoiska regionalnych rzemieślników i producentów żywności. Będzie można znaleźć m.in. biżuterię, ceramikę, ozdoby świąteczne, miody i przetwory. Wstęp wolny.",
+      "location": {
+        "city": "Elbląg",
+        "name": "Centrum Spotkań Europejskich „Światowid”",
+        "address": "Plac Kazimierza Jagiellończyka 1",
+        "latitude": 54.1668613,
+        "longitude": 19.4045688,
+        "coordinate_source": "https://www.openstreetmap.org/node/12595305650",
+        "coordinate_note": "Nazwany węzeł centrum kultury OSM. Numer budynku potwierdzony na stronie Światowida."
+      },
+      "source_name": "Centrum Spotkań Europejskich „Światowid”",
+      "source_url": "https://swiatowid.elblag.pl/pl/aktualnosci13633,sztukaterria-2026-znajdz-wyjatkowe-prezenty-i-poczuj-magie-swiat",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "evidence_urls": [
+        "https://www.swiatowid.elblag.pl/pl/informacje/11519,kontakt",
+        "https://swiatowid.elblag.pl/pl/informacje/11667,kalendarz-wydarzen"
+      ],
+      "checked_at": "2026-11-03T14:32:41Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-03T14:32:41Z",
+        "no_cancellation_notice": true
+      },
+      "media_review": "Sprawdzono publiczne zapowiedzi. Nie potwierdzono prawa do publikacji materiału wydarzenia. Pole obrazu pozostaje puste i portal używa EventVisual."
+    }
+  ]
+}

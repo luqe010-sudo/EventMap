@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import type { ExpressionSpecification, FilterSpecification } from "maplibre-gl";
 import type { MutableRefObject } from "react";
@@ -9,6 +9,7 @@ import { hasLocationCoordinates } from "@/lib/event-search";
 import { eventPath } from "@/lib/slugs";
 import { formatPolishDate } from "@/lib/date-format";
 import { getEventCoverPhoto } from "@/lib/event-cover-media";
+import { getMapSpiderLayout } from "@/lib/map-spider-layout";
 import * as LucideIcons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { createRoot } from "react-dom/client";
@@ -30,6 +31,7 @@ type EventFeatureProperties = {
   title: string;
   address: string;
   category: string;
+  categorySlug: string;
   color: string;
   icon: string;
   description?: string;
@@ -40,6 +42,23 @@ type EventFeatureProperties = {
 };
 
 type MapEvent = EventMapMarker | EventItem;
+type EventFeatureCollection = GeoJSON.FeatureCollection<GeoJSON.Point, EventFeatureProperties>;
+type CategoryLayers = {
+  source: string;
+  glow: string;
+  cluster: string;
+  clusterIcon: string;
+  pin: string;
+  icon: string;
+};
+type PinLayers = Pick<CategoryLayers, "source" | "pin" | "icon">;
+type SpiderPage = { groupId: string; page: number; pageCount: number; first: number; last: number; total: number };
+type MapSpider = {
+  setEvents: (events: EventFeatureCollection) => void;
+  showPage: (groupId: string, page: number) => void;
+  contains: (eventId: string) => boolean;
+  dispose: () => void;
+};
 
 const STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
 const EVENT_SOURCE_ID = "eventmap-events";
@@ -48,7 +67,26 @@ const LOCATION_MARKER_CLASS = "locationMarker";
 const NO_SELECTED_EVENT_ID = "__none__";
 const EVENT_CLUSTER_MAX_ZOOM = 11;
 const EVENT_CLUSTER_RADIUS = 34;
-const OVERLAPPING_MARKER_OFFSET_METERS = 28;
+const SPIDER_MIN_ZOOM = EVENT_CLUSTER_MAX_ZOOM + 1;
+const SPIDER_REFRESH_INTERVAL = 80;
+const SPIDER_LAYERS: PinLayers = {
+  source: "eventmap-spider", pin: "eventmap-spider-pin", icon: "eventmap-spider-icon"
+};
+const SPIDER_LINES = "eventmap-spider-lines";
+const EMPTY_SPIDER_DATA: GeoJSON.FeatureCollection = { type: "FeatureCollection", features: [] };
+const EMPTY_EVENT_FEATURES: EventFeatureCollection = { type: "FeatureCollection", features: [] };
+const EVENT_CATEGORY_COLOR: ExpressionSpecification = ["to-color", ["get", "color"], "#ef3f18"];
+const EVENT_ICON_LAYOUT = {
+  "icon-image": ["get", "icon"] as ExpressionSpecification,
+  "icon-size": 0.61,
+  "icon-allow-overlap": true,
+  "icon-ignore-placement": true
+};
+const CLUSTER_DOT_RADIUS: ExpressionSpecification = [
+  "interpolate", ["linear"], ["get", "point_count"],
+  2, 16, 10, 18, 30, 21, 80, 24, 200, 27, 1000, 30, 10000, 33
+];
+const CLUSTER_SORT_KEY: ExpressionSpecification = ["-", 0, ["get", "point_count"]];
 const POLAND_CENTER: [number, number] = [19.1451, 51.9194];
 const POLAND_BOUNDS: [[number, number], [number, number]] = [
   [14.07, 49.0],
@@ -77,12 +115,19 @@ export default function MapLibreMap({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const locationMarkerRef = useRef<maplibregl.Marker | null>(null);
+  const categoryLayersRef = useRef(new Map<string, CategoryLayers>());
+  const spiderRef = useRef<MapSpider | null>(null);
   const onSelectEventRef = useRef(onSelectEvent);
   const showEventPopupRef = useRef(showEventPopup);
-  const initialCenterRef = useRef<[number, number]>(
-    hasLocationCoordinates(location) ? [location.longitude, location.latitude] : POLAND_CENTER
-  );
+  const selectedEventIdRef = useRef(selectedEventId);
+  const initialMapViewRef = useRef({
+    center: hasLocationCoordinates(location) ? [location.longitude, location.latitude] as [number, number] : POLAND_CENTER,
+    zoom: location ? 6 : 4.8,
+    scrollZoom: !detailMode
+  });
   const [mapReady, setMapReady] = useState(false);
+  const [spiderPage, setSpiderPage] = useState<SpiderPage | null>(null);
+  const eventFeatures = useMemo(() => buildEventFeatureCollection(events), [events]);
 
   useEffect(() => {
     onSelectEventRef.current = onSelectEvent;
@@ -98,29 +143,32 @@ export default function MapLibreMap({
     const map = new maplibregl.Map({
       container: containerRef.current,
       style: STYLE_URL,
-      center: initialCenterRef.current,
-      zoom: location ? 6 : 4.8,
+      ...initialMapViewRef.current,
       attributionControl: false,
-      scrollZoom: !detailMode,
       locale: MAP_LOCALE
     });
 
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-left");
     map.addControl(new maplibregl.AttributionControl({ compact: true }), "bottom-right");
     mapRef.current = map;
+    const categoryLayers = categoryLayersRef.current;
 
-    map.on("load", async () => {
+    map.on("load", () => {
       applyPolishLabels(map);
-      await addCategoryImages(map, events);
       addAdministrativeBoundaryLayers(map);
       addHouseNumberLayer(map);
-      addEventSourceAndLayers(map, onSelectEventRef, showEventPopupRef);
+      spiderRef.current = bindEventLayerInteractions(
+        map, categoryLayers, onSelectEventRef, showEventPopupRef, selectedEventIdRef, setSpiderPage
+      );
       setMapReady(true);
     });
 
     return () => {
       locationMarkerRef.current?.remove();
       locationMarkerRef.current = null;
+      categoryLayers.clear();
+      spiderRef.current?.dispose();
+      spiderRef.current = null;
       map.remove();
       mapRef.current = null;
       setMapReady(false);
@@ -131,13 +179,20 @@ export default function MapLibreMap({
     const map = mapRef.current;
     if (!map || !mapReady) return;
 
-    void addCategoryImages(map, events).then(() => {
-      const source = map.getSource(EVENT_SOURCE_ID) as maplibregl.GeoJSONSource | undefined;
-      const data = buildEventFeatureCollection(events);
-      source?.setData(data);
-      // A tile laid out while an icon was loading keeps a bare pin until it is rebuilt.
-      map.once("idle", () => source?.setData(data));
+    const controller = new AbortController();
+    spiderRef.current?.setEvents(EMPTY_EVENT_FEATURES);
+    void addCategoryImages(map, eventFeatures, controller.signal).then(() => {
+      if (controller.signal.aborted) return;
+      syncEventSources(map, eventFeatures, categoryLayersRef.current, selectedEventIdRef.current);
+      spiderRef.current?.setEvents(eventFeatures);
     });
+    return () => controller.abort();
+  }, [eventFeatures, mapReady]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !mapReady) return;
+
     updateLocationMarker(map, location, locationMarkerRef);
     if (detailMode && hasLocationCoordinates(location)) {
       map.jumpTo({ center: [location.longitude, location.latitude], zoom: 14 });
@@ -145,16 +200,17 @@ export default function MapLibreMap({
   }, [detailMode, events, location, mapReady]);
 
   useEffect(() => {
+    selectedEventIdRef.current = selectedEventId;
     const map = mapRef.current;
     if (!map || !mapReady) return;
-    updateSelectedPaint(map, selectedEventId);
+    updateSelectedPaint(map, categoryLayersRef.current, selectedEventId);
   }, [mapReady, selectedEventId]);
 
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || !mapReady || !focusedEventId) return;
-    focusMapOnEvent(map, events, focusedEventId);
-  }, [events, focusedEventId, mapReady]);
+    if (!map || !mapReady || !focusedEventId || spiderRef.current?.contains(focusedEventId)) return;
+    focusMapOnEvent(map, eventFeatures, focusedEventId);
+  }, [eventFeatures, focusedEventId, mapReady]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -164,140 +220,330 @@ export default function MapLibreMap({
     return () => window.cancelAnimationFrame(frameId);
   }, [isVisible, mapReady]);
 
-  return <div ref={containerRef} className="mapLibreCanvas" />;
+  return (
+    <div ref={containerRef} className="mapLibreCanvas">
+      {spiderPage && (
+        <div className="mapSpiderControls" role="group" aria-label="Rozsunięte pinezki">
+          <button
+            type="button"
+            aria-label="Poprzednie pinezki"
+            disabled={spiderPage.page === 0}
+            onClick={() => spiderRef.current?.showPage(spiderPage.groupId, spiderPage.page - 1)}
+          >
+            <LucideIcons.ChevronLeft size={16} aria-hidden="true" />
+          </button>
+          <span aria-live="polite">{spiderPage.first}–{spiderPage.last} z {spiderPage.total}</span>
+          <button
+            type="button"
+            aria-label="Następne pinezki"
+            disabled={spiderPage.page + 1 === spiderPage.pageCount}
+            onClick={() => spiderRef.current?.showPage(spiderPage.groupId, spiderPage.page + 1)}
+          >
+            <LucideIcons.ChevronRight size={16} aria-hidden="true" />
+          </button>
+        </div>
+      )}
+    </div>
+  );
 }
 
-function addEventSourceAndLayers(
+function eventLayerIds(source: string): CategoryLayers {
+  return {
+    source,
+    glow: `${source}-glow`,
+    cluster: `${source}-cluster`,
+    clusterIcon: `${source}-cluster-icon`,
+    pin: `${source}-pin`,
+    icon: `${source}-pin-icon`
+  };
+}
+
+function syncEventSources(
   map: maplibregl.Map,
-  onSelectEventRef: MutableRefObject<(eventId: string) => void>,
-  showEventPopupRef: MutableRefObject<boolean>
+  data: EventFeatureCollection,
+  categoryLayers: Map<string, CategoryLayers>,
+  selectedEventId?: string
 ) {
-  if (!map.getSource(EVENT_SOURCE_ID)) {
-    map.addSource(EVENT_SOURCE_ID, {
-      type: "geojson",
-      data: buildEventFeatureCollection([]),
-      cluster: true,
-      clusterMaxZoom: EVENT_CLUSTER_MAX_ZOOM,
-      clusterRadius: EVENT_CLUSTER_RADIUS
-    });
+  const categoryData = new Map<string, EventFeatureCollection>();
+  for (const feature of data.features) {
+    const sourceId = `${EVENT_SOURCE_ID}-${feature.properties.categorySlug}`;
+    const existing = categoryData.get(sourceId);
+    if (existing) existing.features.push(feature);
+    else categoryData.set(sourceId, { type: "FeatureCollection", features: [feature] });
   }
 
-  if (!map.getLayer("event-clusters")) {
-    map.addLayer({
-      id: "event-clusters",
-      type: "circle",
-      source: EVENT_SOURCE_ID,
-      filter: ["has", "point_count"],
-      paint: {
-        "circle-color": [
-          "step",
-          ["get", "point_count"],
-          "#2563eb",
-          10,
-          "#7c3aed",
-          25,
-          "#f59e0b",
-          50,
-          "#ef3f18"
-        ],
-        "circle-radius": ["step", ["get", "point_count"], 17, 10, 21, 25, 26, 50, 32],
-        "circle-stroke-color": "#ffffff",
-        "circle-stroke-width": 2.4,
-        "circle-stroke-opacity": 0.78,
-        "circle-opacity": 0.7
+  for (const [sourceId, layers] of categoryLayers) {
+    if (categoryData.has(sourceId)) continue;
+    for (const layerId of [layers.glow, layers.cluster, layers.clusterIcon, layers.pin, layers.icon]) {
+      map.removeLayer(layerId);
+    }
+    map.removeSource(sourceId);
+    categoryLayers.delete(sourceId);
+  }
+
+  const orderedSources = [...categoryData].sort(([first], [second]) => first.localeCompare(second));
+  for (const [index, [sourceId, features]] of orderedSources.entries()) {
+    const offset = categoryClusterOffset(index, orderedSources.length);
+    const layers = eventLayerIds(sourceId);
+    const source = map.getSource<maplibregl.GeoJSONSource>(sourceId);
+    if (source) {
+      source.setData(features);
+      for (const layer of [layers.glow, layers.cluster]) {
+        map.setPaintProperty(layer, "circle-translate", offset);
       }
-    });
+      map.setPaintProperty(layers.clusterIcon, "icon-translate", offset);
+    } else {
+      addCategoryLayers(map, layers, features, offset, categoryLayers.values().next().value);
+    }
+    categoryLayers.set(sourceId, layers);
   }
+  updateSelectedPaint(map, categoryLayers, selectedEventId);
+}
 
-  if (!map.getLayer("event-cluster-count")) {
-    map.addLayer({
-      id: "event-cluster-count",
-      type: "symbol",
-      source: EVENT_SOURCE_ID,
-      filter: ["has", "point_count"],
-      layout: {
-        "text-field": ["get", "point_count_abbreviated"],
-        "text-font": ["Noto Sans Bold"],
-        "text-size": 12
-      },
-      paint: {
-        "text-color": "#ffffff"
-      }
-    });
-  }
+function categoryClusterOffset(index: number, count: number): [number, number] {
+  // Keep clusters from different categories visible when they share a venue.
+  if (count < 2) return [0, 0];
+  const angle = index * 2 * Math.PI / count;
+  const radius = Math.min(32, Math.max(20, count * 2.8));
+  return [Math.cos(angle) * radius, Math.sin(angle) * radius];
+}
 
-  if (!map.getLayer("event-pins")) {
-    map.addLayer({
-      id: "event-pins",
-      type: "circle",
-      source: EVENT_SOURCE_ID,
-      filter: ["!", ["has", "point_count"]],
-      paint: {
-        "circle-color": ["coalesce", ["get", "color"], "#ef3f18"],
-        "circle-radius": selectedCircleRadius(NO_SELECTED_EVENT_ID),
-        "circle-stroke-color": "#ffffff",
-        "circle-stroke-width": selectedStrokeWidth(NO_SELECTED_EVENT_ID),
-        "circle-stroke-opacity": 0.76,
-        "circle-opacity": selectedCircleOpacity(NO_SELECTED_EVENT_ID)
-      }
-    });
-  }
+function addCategoryLayers(
+  map: maplibregl.Map,
+  layers: CategoryLayers,
+  data: EventFeatureCollection,
+  offset: [number, number],
+  firstCategoryLayers?: CategoryLayers
+) {
+  const visibleZoom = { maxzoom: SPIDER_MIN_ZOOM };
+  map.addSource(layers.source, {
+    type: "geojson",
+    data,
+    cluster: true,
+    clusterMaxZoom: EVENT_CLUSTER_MAX_ZOOM,
+    clusterRadius: EVENT_CLUSTER_RADIUS,
+    clusterProperties: {
+      color: [["accumulated"], ["get", "color"]],
+      icon: [["accumulated"], ["get", "icon"]]
+    }
+  });
 
-  if (!map.getLayer("event-pin-icons")) {
-    map.addLayer({
-      id: "event-pin-icons",
-      type: "symbol",
-      source: EVENT_SOURCE_ID,
-      filter: ["!", ["has", "point_count"]],
-      layout: {
-        "icon-image": ["get", "icon"],
-        "icon-size": 0.61,
-        "icon-allow-overlap": true,
-        "icon-ignore-placement": true
-      },
-      paint: {
-        "icon-opacity": selectedIconOpacity(NO_SELECTED_EVENT_ID)
-      }
-    });
-  }
+  const clusterPaint = {
+    "circle-color": EVENT_CATEGORY_COLOR,
+    "circle-translate": offset,
+    "circle-translate-anchor": "viewport" as const
+  };
+  map.addLayer({
+    id: layers.glow,
+    ...visibleZoom,
+    type: "circle",
+    source: layers.source,
+    filter: ["has", "point_count"],
+    paint: {
+      ...clusterPaint,
+      "circle-radius": ["+", CLUSTER_DOT_RADIUS, 7],
+      "circle-blur": 0.55,
+      "circle-opacity": 0.36
+    }
+  }, firstCategoryLayers?.cluster);
 
-  bindEventLayerInteractions(map, onSelectEventRef, showEventPopupRef);
+  map.addLayer({
+    id: layers.cluster,
+    ...visibleZoom,
+    type: "circle",
+    source: layers.source,
+    filter: ["has", "point_count"],
+    layout: { "circle-sort-key": CLUSTER_SORT_KEY },
+    paint: {
+      ...clusterPaint,
+      "circle-radius": CLUSTER_DOT_RADIUS,
+      "circle-stroke-color": "#ffffff",
+      "circle-stroke-width": 1.8,
+      "circle-stroke-opacity": 0.76,
+      "circle-opacity": 0.74
+    }
+  }, firstCategoryLayers?.pin);
+
+  map.addLayer({
+    id: layers.clusterIcon,
+    ...visibleZoom,
+    type: "symbol",
+    source: layers.source,
+    filter: ["has", "point_count"],
+    layout: { ...EVENT_ICON_LAYOUT, "symbol-sort-key": CLUSTER_SORT_KEY },
+    paint: {
+      "icon-translate": offset,
+      "icon-translate-anchor": "viewport",
+      "icon-opacity": 0.84
+    }
+  }, firstCategoryLayers?.pin);
+
+  addEventPinLayers(map, layers, ["!", ["has", "point_count"]], visibleZoom, firstCategoryLayers?.icon);
+}
+
+function addEventPinLayers(
+  map: maplibregl.Map,
+  layers: PinLayers,
+  filter: FilterSpecification,
+  visibleZoom: { minzoom?: number; maxzoom?: number } = {},
+  beforePin?: string
+) {
+  map.addLayer({
+    id: layers.pin,
+    ...visibleZoom,
+    type: "circle",
+    source: layers.source,
+    filter,
+    paint: {
+      "circle-color": EVENT_CATEGORY_COLOR,
+      "circle-stroke-color": "#ffffff",
+      "circle-stroke-opacity": 0.76
+    }
+  }, beforePin);
+
+  map.addLayer({
+    id: layers.icon,
+    ...visibleZoom,
+    type: "symbol",
+    source: layers.source,
+    filter,
+    layout: EVENT_ICON_LAYOUT
+  });
 }
 
 function bindEventLayerInteractions(
   map: maplibregl.Map,
+  categoryLayers: Map<string, CategoryLayers>,
   onSelectEventRef: MutableRefObject<(eventId: string) => void>,
-  showEventPopupRef: MutableRefObject<boolean>
-) {
-  map.on("click", "event-clusters", (event) => {
-    const feature = map.queryRenderedFeatures(event.point, { layers: ["event-clusters"] })[0];
-    const clusterId = feature?.properties?.cluster_id;
-    const geometry = feature?.geometry;
-    if (clusterId == null || !geometry || geometry.type !== "Point") return;
+  showEventPopupRef: MutableRefObject<boolean>,
+  selectedEventIdRef: MutableRefObject<string | undefined>,
+  setSpiderPage: (page: SpiderPage | null) => void
+): MapSpider {
+  const spiderSource = addSpiderLayers(map);
+  updatePinSelectedPaint(map, SPIDER_LAYERS, selectedEventIdRef.current);
+  let events = EMPTY_EVENT_FEATURES;
+  let layoutVisible = false;
+  let layoutFrame: number | undefined;
+  let lastRefresh = 0;
+  let clickVersion = 0;
+  let activeGroupId: string | undefined;
+  let pagerKey = "";
+  let spiderPopup: maplibregl.Popup | undefined;
+  let groups: ReturnType<typeof getMapSpiderLayout>["groups"] = [];
+  const groupPages = new Map<string, number>();
+  const eventGroups = new Map<string, string>();
 
-    const source = map.getSource(EVENT_SOURCE_ID) as maplibregl.GeoJSONSource;
-    void source.getClusterExpansionZoom(clusterId).then((zoom) => {
-      map.easeTo({
-        center: geometry.coordinates as [number, number],
-        zoom,
-        duration: 500
-      });
-    });
-  });
+  function closeSpiderPopup() {
+    spiderPopup?.remove();
+    spiderPopup = undefined;
+  }
+
+  function updatePager() {
+    const group = groups.find(item => item.id === activeGroupId && item.pageCount > 1)
+      ?? groups.find(item => item.pageCount > 1);
+    const key = group ? JSON.stringify(group) : "";
+    if (key === pagerKey) return;
+    pagerKey = key;
+    setSpiderPage(group ? {
+      groupId: group.id,
+      page: group.page,
+      pageCount: group.pageCount,
+      first: group.page * group.pageSize + 1,
+      last: Math.min((group.page + 1) * group.pageSize, group.total),
+      total: group.total
+    } : null);
+  }
+
+  function refreshLayout() {
+    lastRefresh = performance.now();
+    if (layoutFrame !== undefined) window.cancelAnimationFrame(layoutFrame);
+    layoutFrame = undefined;
+    eventGroups.clear();
+    if (map.getZoom() < SPIDER_MIN_ZOOM || !events.features.length) {
+      if (layoutVisible) spiderSource.setData(EMPTY_SPIDER_DATA);
+      layoutVisible = false;
+      groups = [];
+      updatePager();
+      return;
+    }
+
+    const canvas = map.getCanvas();
+    const bottomInset = map.getContainer().closest(".mobileMapView") ? Math.min(64, canvas.clientHeight / 5) : 0;
+    const bounds = map.getBounds();
+    const visibleEvents = new Map<string, EventFeatureCollection["features"][number]>();
+    const points: Array<{ id: string; x: number; y: number }> = [];
+    for (const feature of events.features) {
+      const coordinates = feature.geometry.coordinates as [number, number];
+      if (!bounds.contains(coordinates)) continue;
+      const point = map.project(coordinates);
+      const id = feature.properties.id;
+      visibleEvents.set(id, feature);
+      points.push({ id, x: point.x, y: point.y });
+    }
+    const layout = getMapSpiderLayout(
+      points,
+      { width: canvas.clientWidth, height: canvas.clientHeight - bottomInset },
+      groupPages
+    );
+    const features: GeoJSON.Feature[] = [];
+    for (const pin of layout.pins) {
+      const feature = visibleEvents.get(pin.id)!;
+      if (!pin.groupId) {
+        features.push(feature);
+        continue;
+      }
+      const position = map.unproject([pin.x, pin.y]).toArray();
+      features.push(
+        { type: "Feature", geometry: { type: "LineString", coordinates: [feature.geometry.coordinates, position] }, properties: {} },
+        { ...feature, geometry: { type: "Point", coordinates: position } }
+      );
+      eventGroups.set(pin.id, pin.groupId);
+    }
+    spiderSource.setData({ type: "FeatureCollection", features });
+    layoutVisible = true;
+    groups = layout.groups;
+    updatePager();
+  }
+
+  const getEventFeature = (point: maplibregl.Point) => {
+    const layers = map.getZoom() >= SPIDER_MIN_ZOOM
+      ? [SPIDER_LAYERS.pin]
+      : [...categoryLayers.values()].flatMap(({ cluster, pin }) => [cluster, pin]);
+    return layers.length ? map.queryRenderedFeatures(point, { layers })[0] : undefined;
+  };
 
   map.on("click", (event) => {
-    const feature = map.queryRenderedFeatures(event.point, { layers: ["event-pin-icons", "event-pins"] })[0];
+    const version = ++clickVersion;
+    const feature = getEventFeature(event.point);
     const geometry = feature?.geometry;
     if (!feature?.properties || !geometry || geometry.type !== "Point") return;
 
+    const coordinates = geometry.coordinates as [number, number];
+    const clusterId = feature.properties.cluster_id;
+    if (typeof clusterId === "number") {
+      const source = map.getSource<maplibregl.GeoJSONSource>(feature.source);
+      void source?.getClusterExpansionZoom(clusterId).then((zoom) => {
+        if (version === clickVersion) map.easeTo({ center: coordinates, zoom, duration: 500 });
+      }).catch((error) => {
+        if (version === clickVersion) console.error("[map] Failed to expand event cluster", error);
+      });
+      return;
+    }
+
     const properties = feature.properties as EventFeatureProperties;
+    const groupId = eventGroups.get(properties.id);
+    if (groupId) {
+      activeGroupId = groupId;
+      updatePager();
+    }
     onSelectEventRef.current(properties.id);
 
     if (showEventPopupRef.current) {
       const popup = new maplibregl.Popup({ offset: 18 })
-        .setLngLat(geometry.coordinates as [number, number])
+        .setLngLat(coordinates)
         .setHTML(renderEventPopup(properties))
         .addTo(map);
+      if (groupId) spiderPopup = popup;
       bindPopupImageFallback(popup);
 
       if (!properties.imageUrl) {
@@ -311,32 +557,84 @@ function bindEventLayerInteractions(
     }
   });
 
-  ["event-clusters", "event-pins", "event-pin-icons"].forEach((layerId) => {
-    map.on("mouseenter", layerId, () => {
-      map.getCanvas().style.cursor = "pointer";
-    });
-    map.on("mouseleave", layerId, () => {
-      map.getCanvas().style.cursor = "";
-    });
+  map.on("movestart", () => {
+    clickVersion += 1;
+    closeSpiderPopup();
   });
+  map.on("move", () => {
+    const needsLayout = map.getZoom() >= SPIDER_MIN_ZOOM && events.features.length > 0;
+    if (!needsLayout && !layoutVisible) return;
+    if (layoutFrame === undefined && (needsLayout !== layoutVisible || performance.now() - lastRefresh >= SPIDER_REFRESH_INTERVAL)) {
+      layoutFrame = window.requestAnimationFrame(refreshLayout);
+    }
+  });
+  map.on("moveend", refreshLayout);
+  map.on("resize", refreshLayout);
+  map.on("mousemove", (event) => {
+    map.getCanvas().style.cursor = getEventFeature(event.point) ? "pointer" : "";
+  });
+  map.on("mouseout", () => {
+    map.getCanvas().style.cursor = "";
+  });
+  return {
+    setEvents(data) {
+      clickVersion += 1;
+      events = data;
+      activeGroupId = undefined;
+      groupPages.clear();
+      closeSpiderPopup();
+      refreshLayout();
+    },
+    showPage(groupId, page) {
+      activeGroupId = groupId;
+      groupPages.set(groupId, page);
+      closeSpiderPopup();
+      refreshLayout();
+    },
+    contains: eventId => eventGroups.has(eventId),
+    dispose() {
+      clickVersion += 1;
+      if (layoutFrame !== undefined) window.cancelAnimationFrame(layoutFrame);
+      closeSpiderPopup();
+    }
+  };
 }
 
-function buildEventFeatureCollection(events: MapEvent[]): GeoJSON.FeatureCollection<GeoJSON.Point, EventFeatureProperties> {
-  const positionedEvents = spreadOverlappingEventCoordinates(events.filter(hasCoordinates));
+function addSpiderLayers(map: maplibregl.Map) {
+  map.addSource(SPIDER_LAYERS.source, {
+    type: "geojson", data: EMPTY_SPIDER_DATA, maxzoom: Math.ceil(map.getMaxZoom())
+  });
+  map.addLayer({
+    id: SPIDER_LINES,
+    type: "line",
+    source: SPIDER_LAYERS.source,
+    minzoom: SPIDER_MIN_ZOOM,
+    filter: ["==", ["geometry-type"], "LineString"],
+    paint: {
+      "line-color": "#334155",
+      "line-width": 2,
+      "line-opacity": ["interpolate", ["linear"], ["zoom"], SPIDER_MIN_ZOOM, 0.55, 15, 0.78]
+    }
+  });
+  addEventPinLayers(map, SPIDER_LAYERS, ["==", ["geometry-type"], "Point"], { minzoom: SPIDER_MIN_ZOOM });
+  return map.getSource<maplibregl.GeoJSONSource>(SPIDER_LAYERS.source)!;
+}
 
+function buildEventFeatureCollection(events: MapEvent[]): EventFeatureCollection {
   return {
     type: "FeatureCollection",
-    features: positionedEvents.map(({ event, coordinates }) => ({
+    features: events.filter(hasCoordinates).map(event => ({
       type: "Feature",
       geometry: {
         type: "Point",
-        coordinates
+        coordinates: [event.longitude, event.latitude]
       },
       properties: {
         id: event.id,
         title: event.title,
         address: event.address,
         category: event.category,
+        categorySlug: event.categorySlug,
         color: event.categoryColor,
         icon: getMapEventIcon(event),
         description: "short_description" in event ? event.short_description ?? event.description ?? "" : undefined,
@@ -347,44 +645,6 @@ function buildEventFeatureCollection(events: MapEvent[]): GeoJSON.FeatureCollect
       }
     }))
   };
-}
-
-function spreadOverlappingEventCoordinates(events: Array<MapEvent & { latitude: number; longitude: number }>) {
-  const groups = new Map<string, Array<MapEvent & { latitude: number; longitude: number }>>();
-
-  for (const event of events) {
-    const key = `${event.latitude.toFixed(5)}:${event.longitude.toFixed(5)}`;
-    const group = groups.get(key) ?? [];
-    group.push(event);
-    groups.set(key, group);
-  }
-
-  return Array.from(groups.values()).flatMap((group) => {
-    if (group.length === 1) {
-      const event = group[0];
-      return [{ event, coordinates: [event.longitude, event.latitude] as [number, number] }];
-    }
-
-    return group.map((event, index) => ({
-      event,
-      coordinates: offsetCoordinates(event.longitude, event.latitude, index, group.length)
-    }));
-  });
-}
-
-function offsetCoordinates(longitude: number, latitude: number, index: number, total: number): [number, number] {
-  const angle = (Math.PI * 2 * index) / total;
-  const ring = Math.floor(index / 8);
-  const radiusMeters = OVERLAPPING_MARKER_OFFSET_METERS * (1 + ring * 0.55);
-  const eastMeters = Math.cos(angle) * radiusMeters;
-  const northMeters = Math.sin(angle) * radiusMeters;
-  const metersPerDegreeLatitude = 111_320;
-  const metersPerDegreeLongitude = metersPerDegreeLatitude * Math.max(Math.cos(latitude * Math.PI / 180), 0.2);
-
-  return [
-    longitude + eastMeters / metersPerDegreeLongitude,
-    latitude + northMeters / metersPerDegreeLatitude
-  ];
 }
 
 function updateLocationMarker(
@@ -440,10 +700,8 @@ function fitMapToPoland(map: maplibregl.Map) {
   map.fitBounds(POLAND_BOUNDS, { padding: 18, duration: 500 });
 }
 
-function focusMapOnEvent(map: maplibregl.Map, events: MapEvent[], eventId: string) {
-  const feature = buildEventFeatureCollection(events).features.find(
-    (item) => item.properties.id === eventId
-  );
+function focusMapOnEvent(map: maplibregl.Map, data: EventFeatureCollection, eventId: string) {
+  const feature = data.features.find((item) => item.properties.id === eventId);
   if (!feature) return;
 
   map.easeTo({
@@ -454,15 +712,22 @@ function focusMapOnEvent(map: maplibregl.Map, events: MapEvent[], eventId: strin
   });
 }
 
-function updateSelectedPaint(map: maplibregl.Map, selectedEventId?: string) {
-  if (!map.getLayer("event-pins")) return;
+function updateSelectedPaint(
+  map: maplibregl.Map,
+  categoryLayers: Map<string, CategoryLayers>,
+  selectedEventId?: string
+) {
+  for (const layers of categoryLayers.values()) updatePinSelectedPaint(map, layers, selectedEventId);
+  updatePinSelectedPaint(map, SPIDER_LAYERS, selectedEventId);
+}
+
+function updatePinSelectedPaint(map: maplibregl.Map, { pin, icon }: PinLayers, selectedEventId?: string) {
+  if (!map.getLayer(pin)) return;
   const selectedId = selectedEventId ?? NO_SELECTED_EVENT_ID;
-  map.setPaintProperty("event-pins", "circle-radius", selectedCircleRadius(selectedId));
-  map.setPaintProperty("event-pins", "circle-stroke-width", selectedStrokeWidth(selectedId));
-  map.setPaintProperty("event-pins", "circle-opacity", selectedCircleOpacity(selectedId));
-  if (map.getLayer("event-pin-icons")) {
-    map.setPaintProperty("event-pin-icons", "icon-opacity", selectedIconOpacity(selectedId));
-  }
+  map.setPaintProperty(pin, "circle-radius", selectedCircleRadius(selectedId));
+  map.setPaintProperty(pin, "circle-stroke-width", selectedStrokeWidth(selectedId));
+  map.setPaintProperty(pin, "circle-opacity", selectedCircleOpacity(selectedId));
+  map.setPaintProperty(icon, "icon-opacity", selectedIconOpacity(selectedId));
 }
 
 function selectedCircleRadius(selectedEventId: string): ExpressionSpecification {
@@ -715,20 +980,22 @@ const POLISH_VOIVODESHIP_NAME = ["match", ["get", "name"],
   "Greater Poland Voivodeship", "wielkopolskie", "West Pomeranian Voivodeship", "zachodniopomorskie",
   ["get", "name"]] as unknown as ExpressionSpecification;
 
-async function addCategoryImages(map: maplibregl.Map, events: MapEvent[]) {
-  const uniqueIcons = Array.from(
-    new Set(events.map(getMapEventIcon))
-  );
+async function addCategoryImages(map: maplibregl.Map, data: EventFeatureCollection, signal: AbortSignal) {
+  // Lucide icons are rendered synchronously into a separate React root.
+  await Promise.resolve();
+  if (signal.aborted) return;
+
+  const uniqueIcons = new Set(data.features.map(({ properties }) => properties.icon));
 
   await Promise.all(
-    uniqueIcons.map(async (iconName) => {
+    Array.from(uniqueIcons, async (iconName) => {
       if (map.hasImage(iconName)) return;
 
       try {
         const svgString = getLucideIconSvgString(iconName);
         if (svgString) {
           const image = await loadSvgImage(svgString);
-          map.addImage(iconName, image);
+          if (!signal.aborted && !map.hasImage(iconName)) map.addImage(iconName, image);
         }
       } catch (err) {
         console.error(`Failed to load map icon ${iconName}:`, err);
@@ -974,6 +1241,7 @@ function eventToFeatureProperties(event: EventItem): EventFeatureProperties {
     title: event.title,
     address: event.address,
     category: event.category,
+    categorySlug: event.categorySlug,
     color: event.categoryColor,
     icon: event.categoryRelation?.icon || "CircleHelp",
     description: event.short_description ?? event.description ?? "",

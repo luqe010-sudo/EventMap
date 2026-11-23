@@ -1,0 +1,2032 @@
+{
+  "verified_at": "2026-11-06T14:04:45.918Z",
+  "candidates": 18,
+  "published": 18,
+  "skipped_duplicates": 0,
+  "cities": {
+    "Zwierzyniec": 1,
+    "Zielona Góra": 2,
+    "Aleksandrów Łódzki": 1,
+    "Marki": 3,
+    "Otwock": 3,
+    "Częstochowa": 1,
+    "Sosnowiec": 2,
+    "Iłża": 3,
+    "Polanica-Zdrój": 2
+  },
+  "free": 11,
+  "anonymous_reads": 18,
+  "production_api_reads": 18,
+  "coordinates_confirmed": 18,
+  "markers_confirmed": 18,
+  "marker_checks": [
+    {
+      "city_slug": "zwierzyniec",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=zwierzyniec",
+      "status": 200,
+      "confirmed": 1,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "zielona-gora",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=zielona-gora",
+      "status": 200,
+      "confirmed": 2,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "aleksandrow-lodzki",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=aleksandrow-lodzki",
+      "status": 200,
+      "confirmed": 1,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "marki",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=marki",
+      "status": 200,
+      "confirmed": 3,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "otwock",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=otwock",
+      "status": 200,
+      "confirmed": 3,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "czestochowa",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=czestochowa",
+      "status": 200,
+      "confirmed": 1,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "sosnowiec",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=sosnowiec",
+      "status": 200,
+      "confirmed": 2,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "ilza",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=ilza",
+      "status": 200,
+      "confirmed": 3,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "polanica-zdroj",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=polanica-zdroj",
+      "status": 200,
+      "confirmed": 2,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    }
+  ],
+  "html_checks": [
+    {
+      "id": "574575de-ec6d-4d71-ad29-1cd7d68fcb12",
+      "url": "https://mapaimprez.pl/kultura/zwierzyniec/curated-next-ex-czesc-druga-zwierzyniec-2026-11-08-80e37b51245e",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:45.419Z"
+    },
+    {
+      "id": "b0ff9a15-f4c6-49ac-85ca-29369d38f672",
+      "url": "https://mapaimprez.pl/targi/zielona-gora/curated-swieto-lubuskiego-mlodego-wina-zielona-gora-2026-11-11-84b0b455a0df",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:45.729Z"
+    },
+    {
+      "id": "1bad67e0-1d23-4157-b4c0-43d9d840f9a1",
+      "url": "https://mapaimprez.pl/kultura/aleksandrow-lodzki/curated-powiatowe-obchody-swieta-niepodleglosci-w-aleksandrowie-lodzkim-aleksandrow-lodzki-2026-11-11-a8523813bb6d",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:45.808Z"
+    },
+    {
+      "id": "22638142-4b86-4b20-ab5c-080fc30f8597",
+      "url": "https://mapaimprez.pl/sport/zielona-gora/curated-marszobieg-niepodleglosciowy-zielona-gora-2026-11-11-71b77b921233",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:45.416Z"
+    },
+    {
+      "id": "65cc541d-7027-4059-bda8-e99a7d22525a",
+      "url": "https://mapaimprez.pl/kultura/marki/curated-swieto-niepodleglosci-w-mareckim-osrodku-kultury-marki-2026-11-11-637dd4a8b130",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:45.411Z"
+    },
+    {
+      "id": "7f3b5341-15af-4fd9-8ae3-6e3ec83aec9d",
+      "url": "https://mapaimprez.pl/koncerty/otwock/curated-wolnosc-brzmi-lutosair-quintet-otwock-2026-11-11-8ff73daa38d9",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:46.259Z"
+    },
+    {
+      "id": "d9c9b541-d420-4b3d-87ae-8d3504025e94",
+      "url": "https://mapaimprez.pl/rodzinne/czestochowa/curated-jesienna-etnobotanika-warsztaty-rodzinne-czestochowa-2026-11-14-9815cae4a325",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:46.261Z"
+    },
+    {
+      "id": "015b5810-964f-4e7f-adcb-8130c81a3881",
+      "url": "https://mapaimprez.pl/koncerty/otwock/curated-musica-da-camera-otwocki-festiwal-muzyczny-otwock-2026-11-14-208ed0326670",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:46.193Z"
+    },
+    {
+      "id": "dc5d047b-2613-4301-a463-e8cb4566cfa8",
+      "url": "https://mapaimprez.pl/kultura/sosnowiec/curated-gdy-swiat-mowi-cisza-wernisaz-fotograficzny-sosnowiec-2026-11-17-3be9c3f12eb1",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:46.246Z"
+    },
+    {
+      "id": "c4d152ac-a256-4f2b-93b9-b0c78b73499c",
+      "url": "https://mapaimprez.pl/inne/marki/curated-kobiecy-piatek-w-mareckim-osrodku-kultury-marki-2026-11-20-82bedcc9731b",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:47.017Z"
+    },
+    {
+      "id": "9f62f030-f2ef-437f-9524-331d399a9b01",
+      "url": "https://mapaimprez.pl/rodzinne/sosnowiec/curated-kryminow-rodzinne-atrakcje-konwentu-kryminalnego-sosnowiec-2026-11-21-91dfd27d30c1",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:47.498Z"
+    },
+    {
+      "id": "ab6100c6-3280-4b5e-bf48-f2c8eb4f73bc",
+      "url": "https://mapaimprez.pl/inne/marki/curated-markowe-planszowki-marki-2026-11-21-0aae2688aae9",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:47.459Z"
+    },
+    {
+      "id": "1bc25025-66d2-4568-a6de-ad6e11aabffd",
+      "url": "https://mapaimprez.pl/kultura/ilza/curated-klimakterium-i-juz-ilza-2026-11-22-36b53b4d3967",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:47.427Z"
+    },
+    {
+      "id": "78bb8794-2085-41f9-acca-5e9eba5f80b5",
+      "url": "https://mapaimprez.pl/koncerty/polanica-zdroj/curated-andrzejkowa-noc-przebojow-scena-pod-regalem-polanica-zdroj-2026-11-27-0d5c1630ec7f",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:47.429Z"
+    },
+    {
+      "id": "979de844-a672-407f-9bb5-1eed937b2b43",
+      "url": "https://mapaimprez.pl/kabaret/ilza/curated-kryzys-zlotego-wieku-kabaret-trzecia-strona-medalu-ilza-2026-12-04-add9b17a8786",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:47.710Z"
+    },
+    {
+      "id": "b4c112db-8460-4de9-9bc5-b9470351e482",
+      "url": "https://mapaimprez.pl/kultura/ilza/curated-klimakterium-2-czyli-menopauzy-szal-ilza-2026-12-12-880b91b51941",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:48.187Z"
+    },
+    {
+      "id": "cbfa4aab-44c7-4e2d-8a7d-2b7ee84cfac0",
+      "url": "https://mapaimprez.pl/kultura/otwock/curated-zacznijmy-jeszcze-raz-teatr-kamienica-otwock-2026-12-19-7298b415939c",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:48.083Z"
+    },
+    {
+      "id": "f9528985-24e3-44b0-8f7b-b130b223e6db",
+      "url": "https://mapaimprez.pl/koncerty/polanica-zdroj/curated-tenorzy-w-bieli-i-diva-gala-operetkowo-musicalowa-polanica-zdroj-2027-01-02-c3fc1b0eeec9",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-06T14:05:48.055Z"
+    }
+  ],
+  "events": [
+    {
+      "id": "574575de-ec6d-4d71-ad29-1cd7d68fcb12",
+      "title": "Next-Ex — część druga",
+      "city": "Zwierzyniec",
+      "city_slug": "zwierzyniec",
+      "category": "kultura",
+      "start_at": "2026-11-08T17:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/zwierzyniec/curated-next-ex-czesc-druga-zwierzyniec-2026-11-08-80e37b51245e",
+      "source_url": "https://kultura-zwierzyniec.pl/2026/11/03/next-ex-druga-czesc-kino-skarb",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "b0ff9a15-f4c6-49ac-85ca-29369d38f672",
+      "title": "Święto Lubuskiego Młodego Wina",
+      "city": "Zielona Góra",
+      "city_slug": "zielona-gora",
+      "category": "targi",
+      "start_at": "2026-11-11T12:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/targi/zielona-gora/curated-swieto-lubuskiego-mlodego-wina-zielona-gora-2026-11-11-84b0b455a0df",
+      "source_url": "https://www.zielona-gora.pl/events/swieto-lubuskiego-mlodego-wina",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "1bad67e0-1d23-4157-b4c0-43d9d840f9a1",
+      "title": "Powiatowe obchody Święta Niepodległości w Aleksandrowie Łódzkim",
+      "city": "Aleksandrów Łódzki",
+      "city_slug": "aleksandrow-lodzki",
+      "category": "kultura",
+      "start_at": "2026-11-11T13:30:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/aleksandrow-lodzki/curated-powiatowe-obchody-swieta-niepodleglosci-w-aleksandrowie-lodzkim-aleksandrow-lodzki-2026-11-11-a8523813bb6d",
+      "source_url": "https://aleksandrow-lodzki.pl/wydarzenia/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "22638142-4b86-4b20-ab5c-080fc30f8597",
+      "title": "Marszobieg Niepodległościowy",
+      "city": "Zielona Góra",
+      "city_slug": "zielona-gora",
+      "category": "sport",
+      "start_at": "2026-11-11T15:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/sport/zielona-gora/curated-marszobieg-niepodleglosciowy-zielona-gora-2026-11-11-71b77b921233",
+      "source_url": "https://visitzielonagora.pl/wydarzenia/marszobieg-niepodleglosciowy",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "65cc541d-7027-4059-bda8-e99a7d22525a",
+      "title": "Święto Niepodległości w Mareckim Ośrodku Kultury",
+      "city": "Marki",
+      "city_slug": "marki",
+      "category": "kultura",
+      "start_at": "2026-11-11T15:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/marki/curated-swieto-niepodleglosci-w-mareckim-osrodku-kultury-marki-2026-11-11-637dd4a8b130",
+      "source_url": "https://mokmarki.pl/repertuar/2026/10/narodowe-swieto-niepodleglosci-9",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "7f3b5341-15af-4fd9-8ae3-6e3ec83aec9d",
+      "title": "Wolność brzmi — LutosAir Quintet",
+      "city": "Otwock",
+      "city_slug": "otwock",
+      "category": "koncerty",
+      "start_at": "2026-11-11T19:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/koncerty/otwock/curated-wolnosc-brzmi-lutosair-quintet-otwock-2026-11-11-8ff73daa38d9",
+      "source_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "d9c9b541-d420-4b3d-87ae-8d3504025e94",
+      "title": "Jesienna etnobotanika — warsztaty rodzinne",
+      "city": "Częstochowa",
+      "city_slug": "czestochowa",
+      "category": "rodzinne",
+      "start_at": "2026-11-14T12:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/rodzinne/czestochowa/curated-jesienna-etnobotanika-warsztaty-rodzinne-czestochowa-2026-11-14-9815cae4a325",
+      "source_url": "https://www.muzeumczestochowa.pl/wydarzenia/jesienna-etnobotanika/130",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "015b5810-964f-4e7f-adcb-8130c81a3881",
+      "title": "Musica da camera — Otwocki Festiwal Muzyczny",
+      "city": "Otwock",
+      "city_slug": "otwock",
+      "category": "koncerty",
+      "start_at": "2026-11-14T19:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/koncerty/otwock/curated-musica-da-camera-otwocki-festiwal-muzyczny-otwock-2026-11-14-208ed0326670",
+      "source_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "dc5d047b-2613-4301-a463-e8cb4566cfa8",
+      "title": "Gdy świat mówi ciszą… — wernisaż fotograficzny",
+      "city": "Sosnowiec",
+      "city_slug": "sosnowiec",
+      "category": "kultura",
+      "start_at": "2026-11-17T18:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/sosnowiec/curated-gdy-swiat-mowi-cisza-wernisaz-fotograficzny-sosnowiec-2026-11-17-3be9c3f12eb1",
+      "source_url": "https://www.biblioteka.sosnowiec.pl/aktualnosci/2347",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "c4d152ac-a256-4f2b-93b9-b0c78b73499c",
+      "title": "Kobiecy Piątek w Mareckim Ośrodku Kultury",
+      "city": "Marki",
+      "city_slug": "marki",
+      "category": "inne",
+      "start_at": "2026-11-20T19:15:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/inne/marki/curated-kobiecy-piatek-w-mareckim-osrodku-kultury-marki-2026-11-20-82bedcc9731b",
+      "source_url": "https://mokmarki.pl/repertuar/2026/10/kobiecy-piatek",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "9f62f030-f2ef-437f-9524-331d399a9b01",
+      "title": "KrymiNOW — rodzinne atrakcje konwentu kryminalnego",
+      "city": "Sosnowiec",
+      "city_slug": "sosnowiec",
+      "category": "rodzinne",
+      "start_at": "2026-11-21T10:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/rodzinne/sosnowiec/curated-kryminow-rodzinne-atrakcje-konwentu-kryminalnego-sosnowiec-2026-11-21-91dfd27d30c1",
+      "source_url": "https://www.biblioteka.sosnowiec.pl/wydarzenie/kryminow-zaglebiowski-konwent-kryminalny-ndash-atrakcje-dla-dzieci-i-mlodziezy",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "ab6100c6-3280-4b5e-bf48-f2c8eb4f73bc",
+      "title": "Markowe planszówki",
+      "city": "Marki",
+      "city_slug": "marki",
+      "category": "inne",
+      "start_at": "2026-11-21T16:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/inne/marki/curated-markowe-planszowki-marki-2026-11-21-0aae2688aae9",
+      "source_url": "https://mokmarki.pl/repertuar/2026/10/markowe-planszowki-87",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "1bc25025-66d2-4568-a6de-ad6e11aabffd",
+      "title": "Klimakterium… i już",
+      "city": "Iłża",
+      "city_slug": "ilza",
+      "category": "kultura",
+      "start_at": "2026-11-22T16:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/kultura/ilza/curated-klimakterium-i-juz-ilza-2026-11-22-36b53b4d3967",
+      "source_url": "https://www.kupbilecik.pl/pl/event/200583/ilza/klimakterium-i-juz",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "78bb8794-2085-41f9-acca-5e9eba5f80b5",
+      "title": "Andrzejkowa Noc Przebojów — Scena Pod Regałem",
+      "city": "Polanica-Zdrój",
+      "city_slug": "polanica-zdroj",
+      "category": "koncerty",
+      "start_at": "2026-11-27T19:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/polanica-zdroj/curated-andrzejkowa-noc-przebojow-scena-pod-regalem-polanica-zdroj-2026-11-27-0d5c1630ec7f",
+      "source_url": "https://teatr.polanica.pl/wydarzenie/koncert-andrzejkowy-scena-pod-regalem",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "979de844-a672-407f-9bb5-1eed937b2b43",
+      "title": "Kryzys złotego wieku — Kabaret Trzecia Strona Medalu",
+      "city": "Iłża",
+      "city_slug": "ilza",
+      "category": "kabaret",
+      "start_at": "2026-12-04T19:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/kabaret/ilza/curated-kryzys-zlotego-wieku-kabaret-trzecia-strona-medalu-ilza-2026-12-04-add9b17a8786",
+      "source_url": "https://www.kupbilecik.pl/pl/event/198135/ilza/kabaret-trzecia-strona-medalu",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "b4c112db-8460-4de9-9bc5-b9470351e482",
+      "title": "Klimakterium 2, czyli menopauzy szał",
+      "city": "Iłża",
+      "city_slug": "ilza",
+      "category": "kultura",
+      "start_at": "2026-12-12T16:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/kultura/ilza/curated-klimakterium-2-czyli-menopauzy-szal-ilza-2026-12-12-880b91b51941",
+      "source_url": "https://www.kupbilecik.pl/pl/event/200585/ilza/klimakterium-2",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "cbfa4aab-44c7-4e2d-8a7d-2b7ee84cfac0",
+      "title": "Zacznijmy jeszcze raz — Teatr Kamienica",
+      "city": "Otwock",
+      "city_slug": "otwock",
+      "category": "kultura",
+      "start_at": "2026-12-19T17:30:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/kultura/otwock/curated-zacznijmy-jeszcze-raz-teatr-kamienica-otwock-2026-12-19-7298b415939c",
+      "source_url": "https://www.kupbilecik.pl/pl/event/195239/otwock/zacznijmy-jeszcze-raz",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "f9528985-24e3-44b0-8f7b-b130b223e6db",
+      "title": "Tenorzy w Bieli i Diva — gala operetkowo-musicalowa",
+      "city": "Polanica-Zdrój",
+      "city_slug": "polanica-zdroj",
+      "category": "koncerty",
+      "start_at": "2027-01-02T16:30:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/polanica-zdroj/curated-tenorzy-w-bieli-i-diva-gala-operetkowo-musicalowa-polanica-zdroj-2027-01-02-c3fc1b0eeec9",
+      "source_url": "https://teatr.polanica.pl/tenorzy-w-bieli-i-diva-gala-operetkowo-musicalowa",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    }
+  ],
+  "skipped": [],
+  "batch": "data/content-supply/2026-11-06.json",
+  "batch_checked_at": "2026-11-06T14:01:30Z",
+  "final_checked_at": "2026-11-06T14:08:56.251Z",
+  "initial_dry_run": {
+    "would_insert_and_publish": 18
+  },
+  "repeat_dry_run": {
+    "existing_published": 18,
+    "ids_match": true
+  },
+  "manual_duplicate_review": {
+    "checked_at": "2026-11-06T14:03:26.236Z",
+    "catalog": "scratch/content-supply/catalog-before-2026-11-06.json",
+    "examined": 18,
+    "same_city_day_catalog_hits": 0,
+    "same_source_catalog_hits": 0,
+    "same_day_distinct": [
+      [
+        "Święto Lubuskiego Młodego Wina",
+        "Marszobieg Niepodległościowy"
+      ]
+    ],
+    "shared_source_distinct": [
+      {
+        "title": "Wolność brzmi — LutosAir Quintet",
+        "start_at": "2026-11-11T19:00:00+01:00",
+        "source_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy"
+      },
+      {
+        "title": "Musica da camera — Otwocki Festiwal Muzyczny",
+        "start_at": "2026-11-14T19:00:00+01:00",
+        "source_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy"
+      }
+    ],
+    "public_future_by_city_before": {
+      "Zwierzyniec": 0,
+      "Zielona Góra": 1,
+      "Aleksandrów Łódzki": 0,
+      "Marki": 1,
+      "Otwock": 1,
+      "Częstochowa": 0,
+      "Sosnowiec": 0,
+      "Iłża": 0,
+      "Polanica-Zdrój": 0
+    },
+    "deferred": [
+      {
+        "title": "Piękna Nasza Polska Cała…",
+        "city": "Aleksandrów Łódzki",
+        "reason": "Wszystkie wejściówki na koncert 11 listopada rozdano według aktualizacji miasta z 27.10.",
+        "source_url": "https://aleksandrow-lodzki.pl/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim/"
+      },
+      {
+        "title": "Aleksandrowski Jarmark Świąteczny",
+        "city": "Aleksandrów Łódzki",
+        "reason": "Oficjalne zaproszenie dla wystawców potwierdza 6 grudnia i park, ale brak godziny dla publiczności.",
+        "source_url": "https://aleksandrow-lodzki.pl/uwaga-rekodzielnicy-zapraszamy-do-wystawienia-sie-podczas-aleksandrowskiego-jarmarku-swiatecznego/"
+      },
+      {
+        "title": "Artystyczne Marki – koncert galowy",
+        "city": "Marki",
+        "reason": "Karta potwierdza 22 listopada, 17:00 i bezpłatne wejściówki, lecz istniejący punkt MCER wymaga weryfikacji z właścicielem wpisu.",
+        "source_url": "https://mokmarki.pl/repertuar/2026/10/artystyczne-marki-vi-edycja-koncert-galowy/"
+      },
+      {
+        "title": "Zwierzyńskie Patriotyczne Śpiewanie",
+        "city": "Zwierzyniec",
+        "source_url": "https://kultura-zwierzyniec.pl/2026/11/05/zwierzynskie-patriotyczne-spiewanie-zapraszamy-na-wspolne-swietowanie/",
+        "reason": "Zapowiedź i plakat potwierdzają 10 listopada o 17:00 w Kinie Skarb. Brak zasad wstępu i informacji o rezerwacji."
+      },
+      {
+        "title": "Jarmark bożonarodzeniowy na deptaku zielonogórskim",
+        "city": "Zielona Góra",
+        "source_url": "https://www.zielona-gora.pl/events/jarmark-bozonarodzeniowy-na-deptaku-zielonogorskim/",
+        "reason": "Miasto podało dni 16–20 grudnia bez potwierdzonej godziny rozpoczęcia."
+      },
+      {
+        "title": "XII Rajd Rowerowa Niepodległa",
+        "city": "Zielona Góra",
+        "source_url": "https://www.zielona-gora.pl/rowerowa-niepodlegla-11-listopada-ruszy-rajd-do-drzonowa/",
+        "reason": "Ogłoszenia miasta i województwa potwierdzają start, ale nie określają zasad udziału w samym rajdzie. Bezpłatny wstęp dotyczy muzeum na mecie."
+      },
+      {
+        "title": "PRYZMAT — 11 barw 11 listopada",
+        "city": "Bielsko-Biała",
+        "source_url": "https://www.bck.bielsko.pl/pryzmat-11-barw-11-listopada",
+        "reason": "Strona sprzedaży potwierdza termin i cenę nominalną 100 zł, ale plan miejsc ładuje się dynamicznie i dostępność nie została potwierdzona."
+      }
+    ]
+  },
+  "prior_events_recheck": {
+    "window_start": "2026-11-06T13:56:56.510Z",
+    "window_end": "2026-11-13T13:56:56.510Z",
+    "rechecks_count": 51,
+    "distinct_sources": 50,
+    "primary_http_200": 50,
+    "supplemental_sources": 16,
+    "cancellations_found": 0,
+    "admission_changes_found": 4,
+    "required_existing_event_updates": 1,
+    "resolved_existing_event_updates": 1,
+    "remaining_existing_event_updates": 0,
+    "unknown_curated_event_ids": [],
+    "source_read_method": "Bezpośrednie publiczne HTTPS GET z wyłączeniem cache. Porównanie treści głównych zapowiedzi z poprzednim przebiegiem, odczyt wybranych oficjalnych sprzedaży i formularzy oraz odczyt statusu wpisów produkcyjnych. Bez rezerwacji i kontaktu z organizatorami.",
+    "rechecks": [
+      {
+        "event_id": "6814c7de-aaf1-4b9a-849c-d271e4d8c06b",
+        "title": "Noctober CelloFest — koncert wiolonczelowy",
+        "city": "Mrągowo",
+        "start_at": "2026-11-06T17:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/koncerty/mragowo/curated-noctober-cellofest-koncert-wiolonczelowy-mragowo-2026-11-06-fbfa403b718f",
+        "source_url": "https://www.mragowo.pl/kalendarz/1527,noctober-cellofest",
+        "checked_at": "2026-11-06T13:56:57Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "6 XI 2026,18:00,Mrągowskie Centrum Kultury,wstęp wolny,nadal zgodne.",
+        "primary": {
+          "source_url": "https://www.mragowo.pl/kalendarz/1527,noctober-cellofest",
+          "checked_at": "2026-11-06T13:56:57Z",
+          "http_status": 200,
+          "final_url": "https://www.mragowo.pl/kalendarz/1527,noctober-cellofest"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "0bdc3c36-6115-4754-b61a-83d546507b85",
+        "title": "Wałbrzych ma talent: Katarzyna Serdeczna & Kalluna",
+        "city": "Wałbrzych",
+        "start_at": "2026-11-06T17:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/koncerty/walbrzych/curated-walbrzych-ma-talent-katarzyna-serdeczna-kalluna-walbrzych-2026-11-06-8664a19e52bc",
+        "source_url": "https://starakopalnia.pl/wydarzenia/katarzyna-serdeczna-kalluna-live",
+        "checked_at": "2026-11-06T13:56:57Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "6.11.2026, 18:00, Kawiarnia Sztygarówka w Starej Kopalni. Wstęp wolny.",
+        "primary": {
+          "source_url": "https://starakopalnia.pl/wydarzenia/katarzyna-serdeczna-kalluna-live",
+          "checked_at": "2026-11-06T13:56:57Z",
+          "http_status": 200,
+          "final_url": "https://starakopalnia.pl/wydarzenia/katarzyna-serdeczna-kalluna-live/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "bd58de46-08a3-41cd-a3a3-b397ab3ab6cb",
+        "title": "Bardowskie Zaduszki — Yanistan",
+        "city": "Nysa",
+        "start_at": "2026-11-06T17:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/koncerty/nysa/curated-bardowskie-zaduszki-yanistan-nysa-2026-11-06-f5ead4b3080d",
+        "source_url": "https://ndk.systembiletowy.pl/index.php/kup-bilet/bardowskie-zaduszki-2026-11-06-18-00",
+        "checked_at": "2026-11-06T13:56:57Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "6.11.2026, 18:00, Nyski Dom Kultury przy Wałowej 7, 60 zł w oficjalnej sprzedaży. Limit 10 biletów dotyczy pojedynczego zamówienia.",
+        "primary": {
+          "source_url": "https://ndk.systembiletowy.pl/index.php/kup-bilet/bardowskie-zaduszki-2026-11-06-18-00",
+          "checked_at": "2026-11-06T13:56:57Z",
+          "http_status": 200,
+          "final_url": "https://ndk.systembiletowy.pl/index.php/kup-bilet/bardowskie-zaduszki-2026-11-06-18-00"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "55c02b6a-e142-49a2-8efb-693946392736",
+        "title": "WATCH DOCS: Jeśli dzisiaj umrę — pokaz i spotkanie",
+        "city": "Żywiec",
+        "start_at": "2026-11-06T17:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/kultura/zywiec/curated-watch-docs-jesli-dzisiaj-umre-pokaz-i-spotkanie-zywiec-2026-11-06-41ac75528152",
+        "source_url": "https://kinojanosik.pl/repertuar/watch-docs-prawa-czlowieka-w-filmie-jesli-dzisiaj-umre-spotkanie-z-przemyslawem-staniszewskim",
+        "checked_at": "2026-11-06T13:56:57Z",
+        "http_status": 200,
+        "status": "online_ticketing_closed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": "recorded_online_closure_box_office_availability_unconfirmed",
+        "note": "6.11.2026, 18:00, Kino Janosik przy Sobieskiego 1. Bezpłatne wejściówki, pokaz od 15 lat. Oficjalna strona nadal zapowiada seans i spotkanie. Bileteria zamknęła sprzedaż online; dostępności wejściówek w kasie nie ustalono.",
+        "primary": {
+          "source_url": "https://kinojanosik.pl/repertuar/watch-docs-prawa-czlowieka-w-filmie-jesli-dzisiaj-umre-spotkanie-z-przemyslawem-staniszewskim",
+          "checked_at": "2026-11-06T13:56:57Z",
+          "http_status": 200,
+          "final_url": "https://kinojanosik.pl/repertuar/watch-docs-prawa-czlowieka-w-filmie-jesli-dzisiaj-umre-spotkanie-z-przemyslawem-staniszewskim/"
+        },
+        "supplemental": {
+          "source_url": "https://kinojanosik.bilety24.pl/kup-bilety/?id=1013245",
+          "checked_at": "2026-11-06T13:58:38Z",
+          "http_status": 200,
+          "final_url": "https://kinojanosik.bilety24.pl/kup-bilety/?id=1013245",
+          "error": null,
+          "evidence_quote": "Sprzedaż biletów on-line na wydarzenie została zakończona"
+        },
+        "proposed_changes": {
+          "description_suffix": " Dystrybucja wejściówek online jest zakończona; dostępność w kasie niepotwierdzona."
+        }
+      },
+      {
+        "event_id": "0d64fd82-3e86-4b98-b123-9f57f553a6e3",
+        "title": "Spotkanie z Anną Brzezińską — 24. Opolska Jesień Literacka",
+        "city": "Opole",
+        "start_at": "2026-11-06T17:00:00+00:00",
+        "original_batch_date": "2026-10-30",
+        "event_url": "https://mapaimprez.pl/kultura/opole/curated-spotkanie-z-anna-brzezinska-24-opolska-jesien-literacka-opole-2026-11-06-c0f5482a2951",
+        "source_url": "https://mbp.opole.pl/wydarzenia/24-ojl-spotkanie-z-anna-brzezinska",
+        "checked_at": "2026-11-06T13:56:59Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "6.11.2026, 18:00, sala konferencyjna MBP przy Minorytów 4. Karta biblioteki potwierdza termin, miejski kalendarz wstęp wolny.",
+        "primary": {
+          "source_url": "https://mbp.opole.pl/wydarzenia/24-ojl-spotkanie-z-anna-brzezinska",
+          "checked_at": "2026-11-06T13:56:59Z",
+          "http_status": 200,
+          "final_url": "https://mbp.opole.pl/wydarzenia/24-ojl-spotkanie-z-anna-brzezinska/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "e7d305ce-17e3-4516-8ce4-71ae663ab209",
+        "title": "Nie tylko o miłości — recital Zbigniewa Zamachowskiego",
+        "city": "Kartuzy",
+        "start_at": "2026-11-06T17:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/koncerty/kartuzy/curated-nie-tylko-o-milosci-recital-zbigniewa-zamachowskiego-kartuzy-2026-11-06-2f6fdf9538ee",
+        "source_url": "https://kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/nie-tylko-o-milosci-recital-zbigniewa-zamachowskiego-153698.html",
+        "checked_at": "2026-11-06T13:56:57Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "6.11.2026, 18:00, Kartuskie Centrum Kultury przy Klasztornej 1. Oficjalny cennik i powiązana sprzedaż wskazują cenę od 123 zł.",
+        "primary": {
+          "source_url": "https://kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/nie-tylko-o-milosci-recital-zbigniewa-zamachowskiego-153698.html",
+          "checked_at": "2026-11-06T13:56:57Z",
+          "http_status": 200,
+          "final_url": "https://kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/nie-tylko-o-milosci-recital-zbigniewa-zamachowskiego-153698.html"
+        },
+        "supplemental": {
+          "source_url": "https://www.bilety24.pl/kup-bilet-na--nie-tylko-o-milosci-recital-zbigniewa-zamachowskiego-153698?id=914496",
+          "checked_at": "2026-11-06T13:58:37Z",
+          "http_status": 200,
+          "final_url": "https://www.bilety24.pl/kup-bilet-na-1364--nie-tylko-o-milosci-recital-zbigniewa-zamachowskiego-153698?id=914496",
+          "error": null
+        },
+        "proposed_changes": null
+      },
+      {
+        "event_id": "3cde7008-be80-4217-b93b-bac0eeefc0d3",
+        "title": "Planszówki młodzieżówki — nocne granie",
+        "city": "Tarnów",
+        "start_at": "2026-11-06T18:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/kultura/tarnow/curated-planszowki-mlodziezowki-nocne-granie-tarnow-2026-11-06-db28e5291b7d",
+        "source_url": "https://dkwesterplatte.pl/wydarzenia/spotkania/spotkanie-planszowki-mlodziezowki-nocne-granie/56",
+        "checked_at": "2026-11-06T13:56:57Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "6.11.2026, 19:00, Dom Kultury Westerplatte przy Westerplatte 8a. Wstęp bezpłatny. Końca nie ustalano.",
+        "primary": {
+          "source_url": "https://dkwesterplatte.pl/wydarzenia/spotkania/spotkanie-planszowki-mlodziezowki-nocne-granie/56",
+          "checked_at": "2026-11-06T13:56:57Z",
+          "http_status": 200,
+          "final_url": "https://dkwesterplatte.pl/wydarzenia/spotkania/spotkanie-planszowki-mlodziezowki-nocne-granie/56"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "982b02c6-d5d6-4c7e-8df6-18a1b9184e1a",
+        "title": "Sąsiedzi (1) — V Paderewski Festival 2026",
+        "city": "Poznań",
+        "start_at": "2026-11-06T18:00:00+00:00",
+        "original_batch_date": "2026-10-29",
+        "event_url": "https://mapaimprez.pl/koncerty/poznan/curated-sasiedzi-1-v-paderewski-festival-2026-poznan-2026-11-06-0d257bd609b0",
+        "source_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026",
+        "checked_at": "2026-11-06T13:57:01Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "6.11.2026, 19:00, Aula Uniwersytecka, odpłatny wstęp Cena A nadal w repertuarze.",
+        "primary": {
+          "source_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026",
+          "checked_at": "2026-11-06T13:57:01Z",
+          "http_status": 200,
+          "final_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026/"
+        },
+        "supplemental": {
+          "source_url": "https://www.bilety24.pl/koncert/219-sasiedzi-1-159208?id=949270",
+          "checked_at": "2026-11-06T13:58:37Z",
+          "http_status": 200,
+          "final_url": "https://www.bilety24.pl/koncert/219-sasiedzi-1-159208?id=949270",
+          "error": null
+        },
+        "proposed_changes": null
+      },
+      {
+        "event_id": "96b6d31d-1117-440c-9f58-85dcde9a8bdb",
+        "title": "J. Brahms — Ein Deutsches Requiem",
+        "city": "Wrocław",
+        "start_at": "2026-11-06T18:00:00+00:00",
+        "original_batch_date": "2026-10-29",
+        "event_url": "https://mapaimprez.pl/koncerty/wroclaw/curated-j-brahms-ein-deutsches-requiem-wroclaw-2026-11-06-1d2daca2ae99",
+        "source_url": "https://www.opera.wroclaw.pl/koncert-j-brahms-ein-deutsches-requiem?date=2026-11-06T19%3A00",
+        "checked_at": "2026-11-06T13:57:00Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "6.11.2026, 19:00, Opera Wrocławska, 40–120 zł. Wzmianka o sześciu pozostałych biletach zniknęła ze strony głównej. Oficjalny wybór miejsc nadal pokazuje dokładny termin; liczby wolnych miejsc nie ustalono.",
+        "primary": {
+          "source_url": "https://www.opera.wroclaw.pl/koncert-j-brahms-ein-deutsches-requiem?date=2026-11-06T19%3A00",
+          "checked_at": "2026-11-06T13:57:00Z",
+          "http_status": 200,
+          "final_url": "https://www.opera.wroclaw.pl/koncert-j-brahms-ein-deutsches-requiem?date=2026-11-06T19%3A00"
+        },
+        "supplemental": {
+          "source_url": "https://bilety.opera.wroclaw.pl/rezerwacja/numerowane.html?id=5617&identyfikator=e9c020ae10335c923b05b1e89fe86635",
+          "checked_at": "2026-11-06T13:58:37Z",
+          "http_status": 200,
+          "final_url": "https://bilety.opera.wroclaw.pl/rezerwacja/numerowane.html?id=5617&identyfikator=e9c020ae10335c923b05b1e89fe86635",
+          "error": null
+        },
+        "proposed_changes": null
+      },
+      {
+        "event_id": "4760eb88-0e37-4201-86c0-a2304799dde5",
+        "title": "Biało-Czerwony parkrun Grudziądz",
+        "city": "Grudziądz",
+        "start_at": "2026-11-07T08:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/sport/grudziadz/curated-bialo-czerwony-parkrun-grudziadz-grudziadz-2026-11-07-92327be49e23",
+        "source_url": "https://karta.grudziadzmiastootwarte.pl/pl/wydarzenia/bialo---czerwony-parkrun-grudziadz-8125?dataFiltra=2026-10-18",
+        "checked_at": "2026-11-06T13:57:00Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "7.11.2026, 09:00, przy rondzie Popiełuszki (Castorama/Carrefour). Miejska karta nadal podaje wstęp bezpłatny i prowadzi do parkrun.",
+        "primary": {
+          "source_url": "https://karta.grudziadzmiastootwarte.pl/pl/wydarzenia/bialo---czerwony-parkrun-grudziadz-8125?dataFiltra=2026-10-18",
+          "checked_at": "2026-11-06T13:57:00Z",
+          "http_status": 200,
+          "final_url": "https://karta.grudziadzmiastootwarte.pl/pl/wydarzenia/bialo---czerwony-parkrun-grudziadz-8125?dataFiltra=2026-10-18"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "6542336b-24a7-44f2-a06d-82526073e79d",
+        "title": "Roboty kosmiczne — warsztat Festiwalu Galaktyka Węgla",
+        "city": "Wałbrzych",
+        "start_at": "2026-11-07T09:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/rodzinne/walbrzych/curated-roboty-kosmiczne-warsztat-festiwalu-galaktyka-wegla-walbrzych-2026-11-07-d33e0463cf0f",
+        "source_url": "https://starakopalnia.pl/wydarzenia/festiwal-kosmiczny-galaktyka-wegla-2",
+        "checked_at": "2026-11-06T13:56:59Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "7XI2026,10:00–11:00,dzieci8–14lat,bezpłatna wejściówka na rezerwację nadal zgodne w sekcji warsztatów. Ogólny płatny cennik dotyczy innych atrakcji. Boczne godziny SOWA/imprezy zamknięte nie odwołują warsztatu.",
+        "primary": {
+          "source_url": "https://starakopalnia.pl/wydarzenia/festiwal-kosmiczny-galaktyka-wegla-2",
+          "checked_at": "2026-11-06T13:56:59Z",
+          "http_status": 200,
+          "final_url": "https://starakopalnia.pl/wydarzenia/festiwal-kosmiczny-galaktyka-wegla-2/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "e3c12f38-ce0a-4007-a827-7c3a59501eab",
+        "title": "Festiwal Smaków Regionalnych — sobota",
+        "city": "Olsztyn",
+        "start_at": "2026-11-07T09:00:00+00:00",
+        "original_batch_date": "2026-10-30",
+        "event_url": "https://mapaimprez.pl/targi/olsztyn/curated-festiwal-smakow-regionalnych-sobota-olsztyn-2026-11-07-377157c3728c",
+        "source_url": "https://hala.olsztyn.eu/wydarzenia/festiwal-smakow-regionalnych",
+        "checked_at": "2026-11-06T13:57:01Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "7.11.2026, 10:00–18:00, Hala Urania, wstęp bezpłatny. Wpis dotyczy soboty, a nie całego weekendu.",
+        "primary": {
+          "source_url": "https://hala.olsztyn.eu/wydarzenia/festiwal-smakow-regionalnych",
+          "checked_at": "2026-11-06T13:57:01Z",
+          "http_status": 200,
+          "final_url": "https://hala.olsztyn.eu/wydarzenia/festiwal-smakow-regionalnych/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "b41d8013-3e73-469b-bb58-9446ce46b8f5",
+        "title": "Muzykoteka: Hej, hej ułani! — koncert rodzinny",
+        "city": "Poznań",
+        "start_at": "2026-11-07T10:00:00+00:00",
+        "original_batch_date": "2026-10-29",
+        "event_url": "https://mapaimprez.pl/rodzinne/poznan/curated-muzykoteka-hej-hej-ulani-koncert-rodzinny-poznan-2026-11-07-c27f8a452e0f",
+        "source_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026",
+        "checked_at": "2026-11-06T13:57:01Z",
+        "http_status": 200,
+        "status": "online_ticketing_closed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": "recorded_online_closure_box_office_availability_unconfirmed",
+        "note": "7.11.2026, 11:00, Aula UAM w Poznaniu, Cena C. Bilety24 dla tej daty i godziny podaje zakończenie sprzedaży online. Wpis dotyczy koncertu 7 listopada; odrębne koncerty Muzykoteczki 21 listopada to inne pozycje. Dostępności biletów w kasie nie ustalono.",
+        "primary": {
+          "source_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026",
+          "checked_at": "2026-11-06T13:57:01Z",
+          "http_status": 200,
+          "final_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026/"
+        },
+        "supplemental": {
+          "source_url": "https://www.bilety24.pl/koncert/1236-konceret-rodzinny-muzykoteka-hej-hej-ulani-159867?id=955659",
+          "checked_at": "2026-11-06T13:58:38Z",
+          "http_status": 200,
+          "final_url": "https://www.bilety24.pl/koncert/1236-konceret-rodzinny-muzykoteka-hej-hej-ulani-159867?id=955659",
+          "error": null,
+          "evidence_quote": "Sprzedaż biletów on-line na wydarzenie została zakończona."
+        },
+        "proposed_changes": {
+          "description_suffix": " Sprzedaż online jest zakończona; dostępność w kasie niepotwierdzona."
+        }
+      },
+      {
+        "event_id": "adbc86d6-d06d-4116-9e61-f374f46aab13",
+        "title": "Dziecięca Akademia Rękodzieła „Jesień”",
+        "city": "Suwałki",
+        "start_at": "2026-11-07T10:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/rodzinne/suwalki/curated-dziecieca-akademia-rekodziela-jesien-suwalki-2026-11-07-cb6f1c26a7af",
+        "source_url": "https://soksuwalki.eu/class/dziecieca-akademia-rekodziela-jesien",
+        "checked_at": "2026-11-06T13:57:00Z",
+        "http_status": 200,
+        "status": "available_on_latest_read",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": "sold_out_notice_superseded_before_write",
+        "note": "7.11.2026, 11:00, Patio SOK, 20 zł. Oficjalna bileteria warsztatów podaje 0 wolnych miejsc. W odczycie z 5 listopada było jeszcze 5 wolnych miejsc. Przy odczycie przed korektą i w końcowej kontroli system pokazał 2 wolne miejsca.",
+        "primary": {
+          "source_url": "https://soksuwalki.eu/class/dziecieca-akademia-rekodziela-jesien",
+          "checked_at": "2026-11-06T13:57:00Z",
+          "http_status": 200,
+          "final_url": "https://soksuwalki.eu/class/dziecieca-akademia-rekodziela-jesien/"
+        },
+        "supplemental": {
+          "source_url": "https://bilety.soksuwalki.eu/rezerwacja/nienumerowane.html?id=2329&idt=44a03e6c184df29cbf4ec7dff8e25561&d=3",
+          "checked_at": "2026-11-06T13:58:38Z",
+          "http_status": 200,
+          "final_url": "https://bilety.soksuwalki.eu/rezerwacja/termin-niedostepny.html?id=2329&idt=44a03e6c184df29cbf4ec7dff8e25561",
+          "error": null,
+          "evidence_quote": "Informujemy, że na wybraną godzinę wszystkie bilety zostały już wyprzedane."
+        },
+        "proposed_changes": {
+          "description_suffix": " Bilety zostały wyprzedane."
+        },
+        "initial_status": "sold_out",
+        "latest_ticket_read": {
+          "id": "adbc86d6-d06d-4116-9e61-f374f46aab13",
+          "source_url": "https://bilety.soksuwalki.eu/rezerwacja/nienumerowane.html?id=2329&idt=44a03e6c184df29cbf4ec7dff8e25561",
+          "checked_at": "2026-11-06T14:05:51.302Z",
+          "status": 200,
+          "display": "2 wolne"
+        }
+      },
+      {
+        "event_id": "6a45d778-79cf-4a35-8f7a-ff779e0389f1",
+        "title": "W kontakcie | Sztuka Wrażliwości",
+        "city": "Lublin",
+        "start_at": "2026-11-07T10:00:00+00:00",
+        "original_batch_date": "2026-10-29",
+        "event_url": "https://mapaimprez.pl/rodzinne/lublin/curated-w-kontakcie-sztuka-wrazliwosci-lublin-2026-11-07-4083ec84f0a4",
+        "source_url": "https://warsztatykultury.pl/pl/wydarzenia/w-kontakcie-sztuka-wrazliwosci-listopad-2026",
+        "checked_at": "2026-11-06T13:57:00Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "7.11.2026, 11:00–12:00, Grodzka 5a, sala widowiskowa na II piętrze, dzieci 3–9 lat z opiekunami, bezpłatnie na zapisy. Formularz wskazuje właściwy termin i aktywne pola, bez sprawdzania zgłoszenia.",
+        "primary": {
+          "source_url": "https://warsztatykultury.pl/pl/wydarzenia/w-kontakcie-sztuka-wrazliwosci-listopad-2026",
+          "checked_at": "2026-11-06T13:57:00Z",
+          "http_status": 200,
+          "final_url": "https://warsztatykultury.pl/pl/wydarzenia/w-kontakcie-sztuka-wrazliwosci-listopad-2026/"
+        },
+        "supplemental": {
+          "source_url": "https://docs.google.com/forms/d/e/1FAIpQLSe9Hm4bE0IyBEPjxn_ttWB2eQJN2Q-RuhTg2cbrajQelbWIVA/viewform",
+          "checked_at": "2026-11-06T13:58:39Z",
+          "http_status": 200,
+          "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSe9Hm4bE0IyBEPjxn_ttWB2eQJN2Q-RuhTg2cbrajQelbWIVA/viewform",
+          "error": null
+        },
+        "proposed_changes": null
+      },
+      {
+        "event_id": "b615ed18-e249-4d5d-a60b-cc6af85ea2ae",
+        "title": "Spotkania z Ludźmi Gór — Od Jelcza do Starego Base Campu",
+        "city": "Lubin",
+        "start_at": "2026-11-07T11:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/kultura/lubin/curated-spotkania-z-ludzmi-gor-od-jelcza-do-starego-base-campu-lubin-2026-11-07-643b9aacfbef",
+        "source_url": "https://ckmuza.eu/7-11-2026-spotkania-z-ludzmi-gor-od-jelcza-do-starego-base-campu-historia-ktora-nie-konczy-sie-po-powrocie",
+        "checked_at": "2026-11-06T13:57:02Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "7.11.2026, 12:00, sala kameralna CK Muza, wstęp wolny. Komunikaty boczne o odwołaniu dotyczą innych zajęć 12 i 13 listopada.",
+        "primary": {
+          "source_url": "https://ckmuza.eu/7-11-2026-spotkania-z-ludzmi-gor-od-jelcza-do-starego-base-campu-historia-ktora-nie-konczy-sie-po-powrocie",
+          "checked_at": "2026-11-06T13:57:02Z",
+          "http_status": 200,
+          "final_url": "https://ckmuza.eu/7-11-2026-spotkania-z-ludzmi-gor-od-jelcza-do-starego-base-campu-historia-ktora-nie-konczy-sie-po-powrocie/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "4d543092-be3c-4ccc-b8cc-9d7d454d15a7",
+        "title": "Kino rodzinne: Niesamowite przygody skarpetek 4. Do roboty!",
+        "city": "Słupsk",
+        "start_at": "2026-11-07T13:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/rodzinne/slupsk/curated-kino-rodzinne-niesamowite-przygody-skarpetek-4-do-roboty-slupsk-2026-11-07-e06c1613120f",
+        "source_url": "https://www.sok.slupsk.pl/index.php/kalendarium/3247-niesamowite-przygody-skarpetek-4-do-roboty?date=2026-11-07-14-00",
+        "checked_at": "2026-11-06T13:57:02Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "7.11.2026, 14:00, kino Rejs przy al. 3 Maja 22. Właściwy seans nadal w kalendarium, kwoty biletu nie dopisywano. Odrębna próba odczytu strony cennika kina nie powiodła się.",
+        "primary": {
+          "source_url": "https://www.sok.slupsk.pl/index.php/kalendarium/3247-niesamowite-przygody-skarpetek-4-do-roboty?date=2026-11-07-14-00",
+          "checked_at": "2026-11-06T13:57:02Z",
+          "http_status": 200,
+          "final_url": "https://www.sok.slupsk.pl/index.php/kalendarium/3247-niesamowite-przygody-skarpetek-4-do-roboty?date=2026-11-07-14-00"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "7a68ae2b-cde3-4113-80d4-6918fb5187b9",
+        "title": "Soyka / Stańko — odsłuch albumu i rozmowa",
+        "city": "Bielsko-Biała",
+        "start_at": "2026-11-07T13:00:00+00:00",
+        "original_batch_date": "2026-10-30",
+        "event_url": "https://mapaimprez.pl/kultura/bielsko-biala/curated-soyka-stanko-odsluch-albumu-i-rozmowa-bielsko-biala-2026-11-07-78cb5835c7e8",
+        "source_url": "https://bck.bielsko-biala.pl/soyka-stanko-arcydziela-z-archiwum-polskiego-radia-odsluch-plyty",
+        "checked_at": "2026-11-06T13:57:02Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "7.11.2026, 14:00, Cafe Maria w Bielskim Centrum Kultury. Wstęp wolny.",
+        "primary": {
+          "source_url": "https://bck.bielsko-biala.pl/soyka-stanko-arcydziela-z-archiwum-polskiego-radia-odsluch-plyty",
+          "checked_at": "2026-11-06T13:57:02Z",
+          "http_status": 200,
+          "final_url": "https://bck.bielsko-biala.pl/soyka-stanko-arcydziela-z-archiwum-polskiego-radia-odsluch-plyty"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "6f7e62aa-9a40-4949-ac46-2b9928fe2f7d",
+        "title": "Stilon Gorzów – ZAKSA Kędzierzyn-Koźle",
+        "city": "Gorzów Wielkopolski",
+        "start_at": "2026-11-07T14:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/mecze/gorzow-wielkopolski/curated-stilon-gorzow-zaksa-kedzierzyn-kozle-gorzow-wielkopolski-2026-11-07-d63b0dbf9ffb",
+        "source_url": "https://ks.cuprum.pl/aktualnosci/do-trzech-razy-sztuka-bilety-na-zakse-do-kupienia",
+        "checked_at": "2026-11-06T13:57:02Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "7 XI 2026,15:00,Arena Gorzów,normalny50zł/ulgowy35zł, dotychczasowe zwolnienia z opłat nadal w zapowiedzi.",
+        "primary": {
+          "source_url": "https://ks.cuprum.pl/aktualnosci/do-trzech-razy-sztuka-bilety-na-zakse-do-kupienia",
+          "checked_at": "2026-11-06T13:57:02Z",
+          "http_status": 200,
+          "final_url": "https://ks.cuprum.pl/aktualnosci/do-trzech-razy-sztuka-bilety-na-zakse-do-kupienia/"
+        },
+        "supplemental": {
+          "source_url": "https://bilety.sportcrm.pl/stilongorzow",
+          "checked_at": "2026-11-06T13:58:38Z",
+          "http_status": 200,
+          "final_url": "https://bilety.sportcrm.pl/stilongorzow",
+          "error": null
+        },
+        "proposed_changes": null
+      },
+      {
+        "event_id": "a6ca897d-8c88-424e-a836-87aa02e8ab91",
+        "title": "50/15 — Miedziewski/Nowak. Wieczór Jubileuszowy",
+        "city": "Słupsk",
+        "start_at": "2026-11-07T17:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/kultura/slupsk/curated-50-15-miedziewski-nowak-wieczor-jubileuszowy-slupsk-2026-11-07-584da2078a32",
+        "source_url": "https://www.sok.slupsk.pl/index.php/kalendarium/3242-50-15-miedziewski-nowak-wieczor-jubileuszowy?date=2026-11-07-18-00",
+        "checked_at": "2026-11-06T13:57:02Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "7.11.2026, 18:00, OT Rondo przy Niedziałkowskiego 5a, bilety 30 zł.",
+        "primary": {
+          "source_url": "https://www.sok.slupsk.pl/index.php/kalendarium/3242-50-15-miedziewski-nowak-wieczor-jubileuszowy?date=2026-11-07-18-00",
+          "checked_at": "2026-11-06T13:57:02Z",
+          "http_status": 200,
+          "final_url": "https://www.sok.slupsk.pl/index.php/kalendarium/3242-50-15-miedziewski-nowak-wieczor-jubileuszowy?date=2026-11-07-18-00"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "999d0904-d5d0-44b8-bcbf-de466fc5f3cd",
+        "title": "67. Siedleckie Zaduszki Jazzowe",
+        "city": "Siedlce",
+        "start_at": "2026-11-07T17:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/koncerty/siedlce/curated-67-siedleckie-zaduszki-jazzowe-siedlce-2026-11-07-e0ca28ee80a6",
+        "source_url": "https://mok.siedlce.pl/pl/repertuar/67-siedleckie-zaduszki-jazzowe",
+        "checked_at": "2026-11-06T13:57:05Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "7.11.2026, 18:00, sala Podlasie przy Sienkiewicza 63, 150 zł od 1 października. Aktualny skład Hanna Banaszak, Wojtek Pilichowski Slap Jazz, Maciej Sikała Trio jest już zgodny z naszym opisem.",
+        "primary": {
+          "source_url": "https://mok.siedlce.pl/pl/repertuar/67-siedleckie-zaduszki-jazzowe",
+          "checked_at": "2026-11-06T13:57:05Z",
+          "http_status": 200,
+          "final_url": "https://mok.siedlce.pl/pl/repertuar/67-siedleckie-zaduszki-jazzowe"
+        },
+        "supplemental": {
+          "source_url": "https://biletyna.pl/event/view/id/683506",
+          "checked_at": "2026-11-06T13:58:38Z",
+          "http_status": 200,
+          "final_url": "https://biletyna.pl/event/view/id/683506",
+          "error": null
+        },
+        "proposed_changes": null
+      },
+      {
+        "event_id": "0b04241d-187a-4fa2-b03d-0382bec11641",
+        "title": "Bruno Schulz. Fetyszysta",
+        "city": "Piła",
+        "start_at": "2026-11-07T17:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/kultura/pila/curated-bruno-schulz-fetyszysta-pila-2026-11-07-66fd8feab197",
+        "source_url": "https://rck.pila.pl/program-imprez.html?catid=269%3Aspektakle2026&id=2946%3Abruno-schulz-fetyszysta&view=article",
+        "checked_at": "2026-11-06T13:57:02Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "7.11.2026, 18:00, sala widowiskowa RCK przy placu Staszica 1, 50 zł według karty instytucji. Dodatkowy system biletowy zwrócił błąd zgodności certyfikatu TLS; liczby miejsc nie potwierdzono.",
+        "primary": {
+          "source_url": "https://rck.pila.pl/program-imprez.html?catid=269%3Aspektakle2026&id=2946%3Abruno-schulz-fetyszysta&view=article",
+          "checked_at": "2026-11-06T13:57:02Z",
+          "http_status": 200,
+          "final_url": "https://rck.pila.pl/program-imprez.html?catid=269%3Aspektakle2026&id=2946%3Abruno-schulz-fetyszysta&view=article"
+        },
+        "supplemental": {
+          "source_url": "https://www.bilety.rck.pila.pl/",
+          "checked_at": "2026-11-06T13:58:38Z",
+          "http_status": null,
+          "final_url": null,
+          "error": "ERR_TLS_CERT_ALTNAME_INVALID"
+        },
+        "proposed_changes": null
+      },
+      {
+        "event_id": "51f39d55-6e92-4a00-87f6-d818cf2f2bbd",
+        "title": "Tur Basket Bielsk Podlaski – Znicz Basket Pruszków",
+        "city": "Bielsk Podlaski",
+        "start_at": "2026-11-07T18:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/mecze/bielsk-podlaski/curated-tur-basket-bielsk-podlaski-znicz-basket-pruszkow-bielsk-podlaski-2026-11-07-b50554c987b4",
+        "source_url": "https://umbielskpodlaski.pl/wydarzenie/koszykarska-ii-liga-63",
+        "checked_at": "2026-11-06T13:57:06Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "7 XI 2026,19:00,SP3 Poniatowskiego9,wstęp wolny,nadal zgodne.",
+        "primary": {
+          "source_url": "https://umbielskpodlaski.pl/wydarzenie/koszykarska-ii-liga-63",
+          "checked_at": "2026-11-06T13:57:06Z",
+          "http_status": 200,
+          "final_url": "https://umbielskpodlaski.pl/wydarzenie/koszykarska-ii-liga-63/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "e2012e93-69fe-4926-8511-91528cc8d950",
+        "title": "Rodzina na górce — Pierzaste i futrzaste",
+        "city": "Tarnów",
+        "start_at": "2026-11-08T09:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/rodzinne/tarnow/curated-rodzina-na-gorce-pierzaste-i-futrzaste-tarnow-2026-11-08-54a85516947e",
+        "source_url": "https://dkwesterplatte.pl/wydarzenia/warsztaty/warsztaty-rodzina-na-gorce-warsztaty-dla-rodzin-z-dziecmi-w-wieku-4-7-lat/59",
+        "checked_at": "2026-11-06T13:57:05Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "8.11.2026, 10:00, DK Westerplatte, Westerplatte 8a. Koszt 20 zł za pierwsze dziecko i 10 zł za kolejne z rodzeństwa, zapisy w ActiveNow.",
+        "primary": {
+          "source_url": "https://dkwesterplatte.pl/wydarzenia/warsztaty/warsztaty-rodzina-na-gorce-warsztaty-dla-rodzin-z-dziecmi-w-wieku-4-7-lat/59",
+          "checked_at": "2026-11-06T13:57:05Z",
+          "http_status": 200,
+          "final_url": "https://dkwesterplatte.pl/wydarzenia/warsztaty/warsztaty-rodzina-na-gorce-warsztaty-dla-rodzin-z-dziecmi-w-wieku-4-7-lat/59"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "98a967d7-7da3-4bd7-90d8-99f394717eff",
+        "title": "X Listopadowe Spotkanie z Historią — początki harcerstwa",
+        "city": "Rzeszów",
+        "start_at": "2026-11-08T11:00:00+00:00",
+        "original_batch_date": "2026-10-30",
+        "event_url": "https://mapaimprez.pl/kultura/rzeszow/curated-x-listopadowe-spotkanie-z-historia-poczatki-harcerstwa-rzeszow-2026-11-08-bfa75d0b6903",
+        "source_url": "https://www.muzeum.rzeszow.pl/pl/2026/10/28/x-listopadowe-spotkanie-z-historia",
+        "checked_at": "2026-11-06T13:57:05Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "8.11.2026, 12:00–15:00, Budynek Główny Muzeum przy 3 Maja 19. Wstęp na spotkanie wolny, ekspozycje odrębnie biletowane.",
+        "primary": {
+          "source_url": "https://www.muzeum.rzeszow.pl/pl/2026/10/28/x-listopadowe-spotkanie-z-historia",
+          "checked_at": "2026-11-06T13:57:05Z",
+          "http_status": 200,
+          "final_url": "https://www.muzeum.rzeszow.pl/pl/2026/10/28/x-listopadowe-spotkanie-z-historia/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "9e1ea4ba-ee13-4daf-9557-5db8b137d5cd",
+        "title": "Koncert Niepodległościowy w Bazylice Katedralnej",
+        "city": "Płock",
+        "start_at": "2026-11-08T13:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/koncerty/plock/curated-koncert-niepodleglosciowy-w-bazylice-katedralnej-plock-2026-11-08-9aae6b78f757",
+        "source_url": "https://kalendarzimprez.plock.eu/event/koncert-niepodleglosciowy-w-bazylice-katedralnej",
+        "checked_at": "2026-11-06T13:57:06Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "8.11.2026, 14:00, płocka Bazylika Katedralna, wstęp wolny. Msza o 13:00 pozostaje odrębnym punktem.",
+        "primary": {
+          "source_url": "https://kalendarzimprez.plock.eu/event/koncert-niepodleglosciowy-w-bazylice-katedralnej",
+          "checked_at": "2026-11-06T13:57:06Z",
+          "http_status": 200,
+          "final_url": "https://kalendarzimprez.plock.eu/event/koncert-niepodleglosciowy-w-bazylice-katedralnej/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "f7c8fe19-f1e9-4bd0-a770-37a72f2ac914",
+        "title": "Strażacy Dzieciom — koncert charytatywny",
+        "city": "Chojnice",
+        "start_at": "2026-11-08T13:30:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/charytatywne/chojnice/curated-strazacy-dzieciom-koncert-charytatywny-chojnice-2026-11-08-a80da3a277b1",
+        "source_url": "https://www.ckchojnice.pl/aktualnosc/koncert-charytatywny-strazacy-dzieciom",
+        "checked_at": "2026-11-06T13:57:06Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "8.11.2026, od 14:30, Chojnickie Centrum Kultury przy Swarożyca 1. Wstęp wolny, dobrowolne licytacje charytatywne.",
+        "primary": {
+          "source_url": "https://www.ckchojnice.pl/aktualnosc/koncert-charytatywny-strazacy-dzieciom",
+          "checked_at": "2026-11-06T13:57:06Z",
+          "http_status": 200,
+          "final_url": "https://www.ckchojnice.pl/aktualnosc/koncert-charytatywny-strazacy-dzieciom"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "3caf52e4-65a0-46fa-b6c1-44f2f187f037",
+        "title": "Rozkwitały pąki białych róż — koncert Chóru Halka",
+        "city": "Piła",
+        "start_at": "2026-11-08T15:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/koncerty/pila/curated-rozkwitaly-paki-bialych-roz-koncert-choru-halka-pila-2026-11-08-85ec3791729b",
+        "source_url": "https://rck.pila.pl/program-imprez.html?catid=266%3Akoncerty2026&id=3013%3Arozkwita%C5%82y-p%C4%85ki-bia%C5%82ych-r%C3%B3%C5%BC&view=article",
+        "checked_at": "2026-11-06T13:57:09Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "8.11.2026, 16:00, sala kameralna RCK przy placu Staszica 1. Wstęp wolny.",
+        "primary": {
+          "source_url": "https://rck.pila.pl/program-imprez.html?catid=266%3Akoncerty2026&id=3013%3Arozkwita%C5%82y-p%C4%85ki-bia%C5%82ych-r%C3%B3%C5%BC&view=article",
+          "checked_at": "2026-11-06T13:57:09Z",
+          "http_status": 200,
+          "final_url": "https://rck.pila.pl/program-imprez.html?catid=266%3Akoncerty2026&id=3013%3Arozkwita%C5%82y-p%C4%85ki-bia%C5%82ych-r%C3%B3%C5%BC&view=article"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "8b8a9515-558e-472f-b45a-8b02dca46300",
+        "title": "Spotkania Trzech Pokoleń z Kulturą Łemkowską",
+        "city": "Lubin",
+        "start_at": "2026-11-08T15:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/koncerty/lubin/curated-spotkania-trzech-pokolen-z-kultura-lemkowska-lubin-2026-11-08-ccfb32335990",
+        "source_url": "https://ckmuza.eu/8-11-2026-spotkania-trzech-pokolen-z-kultura-lemkowska-koncert",
+        "checked_at": "2026-11-06T13:57:05Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "8.11.2026, 16:00, duża sala CK Muza, wstęp wolny. Komunikaty boczne o odwołaniu dotyczą innych zajęć 12 i 13 listopada.",
+        "primary": {
+          "source_url": "https://ckmuza.eu/8-11-2026-spotkania-trzech-pokolen-z-kultura-lemkowska-koncert",
+          "checked_at": "2026-11-06T13:57:05Z",
+          "http_status": 200,
+          "final_url": "https://ckmuza.eu/8-11-2026-spotkania-trzech-pokolen-z-kultura-lemkowska-koncert/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "b971becd-70e6-4936-b3f7-104f340b0143",
+        "title": "Barwy niepodległości — koncert Chodowiaków",
+        "city": "Siedlce",
+        "start_at": "2026-11-08T16:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/koncerty/siedlce/curated-barwy-niepodleglosci-koncert-chodowiakow-siedlce-2026-11-08-c4b898070bd0",
+        "source_url": "https://mok.siedlce.pl/pl/repertuar/barwy-niepodleglosci-koncert-zespolu-piesni-i-tanca-ziemi-siedleckiej-chodowiacy-im-alicji-siwkiewicz",
+        "checked_at": "2026-11-06T13:57:11Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "8.11.2026, 17:00, sala Podlasie przy Sienkiewicza 63, 30 zł. Oficjalna bileteria pokazuje wolne miejsca na parterze i balkonie.",
+        "primary": {
+          "source_url": "https://mok.siedlce.pl/pl/repertuar/barwy-niepodleglosci-koncert-zespolu-piesni-i-tanca-ziemi-siedleckiej-chodowiacy-im-alicji-siwkiewicz",
+          "checked_at": "2026-11-06T13:57:11Z",
+          "http_status": 200,
+          "final_url": "https://mok.siedlce.pl/pl/repertuar/barwy-niepodleglosci-koncert-zespolu-piesni-i-tanca-ziemi-siedleckiej-chodowiacy-im-alicji-siwkiewicz"
+        },
+        "supplemental": {
+          "source_url": "https://biletyna.pl/event/view/id/712956",
+          "checked_at": "2026-11-06T13:58:38Z",
+          "http_status": 200,
+          "final_url": "https://biletyna.pl/event/view/id/712956",
+          "error": null
+        },
+        "proposed_changes": null
+      },
+      {
+        "event_id": "7df44892-6f36-4b92-8b6e-42b95add3595",
+        "title": "Salon Kobiet: Jacek Kałucki i Marek Siudym",
+        "city": "Kielce",
+        "start_at": "2026-11-08T16:00:00+00:00",
+        "original_batch_date": "2026-10-29",
+        "event_url": "https://mapaimprez.pl/kultura/kielce/curated-salon-kobiet-jacek-kalucki-i-marek-siudym-kielce-2026-11-08-3c37cd7386f4",
+        "source_url": "https://www.kck.com.pl/salon-kobiet-jacek-kalucki-i-marek-siudym",
+        "checked_at": "2026-11-06T13:57:10Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "8.11.2026, 17:00, Galeria Winda, cena 35 zł zgodne z aktualną kartą organizatora.",
+        "primary": {
+          "source_url": "https://www.kck.com.pl/salon-kobiet-jacek-kalucki-i-marek-siudym",
+          "checked_at": "2026-11-06T13:57:10Z",
+          "http_status": 200,
+          "final_url": "https://www.kck.com.pl/salon-kobiet-jacek-kalucki-i-marek-siudym/"
+        },
+        "supplemental": {
+          "source_url": "https://www.bilety24.pl/inne/403-salon-kobiet-jacek-kalucki-i-marek-siudym-166965?id=1003100",
+          "checked_at": "2026-11-06T13:58:40Z",
+          "http_status": 200,
+          "final_url": "https://www.bilety24.pl/inne/403-salon-kobiet-jacek-kalucki-i-marek-siudym-166965?id=1003100",
+          "error": null
+        },
+        "proposed_changes": null
+      },
+      {
+        "event_id": "c2178e3d-2499-4d3c-93a4-5342e3c1bdb6",
+        "title": "Wyśpiewaj z nami NIE-PODLEGŁOŚĆ",
+        "city": "Szczecin",
+        "start_at": "2026-11-08T16:00:00+00:00",
+        "original_batch_date": "2026-10-30",
+        "event_url": "https://mapaimprez.pl/koncerty/szczecin/curated-wyspiewaj-z-nami-nie-podleglosc-szczecin-2026-11-08-4825979451d6",
+        "source_url": "https://www.akademiasztuki.eu/Product/wyspiewaj-z-nami-nie-podleglosc-6ae1e590a4324",
+        "checked_at": "2026-11-06T13:57:10Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "8.11.2026, 17:00, Sala Perłowa Akademii Sztuki, wstęp wolny.",
+        "primary": {
+          "source_url": "https://www.akademiasztuki.eu/Product/wyspiewaj-z-nami-nie-podleglosc-6ae1e590a4324",
+          "checked_at": "2026-11-06T13:57:10Z",
+          "http_status": 200,
+          "final_url": "https://www.akademiasztuki.eu/Product/wyspiewaj-z-nami-nie-podleglosc-6ae1e590a4324"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "f954ece5-dd53-4e19-a098-6ece76c18c4d",
+        "title": "Widmo wolności — Wielcy twórcy ekranu",
+        "city": "Warszawa",
+        "start_at": "2026-11-08T18:00:00+00:00",
+        "original_batch_date": "2026-10-29",
+        "event_url": "https://mapaimprez.pl/kultura/warszawa/curated-widmo-wolnosci-wielcy-tworcy-ekranu-warszawa-2026-11-08-d384c74f5600",
+        "source_url": "https://domsztuki.art.pl/kino/seans/304-widmo-wolnosci",
+        "checked_at": "2026-11-06T13:57:10Z",
+        "http_status": 200,
+        "status": "free_entry_confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": "updated_and_publicly_verified",
+        "note": "8.11.2026, 19:00, Dom Sztuki przy Wiolinowej 14. Organizator zmienił komunikat o wstępie z „Kup bilet” na „Wstęp wolny / Pobierz wejściówkę”. Powiązana Biletyna zwraca brak warszawskich terminów. Aktualna dostępność wejściówek pozostaje niepotwierdzona.",
+        "primary": {
+          "source_url": "https://domsztuki.art.pl/kino/seans/304-widmo-wolnosci",
+          "checked_at": "2026-11-06T13:57:10Z",
+          "http_status": 200,
+          "final_url": "https://domsztuki.art.pl/kino/seans/304-widmo-wolnosci",
+          "evidence_quote": "Wstęp wolny Pobierz wejściówkę"
+        },
+        "supplemental": {
+          "source_url": "https://biletyna.pl/film/Widmo-wolnosci/Warszawa",
+          "checked_at": "2026-11-06T13:58:42Z",
+          "http_status": 200,
+          "final_url": "https://biletyna.pl/film/Widmo-wolnosci/Warszawa",
+          "error": null,
+          "evidence_quote": "Brak wydarzeń w: Warszawa"
+        },
+        "proposed_changes": {
+          "price_type": "free",
+          "price_min": 0,
+          "price_max": 0,
+          "description": "Pokaz filmu „Widmo wolności” Luisa Buñuela w cyklu Wielcy twórcy ekranu. Wstęp wolny z wejściówką. Dostępność wejściówek nie została potwierdzona."
+        }
+      },
+      {
+        "event_id": "0c48204b-8f8a-4d94-b90a-b741f107f138",
+        "title": "Na Zamku u Tiffaniego — wieczór taneczny KTT AIDA",
+        "city": "Szczecinek",
+        "start_at": "2026-11-10T17:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/imprezy/szczecinek/curated-na-zamku-u-tiffaniego-wieczor-taneczny-ktt-aida-szczecinek-2026-11-10-bc4c70467b64",
+        "source_url": "https://szczecinek.pl/kalendarz-wydarzen/na-zamku-u-tiffaniego-taneczny-wieczor-z-ktt-aida.html",
+        "checked_at": "2026-11-06T13:57:10Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "10 XI 2026,18:00–20:00,Sala Południowa CK Zamek,wstęp wolny z wejściówką,nadal zgodne.",
+        "primary": {
+          "source_url": "https://szczecinek.pl/kalendarz-wydarzen/na-zamku-u-tiffaniego-taneczny-wieczor-z-ktt-aida.html",
+          "checked_at": "2026-11-06T13:57:10Z",
+          "http_status": 200,
+          "final_url": "https://szczecinek.pl/kalendarz-wydarzen/na-zamku-u-tiffaniego-taneczny-wieczor-z-ktt-aida.html"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "dd0a658e-3437-4f23-ba63-e7f70c490bae",
+        "title": "Retrospotkanie 82 — Wywar. Z czasów i przestrzeni",
+        "city": "Radom",
+        "start_at": "2026-11-10T17:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/kultura/radom/curated-retrospotkanie-82-wywar-z-czasow-i-przestrzeni-radom-2026-11-10-dd208c4ef591",
+        "source_url": "https://resursa.radom.pl/wydarzenie/retrospotkanie-82-wywar-z-czasow-i-przestrzeni",
+        "checked_at": "2026-11-06T13:57:13Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "10.11.2026, 18:00, Resursa przy Malczewskiego 16, wstęp wolny.",
+        "primary": {
+          "source_url": "https://resursa.radom.pl/wydarzenie/retrospotkanie-82-wywar-z-czasow-i-przestrzeni",
+          "checked_at": "2026-11-06T13:57:13Z",
+          "http_status": 200,
+          "final_url": "https://resursa.radom.pl/wydarzenie/retrospotkanie-82-wywar-z-czasow-i-przestrzeni/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "608d69c7-bd9c-4641-afa6-d848e5cbe318",
+        "title": "Literackie ZaDuchy – spotkanie z Joanną Chachułą",
+        "city": "Gorzów Wielkopolski",
+        "start_at": "2026-11-10T17:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/kultura/gorzow-wielkopolski/curated-literackie-zaduchy-spotkanie-z-joanna-chachula-gorzow-wielkopolski-2026-11-10-1a065196337d",
+        "source_url": "https://mckgorzow.pl/event/literackie-zaduchy-spotkanie-z-joanna-chachula",
+        "checked_at": "2026-11-06T13:57:12Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "10 XI 2026,18:00,Klub Jedynka Chrobrego9,wstęp wolny,nadal zgodne.",
+        "primary": {
+          "source_url": "https://mckgorzow.pl/event/literackie-zaduchy-spotkanie-z-joanna-chachula",
+          "checked_at": "2026-11-06T13:57:12Z",
+          "http_status": 200,
+          "final_url": "https://mckgorzow.pl/event/literackie-zaduchy-spotkanie-z-joanna-chachula/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "45688876-5bbd-47e9-af9b-11747cd4d079",
+        "title": "Melodie Otchłani — koncert muzyczno-filmowy",
+        "city": "Dzierżoniów",
+        "start_at": "2026-11-10T18:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/koncerty/dzierzoniow/curated-melodie-otchlani-koncert-muzyczno-filmowy-dzierzoniow-2026-11-10-5257f1da3f16",
+        "source_url": "https://dok.pl/dok/wydarzenia/melodie-otchlani-koncert-inspirowany-glebia-strzelinskiego-granitu",
+        "checked_at": "2026-11-06T13:57:14Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "10 XI 2026,19:00,Kinoteatr Zbyszek,wstęp wolny,nadal zgodne.",
+        "primary": {
+          "source_url": "https://dok.pl/dok/wydarzenia/melodie-otchlani-koncert-inspirowany-glebia-strzelinskiego-granitu",
+          "checked_at": "2026-11-06T13:57:14Z",
+          "http_status": 200,
+          "final_url": "https://dok.pl/dok/wydarzenia/melodie-otchlani-koncert-inspirowany-glebia-strzelinskiego-granitu"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "4db96417-4bc5-488e-adcc-a74d50928a10",
+        "title": "Święto Niepodległości w Twierdzy Boyen",
+        "city": "Giżycko",
+        "start_at": "2026-11-11T08:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/rodzinne/gizycko/curated-swieto-niepodleglosci-w-twierdzy-boyen-gizycko-2026-11-11-a88e51a18cea",
+        "source_url": "https://gizycko.pl/obchody-swieta-niepodleglosci-w-twierdzy-boyen",
+        "checked_at": "2026-11-06T13:57:14Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "11.11.2026, 09:00–16:00, Twierdza Boyen przy Turystycznej 1, bezpłatny wstęp.",
+        "primary": {
+          "source_url": "https://gizycko.pl/obchody-swieta-niepodleglosci-w-twierdzy-boyen",
+          "checked_at": "2026-11-06T13:57:14Z",
+          "http_status": 200,
+          "final_url": "https://gizycko.pl/obchody-swieta-niepodleglosci-w-twierdzy-boyen"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "c5a2676c-510f-4ceb-9fa1-d73f887b63f0",
+        "title": "Siedleckie Biegi Niepodległościowe — sztafeta OPEN 10 km",
+        "city": "Siedlce",
+        "start_at": "2026-11-11T11:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/sport/siedlce/curated-siedleckie-biegi-niepodleglosciowe-sztafeta-open-10-km-siedlce-2026-11-11-84b77df5af7d",
+        "source_url": "https://fenikssiedlce.pl/zawody/biegi-11-listopada",
+        "checked_at": "2026-11-06T13:57:14Z",
+        "http_status": 200,
+        "status": "registration_closed_already_documented",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "11.11.2026, 12:00, Park Aleksandria, 20 zł od zespołu. Organizator nadal informuje o zamknięciu listy z powodu limitu. Opis w portalu uwzględnia korektę z 5 listopada. Wydarzenie pozostaje w programie.",
+        "primary": {
+          "source_url": "https://fenikssiedlce.pl/zawody/biegi-11-listopada",
+          "checked_at": "2026-11-06T13:57:14Z",
+          "http_status": 200,
+          "final_url": "https://fenikssiedlce.pl/zawody/biegi-11-listopada/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "f0b1fb38-c695-40ef-a4dc-30f10f7e51c9",
+        "title": "Listopadowa Lekcja Muzyki X",
+        "city": "Bydgoszcz",
+        "start_at": "2026-11-11T12:00:00+00:00",
+        "original_batch_date": "2026-10-30",
+        "event_url": "https://mapaimprez.pl/koncerty/bydgoszcz/curated-listopadowa-lekcja-muzyki-x-bydgoszcz-2026-11-11-8eab129cf917",
+        "source_url": "https://mck-bydgoszcz.pl/program/listopadowa-lekcja-muzyki-x",
+        "checked_at": "2026-11-06T13:57:14Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "11 XI 2026,13:00,sala koncertowa MCK,bilety30zł od19X, nadal zgodne.",
+        "primary": {
+          "source_url": "https://mck-bydgoszcz.pl/program/listopadowa-lekcja-muzyki-x",
+          "checked_at": "2026-11-06T13:57:14Z",
+          "http_status": 200,
+          "final_url": "https://mck-bydgoszcz.pl/program/listopadowa-lekcja-muzyki-x/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "2a78b4af-d093-4816-87a8-188fa7aa1339",
+        "title": "Sportowy Patriotyzm na Tartanie — finał cyklu 3–2–1 START",
+        "city": "Zgorzelec",
+        "start_at": "2026-11-11T13:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/sport/zgorzelec/curated-sportowy-patriotyzm-na-tartanie-final-cyklu-3-2-1-start-zgorzelec-2026-11-11-f2518acffd63",
+        "source_url": "https://zgorzelec.eu/kalendarz-wydarzen/sportowy-patriotyzm-na-tartanie-cykl-biegowy-3-2-1-start",
+        "checked_at": "2026-11-06T13:57:17Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "11 XI 2026,14:00 start400m dla dzieci, kolejne dystanse14:15/14:40/15:10, Stadion Miejski, udział bezpłatny, nadal zgodne.",
+        "primary": {
+          "source_url": "https://zgorzelec.eu/kalendarz-wydarzen/sportowy-patriotyzm-na-tartanie-cykl-biegowy-3-2-1-start",
+          "checked_at": "2026-11-06T13:57:17Z",
+          "http_status": 200,
+          "final_url": "https://zgorzelec.eu/kalendarz-wydarzen/sportowy-patriotyzm-na-tartanie-cykl-biegowy-3-2-1-start/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "c9a4f637-7499-4c98-9d8d-fb9d9e200d97",
+        "title": "W mundurze niepodległej — patriotyczne spotkanie w Arsenale",
+        "city": "Zamość",
+        "start_at": "2026-11-11T13:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/rodzinne/zamosc/curated-w-mundurze-niepodleglej-patriotyczne-spotkanie-w-arsenale-zamosc-2026-11-11-4d2724f5380a",
+        "source_url": "https://zci.zamosc.pl/news/2606/w-mundurze-niepodleglej-ndash-patriotyczne-spotkanie-z.html",
+        "checked_at": "2026-11-06T13:57:14Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "11.11.2026, 14:00, Muzeum Fortyfikacji i Broni „Arsenał”, bezpłatnie na zapisy. Formularz nadal przyjmuje zgłoszenia według widocznych pól, bez potwierdzania liczby wolnych miejsc.",
+        "primary": {
+          "source_url": "https://zci.zamosc.pl/news/2606/w-mundurze-niepodleglej-ndash-patriotyczne-spotkanie-z.html",
+          "checked_at": "2026-11-06T13:57:14Z",
+          "http_status": 200,
+          "final_url": "https://zci.zamosc.pl/news/2606/w-mundurze-niepodleglej-ndash-patriotyczne-spotkanie-z.html"
+        },
+        "supplemental": {
+          "source_url": "https://forms.gle/3kHYkysi1YWtRbsR6",
+          "checked_at": "2026-11-06T13:58:40Z",
+          "http_status": 200,
+          "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSftr0QpwsTEzv7pL5CC84acWBYHALHfBFSUcxr6gqaUN0SSvg/viewform?usp=send_form",
+          "error": null
+        },
+        "proposed_changes": null
+      },
+      {
+        "event_id": "01e4a416-dc0a-4040-ad2c-aa7e8902a410",
+        "title": "Śpiewam dla Ciebie Ojczyzno! — koncert o 15:00",
+        "city": "Kartuzy",
+        "start_at": "2026-11-11T14:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/koncerty/kartuzy/curated-spiewam-dla-ciebie-ojczyzno-koncert-o-15-00-kartuzy-2026-11-11-973158469420",
+        "source_url": "https://kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/spiewam-dla-ciebie-ojczyzno.html",
+        "checked_at": "2026-11-06T13:57:14Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "11.11.2026, 15:00, Kartuskie Centrum Kultury. Bezpłatne wejściówki, z potwierdzeniem zgodnie z opisem w portalu.",
+        "primary": {
+          "source_url": "https://kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/spiewam-dla-ciebie-ojczyzno.html",
+          "checked_at": "2026-11-06T13:57:14Z",
+          "http_status": 200,
+          "final_url": "https://kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/spiewam-dla-ciebie-ojczyzno.html"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "d904deee-6151-4c9b-8d3e-7474f1791d06",
+        "title": "Z pieśnią patriotyczną ku Niepodległej",
+        "city": "Koszalin",
+        "start_at": "2026-11-11T15:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/koncerty/koszalin/curated-z-piesnia-patriotyczna-ku-niepodleglej-koszalin-2026-11-11-373af933e1ab",
+        "source_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/z-piesnia-patriotyczna-ku-niepodleglej",
+        "checked_at": "2026-11-06T13:57:18Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "11 XI 2026,16:00,sala widowiskowa CK105, wstęp wolny, nadal zgodne.",
+        "primary": {
+          "source_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/z-piesnia-patriotyczna-ku-niepodleglej",
+          "checked_at": "2026-11-06T13:57:18Z",
+          "http_status": 200,
+          "final_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/z-piesnia-patriotyczna-ku-niepodleglej"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "49722648-5f9d-4ede-9bdc-544ec3c4eab2",
+        "title": "Polska – moja miłość. W świecie piosenek Mieczysława Fogga",
+        "city": "Grudziądz",
+        "start_at": "2026-11-11T16:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/koncerty/grudziadz/curated-polska-moja-milosc-w-swiecie-piosenek-mieczyslawa-fogga-grudziadz-2026-11-11-441ed4948654",
+        "source_url": "https://grudziadz.pl/wydarzenie/49/25075/108-rocznica-odzyskania-przez-polske-niepodleglosci",
+        "checked_at": "2026-11-06T13:57:17Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "11 XI 2026,17:00,Teatralna1,bezpłatne wejściówki od3XI16:00,nadal zgodne.",
+        "primary": {
+          "source_url": "https://grudziadz.pl/wydarzenie/49/25075/108-rocznica-odzyskania-przez-polske-niepodleglosci",
+          "checked_at": "2026-11-06T13:57:17Z",
+          "http_status": 200,
+          "final_url": "https://grudziadz.pl/wydarzenie/49/25075/108-rocznica-odzyskania-przez-polske-niepodleglosci"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "3d02f881-0922-467d-b4d1-3f9c1556242e",
+        "title": "Cracovia Cosinus — koncert pieśni patriotycznych",
+        "city": "Kraków",
+        "start_at": "2026-11-11T16:00:00+00:00",
+        "original_batch_date": "2026-10-29",
+        "event_url": "https://mapaimprez.pl/koncerty/krakow/curated-cracovia-cosinus-koncert-piesni-patriotycznych-krakow-2026-11-11-d52e80e2f953",
+        "source_url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html",
+        "checked_at": "2026-11-06T13:57:17Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "11 XI 2026, 17:00–20:00, Klub Zakole ul. Zakole 31. Miasto nadal podaje wstęp wolny i zapisy przez formularz od3XI.",
+        "primary": {
+          "source_url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html",
+          "checked_at": "2026-11-06T13:57:17Z",
+          "http_status": 200,
+          "final_url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "c2c610c5-af9d-4a52-b58b-5c3bf503c99d",
+        "title": "Krajobraz pieśnią pisany — koncert na Święto Niepodległości",
+        "city": "Rzeszów",
+        "start_at": "2026-11-11T16:00:00+00:00",
+        "original_batch_date": "2026-10-30",
+        "event_url": "https://mapaimprez.pl/koncerty/rzeszow/curated-krajobraz-piesnia-pisany-koncert-na-swieto-niepodleglosci-rzeszow-2026-11-11-621529c73338",
+        "source_url": "https://teatrmuzycznyhalka.rzeszow.pl/2026/10/22/krajobraz-piesnia-pisany-koncert-z-okazji-swieta-11-listopada",
+        "checked_at": "2026-11-06T13:57:17Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "11 XI 2026,17:00,WDK Okrzei7, wstęp wolny z bezpłatną wejściówką od2XI, nadal zgodne.",
+        "primary": {
+          "source_url": "https://teatrmuzycznyhalka.rzeszow.pl/2026/10/22/krajobraz-piesnia-pisany-koncert-z-okazji-swieta-11-listopada",
+          "checked_at": "2026-11-06T13:57:17Z",
+          "http_status": 200,
+          "final_url": "https://teatrmuzycznyhalka.rzeszow.pl/2026/10/22/krajobraz-piesnia-pisany-koncert-z-okazji-swieta-11-listopada/"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "0846aa84-0224-4c3b-87b7-784e1558197d",
+        "title": "Lombard — W hołdzie Solidarności. Drogi do wolności",
+        "city": "Mrągowo",
+        "start_at": "2026-11-11T17:30:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/koncerty/mragowo/curated-lombard-w-holdzie-solidarnosci-drogi-do-wolnosci-mragowo-2026-11-11-51605e778ff0",
+        "source_url": "https://mck.mragowo.pl/pl/news/info/3713/mragowskie-obchody-swieta-niepodleglosci.html",
+        "checked_at": "2026-11-06T13:57:18Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "11 XI 2026,18:30,sala widowiskowa MCK Mrągowo,wstęp wolny,nadal zgodne.",
+        "primary": {
+          "source_url": "https://mck.mragowo.pl/pl/news/info/3713/mragowskie-obchody-swieta-niepodleglosci.html",
+          "checked_at": "2026-11-06T13:57:18Z",
+          "http_status": 200,
+          "final_url": "https://mck.mragowo.pl/pl/news/info/3713/mragowskie-obchody-swieta-niepodleglosci.html"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      },
+      {
+        "event_id": "ab9f5aa7-f345-4512-83b8-39ec4e883954",
+        "title": "Płyń, Wisełko — Warszawska Orkiestra Sentymentalna",
+        "city": "Kołobrzeg",
+        "start_at": "2026-11-11T18:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/koncerty/kolobrzeg/curated-plyn-wiselko-warszawska-orkiestra-sentymentalna-kolobrzeg-2026-11-11-4475e501728c",
+        "source_url": "https://www.i-kolobrzeg.pl/wydarzenie-3500-warszawska_orkiestra_sentymentalna_11-szczegoly-113832.html",
+        "checked_at": "2026-11-06T13:57:19Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "11 XI 2026,19:00,RCK Solna1,normalny15zł/ulgowy i Karta Mieszkańca10zł,nadal zgodne.",
+        "primary": {
+          "source_url": "https://www.i-kolobrzeg.pl/wydarzenie-3500-warszawska_orkiestra_sentymentalna_11-szczegoly-113832.html",
+          "checked_at": "2026-11-06T13:57:19Z",
+          "http_status": 200,
+          "final_url": "https://www.i-kolobrzeg.pl/wydarzenie-3500-warszawska_orkiestra_sentymentalna_11.html"
+        },
+        "supplemental": {
+          "source_url": "https://bilety.rck.kolobrzeg.pl/Imprezy/OrderTickets.aspx?event_id=7240&typetran=0",
+          "checked_at": "2026-11-06T13:58:40Z",
+          "http_status": 200,
+          "final_url": "https://bilety.rck.kolobrzeg.pl/Imprezy/OrderTickets.aspx?event_id=7240&typetran=0",
+          "error": null
+        },
+        "proposed_changes": null
+      },
+      {
+        "event_id": "f58308bf-afde-4a37-b92e-f0826df85273",
+        "title": "Narodowe Święto Niepodległości — Płocka Orkiestra Symfoniczna",
+        "city": "Płock",
+        "start_at": "2026-11-11T18:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/koncerty/plock/curated-narodowe-swieto-niepodleglosci-plocka-orkiestra-symfoniczna-plock-2026-11-11-04507b584f7a",
+        "source_url": "https://orkiestraplock.pl/wydarzenie/narodowe-swieto-niepodleglosci-2",
+        "checked_at": "2026-11-06T13:57:21Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "11.11.2026, 19:00, sala PSM przy Kolegialnej 23, 50 zł lub 40 zł z Płocką Kartą Mieszkańca. Orkiestra i jej karta w Bilety24 podają ten sam termin i cennik.",
+        "primary": {
+          "source_url": "https://orkiestraplock.pl/wydarzenie/narodowe-swieto-niepodleglosci-2",
+          "checked_at": "2026-11-06T13:57:21Z",
+          "http_status": 200,
+          "final_url": "https://orkiestraplock.pl/wydarzenie/narodowe-swieto-niepodleglosci-2/"
+        },
+        "supplemental": {
+          "source_url": "https://www.bilety24.pl/organizator/plocka-orkiestra-symfoniczna-im-witolda-lutoslawskiego-838.html",
+          "checked_at": "2026-11-06T13:58:40Z",
+          "http_status": 200,
+          "final_url": "https://www.bilety24.pl/organizator/plocka-orkiestra-symfoniczna-im-witolda-lutoslawskiego-838.html",
+          "error": null
+        },
+        "proposed_changes": null
+      },
+      {
+        "event_id": "d574cd66-8cef-4bd0-97b6-41f644c18f41",
+        "title": "Cztery pory roku z literaturą — Maciej Siembieda",
+        "city": "Giżycko",
+        "start_at": "2026-11-12T17:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/kultura/gizycko/curated-cztery-pory-roku-z-literatura-maciej-siembieda-gizycko-2026-11-12-2ff254aeeebb",
+        "source_url": "https://www.gizycko.pl/cztery-pory-roku-z-literatura--3437",
+        "checked_at": "2026-11-06T13:57:21Z",
+        "http_status": 200,
+        "status": "confirmed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "correction_outcome": null,
+        "note": "12.11.2026, 18:00–20:00, sala 2 Giżyckiego Centrum Kultury przy Konarskiego 8, wstęp wolny.",
+        "primary": {
+          "source_url": "https://www.gizycko.pl/cztery-pory-roku-z-literatura--3437",
+          "checked_at": "2026-11-06T13:57:21Z",
+          "http_status": 200,
+          "final_url": "https://www.gizycko.pl/cztery-pory-roku-z-literatura--3437"
+        },
+        "supplemental": null,
+        "proposed_changes": null
+      }
+    ],
+    "admission_findings": [
+      {
+        "event_id": "55c02b6a-e142-49a2-8efb-693946392736",
+        "status": "online_ticketing_closed",
+        "correction_outcome": "recorded_online_closure_box_office_availability_unconfirmed"
+      },
+      {
+        "event_id": "b41d8013-3e73-469b-bb58-9446ce46b8f5",
+        "status": "online_ticketing_closed",
+        "correction_outcome": "recorded_online_closure_box_office_availability_unconfirmed"
+      },
+      {
+        "event_id": "adbc86d6-d06d-4116-9e61-f374f46aab13",
+        "status": "available_on_latest_read",
+        "correction_outcome": "sold_out_notice_superseded_before_write"
+      },
+      {
+        "event_id": "f954ece5-dd53-4e19-a098-6ece76c18c4d",
+        "status": "free_entry_confirmed",
+        "correction_outcome": "updated_and_publicly_verified"
+      }
+    ]
+  },
+  "existing_event_corrections": [
+    {
+      "id": "f954ece5-dd53-4e19-a098-6ece76c18c4d",
+      "batch_date": "2026-10-29",
+      "title": "Widmo wolności — Wielcy twórcy ekranu",
+      "url": "https://mapaimprez.pl/kultura/warszawa/curated-widmo-wolnosci-wielcy-tworcy-ekranu-warszawa-2026-11-08-d384c74f5600",
+      "source_url": "https://domsztuki.art.pl/kino/seans/304-widmo-wolnosci",
+      "evidence_url": "https://domsztuki.art.pl/kino/seans/304-widmo-wolnosci",
+      "checked_at": "2026-11-06T14:02:38.740Z",
+      "reason": "Karta seansu potwierdza bezpłatny wstęp z wejściówką. W podlinkowanej Biletynie brak aktywnej pozycji.",
+      "before": {
+        "short_description": "Pokaz filmu „Widmo wolności” Luisa Buñuela w cyklu Wielcy twórcy ekranu. Zasady rezerwacji wejściówek są dostępne na stronie kina.",
+        "description": "Pokaz filmu „Widmo wolności” Luisa Buñuela w cyklu Wielcy twórcy ekranu. Zasady rezerwacji wejściówek są dostępne na stronie kina.",
+        "price_type": "unknown",
+        "price_min": null,
+        "price_max": null
+      },
+      "after": {
+        "short_description": "Pokaz filmu Luisa Buñuela w cyklu Wielcy twórcy ekranu. Wstęp bezpłatny, obowiązują wejściówki.",
+        "description": "Kino Domu Sztuki pokaże film „Widmo wolności” Luisa Buñuela. Seans należy do cyklu Wielcy twórcy ekranu. Wstęp jest bezpłatny, obowiązują wejściówki. Dostępność wejściówek warto sprawdzić u organizatora.",
+        "price_type": "free",
+        "price_min": 0,
+        "price_max": 0
+      },
+      "expected_updated_at": "2026-10-29T19:14:28.332222+00:00",
+      "outcome": "updated_and_publicly_verified",
+      "updated_at": "2026-11-06T14:02:38.74+00:00",
+      "anonymous_read": true,
+      "production_api_status": 200
+    }
+  ],
+  "media": {
+    "event_visual": 18,
+    "original_media_added": 0,
+    "mobile_visual": {
+      "checked": false,
+      "reason": "Brak przeglądarki w sesji CUA. Próba otwarcia karty w IAB zwróciła Browser is not available."
+    }
+  },
+  "importer_tests": {
+    "passed": 9,
+    "failed": 0,
+    "eslint": "passed"
+  }
+}

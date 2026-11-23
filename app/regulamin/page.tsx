@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PROMOTION_MAX_DAYS, PROMOTION_PRICE_LABEL, PROMOTION_SELLER } from "@/lib/promotion";
 
-const lastUpdated = "16 czerwca 2026 r.";
+const lastUpdated = "23 listopada 2026 r.";
 const operatorName = "DevilEnergy Łukasz Szypuła";
 const operatorOwner = "Łukasz Szypuła";
 const contactEmail = "kontakt@mapaimprez.pl";
+const operatorAddress = `${PROMOTION_SELLER.street}, ${PROMOTION_SELLER.postalCity}`;
+const operatorNip = PROMOTION_SELLER.nip;
 
 export const metadata: Metadata = {
   title: "Regulamin, polityka prywatności i cookies | MapaImprez.pl",
@@ -28,7 +31,7 @@ const termsSections: Section[] = [
     body: [
       "Niniejszy regulamin określa zasady korzystania z serwisu internetowego MapaImprez.pl, dostępnego pod adresem mapaimprez.pl.",
       "Serwis jest portalem informacyjnym poświęconym lokalnym wydarzeniom w Polsce. Umożliwia przeglądanie wydarzeń według daty, lokalizacji, kategorii, promienia i ceny, a także korzystanie z kont organizatorów oraz panelu administracyjnego.",
-      `Operatorem serwisu jest ${operatorName}, prowadzona przez ${operatorOwner}. Kontakt z operatorem jest możliwy pod adresem e-mail ${contactEmail}.`,
+      `Operatorem serwisu jest ${operatorName}, prowadzona przez ${operatorOwner}, ${operatorAddress}, NIP ${operatorNip}. Operator jest zwolniony z VAT (zwolnienie podmiotowe). Kontakt z operatorem jest możliwy pod adresem e-mail ${contactEmail}.`,
       "Korzystając z serwisu, użytkownik akceptuje regulamin w zakresie, w jakim dotyczy sposobu korzystania z publicznych funkcji oraz, w przypadku posiadania konta, funkcji dostępnych po zalogowaniu.",
     ],
   },
@@ -116,8 +119,22 @@ const termsSections: Section[] = [
     ],
   },
   {
+    id: "platne-polecanie",
+    title: "10. Płatne polecanie wydarzeń",
+    body: [
+      `Organizator może zamówić płatne polecanie wydarzenia (wyróżnienie). Cena wynosi ${PROMOTION_PRICE_LABEL} za jedno wydarzenie. Usługodawca jest zwolniony z VAT (zwolnienie podmiotowe), dlatego do ceny nie dolicza się podatku VAT, a podana kwota jest ceną końcową.`,
+      `Usługodawcą i sprzedawcą jest ${operatorName}, ${operatorAddress}, NIP ${operatorNip}, e-mail ${contactEmail}.`,
+      "Wyróżnienie polega na pokazywaniu wydarzenia w karuzeli „Polecane wydarzenia” nad listą wyników na stronie głównej, z pierwszeństwem przed wydarzeniami niewyróżnionymi, gdy wydarzenie pasuje do filtrów wybranych przez odwiedzającego (miejscowość, data, kategoria, promień, cena). Wyróżnione wydarzenia są oznaczone etykietą „Promowane”. Operator nie gwarantuje określonej liczby wyświetleń, kliknięć ani sprzedanych biletów.",
+      `Wyróżnienie trwa od jego włączenia do dnia zakończenia wydarzenia, nie dłużej jednak niż ${PROMOTION_MAX_DAYS} dni. Wyróżnić można tylko wydarzenie opublikowane, publiczne, nieodwołane i jeszcze niezakończone. Wyróżnienie nie zwalnia wydarzenia z moderacji ani z zasad opisanych w punkcie 5.`,
+      `Zamówienie składa się z panelu organizatora przyciskiem „Zamów polecenie”, który przygotowuje wiadomość e-mail na adres ${contactEmail}. Umowa zostaje zawarta z chwilą potwierdzenia zamówienia przez operatora. Operator wystawia rachunek (dokument bez VAT) i podaje dane do przelewu. Wyróżnienie włącza się po zaksięgowaniu wpłaty, zwykle w ciągu 1 dnia roboczego.`,
+      "Jeżeli wydarzenie zostanie odrzucone w moderacji, odwołane przed włączeniem wyróżnienia albo operator nie będzie mógł go włączyć z przyczyn leżących po jego stronie, operator zwraca całą wpłatę. Jeżeli wydarzenie zostanie usunięte lub ukryte z powodu naruszenia regulaminu przez organizatora, wpłata za niewykorzystany okres nie podlega zwrotowi.",
+      "Konsument oraz osoba fizyczna zawierająca umowę bezpośrednio związaną z działalnością gospodarczą, gdy umowa nie ma dla niej charakteru zawodowego, może odstąpić od umowy w terminie 14 dni od jej zawarcia bez podania przyczyny, wysyłając oświadczenie na adres e-mail operatora. Jeżeli na wyraźne żądanie takiej osoby wyróżnienie zostało włączone przed upływem tego terminu, przy odstąpieniu zwracana jest kwota proporcjonalna do niewykorzystanej części usługi. Prawo odstąpienia nie przysługuje, gdy usługa została w pełni wykonana za wyraźną zgodą tej osoby, poinformowanej przed rozpoczęciem świadczenia o utracie prawa odstąpienia.",
+      `Reklamacje dotyczące płatnego polecania można składać na adres ${contactEmail}. Operator odpowiada na reklamację w terminie 14 dni od jej otrzymania. Uzasadniona reklamacja skutkuje przedłużeniem wyróżnienia o czas przerwy albo zwrotem proporcjonalnej części ceny.`,
+    ],
+  },
+  {
     id: "dane",
-    title: "10. Dane osobowe i prywatność",
+    title: "11. Dane osobowe i prywatność",
     body: [
       `Administratorem danych osobowych przetwarzanych w ramach serwisu jest ${operatorName}. W sprawach dotyczących danych osobowych można skontaktować się pod adresem ${contactEmail}.`,
       "Serwis przetwarza dane osobowe w zakresie potrzebnym do działania kont, paneli, moderacji, bezpieczeństwa, statystyk, obsługi zgłoszeń oraz prezentowania wydarzeń.",
@@ -128,7 +145,7 @@ const termsSections: Section[] = [
   },
   {
     id: "reklamacje",
-    title: "11. Zgłoszenia i reklamacje",
+    title: "12. Zgłoszenia i reklamacje",
     body: [
       `Użytkownik może zgłosić błąd, nieaktualne wydarzenie, naruszenie praw, problem z kontem albo zastrzeżenie dotyczące działania serwisu pod adresem ${contactEmail}.`,
       "Zgłoszenie powinno zawierać opis sprawy, adres URL, którego dotyczy, oraz dane kontaktowe umożliwiające odpowiedź.",
@@ -137,7 +154,7 @@ const termsSections: Section[] = [
   },
   {
     id: "zmiany",
-    title: "12. Zmiany regulaminu",
+    title: "13. Zmiany regulaminu",
     body: [
       "Operator może zmienić regulamin w szczególności w przypadku rozwoju funkcji serwisu, zmian technicznych, zmian prawnych, potrzeby doprecyzowania zasad lub poprawy bezpieczeństwa.",
       "Aktualna wersja regulaminu jest publikowana na tej stronie. Przy istotnych zmianach dotyczących kont użytkowników operator może poinformować użytkowników w sposób przyjęty w serwisie.",
@@ -175,6 +192,7 @@ const privacySections: Section[] = [
       "Dane kontaktowe i zgłoszenia są przetwarzane w celu obsługi korespondencji, reklamacji, zgłoszeń naruszeń i pytań użytkowników. Podstawą jest prawnie uzasadniony interes administratora albo, zależnie od sprawy, wykonanie umowy.",
       "Dane techniczne i logi są przetwarzane w celu zapewnienia bezpieczeństwa, zapobiegania nadużyciom, diagnozowania błędów i utrzymania serwisu. Podstawą jest prawnie uzasadniony interes administratora.",
       "Dane analityczne Google Analytics są przetwarzane wyłącznie po udzieleniu zgody w bannerze cookies. Zgodę można w każdej chwili zmienić lub wycofać przez przycisk Cookies.",
+      "Dane podane przy zamówieniu płatnego polecania (nazwa lub imię i nazwisko, adres, NIP, adres e-mail, dane wydarzenia i płatności) są przetwarzane w celu realizacji umowy, a dane rozliczeniowe także w celu wystawienia rachunku i prowadzenia ewidencji wymaganej przepisami podatkowymi. Podstawą jest wykonanie umowy oraz obowiązek prawny administratora.",
       "Jeżeli przepisy prawa wymagają przechowywania określonych danych, podstawą przetwarzania jest obowiązek prawny ciążący na administratorze.",
     ],
   },
@@ -202,6 +220,7 @@ const privacySections: Section[] = [
     body: [
       "Dane konta są przechowywane przez okres posiadania konta, a po jego usunięciu przez czas potrzebny do rozliczenia zgłoszeń, zabezpieczenia roszczeń, zapewnienia bezpieczeństwa i spełnienia obowiązków prawnych.",
       "Dane wydarzeń i organizatorów są przechowywane przez okres publikacji, moderacji i archiwizacji wydarzeń, a także przez czas potrzebny do zachowania historii zmian, przeciwdziałania nadużyciom i obsługi zgłoszeń.",
+      "Dane rozliczeniowe z zamówień płatnego polecania są przechowywane przez okres wymagany przepisami podatkowymi i rachunkowymi, co do zasady 5 lat od końca roku, w którym upłynął termin płatności podatku.",
       "Dane korespondencji są przechowywane przez czas potrzebny do obsługi sprawy, a następnie przez okres niezbędny do ochrony przed roszczeniami lub wykazania sposobu rozpatrzenia zgłoszenia.",
       "Dane analityczne i cookies są przechowywane zgodnie z ustawieniami narzędzi analitycznych, ustawieniami przeglądarki oraz wyborem użytkownika w bannerze cookies.",
     ],
@@ -321,6 +340,7 @@ export default function TermsPage() {
 
       <nav className="legalToc" aria-label="Spis treści dokumentów">
         <Link href="#regulamin">Regulamin</Link>
+        <Link href="#platne-polecanie">Płatne polecanie</Link>
         <Link href="#polityka-prywatnosci">Polityka prywatności</Link>
         <Link href="#polityka-cookies">Polityka cookies</Link>
         <Link href="#cookies-zgoda">Zarządzanie cookies</Link>
@@ -333,7 +353,8 @@ export default function TermsPage() {
           <h2>Regulamin serwisu</h2>
           <p>
             Ten dokument opisuje podstawowe zasady działania portalu wydarzeń.
-            Operatorem serwisu jest {operatorName}; kontakt:{" "}
+            Operatorem serwisu jest {operatorName}, {operatorAddress}, NIP{" "}
+            {operatorNip}; kontakt:{" "}
             <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
           </p>
         </div>

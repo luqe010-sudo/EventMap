@@ -1,0 +1,1023 @@
+{
+  "run_date": "2026-11-20",
+  "completed_at": "2026-11-20T19:42:36.564Z",
+  "scope": "Kujawsko-pomorskie, mazowieckie i dolnośląskie. Toruń, Otwock i Zgorzelec: literatura, rodziny, teatr i taniec. Dziesięć wydarzeń bezpłatnych.",
+  "batch": "data/content-supply/2026-11-20.json",
+  "published_count": 11,
+  "free_count": 10,
+  "events": [
+    {
+      "id": "ff185920-f907-4279-bb49-b0b40ea97761",
+      "title": "Emilia Sułek — Baranie oko. Reportaż z Kirgistanu",
+      "url": "https://mapaimprez.pl/kultura/torun/curated-emilia-sulek-baranie-oko-reportaz-z-kirgistanu-torun-2026-11-24-7b0eacb1d044",
+      "source_url": "https://tfk.artus.torun.pl/wydarzenie/emilia-sulek/",
+      "city": "Toruń",
+      "city_slug": "torun",
+      "category": "kultura",
+      "start_at": "2026-11-24T18:30:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "437374a5-b78b-47cb-8ad7-0afa2b5ac8fe",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "0e6b1405-40b7-4733-9ac6-9fe9fce5865e",
+      "title": "Paweł Sołtys — spotkanie wokół książki Monolok",
+      "url": "https://mapaimprez.pl/kultura/torun/curated-pawel-soltys-spotkanie-wokol-ksiazki-monolok-torun-2026-11-25-55ede721e83b",
+      "source_url": "https://tfk.artus.torun.pl/wydarzenie/pawel-soltys/",
+      "city": "Toruń",
+      "city_slug": "torun",
+      "category": "kultura",
+      "start_at": "2026-11-25T18:30:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "437374a5-b78b-47cb-8ad7-0afa2b5ac8fe",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "b4218c1c-9a61-4784-abfe-e0d183a673e1",
+      "title": "Bartek Kieżun — Via Flaminia i kulinarne opowieści z Włoch",
+      "url": "https://mapaimprez.pl/kultura/torun/curated-bartek-kiezun-via-flaminia-i-kulinarne-opowiesci-z-wloch-torun-2026-11-27-2501d740d255",
+      "source_url": "https://tfk.artus.torun.pl/wydarzenie/bartek-kiezun/",
+      "city": "Toruń",
+      "city_slug": "torun",
+      "category": "kultura",
+      "start_at": "2026-11-27T17:30:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "3542149b-46b8-4a4c-856b-b3022f85e144",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "3a02de82-cdae-4855-aa19-d92c62418d87",
+      "title": "Antonina Tosiek — Pamiętniki wiejskich kobiet",
+      "url": "https://mapaimprez.pl/kultura/torun/curated-antonina-tosiek-pamietniki-wiejskich-kobiet-torun-2026-11-29-91447ba91df6",
+      "source_url": "https://tfk.artus.torun.pl/wydarzenie/antonina-tosiek/",
+      "city": "Toruń",
+      "city_slug": "torun",
+      "category": "kultura",
+      "start_at": "2026-11-29T17:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "3542149b-46b8-4a4c-856b-b3022f85e144",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "9b3a98b7-400a-44fe-91f0-b7a245c0de0b",
+      "title": "Łukasz Wierzbicki — spotkanie z autorem książek dla dzieci",
+      "url": "https://mapaimprez.pl/rodzinne/torun/curated-lukasz-wierzbicki-spotkanie-z-autorem-ksiazek-dla-dzieci-torun-2026-11-25-c7cb29e994d3",
+      "source_url": "https://tfk.artus.torun.pl/wydarzenie/lukasz-wierzbicki/",
+      "city": "Toruń",
+      "city_slug": "torun",
+      "category": "rodzinne",
+      "start_at": "2026-11-25T11:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "437374a5-b78b-47cb-8ad7-0afa2b5ac8fe",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "4141dde8-9169-4108-9519-12452c02af22",
+      "title": "Grzegorz Kasdepke — Lufcik. Spotkanie dla młodych czytelników",
+      "url": "https://mapaimprez.pl/rodzinne/torun/curated-grzegorz-kasdepke-lufcik-spotkanie-dla-mlodych-czytelnikow-torun-2026-11-29-bc061c2bcc16",
+      "source_url": "https://tfk.artus.torun.pl/wydarzenie/grzegorz-kasdepke/",
+      "city": "Toruń",
+      "city_slug": "torun",
+      "category": "rodzinne",
+      "start_at": "2026-11-29T13:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "437374a5-b78b-47cb-8ad7-0afa2b5ac8fe",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "1ee12f91-8253-4fbb-9e88-50ff192b5a8d",
+      "title": "Krewniaki — 100 lat Teatru Jaracza w Otwocku",
+      "url": "https://mapaimprez.pl/kultura/otwock/curated-krewniaki-100-lat-teatru-jaracza-w-otwocku-otwock-2026-11-21-41ce4af7b73b",
+      "source_url": "https://www.moktis.pl/aktualnosci/1692-otwocki-festiwal-komedii",
+      "city": "Otwock",
+      "city_slug": "otwock",
+      "category": "kultura",
+      "start_at": "2026-11-21T20:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "b4e5dd4f-2375-4684-812c-ff016d6d4107",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "cbe76f37-9ea8-4b25-95e0-cc4d7039903b",
+      "title": "Związek otwarty — komedia w Teatrze Jaracza",
+      "url": "https://mapaimprez.pl/kultura/otwock/curated-zwiazek-otwarty-komedia-w-teatrze-jaracza-otwock-2026-12-04-15f11af62118",
+      "source_url": "https://www.moktis.pl/teatr-im-s-jaracza/1596-spektakl-amatorskiego-teatru-miejskiego-im-stefana-jaracza-zwiazek-otwarty-rez-krzysztof-czekajewski/2026-12-04-19-00",
+      "city": "Otwock",
+      "city_slug": "otwock",
+      "category": "kultura",
+      "start_at": "2026-12-04T19:00:00+01:00",
+      "end_at": "2026-12-04T20:30:00+01:00",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "b4e5dd4f-2375-4684-812c-ff016d6d4107",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "ab59d478-27a1-4819-9265-3931987c7a1a",
+      "title": "Warsztaty taneczne z Mieszkiem Masłowskim w Zgorzelcu",
+      "url": "https://mapaimprez.pl/sport/zgorzelec/curated-warsztaty-taneczne-z-mieszkiem-maslowskim-w-zgorzelcu-zgorzelec-2026-11-22-0e45bfc2f35e",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/10/30/listopad-w-mdk/",
+      "city": "Zgorzelec",
+      "city_slug": "zgorzelec",
+      "category": "sport",
+      "start_at": "2026-11-22T15:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "b3389feb-8253-4133-ab97-f48459a4ddd5",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "37ba7a9d-507b-42cb-8968-db4e3b8b6109",
+      "title": "Spoko Loko — koncert dla dzieci w Zgorzelcu",
+      "url": "https://mapaimprez.pl/rodzinne/zgorzelec/curated-spoko-loko-koncert-dla-dzieci-w-zgorzelcu-zgorzelec-2026-11-28-4d9b0749d90b",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/11/20/spoko-loko-koncert-dla-najmlodszych/",
+      "city": "Zgorzelec",
+      "city_slug": "zgorzelec",
+      "category": "rodzinne",
+      "start_at": "2026-11-28T16:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 55,
+      "price_max": 60,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "b3389feb-8253-4133-ab97-f48459a4ddd5",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "4073cd48-67c5-4cd7-a06b-edc31f609b39",
+      "title": "Mikołajkowa Awaria w Fabryce Świętego Mikołaja — Zgorzelec",
+      "url": "https://mapaimprez.pl/rodzinne/zgorzelec/curated-mikolajkowa-awaria-w-fabryce-swietego-mikolaja-zgorzelec-zgorzelec-2026-12-06-a1c761d857de",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/11/16/mikolajki-z-mdk/",
+      "city": "Zgorzelec",
+      "city_slug": "zgorzelec",
+      "category": "rodzinne",
+      "start_at": "2026-12-06T14:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "21e29ab5-8521-4337-bf25-457df62431b5",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    }
+  ],
+  "publication": {
+    "mode": "apply",
+    "checked_at": "2026-11-20T19:38:49.000Z",
+    "results": [
+      {
+        "title": "Emilia Sułek — Baranie oko. Reportaż z Kirgistanu",
+        "source_url": "https://tfk.artus.torun.pl/wydarzenie/emilia-sulek",
+        "outcome": "inserted_and_published",
+        "event_id": "ff185920-f907-4279-bb49-b0b40ea97761",
+        "slug": "curated-emilia-sulek-baranie-oko-reportaz-z-kirgistanu-torun-2026-11-24-7b0eacb1d044"
+      },
+      {
+        "title": "Paweł Sołtys — spotkanie wokół książki Monolok",
+        "source_url": "https://tfk.artus.torun.pl/wydarzenie/pawel-soltys",
+        "outcome": "inserted_and_published",
+        "event_id": "0e6b1405-40b7-4733-9ac6-9fe9fce5865e",
+        "slug": "curated-pawel-soltys-spotkanie-wokol-ksiazki-monolok-torun-2026-11-25-55ede721e83b"
+      },
+      {
+        "title": "Bartek Kieżun — Via Flaminia i kulinarne opowieści z Włoch",
+        "source_url": "https://tfk.artus.torun.pl/wydarzenie/bartek-kiezun",
+        "outcome": "inserted_and_published",
+        "event_id": "b4218c1c-9a61-4784-abfe-e0d183a673e1",
+        "slug": "curated-bartek-kiezun-via-flaminia-i-kulinarne-opowiesci-z-wloch-torun-2026-11-27-2501d740d255"
+      },
+      {
+        "title": "Antonina Tosiek — Pamiętniki wiejskich kobiet",
+        "source_url": "https://tfk.artus.torun.pl/wydarzenie/antonina-tosiek",
+        "outcome": "inserted_and_published",
+        "event_id": "3a02de82-cdae-4855-aa19-d92c62418d87",
+        "slug": "curated-antonina-tosiek-pamietniki-wiejskich-kobiet-torun-2026-11-29-91447ba91df6"
+      },
+      {
+        "title": "Łukasz Wierzbicki — spotkanie z autorem książek dla dzieci",
+        "source_url": "https://tfk.artus.torun.pl/wydarzenie/lukasz-wierzbicki",
+        "outcome": "inserted_and_published",
+        "event_id": "9b3a98b7-400a-44fe-91f0-b7a245c0de0b",
+        "slug": "curated-lukasz-wierzbicki-spotkanie-z-autorem-ksiazek-dla-dzieci-torun-2026-11-25-c7cb29e994d3"
+      },
+      {
+        "title": "Grzegorz Kasdepke — Lufcik. Spotkanie dla młodych czytelników",
+        "source_url": "https://tfk.artus.torun.pl/wydarzenie/grzegorz-kasdepke",
+        "outcome": "inserted_and_published",
+        "event_id": "4141dde8-9169-4108-9519-12452c02af22",
+        "slug": "curated-grzegorz-kasdepke-lufcik-spotkanie-dla-mlodych-czytelnikow-torun-2026-11-29-bc061c2bcc16"
+      },
+      {
+        "title": "Krewniaki — 100 lat Teatru Jaracza w Otwocku",
+        "source_url": "https://www.moktis.pl/aktualnosci/1692-otwocki-festiwal-komedii",
+        "outcome": "inserted_and_published",
+        "event_id": "1ee12f91-8253-4fbb-9e88-50ff192b5a8d",
+        "slug": "curated-krewniaki-100-lat-teatru-jaracza-w-otwocku-otwock-2026-11-21-41ce4af7b73b"
+      },
+      {
+        "title": "Związek otwarty — komedia w Teatrze Jaracza",
+        "source_url": "https://www.moktis.pl/teatr-im-s-jaracza/1596-spektakl-amatorskiego-teatru-miejskiego-im-stefana-jaracza-zwiazek-otwarty-rez-krzysztof-czekajewski/2026-12-04-19-00",
+        "outcome": "inserted_and_published",
+        "event_id": "cbe76f37-9ea8-4b25-95e0-cc4d7039903b",
+        "slug": "curated-zwiazek-otwarty-komedia-w-teatrze-jaracza-otwock-2026-12-04-15f11af62118"
+      },
+      {
+        "title": "Warsztaty taneczne z Mieszkiem Masłowskim w Zgorzelcu",
+        "source_url": "https://www.mdk.zgorzelec.eu/2026/10/30/listopad-w-mdk",
+        "outcome": "inserted_and_published",
+        "event_id": "ab59d478-27a1-4819-9265-3931987c7a1a",
+        "slug": "curated-warsztaty-taneczne-z-mieszkiem-maslowskim-w-zgorzelcu-zgorzelec-2026-11-22-0e45bfc2f35e"
+      },
+      {
+        "title": "Spoko Loko — koncert dla dzieci w Zgorzelcu",
+        "source_url": "https://www.mdk.zgorzelec.eu/2026/11/20/spoko-loko-koncert-dla-najmlodszych",
+        "outcome": "inserted_and_published",
+        "event_id": "37ba7a9d-507b-42cb-8968-db4e3b8b6109",
+        "slug": "curated-spoko-loko-koncert-dla-dzieci-w-zgorzelcu-zgorzelec-2026-11-28-4d9b0749d90b"
+      },
+      {
+        "title": "Mikołajkowa Awaria w Fabryce Świętego Mikołaja — Zgorzelec",
+        "source_url": "https://www.mdk.zgorzelec.eu/2026/11/16/mikolajki-z-mdk",
+        "outcome": "inserted_and_published",
+        "event_id": "4073cd48-67c5-4cd7-a06b-edc31f609b39",
+        "slug": "curated-mikolajkowa-awaria-w-fabryce-swietego-mikolaja-zgorzelec-zgorzelec-2026-12-06-a1c761d857de"
+      }
+    ]
+  },
+  "post_import_duplicates": [
+    {
+      "id": "ff185920-f907-4279-bb49-b0b40ea97761",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "0e6b1405-40b7-4733-9ac6-9fe9fce5865e",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "b4218c1c-9a61-4784-abfe-e0d183a673e1",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "3a02de82-cdae-4855-aa19-d92c62418d87",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "9b3a98b7-400a-44fe-91f0-b7a245c0de0b",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "4141dde8-9169-4108-9519-12452c02af22",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "1ee12f91-8253-4fbb-9e88-50ff192b5a8d",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "cbe76f37-9ea8-4b25-95e0-cc4d7039903b",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "ab59d478-27a1-4819-9265-3931987c7a1a",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "37ba7a9d-507b-42cb-8968-db4e3b8b6109",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "4073cd48-67c5-4cd7-a06b-edc31f609b39",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    }
+  ],
+  "mobile": [
+    {
+      "width": 390,
+      "title": "Bartek Kieżun — Via Flaminia i kulinarne opowieści z Włoch",
+      "city": "Toruń",
+      "date": "27 lis 2026 · 17:30",
+      "lines": 3,
+      "clamp": 5,
+      "titleFits": true,
+      "footerFits": true,
+      "photoLoaded": null,
+      "url": "https://mapaimprez.pl/kultura/torun/curated-bartek-kiezun-via-flaminia-i-kulinarne-opowiesci-z-wloch-torun-2026-11-27-2501d740d255",
+      "matches": true
+    },
+    {
+      "width": 390,
+      "title": "Łukasz Wierzbicki — spotkanie z autorem książek dla dzieci",
+      "city": "Toruń",
+      "date": "25 lis 2026 · 11:00",
+      "lines": 3,
+      "clamp": 5,
+      "titleFits": true,
+      "footerFits": true,
+      "photoLoaded": true,
+      "url": "https://mapaimprez.pl/rodzinne/torun/curated-lukasz-wierzbicki-spotkanie-z-autorem-ksiazek-dla-dzieci-torun-2026-11-25-c7cb29e994d3",
+      "matches": true
+    },
+    {
+      "width": 390,
+      "title": "Grzegorz Kasdepke — Lufcik. Spotkanie dla młodych czytelników",
+      "city": "Toruń",
+      "date": "29 lis 2026 · 13:00",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "footerFits": true,
+      "photoLoaded": true,
+      "url": "https://mapaimprez.pl/rodzinne/torun/curated-grzegorz-kasdepke-lufcik-spotkanie-dla-mlodych-czytelnikow-torun-2026-11-29-bc061c2bcc16",
+      "matches": true
+    },
+    {
+      "width": 390,
+      "title": "Krewniaki — 100 lat Teatru Jaracza w Otwocku",
+      "city": "Otwock",
+      "date": "21 lis 2026 · 20:00",
+      "lines": 3,
+      "clamp": 5,
+      "titleFits": true,
+      "footerFits": true,
+      "photoLoaded": null,
+      "url": "https://mapaimprez.pl/kultura/otwock/curated-krewniaki-100-lat-teatru-jaracza-w-otwocku-otwock-2026-11-21-41ce4af7b73b",
+      "matches": true
+    },
+    {
+      "width": 390,
+      "title": "Warsztaty taneczne z Mieszkiem Masłowskim w Zgorzelcu",
+      "city": "Zgorzelec",
+      "date": "22 lis 2026 · 15:00",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "footerFits": true,
+      "photoLoaded": true,
+      "url": "https://mapaimprez.pl/sport/zgorzelec/curated-warsztaty-taneczne-z-mieszkiem-maslowskim-w-zgorzelcu-zgorzelec-2026-11-22-0e45bfc2f35e",
+      "matches": true
+    },
+    {
+      "width": 390,
+      "title": "Mikołajkowa Awaria w Fabryce Świętego Mikołaja — Zgorzelec",
+      "city": "Zgorzelec",
+      "date": "6 gru 2026 · 14:00",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "footerFits": true,
+      "photoLoaded": null,
+      "url": "https://mapaimprez.pl/rodzinne/zgorzelec/curated-mikolajkowa-awaria-w-fabryce-swietego-mikolaja-zgorzelec-zgorzelec-2026-12-06-a1c761d857de",
+      "matches": true
+    }
+  ],
+  "prior_events_review": {
+    "selected_events": 75,
+    "source_urls": 69,
+    "accessible_pages": 65,
+    "events_with_accessible_source": 71,
+    "new_cancellations": [],
+    "new_date_changes": [],
+    "new_availability_changes": [
+      {
+        "id": "cfe97f59-566e-4c55-94c8-9fa1a8c4a350",
+        "title": "Bracia Figo Fagot — urodziny Progresji w Warszawie",
+        "status": "sold_out",
+        "source_url": "https://progresja.com/wydarzenie/bracia-figo-fagot-urodziny-progresji-2026",
+        "checked_at": "2026-11-20T19:33:21Z",
+        "note": "Komunikat wyprzedania w bieżącej zapowiedzi; wydarzenie nie jest odwołane. Rekordu nie aktualizowano."
+      }
+    ],
+    "blocked": [
+      {
+        "url": "https://sklep.otop.org.pl/pl/products/21-11-26-r-09-00-12-00-gdynia-kamienna-gora-spacer-ornitologiczny-322.html",
+        "status": 0,
+        "reason": "robots.txt",
+        "checked_at": "2026-11-20T19:33:29Z",
+        "events": [
+          {
+            "id": "5900f597-a8b6-4b97-ba6d-2d2735a9d01b",
+            "title": "Spacer ornitologiczny — Gdynia, Kamienna Góra",
+            "start_at": "2026-11-21T08:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/slaska-gielda-narciarska-w-prezero-arenie-gliwice-15",
+        "status": 0,
+        "reason": "robots.txt",
+        "checked_at": "2026-11-20T19:33:34Z",
+        "events": [
+          {
+            "id": "83dcec7c-8ed6-4cc1-a4bd-87f3df4d1538",
+            "title": "Śląska Giełda Narciarska w Gliwicach",
+            "start_at": "2026-11-21T07:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/polska-noc-kabaretowa-2026-siedmiu-wspanialych",
+        "status": 0,
+        "reason": "robots.txt",
+        "checked_at": "2026-11-20T19:33:34Z",
+        "events": [
+          {
+            "id": "c583b0e1-3830-4e0e-a0ea-e46c95665da0",
+            "title": "Polska Noc Kabaretowa 2026 — Siedmiu wspaniałych w Gliwicach",
+            "start_at": "2026-11-21T18:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://bikeexpo.pl/katowice",
+        "status": 0,
+        "reason": "robots.txt",
+        "checked_at": "2026-11-20T19:33:40Z",
+        "events": [
+          {
+            "id": "cf97a2b7-683a-41e7-b0fe-4fb4138b0076",
+            "title": "PEKAO BIKE EXPO Winter Edition i SNOW EXPO 2026 w Katowicach",
+            "start_at": "2026-11-21T08:00:00+00:00"
+          }
+        ]
+      }
+    ],
+    "source_checks": [
+      {
+        "url": "https://www.stodola.pl/koncerty/the-dumplings-137111.html",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:07Z",
+        "blocked": null
+      },
+      {
+        "url": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:07Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.stodola.pl/koncerty/volkanov-137078.html",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:08Z",
+        "blocked": null
+      },
+      {
+        "url": "https://warsztatykultury.pl/pl/wydarzenia/bliskie-spotkanie-z-cialem-sztuka-wrazliwosci",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:08Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.stodola.pl/koncerty/ira-137016.html",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:09Z",
+        "blocked": null
+      },
+      {
+        "url": "https://100.gdynia.pl/en/aktualnosci/spotkajmy-sie-na-urodzinach-gdyni-w-listopadzie",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:10Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.stodola.pl/koncerty/kult-137051.html",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:10Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.stodola.pl/koncerty/klimakterium-2-czyli-menopauzy-szal-137020.html",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:11Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.filharmonia.com.pl/repertuar/2776-Muzyka-bez-granic",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:11Z",
+        "blocked": null
+      },
+      {
+        "url": "https://ackkultura.pl/rzezba-typu-ludowego-spotkanie-ze-sztuka-ludowa-naszego-regionu",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:11Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.filharmonia.com.pl/repertuar/2854-DAGADANA-z-orkiestra",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:12Z",
+        "blocked": null
+      },
+      {
+        "url": "https://sapik.szczecinek.pl/kalendarz-wydarzen/rafal-rutkowski-stand-up-.html",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:12Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.filharmonia.com.pl/repertuar/2782-WIECZOR-UNIWERSYTECKI",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:13Z",
+        "blocked": null
+      },
+      {
+        "url": "https://sapik.szczecinek.pl/kalendarz-wydarzen/krolewski-balet-klasyczny-dziadek-do-orzechow-.html",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:13Z",
+        "blocked": null
+      },
+      {
+        "url": "https://mokisbielawa.pl/nowy-termin-koncertu-czas-na-oskary",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:15Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.kupbilecik.pl/pl/event/200583/ilza/klimakterium-i-juz",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:15Z",
+        "blocked": null
+      },
+      {
+        "url": "https://progresja.com/wydarzenie/sam-garrett",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:15Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.kupbilecik.pl/pl/event/215681/swietochlowice/duo-elvisy",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:16Z",
+        "blocked": null
+      },
+      {
+        "url": "https://dkwesterplatte.pl/wydarzenia/spoleczne/konwent-wieza-cisnien/61",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:16Z",
+        "blocked": null
+      },
+      {
+        "url": "https://progresja.com/wydarzenie/artemas",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:16Z",
+        "blocked": null
+      },
+      {
+        "url": "https://dkwesterplatte.pl/wydarzenia/spoleczne/event-anime-komikslandia-w-twoim-miescie/62",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:17Z",
+        "blocked": null
+      },
+      {
+        "url": "https://progresja.com/wydarzenie/muna",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:18Z",
+        "blocked": null
+      },
+      {
+        "url": "https://gck.gizycko.pl/cebula-spektakl-o-milosci-emocjach-i-probie-zrozumienia-drugiego-czlowieka",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:18Z",
+        "blocked": null
+      },
+      {
+        "url": "https://progresja.com/wydarzenie/kodak-black-richie-wess-yung-dred-2026",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:19Z",
+        "blocked": null
+      },
+      {
+        "url": "https://progresja.com/wydarzenie/bracia-figo-fagot-urodziny-progresji-2026",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:21Z",
+        "blocked": null
+      },
+      {
+        "url": "https://muzeumgdynia.pl/wydarzenie/dzien-rodzinny-z-wlasnego-podworka-warsztaty-z-projektowania-wzoru",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:21Z",
+        "blocked": null
+      },
+      {
+        "url": "https://wydarzenia.gliwice.eu/8061-gliwice-mita-gra-dobro",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.tauronarenakrakow.pl/event/friendz-wielki-final-daily-2",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://kalendarzimprez.plock.eu/event/z-plecakiem-przez-etiopie-agnieszka-wasztyl-gosciem-klubu-podroze-im-tonyego-halika-w-plocku",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://dok.pl/dok/wydarzenia/renata-przemyk-koncert-w-poetyckiej-stajni",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:24Z",
+        "blocked": null
+      },
+      {
+        "url": "https://bilety.nowaruda.pl/MSI/mvc/pl?date=2026-11-21&datestart=0&sort=Name",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:25Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.tauronarenakrakow.pl/event/golec-uorkiestra-2026",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:26Z",
+        "blocked": null
+      },
+      {
+        "url": "https://umbielskpodlaski.pl/wydarzenie/bdk-klub-filmowy-29",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:27Z",
+        "blocked": null
+      },
+      {
+        "url": "https://amfiteatr.radom.pl/wydarzenia/wkrec-sie-w-kolaz-jesienna-nostalgia",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:27Z",
+        "blocked": null
+      },
+      {
+        "url": "https://amfiteatr.radom.pl/wydarzenia/spotkania-z-nauka-naturalne-ataki-z-kosmosu-co-sie-dzieje-gdy-planetoida-uderza-w-ziemie-dr-anna-losiak",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:28Z",
+        "blocked": null
+      },
+      {
+        "url": "https://ckmuza.eu/27-11-29-11-2026-kosci-zostaly-rzucone-czyli-33-weekend-z-grami-bez-pradu",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:28Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.tauronarenakrakow.pl/event/28-malopolskie-targi-slubne",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:29Z",
+        "blocked": null
+      },
+      {
+        "url": "https://ckmuza.eu/22-11-2026-cos-na-zab-zdrojowy-teatr-animacji-w-jeleniej-gorze-im-bogdana-nauki",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:29Z",
+        "blocked": null
+      },
+      {
+        "url": "https://sklep.otop.org.pl/pl/products/21-11-26-r-09-00-12-00-gdynia-kamienna-gora-spacer-ornitologiczny-322.html",
+        "status": 0,
+        "checked_at": "2026-11-20T19:33:29Z",
+        "blocked": "robots.txt"
+      },
+      {
+        "url": "https://kartamiejska.um.gorzow.pl/wydarzenia/5144-warsztaty-familijne-sprawa-znikajacego-obrazu",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:30Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.mdk.zgorzelec.eu/2026/11/04/koncert-jestem-stad-dr-kazimierza-pichlaka-i-jacek-szreniawa-band",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:30Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.targikielce.pl/detector-expo/zwiedzajacy",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:31Z",
+        "blocked": null
+      },
+      {
+        "url": "https://halastulecia.pl/wydarzenie/accantus-live",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:31Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.mdk.zgorzelec.eu/2026/11/04/nadprzyrodzone-w-sztuce-rekonstrukcja-wystawy-obrazow-malarza-i-mistyka-bo-yin-ra",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:32Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.opera.bydgoszcz.pl/spektakle/opera/rycerskosc-wiesniacza-pajace-cavalleria-rusticana-i-pagliacci.html",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:32Z",
+        "blocked": null
+      },
+      {
+        "url": "https://halastulecia.pl/wydarzenie/rafal-rutkowski-wehikul-czasu",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:32Z",
+        "blocked": null
+      },
+      {
+        "url": "https://app.evently.pl/events/15731-koncert-charytatywny-never-give-up-ii-krakow-22112026",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:34Z",
+        "blocked": null
+      },
+      {
+        "url": "https://kultura.olawa.pl/wydarzenia/32812",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:34Z",
+        "blocked": null
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/slaska-gielda-narciarska-w-prezero-arenie-gliwice-15",
+        "status": 0,
+        "checked_at": "2026-11-20T19:33:34Z",
+        "blocked": "robots.txt"
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/polska-noc-kabaretowa-2026-siedmiu-wspanialych",
+        "status": 0,
+        "checked_at": "2026-11-20T19:33:34Z",
+        "blocked": "robots.txt"
+      },
+      {
+        "url": "https://www.biblioteka.sosnowiec.pl/wydarzenie/kryminow-zaglebiowski-konwent-kryminalny-ndash-atrakcje-dla-dzieci-i-mlodziezy",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:35Z",
+        "blocked": null
+      },
+      {
+        "url": "https://teatr.polanica.pl/wydarzenie/koncert-andrzejkowy-scena-pod-regalem",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:36Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.swiatowid.elblag.pl/pl/informacje/11667,kalendarz-wydarzen",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:36Z",
+        "blocked": null
+      },
+      {
+        "url": "https://mnki.pl/index.php/pl/aktualnosci/harmonogram-niedziela-w-muzeum-2026",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:37Z",
+        "blocked": null
+      },
+      {
+        "url": "https://mokmarki.pl/repertuar/2026/10/markowe-planszowki-87",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:38Z",
+        "blocked": null
+      },
+      {
+        "url": "https://ergoarena.pl/wydarzenia-lista/kabaret-neo-nowka-pokolenie-dna",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:39Z",
+        "blocked": null
+      },
+      {
+        "url": "https://bikeexpo.pl/katowice",
+        "status": 0,
+        "checked_at": "2026-11-20T19:33:40Z",
+        "blocked": "robots.txt"
+      },
+      {
+        "url": "https://informacja-turystyczna.nysa.pl/wydarzenia-w-nysie-listopad-2026-sprawdz-kalendarz-imprez",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:40Z",
+        "blocked": null
+      },
+      {
+        "url": "https://bok.bialystok.pl/wydarzenie/41-jesien-z-bluesem-wielblady-korzenie-muzyki-siegaja-afryki",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:41Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.mok.pl/artykuly/277",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:41Z",
+        "blocked": null
+      },
+      {
+        "url": "https://ec1lodz.pl/eventy/warsztaty-lego-build-the-change",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:41Z",
+        "blocked": null
+      },
+      {
+        "url": "https://bok.bialystok.pl/wydarzenie/41-jesien-z-bluesem-3-card-monte-k-walters-frankie-owls-roger-william-smith",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:43Z",
+        "blocked": null
+      },
+      {
+        "url": "https://mck.mragowo.pl/pl/news/info/3715/teatr-piasku-tetiany-galitsyny-opowiesc-wigilijna.html",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:43Z",
+        "blocked": null
+      },
+      {
+        "url": "https://soksuwalki.eu/class/koncert-z-kwartalnikiem-twoj-blues-koncert-steve-marriner-trio-usa",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:43Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.ckchojnice.pl/aktualnosc/koncert-polskiej-filharmonii-sinfonia-baltica-0",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:45Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.uni.lodz.pl/wydarzenia/szczegoly/warsztatujemy-bo-edukacja-na-unilodz-nie-wyklucza",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:46Z",
+        "blocked": null
+      },
+      {
+        "url": "https://teatr.walbrzych.pl/spektakl/mtv-hity-z-satelity",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:47Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.mok.siedlce.pl/pl/repertuar/koncert-niekompletni-na-ludowo",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:48Z",
+        "blocked": null
+      },
+      {
+        "url": "https://filharmoniapoznanska.pl/koncerty/przeboje-symfoniki-xvii-maltanski-koncert-charytatywny",
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:49Z",
+        "blocked": null
+      }
+    ]
+  },
+  "omissions": [
+    {
+      "title": "Mały Fiat, wielka miłość — Zgorzelec, 21.11",
+      "reason": "Oficjalny program informuje, że bezpłatne wejściówki zostały już rozdane."
+    },
+    {
+      "title": "Jarmark Bożonarodzeniowy MDK — Zgorzelec, 5–6.12",
+      "reason": "Potwierdzono miejsce i dzienne godziny, ale nie zasady wstępu. Nie przyjęto bezpłatności na podstawie wtórnego kalendarza."
+    },
+    {
+      "title": "Jestem stąd / Bô Yin Râ — Zgorzelec, 27.11",
+      "reason": "Wydarzenia już istnieją w katalogu."
+    },
+    {
+      "title": "Don Giovanni i warsztaty listopadowe — Otwock",
+      "reason": "Terminy rozpoczęte lub minione. Wystawa jubileuszowa także już trwa."
+    },
+    {
+      "title": "RCK Kołobrzeg",
+      "reason": "Nie udało się odczytać robots.txt/strony. Bez obchodzenia blokad; nie publikowano niezweryfikowanych propozycji."
+    }
+  ],
+  "media": {
+    "main_image_url": null,
+    "new_ai_images": 0,
+    "official_images_republished": 0,
+    "cover": "Istniejący EventVisual, lokalne licencjonowane zdjęcia tematyczne albo typografia.",
+    "rights": "Nie znaleziono potwierdzonej licencji na dalszą publikację oficjalnych materiałów."
+  },
+  "evidence_prefix": "scratch/content-supply/2026-11-20-"
+}

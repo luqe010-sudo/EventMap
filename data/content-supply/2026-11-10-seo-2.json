@@ -1,0 +1,291 @@
+{
+  "checked_at": "2026-11-10T11:51:06Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Dodatkowa paczka SEO: targi designu, biegi mikołajkowe, publiczna prezentacja szopek i koncerty sylwestrowe. Dobór na podstawie rozpoznawalnej nazwy, bieżących wyników i luk katalogu.",
+  "events": [
+    {
+      "title": "Targi Rzeczy Wyjątkowych we Wrocławiu 2026",
+      "category_slug": "targi",
+      "start_at": "2026-11-14T11:00:00+01:00",
+      "end_at": "2026-11-15T18:00:00+01:00",
+      "short_description": "Targi rzemiosła i polskiego designu w Hali Stulecia, 14 i 15 listopada.",
+      "description": "W Hali Stulecia swoje prace pokażą rzemieślnicy i projektanci. Na stoiskach będą m.in. ceramika, biżuteria, tekstylia, grafiki i wyposażenie wnętrz. Sobota 11:00–19:00, niedziela 11:00–18:00. Bilet online na wybrany dzień kosztuje 20 zł. Dzieci przed ukończeniem 7 lat i osoby z niepełnosprawnościami z legitymacją mają wstęp bezpłatny.",
+      "location": {
+        "name": "Hala Stulecia",
+        "address": "Wystawowa 1",
+        "city": "Wrocław",
+        "latitude": 51.1068875,
+        "longitude": 17.0773185,
+        "coordinate_source": "https://jwsr.pl/",
+        "coordinate_note": "Pinezka istniejącego obiektu w katalogu, zgodna z adresem podanym przez organizatora lub obiekt."
+      },
+      "source_name": "Craft Event",
+      "source_url": "https://craftticket.pl/produkt/targi-rzeczy-wyjatkowych-wroclaw-11-2026/",
+      "evidence_urls": [
+        "https://jwsr.pl/"
+      ],
+      "seo_intent": "Targi Rzeczy Wyjątkowych Wrocław 2026 Hala Stulecia godziny i bilety",
+      "price_min": 20,
+      "price_max": 20,
+      "currency": "PLN",
+      "price_type": "paid",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:51:05Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:51:05Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Targi Rzeczy Wyjątkowych w Szczecinie 2026",
+      "category_slug": "targi",
+      "start_at": "2026-11-28T11:00:00+01:00",
+      "end_at": "2026-11-29T18:00:00+01:00",
+      "short_description": "Rękodzieło, ceramika i niezależny design w Enea Arenie, 28 i 29 listopada.",
+      "description": "Na pierwszej szczecińskiej edycji targów spotkają się twórcy biżuterii, ceramiki, grafiki, tekstyliów i innych wyrobów rzemieślniczych. Sobota 11:00–19:00, niedziela 11:00–18:00. Bilet online na jeden dzień kosztuje 15 zł. Dzieci przed ukończeniem 7 lat i osoby z niepełnosprawnościami z legitymacją mają wstęp bezpłatny.",
+      "location": {
+        "name": "Enea Arena",
+        "address": "Władysława Szafera 3/5/7",
+        "city": "Szczecin",
+        "latitude": 53.457313,
+        "longitude": 14.4932195,
+        "coordinate_source": "https://eneaarena.pl/",
+        "coordinate_note": "Pinezka istniejącego obiektu w katalogu, zgodna z adresem podanym przez organizatora lub obiekt."
+      },
+      "source_name": "Craft Event",
+      "source_url": "https://craftticket.pl/produkt/targi-rzeczy-wyjatkowych-szczecin-11-2026/",
+      "evidence_urls": [
+        "https://eneaarena.pl/wydarzenie/targi-rzeczy-wyjatkowych/",
+        "https://jwsr.pl/"
+      ],
+      "seo_intent": "Targi Rzeczy Wyjątkowych Szczecin 2026 Enea Arena godziny i bilety",
+      "price_min": 15,
+      "price_max": 15,
+      "currency": "PLN",
+      "price_type": "paid",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:51:05Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:51:05Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "84. Konkurs Szopek Krakowskich — prezentacja na Rynku Głównym",
+      "category_slug": "kultura",
+      "start_at": "2026-12-03T10:00:00+01:00",
+      "end_at": null,
+      "short_description": "Publiczny pokaz szopek pod pomnikiem Mickiewicza. Korowód ruszy w południe.",
+      "description": "3 grudnia od 10:00 do 12:00 można oglądać szopki ustawiane pod pomnikiem Adama Mickiewicza. O 12:00 korowód przejdzie wokół Rynku Głównego, a prace trafią do Pałacu Krzysztofory. Wstęp na plenerową prezentację jest wolny.",
+      "location": {
+        "name": "Pomnik Adama Mickiewicza",
+        "address": "Rynek Główny",
+        "city": "Kraków",
+        "latitude": 50.061482,
+        "longitude": 19.938003,
+        "coordinate_source": "https://odtur.pl/atrakcje/krakow-pomnik-adama-mickiewicza-18356.html",
+        "coordinate_note": "Punkt nazwanego pomnika, przed którym organizator wskazuje publiczną prezentację."
+      },
+      "source_name": "Muzeum Krakowa",
+      "source_url": "https://www.muzeumkrakowa.pl/kalendarium/84-konkurs-szopek-krakowskich-2026",
+      "evidence_urls": [
+        "https://wartoprzyjsc.pl/pl/imprezy/1594-84-konkurs-szopek-krakowskich-prezentacja-szopek-na-rynku-glownym"
+      ],
+      "seo_intent": "Konkurs Szopek Krakowskich 2026 Rynek Główny kiedy oglądać i korowód",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "price_type": "free",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:51:06Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:51:06Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "XIII Bieg Mikołajkowy w Katowicach 2026",
+      "category_slug": "sport",
+      "start_at": "2026-12-06T10:00:00+01:00",
+      "end_at": null,
+      "short_description": "Biegi na 5 i 10 km oraz nordic walking w Dolinie Trzech Stawów.",
+      "description": "Start i meta są przy głównym parkingu od strony Muchowca. Bieg na 10 km ruszy o 10:00, bieg na 5 km o 12:00, a marsz nordic walking o 12:05. Zapisy internetowe trwają do 27 listopada lub wyczerpania miejsc. Wpisowe wynosi 75 zł do 15 listopada, 85 zł od 16 do 22 listopada i 100 zł od 23 do 27 listopada.",
+      "location": {
+        "name": "Dolina Trzech Stawów — parking główny od strony Muchowca",
+        "address": "Francuska 184",
+        "city": "Katowice",
+        "latitude": 50.2325390011613,
+        "longitude": 19.0296695354854,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Katowice%2C%20Francuska%20184",
+        "coordinate_note": "Dokładne dopasowanie punktu adresowego GUGiK. Organizator wskazuje ten adres głównego parkingu od strony Muchowca."
+      },
+      "source_name": "MK Team Events",
+      "source_url": "https://mkteamevents.pl/mikolaj/",
+      "evidence_urls": [
+        "https://elektronicznezapisy.pl/event/16155.html",
+        "https://mkteamevents.pl/mikolaj/trasa/"
+      ],
+      "seo_intent": "Bieg Mikołajkowy Katowice 2026 trasa godzina startu i zapisy",
+      "price_min": 75,
+      "price_max": 100,
+      "currency": "PLN",
+      "price_type": "paid",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:51:05Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:51:05Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Festiwal Biegów Świętych Mikołajów w Toruniu 2026",
+      "category_slug": "sport",
+      "start_at": "2026-12-06T12:00:00+01:00",
+      "end_at": null,
+      "short_description": "Półmaraton, krótsze biegi i nordic walking ze startem w rejonie Rynku Staromiejskiego.",
+      "description": "Niedzielna część festiwalu obejmuje półmaraton, biegi na 15, 10 i 5 km oraz marsz nordic walking na 5 km. Start o 12:00 w rejonie Rynku Staromiejskiego, meta na Stadionie Miejskim przy ul. Bema. Zapisy online do 4 grudnia o 8:00. W listopadzie wpisowe wynosi 190 zł za 5 km lub marsz i 210 zł za dłuższe dystanse. W grudniu opłaty rosną, a opłata w biurze zawodów wynosi 250 zł.",
+      "location": {
+        "name": "Rynek Staromiejski — rejon startu",
+        "address": "Rynek Staromiejski",
+        "city": "Toruń",
+        "latitude": 53.0105442,
+        "longitude": 18.6037339,
+        "coordinate_source": "https://mapy.com/en/?id=28182392&source=osm",
+        "coordinate_note": "Nazwany plac wskazany w aktualnych zapisach. Pinezka oznacza rejon startu wskazany w regulaminie."
+      },
+      "source_name": "Stowarzyszenie Maraton Toruński",
+      "source_url": "https://biegmikolajow.pl/regulamin-biegow/",
+      "evidence_urls": [
+        "https://elektronicznezapisy.pl/event/16055.html",
+        "https://biegmikolajow.pl/"
+      ],
+      "seo_intent": "Bieg Mikołajów Toruń 2026 półmaraton, start, trasa i zapisy",
+      "price_min": 190,
+      "price_max": 250,
+      "currency": "PLN",
+      "price_type": "paid",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:51:05Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:51:05Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Targi Rzeczy Ładnych TRŁ Zima 2026 — Warszawa",
+      "category_slug": "targi",
+      "start_at": "2026-12-12T11:00:00+01:00",
+      "end_at": "2026-12-13T18:00:00+01:00",
+      "short_description": "Zimowe targi polskiego designu w EXPO XXI, 12 i 13 grudnia.",
+      "description": "W hali nr 1 EXPO XXI wystawcy pokażą m.in. ceramikę, plakaty, meble, lampy, tekstylia i biżuterię. W sobotę targi będą otwarte 11:00–19:00, a w niedzielę 11:00–18:00. Bilety od 25 zł. Dzieci do lat 12 mają wstęp bezpłatny.",
+      "location": {
+        "name": "EXPO XXI",
+        "address": "Prądzyńskiego 12/14",
+        "city": "Warszawa",
+        "latitude": 52.2253023,
+        "longitude": 20.9617941,
+        "coordinate_source": "https://expo21.pl/",
+        "coordinate_note": "Pinezka istniejącego obiektu w katalogu, zgodna z adresem podanym przez organizatora lub obiekt."
+      },
+      "source_name": "Ładne Rzeczy — eBilet",
+      "source_url": "https://www.ebilet.pl/biznes/targi/trl-zima",
+      "evidence_urls": [
+        "https://targirzeczyladnych.pl/nabor-trl-krakow-trl-zima/"
+      ],
+      "seo_intent": "Targi Rzeczy Ładnych Warszawa grudzień 2026 EXPO XXI bilety i godziny",
+      "price_min": 25,
+      "price_max": null,
+      "currency": "PLN",
+      "price_type": "paid",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:51:05Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:51:05Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Sylwester z Adamem Sztabą w NOSPR 2026",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-31T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Koncert sylwestrowy NOSPR w Katowicach z Adamem Sztabą.",
+      "description": "Adam Sztaba poprowadzi orkiestrę w programie, w którym spotykają się muzyka symfoniczna, filmowa i musicalowa. W repertuarze są m.in. Bolero Ravela, muzyka z West Side Story i z filmu Pan Tadeusz. Koncert z przerwą trwa około 130 minut. Bilety online od 188 zł.",
+      "location": {
+        "name": "Narodowa Orkiestra Symfoniczna Polskiego Radia - NOSPR",
+        "address": "Plac Wojciecha Kilara 1",
+        "city": "Katowice",
+        "latitude": 50.2639042,
+        "longitude": 19.0286749,
+        "coordinate_source": "https://www.bilety24.pl/index.php/kup-bilet-na-568-koncert-sylwestrowy-nospr-sztaba-162045?id=972814",
+        "coordinate_note": "Pinezka istniejącego obiektu w katalogu, zgodna z adresem podanym przez organizatora lub obiekt."
+      },
+      "source_name": "NOSPR",
+      "source_url": "https://nospr.org.pl/pl/kalendarz/koncert-sylwestrowy-nospr-sztaba",
+      "evidence_urls": [
+        "https://www.bilety24.pl/index.php/kup-bilet-na-568-koncert-sylwestrowy-nospr-sztaba-162045?id=972814"
+      ],
+      "seo_intent": "Sylwester NOSPR Katowice 2026 Adam Sztaba godzina bilety i program",
+      "price_min": 188,
+      "price_max": null,
+      "currency": "PLN",
+      "price_type": "paid",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:51:05Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:51:05Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Koncert sylwestrowy Filharmonii Poznańskiej 2026",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-31T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Opery, operetki i musicale w Auli UAM w sylwestrowy wieczór.",
+      "description": "Orkiestrę Filharmonii Poznańskiej poprowadzi Łukasz Borowicz, a partię solową zaśpiewa Aleksandra Orłowska. W programie są fragmenty oper, operetek i musicali oraz utwory znad Dunaju. Bilety online od 360 zł.",
+      "location": {
+        "name": "Aula Uniwersytecka UAM",
+        "address": "Wieniawskiego 1",
+        "city": "Poznań",
+        "latitude": 52.4078448,
+        "longitude": 16.9157469,
+        "coordinate_source": "https://filharmoniapoznanska.pl/kontakt/jak-dojechac/",
+        "coordinate_note": "Pinezka istniejącego obiektu w katalogu, zgodna z adresem podanym przez organizatora lub obiekt."
+      },
+      "source_name": "Filharmonia Poznańska",
+      "source_url": "https://filharmoniapoznanska.pl/koncerty/koncert-sylwestrowy-z-tancami-i-niespodziankami-2026/",
+      "evidence_urls": [
+        "https://www.bilety24.pl/koncert/219-koncert-sylwestrowy-160173?id=957693",
+        "https://filharmoniapoznanska.pl/bilety-i-karnety/cennik-biletow-i-karnetow-2026-2027/"
+      ],
+      "seo_intent": "koncert sylwestrowy Poznań 2026 Filharmonia Aula UAM bilety i godzina",
+      "price_min": 360,
+      "price_max": null,
+      "currency": "PLN",
+      "price_type": "paid",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji materiałów wydarzenia na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-10T11:51:06Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T11:51:06Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

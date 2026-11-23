@@ -1,0 +1,1074 @@
+{
+  "verified_at": "2026-11-03T14:34:25.885Z",
+  "candidates": 18,
+  "published": 18,
+  "skipped_duplicates": 0,
+  "cities": {
+    "Nysa": 3,
+    "Żywiec": 1,
+    "Grudziądz": 3,
+    "Siedlce": 3,
+    "Piła": 2,
+    "Chojnice": 1,
+    "Kołobrzeg": 2,
+    "Elbląg": 2,
+    "Zgorzelec": 1
+  },
+  "free": 9,
+  "anonymous_reads": 18,
+  "production_api_reads": 18,
+  "coordinates_confirmed": 18,
+  "markers_confirmed": 18,
+  "marker_checks": [
+    {
+      "city_slug": "nysa",
+      "status": 200,
+      "confirmed": 3
+    },
+    {
+      "city_slug": "zywiec",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "grudziadz",
+      "status": 200,
+      "confirmed": 3
+    },
+    {
+      "city_slug": "siedlce",
+      "status": 200,
+      "confirmed": 3
+    },
+    {
+      "city_slug": "pila",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "chojnice",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "kolobrzeg",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "elblag",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "zgorzelec",
+      "status": 200,
+      "confirmed": 1
+    }
+  ],
+  "html_checks": [
+    {
+      "url": "https://mapaimprez.pl/koncerty/nysa/curated-bardowskie-zaduszki-yanistan-nysa-2026-11-06-f5ead4b3080d",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/kultura/zywiec/curated-watch-docs-jesli-dzisiaj-umre-pokaz-i-spotkanie-zywiec-2026-11-06-41ac75528152",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/sport/grudziadz/curated-bialo-czerwony-parkrun-grudziadz-grudziadz-2026-11-07-92327be49e23",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/koncerty/siedlce/curated-67-siedleckie-zaduszki-jazzowe-siedlce-2026-11-07-e0ca28ee80a6",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/kultura/pila/curated-bruno-schulz-fetyszysta-pila-2026-11-07-66fd8feab197",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/charytatywne/chojnice/curated-strazacy-dzieciom-koncert-charytatywny-chojnice-2026-11-08-a80da3a277b1",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/koncerty/pila/curated-rozkwitaly-paki-bialych-roz-koncert-choru-halka-pila-2026-11-08-85ec3791729b",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/koncerty/siedlce/curated-barwy-niepodleglosci-koncert-chodowiakow-siedlce-2026-11-08-c4b898070bd0",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/sport/siedlce/curated-siedleckie-biegi-niepodleglosciowe-sztafeta-open-10-km-siedlce-2026-11-11-84b77df5af7d",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/koncerty/grudziadz/curated-polska-moja-milosc-w-swiecie-piosenek-mieczyslawa-fogga-grudziadz-2026-11-11-441ed4948654",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/koncerty/kolobrzeg/curated-plyn-wiselko-warszawska-orkiestra-sentymentalna-kolobrzeg-2026-11-11-4475e501728c",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/kultura/elblag/curated-spotkanie-z-katarzyna-figura-kobieta-to-ja-elblag-2026-11-14-d2bb53935ce2",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/koncerty/kolobrzeg/curated-eska-music-tour-young-leosia-fukaj-i-brokies-kolobrzeg-2026-11-14-037c53423a42",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/inne/nysa/curated-zdrowie-uroda-trening-wyzwania-przyszlosci-nysa-2026-11-20-80f353dbe6de",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/rodzinne/nysa/curated-baw-sie-razem-z-nami-kolory-emocji-nysa-2026-11-21-dbb5d3d8d019",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/targi/grudziadz/curated-jarmark-sw-mikolaja-w-grudziadzu-otwarcie-stoisk-pierwszego-dnia-grudziadz-2026-12-03-a2b49e302ab5",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/koncerty/zgorzelec/curated-melodie-pod-choinke-halina-mlynkova-i-zgorzelecka-orkiestra-mandolinistow-zgorzelec-2026-12-05-d99c93920c68",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    },
+    {
+      "url": "https://mapaimprez.pl/targi/elblag/curated-sztukaterria-warminsko-mazurski-jarmark-wyrobow-artystycznych-elblag-2026-12-13-65df8d3601b4",
+      "status": 200,
+      "title_present": true,
+      "event_visual_cover": true,
+      "empty_image_src": false
+    }
+  ],
+  "events": [
+    {
+      "id": "bd58de46-08a3-41cd-a3a3-b397ab3ab6cb",
+      "title": "Bardowskie Zaduszki — Yanistan",
+      "city": "Nysa",
+      "city_slug": "nysa",
+      "category": "koncerty",
+      "start_at": "2026-11-06T18:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/nysa/curated-bardowskie-zaduszki-yanistan-nysa-2026-11-06-f5ead4b3080d",
+      "source_url": "https://ndk.systembiletowy.pl/index.php/kup-bilet/bardowskie-zaduszki-2026-11-06-18-00",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "55c02b6a-e142-49a2-8efb-693946392736",
+      "title": "WATCH DOCS: Jeśli dzisiaj umrę — pokaz i spotkanie",
+      "city": "Żywiec",
+      "city_slug": "zywiec",
+      "category": "kultura",
+      "start_at": "2026-11-06T18:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/zywiec/curated-watch-docs-jesli-dzisiaj-umre-pokaz-i-spotkanie-zywiec-2026-11-06-41ac75528152",
+      "source_url": "https://kinojanosik.pl/repertuar/watch-docs-prawa-czlowieka-w-filmie-jesli-dzisiaj-umre-spotkanie-z-przemyslawem-staniszewskim",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "4760eb88-0e37-4201-86c0-a2304799dde5",
+      "title": "Biało-Czerwony parkrun Grudziądz",
+      "city": "Grudziądz",
+      "city_slug": "grudziadz",
+      "category": "sport",
+      "start_at": "2026-11-07T09:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/sport/grudziadz/curated-bialo-czerwony-parkrun-grudziadz-grudziadz-2026-11-07-92327be49e23",
+      "source_url": "https://karta.grudziadzmiastootwarte.pl/pl/wydarzenia/bialo---czerwony-parkrun-grudziadz-8125?dataFiltra=2026-10-18",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "999d0904-d5d0-44b8-bcbf-de466fc5f3cd",
+      "title": "67. Siedleckie Zaduszki Jazzowe",
+      "city": "Siedlce",
+      "city_slug": "siedlce",
+      "category": "koncerty",
+      "start_at": "2026-11-07T18:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/siedlce/curated-67-siedleckie-zaduszki-jazzowe-siedlce-2026-11-07-e0ca28ee80a6",
+      "source_url": "https://mok.siedlce.pl/pl/repertuar/67-siedleckie-zaduszki-jazzowe",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "0b04241d-187a-4fa2-b03d-0382bec11641",
+      "title": "Bruno Schulz. Fetyszysta",
+      "city": "Piła",
+      "city_slug": "pila",
+      "category": "kultura",
+      "start_at": "2026-11-07T18:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/kultura/pila/curated-bruno-schulz-fetyszysta-pila-2026-11-07-66fd8feab197",
+      "source_url": "https://rck.pila.pl/program-imprez.html?catid=269%3Aspektakle2026&id=2946%3Abruno-schulz-fetyszysta&view=article",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "f7c8fe19-f1e9-4bd0-a770-37a72f2ac914",
+      "title": "Strażacy Dzieciom — koncert charytatywny",
+      "city": "Chojnice",
+      "city_slug": "chojnice",
+      "category": "charytatywne",
+      "start_at": "2026-11-08T14:30:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/charytatywne/chojnice/curated-strazacy-dzieciom-koncert-charytatywny-chojnice-2026-11-08-a80da3a277b1",
+      "source_url": "https://www.ckchojnice.pl/aktualnosc/koncert-charytatywny-strazacy-dzieciom",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "3caf52e4-65a0-46fa-b6c1-44f2f187f037",
+      "title": "Rozkwitały pąki białych róż — koncert Chóru Halka",
+      "city": "Piła",
+      "city_slug": "pila",
+      "category": "koncerty",
+      "start_at": "2026-11-08T16:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/koncerty/pila/curated-rozkwitaly-paki-bialych-roz-koncert-choru-halka-pila-2026-11-08-85ec3791729b",
+      "source_url": "https://rck.pila.pl/program-imprez.html?catid=266%3Akoncerty2026&id=3013%3Arozkwita%C5%82y-p%C4%85ki-bia%C5%82ych-r%C3%B3%C5%BC&view=article",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "b971becd-70e6-4936-b3f7-104f340b0143",
+      "title": "Barwy niepodległości — koncert Chodowiaków",
+      "city": "Siedlce",
+      "city_slug": "siedlce",
+      "category": "koncerty",
+      "start_at": "2026-11-08T17:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/siedlce/curated-barwy-niepodleglosci-koncert-chodowiakow-siedlce-2026-11-08-c4b898070bd0",
+      "source_url": "https://mok.siedlce.pl/pl/repertuar/barwy-niepodleglosci-koncert-zespolu-piesni-i-tanca-ziemi-siedleckiej-chodowiacy-im-alicji-siwkiewicz",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "c5a2676c-510f-4ceb-9fa1-d73f887b63f0",
+      "title": "Siedleckie Biegi Niepodległościowe — sztafeta OPEN 10 km",
+      "city": "Siedlce",
+      "city_slug": "siedlce",
+      "category": "sport",
+      "start_at": "2026-11-11T12:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/sport/siedlce/curated-siedleckie-biegi-niepodleglosciowe-sztafeta-open-10-km-siedlce-2026-11-11-84b77df5af7d",
+      "source_url": "https://fenikssiedlce.pl/zawody/biegi-11-listopada",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "49722648-5f9d-4ede-9bdc-544ec3c4eab2",
+      "title": "Polska – moja miłość. W świecie piosenek Mieczysława Fogga",
+      "city": "Grudziądz",
+      "city_slug": "grudziadz",
+      "category": "koncerty",
+      "start_at": "2026-11-11T17:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/koncerty/grudziadz/curated-polska-moja-milosc-w-swiecie-piosenek-mieczyslawa-fogga-grudziadz-2026-11-11-441ed4948654",
+      "source_url": "https://grudziadz.pl/wydarzenie/49/25075/108-rocznica-odzyskania-przez-polske-niepodleglosci",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "ab9f5aa7-f345-4512-83b8-39ec4e883954",
+      "title": "Płyń, Wisełko — Warszawska Orkiestra Sentymentalna",
+      "city": "Kołobrzeg",
+      "city_slug": "kolobrzeg",
+      "category": "koncerty",
+      "start_at": "2026-11-11T19:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/kolobrzeg/curated-plyn-wiselko-warszawska-orkiestra-sentymentalna-kolobrzeg-2026-11-11-4475e501728c",
+      "source_url": "https://www.i-kolobrzeg.pl/wydarzenie-3500-warszawska_orkiestra_sentymentalna_11-szczegoly-113832.html",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "b09cb577-92b7-4bb7-8c67-f4861df98ba0",
+      "title": "Spotkanie z Katarzyną Figurą — Kobieta to ja",
+      "city": "Elbląg",
+      "city_slug": "elblag",
+      "category": "kultura",
+      "start_at": "2026-11-14T18:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/elblag/curated-spotkanie-z-katarzyna-figura-kobieta-to-ja-elblag-2026-11-14-d2bb53935ce2",
+      "source_url": "https://swiatowid.elblag.pl/pl/aktualnosci13589,kobieta-to-ja-trzy-dni-artystycznych-inspiracji-w-cse-swiatowid-13-15112026",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "659542e9-44d3-48a7-9c06-966b67bd75ef",
+      "title": "ESKA Music Tour — Young Leosia, Fukaj i Brokies",
+      "city": "Kołobrzeg",
+      "city_slug": "kolobrzeg",
+      "category": "koncerty",
+      "start_at": "2026-11-14T19:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/kolobrzeg/curated-eska-music-tour-young-leosia-fukaj-i-brokies-kolobrzeg-2026-11-14-037c53423a42",
+      "source_url": "https://www.i-kolobrzeg.pl/wydarzenie-3491-eska_music_tour_kolobrzeg_2026_young-szczegoly-113320.html",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "ce9080b2-9f3c-4230-b83c-95138a3282a6",
+      "title": "Zdrowie, uroda, trening — wyzwania przyszłości",
+      "city": "Nysa",
+      "city_slug": "nysa",
+      "category": "inne",
+      "start_at": "2026-11-20T09:30:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/inne/nysa/curated-zdrowie-uroda-trening-wyzwania-przyszlosci-nysa-2026-11-20-80f353dbe6de",
+      "source_url": "https://konferencje.pans.nysa.pl/pl/wydarzenie/zdrowie-uroda-trening-wyzwania-przyszlosci",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "ab81e79c-5014-46a4-b174-460192ffce3b",
+      "title": "Baw się razem z nami: Kolory emocji",
+      "city": "Nysa",
+      "city_slug": "nysa",
+      "category": "rodzinne",
+      "start_at": "2026-11-21T11:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/rodzinne/nysa/curated-baw-sie-razem-z-nami-kolory-emocji-nysa-2026-11-21-dbb5d3d8d019",
+      "source_url": "https://informacja-turystyczna.nysa.pl/wydarzenia-w-nysie-listopad-2026-sprawdz-kalendarz-imprez",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "b42bea90-9db9-49c2-af57-5851bbaae18f",
+      "title": "Jarmark św. Mikołaja w Grudziądzu – otwarcie stoisk pierwszego dnia",
+      "city": "Grudziądz",
+      "city_slug": "grudziadz",
+      "category": "targi",
+      "start_at": "2026-12-03T08:30:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/targi/grudziadz/curated-jarmark-sw-mikolaja-w-grudziadzu-otwarcie-stoisk-pierwszego-dnia-grudziadz-2026-12-03-a2b49e302ab5",
+      "source_url": "https://teatr.grudziadz.pl/wydarzenie/jarmark-sw-mikolaja-2026",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "308b34e2-d8d0-4c06-9232-9292052f43d4",
+      "title": "Melodie pod choinkę – Halina Mlynkova i Zgorzelecka Orkiestra Mandolinistów",
+      "city": "Zgorzelec",
+      "city_slug": "zgorzelec",
+      "category": "koncerty",
+      "start_at": "2026-12-05T18:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/zgorzelec/curated-melodie-pod-choinke-halina-mlynkova-i-zgorzelecka-orkiestra-mandolinistow-zgorzelec-2026-12-05-d99c93920c68",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/10/13/melodie-pod-choinke-czyli-halina-mlynkova-i-zgorzelecka-orkiestra-mandolinistow",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "54c749a8-cdd0-467e-af34-69f78edd146e",
+      "title": "SztukaTERRiA — Warmińsko-Mazurski Jarmark Wyrobów Artystycznych",
+      "city": "Elbląg",
+      "city_slug": "elblag",
+      "category": "targi",
+      "start_at": "2026-12-13T10:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/targi/elblag/curated-sztukaterria-warminsko-mazurski-jarmark-wyrobow-artystycznych-elblag-2026-12-13-65df8d3601b4",
+      "source_url": "https://swiatowid.elblag.pl/pl/aktualnosci13633,sztukaterria-2026-znajdz-wyjatkowe-prezenty-i-poczuj-magie-swiat",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    }
+  ],
+  "skipped": [],
+  "prior_future_public_counts": {
+    "Piła": 1,
+    "Elbląg": 0,
+    "Kołobrzeg": 0,
+    "Chojnice": 0,
+    "Nysa": 0,
+    "Siedlce": 0,
+    "Żywiec": 0,
+    "Grudziądz": 0,
+    "Zgorzelec": 2
+  },
+  "manual_duplicate_review": [
+    {
+      "title": "Bardowskie Zaduszki — Yanistan",
+      "city": "Nysa",
+      "local_day": "2026-11-06",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "WATCH DOCS: Jeśli dzisiaj umrę — pokaz i spotkanie",
+      "city": "Żywiec",
+      "local_day": "2026-11-06",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "Biało-Czerwony parkrun Grudziądz",
+      "city": "Grudziądz",
+      "local_day": "2026-11-07",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "67. Siedleckie Zaduszki Jazzowe",
+      "city": "Siedlce",
+      "local_day": "2026-11-07",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "Bruno Schulz. Fetyszysta",
+      "city": "Piła",
+      "local_day": "2026-11-07",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "Strażacy Dzieciom — koncert charytatywny",
+      "city": "Chojnice",
+      "local_day": "2026-11-08",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "Rozkwitały pąki białych róż — koncert Chóru Halka",
+      "city": "Piła",
+      "local_day": "2026-11-08",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "Barwy niepodległości — koncert Chodowiaków",
+      "city": "Siedlce",
+      "local_day": "2026-11-08",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "Siedleckie Biegi Niepodległościowe — sztafeta OPEN 10 km",
+      "city": "Siedlce",
+      "local_day": "2026-11-11",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "Polska – moja miłość. W świecie piosenek Mieczysława Fogga",
+      "city": "Grudziądz",
+      "local_day": "2026-11-11",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "Płyń, Wisełko — Warszawska Orkiestra Sentymentalna",
+      "city": "Kołobrzeg",
+      "local_day": "2026-11-11",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "Spotkanie z Katarzyną Figurą — Kobieta to ja",
+      "city": "Elbląg",
+      "local_day": "2026-11-14",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "ESKA Music Tour — Young Leosia, Fukaj i Brokies",
+      "city": "Kołobrzeg",
+      "local_day": "2026-11-14",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "Zdrowie, uroda, trening — wyzwania przyszłości",
+      "city": "Nysa",
+      "local_day": "2026-11-20",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "Baw się razem z nami: Kolory emocji",
+      "city": "Nysa",
+      "local_day": "2026-11-21",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "Jarmark św. Mikołaja w Grudziądzu – otwarcie stoisk pierwszego dnia",
+      "city": "Grudziądz",
+      "local_day": "2026-12-03",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "Melodie pod choinkę – Halina Mlynkova i Zgorzelecka Orkiestra Mandolinistów",
+      "city": "Zgorzelec",
+      "local_day": "2026-12-05",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    },
+    {
+      "title": "SztukaTERRiA — Warmińsko-Mazurski Jarmark Wyrobów Artystycznych",
+      "city": "Elbląg",
+      "local_day": "2026-12-13",
+      "existing_titles_same_city_day": [],
+      "existing_exact_sources": [],
+      "same_batch_city_day": []
+    }
+  ],
+  "previous_events_recheck": {
+    "window_start": "2026-11-03T14:29:22.373Z",
+    "window_end": "2026-11-10T14:29:22.373Z",
+    "rechecks_count": 27,
+    "cancellations_found": 0,
+    "required_existing_event_updates": 0,
+    "rechecks": [
+      {
+        "event_id": "42340f28-93b9-4908-aa7c-02bbe71361e5",
+        "title": "Rozmowy o poezji: spotkanie z Anną Łęcką",
+        "start_at": "2026-11-03T16:00:00+00:00",
+        "source_url": "https://resursa.radom.pl/aktualnosci/spotkanie-autorskie-z-anna-lecka",
+        "checked_at": "2026-11-03T14:29:25Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "3.11.2026, 17:00, Resursa Obywatelska, Malczewskiego 16, wstęp wolny."
+      },
+      {
+        "event_id": "de80ad6a-5a0a-4568-a504-0bad0e907660",
+        "title": "Dzień Świętego Huberta — grodzieńskie spotkanie w CLZ",
+        "start_at": "2026-11-03T17:00:00+00:00",
+        "source_url": "https://www.centrumzamenhofa.pl/art,1449,dzien-swietego-huberta",
+        "checked_at": "2026-11-03T14:29:34Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "3.11.2026, 18:00, Centrum im. Ludwika Zamenhofa, Warszawska 19, wstęp wolny."
+      },
+      {
+        "event_id": "9aa41cde-8b5d-45ee-b425-e2348f95263f",
+        "title": "Szydełkiem i włóczką",
+        "start_at": "2026-11-03T17:00:00+00:00",
+        "source_url": "https://dks.art.pl/szydelkiem-i-wloczka-3-listopada",
+        "checked_at": "2026-11-03T14:29:32Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "3.11.2026, 18:00, Międzypokoleniowa Klubokawiarnia, Anielewicza 3/5, wstęp wolny."
+      },
+      {
+        "event_id": "7823d712-01ff-4fd6-bd17-c324b4278727",
+        "title": "Amanti dell'Opera — warsztaty chóralne",
+        "start_at": "2026-11-04T15:30:00+00:00",
+        "source_url": "https://www.opera.wroclaw.pl/repertuar?date=2026-11",
+        "checked_at": "2026-11-03T14:29:30Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "4.11.2026, 16:30, Opera Wrocławska, Świdnicka 35, warsztaty 90 min, cena 20 zł."
+      },
+      {
+        "event_id": "386dc2d3-e036-4734-aa75-b7b12c068d2b",
+        "title": "Kto tu nie grał! — wystawa fotografii Lucjusza Cykarskiego",
+        "start_at": "2026-11-04T16:00:00+00:00",
+        "source_url": "https://bck.bielsko-biala.pl/kto-tu-nie-gral-wystawa-fotografii-lucjusza-cykarskiego",
+        "checked_at": "2026-11-03T14:29:22Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "4.11.2026, 17:00, Bielskie Centrum Kultury, wstęp wolny."
+      },
+      {
+        "event_id": "e61727cd-b0f2-4c16-9b00-660cb6d1dd37",
+        "title": "Grupa tekstylna — spotkanie twórcze",
+        "start_at": "2026-11-05T16:00:00+00:00",
+        "source_url": "https://bok.bialystok.pl/wydarzenie/grupa-tekstylna-spotkanie",
+        "checked_at": "2026-11-03T14:29:34Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "5.11.2026, 17:00, Centrum im. Ludwika Zamenhofa, Warszawska 19, wstęp wolny i materiały we własnym zakresie."
+      },
+      {
+        "event_id": "1c80478f-ab16-435f-871d-b767e979f6ba",
+        "title": "Poznaj, przećwicz, działaj — Masz te eMOCje!",
+        "start_at": "2026-11-05T16:00:00+00:00",
+        "source_url": "https://www.bptorun.edu.pl/1874/poznaj-przecwicz-dzialaj-masz-te-emocje-warsztaty-stacjonarne",
+        "checked_at": "2026-11-03T14:29:22Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "5.11.2026, 17:00–19:00, Biblioteka Pedagogiczna, Dąbrowskiego 4. Bezpłatny udział na zapisy z limitem. Formularz rejestracyjny dostępny do odczytu.",
+        "evidence_urls": [
+          "https://www.bptorun.edu.pl/lime26/index.php/891461?lang=pl"
+        ],
+        "evidence_checks": [
+          {
+            "url": "https://www.bptorun.edu.pl/lime26/index.php/891461?lang=pl",
+            "http_status": 200,
+            "checked_at": "2026-11-03T14:30:07Z"
+          }
+        ]
+      },
+      {
+        "event_id": "1ec85d29-0229-4a44-87de-c4d61e01a00b",
+        "title": "Nadmorskie finanse — jak zarządzać własnym portfelem",
+        "start_at": "2026-11-05T17:00:00+00:00",
+        "source_url": "https://100.gdynia.pl/en/aktualnosci/spotkajmy-sie-na-urodzinach-gdyni-w-listopadzie",
+        "checked_at": "2026-11-03T14:29:22Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "5.11.2026, 18:00, WSAiB, Kielecka 7, wstęp wolny w aktualnym miejskim programie stulecia."
+      },
+      {
+        "event_id": "e4170bb0-bde4-4a75-8a26-dc097485dbcd",
+        "title": "BOTO JAM: Zaduszki Jazzowe pamięci Dextera Gordona",
+        "start_at": "2026-11-05T20:00:00+00:00",
+        "source_url": "https://boto.art.pl/index.php/2026/09/05/boto-jam-zaduszki-jazzowe-pamieci-dextera-gordona",
+        "checked_at": "2026-11-03T14:29:34Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "5.11.2026, 21:00, Teatr BOTO w Sopocie. Organizator nadal podaje 40 zł i 20 zł dla studentów przy ograniczonej puli; Stage24 potwierdza godzinę i kwoty 43,90 zł i 22,90 zł po opłatach.",
+        "evidence_urls": [
+          "https://stage24.pl/wydarzenia/piotr-jankowski-bartlomiej-brozda-teatr-boto-10154"
+        ],
+        "evidence_checks": [
+          {
+            "url": "https://stage24.pl/wydarzenia/piotr-jankowski-bartlomiej-brozda-teatr-boto-10154",
+            "http_status": 200,
+            "checked_at": "2026-11-03T14:30:07Z"
+          }
+        ]
+      },
+      {
+        "event_id": "0d64fd82-3e86-4b98-b123-9f57f553a6e3",
+        "title": "Spotkanie z Anną Brzezińską — 24. Opolska Jesień Literacka",
+        "start_at": "2026-11-06T17:00:00+00:00",
+        "source_url": "https://mbp.opole.pl/wydarzenia/24-ojl-spotkanie-z-anna-brzezinska",
+        "checked_at": "2026-11-03T14:29:22Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "6.11.2026, 18:00, sala konferencyjna MBP, Minorytów 4. Miejski kalendarz nadal potwierdza wstęp wolny.",
+        "evidence_urls": [
+          "https://www.opole.pl/dla-mieszkanca/wydarzenie/24-opolska-jesien-literacka-spotkanie-z-anna-brzezinska-w-miejskiej"
+        ],
+        "evidence_checks": [
+          {
+            "url": "https://www.opole.pl/dla-mieszkanca/wydarzenie/24-opolska-jesien-literacka-spotkanie-z-anna-brzezinska-w-miejskiej",
+            "http_status": 200,
+            "checked_at": "2026-11-03T14:30:07Z"
+          }
+        ]
+      },
+      {
+        "event_id": "0bdc3c36-6115-4754-b61a-83d546507b85",
+        "title": "Wałbrzych ma talent: Katarzyna Serdeczna & Kalluna",
+        "start_at": "2026-11-06T17:00:00+00:00",
+        "source_url": "https://starakopalnia.pl/wydarzenia/katarzyna-serdeczna-kalluna-live",
+        "checked_at": "2026-11-03T14:29:22Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "6.11.2026, 18:00, Kawiarnia Sztygarówka w Starej Kopalni, wstęp wolny."
+      },
+      {
+        "event_id": "96b6d31d-1117-440c-9f58-85dcde9a8bdb",
+        "title": "J. Brahms — Ein Deutsches Requiem",
+        "start_at": "2026-11-06T18:00:00+00:00",
+        "source_url": "https://www.opera.wroclaw.pl/koncert-j-brahms-ein-deutsches-requiem?date=2026-11-06T19%3A00",
+        "checked_at": "2026-11-03T14:29:30Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "6.11.2026, 19:00, Opera Wrocławska, Świdnicka 35, bilety 40–120 zł. Wcześniejszy harmonogram naboru chóru wskazuje inne dni niż aktualna karta i repertuar Opery; publiczny termin potwierdza aktualny repertuar."
+      },
+      {
+        "event_id": "3cde7008-be80-4217-b93b-bac0eeefc0d3",
+        "title": "Planszówki młodzieżówki — nocne granie",
+        "start_at": "2026-11-06T18:00:00+00:00",
+        "source_url": "https://dkwesterplatte.pl/wydarzenia/spotkania/spotkanie-planszowki-mlodziezowki-nocne-granie/56",
+        "checked_at": "2026-11-03T14:29:25Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "6.11.2026, 19:00, DK Westerplatte, Westerplatte 8a, bezpłatnie. Portal nie podaje końca."
+      },
+      {
+        "event_id": "982b02c6-d5d6-4c7e-8df6-18a1b9184e1a",
+        "title": "Sąsiedzi (1) — V Paderewski Festival 2026",
+        "start_at": "2026-11-06T18:00:00+00:00",
+        "source_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026",
+        "checked_at": "2026-11-03T14:29:30Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "6.11.2026, 19:00, Aula Uniwersytecka UAM, płatny wstęp, grupa cenowa A."
+      },
+      {
+        "event_id": "e3c12f38-ce0a-4007-a827-7c3a59501eab",
+        "title": "Festiwal Smaków Regionalnych — sobota",
+        "start_at": "2026-11-07T09:00:00+00:00",
+        "source_url": "https://hala.olsztyn.eu/wydarzenia/festiwal-smakow-regionalnych",
+        "checked_at": "2026-11-03T14:29:34Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "7.11.2026, 10:00–18:00, Hala Urania w Olsztynie, wstęp bezpłatny."
+      },
+      {
+        "event_id": "6542336b-24a7-44f2-a06d-82526073e79d",
+        "title": "Roboty kosmiczne — warsztat Festiwalu Galaktyka Węgla",
+        "start_at": "2026-11-07T09:00:00+00:00",
+        "source_url": "https://starakopalnia.pl/wydarzenia/festiwal-kosmiczny-galaktyka-wegla-2",
+        "checked_at": "2026-11-03T14:29:25Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "7.11.2026, 10:00–11:00, Stara Kopalnia. Program wskazuje bezpłatną wejściówkę z wcześniejszą rezerwacją; nie potwierdzono dostępności miejsc."
+      },
+      {
+        "event_id": "adbc86d6-d06d-4116-9e61-f374f46aab13",
+        "title": "Dziecięca Akademia Rękodzieła „Jesień”",
+        "start_at": "2026-11-07T10:00:00+00:00",
+        "source_url": "https://soksuwalki.eu/class/dziecieca-akademia-rekodziela-jesien",
+        "checked_at": "2026-11-03T14:29:32Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "7.11.2026, 11:00–13:00, Patio SOK, Papieża Jana Pawła II 5, 20 zł za dziecko. Kalendarz sprzedaży potwierdza właściwy termin. Komunikat o odwołaniu na stronie dotyczy innego wydarzenia.",
+        "evidence_urls": [
+          "https://bilety.soksuwalki.eu/rezerwacja/termin.html?back=1&m=11&y=2026"
+        ],
+        "evidence_checks": [
+          {
+            "url": "https://bilety.soksuwalki.eu/rezerwacja/termin.html?back=1&m=11&y=2026",
+            "http_status": 200,
+            "checked_at": "2026-11-03T14:30:07Z"
+          }
+        ]
+      },
+      {
+        "event_id": "b41d8013-3e73-469b-bb58-9446ce46b8f5",
+        "title": "Muzykoteka: Hej, hej ułani! — koncert rodzinny",
+        "start_at": "2026-11-07T10:00:00+00:00",
+        "source_url": "https://filharmoniapoznanska.pl/koncerty-miesiac/listopad-2026",
+        "checked_at": "2026-11-03T14:29:30Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "7.11.2026, 11:00, Aula Uniwersytecka UAM, płatny wstęp, grupa cenowa C."
+      },
+      {
+        "event_id": "6a45d778-79cf-4a35-8f7a-ff779e0389f1",
+        "title": "W kontakcie | Sztuka Wrażliwości",
+        "start_at": "2026-11-07T10:00:00+00:00",
+        "source_url": "https://warsztatykultury.pl/pl/wydarzenia/w-kontakcie-sztuka-wrazliwosci-listopad-2026",
+        "checked_at": "2026-11-03T14:29:25Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "7.11.2026, 11:00–12:00, Grodzka 5a, sala widowiskowa, dzieci w wieku 3–9 lat z opiekunem, bezpłatnie na zapisy.",
+        "evidence_urls": [
+          "https://docs.google.com/forms/d/e/1FAIpQLSe9Hm4bE0IyBEPjxn_ttWB2eQJN2Q-RuhTg2cbrajQelbWIVA/viewform"
+        ],
+        "evidence_checks": [
+          {
+            "url": "https://docs.google.com/forms/d/e/1FAIpQLSe9Hm4bE0IyBEPjxn_ttWB2eQJN2Q-RuhTg2cbrajQelbWIVA/viewform",
+            "http_status": 200,
+            "checked_at": "2026-11-03T14:32:07Z"
+          }
+        ]
+      },
+      {
+        "event_id": "4d543092-be3c-4ccc-b8cc-9d7d454d15a7",
+        "title": "Kino rodzinne: Niesamowite przygody skarpetek 4. Do roboty!",
+        "start_at": "2026-11-07T13:00:00+00:00",
+        "source_url": "https://www.sok.slupsk.pl/index.php/kalendarium/3247-niesamowite-przygody-skarpetek-4-do-roboty?date=2026-11-07-14-00",
+        "checked_at": "2026-11-03T14:29:25Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "7.11.2026, 14:00, Kino Rejs, al. 3 Maja 22, kategoria 5+, seans biletowany. Na stronie seansu nadal nie podano odrębnej kwoty.",
+        "evidence_urls": [
+          "https://www.sok.slupsk.pl/index.php/kino-rejs/cennik-kasa-kina"
+        ],
+        "evidence_checks": [
+          {
+            "url": "https://www.sok.slupsk.pl/index.php/kino-rejs/cennik-kasa-kina",
+            "http_status": 200,
+            "checked_at": "2026-11-03T14:30:07Z"
+          }
+        ]
+      },
+      {
+        "event_id": "7a68ae2b-cde3-4113-80d4-6918fb5187b9",
+        "title": "Soyka / Stańko — odsłuch albumu i rozmowa",
+        "start_at": "2026-11-07T13:00:00+00:00",
+        "source_url": "https://bck.bielsko-biala.pl/soyka-stanko-arcydziela-z-archiwum-polskiego-radia-odsluch-plyty",
+        "checked_at": "2026-11-03T14:29:30Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "7.11.2026, 14:00, Cafe Maria w Bielskim Centrum Kultury, wstęp wolny."
+      },
+      {
+        "event_id": "a6ca897d-8c88-424e-a836-87aa02e8ab91",
+        "title": "50/15 — Miedziewski/Nowak. Wieczór Jubileuszowy",
+        "start_at": "2026-11-07T17:00:00+00:00",
+        "source_url": "https://www.sok.slupsk.pl/index.php/kalendarium/3242-50-15-miedziewski-nowak-wieczor-jubileuszowy?date=2026-11-07-18-00",
+        "checked_at": "2026-11-03T14:29:32Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "7.11.2026, 18:00, OT Rondo, Niedziałkowskiego 5A, bilety po 30 zł według SOK."
+      },
+      {
+        "event_id": "e2012e93-69fe-4926-8511-91528cc8d950",
+        "title": "Rodzina na górce — Pierzaste i futrzaste",
+        "start_at": "2026-11-08T09:00:00+00:00",
+        "source_url": "https://dkwesterplatte.pl/wydarzenia/warsztaty/warsztaty-rodzina-na-gorce-warsztaty-dla-rodzin-z-dziecmi-w-wieku-4-7-lat/59",
+        "checked_at": "2026-11-03T14:29:34Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "8.11.2026, 10:00, DK Westerplatte, Westerplatte 8a, 20 zł za pierwsze dziecko i 10 zł za kolejne dziecko z rodzeństwa, zapisy w ActiveNow, wiek 4–7 lat."
+      },
+      {
+        "event_id": "98a967d7-7da3-4bd7-90d8-99f394717eff",
+        "title": "X Listopadowe Spotkanie z Historią — początki harcerstwa",
+        "start_at": "2026-11-08T11:00:00+00:00",
+        "source_url": "https://www.muzeum.rzeszow.pl/pl/2026/10/28/x-listopadowe-spotkanie-z-historia",
+        "checked_at": "2026-11-03T14:29:32Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "8.11.2026, 12:00–15:00, budynek główny Muzeum Okręgowego w Rzeszowie, 3 Maja 19, spotkanie bezpłatne, wystawy dostępne na oddzielne bilety."
+      },
+      {
+        "event_id": "7df44892-6f36-4b92-8b6e-42b95add3595",
+        "title": "Salon Kobiet: Jacek Kałucki i Marek Siudym",
+        "start_at": "2026-11-08T16:00:00+00:00",
+        "source_url": "https://www.kck.com.pl/salon-kobiet-jacek-kalucki-i-marek-siudym",
+        "checked_at": "2026-11-03T14:29:30Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "8.11.2026, 17:00, Galeria Winda Kieleckiego Centrum Kultury, bilet 35 zł."
+      },
+      {
+        "event_id": "c2178e3d-2499-4d3c-93a4-5342e3c1bdb6",
+        "title": "Wyśpiewaj z nami NIE-PODLEGŁOŚĆ",
+        "start_at": "2026-11-08T16:00:00+00:00",
+        "source_url": "https://www.akademiasztuki.eu/Product/wyspiewaj-z-nami-nie-podleglosc-6ae1e590a4324",
+        "checked_at": "2026-11-03T14:29:32Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "8.11.2026, 17:00, Sala Perłowa, al. Niepodległości 40, wstęp wolny."
+      },
+      {
+        "event_id": "f954ece5-dd53-4e19-a098-6ece76c18c4d",
+        "title": "Widmo wolności — Wielcy twórcy ekranu",
+        "start_at": "2026-11-08T18:00:00+00:00",
+        "source_url": "https://domsztuki.art.pl/kino/seans/304-widmo-wolnosci",
+        "checked_at": "2026-11-03T14:29:37Z",
+        "status": "confirmed",
+        "http_status": 200,
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "8.11.2026, 19:00, Dom Sztuki, Wiolinowa 14, wstęp biletowany, bez kwoty na stronie seansu."
+      }
+    ]
+  },
+  "deferred": [
+    {
+      "title": "Bieg Niepodległości 2026",
+      "city": "Grudziądz",
+      "source_url": "https://wbtiming.pl/BiegNiepodleglosci2026",
+      "reason": "Bezpośredni odczyt oficjalnego systemu zapisów potwierdził zamknięcie rejestracji po osiągnięciu limitu zawodników. Nie obiecywano możliwości dołączenia."
+    },
+    {
+      "title": "Festyn rodzinny w Forcie Wielka Księża Góra",
+      "city": "Grudziądz / Wielkie Lniska",
+      "source_url": "https://www.fortwkg.eu/pl/events2026.html",
+      "reason": "Istniejąca lokalizacja portalu wskazuje 53.5011102, 18.7983827, około 2,5 km od punktu Narodowego Instytutu Dziedzictwa 53.481061981507, 18.817246816254. NID wskazuje Wielkie Lniska (brak w katalogu miast). Nie użyto starej pinezki.",
+      "evidence_urls": [
+        "https://zabytek.pl/pl/obiekty/g-250941"
+      ],
+      "existing_event_id": "0677c6ca-d33a-4a85-999f-e58a4bd560bb"
+    },
+    {
+      "title": "Jarmark św. Marcina",
+      "city": "Żory",
+      "source_url": "https://www.zory.pl/dla-mieszkancow/aktualnosci/aktualnosc/celebrujmy-wspolnie-narodowe-swieto-niepodleglosci-1",
+      "reason": "Żor nie ma w katalogu miast."
+    },
+    {
+      "title": "Włocławski Jarmark Bożonarodzeniowy",
+      "city": "Włocławek",
+      "source_url": "https://rewitalizacja.wloclawek.eu/aktualnosc-10286-zgloszenia_do_udzialu_we_wloclawskim.html",
+      "reason": "Włocławka nie ma w katalogu miast."
+    },
+    {
+      "title": "Rzemieślniczy Jarmark Świąteczny w Krośnie",
+      "source_url": "https://krosno.pl/aktualnosci/dolacz-do-grona-wystawcow-podczas-jarmarku-swiatecznego,29799",
+      "reason": "Miasto Krosno nie występuje w tabeli cities."
+    },
+    {
+      "title": "Podkarpackie ścieżki wspomnień i Planszówki na Zamku",
+      "source_url": "https://kultura.przemysl.eu/338/kalendarz-imprez-miesieczny.html",
+      "reason": "Miasto Przemyśl nie występuje w tabeli cities."
+    },
+    {
+      "title": "Historia zaklęta w zegarze — rodzinne warsztaty plastyczne",
+      "source_url": "https://informacja-turystyczna.nysa.pl/wydarzenia-w-nysie-listopad-2026-sprawdz-kalendarz-imprez/",
+      "reason": "Oficjalny kalendarz nadal podaje ul. Biskupa Jarosława 1, a źródła dotyczące siedziby muzeum 11. Brak otwartej karty organizatora z rozstrzygnięciem."
+    },
+    {
+      "title": "Spotkanie z Erykiem Lubosem",
+      "source_url": "https://biblioteka.zamosc.pl/wydarzenie/spotkanie-z-aktorem-erykiem-lubosem/",
+      "reason": "Karta biblioteki podaje 18 listopada, wcześniejsze wzmianki 3 listopada. W karcie biblioteki brak potwierdzenia zasad wstępu."
+    },
+    {
+      "title": "Kotwica Kołobrzeg – Miasto Szkła Krosno",
+      "city": "Kołobrzeg",
+      "reason": "Rozbieżny termin między terminarzem klubowym a kartą meczu związku."
+    },
+    {
+      "title": "Kalosze Szczęścia",
+      "reason": "Miejska karta zwracała 403, a dostępne zapowiedzi miały rozbieżne godziny."
+    }
+  ],
+  "media": {
+    "covers_confirmed": 18,
+    "official_posters_added": 0,
+    "mobile_visual_review": "Nie wykonywano ponownego odbioru wizualnego. Sprawdzono HTML opublikowanych stron i wykorzystano istniejący komponent odebrany wizualnie 1 listopada."
+  },
+  "technical_checks": {
+    "importer_tests_passed": 9,
+    "eslint_passed": true,
+    "read_only_plan": 18,
+    "published_writes": 18,
+    "repeat_existing": 18,
+    "markers_unique_and_coordinates_matched": true
+  }
+}

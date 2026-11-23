@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "seo:gsc": "node scripts/gsc-report.mjs",
     "lint": "eslint .",
     "test": "vitest run",
     "typecheck": "tsc --noEmit --incremental false",

@@ -16,6 +16,7 @@ export type AdminEventListItem = {
   visibility: string | null;
   review_note: string | null;
   is_featured: boolean | null;
+  featured_until?: string | null;
   submitted_by_organizer_id: string | null;
   category: { name: string } | null;
   location: { city: { name: string } | null } | null;

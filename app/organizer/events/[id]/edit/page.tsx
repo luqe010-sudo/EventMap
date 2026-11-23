@@ -21,10 +21,12 @@ export default async function OrganizerEditEventPage({ params, searchParams }: {
   searchParams: Promise<{ save?: string | string[] }>;
 }) {
   const { id } = await params;
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)) notFound();
+
   const { save } = await searchParams;
   const [event, options, moderationLogs] = await Promise.all([
     getOrganizerEventForEdit(id),
-    getOrganizerEventEditorOptions(),
+    getOrganizerEventEditorOptions(`/organizer/events/${encodeURIComponent(id)}/edit`),
     getOrganizerEventModerationLogs(id)
   ]);
 

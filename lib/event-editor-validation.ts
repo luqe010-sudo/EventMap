@@ -1,4 +1,4 @@
-import { formString, normalizeDateTimeLocal, toDateTimeLocal } from "./event-editor";
+import { formSlug, formString, normalizeDateTimeLocal, toDateTimeLocal } from "./event-editor";
 
 export type EventFieldErrors = Partial<Record<string, string>>;
 export type EventEditorState = {
@@ -39,6 +39,7 @@ export function validateEventForm(formData: FormData, organizerId: string) {
     if (value && value.length > limit) errors[field] = `Maksymalna długość: ${limit} znaków.`;
   }
   if (!formString(formData, "title")) errors.title = "Podaj tytuł wydarzenia.";
+  if (formString(formData, "slug") && !formSlug(formData, "slug")) errors.slug = "Użyj liter lub cyfr w adresie wydarzenia.";
   if (!formString(formData, "category_id")) errors.category_id = "Wybierz kategorię.";
   if (!organizerId) errors.organizer_id = "Wybierz organizatora.";
 

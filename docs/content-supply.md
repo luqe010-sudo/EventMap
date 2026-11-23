@@ -23,7 +23,12 @@ Właściciel upoważnił do wyszukiwania wydarzeń w internecie i mediach społe
 
 9. Stosuj [zasady obrazów](event-media-policy.md): preferuj oficjalne materiały z potwierdzonym zakresem praw. Jeśli warunki nie są jasne po krótkim sprawdzeniu, pozostaw `main_image_url` puste — portal ma automatyczne, lokalne okładki z licencjonowanymi zdjęciami, tytułem, terminem i miastem. Nie generuj AI, nie przerabiaj cudzych plakatów i nie zapisuj zdjęć ilustracyjnych jako oryginalnego zdjęcia wydarzenia. Nie uzależniaj publikacji wartościowej informacji od pozyskania plakatu.
 
+10. Nie pobieraj hurtowo listingów serwisów biletowych (Biletyna, eBilet, Going itp.). Masowe przejęcie istotnej części cudzej bazy może naruszać prawo producenta bazy danych. Źródłem jest strona organizatora lub obiektu; pojedynczy link sprzedażowy może być tylko dowodem ceny. Respektuj robots.txt i nie omijaj API wymagających logowania (np. REST ERGO ARENY zwraca 401).
+11. Dane strukturalne obiektów sprawdzaj z godziną widoczną na stronie. Progresja (stan na 16.11.2026) podaje w JSON-LD lokalną godzinę jako UTC, czyli +1 h zimą i +2 h latem; obowiązuje godzina widoczna („orientacyjna”). Stodoła/Go Ahead podaje „Otwarcie drzwi” i „Rozpoczęcie wydarzenia”; jako `start_at` bierz rozpoczęcie. TAURON Arena i ERGO ARENA mają JSON-LD zgodny ze stroną, ale `endDate` to tam wartość domyślna, więc `end_at` zostaw puste.
+
 ## Paczka i publikacja
+
+Importer przyjmuje maks. 50 wydarzeń na plik; większe zestawy dziel na kilka paczek z suffiksem (np. `2026-11-16-go-ahead-1.json`).
 
 Zweryfikowaną paczkę zapisuj jako `data/content-supply/YYYY-MM-DD.json`; przy kilku przebiegach dodaj suffix. Wzór: [pierwsza paczka](../data/content-supply/2026-10-29.json). `checked_at` oznacza faktyczny czas sprawdzenia. Importer odrzuca sprawdzenie starsze niż 48 godzin, daty przeszłe, brak offsetu, błędne ceny i współrzędne. Wymaga istniejących kategorii i jednoznacznych miast. Nie tworzy tabel, miast, kategorii, kont ani organizatorów.
 

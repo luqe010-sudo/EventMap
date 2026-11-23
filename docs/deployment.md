@@ -1,5 +1,24 @@
 # Deployment
 
+## Płatne polecanie z datą końca — 2026-11-23
+
+- Migracja `supabase/migrations/20261123210000_events_featured_until.sql` dodaje `events.featured_until`, uzupełnia datę dla istniejących rekordów `is_featured` (koniec dnia wydarzenia, maks. 30 dni) i w jednej transakcji łata dwa fragmenty `guard_organizer_event_write` (lista kolumn + zakaz ustawiania przy insercie organizatora). Bez łatki każdy zapis organizatora kończyłby się błędem „Event schema changed”.
+- Kolejność: najpierw migracja (`npx supabase db query --linked -f supabase/migrations/20261123210000_events_featured_until.sql`), potem regeneracja `database.types.ts` i dopiero wtedy wdrożenie kodu — kod czyta i filtruje `featured_until`, więc bez kolumny publiczne zapytania by padały.
+- Rollback: `docs/featured-until-rollback.sql` (najpierw wycofać kod).
+- Manifest/testy pakietu ochrony zapisu organizatora z 16.11 porównują treść funkcji — po tej migracji zgłoszą zmianę treści; to oczekiwane.
+
+## Panel Organizatora na produkcji — 2026-11-16
+
+`mapaimprez.pl` i `www.mapaimprez.pl` wskazują gotowe wdrożenie `dpl_9oD5ZAh8y1B3BMUwYFbYBkr3UVP7`. Poprzednia wersja do ewentualnego wycofania to `dpl_Aspz8CKnz8qVZLMfajYVyHDD2AkL`. Produkcyjny build ze źródeł był sprawdzony przed przełączeniem domen. Paczka zawierała 15 zmienionych i 2 nowe pliki Panelu Organizatora oraz 222 pliki o skrótach zgodnych z poprzednią produkcją.
+
+18 prób HTTP przed przełączeniem i 17 po przełączeniu potwierdziło m.in. osiem ścieżek wymagających logowania, zachowanie filtrów, odrzucenie błędnego identyfikatora, stronę logowania i publiczne wyszukiwanie, mapę oraz sitemapę. Adres `www` przekierowuje do domeny głównej kodem 307, zachowując ścieżkę i zapytanie. Próby aplikacji wykonano bez logowania. Uprawnienia i zapisy sprawdzono osobno w testach SQL. Publikacja z lokalnych źródeł nie tworzy commita ani nie aktualizuje repozytorium GitHub. [Produkcja](https://mapaimprez.pl) · [Odbiór SQL](organizer-account-upgrade-proposal.md).
+
+## Sesja Panelu Organizatora
+
+Middleware dla `/organizer` i podstron korzysta z bieżącego URL i klucza publicznego Supabase. Przy sprawdzaniu wdrożenia otwórz podstronę panelu po wygaśnięciu tokenu dostępu. Odnowiona sesja powinna działać na kolejnej podstronie, a odpowiedź ustawiająca cookies sesji powinna zawierać `Cache-Control: private, no-store` z pozostałymi dyrektywami SDK. [Buforowanie odpowiedzi Supabase SSR](https://supabase.com/docs/guides/auth/server-side/advanced-guide).
+
+Wersja aplikacji z atomowym rozszerzeniem konta wymaga funkcji `public.upgrade_my_organizer_account(text)` w docelowym projekcie Supabase. Najpierw wdróż i sprawdź SQL oraz odśwież typy, następnie opublikuj kod aplikacji. [Kolejność wdrożenia i wycofania](organizer-account-upgrade-proposal.md).
+
 ## Region funkcji — 2026-11-01
 
 `vercel.json` ustawia region `fra1`, bo projekt Supabase EventMap działa w `eu-central-1`. Publikacja nie wymaga nowych zmiennych środowiskowych ani migracji.
@@ -285,6 +304,8 @@ Google Analytics jest skonfigurowany bez dodatkowej zmiennej środowiskowej. Ide
 
 ## Supabase
 
+16 listopada 2026 r. w EventMap zastosowano pakiety [ochrony zapisu organizatora](organizer-write-hardening-proposal.md) i [atomowego rozszerzania konta](organizer-account-upgrade-proposal.md). Wykonano `db query` z jawnym ref projektu. Testy obu pakietów zakończyły się pełnym rollbackiem danych testowych. Odczyt katalogowy potwierdził uprawnienia nowej funkcji, a wygenerowane typy dodały jej sygnaturę. Kod panelu i onboardingu opublikowano po odbiorze SQL.
+
 5 października 2026, po zgodzie użytkownika, wykonano na połączonej bazie EventMap wąski hotfix rejestracji z `docs/security-hotfix-registration-proposal.sql`. Weryfikacja potwierdziła ograniczenie nowych ról do user/organizer, aktywny trigger, ustalony search_path i brak bezpośredniego EXECUTE dla anon/authenticated. Nie zmieniano istniejących kont, tabel ani kolumn. Poprawkę zastosowano przez `db query`, bez `db push` i bez oznaczania historii migracji. Pełny test rejestracji na staging pozostaje do wykonania. Raport: `docs/database-security-audit-2026-10-05.md`.
 
 Projekt jest połączony z Supabase CLI lokalnie przez katalog `supabase/.temp`. Repozytorium zawiera przyrostowe migracje w `supabase/migrations`, ale nie pełny baseline pustej bazy; staging wymaga uzgodnionego odtworzenia rzeczywistego schematu, grantów, funkcji i triggerów.
@@ -320,15 +341,34 @@ Publiczne endpointy `/api/events/search`, `/api/events/markers`, `/api/events/ca
 
 Actions admina/organizatora używają `revalidatePublicEventCache()` po mutacjach, także przed source/moderation followupami i gdy wynik mógł się zatwierdzić przed utratą odpowiedzi. Nie obiecywać aktualizacji już otwartego widoku bez odświeżenia.
 
+### Cache punktów mapy
+
+Automatyczne rozsuwanie pinezek podczas przybliżania wdrożono jako `dpl_Aspz8CKnz8qVZLMfajYVyHDD2AkL`. W przeglądarce potwierdzono, że pinezki przy Targach Kielce pojawiają się osobno po otwarciu przybliżonej mapy. Poprzednie wdrożenie to `dpl_Ehyz7kuG9E2LmSxEBFfggyzsDoMS`.
+
+Rozsuwanie pinezek wdrożono jako `dpl_Ehyz7kuG9E2LmSxEBFfggyzsDoMS` na bazie aktualnego wtedy `main` (`0ba9544`). W przeglądarce otwarto sześć pinezek przy Targach Kielce. Poprzednie wdrożenie produkcyjne to `dpl_BFJpAAVk5uJJxQkrsegjvPkTpApj`.
+
+10 listopada 2026 wdrożono nowe skupiska na mapaimprez.pl jako `dpl_Fo9FGuDTa55DE2KqdLGjzWqmK4pt`, a wersję z ikonami i dopasowanym obrysem jako `dpl_FDdFdFoqj558zC9FBLM9vXzJBzQp`. Produkcyjna mapa wyświetliła 298 wydarzeń. Cache oczekuje na konfigurację sekretu i webhooków. Wdrożenie sprzed zmian mapy to `dpl_BHg3mgnHNd3ku2RYAigjwTYKhvVT`.
+
+Cache punktów jest opcjonalny. Po włączeniu serwer współdzieli pakiet między żądaniami do `/api/events/markers`. Odpowiedź HTTP nadal ma `Cache-Control: no-store, max-age=0`. Odświeżenie po zapisie w panelu działa przez tag Next.js. Webhooki obsługują zapisy poza aplikacją, w tym import redakcyjny i edycję w panelu Supabase. Zapasowy limit świeżości wynosi 5 minut i dotyczy kolejnych żądań, także przy niedostępności webhooka. [Next.js Data Cache](https://nextjs.org/docs/15/app/api-reference/functions/unstable_cache), [Vercel Data Cache](https://vercel.com/docs/runtime-cache/data-cache).
+
+1. Wygeneruj długi losowy token dla danego środowiska. Zapisz go w Vercel jako serwerową zmienną `EVENTMAP_MAP_CACHE_SECRET` i wykonaj deployment tego środowiska. Przechowuj token poza repozytorium i poza zmiennymi `NEXT_PUBLIC_*`.
+2. W Supabase Dashboard → Database Webhooks utwórz po jednym webhooku dla `public.events`, `public.categories`, `public.locations` i `public.cities`. W każdym wybierz `INSERT`, `UPDATE` i `DELETE`. Ustaw metodę `POST`, URL `https://<host-środowiska>/api/events/markers/revalidate` oraz nagłówek `Authorization` z wartością `Bearer <token>`. Użyj tokenu z kroku 1 i hosta wdrożenia korzystającego z tego samego projektu Supabase. Konfiguracja odbywa się w Dashboardzie, bez uruchamiania SQL z repozytorium. [Supabase Database Webhooks](https://supabase.com/docs/guides/database/webhooks).
+3. Na staging pobierz ten sam zestaw punktów dwa razy i sprawdź w metrykach odczyt współdzielonego pakietu bez ponownego pełnego zapytania do Supabase. Sprawdź też odpowiedź bez poprawnego tokenu. Taka próba ma zostać odrzucona.
+4. Na staging opublikuj wydarzenie w panelu aplikacji i sprawdź nową odpowiedź `/api/events/markers`. Wycofaj je bezpośrednio w Supabase, sprawdź dostarczenie webhooka i upewnij się, że punkt zniknął w kolejnym odczycie. Sprawdź zmianę koloru kategorii lub współrzędnych lokalizacji oraz działanie daty, ceny i promienia. Przy wstrzymanym webhooku sprawdź odświeżenie po upływie 5 minut.
+
+Wyłączenie cache wymaga usunięcia `EVENTMAP_MAP_CACHE_SECRET` ze środowiska, ponownego deploymentu i wyłączenia webhooków kierowanych do tego wdrożenia. Endpoint punktów wraca wtedy do bezpośrednich odczytów Supabase.
+
 ## SEO po wdrozeniu
 
 Po wdrozeniu sprawdz:
 
 - `https://mapaimprez.pl/robots.txt` powinien zwracac `text/plain` i wskazywac `https://mapaimprez.pl/sitemap.xml`;
 - `https://mapaimprez.pl/sitemap.xml` powinien zwracac indeks sitemap;
-- w Google Search Console ponownie przeslij `sitemap.xml`;
+- w Google Search Console sprawdz stan `sitemap.xml` i zglos mape, jesli jej brakuje;
 - sprawdz raport indeksowania pod katem `Soft 404`, `Odkryto, obecnie nie zaindeksowano` i `Przeslano i zindeksowano`;
 - stare adresy `/wydarzenie/[slug]` i `/wydarzenia/[slug]` powinny zwracac 308 do kanonicznego URL-a wydarzenia albo 404 dla nieistniejacego sluga.
+
+Raport `npm run seo:gsc` uruchamia się poza wdrożoną aplikacją. Do Vercel nie dodawaj klucza konta ani tokenu raportowego. Zobacz [konfigurację Search Console](search-console.md).
 
 ## Hosting
 

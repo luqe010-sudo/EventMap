@@ -316,6 +316,7 @@ export type Database = {
           currency: string | null
           description: string | null
           end_at: string | null
+          featured_until: string | null
           id: string
           is_all_day: boolean | null
           is_cancelled: boolean | null
@@ -348,6 +349,7 @@ export type Database = {
           currency?: string | null
           description?: string | null
           end_at?: string | null
+          featured_until?: string | null
           id?: string
           is_all_day?: boolean | null
           is_cancelled?: boolean | null
@@ -380,6 +382,7 @@ export type Database = {
           currency?: string | null
           description?: string | null
           end_at?: string | null
+          featured_until?: string | null
           id?: string
           is_all_day?: boolean | null
           is_cancelled?: boolean | null
@@ -1833,6 +1836,10 @@ export type Database = {
           schema_name: string
           table_name: string
         }
+        Returns: string
+      }
+      upgrade_my_organizer_account: {
+        Args: { p_organizer_name: string }
         Returns: string
       }
     }

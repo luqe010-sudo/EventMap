@@ -10,7 +10,7 @@ function useOrganizerForm(action: (state: OrganizerFormState, data: FormData) =>
   const [state, formAction, pending] = useActionState(action, { fieldErrors: {}, error: null });
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (pending || state.creationUnconfirmed) return;
+    if (pending) return;
     const data = new FormData(event.currentTarget);
     startTransition(() => formAction(data));
   }
@@ -70,14 +70,13 @@ export function OrganizerUpgradeForm({ displayName }: { displayName: string | nu
       <p className="panelMutedText">Profil organizatora pozwala dodawać wydarzenia i wysyłać je do akceptacji.</p>
       <form action={formAction} onSubmit={submit} aria-busy={pending} className="managementForm">
         {state.error ? <div className="formError" role="alert">{state.error}</div> : null}
-        {state.creationUnconfirmed ? <a href="/organizer" target="_blank" rel="noopener noreferrer">Sprawdź panel w nowej karcie</a> : null}
+        {state.error && !Object.keys(state.fieldErrors).length ? <a href="/organizer" target="_blank" rel="noopener noreferrer">Sprawdź panel w nowej karcie</a> : null}
         <label>
           Nazwa organizatora
           <input name="organizer_name" required maxLength={organizerTextLimits.organizer_name} value={organizerName} onChange={event => setOrganizerName(event.target.value)} disabled={pending} aria-invalid={Boolean(state.fieldErrors.organizer_name)} aria-describedby={state.fieldErrors.organizer_name ? `${id}-organizer_name` : undefined} />
           {state.fieldErrors.organizer_name ? <span id={`${id}-organizer_name`} className="formError">{state.fieldErrors.organizer_name}</span> : null}
         </label>
-        {state.creationUnconfirmed ? <p className="formHint">Nie ponawiaj tworzenia profilu, dopóki jego wynik nie zostanie sprawdzony. Możesz skopiować zachowaną nazwę.</p> : null}
-        <button type="submit" className="primaryButton" disabled={pending || state.creationUnconfirmed}>{pending ? "Tworzenie…" : "Utwórz profil organizatora"}</button>
+        <button type="submit" className="primaryButton" disabled={pending}>{pending ? "Tworzenie…" : "Utwórz profil organizatora"}</button>
       </form>
     </section>
   );

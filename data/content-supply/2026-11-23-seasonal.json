@@ -1,0 +1,115 @@
+{
+  "checked_at": "2026-11-23T16:31:42Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Ponowne sprawdzenie jarmarków bożonarodzeniowych odłożonych 16 listopada 2026. Oficjalne potwierdzenie daty, godziny rozpoczęcia i miejsca edycji 2026 uzyskano dla Krakowa, Łodzi i Szczecina. Paczka czeka na akceptację właściciela; nie została zaimportowana.",
+  "events": [
+    {
+      "title": "Jarmark Bożonarodzeniowy w Krakowie 2026",
+      "category_slug": "targi",
+      "start_at": "2026-11-27T10:00:00+01:00",
+      "end_at": "2027-01-01T20:00:00+01:00",
+      "short_description": "Jarmark na Rynku Głównym od 27 listopada 2026 do 1 stycznia 2027, uroczyste otwarcie 28 listopada o 12:00.",
+      "description": "Krakowski jarmark na Rynku Głównym organizuje Krakowska Kongregacja Kupiecka, a realizuje Artim. Według miejskiego programu pierwsze punkty programu ruszają 27 listopada od 10:00. Uroczyste otwarcie zaplanowano na sobotę 28 listopada o 12:00. Program obejmuje prezentacje gmin i rękodzieła, 84. Konkurs Szopek Krakowskich (3 grudnia), spotkania ze Świętym Mikołajem 5–6 grudnia i koncerty kolęd. Miasto podaje koniec 1 stycznia 2027, a niektóre informatory podają 6 stycznia; przed wizytą po 1 stycznia warto sprawdzić komunikat miasta. Sprzedaż trwa zwykle w godz. 10:00–20:00, a wybrane stoiska gastronomiczne są czynne dłużej.",
+      "location": {
+        "name": "Rynek Główny w Krakowie",
+        "address": "Rynek Główny, Kraków",
+        "city": "Kraków",
+        "latitude": 50.061663,
+        "longitude": 19.937217,
+        "coordinate_source": "https://pl.wikipedia.org/wiki/Rynek_G%C5%82%C3%B3wny_w_Krakowie",
+        "coordinate_note": "Współrzędne nazwanego placu z artykułu Wikipedii (API coordinates). Miasto wskazuje Rynek Główny jako miejsce jarmarku."
+      },
+      "source_name": "Kraków — Oficjalny serwis miejski (Referat Mediów Miejskich)",
+      "source_url": "https://krakow.pl/aktualnosci/346609,33,komunikat,krakow_w_swiatecznej_odslonie__jarmark_bozonarodzeniowy_wraca_na_rynek_glowny.html",
+      "evidence_urls": [
+        "https://plikimpi.krakow.pl/zalacznik/645028",
+        "https://pik.krakow.pl/jarmark-bozonarodzeniowy-w-krakowie/"
+      ],
+      "seo_intent": "jarmark bożonarodzeniowy Kraków 2026 Rynek Główny termin i otwarcie",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki jarmarku na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-23T16:31:42Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-23T16:31:42Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Jarmark Bożonarodzeniowy na Piotrkowskiej w Łodzi 2026",
+      "category_slug": "targi",
+      "start_at": "2026-11-28T12:00:00+01:00",
+      "end_at": "2026-12-23T20:00:00+01:00",
+      "short_description": "60 domków na ul. Piotrkowskiej od 28 listopada do 23 grudnia; rozświetlenie choinki 28 listopada o 17:30.",
+      "description": "Jarmark zajmie ul. Piotrkowską między pasażem Rubinsteina a pasażem Schillera i potrwa od 28 listopada do 23 grudnia 2026. Stoiska są czynne od poniedziałku do piątku w godz. 12:00–20:00, a w soboty i niedziele 12:00–21:00. W dniu otwarcia, w sobotę 28 listopada o 17:30, na placu Wolności rozbłyśnie choinka. O 18:30 parada przejdzie Piotrkowską do pasażu Rubinsteina, gdzie o 19:00 zacznie się koncert. W programie są też Silent Disco (4 grudnia), Mikołajki (6 grudnia) i świąteczna ciężarówka (10 grudnia). Organizatorzy zastrzegają, że program może się zmienić.",
+      "location": {
+        "name": "ul. Piotrkowska — pasaż Rubinsteina",
+        "address": "ul. Piotrkowska (odcinek od pasażu Rubinsteina do pasażu Schillera), Łódź",
+        "city": "Łódź",
+        "latitude": 51.7675065,
+        "longitude": 19.4553456,
+        "coordinate_source": "https://www.openstreetmap.org/way/104487423",
+        "coordinate_note": "Punkt pasażu Artura Rubinsteina z OpenStreetMap (Nominatim). To jeden z krańców odcinka jarmarku i miejsce koncertu otwarcia."
+      },
+      "source_name": "Łódzka Organizacja Turystyczna (lodz.travel)",
+      "source_url": "https://lodz.travel/aktualnosci-lodzkiej-organizacji-turystycznej/artykul-lot/swieta-na-piotrkowskiej-2026-koncerty-silent-disco-mikolajki-i-swiateczna-ciezarowka-coca-cola-id63816/2026/11/23/?cHash=a9b8cb0a9ea5dd09dc433151572247b9",
+      "evidence_urls": [
+        "https://lodz.travel/aktualnosci-lodzkiej-organizacji-turystycznej/artykul-lot/swieta-na-piotrkowskiej-2026-jarmark-bozonarodzeniowy-rozswietlenie-choinki-i-atrakcje-dla-calych-rodzin-id63803/2026/11/17/?cHash=31e96f31dafd37d255dc4b753ead2c94",
+        "https://piklodz.pl/polecane/lodzki-jarmark-bozonarodzeniowy/"
+      ],
+      "seo_intent": "jarmark bożonarodzeniowy Łódź 2026 Piotrkowska godziny otwarcia",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki jarmarku na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-23T16:31:42Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-23T16:31:42Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Szczeciński Jarmark Bożonarodzeniowy 2026",
+      "category_slug": "targi",
+      "start_at": "2026-11-27T13:00:00+01:00",
+      "end_at": "2026-12-22T20:00:00+01:00",
+      "short_description": "Jarmark na Alei Kwiatowej, placu Adamowicza i placu Lotników od 27 listopada do 22 grudnia.",
+      "description": "Jarmark organizowany przez miejską spółkę Żegluga Szczecińska Turystyka Wydarzenia w ramach projektu Kolorowa Aleja zajmie Aleję Kwiatową, plac Adamowicza i plac Lotników. Według programu organizatora jarmark rusza w piątek 27 listopada o 13:00 i potrwa do wtorku 22 grudnia (ostatni dzień 13:00–20:00). Godziny zmieniają się w zależności od dnia: w dni powszednie zwykle od 13:00, w weekendy od 10:00, a zamknięcie wypada między 18:00 a 22:00. Szczegóły dla konkretnych dni są na stronie organizatora. W niedzielę 6 grudnia o 17:00 przed Urzędem Miasta rozbłyśnie choinka, a parada przejdzie na plac Lotników. Na placu Lotników stanie Domek Mikołaja.",
+      "location": {
+        "name": "Plac Lotników w Szczecinie",
+        "address": "Plac Lotników, Szczecin",
+        "city": "Szczecin",
+        "latitude": 53.430278,
+        "longitude": 14.550833,
+        "coordinate_source": "https://pl.wikipedia.org/wiki/Plac_Lotnik%C3%B3w_w_Szczecinie",
+        "coordinate_note": "Współrzędne nazwanego placu z artykułu Wikipedii (API coordinates). Plac Lotników to jedna z trzech lokalizacji wskazanych przez organizatora, połączona z Aleją Kwiatową i placem Adamowicza."
+      },
+      "source_name": "Kolorowa Aleja — Żegluga Szczecińska Turystyka Wydarzenia (organizator)",
+      "source_url": "https://kolorowaaleja.pl/szczecinski-jarmark-bozonarodzeniowy-2/",
+      "evidence_urls": [
+        "https://zstw.szczecin.pl/pl/wydarzenia/2026/szczecinski-jarmark-bozonarodzeniowy/informacje-o-wydarzeniu",
+        "https://wiadomosci.szczecin.eu/artykul/mieszkancy/szczecinski-jarmark-bozonarodzeniowy-2026-blisko-90-wystawcow-i-mnostwo-swiatecznych-atrakcji"
+      ],
+      "seo_intent": "jarmark bożonarodzeniowy Szczecin 2026 Aleja Kwiatowa godziny",
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji grafiki jarmarku na EventMap. Okładkę wyświetla EventVisual.",
+      "checked_at": "2026-11-23T16:31:42Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-23T16:31:42Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

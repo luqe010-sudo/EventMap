@@ -4,11 +4,11 @@ import { unstable_rethrow } from "next/navigation";
 import { createOrganizerAccountAction, organizerUpdateAccountAction, organizerUpdateProfileAction } from "@/lib/organizer-events";
 import { OrganizerFormValidationError, type OrganizerFormState } from "@/lib/organizer-form-validation";
 
-function formFailure(error: unknown, message: string, creationUnconfirmed = false): OrganizerFormState {
+function formFailure(error: unknown, message: string): OrganizerFormState {
   unstable_rethrow(error);
   if (error instanceof OrganizerFormValidationError) return { fieldErrors: error.fieldErrors, error: error.message };
   console.error("[organizer-form] Save was not confirmed", error);
-  return { fieldErrors: {}, error: message, ...(creationUnconfirmed ? { creationUnconfirmed: true } : {}) };
+  return { fieldErrors: {}, error: message };
 }
 
 export async function organizerUpdateProfileFormAction(organizerId: string, _previous: OrganizerFormState, data: FormData): Promise<OrganizerFormState> {
@@ -34,8 +34,6 @@ export async function createOrganizerAccountFormAction(_previous: OrganizerFormS
     await createOrganizerAccountAction(data);
     return { fieldErrors: {}, error: null };
   } catch (error) {
-    // Creating an organization, membership and role is still a sequence of
-    // separate requests. A transport failure can leave a partial result.
-    return formFailure(error, "Nie udało się potwierdzić utworzenia profilu organizatora. Wpisana nazwa pozostała w formularzu. Sprawdź panel w nowej karcie i skontaktuj się z administratorem, aby potwierdzić wynik i dostęp do profilu.", true);
+    return formFailure(error, "Nie udało się potwierdzić utworzenia profilu organizatora. Możesz sprawdzić panel w nowej karcie lub ponowić próbę. Jeśli problem się powtarza, skontaktuj się z administratorem.");
   }
 }

@@ -1,0 +1,2044 @@
+{
+  "verified_at": "2026-11-08T19:43:21.468Z",
+  "candidates": 18,
+  "published": 18,
+  "skipped_duplicates": 0,
+  "cities": {
+    "Świętochłowice": 2,
+    "Białystok": 1,
+    "Bielawa": 1,
+    "Lubawka": 1,
+    "Radom": 2,
+    "Zawiercie": 1,
+    "Słupsk": 2,
+    "Chojnice": 2,
+    "Rzeszów": 1,
+    "Kołobrzeg": 1,
+    "Tarnów": 1,
+    "Ostróda": 1,
+    "Koszalin": 2
+  },
+  "free": 5,
+  "anonymous_reads": 18,
+  "production_api_reads": 18,
+  "coordinates_confirmed": 18,
+  "markers_confirmed": 18,
+  "marker_checks": [
+    {
+      "city_slug": "swietochlowice",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=swietochlowice",
+      "status": 200,
+      "confirmed": 2,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "bialystok",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=bialystok",
+      "status": 200,
+      "confirmed": 1,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "bielawa",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=bielawa",
+      "status": 200,
+      "confirmed": 1,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "lubawka",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=lubawka",
+      "status": 200,
+      "confirmed": 1,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "radom",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=radom",
+      "status": 200,
+      "confirmed": 2,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "zawiercie",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=zawiercie",
+      "status": 200,
+      "confirmed": 1,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "slupsk",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=slupsk",
+      "status": 200,
+      "confirmed": 2,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "chojnice",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=chojnice",
+      "status": 200,
+      "confirmed": 2,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "rzeszow",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=rzeszow",
+      "status": 200,
+      "confirmed": 1,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "kolobrzeg",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=kolobrzeg",
+      "status": 200,
+      "confirmed": 1,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "tarnow",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=tarnow",
+      "status": 200,
+      "confirmed": 1,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "ostroda",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=ostroda",
+      "status": 200,
+      "confirmed": 1,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    },
+    {
+      "city_slug": "koszalin",
+      "url": "https://mapaimprez.pl/api/events/markers?citySlug=koszalin",
+      "status": 200,
+      "confirmed": 2,
+      "exactly_one_marker_per_id": true,
+      "coordinates_match": true
+    }
+  ],
+  "html_checks": [
+    {
+      "id": "1105a0ad-b6b4-4cd1-9349-b10eaf071bda",
+      "url": "https://mapaimprez.pl/kultura/swietochlowice/curated-miejskie-obchody-swieta-niepodleglosci-w-swietochlowicach-swietochlowice-2026-11-11-4017a87b0021",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:23.059Z"
+    },
+    {
+      "id": "b4091ec8-016d-41ba-b392-8106b496ee04",
+      "url": "https://mapaimprez.pl/targi/bialystok/curated-targi-wzory-w-bialymstoku-bialystok-2026-11-14-6844899593b3",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:22.483Z"
+    },
+    {
+      "id": "4a9e2fbd-d934-440a-9eab-51e58ca49809",
+      "url": "https://mapaimprez.pl/stand-up/bielawa/curated-mama-na-obrotach-niezly-bajzel-bielawa-2026-11-14-0d8be155603d",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:23.040Z"
+    },
+    {
+      "id": "a7b0ffc3-eb38-45d7-b0f8-a73a57d7abc3",
+      "url": "https://mapaimprez.pl/koncerty/lubawka/curated-piosenka-filmem-pisana-lubawka-2026-11-15-6d7970b24a6e",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:22.215Z"
+    },
+    {
+      "id": "4b2eb279-5894-4cfc-bd80-fe4ba3374dc8",
+      "url": "https://mapaimprez.pl/rodzinne/radom/curated-wkrec-sie-w-kolaz-jesienna-nostalgia-radom-2026-11-22-ba5d8731c84b",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:22.633Z"
+    },
+    {
+      "id": "d25725d0-87f8-42b6-a7e6-5539a200ae3d",
+      "url": "https://mapaimprez.pl/rodzinne/zawiercie/curated-iluzjonista-adrian-mitoraj-zawiercie-2026-11-22-95c884d07ea2",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:23.530Z"
+    },
+    {
+      "id": "e299998c-5b3c-4c54-8565-f8a9959d8955",
+      "url": "https://mapaimprez.pl/kultura/slupsk/curated-poza-utartymi-szlakami-spotkanie-z-marzena-dresler-slupsk-2026-11-25-638842fa4904",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:23.748Z"
+    },
+    {
+      "id": "ea6ab059-b70b-4b97-9e82-8a7aa15a9d32",
+      "url": "https://mapaimprez.pl/kultura/swietochlowice/curated-duo-elvisy-muzyczna-komedia-kryminalna-swietochlowice-2026-11-26-2df28b36b383",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:23.443Z"
+    },
+    {
+      "id": "0a1afa45-22b4-4f98-a229-51231d76fcdf",
+      "url": "https://mapaimprez.pl/kultura/slupsk/curated-swiatlo-grenlandii-wernisaz-marzeny-safader-slupsk-2026-11-27-947a09a7e389",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:23.413Z"
+    },
+    {
+      "id": "de248c15-b6fb-400c-af7b-581a852a9622",
+      "url": "https://mapaimprez.pl/kultura/radom/curated-spotkania-z-nauka-co-sie-dzieje-gdy-planetoida-uderza-w-ziemie-radom-2026-11-27-b37e24119a40",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:23.452Z"
+    },
+    {
+      "id": "e27789fe-6c7b-4efb-bd95-1dfb6a7f993d",
+      "url": "https://mapaimprez.pl/targi/chojnice/curated-targ-lokalnych-specjalow-w-chojnicach-chojnice-2026-11-28-dc0d3225aea4",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:24.173Z"
+    },
+    {
+      "id": "32a46dc5-9a7d-47ac-8c9f-da0fbcdb7038",
+      "url": "https://mapaimprez.pl/kultura/rzeszow/curated-swiateczna-cudotwornia-naturalne-choinki-rzeszow-2026-12-04-b3ebdbb6897a",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:24.115Z"
+    },
+    {
+      "id": "783da0cc-5f3b-499d-8fce-cebb2c1acabc",
+      "url": "https://mapaimprez.pl/koncerty/chojnice/curated-10-tenorow-10-glosow-jedna-scena-chojnice-2026-12-06-a33f53b4f987",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:24.169Z"
+    },
+    {
+      "id": "69cd4a2e-703b-4d35-b345-e952bb6afdc1",
+      "url": "https://mapaimprez.pl/koncerty/kolobrzeg/curated-orkiestra-ksiezniczek-koncert-wiedenski-czesc-1-kolobrzeg-2026-12-06-9e52a06af667",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:24.187Z"
+    },
+    {
+      "id": "0e6d165b-07a9-4bfc-8bec-22fbc777f9a7",
+      "url": "https://mapaimprez.pl/koncerty/tarnow/curated-jazzowa-jesien-w-tck-piotr-pociask-quartet-tarnow-2026-12-11-b97acd73bac9",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:24.088Z"
+    },
+    {
+      "id": "2efae9f6-2885-4537-9177-ccbc9e982603",
+      "url": "https://mapaimprez.pl/koncerty/ostroda/curated-edyta-geppert-recital-w-ostrodzie-ostroda-2026-12-12-738dc08f3707",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:24.540Z"
+    },
+    {
+      "id": "ae745319-d346-43c6-8546-93c0c0fea1aa",
+      "url": "https://mapaimprez.pl/rodzinne/koszalin/curated-familijny-park-sztuki-dzis-nam-zima-sie-zaczyna-koszalin-2026-12-20-5b7b4c4c38b6",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:24.526Z"
+    },
+    {
+      "id": "f7bffca9-e115-4697-97c2-a5e42d5d7491",
+      "url": "https://mapaimprez.pl/sport/koszalin/curated-xvii-koszalinski-bieg-sylwestrowy-5-km-koszalin-2026-12-31-89be0c7e9765",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true,
+      "empty_image_src": false,
+      "checked_at": "2026-11-08T19:43:24.493Z"
+    }
+  ],
+  "events": [
+    {
+      "id": "1105a0ad-b6b4-4cd1-9349-b10eaf071bda",
+      "title": "Miejskie obchody Święta Niepodległości w Świętochłowicach",
+      "city": "Świętochłowice",
+      "city_slug": "swietochlowice",
+      "category": "kultura",
+      "start_at": "2026-11-11T11:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/swietochlowice/curated-miejskie-obchody-swieta-niepodleglosci-w-swietochlowicach-swietochlowice-2026-11-11-4017a87b0021",
+      "source_url": "https://swietochlowice.pl/wydarzenie/miejskie-obchody-narodowego-swieta-niepodleglosci-3",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "b4091ec8-016d-41ba-b392-8106b496ee04",
+      "title": "Targi Wzory w Białymstoku",
+      "city": "Białystok",
+      "city_slug": "bialystok",
+      "category": "targi",
+      "start_at": "2026-11-14T10:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/targi/bialystok/curated-targi-wzory-w-bialymstoku-bialystok-2026-11-14-6844899593b3",
+      "source_url": "https://wzorytargi.pl/targi-wzory-w-bialymstoku",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "4a9e2fbd-d934-440a-9eab-51e58ca49809",
+      "title": "Mama Na Obrotach — Niezły bajzel",
+      "city": "Bielawa",
+      "city_slug": "bielawa",
+      "category": "stand-up",
+      "start_at": "2026-11-14T18:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/stand-up/bielawa/curated-mama-na-obrotach-niezly-bajzel-bielawa-2026-11-14-0d8be155603d",
+      "source_url": "https://www.kupbilecik.pl/pl/event/197810/bielawa/stand-up-mama-na-obrotach",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "a7b0ffc3-eb38-45d7-b0f8-a73a57d7abc3",
+      "title": "Piosenka filmem pisana",
+      "city": "Lubawka",
+      "city_slug": "lubawka",
+      "category": "koncerty",
+      "start_at": "2026-11-15T17:00:00+01:00",
+      "price_type": "unknown",
+      "url": "https://mapaimprez.pl/koncerty/lubawka/curated-piosenka-filmem-pisana-lubawka-2026-11-15-6d7970b24a6e",
+      "source_url": "https://kierunekkultura.pl/wydarzenie/koncert-piosenka-filmem-pisana",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "4b2eb279-5894-4cfc-bd80-fe4ba3374dc8",
+      "title": "Wkręć się w kolaż — Jesienna nostalgia",
+      "city": "Radom",
+      "city_slug": "radom",
+      "category": "rodzinne",
+      "start_at": "2026-11-22T11:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/rodzinne/radom/curated-wkrec-sie-w-kolaz-jesienna-nostalgia-radom-2026-11-22-ba5d8731c84b",
+      "source_url": "https://amfiteatr.radom.pl/wydarzenia/wkrec-sie-w-kolaz-jesienna-nostalgia",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "d25725d0-87f8-42b6-a7e6-5539a200ae3d",
+      "title": "Iluzjonista Adrian Mitoraj",
+      "city": "Zawiercie",
+      "city_slug": "zawiercie",
+      "category": "rodzinne",
+      "start_at": "2026-11-22T16:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/rodzinne/zawiercie/curated-iluzjonista-adrian-mitoraj-zawiercie-2026-11-22-95c884d07ea2",
+      "source_url": "https://www.mok.pl/artykuly/277",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "e299998c-5b3c-4c54-8565-f8a9959d8955",
+      "title": "Poza utartymi szlakami — spotkanie z Marzeną Dresler",
+      "city": "Słupsk",
+      "city_slug": "slupsk",
+      "category": "kultura",
+      "start_at": "2026-11-25T17:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/slupsk/curated-poza-utartymi-szlakami-spotkanie-z-marzena-dresler-slupsk-2026-11-25-638842fa4904",
+      "source_url": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "ea6ab059-b70b-4b97-9e82-8a7aa15a9d32",
+      "title": "Duo Elvisy — muzyczna komedia kryminalna",
+      "city": "Świętochłowice",
+      "city_slug": "swietochlowice",
+      "category": "kultura",
+      "start_at": "2026-11-26T18:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/kultura/swietochlowice/curated-duo-elvisy-muzyczna-komedia-kryminalna-swietochlowice-2026-11-26-2df28b36b383",
+      "source_url": "https://www.kupbilecik.pl/pl/event/215681/swietochlowice/duo-elvisy",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "0a1afa45-22b4-4f98-a229-51231d76fcdf",
+      "title": "Światło Grenlandii — wernisaż Marzeny Safader",
+      "city": "Słupsk",
+      "city_slug": "slupsk",
+      "category": "kultura",
+      "start_at": "2026-11-27T17:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/slupsk/curated-swiatlo-grenlandii-wernisaz-marzeny-safader-slupsk-2026-11-27-947a09a7e389",
+      "source_url": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "de248c15-b6fb-400c-af7b-581a852a9622",
+      "title": "Spotkania z nauką — co się dzieje, gdy planetoida uderza w Ziemię?",
+      "city": "Radom",
+      "city_slug": "radom",
+      "category": "kultura",
+      "start_at": "2026-11-27T18:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/radom/curated-spotkania-z-nauka-co-sie-dzieje-gdy-planetoida-uderza-w-ziemie-radom-2026-11-27-b37e24119a40",
+      "source_url": "https://amfiteatr.radom.pl/wydarzenia/spotkania-z-nauka-naturalne-ataki-z-kosmosu-co-sie-dzieje-gdy-planetoida-uderza-w-ziemie-dr-anna-losiak",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "e27789fe-6c7b-4efb-bd95-1dfb6a7f993d",
+      "title": "Targ Lokalnych Specjałów w Chojnicach",
+      "city": "Chojnice",
+      "city_slug": "chojnice",
+      "category": "targi",
+      "start_at": "2026-11-28T09:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/targi/chojnice/curated-targ-lokalnych-specjalow-w-chojnicach-chojnice-2026-11-28-dc0d3225aea4",
+      "source_url": "https://promocjachojnice.pl/calendar-inline",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "32a46dc5-9a7d-47ac-8c9f-da0fbcdb7038",
+      "title": "Świąteczna Cudotwórnia — naturalne choinki",
+      "city": "Rzeszów",
+      "city_slug": "rzeszow",
+      "category": "kultura",
+      "start_at": "2026-12-04T17:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/kultura/rzeszow/curated-swiateczna-cudotwornia-naturalne-choinki-rzeszow-2026-12-04-b3ebdbb6897a",
+      "source_url": "https://rdk.rzeszow.pl/kalendarz/swiateczna-cudotwornia-swieta-lasem-pachnace-naturalne-choinki",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "783da0cc-5f3b-499d-8fce-cebb2c1acabc",
+      "title": "10 Tenorów — 10 głosów, jedna scena",
+      "city": "Chojnice",
+      "city_slug": "chojnice",
+      "category": "koncerty",
+      "start_at": "2026-12-06T18:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/chojnice/curated-10-tenorow-10-glosow-jedna-scena-chojnice-2026-12-06-a33f53b4f987",
+      "source_url": "https://www.kupbilecik.pl/pl/event/205925/chojnice/10-tenorow",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "69cd4a2e-703b-4d35-b345-e952bb6afdc1",
+      "title": "Orkiestra Księżniczek — Koncert Wiedeński, część 1",
+      "city": "Kołobrzeg",
+      "city_slug": "kolobrzeg",
+      "category": "koncerty",
+      "start_at": "2026-12-06T19:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/kolobrzeg/curated-orkiestra-ksiezniczek-koncert-wiedenski-czesc-1-kolobrzeg-2026-12-06-9e52a06af667",
+      "source_url": "https://www.orkiestraksiezniczek.pl/bilety/kolobrzeg",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "0e6d165b-07a9-4bfc-8bec-22fbc777f9a7",
+      "title": "Jazzowa Jesień w TCK — Piotr Pociask Quartet",
+      "city": "Tarnów",
+      "city_slug": "tarnow",
+      "category": "koncerty",
+      "start_at": "2026-12-11T19:30:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/tarnow/curated-jazzowa-jesien-w-tck-piotr-pociask-quartet-tarnow-2026-12-11-b97acd73bac9",
+      "source_url": "https://old.tck.pl/wydarzenia/494,jazzowa-jesien-w-tck-piotr-pociask-quartet",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "2efae9f6-2885-4537-9177-ccbc9e982603",
+      "title": "Edyta Geppert — recital w Ostródzie",
+      "city": "Ostróda",
+      "city_slug": "ostroda",
+      "category": "koncerty",
+      "start_at": "2026-12-12T18:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/ostroda/curated-edyta-geppert-recital-w-ostrodzie-ostroda-2026-12-12-738dc08f3707",
+      "source_url": "https://www.kupbilecik.pl/pl/event/215918/ostroda/edyta-geppert",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "ae745319-d346-43c6-8546-93c0c0fea1aa",
+      "title": "Familijny Park Sztuki — Dziś nam zima się zaczyna",
+      "city": "Koszalin",
+      "city_slug": "koszalin",
+      "category": "rodzinne",
+      "start_at": "2026-12-20T12:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/rodzinne/koszalin/curated-familijny-park-sztuki-dzis-nam-zima-sie-zaczyna-koszalin-2026-12-20-5b7b4c4c38b6",
+      "source_url": "https://filharmoniakoszalinska.pl/wydarzenie/familijny-park-sztuki-dzis-nam-zima-sie-zaczyna",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    },
+    {
+      "id": "f7bffca9-e115-4697-97c2-a5e42d5d7491",
+      "title": "XVII Koszaliński Bieg Sylwestrowy — 5 km",
+      "city": "Koszalin",
+      "city_slug": "koszalin",
+      "category": "sport",
+      "start_at": "2026-12-31T11:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/sport/koszalin/curated-xvii-koszalinski-bieg-sylwestrowy-5-km-koszalin-2026-12-31-89be0c7e9765",
+      "source_url": "https://biegikoszalin.eu/Biegi_Koszalin_2016/bieg_sylwestrowy",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null
+    }
+  ],
+  "skipped": [],
+  "batch": "data/content-supply/2026-11-08.json",
+  "batch_checked_at": "2026-11-08T19:37:45Z",
+  "final_checked_at": "2026-11-08T19:44:57.348Z",
+  "initial_dry_run": {
+    "would_insert_and_publish": 18
+  },
+  "repeat_dry_run": {
+    "existing_published": 18,
+    "ids_match": true
+  },
+  "manual_duplicate_review": {
+    "checked_at": "2026-11-08T19:41:56.748Z",
+    "catalog": "scratch/content-supply/catalog-before-2026-11-08.json",
+    "examined": 18,
+    "snapshot_checks": [
+      {
+        "title": "Miejskie obchody Święta Niepodległości w Świętochłowicach",
+        "city": "Świętochłowice",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": null
+      },
+      {
+        "title": "Targi Wzory w Białymstoku",
+        "city": "Białystok",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": "1b931859-8749-4caf-a46c-3c2e1d8982f6"
+      },
+      {
+        "title": "Duo Elvisy — muzyczna komedia kryminalna",
+        "city": "Świętochłowice",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": "b1ac6f97-b59c-4e47-aadd-32c7c6cedf13"
+      },
+      {
+        "title": "Orkiestra Księżniczek — Koncert Wiedeński, część 1",
+        "city": "Kołobrzeg",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": "93872a67-3def-4493-bee2-50f5e5357c38"
+      },
+      {
+        "title": "Poza utartymi szlakami — spotkanie z Marzeną Dresler",
+        "city": "Słupsk",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": null
+      },
+      {
+        "title": "Światło Grenlandii — wernisaż Marzeny Safader",
+        "city": "Słupsk",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": null
+      },
+      {
+        "title": "Targ Lokalnych Specjałów w Chojnicach",
+        "city": "Chojnice",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": null
+      },
+      {
+        "title": "10 Tenorów — 10 głosów, jedna scena",
+        "city": "Chojnice",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": null
+      },
+      {
+        "title": "Edyta Geppert — recital w Ostródzie",
+        "city": "Ostróda",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": null
+      },
+      {
+        "title": "Familijny Park Sztuki — Dziś nam zima się zaczyna",
+        "city": "Koszalin",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": null
+      },
+      {
+        "title": "XVII Koszaliński Bieg Sylwestrowy — 5 km",
+        "city": "Koszalin",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": "4374939c-0ba6-44a6-a817-57115f7f1237"
+      },
+      {
+        "title": "Mama Na Obrotach — Niezły bajzel",
+        "city": "Bielawa",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": "3ecf5bb0-4621-496c-b89b-65b517f16a62"
+      },
+      {
+        "title": "Piosenka filmem pisana",
+        "city": "Lubawka",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": null
+      },
+      {
+        "title": "Wkręć się w kolaż — Jesienna nostalgia",
+        "city": "Radom",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": null
+      },
+      {
+        "title": "Iluzjonista Adrian Mitoraj",
+        "city": "Zawiercie",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": "704949e3-543f-4348-b8ce-4c76ee34fb11"
+      },
+      {
+        "title": "Spotkania z nauką — co się dzieje, gdy planetoida uderza w Ziemię?",
+        "city": "Radom",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": null
+      },
+      {
+        "title": "Świąteczna Cudotwórnia — naturalne choinki",
+        "city": "Rzeszów",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": null
+      },
+      {
+        "title": "Jazzowa Jesień w TCK — Piotr Pociask Quartet",
+        "city": "Tarnów",
+        "same_day": 0,
+        "source_matches": 0,
+        "reused_location_id": null
+      }
+    ],
+    "same_city_day_catalog_hits": 0,
+    "same_source_catalog_hits": 0,
+    "shared_source_distinct": [
+      {
+        "title": "Poza utartymi szlakami — spotkanie z Marzeną Dresler",
+        "start_at": "2026-11-25T17:00:00+01:00",
+        "source_url": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026"
+      },
+      {
+        "title": "Światło Grenlandii — wernisaż Marzeny Safader",
+        "start_at": "2026-11-27T17:00:00+01:00",
+        "source_url": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026"
+      }
+    ],
+    "public_future_by_city_before": {
+      "Świętochłowice": 1,
+      "Białystok": 2,
+      "Bielawa": 0,
+      "Lubawka": 0,
+      "Radom": 1,
+      "Zawiercie": 1,
+      "Słupsk": 1,
+      "Chojnice": 0,
+      "Rzeszów": 1,
+      "Kołobrzeg": 2,
+      "Tarnów": 1,
+      "Ostróda": 0,
+      "Koszalin": 4
+    },
+    "deferred": [
+      {
+        "title": "Oławski Jarmark Bożonarodzeniowy",
+        "city": "Oława",
+        "source_url": "https://miasto.olawa.pl/pl/aktualnosci/zglos-sie-na-jarmark-bozonarodzeniowy-w-olawie-1041765",
+        "reason": "Regulamin potwierdza 12 grudnia 10:00–18:00 i 13 grudnia 10:00–17:00 na Rynku. Dotyczy wystawców i nie określa zasad wstępu dla odwiedzających."
+      },
+      {
+        "title": "Bieg Niepodległości",
+        "city": "Świętochłowice",
+        "source_url": "https://swietochlowice.pl/swietochlowice-zapraszaja-na-miejskie-obchody-narodowego-swieta-niepodleglosci/",
+        "reason": "Miasto potwierdza start o 19:18 na OSiR Skałka, ale brak potwierdzenia opłaty lub bezpłatności oraz konkretnego punktu startu."
+      },
+      {
+        "title": "Sylwester 2026/2027 w CKŚ",
+        "city": "Świętochłowice",
+        "source_url": "https://cks.org.pl/",
+        "reason": "Lokalna prasa cytuje zapowiedź, ale brak dostępnej konkretnej karty organizatora i potwierdzenia bieżących warunków zapisów."
+      },
+      {
+        "title": "Jarmark Bożonarodzeniowy przy ratuszu",
+        "city": "Kołobrzeg",
+        "source_url": "https://rck.kolobrzeg.eu/dzial-aktualnosci/287-jarmark-bozonarodzeniowy-informacje-dla-wystawcow-2",
+        "reason": "Ogłoszenie dla wystawców nie potwierdza bieżącego harmonogramu dla odwiedzających."
+      },
+      {
+        "title": "Koncert Noworoczny 2027 — Tre Voci",
+        "city": "Chojnice",
+        "source_url": "https://www.ckchojnice.pl/aktualnosc/koncert-noworoczny-2027-tre-voci-w-chojnicach",
+        "reason": "ChCK informuje o wyprzedaniu koncertu o 18:00 i jednym pozostałym bilecie na 15:00. Do paczki wybrano pozycje z pewniejszą dostępnością."
+      },
+      {
+        "title": "XVIII Jarmark Bożonarodzeniowy 2026",
+        "city": "Chojnice",
+        "source_url": "https://promocjachojnice.pl/a/xviii-jarmark-bozonarodzeniowy-2026-2",
+        "reason": "Organizator potwierdza 12–13 grudnia w godz. 10:00–21:00 na Starym Rynku. W sprawdzonych materiałach organizatora brak jawnej informacji o warunkach wstępu dla publiczności."
+      },
+      {
+        "title": "Słupski Jarmark Bożonarodzeniowy 2026",
+        "city": "Słupsk",
+        "source_url": "https://www.slupsk.pl/mieszkaniec/aktualnosci/zostan-wystawca-na-slupskim-jarmarku-bozonarodzeniowym-2026",
+        "reason": "Nabór wystawców podaje trzy weekendy i rejon Starego Rynku, bez potwierdzonej godziny otwarcia dla odwiedzających."
+      },
+      {
+        "title": "XVII Koszaliński Bieg Sylwestrowy — nordic walking i biegi dzieci",
+        "city": "Koszalin",
+        "source_url": "https://biegikoszalin.eu/Biegi_Koszalin_2016/bieg_sylwestrowy",
+        "reason": "Godziny nordic walking i biegów dzieci różnią się między programem i modułem zapisów. Bieg główny na 5 km ma zgodną godzinę w obu miejscach."
+      },
+      {
+        "title": "New Jazz Quartet",
+        "city": "Lubawka",
+        "source_url": "https://kierunekkultura.pl/wydarzenie/new-jazz-quartet-nowy-termin-koncertu/",
+        "reason": "Po zmianie terminu MGOK podaje 28 listopada o 18:30, a powiązana karta sprzedaży o 18:00."
+      },
+      {
+        "title": "X Lubawski Jarmark Bożonarodzeniowy",
+        "city": "Lubawka",
+        "source_url": "https://kierunekkultura.pl/rusza-nabor-wystawcow-na-x-lubawki-jarmark-bozonarodzeniowy/",
+        "reason": "Potwierdzono 6 grudnia od 13:00 do 20:00. Organizator podał ulicę bez dokładnego miejsca lub numeru. Zasady wstępu dla publiczności pozostają nieustalone."
+      },
+      {
+        "title": "Bielawski Jarmark Bożonarodzeniowy 2026",
+        "city": "Bielawa",
+        "source_url": "https://mokisbielawa.pl/bielawski-jarmark-bozonarodzeniowy-2026-zaproszenie/",
+        "reason": "Ogłoszenie i regulamin potwierdzają 13 grudnia i Park Miejski przy Wojska Polskiego 11. Brakuje godziny rozpoczęcia i warunków wstępu dla publiczności."
+      },
+      {
+        "title": "Golec uOrkiestra — Koncert kolęd i pastorałek",
+        "city": "Tarnów",
+        "source_url": "https://kultura.tarnow.pl/wydarzenie/golec-uorkiestra-koncert-koled-i-pastoralek/",
+        "reason": "Kalendarz hali zaczyna wpis o 18:00. Zespół, miasto i bileteria podają 19:00. Brak wyjaśnienia, czy 18:00 to otwarcie wejść."
+      },
+      {
+        "title": "Ceramika Artystyczna z Bolesławca — wernisaż",
+        "city": "Zawiercie",
+        "source_url": "https://www.zawiercie.eu/aktualnosci/11987",
+        "reason": "Potwierdzono wernisaż 15 listopada o 15:00 w Starej Łaźni. Zapowiedź nie określa warunków wstępu na wernisaż."
+      }
+    ]
+  },
+  "prior_events_recheck": {
+    "window_start": "2026-11-08T19:34:10.531Z",
+    "window_end": "2026-11-15T19:34:10.531Z",
+    "timezone": "Europe/Warsaw",
+    "rechecks_count": 40,
+    "distinct_sources": 38,
+    "primary_http_200": 36,
+    "primary_http_failures": [
+      {
+        "url": "https://aleksandrow-lodzki.pl/wydarzenia/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim",
+        "http_status": 503,
+        "checked_at": "2026-11-08T19:34:16.079Z"
+      },
+      {
+        "url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html",
+        "http_status": 404,
+        "checked_at": "2026-11-08T19:34:20.133Z"
+      }
+    ],
+    "supplemental_sources": 39,
+    "cancellations_found": 1,
+    "schedule_changes_found": 1,
+    "admission_changes_found": 1,
+    "required_existing_event_updates": 3,
+    "resolved_existing_event_updates": 3,
+    "remaining_existing_event_updates": 0,
+    "unknown_curated_event_ids": 0,
+    "source_read_method": "Bezpośrednie publiczne HTTPS GET z wyłączeniem cache oraz odczyt dostępnych zapowiedzi w wyszukiwarce. Bez rezerwacji, kontaktu z organizatorami i zapisów produkcyjnych.",
+    "findings": [
+      {
+        "event_id": "22638142-4b86-4b20-ab5c-080fc30f8597",
+        "title": "Marszobieg Niepodległościowy",
+        "status": "online_registration_closed",
+        "proposed_changes": {
+          "description": "Dzieci i dorośli pokonają 2,2 km w Parku Tysiąclecia, biegiem lub marszem. Zapisy internetowe są zamknięte. W dniu wydarzenia organizator przewiduje zapisy w biurze zawodów od 14:00, jeśli pozostaną wolne miejsca. Osoby niepełnoletnie potrzebują zgody opiekuna. Udział bezpłatny."
+        }
+      },
+      {
+        "event_id": "3d02f881-0922-467d-b4d1-3f9c1556242e",
+        "title": "Cracovia Cosinus — koncert pieśni patriotycznych",
+        "status": "cancellation_confirmed_by_municipal_order",
+        "proposed_changes": {
+          "is_cancelled": true
+        }
+      },
+      {
+        "event_id": "0ceefeb0-2c46-4b8e-ada2-dd0922fad761",
+        "title": "Niepodległa Biało-Czerwona — koncert zespołu Fermata",
+        "status": "start_at_changed",
+        "proposed_changes": {
+          "start_at": "2026-11-12T17:00:00+01:00",
+          "source_url": "https://krakownh.pl/wydarzenia/niepodlegla-bialo-czerwona-2"
+        }
+      }
+    ],
+    "rechecks": [
+      {
+        "event_id": "0c48204b-8f8a-4d94-b90a-b741f107f138",
+        "title": "Na Zamku u Tiffaniego — wieczór taneczny KTT AIDA",
+        "city": "Szczecinek",
+        "start_at": "2026-11-10T17:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/imprezy/szczecinek/curated-na-zamku-u-tiffaniego-wieczor-taneczny-ktt-aida-szczecinek-2026-11-10-bc4c70467b64",
+        "source_url": "https://szczecinek.pl/kalendarz-wydarzen/na-zamku-u-tiffaniego-taneczny-wieczor-z-ktt-aida.html",
+        "checked_at": "2026-11-08T19:34:11.252Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://szczecinek.pl/kalendarz-wydarzen/na-zamku-u-tiffaniego-taneczny-wieczor-z-ktt-aida.html",
+          "checked_at": "2026-11-08T19:34:11.252Z",
+          "http_status": 200,
+          "final_url": "https://szczecinek.pl/kalendarz-wydarzen/na-zamku-u-tiffaniego-taneczny-wieczor-z-ktt-aida.html"
+        }
+      },
+      {
+        "event_id": "608d69c7-bd9c-4641-afa6-d848e5cbe318",
+        "title": "Literackie ZaDuchy – spotkanie z Joanną Chachułą",
+        "city": "Gorzów Wielkopolski",
+        "start_at": "2026-11-10T17:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/kultura/gorzow-wielkopolski/curated-literackie-zaduchy-spotkanie-z-joanna-chachula-gorzow-wielkopolski-2026-11-10-1a065196337d",
+        "source_url": "https://mckgorzow.pl/event/literackie-zaduchy-spotkanie-z-joanna-chachula",
+        "checked_at": "2026-11-08T19:34:13.634Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://mckgorzow.pl/event/literackie-zaduchy-spotkanie-z-joanna-chachula",
+          "checked_at": "2026-11-08T19:34:13.634Z",
+          "http_status": 200,
+          "final_url": "https://mckgorzow.pl/event/literackie-zaduchy-spotkanie-z-joanna-chachula/"
+        }
+      },
+      {
+        "event_id": "dd0a658e-3437-4f23-ba63-e7f70c490bae",
+        "title": "Retrospotkanie 82 — Wywar. Z czasów i przestrzeni",
+        "city": "Radom",
+        "start_at": "2026-11-10T17:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/kultura/radom/curated-retrospotkanie-82-wywar-z-czasow-i-przestrzeni-radom-2026-11-10-dd208c4ef591",
+        "source_url": "https://resursa.radom.pl/wydarzenie/retrospotkanie-82-wywar-z-czasow-i-przestrzeni",
+        "checked_at": "2026-11-08T19:34:14.585Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://resursa.radom.pl/wydarzenie/retrospotkanie-82-wywar-z-czasow-i-przestrzeni",
+          "checked_at": "2026-11-08T19:34:14.585Z",
+          "http_status": 200,
+          "final_url": "https://resursa.radom.pl/wydarzenie/retrospotkanie-82-wywar-z-czasow-i-przestrzeni/"
+        }
+      },
+      {
+        "event_id": "45688876-5bbd-47e9-af9b-11747cd4d079",
+        "title": "Melodie Otchłani — koncert muzyczno-filmowy",
+        "city": "Dzierżoniów",
+        "start_at": "2026-11-10T18:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/koncerty/dzierzoniow/curated-melodie-otchlani-koncert-muzyczno-filmowy-dzierzoniow-2026-11-10-5257f1da3f16",
+        "source_url": "https://dok.pl/dok/wydarzenia/melodie-otchlani-koncert-inspirowany-glebia-strzelinskiego-granitu",
+        "checked_at": "2026-11-08T19:34:11.330Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://dok.pl/dok/wydarzenia/melodie-otchlani-koncert-inspirowany-glebia-strzelinskiego-granitu",
+          "checked_at": "2026-11-08T19:34:11.330Z",
+          "http_status": 200,
+          "final_url": "https://dok.pl/dok/wydarzenia/melodie-otchlani-koncert-inspirowany-glebia-strzelinskiego-granitu"
+        }
+      },
+      {
+        "event_id": "4db96417-4bc5-488e-adcc-a74d50928a10",
+        "title": "Święto Niepodległości w Twierdzy Boyen",
+        "city": "Giżycko",
+        "start_at": "2026-11-11T08:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/rodzinne/gizycko/curated-swieto-niepodleglosci-w-twierdzy-boyen-gizycko-2026-11-11-a88e51a18cea",
+        "source_url": "https://gizycko.pl/obchody-swieta-niepodleglosci-w-twierdzy-boyen",
+        "checked_at": "2026-11-08T19:34:11.406Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://gizycko.pl/obchody-swieta-niepodleglosci-w-twierdzy-boyen",
+          "checked_at": "2026-11-08T19:34:11.406Z",
+          "http_status": 200,
+          "final_url": "https://gizycko.pl/obchody-swieta-niepodleglosci-w-twierdzy-boyen"
+        }
+      },
+      {
+        "event_id": "b0ff9a15-f4c6-49ac-85ca-29369d38f672",
+        "title": "Święto Lubuskiego Młodego Wina",
+        "city": "Zielona Góra",
+        "start_at": "2026-11-11T11:00:00+00:00",
+        "original_batch_date": "2026-11-06",
+        "event_url": "https://mapaimprez.pl/targi/zielona-gora/curated-swieto-lubuskiego-mlodego-wina-zielona-gora-2026-11-11-84b0b455a0df",
+        "source_url": "https://www.zielona-gora.pl/events/swieto-lubuskiego-mlodego-wina",
+        "checked_at": "2026-11-08T19:34:15.808Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://www.zielona-gora.pl/events/swieto-lubuskiego-mlodego-wina",
+          "checked_at": "2026-11-08T19:34:15.808Z",
+          "http_status": 200,
+          "final_url": "https://www.zielona-gora.pl/events/swieto-lubuskiego-mlodego-wina/"
+        }
+      },
+      {
+        "event_id": "c5a2676c-510f-4ceb-9fa1-d73f887b63f0",
+        "title": "Siedleckie Biegi Niepodległościowe — sztafeta OPEN 10 km",
+        "city": "Siedlce",
+        "start_at": "2026-11-11T11:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/sport/siedlce/curated-siedleckie-biegi-niepodleglosciowe-sztafeta-open-10-km-siedlce-2026-11-11-84b77df5af7d",
+        "source_url": "https://fenikssiedlce.pl/zawody/biegi-11-listopada",
+        "checked_at": "2026-11-08T19:34:15.096Z",
+        "http_status": 200,
+        "status": "registration_closed_already_documented",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Oficjalna lista pozostaje zamknięta. Publiczny opis już uwzględnia wyczerpany limit.",
+        "primary": {
+          "source_url": "https://fenikssiedlce.pl/zawody/biegi-11-listopada",
+          "checked_at": "2026-11-08T19:34:15.096Z",
+          "http_status": 200,
+          "final_url": "https://fenikssiedlce.pl/zawody/biegi-11-listopada/"
+        }
+      },
+      {
+        "event_id": "f0b1fb38-c695-40ef-a4dc-30f10f7e51c9",
+        "title": "Listopadowa Lekcja Muzyki X",
+        "city": "Bydgoszcz",
+        "start_at": "2026-11-11T12:00:00+00:00",
+        "original_batch_date": "2026-10-30",
+        "event_url": "https://mapaimprez.pl/koncerty/bydgoszcz/curated-listopadowa-lekcja-muzyki-x-bydgoszcz-2026-11-11-8eab129cf917",
+        "source_url": "https://mck-bydgoszcz.pl/program/listopadowa-lekcja-muzyki-x",
+        "checked_at": "2026-11-08T19:34:17.184Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://mck-bydgoszcz.pl/program/listopadowa-lekcja-muzyki-x",
+          "checked_at": "2026-11-08T19:34:17.184Z",
+          "http_status": 200,
+          "final_url": "https://mck-bydgoszcz.pl/program/listopadowa-lekcja-muzyki-x/"
+        }
+      },
+      {
+        "event_id": "1bad67e0-1d23-4157-b4c0-43d9d840f9a1",
+        "title": "Powiatowe obchody Święta Niepodległości w Aleksandrowie Łódzkim",
+        "city": "Aleksandrów Łódzki",
+        "start_at": "2026-11-11T12:30:00+00:00",
+        "original_batch_date": "2026-11-06",
+        "event_url": "https://mapaimprez.pl/kultura/aleksandrow-lodzki/curated-powiatowe-obchody-swieta-niepodleglosci-w-aleksandrowie-lodzkim-aleksandrow-lodzki-2026-11-11-a8523813bb6d",
+        "source_url": "https://aleksandrow-lodzki.pl/wydarzenia/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim",
+        "checked_at": "2026-11-08T19:34:16.079Z",
+        "http_status": 503,
+        "status": "official_source_unavailable_live",
+        "no_cancellation_notice": null,
+        "requires_update": false,
+        "note": "Strona wpisu, alternatywny komunikat miasta i kalendarz miejski zwróciły bezpośrednio HTTP 503. W odczycie indeksowanego oficjalnego kalendarza i komunikatu nadal 11 listopada o 13:30. Bieżący stan u organizatora pozostaje niepotwierdzony.",
+        "primary": {
+          "source_url": "https://aleksandrow-lodzki.pl/wydarzenia/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim",
+          "checked_at": "2026-11-08T19:34:16.079Z",
+          "http_status": 503,
+          "final_url": "https://aleksandrow-lodzki.pl/wydarzenia/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim"
+        },
+        "evidence": [
+          {
+            "source_url": "https://aleksandrow-lodzki.pl/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim/",
+            "checked_at": "2026-11-08T19:36:32.898Z",
+            "http_status": 503,
+            "final_url": "https://aleksandrow-lodzki.pl/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim/"
+          },
+          {
+            "source_url": "https://aleksandrow-lodzki.pl/wydarzenia/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim/",
+            "checked_at": "2026-11-08T19:36:33.225Z",
+            "http_status": 503,
+            "final_url": "https://aleksandrow-lodzki.pl/wydarzenia/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim/"
+          },
+          {
+            "source_url": "https://aleksandrow-lodzki.pl/wydarzenia-w-aleksandrowie/",
+            "checked_at": "2026-11-08T19:39:11.785Z",
+            "http_status": 503,
+            "final_url": "https://aleksandrow-lodzki.pl/wydarzenia-w-aleksandrowie/"
+          }
+        ]
+      },
+      {
+        "event_id": "2a78b4af-d093-4816-87a8-188fa7aa1339",
+        "title": "Sportowy Patriotyzm na Tartanie — finał cyklu 3–2–1 START",
+        "city": "Zgorzelec",
+        "start_at": "2026-11-11T13:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/sport/zgorzelec/curated-sportowy-patriotyzm-na-tartanie-final-cyklu-3-2-1-start-zgorzelec-2026-11-11-f2518acffd63",
+        "source_url": "https://zgorzelec.eu/kalendarz-wydarzen/sportowy-patriotyzm-na-tartanie-cykl-biegowy-3-2-1-start",
+        "checked_at": "2026-11-08T19:34:19.315Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://zgorzelec.eu/kalendarz-wydarzen/sportowy-patriotyzm-na-tartanie-cykl-biegowy-3-2-1-start",
+          "checked_at": "2026-11-08T19:34:19.315Z",
+          "http_status": 200,
+          "final_url": "https://zgorzelec.eu/kalendarz-wydarzen/sportowy-patriotyzm-na-tartanie-cykl-biegowy-3-2-1-start/"
+        }
+      },
+      {
+        "event_id": "c9a4f637-7499-4c98-9d8d-fb9d9e200d97",
+        "title": "W mundurze niepodległej — patriotyczne spotkanie w Arsenale",
+        "city": "Zamość",
+        "start_at": "2026-11-11T13:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/rodzinne/zamosc/curated-w-mundurze-niepodleglej-patriotyczne-spotkanie-w-arsenale-zamosc-2026-11-11-4d2724f5380a",
+        "source_url": "https://zci.zamosc.pl/news/2606/w-mundurze-niepodleglej-ndash-patriotyczne-spotkanie-z.html",
+        "checked_at": "2026-11-08T19:34:16.325Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Formularz Google wyświetla pola zgłoszenia i przycisk dalszego kroku.",
+        "primary": {
+          "source_url": "https://zci.zamosc.pl/news/2606/w-mundurze-niepodleglej-ndash-patriotyczne-spotkanie-z.html",
+          "checked_at": "2026-11-08T19:34:16.325Z",
+          "http_status": 200,
+          "final_url": "https://zci.zamosc.pl/news/2606/w-mundurze-niepodleglej-ndash-patriotyczne-spotkanie-z.html"
+        },
+        "evidence": [
+          {
+            "source_url": "https://forms.gle/3kHYkysi1YWtRbsR6",
+            "checked_at": "2026-11-08T19:36:33.959Z",
+            "http_status": 200,
+            "final_url": "https://docs.google.com/forms/d/e/1FAIpQLSftr0QpwsTEzv7pL5CC84acWBYHALHfBFSUcxr6gqaUN0SSvg/viewform?usp=send_form"
+          }
+        ]
+      },
+      {
+        "event_id": "01e4a416-dc0a-4040-ad2c-aa7e8902a410",
+        "title": "Śpiewam dla Ciebie Ojczyzno! — koncert o 15:00",
+        "city": "Kartuzy",
+        "start_at": "2026-11-11T14:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/koncerty/kartuzy/curated-spiewam-dla-ciebie-ojczyzno-koncert-o-15-00-kartuzy-2026-11-11-973158469420",
+        "source_url": "https://kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/spiewam-dla-ciebie-ojczyzno.html",
+        "checked_at": "2026-11-08T19:34:16.400Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/spiewam-dla-ciebie-ojczyzno.html",
+          "checked_at": "2026-11-08T19:34:16.400Z",
+          "http_status": 200,
+          "final_url": "https://kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/spiewam-dla-ciebie-ojczyzno.html"
+        }
+      },
+      {
+        "event_id": "22638142-4b86-4b20-ab5c-080fc30f8597",
+        "title": "Marszobieg Niepodległościowy",
+        "city": "Zielona Góra",
+        "start_at": "2026-11-11T14:00:00+00:00",
+        "original_batch_date": "2026-11-06",
+        "event_url": "https://mapaimprez.pl/sport/zielona-gora/curated-marszobieg-niepodleglosciowy-zielona-gora-2026-11-11-71b77b921233",
+        "source_url": "https://visitzielonagora.pl/wydarzenia/marszobieg-niepodleglosciowy",
+        "checked_at": "2026-11-08T19:34:18.177Z",
+        "http_status": 200,
+        "status": "online_registration_closed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Zapowiedź miejska i operator potwierdzają 11 listopada o 15:00 w Parku Tysiąclecia. Formularz online jest już zamknięty. Lista startowa miała 289 pozycji przy limicie 300 podanym przez operatora. Zapisy osobiste od 14:00 przewidziano w miarę wolnych miejsc.",
+        "primary": {
+          "source_url": "https://visitzielonagora.pl/wydarzenia/marszobieg-niepodleglosciowy",
+          "checked_at": "2026-11-08T19:34:18.177Z",
+          "http_status": 200,
+          "final_url": "https://visitzielonagora.pl/wydarzenia/marszobieg-niepodleglosciowy/"
+        },
+        "evidence": [
+          {
+            "source_url": "https://super-sport.com.pl/zapisy-formularze/4822-marszobieg-niepodleglosciowy-2026.html",
+            "checked_at": "2026-11-08T19:36:33.566Z",
+            "http_status": 200,
+            "final_url": "https://super-sport.com.pl/zapisy-formularze/4822-marszobieg-niepodleglosciowy-2026.html",
+            "admission": "Zapisy zakończone",
+            "capacity": 300
+          },
+          {
+            "source_url": "https://super-sport.com.pl/zapisy/4821-marszobieg-niepodleglosciowy-2026-lista",
+            "checked_at": "2026-11-08T19:37:28.457Z",
+            "http_status": 200,
+            "final_url": "https://super-sport.com.pl/zapisy/4821-marszobieg-niepodleglosciowy-2026-lista"
+          },
+          {
+            "source_url": "https://super-sport.com.pl/zapisy/2026/20261111_zgm/lista.php",
+            "checked_at": "2026-11-08T19:38:35.189Z",
+            "http_status": 200,
+            "numbered_rows": 289
+          },
+          {
+            "source_url": "https://super-sport.com.pl/zapisy/regulamin/20261111_regulaminMarszobieg.pdf",
+            "checked_at": "2026-11-08T19:38:17.431Z",
+            "http_status": 200,
+            "last_modified": "Wed, 28 Oct 2026 19:17:07 GMT"
+          },
+          {
+            "source_url": "https://www.zielona-gora.pl/events/marszobieg-niepodleglosciowy/",
+            "checked_at": "2026-11-08T19:39:13.658Z",
+            "http_status": 200,
+            "final_url": "https://www.zielona-gora.pl/events/marszobieg-niepodleglosciowy/"
+          }
+        ],
+        "proposed_changes": {
+          "description": "Dzieci i dorośli pokonają 2,2 km w Parku Tysiąclecia, biegiem lub marszem. Zapisy internetowe są zamknięte. W dniu wydarzenia organizator przewiduje zapisy w biurze zawodów od 14:00, jeśli pozostaną wolne miejsca. Osoby niepełnoletnie potrzebują zgody opiekuna. Udział bezpłatny."
+        },
+        "correction_outcome": "updated_and_publicly_verified",
+        "correction_checked_at": "2026-11-08T19:40:29.314Z",
+        "public_start_after": "2026-11-11T14:00:00+00:00"
+      },
+      {
+        "event_id": "65cc541d-7027-4059-bda8-e99a7d22525a",
+        "title": "Święto Niepodległości w Mareckim Ośrodku Kultury",
+        "city": "Marki",
+        "start_at": "2026-11-11T14:00:00+00:00",
+        "original_batch_date": "2026-11-06",
+        "event_url": "https://mapaimprez.pl/kultura/marki/curated-swieto-niepodleglosci-w-mareckim-osrodku-kultury-marki-2026-11-11-637dd4a8b130",
+        "source_url": "https://mokmarki.pl/repertuar/2026/10/narodowe-swieto-niepodleglosci-9",
+        "checked_at": "2026-11-08T19:34:17.052Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://mokmarki.pl/repertuar/2026/10/narodowe-swieto-niepodleglosci-9",
+          "checked_at": "2026-11-08T19:34:17.052Z",
+          "http_status": 200,
+          "final_url": "https://mokmarki.pl/repertuar/2026/10/narodowe-swieto-niepodleglosci-9/"
+        }
+      },
+      {
+        "event_id": "d904deee-6151-4c9b-8d3e-7474f1791d06",
+        "title": "Z pieśnią patriotyczną ku Niepodległej",
+        "city": "Koszalin",
+        "start_at": "2026-11-11T15:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/koncerty/koszalin/curated-z-piesnia-patriotyczna-ku-niepodleglej-koszalin-2026-11-11-373af933e1ab",
+        "source_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/z-piesnia-patriotyczna-ku-niepodleglej",
+        "checked_at": "2026-11-08T19:34:20.653Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/z-piesnia-patriotyczna-ku-niepodleglej",
+          "checked_at": "2026-11-08T19:34:20.653Z",
+          "http_status": 200,
+          "final_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/z-piesnia-patriotyczna-ku-niepodleglej"
+        }
+      },
+      {
+        "event_id": "3d02f881-0922-467d-b4d1-3f9c1556242e",
+        "title": "Cracovia Cosinus — koncert pieśni patriotycznych",
+        "city": "Kraków",
+        "start_at": "2026-11-11T16:00:00+00:00",
+        "original_batch_date": "2026-10-29",
+        "event_url": "https://mapaimprez.pl/koncerty/krakow/curated-cracovia-cosinus-koncert-piesni-patriotycznych-krakow-2026-11-11-d52e80e2f953",
+        "source_url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html",
+        "checked_at": "2026-11-08T19:34:20.133Z",
+        "http_status": 404,
+        "status": "cancellation_confirmed_by_municipal_order",
+        "no_cancellation_notice": false,
+        "requires_update": false,
+        "note": "Koncert 11 listopada o 17:00 w Klubie Zakole finansuje budżet obywatelski, a organizator jest jednostką miejską. Komunikat miasta z 7 listopada odwołuje imprezy jednostek miejskich 8–11 listopada włącznie. Karta koncertu nadal podaje 11.11, 17:00–21:00 i brak miejsc. Program miejski z 13 października wymienia 14.11 o 15:00, lecz aktualny kalendarz Klubu Zakole umieszcza wtedy warsztaty florystyczne. Brak potwierdzonego terminu zastępczego.",
+        "primary": {
+          "source_url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html",
+          "checked_at": "2026-11-08T19:34:20.133Z",
+          "http_status": 404,
+          "final_url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html"
+        },
+        "evidence": [
+          {
+            "source_url": "https://krakow.pl/aktualnosci/345157%2C29%2Ckomunikat%2Cprezydent_miasta_oglosil_zalobe_na_terenie_krakowa__flagi_przepasane_kirem__miejskie_imprezy_odwolane.html",
+            "checked_at": "2026-11-08T19:36:32.982Z",
+            "http_status": 200,
+            "final_url": "https://krakow.pl/aktualnosci/345157%2C29%2Ckomunikat%2Cprezydent_miasta_oglosil_zalobe_na_terenie_krakowa__flagi_przepasane_kirem__miejskie_imprezy_odwolane.html",
+            "published_date": "2026-11-07",
+            "scope": "Wszystkie imprezy miejskie w dniach 8–11 listopada"
+          },
+          {
+            "source_url": "https://www.bip.krakow.pl/?news_id=266074",
+            "checked_at": "2026-11-08T19:36:32.861Z",
+            "http_status": 200,
+            "final_url": "https://www.bip.krakow.pl/?news_id=266074",
+            "order": "2354/2026"
+          },
+          {
+            "source_url": "https://www.bip.krakow.pl/?bip_id=466&metka=1&mmi=9147",
+            "checked_at": "2026-11-08T19:37:28.187Z",
+            "http_status": 200,
+            "final_url": "https://www.bip.krakow.pl/?bip_id=466&metka=1&mmi=9147"
+          },
+          {
+            "source_url": "https://krakownh.pl/wydarzenia/koncert-z-okazji-swieta-niepodleglosci",
+            "checked_at": "2026-11-08T19:37:28.231Z",
+            "http_status": 200,
+            "final_url": "https://krakownh.pl/wydarzenia/koncert-z-okazji-swieta-niepodleglosci",
+            "visible_date": "2026-11-11T17:00:00+01:00",
+            "admission": "Brak miejsc",
+            "last_modified": null
+          },
+          {
+            "source_url": "https://krakownh.pl/oddzial/klub-zakole",
+            "checked_at": "2026-11-08T19:36:33.070Z",
+            "http_status": 200,
+            "final_url": "https://krakownh.pl/oddzial/klub-zakole"
+          },
+          {
+            "source_url": "https://budzet.krakow.pl/aktualnosci/340729,2481,komunikat,listopad_w_klubach_osrodka_kultury_krakow-nowa_huta.html",
+            "checked_at": "2026-11-08T19:39:11.963Z",
+            "http_status": 200,
+            "final_url": "https://budzet.krakow.pl/aktualnosci/340729,2481,komunikat,listopad_w_klubach_osrodka_kultury_krakow-nowa_huta.html",
+            "updated_date": "2026-10-13",
+            "conflicting_date": "2026-11-14T15:00:00+01:00"
+          },
+          {
+            "source_url": "https://krakow.pl/getHtml?dok_id=343303",
+            "checked_at": "2026-11-08T19:36:32.833Z",
+            "http_status": 404,
+            "final_url": "https://krakow.pl/getHtml?dok_id=343303"
+          }
+        ],
+        "proposed_changes": {
+          "is_cancelled": true
+        },
+        "correction_outcome": "updated_and_publicly_verified",
+        "correction_checked_at": "2026-11-08T19:39:52.599Z",
+        "public_start_after": "2026-11-11T16:00:00+00:00"
+      },
+      {
+        "event_id": "49722648-5f9d-4ede-9bdc-544ec3c4eab2",
+        "title": "Polska – moja miłość. W świecie piosenek Mieczysława Fogga",
+        "city": "Grudziądz",
+        "start_at": "2026-11-11T16:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/koncerty/grudziadz/curated-polska-moja-milosc-w-swiecie-piosenek-mieczyslawa-fogga-grudziadz-2026-11-11-441ed4948654",
+        "source_url": "https://grudziadz.pl/wydarzenie/49/25075/108-rocznica-odzyskania-przez-polske-niepodleglosci",
+        "checked_at": "2026-11-08T19:34:20.393Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://grudziadz.pl/wydarzenie/49/25075/108-rocznica-odzyskania-przez-polske-niepodleglosci",
+          "checked_at": "2026-11-08T19:34:20.393Z",
+          "http_status": 200,
+          "final_url": "https://grudziadz.pl/wydarzenie/49/25075/108-rocznica-odzyskania-przez-polske-niepodleglosci"
+        }
+      },
+      {
+        "event_id": "c2c610c5-af9d-4a52-b58b-5c3bf503c99d",
+        "title": "Krajobraz pieśnią pisany — koncert na Święto Niepodległości",
+        "city": "Rzeszów",
+        "start_at": "2026-11-11T16:00:00+00:00",
+        "original_batch_date": "2026-10-30",
+        "event_url": "https://mapaimprez.pl/koncerty/rzeszow/curated-krajobraz-piesnia-pisany-koncert-na-swieto-niepodleglosci-rzeszow-2026-11-11-621529c73338",
+        "source_url": "https://teatrmuzycznyhalka.rzeszow.pl/2026/10/22/krajobraz-piesnia-pisany-koncert-z-okazji-swieta-11-listopada",
+        "checked_at": "2026-11-08T19:34:20.509Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://teatrmuzycznyhalka.rzeszow.pl/2026/10/22/krajobraz-piesnia-pisany-koncert-z-okazji-swieta-11-listopada",
+          "checked_at": "2026-11-08T19:34:20.509Z",
+          "http_status": 200,
+          "final_url": "https://teatrmuzycznyhalka.rzeszow.pl/2026/10/22/krajobraz-piesnia-pisany-koncert-z-okazji-swieta-11-listopada/"
+        }
+      },
+      {
+        "event_id": "0846aa84-0224-4c3b-87b7-784e1558197d",
+        "title": "Lombard — W hołdzie Solidarności. Drogi do wolności",
+        "city": "Mrągowo",
+        "start_at": "2026-11-11T17:30:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/koncerty/mragowo/curated-lombard-w-holdzie-solidarnosci-drogi-do-wolnosci-mragowo-2026-11-11-51605e778ff0",
+        "source_url": "https://mck.mragowo.pl/pl/news/info/3713/mragowskie-obchody-swieta-niepodleglosci.html",
+        "checked_at": "2026-11-08T19:34:20.820Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://mck.mragowo.pl/pl/news/info/3713/mragowskie-obchody-swieta-niepodleglosci.html",
+          "checked_at": "2026-11-08T19:34:20.820Z",
+          "http_status": 200,
+          "final_url": "https://mck.mragowo.pl/pl/news/info/3713/mragowskie-obchody-swieta-niepodleglosci.html"
+        }
+      },
+      {
+        "event_id": "7f3b5341-15af-4fd9-8ae3-6e3ec83aec9d",
+        "title": "Wolność brzmi — LutosAir Quintet",
+        "city": "Otwock",
+        "start_at": "2026-11-11T18:00:00+00:00",
+        "original_batch_date": "2026-11-06",
+        "event_url": "https://mapaimprez.pl/koncerty/otwock/curated-wolnosc-brzmi-lutosair-quintet-otwock-2026-11-11-8ff73daa38d9",
+        "source_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy",
+        "checked_at": "2026-11-08T19:34:20.329Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Miejski program festiwalu nadal informuje o bezpłatnych wejściówkach. Dodatkowy program potwierdza dzień i godzinę koncertu.",
+        "primary": {
+          "source_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy",
+          "checked_at": "2026-11-08T19:34:20.329Z",
+          "http_status": 200,
+          "final_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy"
+        },
+        "evidence": [
+          {
+            "source_url": "https://iotwock.info/artykul/otwocki-festiwal-muzyczny-n1875069",
+            "checked_at": "2026-11-08T19:36:34.458Z",
+            "http_status": 200,
+            "final_url": "https://iotwock.info/artykul/otwocki-festiwal-muzyczny-n1875069"
+          }
+        ]
+      },
+      {
+        "event_id": "ab9f5aa7-f345-4512-83b8-39ec4e883954",
+        "title": "Płyń, Wisełko — Warszawska Orkiestra Sentymentalna",
+        "city": "Kołobrzeg",
+        "start_at": "2026-11-11T18:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/koncerty/kolobrzeg/curated-plyn-wiselko-warszawska-orkiestra-sentymentalna-kolobrzeg-2026-11-11-4475e501728c",
+        "source_url": "https://www.i-kolobrzeg.pl/wydarzenie-3500-warszawska_orkiestra_sentymentalna_11-szczegoly-113832.html",
+        "checked_at": "2026-11-08T19:34:21.773Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Karta biletowa zawiera koszyk i cennik. Odwołania na miejskiej stronie dotyczą Bartosza Gajdy i filmu „Kumotry”.",
+        "primary": {
+          "source_url": "https://www.i-kolobrzeg.pl/wydarzenie-3500-warszawska_orkiestra_sentymentalna_11-szczegoly-113832.html",
+          "checked_at": "2026-11-08T19:34:21.773Z",
+          "http_status": 200,
+          "final_url": "https://www.i-kolobrzeg.pl/wydarzenie-3500-warszawska_orkiestra_sentymentalna_11.html"
+        },
+        "evidence": [
+          {
+            "source_url": "https://bilety.rck.kolobrzeg.pl/Imprezy/OrderTickets.aspx?event_id=7240&typetran=0",
+            "checked_at": "2026-11-08T19:36:33.521Z",
+            "http_status": 200,
+            "final_url": "https://bilety.rck.kolobrzeg.pl/Imprezy/OrderTickets.aspx?event_id=7240&typetran=0"
+          }
+        ]
+      },
+      {
+        "event_id": "f58308bf-afde-4a37-b92e-f0826df85273",
+        "title": "Narodowe Święto Niepodległości — Płocka Orkiestra Symfoniczna",
+        "city": "Płock",
+        "start_at": "2026-11-11T18:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/koncerty/plock/curated-narodowe-swieto-niepodleglosci-plocka-orkiestra-symfoniczna-plock-2026-11-11-04507b584f7a",
+        "source_url": "https://orkiestraplock.pl/wydarzenie/narodowe-swieto-niepodleglosci-2",
+        "checked_at": "2026-11-08T19:34:25.506Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Karta Bilety24 potwierdza 11 listopada, 19:00 i aktywną sprzedaż.",
+        "primary": {
+          "source_url": "https://orkiestraplock.pl/wydarzenie/narodowe-swieto-niepodleglosci-2",
+          "checked_at": "2026-11-08T19:34:25.506Z",
+          "http_status": 200,
+          "final_url": "https://orkiestraplock.pl/wydarzenie/narodowe-swieto-niepodleglosci-2/"
+        },
+        "evidence": [
+          {
+            "source_url": "https://www.bilety24.pl/koncert/838-narodowe-swieto-niepodleglosci-166353?id=999782",
+            "checked_at": "2026-11-08T19:37:29.124Z",
+            "http_status": 200,
+            "final_url": "https://www.bilety24.pl/koncert/838-narodowe-swieto-niepodleglosci-166353?id=999782"
+          }
+        ]
+      },
+      {
+        "event_id": "d574cd66-8cef-4bd0-97b6-41f644c18f41",
+        "title": "Cztery pory roku z literaturą — Maciej Siembieda",
+        "city": "Giżycko",
+        "start_at": "2026-11-12T17:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/kultura/gizycko/curated-cztery-pory-roku-z-literatura-maciej-siembieda-gizycko-2026-11-12-2ff254aeeebb",
+        "source_url": "https://www.gizycko.pl/cztery-pory-roku-z-literatura--3437",
+        "checked_at": "2026-11-08T19:34:22.237Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://www.gizycko.pl/cztery-pory-roku-z-literatura--3437",
+          "checked_at": "2026-11-08T19:34:22.237Z",
+          "http_status": 200,
+          "final_url": "https://www.gizycko.pl/cztery-pory-roku-z-literatura--3437"
+        }
+      },
+      {
+        "event_id": "0ceefeb0-2c46-4b8e-ada2-dd0922fad761",
+        "title": "Niepodległa Biało-Czerwona — koncert zespołu Fermata",
+        "city": "Kraków",
+        "start_at": "2026-11-13T16:00:00+00:00",
+        "original_batch_date": "2026-10-29",
+        "event_url": "https://mapaimprez.pl/koncerty/krakow/curated-niepodlegla-bialo-czerwona-koncert-zespolu-fermata-krakow-2026-11-13-6ee0820a063d",
+        "source_url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html",
+        "checked_at": "2026-11-08T19:34:20.133Z",
+        "http_status": 404,
+        "status": "start_at_changed",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Karta wydarzenia Klubu Dukat i aktualny kalendarz placówki wskazują 12 listopada o 17:00. Zgadza się zespół Fermata, finał konkursu Nowa Sztuka Niepodległa, adres Styczna 1 i bezpłatny wstęp. Katalog pokazuje 13 listopada. Oba terminy wypadają poza okresem miejskiej żałoby.",
+        "primary": {
+          "source_url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html",
+          "checked_at": "2026-11-08T19:34:20.133Z",
+          "http_status": 404,
+          "final_url": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html"
+        },
+        "evidence": [
+          {
+            "source_url": "https://krakownh.pl/wydarzenia/niepodlegla-bialo-czerwona-2",
+            "checked_at": "2026-11-08T19:37:28.247Z",
+            "http_status": 200,
+            "final_url": "https://krakownh.pl/wydarzenia/niepodlegla-bialo-czerwona-2",
+            "visible_date": "2026-11-12T17:00:00+01:00",
+            "admission": "Bezpłatne",
+            "last_modified": null
+          },
+          {
+            "source_url": "https://krakownh.pl/oddzial/klub-dukat",
+            "checked_at": "2026-11-08T19:36:33.053Z",
+            "http_status": 200,
+            "final_url": "https://krakownh.pl/oddzial/klub-dukat"
+          },
+          {
+            "source_url": "https://krakow.pl/getHtml?dok_id=343303",
+            "checked_at": "2026-11-08T19:36:32.833Z",
+            "http_status": 404,
+            "final_url": "https://krakow.pl/getHtml?dok_id=343303"
+          }
+        ],
+        "proposed_changes": {
+          "start_at": "2026-11-12T17:00:00+01:00",
+          "source_url": "https://krakownh.pl/wydarzenia/niepodlegla-bialo-czerwona-2"
+        },
+        "correction_outcome": "updated_and_publicly_verified",
+        "correction_checked_at": "2026-11-08T19:39:52.848Z",
+        "public_start_after": "2026-11-12T16:00:00.000Z"
+      },
+      {
+        "event_id": "c4eae2f2-ce2c-4d72-ae8d-030951176a55",
+        "title": "Bieg przy Pochodniach 2026 — mostami Zgorzelca i Görlitz",
+        "city": "Zgorzelec",
+        "start_at": "2026-11-13T17:30:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/sport/zgorzelec/curated-bieg-przy-pochodniach-2026-mostami-zgorzelca-i-gorlitz-zgorzelec-2026-11-13-dcbd7484c622",
+        "source_url": "https://zgorzelec.eu/kalendarz-wydarzen/bieg-przy-pochodniach-2026",
+        "checked_at": "2026-11-08T19:34:24.326Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Karta Race Result odpowiada i podaje status EventScheduled.",
+        "primary": {
+          "source_url": "https://zgorzelec.eu/kalendarz-wydarzen/bieg-przy-pochodniach-2026",
+          "checked_at": "2026-11-08T19:34:24.326Z",
+          "http_status": 200,
+          "final_url": "https://zgorzelec.eu/kalendarz-wydarzen/bieg-przy-pochodniach-2026/"
+        },
+        "evidence": [
+          {
+            "source_url": "https://my.raceresult.com/429884/registration",
+            "checked_at": "2026-11-08T19:36:33.427Z",
+            "http_status": 200,
+            "final_url": "https://my.raceresult.com/429884/registration"
+          }
+        ]
+      },
+      {
+        "event_id": "55dcd33a-ea96-4cec-851a-9dadd5b349ec",
+        "title": "45. Festiwal Generacja — przegląd zespołów",
+        "city": "Koszalin",
+        "start_at": "2026-11-13T18:00:00+00:00",
+        "original_batch_date": "2026-11-02",
+        "event_url": "https://mapaimprez.pl/festiwale/koszalin/curated-45-festiwal-generacja-przeglad-zespolow-koszalin-2026-11-13-4cbab59c05bf",
+        "source_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/45-festiwal-generacja-konkurs-przeglad-zespolow",
+        "checked_at": "2026-11-08T19:34:22.352Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/45-festiwal-generacja-konkurs-przeglad-zespolow",
+          "checked_at": "2026-11-08T19:34:22.352Z",
+          "http_status": 200,
+          "final_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/45-festiwal-generacja-konkurs-przeglad-zespolow"
+        }
+      },
+      {
+        "event_id": "4e42ea8d-3916-4083-8988-ef7308d84b0c",
+        "title": "GeoExpo – biżuteria, minerały i skamieniałości, sobota",
+        "city": "Gorzów Wielkopolski",
+        "start_at": "2026-11-14T09:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/targi/gorzow-wielkopolski/curated-geoexpo-bizuteria-mineraly-i-skamienialosci-sobota-gorzow-wielkopolski-2026-11-14-6182a8a62288",
+        "source_url": "https://biletyexpo.pl/kup-bilet/113",
+        "checked_at": "2026-11-08T19:34:22.691Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://biletyexpo.pl/kup-bilet/113",
+          "checked_at": "2026-11-08T19:34:22.691Z",
+          "http_status": 200,
+          "final_url": "https://biletyexpo.pl/kup-bilet/113"
+        }
+      },
+      {
+        "event_id": "c8593135-58b2-4ee6-9529-cccaccbde0dc",
+        "title": "Jesienne rozgrzanie – warsztaty wege dla dorosłych",
+        "city": "Gorzów Wielkopolski",
+        "start_at": "2026-11-14T09:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/kultura/gorzow-wielkopolski/curated-jesienne-rozgrzanie-warsztaty-wege-dla-doroslych-gorzow-wielkopolski-2026-11-14-7b62c5efc377",
+        "source_url": "https://mckgorzow.pl/event/jesienne-rozgrzanie-warsztaty-wege-dla-doroslych",
+        "checked_at": "2026-11-08T19:34:23.776Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://mckgorzow.pl/event/jesienne-rozgrzanie-warsztaty-wege-dla-doroslych",
+          "checked_at": "2026-11-08T19:34:23.776Z",
+          "http_status": 200,
+          "final_url": "https://mckgorzow.pl/event/jesienne-rozgrzanie-warsztaty-wege-dla-doroslych/"
+        }
+      },
+      {
+        "event_id": "d9c9b541-d420-4b3d-87ae-8d3504025e94",
+        "title": "Jesienna etnobotanika — warsztaty rodzinne",
+        "city": "Częstochowa",
+        "start_at": "2026-11-14T11:00:00+00:00",
+        "original_batch_date": "2026-11-06",
+        "event_url": "https://mapaimprez.pl/rodzinne/czestochowa/curated-jesienna-etnobotanika-warsztaty-rodzinne-czestochowa-2026-11-14-9815cae4a325",
+        "source_url": "https://www.muzeumczestochowa.pl/wydarzenia/jesienna-etnobotanika/130",
+        "checked_at": "2026-11-08T19:34:22.151Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Sklep muzeum wyświetla cenę 20 zł oraz przycisk Dodaj do koszyka.",
+        "primary": {
+          "source_url": "https://www.muzeumczestochowa.pl/wydarzenia/jesienna-etnobotanika/130",
+          "checked_at": "2026-11-08T19:34:22.151Z",
+          "http_status": 200,
+          "final_url": "https://www.muzeumczestochowa.pl/wydarzenia/jesienna-etnobotanika/130"
+        },
+        "evidence": [
+          {
+            "source_url": "https://sklep.muzeumczestochowa.pl/produkt/jesienna-etnobotanika,112",
+            "checked_at": "2026-11-08T19:36:34.275Z",
+            "http_status": 200,
+            "final_url": "https://sklep.muzeumczestochowa.pl/produkt/jesienna-etnobotanika,112"
+          }
+        ]
+      },
+      {
+        "event_id": "ef4e3db6-4cb6-41cf-bf05-783ca321d9cb",
+        "title": "LEGO Build the Change: Bioróżnorodność i zmiany klimatyczne — Żaby",
+        "city": "Łódź",
+        "start_at": "2026-11-14T11:00:00+00:00",
+        "original_batch_date": "2026-10-29",
+        "event_url": "https://mapaimprez.pl/rodzinne/lodz/curated-lego-build-the-change-bioroznorodnosc-i-zmiany-klimatyczne-zaby-lodz-2026-11-14-765bbbbc8ba6",
+        "source_url": "https://ec1lodz.pl/eventy/warsztaty-lego-build-the-change",
+        "checked_at": "2026-11-08T19:34:25.838Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Oficjalna bileteria wskazywała pięć wolnych miejsc dla Żab o 12:00 podczas odczytu.",
+        "primary": {
+          "source_url": "https://ec1lodz.pl/eventy/warsztaty-lego-build-the-change",
+          "checked_at": "2026-11-08T19:34:25.838Z",
+          "http_status": 200,
+          "final_url": "https://ec1lodz.pl/eventy/warsztaty-lego-build-the-change"
+        },
+        "evidence": [
+          {
+            "source_url": "https://bilety.ec1lodz.pl/rezerwacja/termin.html?d=5&idl=4&target=Lw==&date_termin=2026-11-14",
+            "checked_at": "2026-11-08T19:36:35.003Z",
+            "http_status": 200,
+            "final_url": "https://bilety.ec1lodz.pl/rezerwacja/termin.html?d=5&idl=4&target=Lw==&date_termin=2026-11-14"
+          }
+        ]
+      },
+      {
+        "event_id": "b09cb577-92b7-4bb7-8c67-f4861df98ba0",
+        "title": "Spotkanie z Katarzyną Figurą — Kobieta to ja",
+        "city": "Elbląg",
+        "start_at": "2026-11-14T17:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/kultura/elblag/curated-spotkanie-z-katarzyna-figura-kobieta-to-ja-elblag-2026-11-14-d2bb53935ce2",
+        "source_url": "https://swiatowid.elblag.pl/pl/aktualnosci13589,kobieta-to-ja-trzy-dni-artystycznych-inspiracji-w-cse-swiatowid-13-15112026",
+        "checked_at": "2026-11-08T19:34:26.186Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://swiatowid.elblag.pl/pl/aktualnosci13589,kobieta-to-ja-trzy-dni-artystycznych-inspiracji-w-cse-swiatowid-13-15112026",
+          "checked_at": "2026-11-08T19:34:26.186Z",
+          "http_status": 200,
+          "final_url": "https://swiatowid.elblag.pl/pl/aktualnosci13589,kobieta-to-ja-trzy-dni-artystycznych-inspiracji-w-cse-swiatowid-13-15112026"
+        }
+      },
+      {
+        "event_id": "015b5810-964f-4e7f-adcb-8130c81a3881",
+        "title": "Musica da camera — Otwocki Festiwal Muzyczny",
+        "city": "Otwock",
+        "start_at": "2026-11-14T18:00:00+00:00",
+        "original_batch_date": "2026-11-06",
+        "event_url": "https://mapaimprez.pl/koncerty/otwock/curated-musica-da-camera-otwocki-festiwal-muzyczny-otwock-2026-11-14-208ed0326670",
+        "source_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy",
+        "checked_at": "2026-11-08T19:34:20.329Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Miejski program festiwalu nadal informuje o bezpłatnych wejściówkach. Dodatkowy program potwierdza dzień i godzinę koncertu.",
+        "primary": {
+          "source_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy",
+          "checked_at": "2026-11-08T19:34:20.329Z",
+          "http_status": 200,
+          "final_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy"
+        },
+        "evidence": [
+          {
+            "source_url": "https://iotwock.info/artykul/otwocki-festiwal-muzyczny-n1875069",
+            "checked_at": "2026-11-08T19:36:34.458Z",
+            "http_status": 200,
+            "final_url": "https://iotwock.info/artykul/otwocki-festiwal-muzyczny-n1875069"
+          }
+        ]
+      },
+      {
+        "event_id": "5c4f270a-2543-4a63-9e10-7ddec77cf18c",
+        "title": "Bridgertonowie – koncert przy świecach",
+        "city": "Myślenice",
+        "start_at": "2026-11-14T18:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/koncerty/myslenice/curated-bridgertonowie-koncert-przy-swiecach-myslenice-2026-11-14-ae6bba4c1831",
+        "source_url": "https://www.mokis.myslenice.pl/?id=1197&ram=news-show",
+        "checked_at": "2026-11-08T19:34:25.846Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "KupBilecik podaje status EventScheduled i dostępność InStock.",
+        "primary": {
+          "source_url": "https://www.mokis.myslenice.pl/?id=1197&ram=news-show",
+          "checked_at": "2026-11-08T19:34:25.846Z",
+          "http_status": 200,
+          "final_url": "https://www.mokis.myslenice.pl/?id=1197&ram=news-show"
+        },
+        "evidence": [
+          {
+            "source_url": "https://www.kupbilecik.pl/pl/event/207760/myslenice/bridgertonowie-koncert-przy-swiecach",
+            "checked_at": "2026-11-08T19:36:34.295Z",
+            "http_status": 200,
+            "final_url": "https://www.kupbilecik.pl/pl/event/207760/myslenice/bridgertonowie-koncert-przy-swiecach"
+          }
+        ]
+      },
+      {
+        "event_id": "659542e9-44d3-48a7-9c06-966b67bd75ef",
+        "title": "ESKA Music Tour — Young Leosia, Fukaj i Brokies",
+        "city": "Kołobrzeg",
+        "start_at": "2026-11-14T18:00:00+00:00",
+        "original_batch_date": "2026-11-03",
+        "event_url": "https://mapaimprez.pl/koncerty/kolobrzeg/curated-eska-music-tour-young-leosia-fukaj-i-brokies-kolobrzeg-2026-11-14-037c53423a42",
+        "source_url": "https://www.i-kolobrzeg.pl/wydarzenie-3491-eska_music_tour_kolobrzeg_2026_young-szczegoly-113320.html",
+        "checked_at": "2026-11-08T19:34:27.098Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Strona eBilet podaje EventScheduled i InStock. Odwołania w mieście odnoszą się do innych wydarzeń.",
+        "primary": {
+          "source_url": "https://www.i-kolobrzeg.pl/wydarzenie-3491-eska_music_tour_kolobrzeg_2026_young-szczegoly-113320.html",
+          "checked_at": "2026-11-08T19:34:27.098Z",
+          "http_status": 200,
+          "final_url": "https://www.i-kolobrzeg.pl/wydarzenie-3491-eska_music_tour_kolobrzeg_2026_young-szczegoly-113320.html"
+        },
+        "evidence": [
+          {
+            "source_url": "https://www.ebilet.pl/muzyka/festiwale/eska-music-tour",
+            "checked_at": "2026-11-08T19:36:34.211Z",
+            "http_status": 200,
+            "final_url": "https://www.ebilet.pl/muzyka/festiwale/eska-music-tour"
+          }
+        ]
+      },
+      {
+        "event_id": "695bac55-11fd-4d86-8848-48b0fdcc4bc8",
+        "title": "Błażej Król — Popiół",
+        "city": "Oława",
+        "start_at": "2026-11-14T18:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/koncerty/olawa/curated-blazej-krol-popiol-olawa-2026-11-14-fffad30bafe6",
+        "source_url": "https://kultura.olawa.pl/wydarzenia/blazej-krol-popiol",
+        "checked_at": "2026-11-08T19:34:26.573Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Komunikat organizatora przypomina zmianę kwietniowego terminu na 14 listopada, już odzwierciedloną w katalogu. Otwiera się wybór miejsc w sprzedaży.",
+        "primary": {
+          "source_url": "https://kultura.olawa.pl/wydarzenia/blazej-krol-popiol",
+          "checked_at": "2026-11-08T19:34:26.573Z",
+          "http_status": 200,
+          "final_url": "https://kultura.olawa.pl/wydarzenia/blazej-krol-popiol/"
+        },
+        "evidence": [
+          {
+            "source_url": "https://kultura-olawa.bilety24.pl/kup-bilety/?id=939285",
+            "checked_at": "2026-11-08T19:36:36.127Z",
+            "http_status": 200,
+            "final_url": "https://kultura-olawa.bilety24.pl/kup-bilety/?id=939285"
+          }
+        ]
+      },
+      {
+        "event_id": "91760fa2-6069-42f2-963d-9f448d60ee9a",
+        "title": "Tyle słońca w naszym mieście — przeboje Anny Jantar i Jarosława Kukulskiego",
+        "city": "Szczecinek",
+        "start_at": "2026-11-14T18:00:00+00:00",
+        "original_batch_date": "2026-11-04",
+        "event_url": "https://mapaimprez.pl/koncerty/szczecinek/curated-tyle-slonca-w-naszym-miescie-przeboje-anny-jantar-i-jaroslawa-kukulskiego-szczecinek-2026-11-14-136493e9f407",
+        "source_url": "https://sapik.szczecinek.pl/aktualnosci/tyle-slonca-w-naszym-miescie-muzyczny-wieczor-z-przebojami-anny-jantar-i-jaroslawa-kukulskiego.html",
+        "checked_at": "2026-11-08T19:34:26.074Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://sapik.szczecinek.pl/aktualnosci/tyle-slonca-w-naszym-miescie-muzyczny-wieczor-z-przebojami-anny-jantar-i-jaroslawa-kukulskiego.html",
+          "checked_at": "2026-11-08T19:34:26.074Z",
+          "http_status": 200,
+          "final_url": "https://sapik.szczecinek.pl/aktualnosci/tyle-slonca-w-naszym-miescie-muzyczny-wieczor-z-przebojami-anny-jantar-i-jaroslawa-kukulskiego.html"
+        }
+      },
+      {
+        "event_id": "cf7a349c-f8b3-4a68-944b-a94b6ed0ff67",
+        "title": "Polski Chór Kameralny: J. S. Bach. Wielkie motety",
+        "city": "Gdańsk",
+        "start_at": "2026-11-14T18:00:00+00:00",
+        "original_batch_date": "2026-10-29",
+        "event_url": "https://mapaimprez.pl/koncerty/gdansk/curated-polski-chor-kameralny-j-s-bach-wielkie-motety-gdansk-2026-11-14-d9dd2834f806",
+        "source_url": "https://www.gdansk.pl/wydarzenia/Polski-Chor-Kameralny-koncert-J-S-Bach-Wielkie-motety,w,43841",
+        "checked_at": "2026-11-08T19:34:28.143Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Karta sprzedaży Bilety24 potwierdza datę, godzinę i Dwór Artusa.",
+        "primary": {
+          "source_url": "https://www.gdansk.pl/wydarzenia/Polski-Chor-Kameralny-koncert-J-S-Bach-Wielkie-motety,w,43841",
+          "checked_at": "2026-11-08T19:34:28.143Z",
+          "http_status": 200,
+          "final_url": "https://www.gdansk.pl/wydarzenia/Polski-Chor-Kameralny-koncert-J-S-Bach-Wielkie-motety,w,43841"
+        },
+        "evidence": [
+          {
+            "source_url": "https://www.bilety24.pl/kup-bilet-na-1178-j-s-bach-wielkie-motety-168297?id=1008829",
+            "checked_at": "2026-11-08T19:39:50.423Z",
+            "http_status": 200,
+            "final_url": "https://www.bilety24.pl/kup-bilet-na-1178-j-s-bach-wielkie-motety-168297?id=1008829"
+          }
+        ]
+      },
+      {
+        "event_id": "0be09879-0c16-4690-b41d-67d680d2233d",
+        "title": "Exotic Fest — edycja jesienna",
+        "city": "Gdynia",
+        "start_at": "2026-11-15T09:00:00+00:00",
+        "original_batch_date": "2026-10-29",
+        "event_url": "https://mapaimprez.pl/targi/gdynia/curated-exotic-fest-edycja-jesienna-gdynia-2026-11-15-0a29558c96a3",
+        "source_url": "https://polsatplusarena.gdynia.pl/kalendarz-wydarzen/exotic-fest-2",
+        "checked_at": "2026-11-08T19:34:28.917Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Karta areny potwierdza 15 listopada, 10:00. Bileteria Tobilet zwraca HTTP 403, więc aktualnej dostępności online nie ustalono.",
+        "primary": {
+          "source_url": "https://polsatplusarena.gdynia.pl/kalendarz-wydarzen/exotic-fest-2",
+          "checked_at": "2026-11-08T19:34:28.917Z",
+          "http_status": 200,
+          "final_url": "https://polsatplusarena.gdynia.pl/kalendarz-wydarzen/exotic-fest-2"
+        },
+        "evidence": [
+          {
+            "source_url": "https://tobilet.pl/exotic-fest-gdynia-2026.html",
+            "checked_at": "2026-11-08T19:39:11.763Z",
+            "http_status": 403,
+            "final_url": "https://tobilet.pl/exotic-fest-gdynia-2026.html"
+          }
+        ]
+      },
+      {
+        "event_id": "4b4d195f-4db7-471d-85eb-5fad2cec0a44",
+        "title": "Poranki Teatralne: C jak cyrk",
+        "city": "Gliwice",
+        "start_at": "2026-11-15T11:00:00+00:00",
+        "original_batch_date": "2026-10-30",
+        "event_url": "https://mapaimprez.pl/rodzinne/gliwice/curated-poranki-teatralne-c-jak-cyrk-gliwice-2026-11-15-936a58709ce8",
+        "source_url": "https://prezeroarenagliwice.pl/events/poranki-teatralne-c-jak-cyrk",
+        "checked_at": "2026-11-08T19:34:29.003Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "Karta areny potwierdza 15 listopada, 12:00 i hol C. Wzmianka o wyprzedaniu dotyczy innego koncertu z 2025 r. Karty Eventim zwracają HTTP 403 przy odczycie bezpośrednim.",
+        "primary": {
+          "source_url": "https://prezeroarenagliwice.pl/events/poranki-teatralne-c-jak-cyrk",
+          "checked_at": "2026-11-08T19:34:29.003Z",
+          "http_status": 200,
+          "final_url": "https://prezeroarenagliwice.pl/events/poranki-teatralne-c-jak-cyrk/"
+        },
+        "evidence": [
+          {
+            "source_url": "https://www.eventim.pl/artist/poranki-teatralne/poranki-teatralne-4069904/?affiliate=GLW",
+            "checked_at": "2026-11-08T19:39:11.866Z",
+            "http_status": 403,
+            "final_url": "https://www.eventim.pl/artist/poranki-teatralne/poranki-teatralne-4069904/?affiliate=GLW"
+          },
+          {
+            "source_url": "https://www.eventim.pl/event/poranki-teatralne-prezero-arena-gliwice-22022539/?affiliate=ACN",
+            "checked_at": "2026-11-08T19:39:49.992Z",
+            "http_status": 403,
+            "final_url": "https://www.eventim.pl/event/poranki-teatralne-prezero-arena-gliwice-22022539/?affiliate=ACN"
+          }
+        ]
+      },
+      {
+        "event_id": "0974f575-71cd-4de5-838d-005916758675",
+        "title": "Marsz do Wolności — koncert pieśni patriotycznych",
+        "city": "Zamość",
+        "start_at": "2026-11-15T14:00:00+00:00",
+        "original_batch_date": "2026-11-05",
+        "event_url": "https://mapaimprez.pl/koncerty/zamosc/curated-marsz-do-wolnosci-koncert-piesni-patriotycznych-zamosc-2026-11-15-a4161aefb731",
+        "source_url": "https://zci.zamosc.pl/news/2608/bdquomarsz-do-wolnoscirdquo-ndash-koncert-piesni-patriotycznych-w-zam.html",
+        "checked_at": "2026-11-08T19:34:28.559Z",
+        "http_status": 200,
+        "status": "confirmed_in_current_source",
+        "no_cancellation_notice": true,
+        "requires_update": false,
+        "note": "W zapowiedzi nie stwierdzono zmiany dotyczącej tego wystąpienia ani informacji o odwołaniu.",
+        "primary": {
+          "source_url": "https://zci.zamosc.pl/news/2608/bdquomarsz-do-wolnoscirdquo-ndash-koncert-piesni-patriotycznych-w-zam.html",
+          "checked_at": "2026-11-08T19:34:28.559Z",
+          "http_status": 200,
+          "final_url": "https://zci.zamosc.pl/news/2608/bdquomarsz-do-wolnoscirdquo-ndash-koncert-piesni-patriotycznych-w-zam.html"
+        }
+      }
+    ]
+  },
+  "existing_event_corrections": [
+    {
+      "id": "3d02f881-0922-467d-b4d1-3f9c1556242e",
+      "batch_date": "2026-10-29",
+      "title": "Cracovia Cosinus — koncert pieśni patriotycznych",
+      "event_url": "https://mapaimprez.pl/koncerty/krakow/curated-cracovia-cosinus-koncert-piesni-patriotycznych-krakow-2026-11-11-d52e80e2f953",
+      "evidence_url": "https://krakow.pl/aktualnosci/345157,29,komunikat,prezydent_miasta_oglosil_zalobe_na_terenie_krakowa__flagi_przepasane_kirem__miejskie_imprezy_odwolane.html",
+      "checked_at": "2026-11-08T19:39:52.599Z",
+      "reason": "Aktualny komunikat miasta odwołuje imprezy jednostek miejskich do 11 listopada włącznie. Klub Zakole jest jednostką Ośrodka Kultury Kraków–Nowa Huta.",
+      "before": {
+        "is_cancelled": false
+      },
+      "after": {
+        "is_cancelled": true
+      },
+      "outcome": "updated_and_publicly_verified",
+      "updated_at": "2026-11-08T19:39:53.318+00:00",
+      "public_api_status": 404,
+      "anonymous_read_confirmed": true,
+      "marker_present": false
+    },
+    {
+      "id": "0ceefeb0-2c46-4b8e-ada2-dd0922fad761",
+      "batch_date": "2026-10-29",
+      "title": "Niepodległa Biało-Czerwona — koncert zespołu Fermata",
+      "event_url": "https://mapaimprez.pl/koncerty/krakow/curated-niepodlegla-bialo-czerwona-koncert-zespolu-fermata-krakow-2026-11-13-6ee0820a063d",
+      "evidence_url": "https://krakownh.pl/wydarzenia/niepodlegla-bialo-czerwona-2",
+      "checked_at": "2026-11-08T19:39:52.848Z",
+      "reason": "Karta organizatora tego samego koncertu w Klubie Dukat podaje 12 listopada o 17:00. Poprzednia strona programu miasta zwraca HTTP 404.",
+      "before": {
+        "start_at": "2026-11-13T16:00:00+00:00"
+      },
+      "after": {
+        "start_at": "2026-11-12T16:00:00.000Z"
+      },
+      "outcome": "updated_and_publicly_verified",
+      "updated_at": "2026-11-08T19:39:54.625+00:00",
+      "source_before": "https://krakow.pl/aktualnosci/343303,29,komunikat,niepodlegla_laczy_krakow__swietujmy_razem_11_listopada.html",
+      "source_after": "https://krakownh.pl/wydarzenia/niepodlegla-bialo-czerwona-2",
+      "source_updated": true,
+      "public_api_status": 200,
+      "anonymous_read_confirmed": true,
+      "marker_present": true
+    },
+    {
+      "id": "22638142-4b86-4b20-ab5c-080fc30f8597",
+      "title": "Marszobieg Niepodległościowy",
+      "batch_date": "2026-11-06",
+      "event_url": "https://mapaimprez.pl/sport/zielona-gora/curated-marszobieg-niepodleglosciowy-zielona-gora-2026-11-11-71b77b921233",
+      "evidence_url": "https://super-sport.com.pl/zapisy-formularze/4822-marszobieg-niepodleglosciowy-2026.html",
+      "checked_at": "2026-11-08T19:40:29.314Z",
+      "reason": "Formularz zapisów zamknięty przed pierwotną datą. Możliwe zapisy na miejscu pod warunkiem wolnych miejsc.",
+      "before": {
+        "description": "Dzieci i dorośli pokonają 2,2 km w Parku Tysiąclecia, biegiem lub marszem. Biuro zawodów otwiera się o 14:00. Zgłoszenia internetowe do 9 listopada, a w dniu wydarzenia w biurze w ramach limitu 300 osób. Osoby niepełnoletnie potrzebują zgody opiekuna. Udział bezpłatny."
+      },
+      "after": {
+        "description": "Dzieci i dorośli pokonają 2,2 km w Parku Tysiąclecia biegiem lub marszem. Zapisy internetowe są zamknięte. Organizator przewiduje zapisy w biurze zawodów od 14:00 w dniu biegu, jeśli pozostaną miejsca. Osoby niepełnoletnie potrzebują zgody opiekuna. Udział bezpłatny."
+      },
+      "outcome": "updated_and_publicly_verified",
+      "updated_at": "2026-11-08T19:39:55.189+00:00",
+      "public_api_status": 200,
+      "anonymous_read_confirmed": true,
+      "marker_present": true
+    }
+  ],
+  "media": {
+    "event_visual": 18,
+    "original_media_added": 0,
+    "mobile_visual": {
+      "checked": false,
+      "reason": "IAB jest niedostępny. Lista przeglądarek CUA była pusta."
+    }
+  },
+  "importer_tests": {
+    "passed": 9,
+    "failed": 0
+  }
+}

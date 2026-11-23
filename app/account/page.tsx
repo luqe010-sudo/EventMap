@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import SavedEventsPanel from "@/components/SavedEventsPanel";
 import UserProfileForm from "@/components/UserProfileForm";
+import PromotionOffer from "@/components/PromotionOffer";
 import { getUserAccountData } from "@/lib/user-account";
 
 export const dynamic = "force-dynamic";
@@ -53,6 +54,11 @@ export default async function AccountPage() {
       </div>
 
       <SavedEventsPanel events={data.savedEvents} error={data.savedEventsError} />
+
+      <PromotionOffer
+        variant="viewer"
+        action={<Link href="/organizer" className="primaryButton">Zostań organizatorem</Link>}
+      />
     </main>
   );
 }

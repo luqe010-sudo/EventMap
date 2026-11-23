@@ -51,11 +51,39 @@ describe("confirmed source writes", () => {
     expect(client.insert).not.toHaveBeenCalled();
   });
 
-  it("selects the first source deterministically and confirms its update", async () => {
+  it("selects the first source deterministically and preserves its type when omitted", async () => {
     const client = sourceClient("source-a", { data: { id: "source-a" }, error: null });
     await saveEventSource("event-a", form({ source_url: "https://example.com" }), "manual");
     expect(client.order.mock.calls).toEqual([["created_at", { ascending: true }], ["id", { ascending: true }]]);
-    expect(client.update).toHaveBeenCalledWith(expect.objectContaining({ source_url: "https://example.com", source_type: "manual" }));
+    expect(client.update).toHaveBeenCalledWith(expect.objectContaining({ source_url: "https://example.com" }));
+    expect(client.update.mock.calls[0][0]).not.toHaveProperty("source_type");
+    expect(client.insert).not.toHaveBeenCalled();
+  });
+
+  it("accepts an explicitly supplied type when updating a source", async () => {
+    const client = sourceClient("source-a", { data: { id: "source-a" }, error: null });
+    await saveEventSource("event-a", form({ source_name: "Źródło", source_type: "import" }), "manual");
+    expect(client.update).toHaveBeenCalledWith(expect.objectContaining({ source_type: "import" }));
+  });
+
+  it.each([[undefined, "organizer"], ["import", "import"]])("uses the insert default only when the source type is absent (%s)", async (sourceType, expectedType) => {
+    const client = sourceClient(null, { data: { id: "source-a" }, error: null });
+    await saveEventSource("event-a", form({ source_name: "Źródło", source_type: sourceType }), "organizer");
+    expect(client.insert).toHaveBeenCalledWith(expect.objectContaining({ event_id: "event-a", source_type: expectedType }));
+  });
+
+  it("clears only the first source's editable fields when both edit inputs are blank", async () => {
+    const client = sourceClient("source-a", { data: { id: "source-a" }, error: null });
+    await saveEventSource("event-a", form({ source_name: " ", source_url: "", source_type: "ignored" }), "organizer", { clearWhenBlank: true });
+    expect(client.eq.mock.calls).toEqual([["event_id", "event-a"], ["id", "source-a"], ["event_id", "event-a"]]);
+    expect(client.update).toHaveBeenCalledExactlyOnceWith({ source_name: null, source_url: null });
+    expect(client.insert).not.toHaveBeenCalled();
+  });
+
+  it("does not create an empty source when the edit has nothing to clear", async () => {
+    const client = sourceClient(null, { data: null, error: null });
+    await saveEventSource("event-a", form({ source_name: "", source_url: "" }), "organizer", { clearWhenBlank: true });
+    expect(client.update).not.toHaveBeenCalled();
     expect(client.insert).not.toHaveBeenCalled();
   });
 
@@ -64,8 +92,9 @@ describe("confirmed source writes", () => {
     await expect(saveEventSource("event-a", form({ source_name: "Źródło" }), "manual")).rejects.toThrow("potwierdzić zapisu źródła");
   });
 
-  it("leaves an absent source untouched", async () => {
-    await saveEventSource("event-a", form(), "manual");
+  it("leaves blank source inputs on create and omitted inputs on edit untouched", async () => {
+    await saveEventSource("event-a", form({ source_name: "", source_url: "" }), "manual");
+    await saveEventSource("event-a", form(), "manual", { clearWhenBlank: true });
     expect(createSupabaseUserClient).not.toHaveBeenCalled();
   });
 });

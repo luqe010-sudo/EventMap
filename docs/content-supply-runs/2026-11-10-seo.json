@@ -1,0 +1,290 @@
+{
+  "verified_at": "2026-11-10T11:13:25.259Z",
+  "candidates": 6,
+  "published": 6,
+  "skipped_duplicates": 0,
+  "cities": {
+    "Poznań": 2,
+    "Łódź": 1,
+    "Wrocław": 1,
+    "Warszawa": 1,
+    "Gdańsk": 1
+  },
+  "free": 6,
+  "anonymous_reads": 6,
+  "production_api_reads": 6,
+  "coordinates_confirmed": 6,
+  "markers_confirmed": 6,
+  "marker_checks": [
+    {
+      "city_slug": "poznan",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "lodz",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "wroclaw",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "warszawa",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "gdansk",
+      "status": 200,
+      "confirmed": 1
+    }
+  ],
+  "html_checks": [
+    {
+      "url": "https://mapaimprez.pl/targi/poznan/curated-jarmark-swiateczny-na-targach-w-poznaniu-2026-poznan-2026-11-14-31df719c1d87",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true
+    },
+    {
+      "url": "https://mapaimprez.pl/targi/warszawa/curated-jarmark-bozonarodzeniowy-w-warszawie-2026-plac-defilad-warszawa-2026-11-20-5a30ff46efcb",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true
+    },
+    {
+      "url": "https://mapaimprez.pl/festiwale/poznan/curated-poznan-ice-festival-2026-glowny-konkurs-rzezby-lodowej-poznan-2026-12-13-316bc6af5bd3",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true
+    }
+  ],
+  "events": [
+    {
+      "id": "8be04122-7cee-43a1-ba5c-468c439f1843",
+      "title": "Jarmark Świąteczny na Targach w Poznaniu 2026",
+      "city": "Poznań",
+      "city_slug": "poznan",
+      "category": "targi",
+      "start_at": "2026-11-14T11:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/targi/poznan/curated-jarmark-swiateczny-na-targach-w-poznaniu-2026-poznan-2026-11-14-31df719c1d87",
+      "source_url": "https://jarmark.poznan.pl/pl",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "seo_intent": "jarmark świąteczny MTP Poznań 2026 godziny, otwarcie i wstęp",
+      "meta_title": "Jarmark Świąteczny na Targach w Poznaniu 2026 | MapaImprez",
+      "meta_description": "Bezpłatny jarmark na terenie MTP przy ul. Głogowskiej, od 14 listopada do 20 grudnia.",
+      "canonical": "https://mapaimprez.pl/targi/poznan/curated-jarmark-swiateczny-na-targach-w-poznaniu-2026-poznan-2026-11-14-31df719c1d87",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "structured_image": false,
+      "exact_marker": true,
+      "cover": "typography"
+    },
+    {
+      "id": "27616428-24a5-4106-b7e5-4586e29fca85",
+      "title": "Łódzkie Targi Książki i Sztuki 2026",
+      "city": "Łódź",
+      "city_slug": "lodz",
+      "category": "targi",
+      "start_at": "2026-11-20T10:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/targi/lodz/curated-lodzkie-targi-ksiazki-i-sztuki-2026-lodz-2026-11-20-1bf3f8c3130a",
+      "source_url": "https://lodzkietargiksiazki.pl/dla-zwiedzajacych",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "seo_intent": "targi książki Łódź 2026 godziny, Fabryczna i wstęp",
+      "meta_title": "Łódzkie Targi Książki i Sztuki 2026 | MapaImprez",
+      "meta_description": "Bezpłatne targi książki, sztuki i rzemiosła na dworcu Łódź Fabryczna, 20–22 listopada.",
+      "canonical": "https://mapaimprez.pl/targi/lodz/curated-lodzkie-targi-ksiazki-i-sztuki-2026-lodz-2026-11-20-1bf3f8c3130a",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "structured_image": false,
+      "exact_marker": true,
+      "cover": "typography"
+    },
+    {
+      "id": "0ac02669-0faf-4d02-aa5d-f157ad29b67b",
+      "title": "Jarmark Bożonarodzeniowy we Wrocławiu 2026",
+      "city": "Wrocław",
+      "city_slug": "wroclaw",
+      "category": "targi",
+      "start_at": "2026-11-20T10:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/targi/wroclaw/curated-jarmark-bozonarodzeniowy-we-wroclawiu-2026-wroclaw-2026-11-20-81520ccda0d7",
+      "source_url": "https://www.jarmarkbozonarodzeniowy.com/program",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "seo_intent": "jarmark bożonarodzeniowy Wrocław 2026, godziny otwarcia i święta",
+      "meta_title": "Jarmark Bożonarodzeniowy we Wrocławiu 2026 | MapaImprez",
+      "meta_description": "Bezpłatny jarmark na wrocławskim Rynku, od 20 listopada do 7 stycznia.",
+      "canonical": "https://mapaimprez.pl/targi/wroclaw/curated-jarmark-bozonarodzeniowy-we-wroclawiu-2026-wroclaw-2026-11-20-81520ccda0d7",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "structured_image": false,
+      "exact_marker": true,
+      "cover": "typography"
+    },
+    {
+      "id": "e9cdd770-c19c-4a88-9ced-f1f31dba9d07",
+      "title": "Jarmark Bożonarodzeniowy w Warszawie 2026 — Plac Defilad",
+      "city": "Warszawa",
+      "city_slug": "warszawa",
+      "category": "targi",
+      "start_at": "2026-11-20T11:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/targi/warszawa/curated-jarmark-bozonarodzeniowy-w-warszawie-2026-plac-defilad-warszawa-2026-11-20-5a30ff46efcb",
+      "source_url": "https://www.jarmark.waw.pl/",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "seo_intent": "jarmark Warszawa Plac Defilad 2026 godziny, PKiN i wstęp",
+      "meta_title": "Jarmark Bożonarodzeniowy w Warszawie 2026 — Plac Defilad | MapaImprez",
+      "meta_description": "Bezpłatny Jarmark Warszawski pod Pałacem Kultury i Nauki, od 20 listopada do 6 stycznia.",
+      "canonical": "https://mapaimprez.pl/targi/warszawa/curated-jarmark-bozonarodzeniowy-w-warszawie-2026-plac-defilad-warszawa-2026-11-20-5a30ff46efcb",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "structured_image": false,
+      "exact_marker": true,
+      "cover": "typography"
+    },
+    {
+      "id": "a79e8af3-d13b-4002-aa16-ca0be3513bfa",
+      "title": "Jarmark Bożonarodzeniowy w Gdańsku 2026",
+      "city": "Gdańsk",
+      "city_slug": "gdansk",
+      "category": "targi",
+      "start_at": "2026-11-20T12:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/targi/gdansk/curated-jarmark-bozonarodzeniowy-w-gdansku-2026-gdansk-2026-11-20-cf0e61cd25fd",
+      "source_url": "https://bozonarodzeniowy.pl/faq-pytania-i-odpowiedzi",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "seo_intent": "jarmark bożonarodzeniowy Gdańsk 2026, Targ Węglowy, godziny i wstęp",
+      "meta_title": "Jarmark Bożonarodzeniowy w Gdańsku 2026 | MapaImprez",
+      "meta_description": "Bezpłatny jarmark na Targu Węglowym i w sąsiednich częściach Głównego Miasta.",
+      "canonical": "https://mapaimprez.pl/targi/gdansk/curated-jarmark-bozonarodzeniowy-w-gdansku-2026-gdansk-2026-11-20-cf0e61cd25fd",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "structured_image": false,
+      "exact_marker": true,
+      "cover": "typography"
+    },
+    {
+      "id": "e34630e7-5a82-44a1-9831-53efa6563c03",
+      "title": "POZnań Ice Festival 2026 — główny konkurs rzeźby lodowej",
+      "city": "Poznań",
+      "city_slug": "poznan",
+      "category": "festiwale",
+      "start_at": "2026-12-13T09:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/festiwale/poznan/curated-poznan-ice-festival-2026-glowny-konkurs-rzezby-lodowej-poznan-2026-12-13-316bc6af5bd3",
+      "source_url": "https://icefestival.pl/mim/icefestival/regulations.html",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "seo_intent": "Poznań Ice Festival 2026 program, Stary Rynek i konkurs główny",
+      "meta_title": "POZnań Ice Festival 2026 — główny konkurs rzeźby lodowej | MapaImprez",
+      "meta_description": "Bezpłatny pokaz konkursowego rzeźbienia w lodzie na Starym Rynku w Poznaniu.",
+      "canonical": "https://mapaimprez.pl/festiwale/poznan/curated-poznan-ice-festival-2026-glowny-konkurs-rzezby-lodowej-poznan-2026-12-13-316bc6af5bd3",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "structured_image": false,
+      "exact_marker": true,
+      "cover": "typography"
+    }
+  ],
+  "skipped": [],
+  "seo_verified_at": "2026-11-10T11:14:35.799Z",
+  "sitemap_url": "https://mapaimprez.pl/sitemap-events.xml",
+  "sitemap_confirmed": 6,
+  "canonical_confirmed": 6,
+  "structured_event_confirmed": 6,
+  "repeat_same_public_ids": 6,
+  "duplicate_review": {
+    "catalog_count": 631,
+    "notes": [
+      {
+        "title": "Jarmark Świąteczny na Targach w Poznaniu 2026",
+        "city": "Poznań",
+        "day": "2026-11-14",
+        "same_day": [],
+        "shared_source_ids": []
+      },
+      {
+        "title": "Łódzkie Targi Książki i Sztuki 2026",
+        "city": "Łódź",
+        "day": "2026-11-20",
+        "same_day": [],
+        "shared_source_ids": []
+      },
+      {
+        "title": "Jarmark Bożonarodzeniowy we Wrocławiu 2026",
+        "city": "Wrocław",
+        "day": "2026-11-20",
+        "same_day": [
+          {
+            "id": "4e199cd7-d7b0-406f-9078-da03115d4cba",
+            "title": "Wrocław Hip Hop Festival 2026",
+            "venue": "Hala Stulecia",
+            "start_at": "2026-11-20T15:00:00+00:00",
+            "status": "published"
+          }
+        ],
+        "shared_source_ids": []
+      },
+      {
+        "title": "Jarmark Bożonarodzeniowy w Warszawie 2026 — Plac Defilad",
+        "city": "Warszawa",
+        "day": "2026-11-20",
+        "same_day": [],
+        "shared_source_ids": []
+      },
+      {
+        "title": "Jarmark Bożonarodzeniowy w Gdańsku 2026",
+        "city": "Gdańsk",
+        "day": "2026-11-20",
+        "same_day": [],
+        "shared_source_ids": []
+      },
+      {
+        "title": "POZnań Ice Festival 2026 — główny konkurs rzeźby lodowej",
+        "city": "Poznań",
+        "day": "2026-12-13",
+        "same_day": [],
+        "shared_source_ids": []
+      }
+    ]
+  },
+  "deferred": [
+    {
+      "title": "Szczeciński Jarmark Bożonarodzeniowy",
+      "reason": "Organizator potwierdził termin i place. Nie potwierdzono pełnych warunków wstępu i godziny otwarcia.",
+      "url": "https://zstw.szczecin.pl/pl/wydarzenia/2026/szczecinski-jarmark-bozonarodzeniowy/informacje-o-wydarzeniu"
+    },
+    {
+      "title": "Jarmark Bożonarodzeniowy w Katowicach",
+      "reason": "Organizator potwierdził termin. W odczytanej karcie brak godzin otwarcia i jawnej informacji o wstępie.",
+      "url": "https://www.jarmarkslaski.pl/jarmark-bozonarodzeniowy-w-katowicach-2026/"
+    },
+    {
+      "title": "Wrocławskie Targi Dobrych Książek",
+      "reason": "Potwierdzono daty i godziny. Link zakupu nie prowadził do aktualnej karty z warunkami sprzedaży dla edycji 2026.",
+      "url": "https://targiksiazek.pl/o-targach"
+    }
+  ]
+}

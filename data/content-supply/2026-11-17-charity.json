@@ -1,0 +1,192 @@
+{
+  "checked_at": "2026-11-17T16:41:11Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Dodatkowe zlecenie właściciela: pięć wydarzeń charytatywnych, trzy do polecanych.",
+  "geocoding_attribution": "GUGiK, istniejący potwierdzony obiekt i © autorzy OpenStreetMap (ODbL).",
+  "events": [
+    {
+      "title": "NEVER GIVE UP II — koncert charytatywny Fundacji 22q11",
+      "category_slug": "charytatywne",
+      "start_at": "2026-11-22T17:00:00+01:00",
+      "end_at": "2026-11-22T19:00:00+01:00",
+      "short_description": "Koncert w Auditorium Maximum UJ wesprze terapię i turnus rehabilitacyjny podopiecznych Fundacji 22q11.",
+      "description": "Fundacja 22q11 organizuje koncert z udziałem m.in. Basi i Lidki Pospieszalskich, Jaśka Piwowarczyka i Arkadia. Dochód ze sprzedaży biletów przeznaczony jest na terapię, w tym letni turnus rehabilitacyjno-terapeutyczny podopiecznych fundacji. Początek o 17:00 w Auditorium Maximum UJ. Bilety wspierające: 100 lub 300 zł; bilet dla osoby z niepełnosprawnością: 50 zł. Osoby z zespołem delecji 22q11 mają bilet bezpłatny. Rezerwacja i wybór właściwego biletu na stronie organizatora.",
+      "location": {
+        "name": "Auditorium Maximum UJ",
+        "address": "Krupnicza 33",
+        "city": "Kraków",
+        "city_slug": "krakow",
+        "latitude": 50.0627383977052,
+        "longitude": 19.9252229976129,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Krak%C3%B3w%2C%20Krupnicza%2033",
+        "coordinate_note": "Dokładny punkt numeru budynku GUGiK (zgodna miejscowość, ulica i numer); adres obiektu potwierdzony w źródle wydarzenia."
+      },
+      "source_name": "Fundacja 22q11 — Evently",
+      "source_url": "https://app.evently.pl/events/15731-koncert-charytatywny-never-give-up-ii-krakow-22112026",
+      "evidence_urls": [
+        "https://convention.krakow.pl/5430,1047,sale_konferencyjne.html"
+      ],
+      "price_type": "paid",
+      "price_min": 50,
+      "price_max": 300,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do publikacji plakatu na EventMap. Oprawa z istniejącego EventVisual; bez generowania i pobierania nowych obrazów.",
+      "checked_at": "2026-11-17T16:39:10Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:39:10Z",
+        "no_cancellation_notice": true,
+        "ticket_conditions": "HTML RSC: bezpłatny bilet 26316 dla osoby z delecją 22q11; 26317 50 PLN dla osoby z niepełnosprawnością; 26318 100 PLN Przyjaciel; 26319 300 PLN Anioł. JSON-LD: EventScheduled, 17:00–19:00, InStock."
+      }
+    },
+    {
+      "title": "MITA GRA DOBRO — koncert dla Szlachetnej Paczki",
+      "category_slug": "charytatywne",
+      "start_at": "2026-11-26T18:00:00+01:00",
+      "end_at": "2026-11-26T19:30:00+01:00",
+      "short_description": "Bezpłatny koncert w Scenie Bojków połączony ze zbiórką na pomoc trzem rodzinom z Gliwic.",
+      "description": "MITA studio i Szlachetna Paczka zapraszają na koncert w Scenie Bojków. Zbiórka ma pomóc trzem potrzebującym rodzinom z Gliwic; organizatorzy planują zebrać 8000 zł. Koncert rozpocznie się o 18:00. Wstęp jest bezpłatny, ale obowiązują zapisy przez formularz udostępniony na stronie wydarzenia. Udział w zbiórce jest dobrowolny.",
+      "location": {
+        "name": "Scena Bojków — Centrum Kultury Victoria",
+        "address": "Parkowa 5",
+        "city": "Gliwice",
+        "city_slug": "gliwice",
+        "latitude": 50.2507379442441,
+        "longitude": 18.6778050366445,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Gliwice%2C%20Parkowa%205",
+        "coordinate_note": "Dokładny punkt numeru budynku GUGiK (zgodna miejscowość, ulica i numer); adres obiektu potwierdzony w źródle wydarzenia."
+      },
+      "source_name": "GAMA — Centrum Kultury Victoria w Gliwicach",
+      "source_url": "https://wydarzenia.gliwice.eu/8061-gliwice-mita-gra-dobro",
+      "evidence_urls": [
+        "https://forms.gle/tvrJvscKdpBEjdVU9"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do publikacji plakatu na EventMap. Oprawa z istniejącego EventVisual; bez generowania i pobierania nowych obrazów.",
+      "checked_at": "2026-11-17T16:39:10Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:39:10Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "XVII Maltański Koncert Charytatywny — Przeboje symfoniki",
+      "category_slug": "charytatywne",
+      "start_at": "2026-11-27T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Kolja Blacher i Orkiestra Filharmonii Poznańskiej pod dyrekcją Łukasza Borowicza wystąpią w Auli UAM.",
+      "description": "Siedemnasty Maltański Koncert Charytatywny odbędzie się w Auli Uniwersyteckiej UAM. Kolja Blacher zagra partię skrzypiec, a Orkiestrę Filharmonii Poznańskiej poprowadzi Łukasz Borowicz. Program obejmuje utwory Brahmsa, Sibeliusa, Smetany i Liszta. Początek o 19:00. Obowiązuje cennik A: miejsca siedzące 60–100 zł zależnie od strefy i uprawnień do ulgi; ograniczona liczba wejściówek stojących po 40 zł dostępna jest wyłącznie w kasie filharmonii.",
+      "location": {
+        "name": "Aula Uniwersytecka UAM",
+        "address": "Wieniawskiego 1",
+        "city": "Poznań",
+        "latitude": 52.4078448,
+        "longitude": 16.9157469,
+        "coordinate_source": "https://filharmoniapoznanska.pl/kontakt/jak-dojechac/",
+        "coordinate_note": "Pinezka istniejącego obiektu w katalogu, zgodna z adresem podanym przez organizatora lub obiekt.",
+        "city_slug": "poznan"
+      },
+      "source_name": "Filharmonia Poznańska",
+      "source_url": "https://filharmoniapoznanska.pl/koncerty/przeboje-symfoniki-xvii-maltanski-koncert-charytatywny/",
+      "evidence_urls": [
+        "https://filharmoniapoznanska.pl/bilety-i-karnety/cennik-biletow-i-karnetow/"
+      ],
+      "price_type": "paid",
+      "price_min": 40,
+      "price_max": 100,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do publikacji plakatu na EventMap. Oprawa z istniejącego EventVisual; bez generowania i pobierania nowych obrazów.",
+      "checked_at": "2026-11-17T16:39:11Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:39:11Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Charytatywny Jarmark św. Mikołaja w Gdańsku",
+      "category_slug": "charytatywne",
+      "start_at": "2026-12-05T14:00:00+01:00",
+      "end_at": "2026-12-06T22:00:00+01:00",
+      "short_description": "Świąteczny jarmark na dziedzińcu dominikanów wesprze Stowarzyszenie Dom na Skraju, pomagające dzieciom i młodzieży.",
+      "description": "Na dziedzińcu klasztoru dominikanów pojawią się stoiska z rękodziełem, prezentami i świątecznymi przysmakami; zapowiedziano też muzykę i spotkanie z Mikołajem. Tegoroczna pomoc trafi do Stowarzyszenia Dom na Skraju, wspierającego dzieci i młodzież z Nowego Portu i okolic. Jarmark działa 5 grudnia w godzinach 14:00–20:00 oraz 6 grudnia 9:00–22:00, z przerwą nocną. Wstęp wolny. Wejście na dziedziniec od ulicy Pańskiej.",
+      "location": {
+        "name": "Dziedziniec klasztoru Dominikanów",
+        "address": "Świętojańska 72",
+        "city": "Gdańsk",
+        "city_slug": "gdansk",
+        "latitude": 54.3521308173878,
+        "longitude": 18.6514296522356,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Gda%C5%84sk%2C%20%C5%9Awi%C4%99toja%C5%84ska%2072",
+        "coordinate_note": "Dokładny punkt numeru budynku GUGiK (zgodna miejscowość, ulica i numer); adres obiektu potwierdzony w źródle wydarzenia."
+      },
+      "source_name": "Dominikanie Gdańsk",
+      "source_url": "https://gdansk.dominikanie.pl/2026/11/ogloszenia-parafialne-xxxii-niedziela-zwykla-8-listopada-2026-r/",
+      "evidence_urls": [
+        "https://radiogdansk.pl/wydarzenia/charytatywny-jarmark-sw-mikolaja/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do publikacji plakatu na EventMap. Oprawa z istniejącego EventVisual; bez generowania i pobierania nowych obrazów.",
+      "checked_at": "2026-11-17T16:39:10Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:39:10Z",
+        "no_cancellation_notice": true,
+        "additional_evidence": {
+          "url": "https://radiogdansk.pl/wydarzenia/charytatywny-jarmark-sw-mikolaja/",
+          "checked_at": "2026-11-17T16:39:10Z",
+          "status": 200,
+          "note": "Wcześniej odczytany komunikat patrona potwierdza dzienne godziny i wstęp wolny. Po wykryciu blokady robots.txt nie ponawiano odczytu."
+        }
+      }
+    },
+    {
+      "title": "Biegiem Pomagam — Bieg Pomocników św. Mikołaja",
+      "category_slug": "charytatywne",
+      "start_at": "2026-12-05T11:00:00+01:00",
+      "end_at": "2026-12-05T14:00:00+01:00",
+      "short_description": "Bieg na 1, 5 lub 10 km po Łazienkach Królewskich wspiera pomoc terapeutyczną dla dzieci i młodzieży.",
+      "description": "Stowarzyszenie Terapeutów organizuje piątą edycję Biegiem Pomagam. Z każdej opłaty startowej 20 zł trafi na pomoc terapeutyczną dla dzieci i młodzieży. Starty: 1 km o 11:00, 5 km o 11:30 i 10 km o 12:45. Miasteczko Biegacza i start znajdują się przy skrzyżowaniu Agrykoli z aleją Tomasza Hopfera, na terenie WCSM Agrykola, w pobliżu kawiarni Sirenka. Zapisy online przez stronę biegu; pakiet dla dorosłych kosztuje 130 zł, stacjonarnie 150 zł, a dla dzieci do 10 lat 80 zł. Oficjalne otwarcie imprezy o 10:15; zakończenie zaplanowano na 14:00.",
+      "location": {
+        "name": "Miasteczko Biegacza — WCSM Agrykola",
+        "address": "Agrykola / aleja Tomasza Hopfera",
+        "city": "Warszawa",
+        "city_slug": "warszawa",
+        "latitude": 52.2176979,
+        "longitude": 21.0330702,
+        "coordinate_source": "https://www.openstreetmap.org/node/266864146",
+        "coordinate_note": "Wspólny węzeł OSM ulicy Agrykola (ways 852062420 i 852062421) i alei Tomasza Hopfera (way 1452965528). Dokładnie to skrzyżowanie wskazuje organizator na stronie trasy; nie użyto adresu administracyjnego Agrykola 1. Dane © autorzy OpenStreetMap, ODbL."
+      },
+      "source_name": "Stowarzyszenie Terapeutów — Biegiem Pomagam",
+      "source_url": "https://biegiempomagam.pl/program/",
+      "evidence_urls": [
+        "https://biegiempomagam.pl/oplaty/",
+        "https://biegiempomagam.pl/trasa-biegu/",
+        "https://biegiempomagam.pl/idea-i-cel-biegu/"
+      ],
+      "price_type": "paid",
+      "price_min": 80,
+      "price_max": 150,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do publikacji plakatu na EventMap. Oprawa z istniejącego EventVisual; bez generowania i pobierania nowych obrazów.",
+      "checked_at": "2026-11-17T16:39:11Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:39:11Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

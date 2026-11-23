@@ -1,0 +1,146 @@
+{
+  "mode": "apply",
+  "checked_at": "2026-11-16T16:30:47.000Z",
+  "results": [
+    {
+      "title": "Saint Etienne — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/saint-etienne-137197.html",
+      "outcome": "inserted_and_published",
+      "event_id": "eb9090a2-3d3c-4d2a-9298-b2bce35916d1",
+      "slug": "curated-saint-etienne-koncert-w-warszawie-warszawa-2027-03-13-187e3ce30d10"
+    },
+    {
+      "title": "Lizzy McAlpine — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/lizzy-mcalpine-137157.html",
+      "outcome": "inserted_and_published",
+      "event_id": "50812778-47a8-4973-a8ca-76d9a4b17e5d",
+      "slug": "curated-lizzy-mcalpine-koncert-w-warszawie-warszawa-2027-03-15-b045a6af9da1"
+    },
+    {
+      "title": "Klangphonics — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/klangphonics-137199.html",
+      "outcome": "inserted_and_published",
+      "event_id": "3599c667-8422-405e-a0c4-572e37b184a4",
+      "slug": "curated-klangphonics-koncert-w-warszawie-warszawa-2027-03-16-c8d5e28226f6"
+    },
+    {
+      "title": "Graveyard + Blues Pills — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/graveyard-blues-pills-137136.html",
+      "outcome": "inserted_and_published",
+      "event_id": "281c76c1-f7ac-44b7-882d-84d1c69c7874",
+      "slug": "curated-graveyard-blues-pills-koncert-w-warszawie-warszawa-2027-03-17-5114e4551a8e"
+    },
+    {
+      "title": "Nene Heroine — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/nene-heroine-137054.html",
+      "outcome": "inserted_and_published",
+      "event_id": "7dd74f7e-da50-4599-9c02-cce0e3850c9f",
+      "slug": "curated-nene-heroine-koncert-w-warszawie-warszawa-2027-03-18-706c50c32aff"
+    },
+    {
+      "title": "Waglewski Fisz Emade — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/waglewski-fisz-emade-137203.html",
+      "outcome": "inserted_and_published",
+      "event_id": "ddff2a1f-a89e-4ede-8991-c9d33c363401",
+      "slug": "curated-waglewski-fisz-emade-koncert-w-warszawie-warszawa-2027-03-19-858fd4edd4f3"
+    },
+    {
+      "title": "TSA Dream Team — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/tsa-dream-team-137176.html",
+      "outcome": "inserted_and_published",
+      "event_id": "6cc441da-27f7-4f75-839c-4139fef81906",
+      "slug": "curated-tsa-dream-team-koncert-w-warszawie-warszawa-2027-03-20-bb1b01dd71f6"
+    },
+    {
+      "title": "Carpenter Brut + Kittie — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/carpenter-brut-kittie-violent-magic-orchestra-137166.html",
+      "outcome": "inserted_and_published",
+      "event_id": "be92e963-3e45-49f6-995a-e2415daa09c4",
+      "slug": "curated-carpenter-brut-kittie-koncert-w-warszawie-warszawa-2027-03-22-c67ccfb28b40"
+    },
+    {
+      "title": "Nessa Barrett — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/nessa-barrett-137164.html",
+      "outcome": "inserted_and_published",
+      "event_id": "a018f0f6-a1ac-4db3-814d-7899e4f1f050",
+      "slug": "curated-nessa-barrett-koncert-w-warszawie-warszawa-2027-03-24-ab31f753b4b5"
+    },
+    {
+      "title": "My35ovitz — Myslovitz w Gdańsku",
+      "source_url": "https://www.stodola.pl/koncerty/my35ovitz-137169.html",
+      "outcome": "inserted_and_published",
+      "event_id": "a213bff9-c44e-485f-abfc-516c67f45bc4",
+      "slug": "curated-my35ovitz-myslovitz-w-gdansku-gdansk-2027-04-02-88d67d5457d9"
+    },
+    {
+      "title": "Kasia Sienkiewicz — Nadal śpiewam o miłości w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/kasia-sienkiewicz-nadal-spiewam-o-milosci-warszawa-137186.html",
+      "outcome": "inserted_and_published",
+      "event_id": "482ac3b0-ce78-44eb-b7d5-57009699e33f",
+      "slug": "curated-kasia-sienkiewicz-nadal-spiewam-o-milosci-w-warszawie-warszawa-2027-04-03-147068843e73"
+    },
+    {
+      "title": "Raz, Dwa, Trzy — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/raz-dwa-trzy-137206.html",
+      "outcome": "inserted_and_published",
+      "event_id": "49aac254-fa50-480f-a8b2-c95dae0db59f",
+      "slug": "curated-raz-dwa-trzy-koncert-w-warszawie-warszawa-2027-04-04-f0f9ff5cf1a7"
+    },
+    {
+      "title": "The Cinematic Orchestra — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/the-cinematic-orchestra-137201.html",
+      "outcome": "inserted_and_published",
+      "event_id": "836a13f9-0a75-4b55-8666-c56e144bed0e",
+      "slug": "curated-the-cinematic-orchestra-koncert-w-warszawie-warszawa-2027-04-15-37dbc4cb73ea"
+    },
+    {
+      "title": "Imany — Women Deserve Rage Tour we Wrocławiu",
+      "source_url": "https://www.stodola.pl/koncerty/imany-women-deserve-rage-tour-wroclaw-137097.html",
+      "outcome": "inserted_and_published",
+      "event_id": "2cee8f71-626e-4f43-b330-fe3cb0238751",
+      "slug": "curated-imany-women-deserve-rage-tour-we-wroclawiu-wroclaw-2027-04-17-060a337a0036"
+    },
+    {
+      "title": "Imany — Women Deserve Rage Tour w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/imany-women-deserve-rage-tour-137091.html",
+      "outcome": "inserted_and_published",
+      "event_id": "57aa675d-30f1-45fd-ac74-d037647048b1",
+      "slug": "curated-imany-women-deserve-rage-tour-w-warszawie-warszawa-2027-04-18-9626e2796b47"
+    },
+    {
+      "title": "Lady Pank — koncert w Gdańsku",
+      "source_url": "https://www.stodola.pl/koncerty/lady-pank-gdansk-137177.html",
+      "outcome": "inserted_and_published",
+      "event_id": "17ed1a60-5e95-46f3-ab2d-483eb3d8bcd4",
+      "slug": "curated-lady-pank-koncert-w-gdansku-gdansk-2027-04-23-fc10a53f8f34"
+    },
+    {
+      "title": "DragonForce — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/dragonforce-137158.html",
+      "outcome": "inserted_and_published",
+      "event_id": "8f568048-e1c4-4562-9afa-5cb09efce181",
+      "slug": "curated-dragonforce-koncert-w-warszawie-warszawa-2027-04-25-b5bc0daf6640"
+    },
+    {
+      "title": "Foil Arms and Hog — Smithereens, komedia w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/foil-arms-and-hog-smithereens-137202.html",
+      "outcome": "inserted_and_published",
+      "event_id": "e7458010-550c-4200-abf8-d7900c9b9c8d",
+      "slug": "curated-foil-arms-and-hog-smithereens-komedia-w-warszawie-warszawa-2027-06-02-c02288f56af2"
+    },
+    {
+      "title": "Alexis Ffrench — koncert w Warszawie",
+      "source_url": "https://www.stodola.pl/koncerty/alexis-ffrench-137152.html",
+      "outcome": "inserted_and_published",
+      "event_id": "ea4f6891-a8ed-428b-8b34-e025241a7843",
+      "slug": "curated-alexis-ffrench-koncert-w-warszawie-warszawa-2027-06-13-ce03a509a942"
+    },
+    {
+      "title": "Alexis Ffrench — koncert we Wrocławiu",
+      "source_url": "https://www.stodola.pl/koncerty/alexis-ffrench-137153.html",
+      "outcome": "inserted_and_published",
+      "event_id": "8b2f4c08-d503-443d-b907-70d1c5fd2d66",
+      "slug": "curated-alexis-ffrench-koncert-we-wroclawiu-wroclaw-2027-06-15-669fbc68d4f3"
+    }
+  ]
+}

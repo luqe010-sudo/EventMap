@@ -1,0 +1,356 @@
+{
+  "verified_at": "2026-11-10T11:52:04.789Z",
+  "candidates": 8,
+  "published": 8,
+  "skipped_duplicates": 0,
+  "cities": {
+    "Wrocław": 1,
+    "Szczecin": 1,
+    "Kraków": 1,
+    "Katowice": 2,
+    "Toruń": 1,
+    "Warszawa": 1,
+    "Poznań": 1
+  },
+  "free": 1,
+  "anonymous_reads": 8,
+  "production_api_reads": 8,
+  "coordinates_confirmed": 8,
+  "markers_confirmed": 8,
+  "marker_checks": [
+    {
+      "city_slug": "wroclaw",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "szczecin",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "krakow",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "katowice",
+      "status": 200,
+      "confirmed": 2
+    },
+    {
+      "city_slug": "torun",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "warszawa",
+      "status": 200,
+      "confirmed": 1
+    },
+    {
+      "city_slug": "poznan",
+      "status": 200,
+      "confirmed": 1
+    }
+  ],
+  "html_checks": [
+    {
+      "url": "https://mapaimprez.pl/targi/wroclaw/curated-targi-rzeczy-wyjatkowych-we-wroclawiu-2026-wroclaw-2026-11-14-40f1800b122e",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true
+    },
+    {
+      "url": "https://mapaimprez.pl/sport/torun/curated-festiwal-biegow-swietych-mikolajow-w-toruniu-2026-torun-2026-12-06-6abaa718fde3",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true
+    },
+    {
+      "url": "https://mapaimprez.pl/koncerty/poznan/curated-koncert-sylwestrowy-filharmonii-poznanskiej-2026-poznan-2026-12-31-094b4c98e447",
+      "status": 200,
+      "title_present": true,
+      "event_visual_present": true
+    }
+  ],
+  "events": [
+    {
+      "id": "0bf6cd4a-8175-4ae1-a848-5c976442f860",
+      "title": "Targi Rzeczy Wyjątkowych we Wrocławiu 2026",
+      "city": "Wrocław",
+      "city_slug": "wroclaw",
+      "category": "targi",
+      "start_at": "2026-11-14T11:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/targi/wroclaw/curated-targi-rzeczy-wyjatkowych-we-wroclawiu-2026-wroclaw-2026-11-14-40f1800b122e",
+      "source_url": "https://craftticket.pl/produkt/targi-rzeczy-wyjatkowych-wroclaw-11-2026",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "meta_title": "Targi Rzeczy Wyjątkowych we Wrocławiu 2026 | MapaImprez",
+      "meta_description": "Targi rzemiosła i polskiego designu w Hali Stulecia, 14 i 15 listopada.",
+      "canonical": "https://mapaimprez.pl/targi/wroclaw/curated-targi-rzeczy-wyjatkowych-we-wroclawiu-2026-wroclaw-2026-11-14-40f1800b122e",
+      "seo_intent": "Targi Rzeczy Wyjątkowych Wrocław 2026 Hala Stulecia godziny i bilety",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "exact_marker": true,
+      "cover": "typography"
+    },
+    {
+      "id": "78cc7a52-2840-47a4-bd51-43f31231d85e",
+      "title": "Targi Rzeczy Wyjątkowych w Szczecinie 2026",
+      "city": "Szczecin",
+      "city_slug": "szczecin",
+      "category": "targi",
+      "start_at": "2026-11-28T11:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/targi/szczecin/curated-targi-rzeczy-wyjatkowych-w-szczecinie-2026-szczecin-2026-11-28-878e190dc9f1",
+      "source_url": "https://craftticket.pl/produkt/targi-rzeczy-wyjatkowych-szczecin-11-2026",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "meta_title": "Targi Rzeczy Wyjątkowych w Szczecinie 2026 | MapaImprez",
+      "meta_description": "Rękodzieło, ceramika i niezależny design w Enea Arenie, 28 i 29 listopada.",
+      "canonical": "https://mapaimprez.pl/targi/szczecin/curated-targi-rzeczy-wyjatkowych-w-szczecinie-2026-szczecin-2026-11-28-878e190dc9f1",
+      "seo_intent": "Targi Rzeczy Wyjątkowych Szczecin 2026 Enea Arena godziny i bilety",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "exact_marker": true,
+      "cover": "typography"
+    },
+    {
+      "id": "d8a2424b-611f-44c0-b7a2-522bd4441f51",
+      "title": "84. Konkurs Szopek Krakowskich — prezentacja na Rynku Głównym",
+      "city": "Kraków",
+      "city_slug": "krakow",
+      "category": "kultura",
+      "start_at": "2026-12-03T10:00:00+01:00",
+      "price_type": "free",
+      "url": "https://mapaimprez.pl/kultura/krakow/curated-84-konkurs-szopek-krakowskich-prezentacja-na-rynku-glownym-krakow-2026-12-03-e0c15847b98f",
+      "source_url": "https://www.muzeumkrakowa.pl/kalendarium/84-konkurs-szopek-krakowskich-2026",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "meta_title": "84. Konkurs Szopek Krakowskich — prezentacja na Rynku Głównym | MapaImprez",
+      "meta_description": "Publiczny pokaz szopek pod pomnikiem Mickiewicza. Korowód ruszy w południe.",
+      "canonical": "https://mapaimprez.pl/kultura/krakow/curated-84-konkurs-szopek-krakowskich-prezentacja-na-rynku-glownym-krakow-2026-12-03-e0c15847b98f",
+      "seo_intent": "Konkurs Szopek Krakowskich 2026 Rynek Główny kiedy oglądać i korowód",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "exact_marker": true,
+      "cover": "typography"
+    },
+    {
+      "id": "2cc25fcc-2f7d-4345-a49d-6e35eb131a7f",
+      "title": "XIII Bieg Mikołajkowy w Katowicach 2026",
+      "city": "Katowice",
+      "city_slug": "katowice",
+      "category": "sport",
+      "start_at": "2026-12-06T10:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/sport/katowice/curated-xiii-bieg-mikolajkowy-w-katowicach-2026-katowice-2026-12-06-dd93e2b80e02",
+      "source_url": "https://mkteamevents.pl/mikolaj",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "meta_title": "XIII Bieg Mikołajkowy w Katowicach 2026 | MapaImprez",
+      "meta_description": "Biegi na 5 i 10 km oraz nordic walking w Dolinie Trzech Stawów.",
+      "canonical": "https://mapaimprez.pl/sport/katowice/curated-xiii-bieg-mikolajkowy-w-katowicach-2026-katowice-2026-12-06-dd93e2b80e02",
+      "seo_intent": "Bieg Mikołajkowy Katowice 2026 trasa godzina startu i zapisy",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "exact_marker": true,
+      "cover": "typography"
+    },
+    {
+      "id": "2c38eae0-dc2b-426f-bf4d-cf8f7528235f",
+      "title": "Festiwal Biegów Świętych Mikołajów w Toruniu 2026",
+      "city": "Toruń",
+      "city_slug": "torun",
+      "category": "sport",
+      "start_at": "2026-12-06T12:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/sport/torun/curated-festiwal-biegow-swietych-mikolajow-w-toruniu-2026-torun-2026-12-06-6abaa718fde3",
+      "source_url": "https://biegmikolajow.pl/regulamin-biegow",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "meta_title": "Festiwal Biegów Świętych Mikołajów w Toruniu 2026 | MapaImprez",
+      "meta_description": "Półmaraton, krótsze biegi i nordic walking ze startem w rejonie Rynku Staromiejskiego.",
+      "canonical": "https://mapaimprez.pl/sport/torun/curated-festiwal-biegow-swietych-mikolajow-w-toruniu-2026-torun-2026-12-06-6abaa718fde3",
+      "seo_intent": "Bieg Mikołajów Toruń 2026 półmaraton, start, trasa i zapisy",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "exact_marker": true,
+      "cover": "typography"
+    },
+    {
+      "id": "ca49e431-2113-4de0-b4d1-6335f6054242",
+      "title": "Targi Rzeczy Ładnych TRŁ Zima 2026 — Warszawa",
+      "city": "Warszawa",
+      "city_slug": "warszawa",
+      "category": "targi",
+      "start_at": "2026-12-12T11:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/targi/warszawa/curated-targi-rzeczy-ladnych-trl-zima-2026-warszawa-warszawa-2026-12-12-e30c49a79f12",
+      "source_url": "https://www.ebilet.pl/biznes/targi/trl-zima",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "meta_title": "Targi Rzeczy Ładnych TRŁ Zima 2026 — Warszawa | MapaImprez",
+      "meta_description": "Zimowe targi polskiego designu w EXPO XXI, 12 i 13 grudnia.",
+      "canonical": "https://mapaimprez.pl/targi/warszawa/curated-targi-rzeczy-ladnych-trl-zima-2026-warszawa-warszawa-2026-12-12-e30c49a79f12",
+      "seo_intent": "Targi Rzeczy Ładnych Warszawa grudzień 2026 EXPO XXI bilety i godziny",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "exact_marker": true,
+      "cover": "typography"
+    },
+    {
+      "id": "da14299c-f114-4821-bf2b-94e82b74660b",
+      "title": "Sylwester z Adamem Sztabą w NOSPR 2026",
+      "city": "Katowice",
+      "city_slug": "katowice",
+      "category": "koncerty",
+      "start_at": "2026-12-31T18:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/katowice/curated-sylwester-z-adamem-sztaba-w-nospr-2026-katowice-2026-12-31-3b45406ce917",
+      "source_url": "https://nospr.org.pl/pl/kalendarz/koncert-sylwestrowy-nospr-sztaba",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "meta_title": "Sylwester z Adamem Sztabą w NOSPR 2026 | MapaImprez",
+      "meta_description": "Koncert sylwestrowy NOSPR w Katowicach z Adamem Sztabą.",
+      "canonical": "https://mapaimprez.pl/koncerty/katowice/curated-sylwester-z-adamem-sztaba-w-nospr-2026-katowice-2026-12-31-3b45406ce917",
+      "seo_intent": "Sylwester NOSPR Katowice 2026 Adam Sztaba godzina bilety i program",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "exact_marker": true,
+      "cover": "typography"
+    },
+    {
+      "id": "543d8563-f4f5-474a-a4cb-2e48559102b4",
+      "title": "Koncert sylwestrowy Filharmonii Poznańskiej 2026",
+      "city": "Poznań",
+      "city_slug": "poznan",
+      "category": "koncerty",
+      "start_at": "2026-12-31T19:00:00+01:00",
+      "price_type": "paid",
+      "url": "https://mapaimprez.pl/koncerty/poznan/curated-koncert-sylwestrowy-filharmonii-poznanskiej-2026-poznan-2026-12-31-094b4c98e447",
+      "source_url": "https://filharmoniapoznanska.pl/koncerty/koncert-sylwestrowy-z-tancami-i-niespodziankami-2026",
+      "public_api_status": 200,
+      "has_coordinates": true,
+      "main_image_url": null,
+      "meta_title": "Koncert sylwestrowy Filharmonii Poznańskiej 2026 | MapaImprez",
+      "meta_description": "Opery, operetki i musicale w Auli UAM w sylwestrowy wieczór.",
+      "canonical": "https://mapaimprez.pl/koncerty/poznan/curated-koncert-sylwestrowy-filharmonii-poznanskiej-2026-poznan-2026-12-31-094b4c98e447",
+      "seo_intent": "koncert sylwestrowy Poznań 2026 Filharmonia Aula UAM bilety i godzina",
+      "sitemap": true,
+      "robots_allowed": true,
+      "structured_data": "Event",
+      "exact_marker": true,
+      "cover": "local_illustrative_photo"
+    }
+  ],
+  "skipped": [],
+  "seo_verified_at": "2026-11-10T11:52:57.779Z",
+  "sitemap_url": "https://mapaimprez.pl/sitemap-events.xml",
+  "sitemap_confirmed": 8,
+  "canonical_confirmed": 8,
+  "structured_event_confirmed": 8,
+  "repeat_same_public_ids": 8,
+  "duplicate_review": {
+    "catalog_count": 637,
+    "notes": [
+      {
+        "title": "Targi Rzeczy Wyjątkowych we Wrocławiu 2026",
+        "city": "Wrocław",
+        "day": "2026-11-14",
+        "same_day": []
+      },
+      {
+        "title": "Targi Rzeczy Wyjątkowych w Szczecinie 2026",
+        "city": "Szczecin",
+        "day": "2026-11-28",
+        "same_day": []
+      },
+      {
+        "title": "84. Konkurs Szopek Krakowskich — prezentacja na Rynku Głównym",
+        "city": "Kraków",
+        "day": "2026-12-03",
+        "same_day": []
+      },
+      {
+        "title": "XIII Bieg Mikołajkowy w Katowicach 2026",
+        "city": "Katowice",
+        "day": "2026-12-06",
+        "same_day": []
+      },
+      {
+        "title": "Festiwal Biegów Świętych Mikołajów w Toruniu 2026",
+        "city": "Toruń",
+        "day": "2026-12-06",
+        "same_day": [
+          {
+            "title": "Wolny Jarmark Toruński i Pchli Targ — 6 grudnia",
+            "id": "a7b6aa66-42ff-4832-bfde-98ba6e6bba28",
+            "start_at": "2026-12-06T09:00:00+00:00",
+            "status": "published",
+            "venue": "Rynek Nowomiejski"
+          }
+        ]
+      },
+      {
+        "title": "Targi Rzeczy Ładnych TRŁ Zima 2026 — Warszawa",
+        "city": "Warszawa",
+        "day": "2026-12-12",
+        "same_day": [
+          {
+            "title": "Acid Drinkers - Old Iron Biceps Tour 2026",
+            "id": "93e0cd0f-0f8f-4fec-9e46-f562f5c0a3ca",
+            "start_at": "2026-12-12T19:00:00+00:00",
+            "status": "published",
+            "venue": "Progresja"
+          }
+        ]
+      },
+      {
+        "title": "Sylwester z Adamem Sztabą w NOSPR 2026",
+        "city": "Katowice",
+        "day": "2026-12-31",
+        "same_day": []
+      },
+      {
+        "title": "Koncert sylwestrowy Filharmonii Poznańskiej 2026",
+        "city": "Poznań",
+        "day": "2026-12-31",
+        "same_day": []
+      }
+    ]
+  },
+  "deferred": [
+    {
+      "title": "Targi Książki Historycznej w Warszawie",
+      "reason": "Godziny w sekcji edycji 2026 mają daty i dni tygodnia poprzedniego roku.",
+      "url": "https://historiaikultura.pl/targi-ksiazki-historycznej/"
+    },
+    {
+      "title": "W pogoni za św. Mikołajem we Wrocławiu",
+      "reason": "Karta podaje Park Tysiąclecia jako miejsce startu, a obok odsyła do adresu biura zawodów przy ul. Karkonoskiej 10. Dokładny punkt startu wymaga doprecyzowania.",
+      "url": "https://www.biegamy.radiowroclaw.pl/competitions/showrace/79/W-pogoni-za-sw-Mikolajem-7km"
+    },
+    {
+      "title": "Szczeciński Jarmark Bożonarodzeniowy",
+      "reason": "Tegoroczny harmonogram potwierdzono. Informacje o wstępie dla publiczności są sprzeczne w dostępnych zapowiedziach.",
+      "url": "https://kolorowaaleja.pl/dla-wystawcow/"
+    }
+  ]
+}

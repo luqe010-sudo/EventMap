@@ -19,6 +19,7 @@ import type { EventEditorState } from "../lib/event-editor-validation";
 
 const emptyState = { fieldErrors: {}, error: null };
 const oldPublication = "2026-09-01T12:00:00Z";
+const slugConflict = { code: "23505", message: 'duplicate key value violates unique constraint "events_slug_key"' };
 let currentEvent: Record<string, unknown> | null;
 let updateResult: { data: unknown; error: unknown };
 let sourceReadError: { message: string } | null;
@@ -29,6 +30,8 @@ let notificationError: { message: string } | null;
 const update = vi.fn();
 const insert = vi.fn();
 const eq = vi.fn();
+const isFilter = vi.fn();
+const filter = vi.fn();
 const inFilter = vi.fn();
 const from = vi.fn();
 const order = vi.fn();
@@ -41,7 +44,7 @@ function form(overrides: Record<string, string> = {}) {
 
 beforeEach(() => {
   vi.resetAllMocks();
-  currentEvent = { id: "event-a", title: "Koncert", status: "rejected", visibility: "private", organizer_id: "display-organizer", submitted_by_organizer_id: "organizer-a", published_at: oldPublication, is_cancelled: false };
+  currentEvent = { id: "event-a", title: "Koncert", status: "rejected", visibility: "private", organizer_id: "display-organizer", submitted_by_organizer_id: "organizer-a", published_at: oldPublication, is_cancelled: false, updated_at: oldPublication };
   updateResult = { data: { id: "event-a" }, error: null };
   sourceReadError = null;
   eventInsertResult = null;
@@ -63,6 +66,8 @@ beforeEach(() => {
       select: vi.fn(() => query), maybeSingle: vi.fn(() => query), single: vi.fn(() => query), returns: vi.fn(() => query),
       order: vi.fn((...args: unknown[]) => { order(table, ...args); return query; }), limit: vi.fn(() => query),
       eq: vi.fn((...args: unknown[]) => { eq(...args); return query; }),
+      is: vi.fn((...args: unknown[]) => { isFilter(...args); return query; }),
+      filter: vi.fn((...args: unknown[]) => { filter(...args); return query; }),
       in: vi.fn((...args: unknown[]) => { inFilter(...args); return query; }),
       update: vi.fn((payload: unknown) => { update(table, payload); operation = "update"; return query; }),
       insert: vi.fn((payload: unknown) => { insert(table, payload); insertedPayload = payload as Record<string, unknown>; operation = "insert"; return query; }),
@@ -71,7 +76,9 @@ beforeEach(() => {
         if (operation === "insert") {
           if (table === "events") {
             if (eventInsertException) throw eventInsertException;
-            return eventInsertResult ?? { data: { id: insertedPayload?.id }, error: null };
+            const result = eventInsertResult ?? { data: { id: insertedPayload?.id }, error: null };
+            eventInsertResult = null;
+            return result;
           }
           return { data: { id: "created-related-row" }, error: table === "event_moderation_logs" ? moderationError : table === "notifications" ? notificationError : null };
         }
@@ -155,6 +162,33 @@ describe("organizer event transitions and ownership", () => {
     await expect(organizerUpdateEventAction("event-a", emptyState, form({ status: "published" }))).rejects.toThrow("Redirect: /organizer");
     expect(update).toHaveBeenCalledWith("events", expect.objectContaining({ status: "pending_review", visibility: "private", published_at: oldPublication }));
   });
+  it("only edits the workflow state read before preparing the event", async () => {
+    currentEvent!.status = "pending_review";
+    currentEvent!.visibility = "public";
+    vi.mocked(uploadEventImageToCloudinary).mockImplementation(async () => {
+      // Cancellation changes the persisted row before this action's UPDATE matches it.
+      currentEvent = { ...currentEvent, status: "archived", is_cancelled: true };
+      updateResult = { data: null, error: null };
+      return null;
+    });
+    const result = await organizerUpdateEventAction("event-a", emptyState, form({ source_name: "Źródło" }));
+    expect(filter).toHaveBeenCalledWith("status", "eq", "pending_review");
+    expect(filter).toHaveBeenCalledWith("visibility", "eq", "public");
+    expect(filter).toHaveBeenCalledWith("updated_at", "eq", oldPublication);
+    expect(isFilter).toHaveBeenCalledWith("is_cancelled", false);
+    expect(update).toHaveBeenCalledWith("events", expect.objectContaining({ updated_at: expect.any(String) }));
+    expect(result.saveIssue?.kind).toBe("unconfirmed");
+    expect(from).not.toHaveBeenCalledWith("event_sources");
+    expect(redirect).not.toHaveBeenCalled();
+  });
+  it("matches nullable historical workflow fields when editing an old event", async () => {
+    Object.assign(currentEvent!, { status: null, visibility: null, is_cancelled: null, updated_at: null });
+    await expect(organizerUpdateEventAction("event-a", emptyState, form())).rejects.toThrow("Redirect: /organizer");
+    expect(filter).toHaveBeenCalledWith("status", "is", null);
+    expect(filter).toHaveBeenCalledWith("visibility", "is", null);
+    expect(filter).toHaveBeenCalledWith("updated_at", "is", null);
+    expect(isFilter).toHaveBeenCalledWith("is_cancelled", null);
+  });
   it.each(["archived", "draft", "pending_review", "published"])("refuses forged resubmit from %s", async status => {
     currentEvent!.status = status;
     expect(await organizerUpdateEventAction("event-a", emptyState, form({ intent: "resubmit" }))).toMatchObject({ fieldErrors: { intent: expect.any(String) } });
@@ -192,6 +226,27 @@ describe("organizer event transitions and ownership", () => {
     await expect(organizerCreateEventAction(emptyState, form({ status: "published", organizer_id: "organizer-b" }))).rejects.toThrow("Redirect: /organizer/events/");
     expect(insert).toHaveBeenCalledWith("events", expect.objectContaining({ status: "pending_review", organizer_id: "organizer-a", submitted_by_organizer_id: "organizer-a", created_by: "organizer-user" }));
     expect(redirect).toHaveBeenCalledWith(`/organizer/events/${createdEventId()}/edit`);
+  });
+  it("creates another event with the same title using a unique generated slug", async () => {
+    eventInsertResult = { data: null, error: slugConflict };
+    await expect(organizerCreateEventAction(emptyState, form())).rejects.toThrow("Redirect: /organizer/events/");
+    expect(insert).toHaveBeenCalledTimes(2);
+    const eventId = createdEventId();
+    expect(insert).toHaveBeenNthCalledWith(1, "events", expect.objectContaining({ id: eventId, slug: "koncert" }));
+    expect(insert).toHaveBeenNthCalledWith(2, "events", expect.objectContaining({ id: eventId, slug: `koncert-${eventId.replaceAll("-", "").slice(0, 12)}` }));
+    expect(uploadEventImageToCloudinary).toHaveBeenCalledOnce();
+  });
+  it("asks for a different custom slug after a confirmed uniqueness conflict", async () => {
+    eventInsertResult = { data: null, error: slugConflict };
+    expect(await organizerCreateEventAction(emptyState, form({ slug: "koncert", source_name: "Źródło" }))).toMatchObject({ fieldErrors: { slug: expect.stringContaining("zajęty") } });
+    expect(insert).toHaveBeenCalledOnce();
+    expect(from).not.toHaveBeenCalledWith("event_sources");
+  });
+  it("keeps an edit with a duplicate custom slug in the form", async () => {
+    updateResult = { data: null, error: slugConflict };
+    expect(await organizerUpdateEventAction("event-a", emptyState, form({ slug: "koncert", source_name: "Źródło" }))).toMatchObject({ fieldErrors: { slug: expect.stringContaining("zajęty") } });
+    expect(update).toHaveBeenCalledOnce();
+    expect(from).not.toHaveBeenCalledWith("event_sources");
   });
   it("does not report success for a silently filtered update", async () => {
     updateResult = { data: null, error: null };
@@ -281,11 +336,11 @@ describe.each([
 describe("admin event metadata and moderation", () => {
   it("changes the displayed organizer while preserving the original submitter and private visibility", async () => {
     await expect(adminUpdateEventAction("event-a", emptyState, form({ status: "rejected", organizer_id: "new-display-organizer" }))).rejects.toThrow("Redirect: /admin/events");
-    expect(update).toHaveBeenCalledWith("events", expect.objectContaining({ organizer_id: "new-display-organizer", submitted_by_organizer_id: "organizer-a", visibility: "private", published_at: oldPublication }));
+    expect(update).toHaveBeenCalledWith("events", expect.objectContaining({ organizer_id: "new-display-organizer", submitted_by_organizer_id: "organizer-a", visibility: "private", published_at: oldPublication, updated_at: expect.any(String) }));
   });
   it.each(["published", "draft", "archived", "rejected"] as const)("preserves the publication date during quick status transition to %s", async status => {
     await adminSetEventStatusAction("event-a", status);
-    expect(update).toHaveBeenCalledWith("events", expect.objectContaining({ status, published_at: oldPublication }));
+    expect(update).toHaveBeenCalledWith("events", expect.objectContaining({ status, published_at: oldPublication, updated_at: expect.any(String) }));
   });
   it("sets a timestamp only for a first publication", async () => {
     currentEvent!.published_at = null;

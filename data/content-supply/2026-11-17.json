@@ -1,0 +1,525 @@
+{
+  "checked_at": "2026-11-17T16:26:16Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Bielawa i Szczecinek z pustym katalogiem oraz Opole, Ruda Śląska i Rzeszów. Wydarzenia rodzinne, kultura, spotkania górskie, koncerty i stand-up.",
+  "geocoding_attribution": "Geoportal GUGiK i istniejące lokalizacje EventMap z dowodami przy punktach.",
+  "events": [
+    {
+      "title": "Seniorzy dla Niepodległej — finał projektu w Rzeszowie",
+      "category_slug": "kultura",
+      "start_at": "2026-11-18T17:00:00+01:00",
+      "end_at": "2026-11-18T19:00:00+01:00",
+      "short_description": "Międzypokoleniowe spotkanie z muzyką patriotyczną i występami uczestników projektu w filii Przybyszówka.",
+      "description": "Międzypokoleniowe spotkanie z muzyką patriotyczną i występami uczestników projektu w filii Przybyszówka. Organizator zaprasza mieszkańców, rodziny i przyjaciół. Wstęp wolny.",
+      "location": {
+        "name": "Rzeszowski Dom Kultury — filia Przybyszówka",
+        "address": "Dębicka 170",
+        "city": "Rzeszów",
+        "city_slug": "rzeszow",
+        "latitude": 50.0533977335813,
+        "longitude": 21.9461461219998,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Rzesz%C3%B3w%2C%20D%C4%99bicka%20170",
+        "coordinate_note": "Jedyny dokładny punkt numeru budynku w Geoportalu GUGiK, WGS84. Nazwę miejsca i adres potwierdza organizator."
+      },
+      "source_name": "Rzeszowski Dom Kultury",
+      "source_url": "https://rdk.rzeszow.pl/18-listopada-2026-final-projektu-seniorzy-dla-niepodleglej/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:23:12Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:23:12Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Kopiec Konfederatów Barskich — wykład Krzysztofa Bajrasza",
+      "category_slug": "kultura",
+      "start_at": "2026-11-19T17:30:00+01:00",
+      "end_at": null,
+      "short_description": "Krzysztof Bajrasz opowie o dziejach kopca na Pobitnym i jego znaczeniu dla historii Rzeszowa.",
+      "description": "Krzysztof Bajrasz opowie o dziejach kopca na Pobitnym i jego znaczeniu dla historii Rzeszowa. Spotkanie odbędzie się w filii Pobitno Rzeszowskiego Domu Kultury. Wstęp wolny.",
+      "location": {
+        "name": "Rzeszowski Dom Kultury — filia Pobitno",
+        "address": "Konfederatów Barskich 43a",
+        "city": "Rzeszów",
+        "city_slug": "rzeszow",
+        "latitude": 50.0460818,
+        "longitude": 22.0270178,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Rzesz%C3%B3w%2C%20Konfederat%C3%B3w%20Barskich%2043a",
+        "coordinate_note": "Istniejący punkt 378492ee-b57d-4a70-bf33-6af9b73eb7ff pod potwierdzonym adresem. GUGiK UUG, dokładna miejscowość, ulica i numer budynku."
+      },
+      "source_name": "Rzeszowski Dom Kultury",
+      "source_url": "https://pobitno.rdk.rzeszow.pl/19-listopada-2026-kopiec-konfederatow-barskich-wyklad-o-niezwyklym-zabytku-i-pamiatce-bitwy/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:23:11Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:23:11Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Carmen z Metropolitan Opera — retransmisja w Szczecinku",
+      "category_slug": "kultura",
+      "start_at": "2026-11-19T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Kino Wolność pokaże operę Bizeta w inscenizacji Richarda Eyre’a z Elīną Garančą i Robertem Alagną.",
+      "description": "Kino Wolność pokaże operę Bizeta w inscenizacji Richarda Eyre’a z Elīną Garančą i Robertem Alagną. To retransmisja przedstawienia Metropolitan Opera. Bilety kosztują 55 lub 70 zł w kasie kina i online.",
+      "location": {
+        "name": "Kino Wolność",
+        "address": "Wyszyńskiego 65",
+        "city": "Szczecinek",
+        "city_slug": "szczecinek",
+        "latitude": 53.70451,
+        "longitude": 16.69844,
+        "coordinate_source": "https://powiatszczecinecki.treespot.pl/93-powiatszczecinecki-kino-wolnosc",
+        "coordinate_note": "Istniejący punkt 59470360-8b5b-4ff5-8c5b-28c156a4581c pod potwierdzonym adresem. Nazwany marker obiektu Kina Wolność z data-latitude/data-longitude i linku Wyznacz trasę w oficjalnej mapie Powiatu Szczecineckiego."
+      },
+      "source_name": "Samorządowa Agencja Promocji i Kultury w Szczecinku",
+      "source_url": "https://sapik.szczecinek.pl/aktualnosci/przed-nami-carmen-opera-georgesa-bizeta.html",
+      "evidence_urls": [
+        "https://sapik.szczecinek.pl/kalendarz-wydarzen/"
+      ],
+      "price_type": "paid",
+      "price_min": 55,
+      "price_max": 70,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:24:20Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:24:20Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "XX Spotkania Górskie Lawiny — festiwal w Rudzie Śląskiej",
+      "category_slug": "festiwale",
+      "start_at": "2026-11-20T17:30:00+01:00",
+      "end_at": null,
+      "short_description": "Trzy dni prelekcji, filmów i spotkań z podróżnikami oraz wystawa fotografii górskiej w Śląskim Teatrze Impresaryjnym.",
+      "description": "Trzy dni prelekcji, filmów i spotkań z podróżnikami oraz wystawa fotografii górskiej w Śląskim Teatrze Impresaryjnym. Piątkowy program rozpocznie się o 17:30. Organizator potwierdza też sobotę od 10:00 i niedzielę od 12:00. Wstęp wolny.",
+      "location": {
+        "name": "Śląski Teatr Impresaryjny im. Henryka Bisty",
+        "address": "Piotra Niedurnego 69",
+        "city": "Ruda Śląska",
+        "city_slug": "ruda-slaska",
+        "latitude": 50.2877418169001,
+        "longitude": 18.8749571657882,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Ruda%20%C5%9Al%C4%85ska%2C%20Piotra%20Niedurnego%2069",
+        "coordinate_note": "Jedyny dokładny punkt numeru budynku w Geoportalu GUGiK, WGS84. Nazwę miejsca i adres potwierdza organizator."
+      },
+      "source_name": "Śląski Teatr Impresaryjny",
+      "source_url": "https://teatrrudasl.pl/index.php/repertuar/listopad/xx-spotkania-gorskie-lawiny-2026",
+      "evidence_urls": [
+        "https://www.rudaslaska.pl/ruda-slaska/aktualnosci/milosnicy-gor-znow-spotkaja-sie-w-rudzie-slaskiej"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:25:48Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:25:48Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Czas na Oskary — koncert Studia FART w Bielawie, 22 listopada",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-22T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Wokaliści Studia Piosenki i Tańca FART wykonają utwory filmowe z akompaniamentem FART BAND pod kierunkiem Dariusza Jarosa.",
+      "description": "Wokaliści Studia Piosenki i Tańca FART wykonają utwory filmowe z akompaniamentem FART BAND pod kierunkiem Dariusza Jarosa. Koncert przeniesiono z weekendu 8–9 listopada. Wcześniejsze bilety zachowują ważność. Bilety kosztują 20 zł w kasie MOKiS i online.",
+      "location": {
+        "name": "MOKiS w Bielawie",
+        "address": "Piastowska 19a",
+        "city": "Bielawa",
+        "city_slug": "bielawa",
+        "latitude": 50.6817622,
+        "longitude": 16.6071739,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&address=Bielawa%2C+Piastowska+19a&srid=4326",
+        "coordinate_note": "Istniejący punkt 3ecf5bb0-4621-496c-b89b-65b517f16a62 pod potwierdzonym adresem. Zachowany istniejący punkt MOKiS, około 6 m od dokładnego punktu GUGiK. Adres potwierdza bileteria i urząd miasta."
+      },
+      "source_name": "Miejski Ośrodek Kultury i Sztuki w Bielawie",
+      "source_url": "https://mokisbielawa.pl/nowy-termin-koncertu-czas-na-oskary/",
+      "evidence_urls": [
+        "https://mokisbielawa.pl/8-9-11-2026-koncert-czas-na-oskary/",
+        "https://mokisbielawa.pl/kontakt/",
+        "https://mokisbielawa.pl/wp-content/uploads/2026/11/koncert-fart2026-nowytermin-706x1024.jpeg"
+      ],
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 20,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:26:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:23:09Z",
+        "no_cancellation_notice": true,
+        "confirmed_rescheduled_date": true,
+        "poster_checked_at": "2026-11-17T16:26:16Z",
+        "poster_facts": "Oficjalny plakat wskazuje nowy termin 22–23 listopada 2026 i godzinę 17:00. Kopia w scratch służyła wyłącznie odczytowi."
+      }
+    },
+    {
+      "title": "Czas na Oskary — koncert Studia FART w Bielawie, 23 listopada",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-23T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Drugi wieczór filmowych piosenek w wykonaniu wokalistów Studia FART i zespołu FART BAND w Teatrze Robotniczym.",
+      "description": "Drugi wieczór filmowych piosenek w wykonaniu wokalistów Studia FART i zespołu FART BAND w Teatrze Robotniczym. Koncert przeniesiono z weekendu 8–9 listopada. Wcześniejsze bilety zachowują ważność. Bilety kosztują 20 zł w kasie MOKiS i online.",
+      "location": {
+        "name": "MOKiS w Bielawie",
+        "address": "Piastowska 19a",
+        "city": "Bielawa",
+        "city_slug": "bielawa",
+        "latitude": 50.6817622,
+        "longitude": 16.6071739,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&address=Bielawa%2C+Piastowska+19a&srid=4326",
+        "coordinate_note": "Istniejący punkt 3ecf5bb0-4621-496c-b89b-65b517f16a62 pod potwierdzonym adresem. Zachowany istniejący punkt MOKiS, około 6 m od dokładnego punktu GUGiK. Adres potwierdza bileteria i urząd miasta."
+      },
+      "source_name": "Miejski Ośrodek Kultury i Sztuki w Bielawie",
+      "source_url": "https://mokisbielawa.pl/nowy-termin-koncertu-czas-na-oskary/",
+      "evidence_urls": [
+        "https://mokisbielawa.pl/8-9-11-2026-koncert-czas-na-oskary/",
+        "https://mokisbielawa.pl/kontakt/",
+        "https://mokisbielawa.pl/wp-content/uploads/2026/11/koncert-fart2026-nowytermin-706x1024.jpeg"
+      ],
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 20,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:26:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:23:09Z",
+        "no_cancellation_notice": true,
+        "confirmed_rescheduled_date": true,
+        "poster_checked_at": "2026-11-17T16:26:16Z",
+        "poster_facts": "Oficjalny plakat wskazuje nowy termin 22–23 listopada 2026 i godzinę 17:00. Kopia w scratch służyła wyłącznie odczytowi."
+      }
+    },
+    {
+      "title": "Rafał Rutkowski — stand-up w Szczecinku",
+      "category_slug": "stand-up",
+      "start_at": "2026-11-26T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Rafał Rutkowski porówna współczesność z czasami swojego dzieciństwa w czwartym solowym programie.",
+      "description": "Rafał Rutkowski porówna współczesność z czasami swojego dzieciństwa w czwartym solowym programie. Występ w Kinie Wolność jest biletowany i przeznaczony dla widzów od 16 lat. Oficjalna zapowiedź odsyła do sprzedaży KupBilecik.",
+      "location": {
+        "name": "Kino Wolność",
+        "address": "Wyszyńskiego 65",
+        "city": "Szczecinek",
+        "city_slug": "szczecinek",
+        "latitude": 53.70451,
+        "longitude": 16.69844,
+        "coordinate_source": "https://powiatszczecinecki.treespot.pl/93-powiatszczecinecki-kino-wolnosc",
+        "coordinate_note": "Istniejący punkt 59470360-8b5b-4ff5-8c5b-28c156a4581c pod potwierdzonym adresem. Nazwany marker obiektu Kina Wolność z data-latitude/data-longitude i linku Wyznacz trasę w oficjalnej mapie Powiatu Szczecineckiego."
+      },
+      "source_name": "Samorządowa Agencja Promocji i Kultury w Szczecinku",
+      "source_url": "https://sapik.szczecinek.pl/kalendarz-wydarzen/rafal-rutkowski-stand-up-.html",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:24:21Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:24:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Dziadek do orzechów — Królewski Balet Klasyczny w Szczecinku",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-27T19:30:00+01:00",
+      "end_at": null,
+      "short_description": "Królewski Balet Klasyczny zatańczy świąteczną historię Klary do muzyki Czajkowskiego w Kinie Wolność.",
+      "description": "Królewski Balet Klasyczny zatańczy świąteczną historię Klary do muzyki Czajkowskiego w Kinie Wolność. Spektakl potrwa około 110 minut z przerwą. Bilety kosztują 120–160 zł w kasie kina i sprzedaży online.",
+      "location": {
+        "name": "Kino Wolność",
+        "address": "Wyszyńskiego 65",
+        "city": "Szczecinek",
+        "city_slug": "szczecinek",
+        "latitude": 53.70451,
+        "longitude": 16.69844,
+        "coordinate_source": "https://powiatszczecinecki.treespot.pl/93-powiatszczecinecki-kino-wolnosc",
+        "coordinate_note": "Istniejący punkt 59470360-8b5b-4ff5-8c5b-28c156a4581c pod potwierdzonym adresem. Nazwany marker obiektu Kina Wolność z data-latitude/data-longitude i linku Wyznacz trasę w oficjalnej mapie Powiatu Szczecineckiego."
+      },
+      "source_name": "Samorządowa Agencja Promocji i Kultury w Szczecinku",
+      "source_url": "https://sapik.szczecinek.pl/kalendarz-wydarzen/krolewski-balet-klasyczny-dziadek-do-orzechow-.html",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 120,
+      "price_max": 160,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:24:21Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:24:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Kiedy nikt nie patrzy — finisaż fotografii Damiana Budziwojskiego",
+      "category_slug": "kultura",
+      "start_at": "2026-11-28T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Fotograf koncertowy i teatralny Damian Budziwojski pokaże prace poświęcone artystom i kulisom sceny.",
+      "description": "Fotograf koncertowy i teatralny Damian Budziwojski pokaże prace poświęcone artystom i kulisom sceny. Bezpłatny finisaż w filii Dąbrowskiego RDK. Wystawa pozostaje dostępna do 30 listopada.",
+      "location": {
+        "name": "Rzeszowski Dom Kultury — filia Dąbrowskiego",
+        "address": "Jarosława Dąbrowskiego 17",
+        "city": "Rzeszów",
+        "city_slug": "rzeszow",
+        "latitude": 50.0308069610586,
+        "longitude": 21.9954143235238,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Rzesz%C3%B3w%2C%20D%C4%85browskiego%2017",
+        "coordinate_note": "Jedyny dokładny punkt numeru budynku w Geoportalu GUGiK, WGS84. Nazwę miejsca i adres potwierdza organizator."
+      },
+      "source_name": "Rzeszowski Dom Kultury",
+      "source_url": "https://dabrowskiego.rdk.rzeszow.pl/16-30-listopada-2026-wystawa-fotografii-damiana-budziwojskiego-kiedy-nikt-nie-patrzy/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:23:12Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:23:12Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "W stronę nieskończoności — Filharmonia Opolska i Sunjae Ok",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-04T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Sunjae Ok zagra koncert skrzypcowy Korngolda z Orkiestrą Filharmonii Opolskiej pod batutą Jakuba Chrenowicza.",
+      "description": "Sunjae Ok zagra koncert skrzypcowy Korngolda z Orkiestrą Filharmonii Opolskiej pod batutą Jakuba Chrenowicza. W programie są też kompozycje Rodriga i Mozarta. Koncert odbędzie się w sali Państwowej Szkoły Muzycznej przy Strzelców Bytomskich 18. Bilety kosztują 33–59 zł, zależnie od strefy i uprawnienia do ulgi.",
+      "location": {
+        "name": "Państwowa Szkoła Muzyczna I i II stopnia im. Fryderyka Chopina — sala koncertowa",
+        "address": "Strzelców Bytomskich 18",
+        "city": "Opole",
+        "city_slug": "opole",
+        "latitude": 50.6647339329707,
+        "longitude": 17.9165996553665,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Opole%2C%20Strzelc%C3%B3w%20Bytomskich%2018",
+        "coordinate_note": "Jedyny dokładny punkt numeru budynku w Geoportalu GUGiK, WGS84. Nazwę miejsca i adres potwierdza organizator."
+      },
+      "source_name": "Filharmonia Opolska",
+      "source_url": "https://filharmonia.opole.pl/wydarzenia/w-strone-nieskonczonosci/",
+      "evidence_urls": [
+        "https://filharmonia.opole.pl/lokalizacje/panstwowa-szkola-muzyczna-i-i-ii-stopnia-im-f-chopina-w-opolu/"
+      ],
+      "price_type": "paid",
+      "price_min": 33,
+      "price_max": 59,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:25:49Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:23:11Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Magiczny Kuferek Dźwięków — mikołajkowy koncert rodzinny w Opolu",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-06T10:30:00+01:00",
+      "end_at": null,
+      "short_description": "Orkiestra Filharmonii Opolskiej pod dyrekcją Dawida Jarząba zaprosi rodziny do muzycznej zabawy z Magdaleną Wójcik-Gugulską.",
+      "description": "Orkiestra Filharmonii Opolskiej pod dyrekcją Dawida Jarząba zaprosi rodziny do muzycznej zabawy z Magdaleną Wójcik-Gugulską. Pokaz o 10:30 odbędzie się w szkole muzycznej przy Strzelców Bytomskich 18. Bilety kosztują 25–35 zł. Dzieci poniżej 4 lat siedzące na kolanach opiekuna wchodzą bezpłatnie.",
+      "location": {
+        "name": "Państwowa Szkoła Muzyczna I i II stopnia im. Fryderyka Chopina — sala koncertowa",
+        "address": "Strzelców Bytomskich 18",
+        "city": "Opole",
+        "city_slug": "opole",
+        "latitude": 50.6647339329707,
+        "longitude": 17.9165996553665,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Opole%2C%20Strzelc%C3%B3w%20Bytomskich%2018",
+        "coordinate_note": "Jedyny dokładny punkt numeru budynku w Geoportalu GUGiK, WGS84. Nazwę miejsca i adres potwierdza organizator."
+      },
+      "source_name": "Filharmonia Opolska",
+      "source_url": "https://filharmonia.opole.pl/wydarzenia/magiczny-kuferek-dzwiekow-19/",
+      "evidence_urls": [
+        "https://filharmonia.opole.pl/lokalizacje/panstwowa-szkola-muzyczna-i-i-ii-stopnia-im-f-chopina-w-opolu/"
+      ],
+      "price_type": "paid",
+      "price_min": 25,
+      "price_max": 35,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:25:49Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:24:18Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Mikołajkowa misja — Zaginione prezenty w Rudzie Śląskiej",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-06T16:00:00+01:00",
+      "end_at": null,
+      "short_description": "Dorota Banaś i zespół Muzykalni zaproszą dzieci do poszukiwania mikołajkowych prezentów przy muzyce na żywo.",
+      "description": "Dorota Banaś i zespół Muzykalni zaproszą dzieci do poszukiwania mikołajkowych prezentów przy muzyce na żywo. Widowisko dla dzieci od 3 lat potrwa około godziny. Bilety na balkon kosztują 30 zł, na parter 35 zł. Miejskie karty RKS 60+ i RKR 3+ dają 20% rabatu, zniżki się nie łączą.",
+      "location": {
+        "name": "Śląski Teatr Impresaryjny im. Henryka Bisty",
+        "address": "Piotra Niedurnego 69",
+        "city": "Ruda Śląska",
+        "city_slug": "ruda-slaska",
+        "latitude": 50.2877418169001,
+        "longitude": 18.8749571657882,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Ruda%20%C5%9Al%C4%85ska%2C%20Piotra%20Niedurnego%2069",
+        "coordinate_note": "Jedyny dokładny punkt numeru budynku w Geoportalu GUGiK, WGS84. Nazwę miejsca i adres potwierdza organizator."
+      },
+      "source_name": "Śląski Teatr Impresaryjny",
+      "source_url": "https://teatrrudasl.pl/index.php/repertuar/grudzien/mikolajkowa-misja-zaginione-prezenty-widowisko-muzyczne-dla-dzieci-muzykalni-dorota-banas-2",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 30,
+      "price_max": 35,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:24:10Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:24:10Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Universe — Zatrzymać czas w Rudzie Śląskiej",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-11T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Universe zaprezentuje piosenki z nowej płyty i wcześniejsze przeboje. Wieczór otworzy rozmowa z biografem Mirka Breguły.",
+      "description": "Universe zaprezentuje piosenki z nowej płyty i wcześniejsze przeboje. Wieczór otworzy rozmowa z biografem Mirka Breguły. Bilety normalne kosztują 95–100 zł, ulgowe 85–90 zł. Dla grup od 10 osób dostępne są bilety po 72–82 zł w kasie teatru. Posiadacze miejskich kart RKS 60+ i RKR 3+ mają 20% rabatu, zniżki się nie łączą.",
+      "location": {
+        "name": "Śląski Teatr Impresaryjny im. Henryka Bisty",
+        "address": "Piotra Niedurnego 69",
+        "city": "Ruda Śląska",
+        "city_slug": "ruda-slaska",
+        "latitude": 50.2877418169001,
+        "longitude": 18.8749571657882,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Ruda%20%C5%9Al%C4%85ska%2C%20Piotra%20Niedurnego%2069",
+        "coordinate_note": "Jedyny dokładny punkt numeru budynku w Geoportalu GUGiK, WGS84. Nazwę miejsca i adres potwierdza organizator."
+      },
+      "source_name": "Śląski Teatr Impresaryjny",
+      "source_url": "https://teatrrudasl.pl/index.php/repertuar/grudzien/zatrzymac-czas-koncert-zespolu-universe",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 85,
+      "price_max": 100,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:24:12Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:24:12Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Muzyczny Ekspres Polarny — koncert dla dzieci w Rudzie Śląskiej",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-13T16:30:00+01:00",
+      "end_at": null,
+      "short_description": "Grudniowe spotkanie z cyklu Odkrywcy Muzyki łączy słuchanie muzyki z zagadkami i opowieściami o instrumentach.",
+      "description": "Grudniowe spotkanie z cyklu Odkrywcy Muzyki łączy słuchanie muzyki z zagadkami i opowieściami o instrumentach. Program dla dzieci w wieku 5–15 lat poprowadzi Mirosław Krause. Bilety po 25 zł w kasie teatru i online.",
+      "location": {
+        "name": "Śląski Teatr Impresaryjny im. Henryka Bisty",
+        "address": "Piotra Niedurnego 69",
+        "city": "Ruda Śląska",
+        "city_slug": "ruda-slaska",
+        "latitude": 50.2877418169001,
+        "longitude": 18.8749571657882,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Ruda%20%C5%9Al%C4%85ska%2C%20Piotra%20Niedurnego%2069",
+        "coordinate_note": "Jedyny dokładny punkt numeru budynku w Geoportalu GUGiK, WGS84. Nazwę miejsca i adres potwierdza organizator."
+      },
+      "source_name": "Śląski Teatr Impresaryjny",
+      "source_url": "https://teatrrudasl.pl/index.php/repertuar/grudzien/odkrywcy-muzyki-muzyczny-ekspres-polarny-koncert-edukacyjny-dla-dzieci-w-wieku-od-5-do-15-lat",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 25,
+      "price_max": 25,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:24:13Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:24:13Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Grudniowy kominek — Muzyczne podróże w Rudzie Śląskiej",
+      "category_slug": "kultura",
+      "start_at": "2026-12-13T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Mirosław Krause poprowadzi spotkanie muzyczne dla dorosłych z opowieściami o kompozytorach, stylach i historii dźwięków.",
+      "description": "Mirosław Krause poprowadzi spotkanie muzyczne dla dorosłych z opowieściami o kompozytorach, stylach i historii dźwięków. Bilety po 25 zł w sprzedaży Śląskiego Teatru Impresaryjnego.",
+      "location": {
+        "name": "Śląski Teatr Impresaryjny im. Henryka Bisty",
+        "address": "Piotra Niedurnego 69",
+        "city": "Ruda Śląska",
+        "city_slug": "ruda-slaska",
+        "latitude": 50.2877418169001,
+        "longitude": 18.8749571657882,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Ruda%20%C5%9Al%C4%85ska%2C%20Piotra%20Niedurnego%2069",
+        "coordinate_note": "Jedyny dokładny punkt numeru budynku w Geoportalu GUGiK, WGS84. Nazwę miejsca i adres potwierdza organizator."
+      },
+      "source_name": "Śląski Teatr Impresaryjny",
+      "source_url": "https://teatrrudasl.pl/index.php/repertuar/grudzien/muzyczne-podroze-grudniowy-kominek-koncert-popularyzatorski-dla-doroslych",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 25,
+      "price_max": 25,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Po krótkim sprawdzeniu brak potwierdzonej licencji na publikację oficjalnej grafiki w EventMap. Okładkę zapewnia EventVisual.",
+      "checked_at": "2026-11-17T16:24:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-17T16:24:15Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

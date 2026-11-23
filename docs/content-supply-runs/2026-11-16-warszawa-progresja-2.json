@@ -1,0 +1,97 @@
+{
+  "mode": "apply",
+  "checked_at": "2026-11-16T16:30:47.000Z",
+  "results": [
+    {
+      "title": "Underoath + Saosin — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/underoath-saosin-i-promised-the-world-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "ffbdf32f-b3ec-4233-844a-e401c187faa0",
+      "slug": "curated-underoath-saosin-koncert-w-warszawie-warszawa-2027-04-06-29e5a6a9bb39"
+    },
+    {
+      "title": "Moonspell — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/moonspell-iotunn-todomal-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "3ccecf29-cb03-4815-a3c1-3e6a5911307b",
+      "slug": "curated-moonspell-koncert-w-warszawie-warszawa-2027-04-07-e6a0b8599dcf"
+    },
+    {
+      "title": "Pomme — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/pomme-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "6eecc2ed-8e42-4988-9af6-2991e7554de4",
+      "slug": "curated-pomme-koncert-w-warszawie-warszawa-2027-04-10-a1d8b7f70fb2"
+    },
+    {
+      "title": "Morcheeba — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/morcheeba-2",
+      "outcome": "inserted_and_published",
+      "event_id": "c303f23e-d04c-4760-94dc-7f7fb9670d5f",
+      "slug": "curated-morcheeba-koncert-w-warszawie-warszawa-2027-04-13-f2a0c8f96ecc"
+    },
+    {
+      "title": "Rodrigo y Gabriela — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/rodrigo-y-gabriela",
+      "outcome": "inserted_and_published",
+      "event_id": "be1c3e9c-2193-444b-be58-cc2064c7f455",
+      "slug": "curated-rodrigo-y-gabriela-koncert-w-warszawie-warszawa-2027-04-20-8243d5041d33"
+    },
+    {
+      "title": "Ministry + Die Krupps — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/ministry-die-krupps",
+      "outcome": "inserted_and_published",
+      "event_id": "a13427a0-bf53-4097-9ed9-c0a0ae15c4ad",
+      "slug": "curated-ministry-die-krupps-koncert-w-warszawie-warszawa-2027-04-22-b9f51ee69af4"
+    },
+    {
+      "title": "Tarja Turunen — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/tarja-turunen-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "bbd1c665-eef0-4874-bb5d-53ca361de0a0",
+      "slug": "curated-tarja-turunen-koncert-w-warszawie-warszawa-2027-04-25-7896b6295dd3"
+    },
+    {
+      "title": "James Marriott — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/james-marriott-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "166aae2c-d1f1-424c-9d3a-f06160c24c94",
+      "slug": "curated-james-marriott-koncert-w-warszawie-warszawa-2027-05-07-3a9379e000ad"
+    },
+    {
+      "title": "Noga Erez — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/noga-erez-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "5e2f16f2-3de3-4602-940c-2dbab2ec387d",
+      "slug": "curated-noga-erez-koncert-w-warszawie-warszawa-2027-05-10-e03f5e7d8bd9"
+    },
+    {
+      "title": "Ezhel — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/ezhel-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "9f022ff4-3692-4e1c-b348-c28b7d487aec",
+      "slug": "curated-ezhel-koncert-w-warszawie-warszawa-2027-05-22-c953d6ee7813"
+    },
+    {
+      "title": "Leon Bridges — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/leon-bridges-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "3d59ff92-9df0-4f6a-a283-2f08ee72f328",
+      "slug": "curated-leon-bridges-koncert-w-warszawie-warszawa-2027-05-31-0a2729c1ae96"
+    },
+    {
+      "title": "Sleeping With Sirens + Novelists — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/sleeping-with-sirens-novelists-sace6-shyeye-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "feaf315a-29dc-4f25-b6b6-1dfb1300b5f5",
+      "slug": "curated-sleeping-with-sirens-novelists-koncert-w-warszawie-warszawa-2027-06-02-a090e8357de6"
+    },
+    {
+      "title": "The Orchestra — koncert w Warszawie",
+      "source_url": "https://progresja.com/wydarzenie/the-orchestra-2027",
+      "outcome": "inserted_and_published",
+      "event_id": "19fad2b2-1b0e-4546-8837-4b7219a5d457",
+      "slug": "curated-the-orchestra-koncert-w-warszawie-warszawa-2027-06-03-a80bedaf4f41"
+    }
+  ]
+}

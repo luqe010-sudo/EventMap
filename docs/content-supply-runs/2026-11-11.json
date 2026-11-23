@@ -1,0 +1,1023 @@
+{
+  "verified_at": "2026-11-11T12:14:44.536Z",
+  "candidates": 16,
+  "confirmed": 16,
+  "free": 6,
+  "cities": {
+    "tarnow": 4,
+    "zamosc": 2,
+    "dzierzoniow": 4,
+    "elblag": 3,
+    "chojnice": 2,
+    "zywiec": 1
+  },
+  "duplicate_check": 16,
+  "sitemap_status": 200,
+  "events": [
+    {
+      "id": "aeaefe84-4f9a-4743-969d-7eeae93e0486",
+      "title": "Kowboje — spotkanie z Patrycją Mnich i koncert STAFF",
+      "city": "Tarnów",
+      "city_slug": "tarnow",
+      "category": "kultura",
+      "start_at": "2026-11-12T19:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "url": "https://mapaimprez.pl/kultura/tarnow/curated-kowboje-spotkanie-z-patrycja-mnich-i-koncert-staff-tarnow-2026-11-12-48a24f53f1e4",
+      "source_url": "https://old2.tck.pl/wydarzenia/498,kowboje-patrycji-mnich-spotkanie-autorskie-i-koncert-staff",
+      "source_name": "Tarnowskie Centrum Kultury",
+      "latitude": 50.012186,
+      "longitude": 20.9878632,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "6fb1f20e-8126-4fe4-8a65-f07c51452858",
+      "title": "Zamojskie Koncerty Organowe — koncert charytatywny",
+      "city": "Zamość",
+      "city_slug": "zamosc",
+      "category": "koncerty",
+      "start_at": "2026-11-14T19:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "url": "https://mapaimprez.pl/koncerty/zamosc/curated-zamojskie-koncerty-organowe-koncert-charytatywny-zamosc-2026-11-14-e9d2101a3d8a",
+      "source_url": "https://zci.zamosc.pl/news/2610/zamojskie-koncerty-organowe-ndash-koncert-charytatywny-w.html",
+      "source_name": "Biuro Informacji Turystycznej i Promocji Miasta w Zamościu",
+      "latitude": 50.7161407661131,
+      "longitude": 23.2550765200467,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "80b53a81-5be4-47ee-93e4-658243c4f6b3",
+      "title": "Memoriał Piotra Tworza — turniej siatkówki w Dzierżoniowie",
+      "city": "Dzierżoniów",
+      "city_slug": "dzierzoniow",
+      "category": "sport",
+      "start_at": "2026-11-15T10:00:00+01:00",
+      "end_at": "2026-11-15T15:00:00+01:00",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "url": "https://mapaimprez.pl/sport/dzierzoniow/curated-memorial-piotra-tworza-turniej-siatkowki-w-dzierzoniowie-dzierzoniow-2026-11-15-0475884f8502",
+      "source_url": "https://dzierzoniow.pl/index.php/wydarzenia/xxv-memorial-im-piotra-tworza",
+      "source_name": "Urząd Miasta Dzierżoniów",
+      "latitude": 50.7187565644975,
+      "longitude": 16.6438896325112,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "0a2e5f07-db8c-461b-a3b1-e6e7adfca6c9",
+      "title": "Alchemia Kina — spotkania z Andrzejem Sewerynem i Dorotą Chotecką",
+      "city": "Zamość",
+      "city_slug": "zamosc",
+      "category": "kultura",
+      "start_at": "2026-11-17T18:30:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 22,
+      "price_max": 25,
+      "url": "https://mapaimprez.pl/kultura/zamosc/curated-alchemia-kina-spotkania-z-andrzejem-sewerynem-i-dorota-chotecka-zamosc-2026-11-17-47bfcd8c72bb",
+      "source_url": "https://zci.zamosc.pl/news/2603/14-alchemia-kina.html",
+      "source_name": "Biuro Informacji Turystycznej i Promocji Miasta w Zamościu",
+      "latitude": 50.7139855223685,
+      "longitude": 23.269020493343,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "caed2e1a-9f04-4915-a124-237941ed9dd2",
+      "title": "Wędrujcie z nami przez życie — wernisaż Zbigniewa T. Szmurły",
+      "city": "Elbląg",
+      "city_slug": "elblag",
+      "category": "kultura",
+      "start_at": "2026-11-18T18:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "url": "https://mapaimprez.pl/kultura/elblag/curated-wedrujcie-z-nami-przez-zycie-wernisaz-zbigniewa-t-szmurly-elblag-2026-11-18-664ccad26afe",
+      "source_url": "https://swiatowid.elblag.pl/pl/aktualnosci13636,wedrujcie-z-nami-przez-zycie-malarstwo-zbigniewa-t-szmurlo-w-cse-swiatowid",
+      "source_name": "Centrum Spotkań Europejskich „Światowid”",
+      "latitude": 54.1668613,
+      "longitude": 19.4045688,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "191b23f6-b821-451e-b0cd-6b8853d55846",
+      "title": "John Porter — Helicopters ’45 w Chojnicach",
+      "city": "Chojnice",
+      "city_slug": "chojnice",
+      "category": "koncerty",
+      "start_at": "2026-11-19T18:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 120,
+      "price_max": 120,
+      "url": "https://mapaimprez.pl/koncerty/chojnice/curated-john-porter-helicopters-45-w-chojnicach-chojnice-2026-11-19-0b53e8c9c712",
+      "source_url": "https://www.ckchojnice.pl/aktualnosc/koncert-johna-portera-helicopters-45",
+      "source_name": "Chojnickie Centrum Kultury",
+      "latitude": 53.6942,
+      "longitude": 17.56731,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "a00dbce2-700a-433e-8cac-a69339f8231b",
+      "title": "Kolorowe ptaki — rodzinne malowanie w Elblągu",
+      "city": "Elbląg",
+      "city_slug": "elblag",
+      "category": "rodzinne",
+      "start_at": "2026-11-21T09:00:00+01:00",
+      "end_at": "2026-11-21T13:00:00+01:00",
+      "price_type": "paid",
+      "price_min": 50,
+      "price_max": 50,
+      "url": "https://mapaimprez.pl/rodzinne/elblag/curated-kolorowe-ptaki-rodzinne-malowanie-w-elblagu-elblag-2026-11-21-0ea12950ad9f",
+      "source_url": "https://www.swiatowid.elblag.pl/pl/informacje/11667,kalendarz-wydarzen",
+      "source_name": "Centrum Spotkań Europejskich „Światowid”",
+      "latitude": 54.1668613,
+      "longitude": 19.4045688,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "5601493e-7e69-493f-b564-36c3c0b3e089",
+      "title": "Komikslandia — weekend anime i mangi w Tarnowie",
+      "city": "Tarnów",
+      "city_slug": "tarnow",
+      "category": "festiwale",
+      "start_at": "2026-11-21T10:00:00+01:00",
+      "end_at": "2026-11-22T18:00:00+01:00",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "url": "https://mapaimprez.pl/festiwale/tarnow/curated-komikslandia-weekend-anime-i-mangi-w-tarnowie-tarnow-2026-11-21-e2c5231c824b",
+      "source_url": "https://dkwesterplatte.pl/wydarzenia/spoleczne/event-anime-komikslandia-w-twoim-miescie/62",
+      "source_name": "Dom Kultury Westerplatte",
+      "latitude": 50.0273746,
+      "longitude": 21.0086257,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "433f67eb-f819-41f8-afb8-34db9279a17d",
+      "title": "Renata Przemyk — koncert w Poetyckiej Stajni",
+      "city": "Dzierżoniów",
+      "city_slug": "dzierzoniow",
+      "category": "koncerty",
+      "start_at": "2026-11-21T19:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 70,
+      "price_max": 110,
+      "url": "https://mapaimprez.pl/koncerty/dzierzoniow/curated-renata-przemyk-koncert-w-poetyckiej-stajni-dzierzoniow-2026-11-21-6ad55e0bb81c",
+      "source_url": "https://dok.pl/dok/wydarzenia/renata-przemyk-koncert-w-poetyckiej-stajni",
+      "source_name": "Dzierżoniowski Ośrodek Kultury",
+      "latitude": 50.7294858,
+      "longitude": 16.647542,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "ef9c8725-b9da-41ec-b36b-8072bd953f30",
+      "title": "Gala Straussowska — Sinfonia Baltica w Chojnicach",
+      "city": "Chojnice",
+      "city_slug": "chojnice",
+      "category": "koncerty",
+      "start_at": "2026-11-22T16:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 60,
+      "price_max": 60,
+      "url": "https://mapaimprez.pl/koncerty/chojnice/curated-gala-straussowska-sinfonia-baltica-w-chojnicach-chojnice-2026-11-22-25fdf91a3f03",
+      "source_url": "https://www.ckchojnice.pl/aktualnosc/koncert-polskiej-filharmonii-sinfonia-baltica-0",
+      "source_name": "Chojnickie Centrum Kultury",
+      "latitude": 53.6942,
+      "longitude": 17.56731,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "2412f5bc-ccff-46fd-97f4-689eedd9eeea",
+      "title": "Wieża Ciśnień — Tarnowskie Spotkania z Fantastyką",
+      "city": "Tarnów",
+      "city_slug": "tarnow",
+      "category": "festiwale",
+      "start_at": "2026-11-27T18:00:00+01:00",
+      "end_at": "2026-11-29T18:00:00+01:00",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "url": "https://mapaimprez.pl/festiwale/tarnow/curated-wieza-cisnien-tarnowskie-spotkania-z-fantastyka-tarnow-2026-11-27-b034de7d3339",
+      "source_url": "https://dkwesterplatte.pl/wydarzenia/spoleczne/konwent-wieza-cisnien/61",
+      "source_name": "Dom Kultury Westerplatte",
+      "latitude": 50.0273746,
+      "longitude": 21.0086257,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "7b520aae-492e-40eb-a4db-83437283019c",
+      "title": "Pułapka — spektakl w reżyserii Cezarego Żaka",
+      "city": "Dzierżoniów",
+      "city_slug": "dzierzoniow",
+      "category": "kultura",
+      "start_at": "2026-11-29T15:30:00+01:00",
+      "end_at": "2026-11-29T20:30:00+01:00",
+      "price_type": "paid",
+      "price_min": 110,
+      "price_max": null,
+      "url": "https://mapaimprez.pl/kultura/dzierzoniow/curated-pulapka-spektakl-w-rezyserii-cezarego-zaka-dzierzoniow-2026-11-29-8b8ded283f2f",
+      "source_url": "https://dok.pl/dok/wydarzenia/pulapka",
+      "source_name": "Dzierżoniowski Ośrodek Kultury",
+      "latitude": 50.7294858,
+      "longitude": 16.647542,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "a22f718f-3bda-4d13-ab59-3234f19dc8ce",
+      "title": "Muzyczne Krainy — koncert dla dzieci w Elblągu",
+      "city": "Elbląg",
+      "city_slug": "elblag",
+      "category": "rodzinne",
+      "start_at": "2026-12-06T15:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 20,
+      "price_max": 30,
+      "url": "https://mapaimprez.pl/rodzinne/elblag/curated-muzyczne-krainy-koncert-dla-dzieci-w-elblagu-elblag-2026-12-06-cb38bc7b8ecc",
+      "source_url": "https://kino.swiatowid.elblag.pl/31-koncert-muzyki-bajkowej-muzyczne-krainy",
+      "source_name": "Centrum Spotkań Europejskich „Światowid”",
+      "latitude": 54.1668613,
+      "longitude": 19.4045688,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "948f9374-5940-4c39-a99f-8d6558d27c7f",
+      "title": "Julia Pietrucha — Parsley X w Tarnowie",
+      "city": "Tarnów",
+      "city_slug": "tarnow",
+      "category": "koncerty",
+      "start_at": "2026-12-06T20:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 80,
+      "price_max": 80,
+      "url": "https://mapaimprez.pl/koncerty/tarnow/curated-julia-pietrucha-parsley-x-w-tarnowie-tarnow-2026-12-06-1dfd7e497204",
+      "source_url": "https://ftp.tck.pl/wydarzenia/482,koncert-julia-pietrucha-parsley-x",
+      "source_name": "Tarnowskie Centrum Kultury",
+      "latitude": 50.0118308780182,
+      "longitude": 20.9834252633823,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "4f37448b-b606-4a56-9a3e-de4ffb47efe6",
+      "title": "Dziadek do orzechów — International Grand Ballet w Żywcu",
+      "city": "Żywiec",
+      "city_slug": "zywiec",
+      "category": "kultura",
+      "start_at": "2026-12-14T18:30:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 149,
+      "price_max": null,
+      "url": "https://mapaimprez.pl/kultura/zywiec/curated-dziadek-do-orzechow-international-grand-ballet-w-zywcu-zywiec-2026-12-14-867f6bb6a3b8",
+      "source_url": "https://mck.zywiec.pl/kalendarz-imprez/dziadek-do-orzechow,1464.html",
+      "source_name": "Miejskie Centrum Kultury w Żywcu",
+      "latitude": 49.689779,
+      "longitude": 19.1945209,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    },
+    {
+      "id": "f7b612e0-8e4e-426c-bbbb-d26de6dcebb3",
+      "title": "Pani Śnieżynka i Pan Mroźna Minka — koncert rodzinny",
+      "city": "Dzierżoniów",
+      "city_slug": "dzierzoniow",
+      "category": "rodzinne",
+      "start_at": "2026-12-20T16:00:00+01:00",
+      "end_at": "2026-12-20T17:00:00+01:00",
+      "price_type": "paid",
+      "price_min": 16,
+      "price_max": 20,
+      "url": "https://mapaimprez.pl/rodzinne/dzierzoniow/curated-pani-sniezynka-i-pan-mrozna-minka-koncert-rodzinny-dzierzoniow-2026-12-20-209a30c9ad6a",
+      "source_url": "https://dok.pl/index.php/dok/wydarzenia/teatralna-niedziela-20122026-sala-koncertowa-dok-godz-1600-pani-sniezynka-i-pan",
+      "source_name": "Dzierżoniowski Ośrodek Kultury",
+      "latitude": 50.7294858,
+      "longitude": 16.647542,
+      "public_api_status": 200,
+      "html_status": 200,
+      "canonical": true,
+      "sitemap": true,
+      "marker": true,
+      "event_visual": true
+    }
+  ],
+  "checks": {
+    "anonymous_reads": 16,
+    "public_api_reads": 16,
+    "unique_markers": 16,
+    "dry_run_before": 16,
+    "dry_run_after": 16,
+    "manual_duplicates": [
+      {
+        "title": "Kowboje — spotkanie z Patrycją Mnich i koncert STAFF",
+        "city": "Tarnów",
+        "day": "2026-11-12",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Komikslandia — weekend anime i mangi w Tarnowie",
+        "city": "Tarnów",
+        "day": "2026-11-21",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Wieża Ciśnień — Tarnowskie Spotkania z Fantastyką",
+        "city": "Tarnów",
+        "day": "2026-11-27",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Julia Pietrucha — Parsley X w Tarnowie",
+        "city": "Tarnów",
+        "day": "2026-12-06",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Muzyczne Krainy — koncert dla dzieci w Elblągu",
+        "city": "Elbląg",
+        "day": "2026-12-06",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Wędrujcie z nami przez życie — wernisaż Zbigniewa T. Szmurły",
+        "city": "Elbląg",
+        "day": "2026-11-18",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Kolorowe ptaki — rodzinne malowanie w Elblągu",
+        "city": "Elbląg",
+        "day": "2026-11-21",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "John Porter — Helicopters ’45 w Chojnicach",
+        "city": "Chojnice",
+        "day": "2026-11-19",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Gala Straussowska — Sinfonia Baltica w Chojnicach",
+        "city": "Chojnice",
+        "day": "2026-11-22",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Pani Śnieżynka i Pan Mroźna Minka — koncert rodzinny",
+        "city": "Dzierżoniów",
+        "day": "2026-12-20",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Memoriał Piotra Tworza — turniej siatkówki w Dzierżoniowie",
+        "city": "Dzierżoniów",
+        "day": "2026-11-15",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Dziadek do orzechów — International Grand Ballet w Żywcu",
+        "city": "Żywiec",
+        "day": "2026-12-14",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Zamojskie Koncerty Organowe — koncert charytatywny",
+        "city": "Zamość",
+        "day": "2026-11-14",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Alchemia Kina — spotkania z Andrzejem Sewerynem i Dorotą Chotecką",
+        "city": "Zamość",
+        "day": "2026-11-17",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Renata Przemyk — koncert w Poetyckiej Stajni",
+        "city": "Dzierżoniów",
+        "day": "2026-11-21",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      },
+      {
+        "title": "Pułapka — spektakl w reżyserii Cezarego Żaka",
+        "city": "Dzierżoniów",
+        "day": "2026-11-29",
+        "existing_titles": [],
+        "same_source_event_ids": []
+      }
+    ],
+    "importer_tests": {
+      "passed": 9,
+      "total": 9
+    }
+  },
+  "recheck": {
+    "events": 57,
+    "sources": [
+      {
+        "url": "https://pzkosz.pl/aktualnosci/n/70024",
+        "checked_at": "2026-11-11T12:06:17.197Z",
+        "status": 200,
+        "final_url": "https://pzkosz.pl/aktualnosci/n/70024",
+        "flags": []
+      },
+      {
+        "url": "https://zci.zamosc.pl/news/2606/w-mundurze-niepodleglej-ndash-patriotyczne-spotkanie-z.html",
+        "checked_at": "2026-11-11T12:06:17.194Z",
+        "status": 200,
+        "final_url": "https://zci.zamosc.pl/news/2606/w-mundurze-niepodleglej-ndash-patriotyczne-spotkanie-z.html",
+        "flags": []
+      },
+      {
+        "url": "https://craftticket.pl/produkt/targi-rzeczy-wyjatkowych-wroclaw-11-2026",
+        "checked_at": "2026-11-11T12:06:17.198Z",
+        "status": 200,
+        "final_url": "https://craftticket.pl/produkt/targi-rzeczy-wyjatkowych-wroclaw-11-2026/",
+        "flags": []
+      },
+      {
+        "url": "https://mckgorzow.pl/event/jesienne-rozgrzanie-warsztaty-wege-dla-doroslych",
+        "checked_at": "2026-11-11T12:06:17.191Z",
+        "status": 200,
+        "final_url": "https://mckgorzow.pl/event/jesienne-rozgrzanie-warsztaty-wege-dla-doroslych/",
+        "flags": []
+      },
+      {
+        "url": "https://jarmark.poznan.pl/pl",
+        "checked_at": "2026-11-11T12:06:17.190Z",
+        "status": 200,
+        "final_url": "https://jarmark.poznan.pl/pl",
+        "flags": []
+      },
+      {
+        "url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/45-festiwal-generacja-konkurs-przeglad-zespolow",
+        "checked_at": "2026-11-11T12:06:17.185Z",
+        "status": 200,
+        "final_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/45-festiwal-generacja-konkurs-przeglad-zespolow",
+        "flags": []
+      },
+      {
+        "url": "https://ergoarena.pl/wydarzenia-lista/genzie-404-tour",
+        "checked_at": "2026-11-11T12:06:17.193Z",
+        "status": 200,
+        "final_url": "https://ergoarena.pl/wydarzenia-lista/genzie-404-tour/",
+        "flags": []
+      },
+      {
+        "url": "https://zgorzelec.eu/kalendarz-wydarzen/bieg-przy-pochodniach-2026",
+        "checked_at": "2026-11-11T12:06:17.196Z",
+        "status": 200,
+        "final_url": "https://zgorzelec.eu/kalendarz-wydarzen/bieg-przy-pochodniach-2026/",
+        "flags": []
+      },
+      {
+        "url": "https://zgorzelec.eu/kalendarz-wydarzen/sportowy-patriotyzm-na-tartanie-cykl-biegowy-3-2-1-start",
+        "checked_at": "2026-11-11T12:06:17.188Z",
+        "status": 200,
+        "final_url": "https://zgorzelec.eu/kalendarz-wydarzen/sportowy-patriotyzm-na-tartanie-cykl-biegowy-3-2-1-start/",
+        "flags": []
+      },
+      {
+        "url": "https://www.gdansk.pl/wydarzenia/Polski-Chor-Kameralny-koncert-J-S-Bach-Wielkie-motety,w,43841",
+        "checked_at": "2026-11-11T12:06:17.040Z",
+        "status": 500,
+        "final_url": "https://www.gdansk.pl/wydarzenia/Polski-Chor-Kameralny-koncert-J-S-Bach-Wielkie-motety,w,43841",
+        "flags": []
+      },
+      {
+        "url": "https://www.sopot.pl/aktualnosc/13475/fale-2026-w-sopocie-targi-mody-i-designu-nad-morzem",
+        "checked_at": "2026-11-11T12:06:23.122Z",
+        "status": 200,
+        "final_url": "https://www.sopot.pl/aktualnosc/13475/fale-2026-w-sopocie-targi-mody-i-designu-nad-morzem",
+        "flags": []
+      },
+      {
+        "url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy",
+        "checked_at": "2026-11-11T12:06:23.126Z",
+        "status": 200,
+        "final_url": "https://otwock.pl/news__23-otwocki-festiwal-muzyczny-im-jana-staniendy",
+        "flags": []
+      },
+      {
+        "url": "https://www.targi.radom.pl/",
+        "checked_at": "2026-11-11T12:06:23.128Z",
+        "status": 200,
+        "final_url": "https://www.targi.radom.pl/",
+        "flags": []
+      },
+      {
+        "url": "https://krakownh.pl/wydarzenia/niepodlegla-bialo-czerwona-2",
+        "checked_at": "2026-11-11T12:06:23.123Z",
+        "status": 200,
+        "final_url": "https://krakownh.pl/wydarzenia/niepodlegla-bialo-czerwona-2",
+        "flags": []
+      },
+      {
+        "url": "https://biletyexpo.pl/kup-bilet/113",
+        "checked_at": "2026-11-11T12:06:23.130Z",
+        "status": 200,
+        "final_url": "https://biletyexpo.pl/kup-bilet/113",
+        "flags": []
+      },
+      {
+        "url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/z-piesnia-patriotyczna-ku-niepodleglej",
+        "checked_at": "2026-11-11T12:06:23.124Z",
+        "status": 200,
+        "final_url": "https://ck105.koszalin.pl/wydarzenia-kulturalne/z-piesnia-patriotyczna-ku-niepodleglej",
+        "flags": []
+      },
+      {
+        "url": "https://mokmarki.pl/repertuar/2026/10/narodowe-swieto-niepodleglosci-9",
+        "checked_at": "2026-11-11T12:06:23.127Z",
+        "status": 200,
+        "final_url": "https://mokmarki.pl/repertuar/2026/10/narodowe-swieto-niepodleglosci-9/",
+        "flags": []
+      },
+      {
+        "url": "https://visitzielonagora.pl/wydarzenia/marszobieg-niepodleglosciowy",
+        "checked_at": "2026-11-11T12:06:23.124Z",
+        "status": 200,
+        "final_url": "https://visitzielonagora.pl/wydarzenia/marszobieg-niepodleglosciowy/",
+        "flags": []
+      },
+      {
+        "url": "https://filharmonia.rzeszow.pl/produkt/kayah-jazzayah-rzeszow-jazz-festiwal-2026",
+        "checked_at": "2026-11-11T12:06:23.129Z",
+        "status": 200,
+        "final_url": "https://filharmonia.rzeszow.pl/produkt/kayah-jazzayah-rzeszow-jazz-festiwal-2026/",
+        "flags": []
+      },
+      {
+        "url": "https://orkiestraplock.pl/wydarzenie/narodowe-swieto-niepodleglosci-2",
+        "checked_at": "2026-11-11T12:06:23.129Z",
+        "status": 200,
+        "final_url": "https://orkiestraplock.pl/wydarzenie/narodowe-swieto-niepodleglosci-2/",
+        "flags": []
+      },
+      {
+        "url": "https://teatrmuzycznyhalka.rzeszow.pl/2026/10/22/krajobraz-piesnia-pisany-koncert-z-okazji-swieta-11-listopada",
+        "checked_at": "2026-11-11T12:06:26.824Z",
+        "status": 200,
+        "final_url": "https://teatrmuzycznyhalka.rzeszow.pl/2026/10/22/krajobraz-piesnia-pisany-koncert-z-okazji-swieta-11-listopada",
+        "flags": []
+      },
+      {
+        "url": "https://www.biblioteka.sosnowiec.pl/aktualnosci/2347",
+        "checked_at": "2026-11-11T12:06:26.823Z",
+        "status": 200,
+        "final_url": "https://www.biblioteka.sosnowiec.pl/aktualnosci/2347",
+        "flags": [
+          "a w Filii nr 17 [12.11.2026] Uwaga! Listopadowy Kreatywny Senior odwołany! Listopadowe Planszowisko [14.11.2026] Uwaga! Meble na sprzedaż! „DAJ SOBIE CZAS - spotkani"
+        ]
+      },
+      {
+        "url": "https://szczecinek.pl/kalendarz-wydarzen/1525-renata-dancewicz-gosciem-miejskiej-biblioteki-publicznej.html",
+        "checked_at": "2026-11-11T12:06:26.828Z",
+        "status": 200,
+        "final_url": "https://szczecinek.pl/kalendarz-wydarzen/1525-renata-dancewicz-gosciem-miejskiej-biblioteki-publicznej.html",
+        "flags": []
+      },
+      {
+        "url": "https://kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/spiewam-dla-ciebie-ojczyzno.html",
+        "checked_at": "2026-11-11T12:06:26.830Z",
+        "status": 200,
+        "final_url": "https://kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/spiewam-dla-ciebie-ojczyzno.html",
+        "flags": []
+      },
+      {
+        "url": "https://swiatowid.elblag.pl/pl/aktualnosci13589,kobieta-to-ja-trzy-dni-artystycznych-inspiracji-w-cse-swiatowid-13-15112026",
+        "checked_at": "2026-11-11T12:06:26.825Z",
+        "status": 200,
+        "final_url": "https://swiatowid.elblag.pl/pl/aktualnosci13589,kobieta-to-ja-trzy-dni-artystycznych-inspiracji-w-cse-swiatowid-13-15112026",
+        "flags": [
+          "ycie?&rdquo; panel dyskusyjny, Galeria Nobilis, PANEL DYSKUSYJNY ODWOŁANY 16.30 17.15 &bdquo;Wewnętrzny kompas&rdquo; blok I: &bdquo;Poznaj Siebie&rdquo;, Galeria No"
+        ]
+      },
+      {
+        "url": "https://mok.olsztyn.pl/wydarzenia/potancowka-niepodleglosciowa",
+        "checked_at": "2026-11-11T12:06:26.822Z",
+        "status": 200,
+        "final_url": "https://mok.olsztyn.pl/wydarzenia/potancowka-niepodleglosciowa/",
+        "flags": []
+      },
+      {
+        "url": "https://kultura.olawa.pl/wydarzenia/blazej-krol-popiol",
+        "checked_at": "2026-11-11T12:06:26.828Z",
+        "status": 200,
+        "final_url": "https://kultura.olawa.pl/wydarzenia/blazej-krol-popiol/",
+        "flags": [
+          "6 Miejsce: OWE Odra, ul. Młyńska 3 Kup bilet Tweet Opis UWAGA!!! ZMIANA TERMINU KONCERTU BŁAŻEJA KRÓLA. KONCERT ODBĘDZIE SIĘ W DNIU 14 LISTOPADA BR., A NIE 30 KWIETN"
+        ]
+      },
+      {
+        "url": "https://www.i-kolobrzeg.pl/wydarzenie-3491-eska_music_tour_kolobrzeg_2026_young-szczegoly-113320.html",
+        "checked_at": "2026-11-11T12:06:26.826Z",
+        "status": 200,
+        "final_url": "https://www.i-kolobrzeg.pl/wydarzenie-3491-eska_music_tour_kolobrzeg_2026_young-szczegoly-113320.html",
+        "flags": [
+          "zeskich Wystawa fotografii Grzegorza Milewskiego „Ameryka” 18:00 ODWOŁANY - „Kumotry” - Weekend z DKF Sztorm Kliknij, aby przejść do wydarzeń z dnia 16-11-2026 Lis 1",
+          "zeskich Wystawa fotografii Grzegorza Milewskiego „Ameryka” 18:00 ODWOŁANY - „Kumotry” - Weekend z DKF Sztorm Kliknij, aby przejść do wydarzeń z dnia 16-11-2026 Lis 1"
+        ]
+      },
+      {
+        "url": "https://wzorytargi.pl/targi-wzory-w-bialymstoku",
+        "checked_at": "2026-11-11T12:06:26.827Z",
+        "status": 200,
+        "final_url": "https://wzorytargi.pl/targi-wzory-w-bialymstoku/",
+        "flags": []
+      },
+      {
+        "url": "https://filharmonia.rzeszow.pl/produkt/jezioro-labedzie",
+        "checked_at": "2026-11-11T12:06:26.825Z",
+        "status": 200,
+        "final_url": "https://filharmonia.rzeszow.pl/produkt/jezioro-labedzie/",
+        "flags": [
+          "tacjami. Podobne produkty Listopad , Koncerty zewnętrzne KONCERT ODWOŁANY PRZEZ ORGANIZATORA W roli głównej Irena Santor 24.11.2026 19:00 Czytaj Więcej 2027 , Luty ,"
+        ]
+      },
+      {
+        "url": "https://www.opole.pl/dla-mieszkanca/wydarzenie/koncert-z-cyklu-muzyka-w-galerii-czyli-galeria-muzyki-w-wbp",
+        "checked_at": "2026-11-11T12:06:28.633Z",
+        "status": 200,
+        "final_url": "https://www.opole.pl/dla-mieszkanca/wydarzenie/koncert-z-cyklu-muzyka-w-galerii-czyli-galeria-muzyki-w-wbp",
+        "flags": []
+      },
+      {
+        "url": "https://www.muzeumczestochowa.pl/wydarzenia/jesienna-etnobotanika/130",
+        "checked_at": "2026-11-11T12:06:28.636Z",
+        "status": 200,
+        "final_url": "https://www.muzeumczestochowa.pl/wydarzenia/jesienna-etnobotanika/130",
+        "flags": []
+      },
+      {
+        "url": "https://ec1lodz.pl/eventy/warsztaty-lego-build-the-change",
+        "checked_at": "2026-11-11T12:06:28.635Z",
+        "status": 200,
+        "final_url": "https://ec1lodz.pl/eventy/warsztaty-lego-build-the-change",
+        "flags": []
+      },
+      {
+        "url": "https://www.kupbilecik.pl/pl/event/197810/bielawa/stand-up-mama-na-obrotach",
+        "checked_at": "2026-11-11T12:06:28.638Z",
+        "status": 200,
+        "final_url": "https://www.kupbilecik.pl/pl/event/197810/bielawa/stand-up-mama-na-obrotach",
+        "flags": [
+          "mówienia: 10 minut Po tym czasie niezapisane zamówienie zostanie anulowane. Miejsca Dostawa Dane Płatność Zgody Podsumowanie Rozliczenie Sposób otrzymania biletu Wyb"
+        ]
+      },
+      {
+        "url": "https://www.torun.pl/pl/warsztaty-scenariopisarskie-w-kinie-csw",
+        "checked_at": "2026-11-11T12:06:28.637Z",
+        "status": 200,
+        "final_url": "https://www.torun.pl/pl/warsztaty-scenariopisarskie-w-kinie-csw",
+        "flags": []
+      },
+      {
+        "url": "https://ckmuza.eu/17-11-2026-dni-ktore-nam-odebrali-musical",
+        "checked_at": "2026-11-11T12:06:28.634Z",
+        "status": 200,
+        "final_url": "https://ckmuza.eu/17-11-2026-dni-ktore-nam-odebrali-musical/",
+        "flags": [
+          "udentów Uniwersytetu Senioralnego: Pilates i Zdrowy kręgosłup są odwołane. Przepraszamy za niedogodności. • 13.11 (pt.) warsztaty Nordic Walking z P. Lucyną Stępień ",
+          "g z P. Lucyną Stępień dla studentów Uniwersytetu Senioralnego są odwołane. Przepraszamy za niedogodności. Restauracja MUZA: • 11.11 (śr.) jest zarezerwowana. --> REP"
+        ]
+      },
+      {
+        "url": "https://mck.mragowo.pl/pl/news/info/3713/mragowskie-obchody-swieta-niepodleglosci.html",
+        "checked_at": "2026-11-11T12:06:28.638Z",
+        "status": 200,
+        "final_url": "https://mck.mragowo.pl/pl/news/info/3713/mragowskie-obchody-swieta-niepodleglosci.html",
+        "flags": []
+      },
+      {
+        "url": "https://www.ebilet.pl/muzyka/jazz-blues/dzem?city=Radom",
+        "checked_at": "2026-11-11T12:06:28.634Z",
+        "status": 200,
+        "final_url": "https://www.ebilet.pl/muzyka/jazz-blues/dzem?city=Radom",
+        "flags": []
+      },
+      {
+        "url": "https://aleksandrow-lodzki.pl/wydarzenia/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim",
+        "checked_at": "2026-11-11T12:06:28.639Z",
+        "status": 200,
+        "final_url": "https://aleksandrow-lodzki.pl/wydarzenia/swieto-niepodleglosci-powiatowe-obchody-w-aleksandrowie-lodzkim/",
+        "flags": []
+      },
+      {
+        "url": "https://nowosolski.bilety24.pl/wydarzenie?id=168151",
+        "checked_at": "2026-11-11T12:06:28.632Z",
+        "status": 200,
+        "final_url": "https://nowosolski.bilety24.pl/wydarzenie/?id=168151",
+        "flags": []
+      },
+      {
+        "url": "https://www.mokis.myslenice.pl/?id=1197&ram=news-show",
+        "checked_at": "2026-11-11T12:06:30.510Z",
+        "status": 200,
+        "final_url": "https://www.mokis.myslenice.pl/?id=1197&ram=news-show",
+        "flags": []
+      },
+      {
+        "url": "https://zci.zamosc.pl/news/2608/bdquomarsz-do-wolnoscirdquo-ndash-koncert-piesni-patriotycznych-w-zam.html",
+        "checked_at": "2026-11-11T12:06:30.510Z",
+        "status": 200,
+        "final_url": "https://zci.zamosc.pl/news/2608/bdquomarsz-do-wolnoscirdquo-ndash-koncert-piesni-patriotycznych-w-zam.html",
+        "flags": []
+      },
+      {
+        "url": "https://kierunekkultura.pl/wydarzenie/koncert-piosenka-filmem-pisana",
+        "checked_at": "2026-11-11T12:06:30.513Z",
+        "status": 200,
+        "final_url": "https://kierunekkultura.pl/wydarzenie/koncert-piosenka-filmem-pisana",
+        "flags": []
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/poranki-teatralne-c-jak-cyrk",
+        "checked_at": "2026-11-11T12:06:30.508Z",
+        "status": 200,
+        "final_url": "https://prezeroarenagliwice.pl/events/poranki-teatralne-c-jak-cyrk/",
+        "flags": [
+          "j 2027 Koncert André Rieu dowiedz się więcej 21 luty 2025 Bilety wyprzedane: Jubileuszowa trasa Bullet for My Valentine i Trivium z jednym przystankiem w Polsce dowi"
+        ]
+      },
+      {
+        "url": "https://rdk.rzeszow.pl/od-13-listopada-do-3-grudnia-2026-wystawa-malarstwa-ewy-mikuly-przyroda-w-dzien-i-w-nocy",
+        "checked_at": "2026-11-11T12:06:30.511Z",
+        "status": 200,
+        "final_url": "https://rdk.rzeszow.pl/od-13-listopada-do-3-grudnia-2026-wystawa-malarstwa-ewy-mikuly-przyroda-w-dzien-i-w-nocy/",
+        "flags": []
+      },
+      {
+        "url": "https://polsatplusarena.gdynia.pl/kalendarz-wydarzen/exotic-fest-2",
+        "checked_at": "2026-11-11T12:06:30.515Z",
+        "status": 200,
+        "final_url": "https://polsatplusarena.gdynia.pl/kalendarz-wydarzen/exotic-fest-2",
+        "flags": []
+      },
+      {
+        "url": "https://umbielskpodlaski.pl/wydarzenie/koszykarska-ii-liga-64",
+        "checked_at": "2026-11-11T12:06:30.512Z",
+        "status": 200,
+        "final_url": "https://umbielskpodlaski.pl/wydarzenie/koszykarska-ii-liga-64/",
+        "flags": []
+      },
+      {
+        "url": "https://filharmonia.rzeszow.pl/produkt/adam-golicki-the-great-time-rzeszow-jazz-festiwal-2026",
+        "checked_at": "2026-11-11T12:06:30.509Z",
+        "status": 200,
+        "final_url": "https://filharmonia.rzeszow.pl/produkt/adam-golicki-the-great-time-rzeszow-jazz-festiwal-2026/",
+        "flags": []
+      },
+      {
+        "url": "https://www.i-kolobrzeg.pl/wydarzenie-3500-warszawska_orkiestra_sentymentalna_11-szczegoly-113832.html",
+        "checked_at": "2026-11-11T12:06:30.508Z",
+        "status": 200,
+        "final_url": "https://www.i-kolobrzeg.pl/wydarzenie-3500-warszawska_orkiestra_sentymentalna_11.html",
+        "flags": [
+          "zeskich Wystawa fotografii Grzegorza Milewskiego „Ameryka” 18:00 ODWOŁANY - „Kumotry” - Weekend z DKF Sztorm Kliknij, aby przejść do wydarzeń z dnia 16-11-2026 Lis 1",
+          "zeskich Wystawa fotografii Grzegorza Milewskiego „Ameryka” 18:00 ODWOŁANY - „Kumotry” - Weekend z DKF Sztorm Kliknij, aby przejść do wydarzeń z dnia 16-11-2026 Lis 1"
+        ]
+      },
+      {
+        "url": "https://starakopalnia.pl/wydarzenia/czwartkowe-spotkania-z-kultura-i-sztuka-listopad-pelen-inspiracji-2",
+        "checked_at": "2026-11-11T12:06:30.513Z",
+        "status": 200,
+        "final_url": "https://starakopalnia.pl/wydarzenia/czwartkowe-spotkania-z-kultura-i-sztuka-listopad-pelen-inspiracji-2/",
+        "flags": []
+      },
+      {
+        "url": "https://www.gizycko.pl/cztery-pory-roku-z-literatura--3437",
+        "checked_at": "2026-11-11T12:06:32.767Z",
+        "status": 200,
+        "final_url": "https://www.gizycko.pl/cztery-pory-roku-z-literatura--3437",
+        "flags": []
+      },
+      {
+        "url": "https://hobbycon.pl/pl",
+        "checked_at": "2026-11-11T12:06:32.769Z",
+        "status": 200,
+        "final_url": "https://hobbycon.pl/pl",
+        "flags": []
+      },
+      {
+        "url": "https://kartamiejska.um.gorzow.pl/wydarzenia/5146-spotkanie-z-piesnia-koncert-kameralny",
+        "checked_at": "2026-11-11T12:06:32.772Z",
+        "status": 200,
+        "final_url": "https://kartamiejska.um.gorzow.pl/wydarzenia/5146-spotkanie-z-piesnia-koncert-kameralny",
+        "flags": []
+      },
+      {
+        "url": "https://sapik.szczecinek.pl/aktualnosci/tyle-slonca-w-naszym-miescie-muzyczny-wieczor-z-przebojami-anny-jantar-i-jaroslawa-kukulskiego.html",
+        "checked_at": "2026-11-11T12:06:32.772Z",
+        "status": 200,
+        "final_url": "https://sapik.szczecinek.pl/aktualnosci/tyle-slonca-w-naszym-miescie-muzyczny-wieczor-z-przebojami-anny-jantar-i-jaroslawa-kukulskiego.html",
+        "flags": []
+      },
+      {
+        "url": "https://experyment.gdynia.pl/wydarzenia/warsztaty-rodzinne-sladami-niepodleglej-2-0",
+        "checked_at": "2026-11-11T12:06:32.768Z",
+        "status": 200,
+        "final_url": "https://experyment.gdynia.pl/wydarzenia/warsztaty-rodzinne-sladami-niepodleglej-2-0/",
+        "flags": [
+          "ępne miejsca: 15 Godzina: 15:00 Dostępne miejsca: 20 Kup bilet * Brak wolnych miejsc na wybraną godzinę bilety dostępne są również w sprzedaży stacjonarnej, w kasach"
+        ]
+      },
+      {
+        "url": "https://grudziadz.pl/wydarzenie/49/25075/108-rocznica-odzyskania-przez-polske-niepodleglosci",
+        "checked_at": "2026-11-11T12:06:32.768Z",
+        "status": 200,
+        "final_url": "https://grudziadz.pl/wydarzenie/49/25075/108-rocznica-odzyskania-przez-polske-niepodleglosci",
+        "flags": []
+      }
+    ],
+    "alternate_motets_source": {
+      "url": "https://jestemzgdanska.pl/pl/wydarzenia/j.-s.-bach---wielkie-motety-168292470?dataFiltra=2026-11-06",
+      "status": 200
+    },
+    "changes": [
+      {
+        "city": "Gdynia",
+        "event": "Śladami Niepodległej 2.0",
+        "start_at": "2026-11-14T11:00:00+01:00",
+        "change": "0 miejsc online w formularzu dla 11:00. Formularz pokazywał miejsca na 13:00 i 15:00. Organizator prowadzi także sprzedaż stacjonarną.",
+        "url": "https://experyment.gdynia.pl/wydarzenia/warsztaty-rodzinne-sladami-niepodleglej-2-0/",
+        "checked_at": "2026-11-11T12:15:59.018Z"
+      },
+      {
+        "city": "Elbląg",
+        "event": "Kobieta to ja",
+        "start_at": "2026-11-13T10:00:00+01:00",
+        "change": "Odwołany panel „Sztuka kobiet”. Własny wpis o spotkaniu z Katarzyną Figurą pozostaje zgodny z programem.",
+        "url": "https://swiatowid.elblag.pl/pl/aktualnosci13589,kobieta-to-ja-trzy-dni-artystycznych-inspiracji-w-cse-swiatowid-13-15112026"
+      }
+    ]
+  },
+  "deferred": [
+    {
+      "title": "Golec uOrkiestra — koncert kolęd i pastorałek w Tarnowie",
+      "date": "2026-12-29",
+      "reason": "Hala podaje 18:00, miejski kalendarz i sprzedaż eBilet podają 19:00.",
+      "sources": [
+        "https://arena.tarnow.pl/kalendarz/",
+        "https://kultura.tarnow.pl/wydarzenie/golec-uorkiestra-koncert-koled-i-pastoralek/",
+        "https://www.ebilet.pl/muzyka/piosenka/koncert-koled-i-pastoralek-golec-uorkiestra?city=Tarn%C3%B3w"
+      ]
+    }
+  ],
+  "mobile": {
+    "checked_at": "2026-11-11T12:17:47.932Z",
+    "checks": [
+      {
+        "url": "https://mapaimprez.pl/kultura/zamosc/curated-alchemia-kina-spotkania-z-andrzejem-sewerynem-i-dorota-chotecka-zamosc-2026-11-17-47bfcd8c72bb",
+        "viewport": 390,
+        "cover_width": 342,
+        "headline": "Alchemia Kina — spotkania z Andrzejem Sewerynem i Dorotą Chotecką",
+        "footer": "17 lis 2026 · 18:30Zamość",
+        "headline_visible": true,
+        "lines": 5,
+        "line_height": "33.3518px",
+        "range_bottom": 470.421875,
+        "headline_bottom": 466.765625,
+        "page_headline": "Alchemia Kina — spotkania z Andrzejem Sewerynem i Dorotą Chotecką",
+        "footer_visible": true,
+        "cover_fits": true,
+        "photo": null,
+        "photo_loaded": null,
+        "line_clamp": "5"
+      },
+      {
+        "url": "https://mapaimprez.pl/festiwale/tarnow/curated-wieza-cisnien-tarnowskie-spotkania-z-fantastyka-tarnow-2026-11-27-b034de7d3339",
+        "viewport": 390,
+        "cover_width": 342,
+        "headline": "Wieża Ciśnień — Tarnowskie Spotkania z Fantastyką",
+        "footer": "27 lis 2026 · 18:00Tarnów",
+        "headline_visible": true,
+        "lines": 4,
+        "line_height": "33.3518px",
+        "range_bottom": 453.75,
+        "headline_bottom": 450.09375,
+        "page_headline": "Wieża Ciśnień — Tarnowskie Spotkania z Fantastyką",
+        "footer_visible": true,
+        "cover_fits": true,
+        "photo": null,
+        "photo_loaded": null,
+        "line_clamp": "5"
+      },
+      {
+        "url": "https://mapaimprez.pl/rodzinne/elblag/curated-muzyczne-krainy-koncert-dla-dzieci-w-elblagu-elblag-2026-12-06-cb38bc7b8ecc",
+        "viewport": 390,
+        "cover_width": 342,
+        "headline": "Muzyczne Krainy — koncert dla dzieci w Elblągu",
+        "footer": "6 gru 2026 · 15:00Elbląg",
+        "headline_visible": true,
+        "lines": 3,
+        "line_height": "33.3518px",
+        "range_bottom": 437.078125,
+        "headline_bottom": 433.421875,
+        "page_headline": "Muzyczne Krainy — koncert dla dzieci w Elblągu",
+        "footer_visible": true,
+        "cover_fits": true,
+        "photo": null,
+        "photo_loaded": null,
+        "line_clamp": "5"
+      }
+    ]
+  }
+}

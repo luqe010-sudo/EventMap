@@ -1,13 +1,23 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
-// Discovery responses must read current publication state on every request.
-// A CDN cache here would survive revalidatePath and could retain withdrawn events.
+// Browsers and CDNs cannot observe the app's publication invalidation.
 export const PUBLIC_EVENT_NO_STORE_HEADERS = {
   "Cache-Control": "no-store, max-age=0"
 };
 
+export const PUBLIC_MAP_MARKER_CACHE_TAG = "public-map-markers";
+
+export function getPublicMapCacheSecret(): string | undefined {
+  return process.env.EVENTMAP_MAP_CACHE_SECRET?.trim() || undefined;
+}
+
+export function revalidatePublicMapMarkerCache(): void {
+  if (getPublicMapCacheSecret()) revalidateTag(PUBLIC_MAP_MARKER_CACHE_TAG);
+}
+
 /** Call after any successful event write, including a recovered partial write. */
 export function revalidatePublicEventCache(): void {
+  revalidatePublicMapMarkerCache();
   revalidatePath("/", "page");
   revalidatePath("/lokalizacja", "page");
 

@@ -8,6 +8,7 @@ import { eventPath } from "@/lib/slugs";
 import { formatEventCardDate, formatEventCardDistance, formatEventCardLocation, formatEventCardPrice } from "@/lib/event-presentation";
 import EventCardSaveButton from "./EventCardSaveButton";
 import EventVisual from "./EventVisual";
+import PromotedBadge from "./PromotedBadge";
 
 export type CarouselEvent = { event: EventItem; distanceKm: number };
 
@@ -17,9 +18,10 @@ type Props = {
   description?: string;
   onOpenEvent?: (eventId: string) => void;
   seeAllHref?: string;
+  footer?: React.ReactNode;
 };
 
-export default function EventCarousel({ events, title, description, onOpenEvent, seeAllHref }: Props) {
+export default function EventCarousel({ events, title, description, onOpenEvent, seeAllHref, footer }: Props) {
   const id = useId();
   const track = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ left: false, right: false });
@@ -75,7 +77,12 @@ export default function EventCarousel({ events, title, description, onOpenEvent,
             }}>
               <div className="eventCarouselImageWrap"><EventVisual event={event} /></div>
               <div className="eventCarouselBody">
-                <span className="eventCarouselCategory" style={{ color: event.categoryColor }}>{event.category}</span>
+                {event.isFeatured ? (
+                  <span className="eventCarouselMeta">
+                    <span className="eventCarouselCategory" style={{ color: event.categoryColor }}>{event.category}</span>
+                    <PromotedBadge />
+                  </span>
+                ) : <span className="eventCarouselCategory" style={{ color: event.categoryColor }}>{event.category}</span>}
                 <h3>{event.title}</h3>
                 <time className="eventCarouselDate" dateTime={event.startDate}>
                   <CalendarDays size={14} aria-hidden="true" />
@@ -90,6 +97,7 @@ export default function EventCarousel({ events, title, description, onOpenEvent,
         ))}
       </div>
       {canScroll ? <p className="eventCarouselHint">Przesuń karty lub użyj strzałek, aby zobaczyć więcej.</p> : null}
+      {footer}
     </section>
   );
 }

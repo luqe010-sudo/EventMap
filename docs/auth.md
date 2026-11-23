@@ -50,7 +50,7 @@ Route handler `/auth/callback`:
 4. Jesli uzytkownik rozpoczal zwykle logowanie, ale Google dopiero utworzylo jego konto, przekierowuje na obowiazkowy `/auth/onboarding`.
 5. Onboarding wymaga akceptacji regulaminu, potwierdzenia polityki prywatnosci/cookies i wyboru roli `user` albo `organizer`.
 6. Dopiero po zatwierdzeniu tworzy lub uzupelnia profil; rola `admin` nigdy nie moze zostac nadana przez ten przeplyw.
-7. Dla nowego organizatora tworzy `organizers` i `organizer_users`, jesli powiazanie jeszcze nie istnieje.
+7. Przy wyborze organizatora wywołuje `upgrade_my_organizer_account`. Funkcja zapisuje organizację, członkostwo i rolę w jednej transakcji. Zwykłe logowanie zachowuje dotychczasową rolę. [Kolejność wdrożenia](organizer-account-upgrade-proposal.md).
 
 Zamiar rejestracji, rola i nazwa organizatora sa przechowywane przez maksymalnie 10 minut w cookie `HttpOnly`, `SameSite=Lax`, ograniczonym do `/auth/callback`. Niedokonczony onboarding jest autoryzowany osobnym cookie HttpOnly przez 30 minut. Ukonczenie jest oznaczane w `auth.users.user_metadata.eventmap_onboarding_completed`; nie wymaga to migracji tabel `public`. Konto utworzone przez Google przed dodaniem tego oznaczenia zostanie skierowane na onboarding przy kolejnym logowaniu Google.
 
@@ -73,7 +73,7 @@ Jesli logowanie zwroci blad `Email not confirmed`, kod pokazuje komunikat w form
 
 `lib/supabase-user.ts` tworzy klienta Supabase przez `createServerClient` z `@supabase/ssr`. Klient korzysta z cookies Next.js.
 
-Globalny `middleware.ts` nie jest obecnie uzywany. Sesja jest odczytywana w server components, server actions i route handlers przez `createSupabaseUserClient()`. W przeplywie Google cookie sesyjne sa ustawiane podczas wymiany kodu PKCE w `/auth/callback`; odzyskiwanie hasła ustawia je w `/auth/recovery` po wymianie kodu albo weryfikacji tokenu recovery.
+`middleware.ts` odnawia cookies sesji dla ścieżek `/organizer`. Sesję odczytuje `createSupabaseUserClient()` w Server Components, Server Actions i Route Handlers. Logowanie Google ustawia cookie sesyjne podczas wymiany kodu PKCE w `/auth/callback`. Odzyskiwanie hasła ustawia je w `/auth/recovery` po wymianie kodu albo weryfikacji tokenu recovery.
 
 ## Profil uzytkownika
 
@@ -109,6 +109,8 @@ Kod zaklada role w `profiles.role`:
 - jesli konto organizatora nie ma memberships, panel pokazuje empty state "Brakuje organizatora".
 
 W praktyce funkcje organizatora wymagaja memberships, bo operuja na `submitted_by_organizer_id`.
+
+Formularz rozszerzenia konta w panelu i rejestracja organizatora przez Google korzystają z tego samego RPC z sesją zalogowanego użytkownika. Ponowienie po utracie odpowiedzi zwraca istniejące powiązanie. Konto z rolą organizatora bez członkostwa wymaga sprawdzenia przez administratora. [Kontrakt zapisu](organizer-account-upgrade-proposal.md).
 
 ## Navbar
 

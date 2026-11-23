@@ -1,0 +1,370 @@
+{
+  "checked_at": "2026-11-23T16:00:43Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Warmińsko-mazurskie, opolskie i lubuskie: Olsztyn, Giżycko, Opole i Nowa Sól. Rodziny, kultura, targi i koncerty; cztery wydarzenia z bezpłatnym wstępem.",
+  "geocoding_attribution": "GUGiK oraz udokumentowane punkty istniejących obiektów.",
+  "events": [
+    {
+      "title": "Lista przebojów street artu — spotkanie z Proembrionem",
+      "category_slug": "kultura",
+      "start_at": "2026-11-25T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Krzysztof Syruć opowie o najciekawszych zjawiskach sztuki ulicznej w Galerii DOBRO.",
+      "description": "Artysta i wykładowca Krzysztof Syruć, znany jako Proembrion, poprowadzi spotkanie o street arcie. Przyjrzy się wybranym zjawiskom sztuki powstającej poza galeriami. Początek o 18:00 w Galerii DOBRO przy Starym Mieście 24/25. Wstęp wolny.",
+      "location": {
+        "name": "Galeria DOBRO",
+        "address": "Stare Miasto 24/25",
+        "city": "Olsztyn",
+        "city_slug": "olsztyn",
+        "latitude": 53.7765089227938,
+        "longitude": 20.4753991151132,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Olsztyn%2C%20Stare%20Miasto%2024%2F25",
+        "coordinate_checked_at": "2026-11-23T15:57:37Z",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK, accuracy=1. Nazwa ulicy/placu i numer zgodne z aktualną zapowiedzią lub kontaktem instytucji."
+      },
+      "source_name": "Miejski Ośrodek Kultury w Olsztynie",
+      "source_url": "https://mok.olsztyn.pl/wydarzenia/lista-przebojow-street-artu/",
+      "evidence_urls": [
+        "https://mok.olsztyn.pl/kontakt/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji do dalszej publikacji oficjalnych materiałów. Istniejący EventVisual zapewnia oprawę; bez kopiowania plakatów i bez generowania AI.",
+      "checked_at": "2026-11-23T15:54:36Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-23T15:54:36Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Barstukowy Plac Budowy — rodzinne warsztaty w Amfiteatrze",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-28T12:00:00+01:00",
+      "end_at": "2026-11-28T15:00:00+01:00",
+      "short_description": "Wspólne tworzenie domków dla bohaterów warmińskich legend z naturalnych materiałów.",
+      "description": "Mieszkańcy Olsztyna pomogą stworzyć Wioskę Barstuków, małych bohaterów warmińskich legend. Warsztaty w Amfiteatrze obejmą budowanie domków i przygotowywanie ich wyposażenia z naturalnych materiałów. Zajęcia 28 listopada potrwają od 12:00 do 15:00. Wstęp bezpłatny, udział dla chętnych niezależnie od doświadczenia.",
+      "location": {
+        "name": "Amfiteatr im. Czesława Niemena",
+        "address": "Zamkowa 1",
+        "city": "Olsztyn",
+        "city_slug": "olsztyn",
+        "latitude": 53.7773205033978,
+        "longitude": 20.4743778301723,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Olsztyn%2C%20Zamkowa%201",
+        "coordinate_checked_at": "2026-11-23T15:57:38Z",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK, accuracy=1. Nazwa ulicy/placu i numer zgodne z aktualną zapowiedzią lub kontaktem instytucji."
+      },
+      "source_name": "Miejski Ośrodek Kultury w Olsztynie",
+      "source_url": "https://mok.olsztyn.pl/wydarzenia/barstukowy-plac-budowy-odslona-pierwsza/",
+      "evidence_urls": [
+        "https://mok.olsztyn.pl/kontakt/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji do dalszej publikacji oficjalnych materiałów. Istniejący EventVisual zapewnia oprawę; bez kopiowania plakatów i bez generowania AI.",
+      "checked_at": "2026-11-23T15:54:37Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-23T15:54:37Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Odpalamy Święta 2026 — rozświetlenie choinki w Olsztynie",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-06T16:30:00+01:00",
+      "end_at": null,
+      "short_description": "Wernisaż dziecięcych prac, skrzypcowe widowisko i wspólne kolędowanie na Starym Mieście.",
+      "description": "Program rozpocznie wernisaż Niewidzialna ręka Barstuka o 16:30 w Galerii DOBRO. O 16:35 na Rynku Starego Miasta zaplanowano LED Violin Show w wykonaniu LinViolin. O 17:00 uczestnicy rozświetlą miejską choinkę i zaśpiewają kolędy z chórem Bel Canto. Wstęp bezpłatny.",
+      "location": {
+        "name": "Galeria DOBRO",
+        "address": "Stare Miasto 24/25",
+        "city": "Olsztyn",
+        "city_slug": "olsztyn",
+        "latitude": 53.7765089227938,
+        "longitude": 20.4753991151132,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Olsztyn%2C%20Stare%20Miasto%2024%2F25",
+        "coordinate_checked_at": "2026-11-23T15:57:37Z",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK, accuracy=1. Nazwa ulicy/placu i numer zgodne z aktualną zapowiedzią lub kontaktem instytucji."
+      },
+      "source_name": "Miejski Ośrodek Kultury w Olsztynie",
+      "source_url": "https://mok.olsztyn.pl/wydarzenia/odpalamy-swieta-2026/",
+      "evidence_urls": [
+        "https://mok.olsztyn.pl/kontakt/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji do dalszej publikacji oficjalnych materiałów. Istniejący EventVisual zapewnia oprawę; bez kopiowania plakatów i bez generowania AI.",
+      "checked_at": "2026-11-23T15:54:38Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-23T15:54:38Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Warmiński Jarmark Świąteczny 2026 w Olsztynie",
+      "category_slug": "targi",
+      "start_at": "2026-12-10T13:00:00+01:00",
+      "end_at": "2026-12-13T18:00:00+01:00",
+      "short_description": "Czterodniowy kiermasz na Starym Mieście z regionalnymi smakami, świątecznymi stoiskami i koncertami.",
+      "description": "Jarmark odbędzie się 10–13 grudnia na olsztyńskim Starym Mieście. Strefa handlowa działa: czwartek 13:00–20:00, piątek i sobota 13:00–22:00, niedziela 14:00–18:00. Na scenie na Targu Rybnym wystąpią m.in. AudioFeels, Paula Roma, Wiktor Dyduła i Krystian Ochman. Wstęp wolny; zakupy i poszczególne atrakcje mogą być płatne. Szczegółowy program koncertów i atrakcji podaje MOK.",
+      "location": {
+        "city": "Olsztyn",
+        "name": "Targ Rybny",
+        "address": "Targ Rybny",
+        "latitude": 53.7773,
+        "longitude": 20.4764,
+        "coordinate_source": "https://commons.wikimedia.org/wiki/Category:Rybny_Square_in_Olsztyn",
+        "coordinate_note": "Współrzędne nazwanego placu na mapie Wikimedia/OpenStreetMap. MOK wskazuje sam plac jako miejsce potańcówki. Użyto istniejącego punktu; miejsce i adres potwierdzono ponownie w aktualnym źródle.",
+        "city_slug": "olsztyn"
+      },
+      "source_name": "Miejski Ośrodek Kultury w Olsztynie",
+      "source_url": "https://mok.olsztyn.pl/wydarzenia/warminski-jarmark-swiateczny-2026-dzien-1/",
+      "evidence_urls": [
+        "https://mok.olsztyn.pl/warminski-jarmark-swiateczny-2026/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji do dalszej publikacji oficjalnych materiałów. Istniejący EventVisual zapewnia oprawę; bez kopiowania plakatów i bez generowania AI.",
+      "checked_at": "2026-11-23T15:55:19Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-23T15:55:19Z",
+        "no_cancellation_notice": true
+      },
+      "schedule_note": "start_at i end_at opisują otwarcie i zamknięcie strefy handlowej. Nie oznaczają ciągłego działania ani końca wszystkich koncertów."
+    },
+    {
+      "title": "Familijny Spektakl Iluzji — Łukasz Ogonowski w Giżycku",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-06T15:30:00+01:00",
+      "end_at": null,
+      "short_description": "Interaktywny pokaz iluzji dla dzieci i dorosłych w sali Giżyckiego Centrum Kultury.",
+      "description": "Łukasz Ogonowski zaprosi rodziny na około godzinny pokaz iluzji z udziałem publiczności. Wybrane przedstawienie rozpocznie się 6 grudnia o 15:30 w Giżyckim Centrum Kultury przy Konarskiego 8. Wstęp biletowany; aktualne ceny i dostępność podaje oficjalna sprzedaż GCK. Organizator zapowiada także osobny pokaz o 18:00.",
+      "location": {
+        "name": "Giżyckie Centrum Kultury",
+        "city": "Giżycko",
+        "city_slug": "gizycko",
+        "address": "Konarskiego 8",
+        "latitude": 54.038106,
+        "longitude": 21.767351,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/678/gizyckie-centrum-kultury",
+        "coordinate_note": "Pinezka istniejącego obiektu. Adres potwierdza organizator. Użyto istniejącego punktu; miejsce i adres potwierdzono ponownie w aktualnym źródle."
+      },
+      "source_name": "Giżyckie Centrum Kultury",
+      "source_url": "https://gck.gizycko.pl/familijny-spektakl-iluzji-lukasz-ogonowski-6-grudnia/",
+      "evidence_urls": [
+        "https://bilety.gizycko.pl/",
+        "https://gck.gizycko.pl/pracownicy/"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji do dalszej publikacji oficjalnych materiałów. Istniejący EventVisual zapewnia oprawę; bez kopiowania plakatów i bez generowania AI.",
+      "checked_at": "2026-11-23T15:55:20Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-23T15:55:20Z",
+        "no_cancellation_notice": true,
+        "year_and_availability": {
+          "source_url": "https://bilety.gizycko.pl/",
+          "checked_at": "2026-11-23T15:55:53Z",
+          "year": 2026,
+          "availability": "Duża dostępność biletów dla 6.12.2026 o 15:30."
+        }
+      }
+    },
+    {
+      "title": "Spanish Night — hiszpańskie rytmy z Filharmonią Opolską",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-27T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Orkiestra pod dyrekcją Raúla Miguela Rodrígueza zagra muzykę Chabriera, Turiny i de Falli.",
+      "description": "Filharmonia Opolska przedstawi program inspirowany muzyką Hiszpanii. Pod batutą Raúla Miguela Rodrígueza zabrzmią utwory Chabriera, Fernándeza Arbósa, Turiny i Manuela de Falli. Koncert o 19:00 odbędzie się w sali Państwowej Szkoły Muzycznej przy Strzelców Bytomskich 18. Bilety 39–69 zł zależnie od strefy i uprawnienia do ulgi.",
+      "location": {
+        "name": "Państwowa Szkoła Muzyczna I i II stopnia im. Fryderyka Chopina — sala koncertowa",
+        "address": "Strzelców Bytomskich 18",
+        "city": "Opole",
+        "city_slug": "opole",
+        "latitude": 50.6647339,
+        "longitude": 17.9165997,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Opole%2C%20Strzelc%C3%B3w%20Bytomskich%2018",
+        "coordinate_note": "Jedyny dokładny punkt numeru budynku w Geoportalu GUGiK, WGS84. Nazwę miejsca i adres potwierdza organizator. Użyto istniejącego punktu; miejsce i adres potwierdzono ponownie w aktualnym źródle."
+      },
+      "source_name": "Filharmonia Opolska",
+      "source_url": "https://filharmonia.opole.pl/wydarzenia/spanish-night/",
+      "evidence_urls": [
+        "https://filharmonia.opole.pl/lokalizacje/panstwowa-szkola-muzyczna-i-i-ii-stopnia-im-f-chopina-w-opolu/"
+      ],
+      "price_type": "paid",
+      "price_min": 39,
+      "price_max": 69,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji do dalszej publikacji oficjalnych materiałów. Istniejący EventVisual zapewnia oprawę; bez kopiowania plakatów i bez generowania AI.",
+      "checked_at": "2026-11-23T15:55:19Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-23T15:55:19Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Gruzińska dusza — Magdalena Bojanowicz i Filharmonia Opolska",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-11T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Wiolonczelistka Magdalena Bojanowicz wystąpi z orkiestrą pod dyrekcją Revaza Javakhishviliego.",
+      "description": "W programie koncertu znajdą się kompozycje Johanna Christiana Bacha, Lutosławskiego, Carla Philippa Emanuela Bacha oraz twórców gruzińskich: Sulkhana Nasidzego i Bidziny Kvernadzego. Na wiolonczeli zagra Magdalena Bojanowicz, dyryguje Revaz Javakhishvili. Początek o 19:00 w sali PSM przy Strzelców Bytomskich 18. Bilety 33–59 zł według strefy i ulg.",
+      "location": {
+        "name": "Państwowa Szkoła Muzyczna I i II stopnia im. Fryderyka Chopina — sala koncertowa",
+        "address": "Strzelców Bytomskich 18",
+        "city": "Opole",
+        "city_slug": "opole",
+        "latitude": 50.6647339,
+        "longitude": 17.9165997,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Opole%2C%20Strzelc%C3%B3w%20Bytomskich%2018",
+        "coordinate_note": "Jedyny dokładny punkt numeru budynku w Geoportalu GUGiK, WGS84. Nazwę miejsca i adres potwierdza organizator. Użyto istniejącego punktu; miejsce i adres potwierdzono ponownie w aktualnym źródle."
+      },
+      "source_name": "Filharmonia Opolska",
+      "source_url": "https://filharmonia.opole.pl/wydarzenia/koncert-symfoniczny-6/",
+      "evidence_urls": [
+        "https://filharmonia.opole.pl/lokalizacje/panstwowa-szkola-muzyczna-i-i-ii-stopnia-im-f-chopina-w-opolu/"
+      ],
+      "price_type": "paid",
+      "price_min": 33,
+      "price_max": 59,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji do dalszej publikacji oficjalnych materiałów. Istniejący EventVisual zapewnia oprawę; bez kopiowania plakatów i bez generowania AI.",
+      "checked_at": "2026-11-23T15:55:22Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-23T15:55:22Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Koncert relaksacyjny Filharmonii Opolskiej — Lexus Opole",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-16T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Wieczór muzyki relaksacyjnej w nowej lokalizacji przy Wrocławskiej 129.",
+      "description": "Filharmonia Opolska zaprasza na koncert relaksacyjny o 19:00. Organizator zmienił miejsce wydarzenia: koncert odbędzie się w salonie Lexus Opole przy Wrocławskiej 129. Warto zabrać własną karimatę i koc oraz wygodny strój. Bilet pojedynczy kosztuje 50 zł; karnety na cykl można kupić w kasie filharmonii.",
+      "location": {
+        "name": "Salon Lexus Opole",
+        "address": "Wrocławska 129",
+        "city": "Opole",
+        "city_slug": "opole",
+        "latitude": 50.6793527509705,
+        "longitude": 17.8789501713593,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Opole%2C%20Wroc%C5%82awska%20129",
+        "coordinate_checked_at": "2026-11-23T15:57:40Z",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK, accuracy=1. Nazwa ulicy/placu i numer zgodne z aktualną zapowiedzią lub kontaktem instytucji."
+      },
+      "source_name": "Filharmonia Opolska",
+      "source_url": "https://filharmonia.opole.pl/wydarzenia/koncert-relaksacyjny-3/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 50,
+      "price_max": 50,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji do dalszej publikacji oficjalnych materiałów. Istniejący EventVisual zapewnia oprawę; bez kopiowania plakatów i bez generowania AI.",
+      "checked_at": "2026-11-23T15:55:20Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-23T15:55:20Z",
+        "no_cancellation_notice": true
+      },
+      "source_note": "Zastosowano bieżący komunikat o zmianie miejsca, zamiast wcześniejszej lokalizacji w PSM."
+    },
+    {
+      "title": "Bohdan Luts — zwycięzca Konkursu Wieniawskiego w Opolu",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-18T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Skrzypek Bohdan Luts wystąpi z Orkiestrą Filharmonii Opolskiej pod batutą Jakuba Chrenowicza.",
+      "description": "Koncert w ramach trasy laureatów Konkursu Wieniawskiego rozpocznie się o 19:00 w sali PSM przy Strzelców Bytomskich 18. Bohdan Luts zagra II Koncert skrzypcowy Wieniawskiego. Orkiestra pod dyrekcją Jakuba Chrenowicza wykona także muzykę Bacha w opracowaniu Weberna i Symfonię Wojskową Haydna. Bilety 39–69 zł według strefy i ulg.",
+      "location": {
+        "name": "Państwowa Szkoła Muzyczna I i II stopnia im. Fryderyka Chopina — sala koncertowa",
+        "address": "Strzelców Bytomskich 18",
+        "city": "Opole",
+        "city_slug": "opole",
+        "latitude": 50.6647339,
+        "longitude": 17.9165997,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Opole%2C%20Strzelc%C3%B3w%20Bytomskich%2018",
+        "coordinate_note": "Jedyny dokładny punkt numeru budynku w Geoportalu GUGiK, WGS84. Nazwę miejsca i adres potwierdza organizator. Użyto istniejącego punktu; miejsce i adres potwierdzono ponownie w aktualnym źródle."
+      },
+      "source_name": "Filharmonia Opolska",
+      "source_url": "https://filharmonia.opole.pl/wydarzenia/zwyciezca-konkursu-wieniawskiego/",
+      "evidence_urls": [
+        "https://filharmonia.opole.pl/lokalizacje/panstwowa-szkola-muzyczna-i-i-ii-stopnia-im-f-chopina-w-opolu/"
+      ],
+      "price_type": "paid",
+      "price_min": 39,
+      "price_max": 69,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji do dalszej publikacji oficjalnych materiałów. Istniejący EventVisual zapewnia oprawę; bez kopiowania plakatów i bez generowania AI.",
+      "checked_at": "2026-11-23T15:55:21Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-23T15:55:21Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "PSC Jazz Trio — przedpremierowy koncert Try This w Nowej Soli",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-27T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Robert Chyła, Wojciech Pruszyński i Arek Skolik zagrają w Magazynie Solnym.",
+      "description": "PSC Jazz Trio zaprezentuje materiał z albumu Try This. Saksofon, organy Hammonda i perkusję połączą Robert Chyła, Wojciech Pruszyński i Arek Skolik, sięgając po polskie kompozycje jazzowe i improwizację. Koncert rozpocznie się o 18:00 w Magazynie Solnym przy placu Solnym 1. Bilet normalny w oficjalnej sprzedaży NDK kosztuje 43 zł.",
+      "location": {
+        "name": "Magazyn Solny",
+        "city": "Nowa Sól",
+        "city_slug": "nowa-sol",
+        "address": "Plac Solny 1",
+        "latitude": 51.8053186,
+        "longitude": 15.7237021,
+        "coordinate_source": "https://zabytek.pl/pl/obiekty/g-214161",
+        "coordinate_note": "Pinezka zabytkowego budynku obok placu Solnego z mapy NID. Katalog wydarzeń podaje Plac Solny 1. Punkt porównano z kartą obiektu Loudspot. Użyto istniejącego punktu; miejsce i adres potwierdzono ponownie w aktualnym źródle."
+      },
+      "source_name": "Nowosolski Dom Kultury — oficjalna sprzedaż",
+      "source_url": "https://nowosolski.bilety24.pl/kup-bilety/?id=1023371",
+      "evidence_urls": [
+        "https://nowosolski.bilety24.pl/sprzedaz-biletow/",
+        "https://nowosolski.pl/"
+      ],
+      "price_type": "paid",
+      "price_min": 43,
+      "price_max": 43,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji do dalszej publikacji oficjalnych materiałów. Istniejący EventVisual zapewnia oprawę; bez kopiowania plakatów i bez generowania AI.",
+      "checked_at": "2026-11-23T15:58:23Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-23T15:58:23Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,723 @@
+{
+  "verified_at": "2026-11-18T19:07:34.404Z",
+  "events": [
+    {
+      "id": "835bbded-09e4-4f85-8c45-18b3a78588d6",
+      "title": "Parostatkiem w piękny rejs — Największe Polskie Przeboje w Mrągowie",
+      "url": "https://mapaimprez.pl/koncerty/mragowo/curated-parostatkiem-w-piekny-rejs-najwieksze-polskie-przeboje-w-mragowie-mragowo-2026-11-20-e144e2377003",
+      "source_url": "https://mck.mragowo.pl/pl/news/info/3714/parostatkiem-w-piekny-rejs-najwieksze-polskie-przeboje.html",
+      "city": "Mrągowo",
+      "city_slug": "mragowo",
+      "category": "koncerty",
+      "start_at": "2026-11-20T18:30:00+01:00",
+      "end_at": null,
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "47be67de-569e-4a77-ade2-b3e105dcee8a",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "df6ae4c8-483d-4632-8f09-954d4d5c0c2b",
+      "title": "Opowieść wigilijna — Teatr Piasku Tetiany Galitsyny w Mrągowie, godz. 10:00",
+      "url": "https://mapaimprez.pl/rodzinne/mragowo/curated-opowiesc-wigilijna-teatr-piasku-tetiany-galitsyny-w-mragowie-godz-10-00-mragowo-2026-11-25-c2849bde90a6",
+      "source_url": "https://mck.mragowo.pl/pl/news/info/3715/teatr-piasku-tetiany-galitsyny-opowiesc-wigilijna.html",
+      "city": "Mrągowo",
+      "city_slug": "mragowo",
+      "category": "rodzinne",
+      "start_at": "2026-11-25T10:00:00+01:00",
+      "end_at": null,
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "47be67de-569e-4a77-ade2-b3e105dcee8a",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "ef7c5ef7-b380-4808-afb5-fe762c098051",
+      "title": "Opowieść wigilijna — Teatr Piasku Tetiany Galitsyny w Mrągowie, godz. 17:00",
+      "url": "https://mapaimprez.pl/rodzinne/mragowo/curated-opowiesc-wigilijna-teatr-piasku-tetiany-galitsyny-w-mragowie-godz-17-00-mragowo-2026-11-25-919e0105f42d",
+      "source_url": "https://mck.mragowo.pl/pl/news/info/3715/teatr-piasku-tetiany-galitsyny-opowiesc-wigilijna.html",
+      "city": "Mrągowo",
+      "city_slug": "mragowo",
+      "category": "rodzinne",
+      "start_at": "2026-11-25T17:00:00+01:00",
+      "end_at": null,
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "47be67de-569e-4a77-ade2-b3e105dcee8a",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "a4714bd0-6c3b-4386-b776-54fccab5f83e",
+      "title": "Stwórz świąteczny wianek — warsztaty w Mrągowie",
+      "url": "https://mapaimprez.pl/kultura/mragowo/curated-stworz-swiateczny-wianek-warsztaty-w-mragowie-mragowo-2026-12-14-baf256650cf4",
+      "source_url": "https://mck.mragowo.pl/pl/news/info/3743/stworz-swiateczny-wianek.html",
+      "city": "Mrągowo",
+      "city_slug": "mragowo",
+      "category": "kultura",
+      "start_at": "2026-12-14T17:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 119,
+      "price_max": 119,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "47be67de-569e-4a77-ade2-b3e105dcee8a",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "a76c6dfa-9e84-4b7a-9bb7-4f138120f8b3",
+      "title": "DAGADANA z orkiestrą — finał konkursu im. Haliny Poświatowskiej",
+      "url": "https://mapaimprez.pl/koncerty/czestochowa/curated-dagadana-z-orkiestra-final-konkursu-im-haliny-poswiatowskiej-czestochowa-2026-11-21-808c567105a4",
+      "source_url": "https://www.filharmonia.com.pl/repertuar/2854-DAGADANA-z-orkiestra",
+      "city": "Częstochowa",
+      "city_slug": "czestochowa",
+      "category": "koncerty",
+      "start_at": "2026-11-21T17:00:00+01:00",
+      "end_at": null,
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "ee7acd10-6a64-4251-a730-988988de66b8",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "bc4c4c30-93ea-42f1-8582-07002aeed71d",
+      "title": "Wieczór Uniwersytecki — Moja ballada i Absurdalia",
+      "url": "https://mapaimprez.pl/kultura/czestochowa/curated-wieczor-uniwersytecki-moja-ballada-i-absurdalia-czestochowa-2026-11-25-05d5d227c165",
+      "source_url": "https://www.filharmonia.com.pl/repertuar/2782-WIECZOR-UNIWERSYTECKI",
+      "city": "Częstochowa",
+      "city_slug": "czestochowa",
+      "category": "kultura",
+      "start_at": "2026-11-25T19:00:00+01:00",
+      "end_at": null,
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "ee7acd10-6a64-4251-a730-988988de66b8",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "0e1e60c2-f992-405a-a7b6-195760389784",
+      "title": "Muzyka bez granic — Chór Filharmonii Częstochowskiej",
+      "url": "https://mapaimprez.pl/koncerty/czestochowa/curated-muzyka-bez-granic-chor-filharmonii-czestochowskiej-czestochowa-2026-11-26-8ebacc91711c",
+      "source_url": "https://www.filharmonia.com.pl/repertuar/2776-Muzyka-bez-granic",
+      "city": "Częstochowa",
+      "city_slug": "czestochowa",
+      "category": "koncerty",
+      "start_at": "2026-11-26T19:00:00+01:00",
+      "end_at": null,
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "ee7acd10-6a64-4251-a730-988988de66b8",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "28666ba7-52fb-4478-8c9b-e73050985403",
+      "title": "Postmortem — kulisy medycyny sądowej, wieczór w SOWA Gorzów",
+      "url": "https://mapaimprez.pl/kultura/gorzow-wielkopolski/curated-postmortem-kulisy-medycyny-sadowej-wieczor-w-sowa-gorzow-gorzow-wielkopolski-2026-11-19-3d51b25affc7",
+      "source_url": "https://mckgorzow.pl/event/wieczor-dla-doroslych-postmortem-kulisy-medycyny-sadowej/",
+      "city": "Gorzów Wielkopolski",
+      "city_slug": "gorzow-wielkopolski",
+      "category": "kultura",
+      "start_at": "2026-11-19T18:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "c3588fc4-e761-400e-9457-95acc03398a7",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "4350a94f-d6b3-4746-8018-1835bfb59f4a",
+      "title": "Jeden z nas musi się ożenić — premiera na 5. urodziny Teatru Mostów",
+      "url": "https://mapaimprez.pl/kultura/gorzow-wielkopolski/curated-jeden-z-nas-musi-sie-ozenic-premiera-na-5-urodziny-teatru-mostow-gorzow-wielkopolski-2026-11-19-5adec79bc6a2",
+      "source_url": "https://mckgorzow.pl/event/5-urodziny-teatru-mostow-premiera-komedii-jeden-z-nas-musi-sie-ozenic/",
+      "city": "Gorzów Wielkopolski",
+      "city_slug": "gorzow-wielkopolski",
+      "category": "kultura",
+      "start_at": "2026-11-19T19:00:00+01:00",
+      "end_at": null,
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "dac47d98-c72b-4f42-a392-fb009e2bcdf3",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "f790765f-9a88-45cd-b894-eec5279765d2",
+      "title": "Warsztaty wikliniarskie dla dorosłych — dwa spotkania w Zodiaku",
+      "url": "https://mapaimprez.pl/kultura/gorzow-wielkopolski/curated-warsztaty-wikliniarskie-dla-doroslych-dwa-spotkania-w-zodiaku-gorzow-wielkopolski-2026-11-19-6b47e1ba007b",
+      "source_url": "https://mckgorzow.pl/event/warsztaty-wikliniarskie-dla-doroslych-26/",
+      "city": "Gorzów Wielkopolski",
+      "city_slug": "gorzow-wielkopolski",
+      "category": "kultura",
+      "start_at": "2026-11-19T16:30:00+01:00",
+      "end_at": "2026-11-20T18:30:00+01:00",
+      "price_type": "paid",
+      "price_min": 45,
+      "price_max": 45,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "6009b01b-b151-4df2-b6aa-df742e059584",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    },
+    {
+      "id": "65fed183-4051-47c9-93ec-127298c1324c",
+      "title": "Bezpłatny dzień tańca w Kazimierzu Dolnym — latino i taniec użytkowy",
+      "url": "https://mapaimprez.pl/sport/kazimierz-dolny/curated-bezplatny-dzien-tanca-w-kazimierzu-dolnym-latino-i-taniec-uzytkowy-kazimierz-dolny-2026-11-20-3f23d4318bf2",
+      "source_url": "https://kokpit.com.pl/aktualnosci/bezplatne-zajecia-pokazowe-z-tanca/",
+      "city": "Kazimierz Dolny",
+      "city_slug": "kazimierz-dolny",
+      "category": "sport",
+      "start_at": "2026-11-20T13:30:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "anonymous_read": true,
+      "public_api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "location_id": "d90250ad-f5fb-474b-a529-5c9925f3da43",
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "sitemap": true,
+      "canonical": true,
+      "cover": "EventVisual"
+    }
+  ],
+  "published_count": 11,
+  "free_count": 2,
+  "batch": "data/content-supply/2026-11-18.json",
+  "import": {
+    "mode": "apply",
+    "checked_at": "2026-11-18T19:04:26.000Z",
+    "results": [
+      {
+        "title": "Parostatkiem w piękny rejs — Największe Polskie Przeboje w Mrągowie",
+        "source_url": "https://mck.mragowo.pl/pl/news/info/3714/parostatkiem-w-piekny-rejs-najwieksze-polskie-przeboje.html",
+        "outcome": "inserted_and_published",
+        "event_id": "835bbded-09e4-4f85-8c45-18b3a78588d6",
+        "slug": "curated-parostatkiem-w-piekny-rejs-najwieksze-polskie-przeboje-w-mragowie-mragowo-2026-11-20-e144e2377003"
+      },
+      {
+        "title": "Opowieść wigilijna — Teatr Piasku Tetiany Galitsyny w Mrągowie, godz. 10:00",
+        "source_url": "https://mck.mragowo.pl/pl/news/info/3715/teatr-piasku-tetiany-galitsyny-opowiesc-wigilijna.html",
+        "outcome": "inserted_and_published",
+        "event_id": "df6ae4c8-483d-4632-8f09-954d4d5c0c2b",
+        "slug": "curated-opowiesc-wigilijna-teatr-piasku-tetiany-galitsyny-w-mragowie-godz-10-00-mragowo-2026-11-25-c2849bde90a6"
+      },
+      {
+        "title": "Opowieść wigilijna — Teatr Piasku Tetiany Galitsyny w Mrągowie, godz. 17:00",
+        "source_url": "https://mck.mragowo.pl/pl/news/info/3715/teatr-piasku-tetiany-galitsyny-opowiesc-wigilijna.html",
+        "outcome": "inserted_and_published",
+        "event_id": "ef7c5ef7-b380-4808-afb5-fe762c098051",
+        "slug": "curated-opowiesc-wigilijna-teatr-piasku-tetiany-galitsyny-w-mragowie-godz-17-00-mragowo-2026-11-25-919e0105f42d"
+      },
+      {
+        "title": "Stwórz świąteczny wianek — warsztaty w Mrągowie",
+        "source_url": "https://mck.mragowo.pl/pl/news/info/3743/stworz-swiateczny-wianek.html",
+        "outcome": "inserted_and_published",
+        "event_id": "a4714bd0-6c3b-4386-b776-54fccab5f83e",
+        "slug": "curated-stworz-swiateczny-wianek-warsztaty-w-mragowie-mragowo-2026-12-14-baf256650cf4"
+      },
+      {
+        "title": "DAGADANA z orkiestrą — finał konkursu im. Haliny Poświatowskiej",
+        "source_url": "https://www.filharmonia.com.pl/repertuar/2854-DAGADANA-z-orkiestra",
+        "outcome": "inserted_and_published",
+        "event_id": "a76c6dfa-9e84-4b7a-9bb7-4f138120f8b3",
+        "slug": "curated-dagadana-z-orkiestra-final-konkursu-im-haliny-poswiatowskiej-czestochowa-2026-11-21-808c567105a4"
+      },
+      {
+        "title": "Wieczór Uniwersytecki — Moja ballada i Absurdalia",
+        "source_url": "https://www.filharmonia.com.pl/repertuar/2782-WIECZOR-UNIWERSYTECKI",
+        "outcome": "inserted_and_published",
+        "event_id": "bc4c4c30-93ea-42f1-8582-07002aeed71d",
+        "slug": "curated-wieczor-uniwersytecki-moja-ballada-i-absurdalia-czestochowa-2026-11-25-05d5d227c165"
+      },
+      {
+        "title": "Muzyka bez granic — Chór Filharmonii Częstochowskiej",
+        "source_url": "https://www.filharmonia.com.pl/repertuar/2776-Muzyka-bez-granic",
+        "outcome": "inserted_and_published",
+        "event_id": "0e1e60c2-f992-405a-a7b6-195760389784",
+        "slug": "curated-muzyka-bez-granic-chor-filharmonii-czestochowskiej-czestochowa-2026-11-26-8ebacc91711c"
+      },
+      {
+        "title": "Postmortem — kulisy medycyny sądowej, wieczór w SOWA Gorzów",
+        "source_url": "https://mckgorzow.pl/event/wieczor-dla-doroslych-postmortem-kulisy-medycyny-sadowej",
+        "outcome": "inserted_and_published",
+        "event_id": "28666ba7-52fb-4478-8c9b-e73050985403",
+        "slug": "curated-postmortem-kulisy-medycyny-sadowej-wieczor-w-sowa-gorzow-gorzow-wielkopolski-2026-11-19-3d51b25affc7"
+      },
+      {
+        "title": "Jeden z nas musi się ożenić — premiera na 5. urodziny Teatru Mostów",
+        "source_url": "https://mckgorzow.pl/event/5-urodziny-teatru-mostow-premiera-komedii-jeden-z-nas-musi-sie-ozenic",
+        "outcome": "inserted_and_published",
+        "event_id": "4350a94f-d6b3-4746-8018-1835bfb59f4a",
+        "slug": "curated-jeden-z-nas-musi-sie-ozenic-premiera-na-5-urodziny-teatru-mostow-gorzow-wielkopolski-2026-11-19-5adec79bc6a2"
+      },
+      {
+        "title": "Warsztaty wikliniarskie dla dorosłych — dwa spotkania w Zodiaku",
+        "source_url": "https://mckgorzow.pl/event/warsztaty-wikliniarskie-dla-doroslych-26",
+        "outcome": "inserted_and_published",
+        "event_id": "f790765f-9a88-45cd-b894-eec5279765d2",
+        "slug": "curated-warsztaty-wikliniarskie-dla-doroslych-dwa-spotkania-w-zodiaku-gorzow-wielkopolski-2026-11-19-6b47e1ba007b"
+      },
+      {
+        "title": "Bezpłatny dzień tańca w Kazimierzu Dolnym — latino i taniec użytkowy",
+        "source_url": "https://kokpit.com.pl/aktualnosci/bezplatne-zajecia-pokazowe-z-tanca",
+        "outcome": "inserted_and_published",
+        "event_id": "65fed183-4051-47c9-93ec-127298c1324c",
+        "slug": "curated-bezplatny-dzien-tanca-w-kazimierzu-dolnym-latino-i-taniec-uzytkowy-kazimierz-dolny-2026-11-20-3f23d4318bf2"
+      }
+    ]
+  },
+  "post_import": {
+    "mode": "dry-run",
+    "checked_at": "2026-11-18T19:04:26.000Z",
+    "results": [
+      {
+        "title": "Parostatkiem w piękny rejs — Największe Polskie Przeboje w Mrągowie",
+        "source_url": "https://mck.mragowo.pl/pl/news/info/3714/parostatkiem-w-piekny-rejs-najwieksze-polskie-przeboje.html",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "835bbded-09e4-4f85-8c45-18b3a78588d6",
+        "category_id": "91c006e7-5d8d-49bb-9941-f935a90f383d",
+        "city_id": "0400bb4f-e7c1-4014-bb4d-f5d71103707c",
+        "location_id": "47be67de-569e-4a77-ade2-b3e105dcee8a",
+        "creates_location": false,
+        "slug": "curated-parostatkiem-w-piekny-rejs-najwieksze-polskie-przeboje-w-mragowie-mragowo-2026-11-20-e144e2377003"
+      },
+      {
+        "title": "Opowieść wigilijna — Teatr Piasku Tetiany Galitsyny w Mrągowie, godz. 10:00",
+        "source_url": "https://mck.mragowo.pl/pl/news/info/3715/teatr-piasku-tetiany-galitsyny-opowiesc-wigilijna.html",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "df6ae4c8-483d-4632-8f09-954d4d5c0c2b",
+        "category_id": "40e0d806-0091-4c4a-a3ff-12800d3dce6b",
+        "city_id": "0400bb4f-e7c1-4014-bb4d-f5d71103707c",
+        "location_id": "47be67de-569e-4a77-ade2-b3e105dcee8a",
+        "creates_location": false,
+        "slug": "curated-opowiesc-wigilijna-teatr-piasku-tetiany-galitsyny-w-mragowie-godz-10-00-mragowo-2026-11-25-c2849bde90a6"
+      },
+      {
+        "title": "Opowieść wigilijna — Teatr Piasku Tetiany Galitsyny w Mrągowie, godz. 17:00",
+        "source_url": "https://mck.mragowo.pl/pl/news/info/3715/teatr-piasku-tetiany-galitsyny-opowiesc-wigilijna.html",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "ef7c5ef7-b380-4808-afb5-fe762c098051",
+        "category_id": "40e0d806-0091-4c4a-a3ff-12800d3dce6b",
+        "city_id": "0400bb4f-e7c1-4014-bb4d-f5d71103707c",
+        "location_id": "47be67de-569e-4a77-ade2-b3e105dcee8a",
+        "creates_location": false,
+        "slug": "curated-opowiesc-wigilijna-teatr-piasku-tetiany-galitsyny-w-mragowie-godz-17-00-mragowo-2026-11-25-919e0105f42d"
+      },
+      {
+        "title": "Stwórz świąteczny wianek — warsztaty w Mrągowie",
+        "source_url": "https://mck.mragowo.pl/pl/news/info/3743/stworz-swiateczny-wianek.html",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "a4714bd0-6c3b-4386-b776-54fccab5f83e",
+        "category_id": "91c0c821-486a-448a-91fe-14116a09a70d",
+        "city_id": "0400bb4f-e7c1-4014-bb4d-f5d71103707c",
+        "location_id": "47be67de-569e-4a77-ade2-b3e105dcee8a",
+        "creates_location": false,
+        "slug": "curated-stworz-swiateczny-wianek-warsztaty-w-mragowie-mragowo-2026-12-14-baf256650cf4"
+      },
+      {
+        "title": "DAGADANA z orkiestrą — finał konkursu im. Haliny Poświatowskiej",
+        "source_url": "https://www.filharmonia.com.pl/repertuar/2854-DAGADANA-z-orkiestra",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "a76c6dfa-9e84-4b7a-9bb7-4f138120f8b3",
+        "category_id": "91c006e7-5d8d-49bb-9941-f935a90f383d",
+        "city_id": "649033f8-c52a-475e-935c-6c2708e507d3",
+        "location_id": "ee7acd10-6a64-4251-a730-988988de66b8",
+        "creates_location": false,
+        "slug": "curated-dagadana-z-orkiestra-final-konkursu-im-haliny-poswiatowskiej-czestochowa-2026-11-21-808c567105a4"
+      },
+      {
+        "title": "Wieczór Uniwersytecki — Moja ballada i Absurdalia",
+        "source_url": "https://www.filharmonia.com.pl/repertuar/2782-WIECZOR-UNIWERSYTECKI",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "bc4c4c30-93ea-42f1-8582-07002aeed71d",
+        "category_id": "91c0c821-486a-448a-91fe-14116a09a70d",
+        "city_id": "649033f8-c52a-475e-935c-6c2708e507d3",
+        "location_id": "ee7acd10-6a64-4251-a730-988988de66b8",
+        "creates_location": false,
+        "slug": "curated-wieczor-uniwersytecki-moja-ballada-i-absurdalia-czestochowa-2026-11-25-05d5d227c165"
+      },
+      {
+        "title": "Muzyka bez granic — Chór Filharmonii Częstochowskiej",
+        "source_url": "https://www.filharmonia.com.pl/repertuar/2776-Muzyka-bez-granic",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "0e1e60c2-f992-405a-a7b6-195760389784",
+        "category_id": "91c006e7-5d8d-49bb-9941-f935a90f383d",
+        "city_id": "649033f8-c52a-475e-935c-6c2708e507d3",
+        "location_id": "ee7acd10-6a64-4251-a730-988988de66b8",
+        "creates_location": false,
+        "slug": "curated-muzyka-bez-granic-chor-filharmonii-czestochowskiej-czestochowa-2026-11-26-8ebacc91711c"
+      },
+      {
+        "title": "Postmortem — kulisy medycyny sądowej, wieczór w SOWA Gorzów",
+        "source_url": "https://mckgorzow.pl/event/wieczor-dla-doroslych-postmortem-kulisy-medycyny-sadowej",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "28666ba7-52fb-4478-8c9b-e73050985403",
+        "category_id": "91c0c821-486a-448a-91fe-14116a09a70d",
+        "city_id": "214c6e11-4b6e-4ef7-a331-9d07e1a4a89a",
+        "location_id": "c3588fc4-e761-400e-9457-95acc03398a7",
+        "creates_location": false,
+        "slug": "curated-postmortem-kulisy-medycyny-sadowej-wieczor-w-sowa-gorzow-gorzow-wielkopolski-2026-11-19-3d51b25affc7"
+      },
+      {
+        "title": "Jeden z nas musi się ożenić — premiera na 5. urodziny Teatru Mostów",
+        "source_url": "https://mckgorzow.pl/event/5-urodziny-teatru-mostow-premiera-komedii-jeden-z-nas-musi-sie-ozenic",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "4350a94f-d6b3-4746-8018-1835bfb59f4a",
+        "category_id": "91c0c821-486a-448a-91fe-14116a09a70d",
+        "city_id": "214c6e11-4b6e-4ef7-a331-9d07e1a4a89a",
+        "location_id": "dac47d98-c72b-4f42-a392-fb009e2bcdf3",
+        "creates_location": false,
+        "slug": "curated-jeden-z-nas-musi-sie-ozenic-premiera-na-5-urodziny-teatru-mostow-gorzow-wielkopolski-2026-11-19-5adec79bc6a2"
+      },
+      {
+        "title": "Warsztaty wikliniarskie dla dorosłych — dwa spotkania w Zodiaku",
+        "source_url": "https://mckgorzow.pl/event/warsztaty-wikliniarskie-dla-doroslych-26",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "f790765f-9a88-45cd-b894-eec5279765d2",
+        "category_id": "91c0c821-486a-448a-91fe-14116a09a70d",
+        "city_id": "214c6e11-4b6e-4ef7-a331-9d07e1a4a89a",
+        "location_id": "6009b01b-b151-4df2-b6aa-df742e059584",
+        "creates_location": false,
+        "slug": "curated-warsztaty-wikliniarskie-dla-doroslych-dwa-spotkania-w-zodiaku-gorzow-wielkopolski-2026-11-19-6b47e1ba007b"
+      },
+      {
+        "title": "Bezpłatny dzień tańca w Kazimierzu Dolnym — latino i taniec użytkowy",
+        "source_url": "https://kokpit.com.pl/aktualnosci/bezplatne-zajecia-pokazowe-z-tanca",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "65fed183-4051-47c9-93ec-127298c1324c",
+        "category_id": "d3e52645-9615-45d1-92a0-c6449154a177",
+        "city_id": "02ce1566-7640-422c-a20e-9ff9509b21b5",
+        "location_id": "d90250ad-f5fb-474b-a529-5c9925f3da43",
+        "creates_location": false,
+        "slug": "curated-bezplatny-dzien-tanca-w-kazimierzu-dolnym-latino-i-taniec-uzytkowy-kazimierz-dolny-2026-11-20-3f23d4318bf2"
+      }
+    ]
+  },
+  "mobile": [
+    {
+      "url": "https://mapaimprez.pl/koncerty/mragowo/curated-parostatkiem-w-piekny-rejs-najwieksze-polskie-przeboje-w-mragowie-mragowo-2026-11-20-e144e2377003",
+      "width": 390,
+      "title": "Parostatkiem w piękny rejs — Największe Polskie Przeboje w Mrągowie",
+      "city": "Mrągowo",
+      "date": "20 lis 2026 · 18:30",
+      "lines": 5,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": null
+    },
+    {
+      "url": "https://mapaimprez.pl/rodzinne/mragowo/curated-opowiesc-wigilijna-teatr-piasku-tetiany-galitsyny-w-mragowie-godz-10-00-mragowo-2026-11-25-c2849bde90a6",
+      "width": 390,
+      "title": "Opowieść wigilijna — Teatr Piasku Tetiany Galitsyny w Mrągowie, godz. 10:00",
+      "city": "Mrągowo",
+      "date": "25 lis 2026 · 10:00",
+      "lines": 5,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": null
+    },
+    {
+      "url": "https://mapaimprez.pl/koncerty/czestochowa/curated-dagadana-z-orkiestra-final-konkursu-im-haliny-poswiatowskiej-czestochowa-2026-11-21-808c567105a4",
+      "width": 390,
+      "title": "DAGADANA z orkiestrą — finał konkursu im. Haliny Poświatowskiej",
+      "city": "Częstochowa",
+      "date": "21 lis 2026 · 17:00",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": null
+    },
+    {
+      "url": "https://mapaimprez.pl/kultura/gorzow-wielkopolski/curated-postmortem-kulisy-medycyny-sadowej-wieczor-w-sowa-gorzow-gorzow-wielkopolski-2026-11-19-3d51b25affc7",
+      "width": 390,
+      "title": "Postmortem — kulisy medycyny sądowej, wieczór w SOWA Gorzów",
+      "city": "Gorzów Wielkopolski",
+      "date": "19 lis 2026 · 18:00",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": null
+    },
+    {
+      "url": "https://mapaimprez.pl/kultura/gorzow-wielkopolski/curated-jeden-z-nas-musi-sie-ozenic-premiera-na-5-urodziny-teatru-mostow-gorzow-wielkopolski-2026-11-19-5adec79bc6a2",
+      "width": 390,
+      "title": "Jeden z nas musi się ożenić — premiera na 5. urodziny Teatru Mostów",
+      "city": "Gorzów Wielkopolski",
+      "date": "19 lis 2026 · 19:00",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": null
+    },
+    {
+      "url": "https://mapaimprez.pl/sport/kazimierz-dolny/curated-bezplatny-dzien-tanca-w-kazimierzu-dolnym-latino-i-taniec-uzytkowy-kazimierz-dolny-2026-11-20-3f23d4318bf2",
+      "width": 390,
+      "title": "Bezpłatny dzień tańca w Kazimierzu Dolnym — latino i taniec użytkowy",
+      "city": "Kazimierz Dolny",
+      "date": "20 lis 2026 · 13:30",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": null
+    }
+  ],
+  "recheck": {
+    "events_due": 70,
+    "urls_total": 67,
+    "urls_confirmed": 60,
+    "events_with_accessible_source": 63,
+    "unconfirmed": [
+      {
+        "url": "https://lff.lublin.pl/events/fokus-granice-nie-pozwol-mi-odejsc",
+        "status": 0,
+        "blocked": "robots.txt",
+        "events": [
+          {
+            "id": "2f3d28d5-04d9-4e22-8b70-9273e7349c40",
+            "title": "Lubelski Festiwal Filmowy — „Nie pozwól mi odejść”",
+            "start_at": "2026-11-20T18:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://sklep.otop.org.pl/pl/products/21-11-26-r-09-00-12-00-gdynia-kamienna-gora-spacer-ornitologiczny-322.html",
+        "status": 0,
+        "blocked": "robots.txt",
+        "events": [
+          {
+            "id": "5900f597-a8b6-4b97-ba6d-2d2735a9d01b",
+            "title": "Spacer ornitologiczny — Gdynia, Kamienna Góra",
+            "start_at": "2026-11-21T08:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://bydgoszczinformuje.pl/rudolf-i-ciastek-zapraszaja-na-bydgoski-jarmark-swiateczny-2026-poznalismy-nowe-atrakcje-beda-piosenki-z-teatralnego-przeboju-zdjecia",
+        "status": 503,
+        "events": [
+          {
+            "id": "58b1ef17-5720-4ebc-a98d-02a5557eae3a",
+            "title": "Bydgoski Jarmark Świąteczny 2026",
+            "start_at": "2026-11-20T12:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/slaska-gielda-narciarska-w-prezero-arenie-gliwice-15",
+        "status": 0,
+        "blocked": "robots.txt",
+        "events": [
+          {
+            "id": "83dcec7c-8ed6-4cc1-a4bd-87f3df4d1538",
+            "title": "Śląska Giełda Narciarska w Gliwicach",
+            "start_at": "2026-11-21T07:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/polska-noc-kabaretowa-2026-siedmiu-wspanialych",
+        "status": 0,
+        "blocked": "robots.txt",
+        "events": [
+          {
+            "id": "c583b0e1-3830-4e0e-a0ea-e46c95665da0",
+            "title": "Polska Noc Kabaretowa 2026 — Siedmiu wspaniałych w Gliwicach",
+            "start_at": "2026-11-21T18:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://bikeexpo.pl/katowice",
+        "status": 0,
+        "blocked": "robots.txt",
+        "events": [
+          {
+            "id": "cf97a2b7-683a-41e7-b0fe-4fb4138b0076",
+            "title": "PEKAO BIKE EXPO Winter Edition i SNOW EXPO 2026 w Katowicach",
+            "start_at": "2026-11-21T08:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://teatr.walbrzych.pl/spektakl/mtv-hity-z-satelity",
+        "status": 0,
+        "blocked": "robots unavailable",
+        "events": [
+          {
+            "id": "f02f0413-43b0-4c3d-8a9e-c6088745ad7e",
+            "title": "MTV. Hity z satelity — spektakl w Wałbrzychu",
+            "start_at": "2026-11-21T18:00:00+00:00"
+          }
+        ]
+      }
+    ],
+    "changes": [
+      {
+        "event_id": "5b8888bf-e9c8-4d7f-b65c-fa877b8b1105",
+        "title": "Kult — Trasa Pomarańczowa w Warszawie (20 listopada)",
+        "state": "sold_out",
+        "new_since_previous_report": true,
+        "source_url": "https://www.stodola.pl/koncerty/kult-137050.html"
+      },
+      {
+        "event_id": "e4461116-3869-4afd-87cc-a28d57a28883",
+        "title": "Kult — Trasa Pomarańczowa w Warszawie (21 listopada)",
+        "state": "sold_out",
+        "source_url": "https://www.stodola.pl/koncerty/kult-137051.html"
+      },
+      {
+        "event_id": "8917f69b-e3c0-4fa6-b0b1-e55bc00d6199",
+        "title": "Artemas — Warszawa, 23 listopada",
+        "state": "sold_out",
+        "source_url": "https://progresja.com/wydarzenie/artemas"
+      },
+      {
+        "event_id": "d46da9df-282b-4b00-9bfe-fe20b22d991f",
+        "title": "LEGO Build the Change — Łódź, 22 listopada",
+        "state": "sold_out",
+        "source_url": "https://ec1lodz.pl/eventy/warsztaty-lego-build-the-change"
+      }
+    ],
+    "no_confirmed_cancellations": true
+  },
+  "skipped": [
+    {
+      "title": "Bieg po wypiek — Mrągowo",
+      "reason": "To konkurs kulinarny, nie bieg sportowy; godzina 12:00 jest terminem dostarczenia wypieku, nie początkiem wydarzenia."
+    },
+    {
+      "title": "28. Przegląd Teatrów Amatorskich im. Kasi Kowal",
+      "reason": "Potwierdzono 27.11 o 11:00, ale nie znaleziono jednoznacznych zasad wstępu dla widzów."
+    },
+    {
+      "title": "Kreatywna strefa dla młodych twórców",
+      "reason": "Ostatnie zajęcia rozpoczętego cyklu; cena 45 zł dotyczy trzech spotkań. Brak potwierdzenia zapisu na samą końcówkę."
+    },
+    {
+      "title": "Z Brulionem przez lata / Dzień otwarty Brulionu — Kazimierz Dolny",
+      "reason": "Daty, miejsce i godziny są pewne; nie potwierdzono zasad odpłatności, więc pozostawiono do doprecyzowania."
+    },
+    {
+      "title": "Cudowna terapia — Gorzów, 20.11.2026",
+      "reason": "Oficjalny kalendarz oznacza przeniesienie na 2027 bez nowej dokładnej daty."
+    },
+    {
+      "title": "Inteligenci — Częstochowa, 28.11 godz. 16:00",
+      "reason": "Oficjalna strona informuje, że ten pokaz się nie odbędzie; nie dotyczy pokazu o 18:30."
+    }
+  ]
+}

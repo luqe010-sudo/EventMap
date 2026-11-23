@@ -1,0 +1,395 @@
+{
+  "checked_at": "2026-11-19T18:37:49Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Łódzkie, podlaskie, pomorskie i świętokrzyskie; priorytet Aleksandrowa Łódzkiego z pustym katalogiem. Kultura, rodziny, warsztaty i koncerty; sześć wydarzeń bezpłatnych.",
+  "geocoding_attribution": "GUGiK i istniejące punkty obiektów z zachowanym pochodzeniem.",
+  "events": [
+    {
+      "title": "Rzeźba typu ludowego — spotkanie wokół Henryka Jaśkiewicza",
+      "category_slug": "kultura",
+      "start_at": "2026-11-25T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Etnolog Michał Świercz przybliży twórczość ludowych rzeźbiarzy z powiatu zgierskiego.",
+      "description": "Michał Świercz z Muzeum Archeologicznego i Etnograficznego w Łodzi poprowadzi wykład o rzeźbie ludowej i jej twórcach z powiatu zgierskiego. Szczególne miejsce zajmie dorobek Henryka Jaśkiewicza z Aleksandrowa Łódzkiego. Początek o 18:00 w galerii ACK, sala nr 7. Wstęp bezpłatny, obowiązują wejściówki rezerwowane online na stronie ACK lub odbierane w instytucji; liczba miejsc ograniczona.",
+      "location": {
+        "name": "Aleksandrowskie Centrum Kultury",
+        "address": "Ludwika Waryńskiego 22/26",
+        "city": "Aleksandrów Łódzki",
+        "city_slug": "aleksandrow-lodzki",
+        "latitude": 51.8155272223368,
+        "longitude": 19.3095950258967,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Aleksandr%C3%B3w%20%C5%81%C3%B3dzki%2C%20Ludwika%20Wary%C5%84skiego%2022%2F26",
+        "coordinate_note": "Dokładny punkt numeru budynku GUGiK; miejscowość, pełna nazwa ulicy/placu i numer zgodne. Adres wydarzenia potwierdza instytucja."
+      },
+      "source_name": "Aleksandrowskie Centrum Kultury",
+      "source_url": "https://ackkultura.pl/rzezba-typu-ludowego-spotkanie-ze-sztuka-ludowa-naszego-regionu/",
+      "evidence_urls": [
+        "https://ackkultura.pl/zapisy-na-wydarzenie-rzezba-typu-ludowego-spotkanie-wokol-sztuki-pana-henryka-jaskiewicza-25-11-2026/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji na publikację plakatu. Istniejący EventVisual zapewnia okładkę; bez nowych grafik AI i bez przenoszenia oficjalnych obrazów.",
+      "checked_at": "2026-11-19T18:35:30Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-19T18:35:30Z",
+        "no_cancellation_notice": true,
+        "registration": {
+          "url": "https://ackkultura.pl/zapisy-na-wydarzenie-rzezba-typu-ludowego-spotkanie-wokol-sztuki-pana-henryka-jaskiewicza-25-11-2026/",
+          "checked_at": "2026-11-19T18:36:19Z",
+          "available_at_check": 17,
+          "capacity": 25
+        }
+      }
+    },
+    {
+      "title": "Malowanie kurtek jeansowych — warsztaty z Bogną Stępień",
+      "category_slug": "kultura",
+      "start_at": "2026-11-28T12:00:00+01:00",
+      "end_at": null,
+      "short_description": "Własną kurtkę można ozdobić malarskimi motywami podczas około trzygodzinnych zajęć w ACK.",
+      "description": "Bogna Stępień poprowadzi warsztaty malowania kurtek jeansowych, których motywem będzie kobieca twórczość. Początek o 12:00, zajęcia potrwają około trzech godzin. Udział kosztuje 150 zł, w cenie są materiały malarskie. Trzeba przynieść własną jeansową kurtkę. Obowiązują zapisy telefoniczne lub e-mailowe przez ACK; liczba miejsc ograniczona.",
+      "location": {
+        "name": "Aleksandrowskie Centrum Kultury",
+        "address": "Ludwika Waryńskiego 22/26",
+        "city": "Aleksandrów Łódzki",
+        "city_slug": "aleksandrow-lodzki",
+        "latitude": 51.8155272223368,
+        "longitude": 19.3095950258967,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Aleksandr%C3%B3w%20%C5%81%C3%B3dzki%2C%20Ludwika%20Wary%C5%84skiego%2022%2F26",
+        "coordinate_note": "Dokładny punkt numeru budynku GUGiK; miejscowość, pełna nazwa ulicy/placu i numer zgodne. Adres wydarzenia potwierdza instytucja."
+      },
+      "source_name": "Aleksandrowskie Centrum Kultury",
+      "source_url": "https://ackkultura.pl/warsztat-z-ozdabiania-kurtki-jeansowej/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 150,
+      "price_max": 150,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji na publikację plakatu. Istniejący EventVisual zapewnia okładkę; bez nowych grafik AI i bez przenoszenia oficjalnych obrazów.",
+      "checked_at": "2026-11-19T18:35:32Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-19T18:35:32Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Chodź do muzeum — rodzinne spotkanie z Martyną Rejkowicz",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-28T16:00:00+01:00",
+      "end_at": null,
+      "short_description": "Rodzinne odkrywanie sztuki wokół książki-wyszukiwanki Detektywi polskiego malarstwa.",
+      "description": "Martyna Rejkowicz spotka się z dziećmi i ich bliskimi wokół książki Chodź do muzeum. Detektywi polskiego malarstwa. Organizator zaprasza rodziców, dziadków i innych opiekunów na wspólne odkrywanie obrazów oraz zabawę w detektywów sztuki. Początek o 16:00 w galerii ACK, sala nr 7. Wstęp bezpłatny, ale potrzebne są wejściówki rezerwowane na stronie ACK lub odbierane w instytucji. Liczba miejsc ograniczona.",
+      "location": {
+        "name": "Aleksandrowskie Centrum Kultury",
+        "address": "Ludwika Waryńskiego 22/26",
+        "city": "Aleksandrów Łódzki",
+        "city_slug": "aleksandrow-lodzki",
+        "latitude": 51.8155272223368,
+        "longitude": 19.3095950258967,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Aleksandr%C3%B3w%20%C5%81%C3%B3dzki%2C%20Ludwika%20Wary%C5%84skiego%2022%2F26",
+        "coordinate_note": "Dokładny punkt numeru budynku GUGiK; miejscowość, pełna nazwa ulicy/placu i numer zgodne. Adres wydarzenia potwierdza instytucja."
+      },
+      "source_name": "Aleksandrowskie Centrum Kultury",
+      "source_url": "https://ackkultura.pl/czy-wizyta-w-muzeum-kojarzy-wam-sie-z-kilometrami-korytarzy-obrazami-zawieszonymi-zbyt-wysoko-dla-dzieciecego-wzroku-i-poczuciem-ze-jako-dorosli-musicie-zamienic-sie-w-encyklopedie-sztuki/",
+      "evidence_urls": [
+        "https://ackkultura.pl/zapisy-na-wydarzenie-chodz-do-muzeum-detektywi-polskiego-malarstwa-17-11-2026/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji na publikację plakatu. Istniejący EventVisual zapewnia okładkę; bez nowych grafik AI i bez przenoszenia oficjalnych obrazów.",
+      "checked_at": "2026-11-19T18:35:29Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-19T18:35:29Z",
+        "no_cancellation_notice": true,
+        "registration": {
+          "url": "https://ackkultura.pl/zapisy-na-wydarzenie-chodz-do-muzeum-detektywi-polskiego-malarstwa-17-11-2026/",
+          "checked_at": "2026-11-19T18:36:18Z",
+          "available_at_check": 3,
+          "capacity": 25
+        }
+      }
+    },
+    {
+      "title": "Mozaikowe pudełeczka na świąteczne prezenty — warsztaty w ACK",
+      "category_slug": "kultura",
+      "start_at": "2026-12-05T10:15:00+01:00",
+      "end_at": "2026-12-05T14:15:00+01:00",
+      "short_description": "Dorośli uczestnicy ozdobią pudełeczka i skrzyneczki pod opieką Mirosława i Roksany Grzelak.",
+      "description": "Warsztaty tworzenia mozaiki poprowadzą Mirosław i Roksana Grzelak. Uczestnicy przygotują ozdobione pudełeczka lub skrzyneczki, które mogą stać się własnoręcznym prezentem. Zajęcia dla dorosłych w godzinach 10:15–14:15, koszt 100 zł od osoby. Obowiązują zapisy telefoniczne lub e-mailowe przez ACK. Organizator poinformuje o możliwości wpłat po zebraniu grupy.",
+      "location": {
+        "name": "Aleksandrowskie Centrum Kultury",
+        "address": "Ludwika Waryńskiego 22/26",
+        "city": "Aleksandrów Łódzki",
+        "city_slug": "aleksandrow-lodzki",
+        "latitude": 51.8155272223368,
+        "longitude": 19.3095950258967,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Aleksandr%C3%B3w%20%C5%81%C3%B3dzki%2C%20Ludwika%20Wary%C5%84skiego%2022%2F26",
+        "coordinate_note": "Dokładny punkt numeru budynku GUGiK; miejscowość, pełna nazwa ulicy/placu i numer zgodne. Adres wydarzenia potwierdza instytucja."
+      },
+      "source_name": "Aleksandrowskie Centrum Kultury",
+      "source_url": "https://ackkultura.pl/warsztat-z-tworzenia-mozaiki/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 100,
+      "price_max": 100,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji na publikację plakatu. Istniejący EventVisual zapewnia okładkę; bez nowych grafik AI i bez przenoszenia oficjalnych obrazów.",
+      "checked_at": "2026-11-19T18:35:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-19T18:35:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Mapa Marzeń — twórcze planowanie nowego roku w ACK",
+      "category_slug": "kultura",
+      "start_at": "2026-12-12T12:00:00+01:00",
+      "end_at": "2026-12-12T15:00:00+01:00",
+      "short_description": "Anna Szymańska poprowadzi zajęcia tworzenia graficznej mapy osobistych celów i planów.",
+      "description": "Uczestnicy przygotują graficzną mapę swoich celów i planów, wykorzystując zdjęcia, rysunki i słowa. Zajęcia prowadzi Anna Szymańska. Warsztat jest przeznaczony dla dorosłych, odbędzie się w godzinach 12:00–15:00 i kosztuje 123 zł od osoby. Zapisy telefoniczne lub e-mailowe przez ACK trwają do 30 listopada 2026; liczba miejsc ograniczona.",
+      "location": {
+        "name": "Aleksandrowskie Centrum Kultury",
+        "address": "Ludwika Waryńskiego 22/26",
+        "city": "Aleksandrów Łódzki",
+        "city_slug": "aleksandrow-lodzki",
+        "latitude": 51.8155272223368,
+        "longitude": 19.3095950258967,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Aleksandr%C3%B3w%20%C5%81%C3%B3dzki%2C%20Ludwika%20Wary%C5%84skiego%2022%2F26",
+        "coordinate_note": "Dokładny punkt numeru budynku GUGiK; miejscowość, pełna nazwa ulicy/placu i numer zgodne. Adres wydarzenia potwierdza instytucja."
+      },
+      "source_name": "Aleksandrowskie Centrum Kultury",
+      "source_url": "https://ackkultura.pl/warsztat-tworzenia-mapy-marzen/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 123,
+      "price_max": 123,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji na publikację plakatu. Istniejący EventVisual zapewnia okładkę; bez nowych grafik AI i bez przenoszenia oficjalnych obrazów.",
+      "checked_at": "2026-11-19T18:35:28Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-19T18:35:28Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Jeszcze nie wszystko stracone — bezpłatny recital w Kartuzach",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-10T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Recital we foyer Kartuskiego Centrum Kultury z bezpłatnymi wejściówkami do odbioru w kasie.",
+      "description": "Kartuskie Centrum Kultury zaprasza na recital Jeszcze nie wszystko stracone. Wydarzenie rozpocznie się o 18:00 we foyer KCK przy Klasztornej 1. Wstęp jest bezpłatny; obowiązują darmowe wejściówki odbierane w kasie centrum.",
+      "location": {
+        "name": "Kartuskie Centrum Kultury",
+        "address": "Klasztorna 1",
+        "city": "Kartuzy",
+        "latitude": 54.335531,
+        "longitude": 18.194583,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/374/kartuskie-centrum-kultury",
+        "coordinate_note": "Nazwany obiekt i jawne współrzędne z karty KupBilecik; adres potwierdzony na oficjalnej stronie kontaktowej KCK. Oficjalna mapa KCK obejmuje ten sam budynek. Istniejący rekord 2e2d38c6-bfa2-4df4-968b-70e102aab1e1; nazwę i adres potwierdzono w aktualnym źródle.",
+        "city_slug": "kartuzy"
+      },
+      "source_name": "Kartuskie Centrum Kultury",
+      "source_url": "https://www.kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/jeszcze-nie-wszystko-stracone.html",
+      "evidence_urls": [
+        "https://www.kartuskiecentrum.kultury.pl/kontakt.html"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji na publikację plakatu. Istniejący EventVisual zapewnia okładkę; bez nowych grafik AI i bez przenoszenia oficjalnych obrazów.",
+      "checked_at": "2026-11-19T18:35:28Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-19T18:35:28Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Seks dla opornych — komedia Michele Riml w Kartuzach",
+      "category_slug": "kultura",
+      "start_at": "2026-12-12T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Teatr Skene przedstawi historię małżeństwa próbującego przełamać rutynę wspólnego życia.",
+      "description": "Komedia Michele Riml opowiada o Alice i Henrym, małżeństwie szukającym sposobu na przełamanie rutyny. Spektakl wyreżyserował Dariusz Taraszkiewicz, producentem jest Teatr Skene Warszawa. Początek o 18:00 w Kartuskim Centrum Kultury. Na stronie obiektu podano bilet za 123 zł; zakup przez odnośnik w zapowiedzi.",
+      "location": {
+        "name": "Kartuskie Centrum Kultury",
+        "address": "Klasztorna 1",
+        "city": "Kartuzy",
+        "latitude": 54.335531,
+        "longitude": 18.194583,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/374/kartuskie-centrum-kultury",
+        "coordinate_note": "Nazwany obiekt i jawne współrzędne z karty KupBilecik; adres potwierdzony na oficjalnej stronie kontaktowej KCK. Oficjalna mapa KCK obejmuje ten sam budynek. Istniejący rekord 2e2d38c6-bfa2-4df4-968b-70e102aab1e1; nazwę i adres potwierdzono w aktualnym źródle.",
+        "city_slug": "kartuzy"
+      },
+      "source_name": "Kartuskie Centrum Kultury",
+      "source_url": "https://www.kartuskiecentrum.kultury.pl/kck-wydarzenia/spektakl/seks-dla-opornych-165629.html",
+      "evidence_urls": [
+        "https://www.kartuskiecentrum.kultury.pl/kontakt.html"
+      ],
+      "price_type": "paid",
+      "price_min": 123,
+      "price_max": 123,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji na publikację plakatu. Istniejący EventVisual zapewnia okładkę; bez nowych grafik AI i bez przenoszenia oficjalnych obrazów.",
+      "checked_at": "2026-11-19T18:35:29Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-19T18:35:29Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Najpiękniejsze przeboje świąteczne i kolędy — koncert w Kartuzach",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-19T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Salonowy Kwartet Smyczkowy zagra polskie i światowe kolędy oraz znane piosenki świąteczne.",
+      "description": "Salonowy Kwartet Smyczkowy przedstawi program łączący polskie kolędy, melodie bożonarodzeniowe z innych krajów i popularne świąteczne piosenki. Koncert rozpocznie się o 19:00 w Kartuskim Centrum Kultury. Wstęp biletowany; strona obiektu kieruje do sprzedaży organizatora. Aktualne ceny i dostępność biletów podaje organizator.",
+      "location": {
+        "name": "Kartuskie Centrum Kultury",
+        "address": "Klasztorna 1",
+        "city": "Kartuzy",
+        "latitude": 54.335531,
+        "longitude": 18.194583,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/374/kartuskie-centrum-kultury",
+        "coordinate_note": "Nazwany obiekt i jawne współrzędne z karty KupBilecik; adres potwierdzony na oficjalnej stronie kontaktowej KCK. Oficjalna mapa KCK obejmuje ten sam budynek. Istniejący rekord 2e2d38c6-bfa2-4df4-968b-70e102aab1e1; nazwę i adres potwierdzono w aktualnym źródle.",
+        "city_slug": "kartuzy"
+      },
+      "source_name": "Kartuskie Centrum Kultury",
+      "source_url": "https://www.kartuskiecentrum.kultury.pl/kck-wydarzenia/koncert/najpiekniejsze-przeboje-swiateczne-oraz-koledy.html",
+      "evidence_urls": [
+        "https://www.kartuskiecentrum.kultury.pl/kontakt.html",
+        "https://www.kartuskiecentrum.kultury.pl/images/Najpiekniejsze%20przeboje%20swiateczne%20i%20koledy%20plakat%20A3.jpg"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji na publikację plakatu. Istniejący EventVisual zapewnia okładkę; bez nowych grafik AI i bez przenoszenia oficjalnych obrazów.",
+      "checked_at": "2026-11-19T18:35:30Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-19T18:35:30Z",
+        "no_cancellation_notice": true,
+        "year_confirmation": "Oficjalny plakat obejrzany 19.11.2026: data 19.12.2026, godz. 19:00. Obraz wyłącznie jako dowód, nie do publikacji."
+      }
+    },
+    {
+      "title": "Ostatni seans filmowy — bezpłatny pokaz Kina Znicz",
+      "category_slug": "kultura",
+      "start_at": "2026-11-23T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Klub filmowy Kina Znicz zaprasza na dramat Petera Bogdanovicha z Cybill Shepherd i Jeffem Bridgesem.",
+      "description": "W sali kinowej Bielskiego Domu Kultury odbędzie się pokaz filmu Ostatni seans filmowy Petera Bogdanovicha z 1971 roku. W obsadzie są m.in. Cybill Shepherd i Jeff Bridges. Początek o 18:00. Seans przeznaczony dla widzów od 16 lat; wstęp wolny.",
+      "location": {
+        "name": "Bielski Dom Kultury",
+        "address": "3 Maja 2",
+        "city": "Bielsk Podlaski",
+        "latitude": 52.7695434,
+        "longitude": 23.1896317,
+        "coordinate_source": "https://services.gugik.gov.pl/uug?request=GetAddress&srid=4326&address=Bielsk%20Podlaski%2C%203%20Maja%202",
+        "coordinate_note": "Punkt istniejącego Bielskiego Domu Kultury odpowiada współrzędnym dokładnego adresu GUGiK po zaokrągleniu do siedmiu miejsc. Istniejący rekord 20de52c9-f41f-42d9-a566-190bc203b85f; nazwę i adres potwierdzono w aktualnym źródle.",
+        "city_slug": "bielsk-podlaski"
+      },
+      "source_name": "Urząd Miasta Bielsk Podlaski — Bielski Dom Kultury",
+      "source_url": "https://umbielskpodlaski.pl/wydarzenie/bdk-klub-filmowy-29/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji na publikację plakatu. Istniejący EventVisual zapewnia okładkę; bez nowych grafik AI i bez przenoszenia oficjalnych obrazów.",
+      "checked_at": "2026-11-19T18:33:51Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-19T18:33:51Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Pomiędzy Wiarą a Rozumem — otwarcie wystawy Krzesimira Wiatera",
+      "category_slug": "kultura",
+      "start_at": "2026-12-01T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Muzeum Dialogu Kultur zaprasza na prezentację rzeźb łączących tematykę nauki, wiary i ludzkich emocji.",
+      "description": "Muzeum Dialogu Kultur pokaże rzeźby Krzesimira Wiatera, artysty i dydaktyka krakowskiej Akademii Sztuk Pięknych. Prace podejmują tematy wiary, poznania, pamięci i ludzkiej postaci. Otwarcie wystawy 1 grudnia o 17:00 przy Rynku 3 w Kielcach. Wstęp bezpłatny.",
+      "location": {
+        "name": "Muzeum Dialogu Kultur",
+        "address": "Rynek 3",
+        "city": "Kielce",
+        "city_slug": "kielce",
+        "latitude": 50.8720389944201,
+        "longitude": 20.6314416969701,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Kielce%2C%20plac%20Rynek%203",
+        "coordinate_note": "Dokładny punkt numeru budynku GUGiK; miejscowość, pełna nazwa ulicy/placu i numer zgodne. Adres wydarzenia potwierdza instytucja."
+      },
+      "source_name": "Muzeum Narodowe w Kielcach",
+      "source_url": "https://www.mnki.pl/index.php/pl/aktualnosci/pomiedzy-wiara-rozumem-wystawa-rzezb-krzesimira-wiatera",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji na publikację plakatu. Istniejący EventVisual zapewnia okładkę; bez nowych grafik AI i bez przenoszenia oficjalnych obrazów.",
+      "checked_at": "2026-11-19T18:35:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-19T18:35:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Heraldyka Dawnego Pałacu Biskupów Krakowskich — Niedziela w Muzeum",
+      "category_slug": "kultura",
+      "start_at": "2026-12-06T12:00:00+01:00",
+      "end_at": null,
+      "short_description": "Kamil Mucha poprowadzi niedzielny wykład o heraldyce kieleckiego pałacu biskupów.",
+      "description": "Kamil Mucha przybliży heraldykę Dawnego Pałacu Biskupów Krakowskich w Kielcach. Spotkanie należy do cyklu Niedziela w Muzeum, przeznaczonego dla dorosłych zainteresowanych historią i dziedzictwem regionu. Początek o 12:00 w pałacu przy placu Zamkowym 1. Wstęp bezpłatny.",
+      "location": {
+        "name": "Dawny Pałac Biskupów Krakowskich – Muzeum Narodowe w Kielcach",
+        "address": "Plac Zamkowy 1",
+        "city": "Kielce",
+        "latitude": 50.86905,
+        "longitude": 20.62762,
+        "coordinate_source": "https://mapcarta.com/N2350022809",
+        "coordinate_note": "Nazwany punkt Muzeum Narodowego w pałacu. Oficjalna karta oddziału potwierdza Plac Zamkowy 1. Istniejący rekord 5fac0f01-fe19-4c83-a8c2-0068828c051d; nazwę i adres potwierdzono w aktualnym źródle.",
+        "city_slug": "kielce"
+      },
+      "source_name": "Muzeum Narodowe w Kielcach",
+      "source_url": "https://www.mnki.pl/index.php/pl/aktualnosci/harmonogram-niedziela-w-muzeum-2026",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził licencji na publikację plakatu. Istniejący EventVisual zapewnia okładkę; bez nowych grafik AI i bez przenoszenia oficjalnych obrazów.",
+      "checked_at": "2026-11-19T18:35:28Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-19T18:35:28Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

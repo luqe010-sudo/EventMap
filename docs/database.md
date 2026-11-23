@@ -26,6 +26,7 @@ Pola w typach:
 - `status`
 - `visibility`
 - `is_featured`
+- `featured_until` (timestamptz, od 2026-11-23) — koniec płatnego polecenia; wydarzenie jest promowane, gdy `is_featured = true` i `featured_until > now()`. Ustawia tylko admin; wyzwalacz `guard_organizer_event_write` blokuje organizatorowi ustawienie i zmianę.
 - `is_verified`
 - `is_cancelled`
 - `category_id`

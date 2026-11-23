@@ -1,0 +1,908 @@
+{
+  "checked_at": "2026-11-10T17:08:35Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Rozszerzona paczka ogólnopolska na prośbę właściciela. Rozpoznawalne imprezy oraz wydarzenia lokalne w miejscowościach z niewielką ofertą. Wspólne wejściówki i terminy scalono w pojedyncze karty.",
+  "geocoding_attribution": "© OpenStreetMap contributors; pozostałe źródła w location.coordinate_source.",
+  "events": [
+    {
+      "title": "Muzyka w Galerii — bezpłatny koncert w Galerii WuBePe",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-12T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Uczniowie opolskiej szkoły muzycznej wystąpią w Pałacyku WBP.",
+      "description": "Uczniowie opolskiej szkoły muzycznej wystąpią w Pałacyku WBP. W programie są utwory na akordeon i występy wokalne, m.in. muzyka Bacha i Händla. Wstęp wolny.",
+      "location": {
+        "name": "Galeria WuBePe — Pałacyk WBP",
+        "address": "Piastowska 20",
+        "city": "Opole",
+        "latitude": 50.6644601,
+        "longitude": 17.9220345,
+        "coordinate_source": "https://www.openstreetmap.org/way/207020534",
+        "coordinate_note": "Budynek Galerii WuBePe z numerem 20."
+      },
+      "source_name": "Miasto Opole",
+      "source_url": "https://www.opole.pl/dla-mieszkanca/wydarzenie/koncert-z-cyklu-muzyka-w-galerii-czyli-galeria-muzyki-w-wbp",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:15Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "HobbyCon 2026 — targi hobby w Poznaniu",
+      "category_slug": "targi",
+      "start_at": "2026-11-14T10:00:00+01:00",
+      "end_at": "2026-11-15T17:00:00+01:00",
+      "short_description": "Weekend z planszówkami, modelarstwem, makietami kolejowymi, retro grami i warsztatami.",
+      "description": "Weekend z planszówkami, modelarstwem, makietami kolejowymi, retro grami i warsztatami. Pawilony 3 i 3A, wejście od ul. Głogowskiej 10. W sobotę 10:00–18:00, w niedzielę 10:00–17:00. Wstęp biletowany. Na wybrane warsztaty fotograficzne obowiązują dodatkowe zapisy.",
+      "location": {
+        "name": "MTP - Międzynarodowe Targi Poznańskie",
+        "address": "Głogowska 14",
+        "city": "Poznań",
+        "latitude": 52.4030144,
+        "longitude": 16.9079869,
+        "coordinate_source": "https://www.mtp.pl/pl/kontakt/",
+        "coordinate_note": "Zgodny punkt kompleksu MTP w katalogu EventMap. Wejście dla HobbyCon od Głogowskiej 10 podano w opisie."
+      },
+      "source_name": "Grupa MTP — HobbyCon",
+      "source_url": "https://hobbycon.pl/pl/",
+      "evidence_urls": [
+        "https://www.cyfrowe.pl/p/targi-hobbycon-2026-w-poznaniu-z-cyfrowe-pl",
+        "https://okpoznan.pl/szczegoly-wydarzenia/LocmUDqNICurMiZ6dt64_hobbycon-2026"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:15Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:15Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "GENZIE — 404 TOUR w ERGO ARENIE",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-14T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Gdański koncert rozpoczyna ostatnią trasę zespołu.",
+      "description": "Gdański koncert rozpoczyna ostatnią trasę zespołu. W programie znajdą się znane piosenki oraz materiał z końcowego albumu. Wstęp biletowany. Osoby niepełnoletnie potrzebują pisemnej zgody rodzica.",
+      "location": {
+        "name": "ERGO ARENA",
+        "address": "Plac Dwóch Miast 1",
+        "city": "Gdańsk",
+        "latitude": 54.42611111111111,
+        "longitude": 18.58,
+        "coordinate_source": "https://ergoarena.pl/dla-odwiedzajacych/dobrydojazd/",
+        "coordinate_note": "Oficjalne współrzędne hali na granicy Gdańska i Sopotu."
+      },
+      "source_name": "ERGO ARENA",
+      "source_url": "https://ergoarena.pl/wydarzenia-lista/genzie-404-tour/",
+      "evidence_urls": [
+        "https://www.eventim.pl/event/ostatnia-trasa-genzie-404-tour-ergo-arena-22044443/"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:16Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Energa Trefl Gdańsk – Aluron CMC Warta Zawiercie",
+      "category_slug": "mecze",
+      "start_at": "2026-11-18T17:30:00+01:00",
+      "end_at": null,
+      "short_description": "Mecz siatkarskiej PlusLigi w ERGO ARENIE.",
+      "description": "Mecz siatkarskiej PlusLigi w ERGO ARENIE. Gospodarze podejmą drużynę z Zawiercia, w której grają m.in. Tomasz Fornal i Jakub Kochanowski. Wstęp biletowany przez klub.",
+      "location": {
+        "name": "ERGO ARENA",
+        "address": "Plac Dwóch Miast 1",
+        "city": "Gdańsk",
+        "latitude": 54.42611111111111,
+        "longitude": 18.58,
+        "coordinate_source": "https://ergoarena.pl/dla-odwiedzajacych/dobrydojazd/",
+        "coordinate_note": "Oficjalne współrzędne hali na granicy Gdańska i Sopotu."
+      },
+      "source_name": "ERGO ARENA",
+      "source_url": "https://ergoarena.pl/wydarzenia-lista/energa-trefl-gdansk-aluron-cmc-warta-zawiercie-2/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:16Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:16Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Festiwal Wędkarstwa i Survivalu oraz Detector Expo 2026",
+      "category_slug": "targi",
+      "start_at": "2026-11-21T10:00:00+01:00",
+      "end_at": "2026-11-22T17:00:00+01:00",
+      "short_description": "Jeden bilet obejmuje strefy wędkarską i survivalową oraz Detector Expo, poświęcone wykrywaczom metalu.",
+      "description": "Jeden bilet obejmuje strefy wędkarską i survivalową oraz Detector Expo, poświęcone wykrywaczom metalu. W oba dni 10:00–17:00. Normalny bilet kosztuje 39 zł online i 49 zł w kasie. Dla osób od 6 do 18 lat odpowiednio 19 zł i 29 zł.",
+      "location": {
+        "name": "Targi Kielce",
+        "address": "Zakładowa 1",
+        "city": "Kielce",
+        "latitude": 50.89901944444444,
+        "longitude": 20.58904722222222,
+        "coordinate_source": "https://www.targikielce.pl/kontakt/lokalizacja/jak-dojechac",
+        "coordinate_note": "Oficjalny punkt GPS dojazdu na teren targów."
+      },
+      "source_name": "Expo Kielce",
+      "source_url": "https://www.targikielce.pl/detector-expo/zwiedzajacy",
+      "evidence_urls": [
+        "https://www.targikielce.pl/festiwal-wedkarski",
+        "https://www.targikielce.pl/detector-expo"
+      ],
+      "price_type": "paid",
+      "price_min": 39,
+      "price_max": 49,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:26Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:26Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Jesień z Bluesem — Wielbłądy: Korzenie muzyki sięgają Afryki",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-21T12:00:00+01:00",
+      "end_at": null,
+      "short_description": "Rodzinne spotkanie z zespołem Wielbłądy.",
+      "description": "Rodzinne spotkanie z zespołem Wielbłądy. Muzycy pokażą m.in. balafon i djembe oraz zagrają własne kompozycje inspirowane afrykańskim bluesem. Wstęp bezpłatny.",
+      "location": {
+        "name": "Centrum im. Ludwika Zamenhofa",
+        "address": "Warszawska 19",
+        "city": "Białystok",
+        "latitude": 53.1336903,
+        "longitude": 23.1698715,
+        "coordinate_source": "https://www.openstreetmap.org/way/233056211",
+        "coordinate_note": "Pinezkę istniejącej lokalizacji potwierdza obrys budynku przy Warszawskiej 19 w OpenStreetMap. Importer użył tego samego rekordu lokalizacji."
+      },
+      "source_name": "Białostocki Ośrodek Kultury",
+      "source_url": "https://bok.bialystok.pl/wydarzenie/41-jesien-z-bluesem-wielblady-korzenie-muzyki-siegaja-afryki/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:34Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:34Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Jesień z Bluesem — 3 Card Monte w Klubie Fama",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-22T13:00:00+01:00",
+      "end_at": null,
+      "short_description": "Khalif Wailin’ Walter, Frankie Owls i Roger William Smith zagrają akustyczny koncert na zakończenie festiwalowego weekendu.",
+      "description": "Khalif Wailin’ Walter, Frankie Owls i Roger William Smith zagrają akustyczny koncert na zakończenie festiwalowego weekendu. Bilet na ten występ kosztuje 40 zł.",
+      "location": {
+        "name": "Klub Fama",
+        "address": "Legionowa 5",
+        "city": "Białystok",
+        "latitude": 53.1298,
+        "longitude": 23.1583,
+        "coordinate_source": "https://sprawdzadres.pl/podlaskie/bialystok/legionowa/5",
+        "coordinate_note": "Punkt adresowy budynku BOK; Fama ma osobne wejście."
+      },
+      "source_name": "Białostocki Ośrodek Kultury",
+      "source_url": "https://bok.bialystok.pl/wydarzenie/41-jesien-z-bluesem-3-card-monte-k-walters-frankie-owls-roger-william-smith/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 40,
+      "price_max": 40,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:26Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:26Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Steve Marriner Trio — koncert bluesowy w Suwałkach",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-22T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Kanadyjski muzyk znany z MonkeyJunk wystąpi we własnym trio w sali im.",
+      "description": "Kanadyjski muzyk znany z MonkeyJunk wystąpi we własnym trio w sali im. Andrzeja Wajdy. Zagra m.in. utwory z albumu „Hear My Heart”. Wstęp biletowany.",
+      "location": {
+        "name": "Suwalski Ośrodek Kultury — sala im. Andrzeja Wajdy",
+        "address": "Papieża Jana Pawła II 5",
+        "city": "Suwałki",
+        "latitude": 54.1122387,
+        "longitude": 22.9366214,
+        "coordinate_source": "https://www.google.com/maps/place/Suwalski+O%C5%9Brodek+Kultury/@54.1122418,22.9321367,17z/data=!3m1!4b1!4m5!3m4!1s0x46e10245bfef0299:0x45a9f1d09e11d997!8m2!3d54.1122387!4d22.9366214",
+        "coordinate_note": "Zgodna lokalizacja istniejąca w katalogu EventMap. Organizator potwierdza salę i adres."
+      },
+      "source_name": "Suwalski Ośrodek Kultury",
+      "source_url": "https://soksuwalki.eu/class/koncert-z-kwartalnikiem-twoj-blues-koncert-steve-marriner-trio-usa/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:25Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:25Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "DUO CACIB Kielce 2026 — wystawy psów rasowych i ZOO Salon",
+      "category_slug": "targi",
+      "start_at": "2026-11-28T10:00:00+01:00",
+      "end_at": "2026-11-29T18:00:00+01:00",
+      "short_description": "Dwie międzynarodowe wystawy psów rasowych, finały Best in Show i targi akcesoriów zoologicznych.",
+      "description": "Dwie międzynarodowe wystawy psów rasowych, finały Best in Show i targi akcesoriów zoologicznych. W sobotę i niedzielę od 10:00 do 18:00. Wstęp biletowany. Jednodniowa wejściówka obejmuje także ZOO Salon.",
+      "location": {
+        "name": "Targi Kielce",
+        "address": "Zakładowa 1",
+        "city": "Kielce",
+        "latitude": 50.89901944444444,
+        "longitude": 20.58904722222222,
+        "coordinate_source": "https://www.targikielce.pl/kontakt/lokalizacja/jak-dojechac",
+        "coordinate_note": "Oficjalny punkt GPS dojazdu na teren targów."
+      },
+      "source_name": "Expo Kielce",
+      "source_url": "https://www.targikielce.pl/wystawa-psow/zwiedzajacy",
+      "evidence_urls": [
+        "https://www.targikielce.pl/wystawa-psow",
+        "https://www.targikielce.pl/zoo-salon",
+        "https://www.targikielce.pl/sklep/wystwa-psow,153"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:26Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:26Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "HYPE RAP FEST II — Paktofonika Orkiestra, Paluch, Słoń i Tede",
+      "category_slug": "festiwale",
+      "start_at": "2026-11-28T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Druga edycja festiwalu rapowego w ERGO ARENIE.",
+      "description": "Druga edycja festiwalu rapowego w ERGO ARENIE. Obok projektu Paktofonika Orkiestra wystąpią m.in. Paluch, Słoń, Tede, Małpa i DJ Soina. Wstęp biletowany. Godzinę rozpoczęcia potwierdza kalendarz Sopotu.",
+      "location": {
+        "name": "ERGO ARENA",
+        "address": "Plac Dwóch Miast 1",
+        "city": "Gdańsk",
+        "latitude": 54.42611111111111,
+        "longitude": 18.58,
+        "coordinate_source": "https://ergoarena.pl/dla-odwiedzajacych/dobrydojazd/",
+        "coordinate_note": "Oficjalne współrzędne hali na granicy Gdańska i Sopotu."
+      },
+      "source_name": "ERGO ARENA",
+      "source_url": "https://ergoarena.pl/wydarzenia-lista/hype-rap-fest-ii/",
+      "evidence_urls": [
+        "https://kalendarz.sopot.pl/events/hype-rap-fest-ii-2/"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:28Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:28Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Świętokrzyskie Targi Ślubne 2026 w Kielcach",
+      "category_slug": "targi",
+      "start_at": "2026-11-29T10:00:00+01:00",
+      "end_at": "2026-11-29T16:00:00+01:00",
+      "short_description": "Wystawcy z branży ślubnej spotkają się z parami planującymi wesele w Centrum Kongresowym Targów Kielce.",
+      "description": "Wystawcy z branży ślubnej spotkają się z parami planującymi wesele w Centrum Kongresowym Targów Kielce. Targi działają od 10:00 do 16:00. Bilet kosztuje 25 zł. Dzieci do 12 lat pod opieką dorosłych wchodzą bezpłatnie.",
+      "location": {
+        "name": "Centrum Kongresowe Targów Kielce",
+        "address": "Zakładowa 1",
+        "city": "Kielce",
+        "latitude": 50.89901944444444,
+        "longitude": 20.58904722222222,
+        "coordinate_source": "https://www.targikielce.pl/kontakt/lokalizacja/jak-dojechac",
+        "coordinate_note": "Oficjalny punkt GPS dojazdu na teren targów. Centrum Kongresowe jest częścią kompleksu. Wejścia wskazuje plan hal."
+      },
+      "source_name": "Organizator Świętokrzyskich Targów Ślubnych",
+      "source_url": "https://www.targislubne.pl/kielce-bilety",
+      "evidence_urls": [
+        "https://www.targislubne.pl/informacje-praktyczne",
+        "https://www.targislubne.pl/kielce"
+      ],
+      "price_type": "paid",
+      "price_min": 25,
+      "price_max": 25,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:27Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:27Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "PGE Wybrzeże Gdańsk – VfL Gummersbach",
+      "category_slug": "mecze",
+      "start_at": "2026-12-01T18:45:00+01:00",
+      "end_at": null,
+      "short_description": "Gdańscy szczypiorniści zagrają z niemieckim VfL Gummersbach w ERGO ARENIE.",
+      "description": "Gdańscy szczypiorniści zagrają z niemieckim VfL Gummersbach w ERGO ARENIE. Wejściówki udostępnia klub PGE Wybrzeże.",
+      "location": {
+        "name": "ERGO ARENA",
+        "address": "Plac Dwóch Miast 1",
+        "city": "Gdańsk",
+        "latitude": 54.42611111111111,
+        "longitude": 18.58,
+        "coordinate_source": "https://ergoarena.pl/dla-odwiedzajacych/dobrydojazd/",
+        "coordinate_note": "Oficjalne współrzędne hali na granicy Gdańska i Sopotu."
+      },
+      "source_name": "ERGO ARENA",
+      "source_url": "https://ergoarena.pl/wydarzenia-lista/pge-wybrzeze-gdansk-vfl-gummersbach/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:29Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:29Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "ŻUBROFFKA 2026 — James Holden na żywo do filmu „Wampir”",
+      "category_slug": "kultura",
+      "start_at": "2026-12-02T20:30:00+01:00",
+      "end_at": null,
+      "short_description": "Otwarcie jubileuszowego festiwalu krótkiego metrażu w Kinie Forum.",
+      "description": "Otwarcie jubileuszowego festiwalu krótkiego metrażu w Kinie Forum. James Holden zagra muzykę na żywo do filmu Carla Theodora Dreyera. Bilety kosztują 30 zł w przedsprzedaży lub 40 zł w dniu pokazu.",
+      "location": {
+        "name": "Kino Forum",
+        "address": "Legionowa 5",
+        "city": "Białystok",
+        "latitude": 53.1298,
+        "longitude": 23.1583,
+        "coordinate_source": "https://sprawdzadres.pl/podlaskie/bialystok/legionowa/5",
+        "coordinate_note": "Punkt adresowy budynku BOK; w budynku mieści się Kino Forum."
+      },
+      "source_name": "Białostocki Ośrodek Kultury",
+      "source_url": "https://bok.bialystok.pl/wydarzenie/20-mffk-zubroffka-uroczyste-otwarcie-festiwalu-james-holden-na-zywo-do-filmu-wampir/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 30,
+      "price_max": 40,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:29Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:29Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "ŻUBROFFKA goes TECHNO — Amanda Mussi, Kancheli, Dtekk i Salat",
+      "category_slug": "imprezy",
+      "start_at": "2026-12-04T23:00:00+01:00",
+      "end_at": null,
+      "short_description": "Noc klubowa festiwalu ŻUBROFFKA w Famie.",
+      "description": "Noc klubowa festiwalu ŻUBROFFKA w Famie. Zagrają Amanda Mussi, Kancheli, Dtekk i Salat. Bilet kosztuje 30 zł w przedsprzedaży i 40 zł w dniu imprezy.",
+      "location": {
+        "name": "Klub Fama",
+        "address": "Legionowa 5",
+        "city": "Białystok",
+        "latitude": 53.1298,
+        "longitude": 23.1583,
+        "coordinate_source": "https://sprawdzadres.pl/podlaskie/bialystok/legionowa/5",
+        "coordinate_note": "Punkt adresowy budynku BOK; Fama ma osobne wejście."
+      },
+      "source_name": "Białostocki Ośrodek Kultury",
+      "source_url": "https://bok.bialystok.pl/wydarzenie/20-mffk-zubroffka-goes-techno-amanda-mussi-br-kancheli-goa-dtekk-pl-salat-by-mffk/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 30,
+      "price_max": 40,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:29Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:29Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Warszawskie Targi Fantastyki — Zima 2026",
+      "category_slug": "targi",
+      "start_at": "2026-12-05T10:00:00+01:00",
+      "end_at": "2026-12-06T18:00:00+01:00",
+      "short_description": "W EXPO XXI spotkają się fani fantastyki, cosplayu i gier.",
+      "description": "W EXPO XXI spotkają się fani fantastyki, cosplayu i gier. W programie stoiska twórców, książki, planszówki i spotkania autorskie. Sobota 10:00–20:00, niedziela 10:00–18:00. Normalny bilet jednodniowy kosztuje 30–35 zł. Są też bilety dziecięce i karnety.",
+      "location": {
+        "name": "EXPO XXI",
+        "address": "Prądzyńskiego 12/14",
+        "city": "Warszawa",
+        "latitude": 52.2253023,
+        "longitude": 20.9617941,
+        "coordinate_source": "https://expo21.pl/",
+        "coordinate_note": "Zgodny punkt EXPO XXI z istniejącego katalogu EventMap. Organizator potwierdza adres."
+      },
+      "source_name": "Warszawskie Targi Fantastyki",
+      "source_url": "https://targifantastyki.pl/zima-2026",
+      "evidence_urls": [
+        "https://targifantastyki.pl/bilety"
+      ],
+      "price_type": "paid",
+      "price_min": 30,
+      "price_max": 35,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:29Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:29Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Zadzwońcie po milicję! — koncert w Atlas Arenie",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-05T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "W Łodzi zagrają m.in.",
+      "description": "W Łodzi zagrają m.in. IRA, Big Cyc, Sztywny Pal Azji i Róże Europy. Koncert polskiego rocka uzupełnią materiały filmowe z czasów PRL. Organizator zapowiada około czterech i pół godziny programu. Wstęp biletowany, bez ograniczeń wieku.",
+      "location": {
+        "name": "Atlas Arena",
+        "address": "aleja Władysława Bandurskiego 7",
+        "city": "Łódź",
+        "latitude": 51.75694444444444,
+        "longitude": 19.425,
+        "coordinate_source": "https://de.wikipedia.org/wiki/Atlas_Arena",
+        "coordinate_note": "Współrzędne opisane dla hali Atlas Arena. Adres zgodny z regulaminem hali."
+      },
+      "source_name": "Visual Production",
+      "source_url": "https://visualproduction.pl/koncert-zadzwoncie-po-milicje-lodz/",
+      "evidence_urls": [
+        "https://atlasarena.pl/wydarzenia/zadzwoncie-po-milicje-2/",
+        "https://atlasarena.pl/abc-widza/najczestsze-pytania/"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:30Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:30Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Resonance 2026 — festiwal muzyki elektronicznej w Opolu",
+      "category_slug": "festiwale",
+      "start_at": "2026-12-05T21:00:00+01:00",
+      "end_at": null,
+      "short_description": "Noc z techno i house’em w Centrum Wystawienniczo-Kongresowym.",
+      "description": "Noc z techno i house’em w Centrum Wystawienniczo-Kongresowym. Organizatorzy zapowiadają artystów z Polski i zagranicy oraz oprawę świetlną. Wstęp biletowany.",
+      "location": {
+        "name": "Centrum Wystawienniczo-Kongresowe",
+        "address": "Wrocławska 158",
+        "city": "Opole",
+        "latitude": 50.6832233,
+        "longitude": 17.8725056,
+        "coordinate_source": "https://www.openstreetmap.org/way/313213606",
+        "coordinate_note": "Obrys budynku CWK, kompleks przy Wrocławskiej 158."
+      },
+      "source_name": "Miasto Opole",
+      "source_url": "https://www.opole.pl/dla-mieszkanca/aktualnosc/zbliza-sie-festiwal-resonance",
+      "evidence_urls": [
+        "https://muno.pl/imprezy/resonance-2026/"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:30Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:30Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "FIFNE. targi designu — edycja świąteczna w Poznaniu",
+      "category_slug": "targi",
+      "start_at": "2026-12-06T11:00:00+01:00",
+      "end_at": "2026-12-06T18:00:00+01:00",
+      "short_description": "Mikołajkowy kiermasz w Galerii u Jezuitów.",
+      "description": "Mikołajkowy kiermasz w Galerii u Jezuitów. Lokalni twórcy pokażą m.in. ceramikę, ilustracje, biżuterię i ubrania. Wstęp wolny.",
+      "location": {
+        "name": "Galeria u Jezuitów",
+        "address": "Dominikańska 8",
+        "city": "Poznań",
+        "latitude": 52.4096961,
+        "longitude": 16.9357652,
+        "coordinate_source": "https://www.openstreetmap.org/node/2500594190",
+        "coordinate_note": "Punkt adresowy Dominikańska 8 w Poznaniu, zgodny z zapowiedzią miasta."
+      },
+      "source_name": "Miasto Poznań — Kultura",
+      "source_url": "https://kultura.poznan.pl/mim/kultura/events/targi,c,219/fifne-targi-edycja-swiateczna,189524.html",
+      "evidence_urls": [
+        "https://your-break.com/pl/wydarzenie/fifne-targi-designu-edycja-swiateczna/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:30Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:30Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Mikołajkowy koncert rodzinny w Filharmonii Warmińsko-Mazurskiej",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-06T11:00:00+01:00",
+      "end_at": null,
+      "short_description": "Muzyka, ruch i gra aktorska w niedzielnym programie dla dzieci i dorosłych.",
+      "description": "Muzyka, ruch i gra aktorska w niedzielnym programie dla dzieci i dorosłych. Koncert odbywa się bez przerwy. Bilet normalny kosztuje 50 zł, ulgowy 40 zł.",
+      "location": {
+        "name": "Warmińsko-Mazurska Filharmonia im. Feliksa Nowowiejskiego",
+        "address": "Bartosza Głowackiego 1",
+        "city": "Olsztyn",
+        "latitude": 53.780197,
+        "longitude": 20.4931285,
+        "coordinate_source": "https://www.openstreetmap.org/way/143334220",
+        "coordinate_note": "Obrys nazwanej filharmonii przy potwierdzonym adresie."
+      },
+      "source_name": "Filharmonia Warmińsko-Mazurska — bilety",
+      "source_url": "https://bilety.filharmonia.olsztyn.pl/termin.html?data=2026-11-06",
+      "evidence_urls": [
+        "https://filharmonia.olsztyn.pl/kontakt/"
+      ],
+      "price_type": "paid",
+      "price_min": 40,
+      "price_max": 50,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:30Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:30Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Król Maciuś Pierwszy — musical familijny w Gorzowie",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-06T16:00:00+01:00",
+      "end_at": null,
+      "short_description": "Familijny musical w Filharmonii Gorzowskiej na podstawie historii Janusza Korczaka.",
+      "description": "Familijny musical w Filharmonii Gorzowskiej na podstawie historii Janusza Korczaka. Ten pokaz jest dostępny dla publiczności i wymaga biletu.",
+      "location": {
+        "name": "Filharmonia Gorzowska",
+        "address": "Dziewięciu Muz 10",
+        "city": "Gorzów Wielkopolski",
+        "latitude": 52.7359839,
+        "longitude": 15.2471398,
+        "coordinate_source": "https://kartamiejska.um.gorzow.pl/wydarzenia/5146-spotkanie-z-piesnia-koncert-kameralny",
+        "coordinate_note": "Zgodna lokalizacja istniejąca w katalogu EventMap, używana przy koncertach filharmonii."
+      },
+      "source_name": "Filharmonia Gorzowska",
+      "source_url": "https://www.filharmoniagorzowska.pl/en/repertuar/musical-krol-macius-pierwszy-420004628",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:29Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:29Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Krzyżacy — spektakl Jana Klaty z audiodeskrypcją w Olsztynie",
+      "category_slug": "kultura",
+      "start_at": "2026-12-10T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Adaptacja powieści Henryka Sienkiewicza w reżyserii Jana Klaty na Scenie Dużej.",
+      "description": "Adaptacja powieści Henryka Sienkiewicza w reżyserii Jana Klaty na Scenie Dużej. Na pokaz 10 grudnia teatr przewidział audiodeskrypcję. Bilety od 65 zł, z dostępnymi zniżkami.",
+      "location": {
+        "name": "Teatr im. Stefana Jaracza — Scena Duża",
+        "address": "1 Maja 4",
+        "city": "Olsztyn",
+        "latitude": 53.7801215,
+        "longitude": 20.4794422,
+        "coordinate_source": "https://www.openstreetmap.org/way/146717405",
+        "coordinate_note": "Punkt wewnątrz obrysu teatru przy 1 Maja 4."
+      },
+      "source_name": "Teatr im. Stefana Jaracza w Olsztynie",
+      "source_url": "https://teatr.olsztyn.pl/repertuar/grudzien-2026/",
+      "evidence_urls": [
+        "https://teatr.olsztyn.pl/spektakle/krzyzacy/"
+      ],
+      "price_type": "paid",
+      "price_min": 65,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:32Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:32Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "LOTTO Tennis Show — Maja Chwalińska i Linda Nosková w ERGO ARENIE",
+      "category_slug": "sport",
+      "start_at": "2026-12-11T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Tenisowe widowisko na twardym korcie.",
+      "description": "Tenisowe widowisko na twardym korcie. Wieczór zamknie pojedynek Mai Chwalińskiej z Lindą Noskovą. Mają zagrać też m.in. Łukasz Kubot, Kamil Majchrzak i Jan Zieliński. Wstęp biletowany przez eBilet.",
+      "location": {
+        "name": "ERGO ARENA",
+        "address": "Plac Dwóch Miast 1",
+        "city": "Gdańsk",
+        "latitude": 54.42611111111111,
+        "longitude": 18.58,
+        "coordinate_source": "https://ergoarena.pl/dla-odwiedzajacych/dobrydojazd/",
+        "coordinate_note": "Oficjalne współrzędne hali na granicy Gdańska i Sopotu."
+      },
+      "source_name": "ERGO ARENA",
+      "source_url": "https://ergoarena.pl/wydarzenia-lista/lotto-tennis-show/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:32Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:32Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Monika Borzym — Zimowe piosenki w Olsztynie",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-11T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Koncert z cyklu Jazz w Filharmonii.",
+      "description": "Koncert z cyklu Jazz w Filharmonii. Monika Borzym zaśpiewa zimowe piosenki, m.in. utwory Jerzego Wasowskiego i Krzysztofa Komedy. Bilety kosztują 70 zł na balkonie i 90 zł na parterze. Filharmonia potwierdza ważność biletów kupionych przed zmianą programu.",
+      "location": {
+        "name": "Warmińsko-Mazurska Filharmonia im. Feliksa Nowowiejskiego",
+        "address": "Bartosza Głowackiego 1",
+        "city": "Olsztyn",
+        "latitude": 53.780197,
+        "longitude": 20.4931285,
+        "coordinate_source": "https://www.openstreetmap.org/way/143334220",
+        "coordinate_note": "Obrys nazwanej filharmonii przy potwierdzonym adresie."
+      },
+      "source_name": "Filharmonia Warmińsko-Mazurska — bilety",
+      "source_url": "https://bilety.filharmonia.olsztyn.pl/termin.html?data=2026-11-06",
+      "evidence_urls": [
+        "https://filharmonia.olsztyn.pl/kontakt/"
+      ],
+      "price_type": "paid",
+      "price_min": 70,
+      "price_max": 90,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:30Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:30Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Open Beer Festiwal — Łydka Grubasa, Lej Mi Pół i Transgresja",
+      "category_slug": "festiwale",
+      "start_at": "2026-12-12T20:00:00+01:00",
+      "end_at": null,
+      "short_description": "Trzy koncerty w Centrum Kongresowym Targów Kielce.",
+      "description": "Trzy koncerty w Centrum Kongresowym Targów Kielce. W programie rock z satyrycznymi tekstami, punk rock i cięższe brzmienia z elektroniką. Wstęp biletowany.",
+      "location": {
+        "name": "Centrum Kongresowe Targów Kielce",
+        "address": "Zakładowa 1",
+        "city": "Kielce",
+        "latitude": 50.89901944444444,
+        "longitude": 20.58904722222222,
+        "coordinate_source": "https://www.targikielce.pl/kontakt/lokalizacja/jak-dojechac",
+        "coordinate_note": "Oficjalny punkt GPS dojazdu na teren targów. Centrum Kongresowe jest częścią kompleksu. Wejścia wskazuje plan hal."
+      },
+      "source_name": "Expo Kielce",
+      "source_url": "https://www.targikielce.pl/open-beer-festiwal",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:33Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:33Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "donGURALesko — 30 lat na scenie, koncert w Kielcach",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-19T20:00:00+01:00",
+      "end_at": null,
+      "short_description": "Jubileuszowy koncert w Centrum Kongresowym Targów Kielce.",
+      "description": "Jubileuszowy koncert w Centrum Kongresowym Targów Kielce. Raper zapowiada materiał z różnych etapów kariery, od Killaz Group i KASTA Squad po solowe nagrania i album „STROMO”. Wstęp biletowany.",
+      "location": {
+        "name": "Centrum Kongresowe Targów Kielce",
+        "address": "Zakładowa 1",
+        "city": "Kielce",
+        "latitude": 50.89901944444444,
+        "longitude": 20.58904722222222,
+        "coordinate_source": "https://www.targikielce.pl/kontakt/lokalizacja/jak-dojechac",
+        "coordinate_note": "Oficjalny punkt GPS dojazdu na teren targów. Centrum Kongresowe jest częścią kompleksu. Wejścia wskazuje plan hal."
+      },
+      "source_name": "Expo Kielce",
+      "source_url": "https://www.targikielce.pl/koncert-donguralesko",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:33Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:33Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Sylwester 2026 — disco lat 70. w Filharmonii Opolskiej",
+      "category_slug": "koncerty",
+      "start_at": "2026-12-31T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Orkiestra Filharmonii Opolskiej zagra repertuar disco z Pauliną Gołębiowską i Danielem Moszczyńskim.",
+      "description": "Orkiestra Filharmonii Opolskiej zagra repertuar disco z Pauliną Gołębiowską i Danielem Moszczyńskim. Bilety kosztują 185–225 zł. Filharmonia przewiduje intensywne światła i błyski. Drugi koncert zaplanowano na 21:30.",
+      "location": {
+        "name": "Filharmonia Opolska",
+        "address": "Krakowska 24",
+        "city": "Opole",
+        "latitude": 50.6659222,
+        "longitude": 17.923521,
+        "coordinate_source": "https://www.openstreetmap.org/way/207021499",
+        "coordinate_note": "Obrys filharmonii wskazanej przez miasto."
+      },
+      "source_name": "Miasto Opole",
+      "source_url": "https://www.opole.pl/dla-mieszkanca/wydarzenie/koncert-sylwestrowy-disco-lat-70-tych-w-filharmonii-opolskiej",
+      "evidence_urls": [
+        "https://bilety.filharmonia.opole.pl/index.html?mth_start=2026-12-01"
+      ],
+      "price_type": "paid",
+      "price_min": 185,
+      "price_max": 225,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:31Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:31Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Sylwester 2026/2027 w Expo Kielce — Disco Glamour",
+      "category_slug": "imprezy",
+      "start_at": "2026-12-31T19:00:00+01:00",
+      "end_at": "2027-01-01T04:00:00+01:00",
+      "short_description": "Sylwestrowa zabawa taneczna w Sali Omega.",
+      "description": "Sylwestrowa zabawa taneczna w Sali Omega. Organizator zapowiada muzykę i kolację. Impreza trwa od 19:00 do 4:00. Wstęp biletowany, aktualna cena zależy od puli.",
+      "location": {
+        "name": "Centrum Kongresowe Targów Kielce",
+        "address": "Zakładowa 1",
+        "city": "Kielce",
+        "latitude": 50.89901944444444,
+        "longitude": 20.58904722222222,
+        "coordinate_source": "https://www.targikielce.pl/kontakt/lokalizacja/jak-dojechac",
+        "coordinate_note": "Oficjalny punkt GPS dojazdu na teren targów. Centrum Kongresowe jest częścią kompleksu. Wejścia wskazuje plan hal."
+      },
+      "source_name": "Expo Kielce",
+      "source_url": "https://www.targikielce.pl/sylwester-2026",
+      "evidence_urls": [
+        "https://www.targikielce.pl/en/shop/sylwester-2026,269"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Brak potwierdzonego prawa do publikacji materiału organizatora w krótkim przeglądzie. Okładka EventVisual.",
+      "checked_at": "2026-11-10T17:08:35Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-10T17:08:35Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

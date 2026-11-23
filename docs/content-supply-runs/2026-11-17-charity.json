@@ -1,0 +1,354 @@
+{
+  "verified_at": "2026-11-17T16:51:01.166Z",
+  "published": 5,
+  "featured": [
+    "7c635882-e45b-4b92-a3e4-7fd23aa2fcc4",
+    "3f938023-a042-491d-ad19-8564e4efae3e",
+    "1a3519c8-06f8-4d4c-b0e6-9f3c19155a89"
+  ],
+  "home_status": 200,
+  "featured_api_status": 200,
+  "home_featured_heading": true,
+  "events": [
+    {
+      "id": "7c635882-e45b-4b92-a3e4-7fd23aa2fcc4",
+      "title": "NEVER GIVE UP II — koncert charytatywny Fundacji 22q11",
+      "url": "https://mapaimprez.pl/charytatywne/krakow/curated-never-give-up-ii-koncert-charytatywny-fundacji-22q11-krakow-2026-11-22-30043504fdc1",
+      "source_url": "https://app.evently.pl/events/15731-koncert-charytatywny-never-give-up-ii-krakow-22112026",
+      "city": "Kraków",
+      "start_at": "2026-11-22T17:00:00+01:00",
+      "is_featured": true,
+      "anonymous_read": true,
+      "api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "sitemap": true,
+      "home_link": true,
+      "featured_list": true,
+      "category": "charytatywne",
+      "source_count": 1
+    },
+    {
+      "id": "3f938023-a042-491d-ad19-8564e4efae3e",
+      "title": "MITA GRA DOBRO — koncert dla Szlachetnej Paczki",
+      "url": "https://mapaimprez.pl/charytatywne/gliwice/curated-mita-gra-dobro-koncert-dla-szlachetnej-paczki-gliwice-2026-11-26-230b2d0620cb",
+      "source_url": "https://wydarzenia.gliwice.eu/8061-gliwice-mita-gra-dobro",
+      "city": "Gliwice",
+      "start_at": "2026-11-26T18:00:00+01:00",
+      "is_featured": true,
+      "anonymous_read": true,
+      "api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "sitemap": true,
+      "home_link": true,
+      "featured_list": true,
+      "category": "charytatywne",
+      "source_count": 1
+    },
+    {
+      "id": "f1dd552d-3b99-4881-98dc-d99e3d884d82",
+      "title": "XVII Maltański Koncert Charytatywny — Przeboje symfoniki",
+      "url": "https://mapaimprez.pl/charytatywne/poznan/curated-xvii-maltanski-koncert-charytatywny-przeboje-symfoniki-poznan-2026-11-27-f0dd9aa1ad09",
+      "source_url": "https://filharmoniapoznanska.pl/koncerty/przeboje-symfoniki-xvii-maltanski-koncert-charytatywny/",
+      "city": "Poznań",
+      "start_at": "2026-11-27T19:00:00+01:00",
+      "is_featured": false,
+      "anonymous_read": true,
+      "api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "sitemap": true,
+      "home_link": false,
+      "featured_list": false,
+      "category": "charytatywne",
+      "source_count": 1
+    },
+    {
+      "id": "4d22dbe6-146d-43cc-aa11-d84bc52e0731",
+      "title": "Charytatywny Jarmark św. Mikołaja w Gdańsku",
+      "url": "https://mapaimprez.pl/charytatywne/gdansk/curated-charytatywny-jarmark-sw-mikolaja-w-gdansku-gdansk-2026-12-05-4ffe9788c30d",
+      "source_url": "https://gdansk.dominikanie.pl/2026/11/ogloszenia-parafialne-xxxii-niedziela-zwykla-8-listopada-2026-r/",
+      "city": "Gdańsk",
+      "start_at": "2026-12-05T14:00:00+01:00",
+      "is_featured": false,
+      "anonymous_read": true,
+      "api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "sitemap": true,
+      "home_link": false,
+      "featured_list": false,
+      "category": "charytatywne",
+      "source_count": 1
+    },
+    {
+      "id": "1a3519c8-06f8-4d4c-b0e6-9f3c19155a89",
+      "title": "Biegiem Pomagam — Bieg Pomocników św. Mikołaja",
+      "url": "https://mapaimprez.pl/charytatywne/warszawa/curated-biegiem-pomagam-bieg-pomocnikow-sw-mikolaja-warszawa-2026-12-05-06b3370cbfc2",
+      "source_url": "https://biegiempomagam.pl/program/",
+      "city": "Warszawa",
+      "start_at": "2026-12-05T11:00:00+01:00",
+      "is_featured": true,
+      "anonymous_read": true,
+      "api_status": 200,
+      "page_status": 200,
+      "marker_count": 1,
+      "sitemap": true,
+      "home_link": true,
+      "featured_list": true,
+      "category": "charytatywne",
+      "source_count": 1
+    }
+  ],
+  "batch": "data/content-supply/2026-11-17-charity.json",
+  "import": {
+    "mode": "apply",
+    "checked_at": "2026-11-17T16:41:11.000Z",
+    "results": [
+      {
+        "title": "NEVER GIVE UP II — koncert charytatywny Fundacji 22q11",
+        "source_url": "https://app.evently.pl/events/15731-koncert-charytatywny-never-give-up-ii-krakow-22112026",
+        "outcome": "inserted_and_published",
+        "event_id": "7c635882-e45b-4b92-a3e4-7fd23aa2fcc4",
+        "slug": "curated-never-give-up-ii-koncert-charytatywny-fundacji-22q11-krakow-2026-11-22-30043504fdc1"
+      },
+      {
+        "title": "MITA GRA DOBRO — koncert dla Szlachetnej Paczki",
+        "source_url": "https://wydarzenia.gliwice.eu/8061-gliwice-mita-gra-dobro",
+        "outcome": "inserted_and_published",
+        "event_id": "3f938023-a042-491d-ad19-8564e4efae3e",
+        "slug": "curated-mita-gra-dobro-koncert-dla-szlachetnej-paczki-gliwice-2026-11-26-230b2d0620cb"
+      },
+      {
+        "title": "XVII Maltański Koncert Charytatywny — Przeboje symfoniki",
+        "source_url": "https://filharmoniapoznanska.pl/koncerty/przeboje-symfoniki-xvii-maltanski-koncert-charytatywny",
+        "outcome": "inserted_and_published",
+        "event_id": "f1dd552d-3b99-4881-98dc-d99e3d884d82",
+        "slug": "curated-xvii-maltanski-koncert-charytatywny-przeboje-symfoniki-poznan-2026-11-27-f0dd9aa1ad09"
+      },
+      {
+        "title": "Charytatywny Jarmark św. Mikołaja w Gdańsku",
+        "source_url": "https://gdansk.dominikanie.pl/2026/11/ogloszenia-parafialne-xxxii-niedziela-zwykla-8-listopada-2026-r",
+        "outcome": "inserted_and_published",
+        "event_id": "4d22dbe6-146d-43cc-aa11-d84bc52e0731",
+        "slug": "curated-charytatywny-jarmark-sw-mikolaja-w-gdansku-gdansk-2026-12-05-4ffe9788c30d"
+      },
+      {
+        "title": "Biegiem Pomagam — Bieg Pomocników św. Mikołaja",
+        "source_url": "https://biegiempomagam.pl/program",
+        "outcome": "inserted_and_published",
+        "event_id": "1a3519c8-06f8-4d4c-b0e6-9f3c19155a89",
+        "slug": "curated-biegiem-pomagam-bieg-pomocnikow-sw-mikolaja-warszawa-2026-12-05-06b3370cbfc2"
+      }
+    ]
+  },
+  "post_import": {
+    "mode": "dry-run",
+    "checked_at": "2026-11-17T16:41:11.000Z",
+    "results": [
+      {
+        "title": "NEVER GIVE UP II — koncert charytatywny Fundacji 22q11",
+        "source_url": "https://app.evently.pl/events/15731-koncert-charytatywny-never-give-up-ii-krakow-22112026",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "7c635882-e45b-4b92-a3e4-7fd23aa2fcc4",
+        "category_id": "f28816c8-42fa-44dc-ada6-3561edcf765e",
+        "city_id": "cfc2c7c6-bf8f-4f66-a593-a5d886a38600",
+        "location_id": "11e2ae88-5af4-4829-99bd-8d345d4dc7f5",
+        "creates_location": false,
+        "slug": "curated-never-give-up-ii-koncert-charytatywny-fundacji-22q11-krakow-2026-11-22-30043504fdc1"
+      },
+      {
+        "title": "MITA GRA DOBRO — koncert dla Szlachetnej Paczki",
+        "source_url": "https://wydarzenia.gliwice.eu/8061-gliwice-mita-gra-dobro",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "3f938023-a042-491d-ad19-8564e4efae3e",
+        "category_id": "f28816c8-42fa-44dc-ada6-3561edcf765e",
+        "city_id": "25b759db-2e26-4ad9-a3a7-67b4bc8d5474",
+        "location_id": "c9cf2098-0b2a-4c94-b9cb-01050be3d1d2",
+        "creates_location": false,
+        "slug": "curated-mita-gra-dobro-koncert-dla-szlachetnej-paczki-gliwice-2026-11-26-230b2d0620cb"
+      },
+      {
+        "title": "XVII Maltański Koncert Charytatywny — Przeboje symfoniki",
+        "source_url": "https://filharmoniapoznanska.pl/koncerty/przeboje-symfoniki-xvii-maltanski-koncert-charytatywny",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "f1dd552d-3b99-4881-98dc-d99e3d884d82",
+        "category_id": "f28816c8-42fa-44dc-ada6-3561edcf765e",
+        "city_id": "92537fb0-d026-4850-ba93-543675e261e6",
+        "location_id": "5b1a0e98-9035-4444-9be5-9c896b958d82",
+        "creates_location": false,
+        "slug": "curated-xvii-maltanski-koncert-charytatywny-przeboje-symfoniki-poznan-2026-11-27-f0dd9aa1ad09"
+      },
+      {
+        "title": "Charytatywny Jarmark św. Mikołaja w Gdańsku",
+        "source_url": "https://gdansk.dominikanie.pl/2026/11/ogloszenia-parafialne-xxxii-niedziela-zwykla-8-listopada-2026-r",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "4d22dbe6-146d-43cc-aa11-d84bc52e0731",
+        "category_id": "f28816c8-42fa-44dc-ada6-3561edcf765e",
+        "city_id": "428d7cbd-7bea-4f9c-8bab-8cc7399e6ba4",
+        "location_id": "202c7d24-dea6-4ef3-aacf-90f74e32ee5d",
+        "creates_location": false,
+        "slug": "curated-charytatywny-jarmark-sw-mikolaja-w-gdansku-gdansk-2026-12-05-4ffe9788c30d"
+      },
+      {
+        "title": "Biegiem Pomagam — Bieg Pomocników św. Mikołaja",
+        "source_url": "https://biegiempomagam.pl/program",
+        "outcome": "existing_published",
+        "duplicate_id": null,
+        "own_id": "1a3519c8-06f8-4d4c-b0e6-9f3c19155a89",
+        "category_id": "f28816c8-42fa-44dc-ada6-3561edcf765e",
+        "city_id": "385d8bee-8cf4-47c4-95b3-b6af2404665c",
+        "location_id": "df3fd14e-eb33-40d6-a603-f19523a138f2",
+        "creates_location": false,
+        "slug": "curated-biegiem-pomagam-bieg-pomocnikow-sw-mikolaja-warszawa-2026-12-05-06b3370cbfc2"
+      }
+    ]
+  },
+  "mobile": [
+    {
+      "url": "https://mapaimprez.pl/charytatywne/krakow/curated-never-give-up-ii-koncert-charytatywny-fundacji-22q11-krakow-2026-11-22-30043504fdc1",
+      "width": 390,
+      "title": "NEVER GIVE UP II — koncert charytatywny Fundacji 22q11",
+      "city": "Kraków",
+      "date": "22 lis 2026 · 17:00",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": null
+    },
+    {
+      "url": "https://mapaimprez.pl/charytatywne/gliwice/curated-mita-gra-dobro-koncert-dla-szlachetnej-paczki-gliwice-2026-11-26-230b2d0620cb",
+      "width": 390,
+      "title": "MITA GRA DOBRO — koncert dla Szlachetnej Paczki",
+      "city": "Gliwice",
+      "date": "26 lis 2026 · 18:00",
+      "lines": 3,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": null
+    },
+    {
+      "url": "https://mapaimprez.pl/charytatywne/poznan/curated-xvii-maltanski-koncert-charytatywny-przeboje-symfoniki-poznan-2026-11-27-f0dd9aa1ad09",
+      "width": 390,
+      "title": "XVII Maltański Koncert Charytatywny — Przeboje symfoniki",
+      "city": "Poznań",
+      "date": "27 lis 2026 · 19:00",
+      "lines": 4,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": null
+    },
+    {
+      "url": "https://mapaimprez.pl/charytatywne/gdansk/curated-charytatywny-jarmark-sw-mikolaja-w-gdansku-gdansk-2026-12-05-4ffe9788c30d",
+      "width": 390,
+      "title": "Charytatywny Jarmark św. Mikołaja w Gdańsku",
+      "city": "Gdańsk",
+      "date": "5 gru 2026 · 14:00",
+      "lines": 3,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": null
+    },
+    {
+      "url": "https://mapaimprez.pl/charytatywne/warszawa/curated-biegiem-pomagam-bieg-pomocnikow-sw-mikolaja-warszawa-2026-12-05-06b3370cbfc2",
+      "width": 390,
+      "title": "Biegiem Pomagam — Bieg Pomocników św. Mikołaja",
+      "city": "Warszawa",
+      "date": "5 gru 2026 · 11:00",
+      "lines": 3,
+      "clamp": 5,
+      "titleFits": true,
+      "matches": true,
+      "photoLoaded": null
+    }
+  ],
+  "featured_changes": {
+    "checked_at": "2026-11-17T16:49:55.991Z",
+    "selected": [
+      "7c635882-e45b-4b92-a3e4-7fd23aa2fcc4",
+      "3f938023-a042-491d-ad19-8564e4efae3e",
+      "1a3519c8-06f8-4d4c-b0e6-9f3c19155a89"
+    ],
+    "changes": [
+      {
+        "id": "7c635882-e45b-4b92-a3e4-7fd23aa2fcc4",
+        "title": "NEVER GIVE UP II — koncert charytatywny Fundacji 22q11",
+        "is_featured": true,
+        "updated_at": "2026-11-17T16:48:16.115708+00:00"
+      },
+      {
+        "id": "3f938023-a042-491d-ad19-8564e4efae3e",
+        "title": "MITA GRA DOBRO — koncert dla Szlachetnej Paczki",
+        "is_featured": true,
+        "updated_at": "2026-11-17T16:48:16.851759+00:00"
+      },
+      {
+        "id": "1a3519c8-06f8-4d4c-b0e6-9f3c19155a89",
+        "title": "Biegiem Pomagam — Bieg Pomocników św. Mikołaja",
+        "is_featured": true,
+        "updated_at": "2026-11-17T16:48:18.519377+00:00"
+      }
+    ]
+  },
+  "source_checked_at": [
+    {
+      "title": "NEVER GIVE UP II — koncert charytatywny Fundacji 22q11",
+      "source_url": "https://app.evently.pl/events/15731-koncert-charytatywny-never-give-up-ii-krakow-22112026",
+      "checked_at": "2026-11-17T16:39:10Z",
+      "evidence_urls": [
+        "https://convention.krakow.pl/5430,1047,sale_konferencyjne.html"
+      ]
+    },
+    {
+      "title": "MITA GRA DOBRO — koncert dla Szlachetnej Paczki",
+      "source_url": "https://wydarzenia.gliwice.eu/8061-gliwice-mita-gra-dobro",
+      "checked_at": "2026-11-17T16:39:10Z",
+      "evidence_urls": [
+        "https://forms.gle/tvrJvscKdpBEjdVU9"
+      ]
+    },
+    {
+      "title": "XVII Maltański Koncert Charytatywny — Przeboje symfoniki",
+      "source_url": "https://filharmoniapoznanska.pl/koncerty/przeboje-symfoniki-xvii-maltanski-koncert-charytatywny/",
+      "checked_at": "2026-11-17T16:39:11Z",
+      "evidence_urls": [
+        "https://filharmoniapoznanska.pl/bilety-i-karnety/cennik-biletow-i-karnetow/"
+      ]
+    },
+    {
+      "title": "Charytatywny Jarmark św. Mikołaja w Gdańsku",
+      "source_url": "https://gdansk.dominikanie.pl/2026/11/ogloszenia-parafialne-xxxii-niedziela-zwykla-8-listopada-2026-r/",
+      "checked_at": "2026-11-17T16:39:10Z",
+      "evidence_urls": [
+        "https://radiogdansk.pl/wydarzenia/charytatywny-jarmark-sw-mikolaja/"
+      ]
+    },
+    {
+      "title": "Biegiem Pomagam — Bieg Pomocników św. Mikołaja",
+      "source_url": "https://biegiempomagam.pl/program/",
+      "checked_at": "2026-11-17T16:39:11Z",
+      "evidence_urls": [
+        "https://biegiempomagam.pl/oplaty/",
+        "https://biegiempomagam.pl/trasa-biegu/",
+        "https://biegiempomagam.pl/idea-i-cel-biegu/"
+      ]
+    }
+  ],
+  "notes": [
+    "Trzy nowe polecane; istniejący polecany Yamato pozostał widoczny.",
+    "Zmiana tylko is_featured, kontrola updated_at, znacznika importera i aktywnego źródła własnych nowych wpisów.",
+    "Bez AI i bez przenoszenia plakatów. Pięć okładek typograficznych EventVisual; kontrola szerokości 390 px.",
+    "Przed publikacją porównano podobne tytuły i miasta/dni z 980 wpisami oraz URL źródeł.",
+    "Kontrola 75 własnych wydarzeń na najbliższy tydzień odbyła się we wcześniejszym dzisiejszym przebiegu; wyniki w 2026-11-17.md.",
+    "Jarmark: pierwotne ogłoszenie Dominikanów oraz wcześniej odczytana zapowiedź patrona. Po rozpoznaniu robots.txt Radia Gdańsk nie ponawiano odczytu."
+  ]
+}

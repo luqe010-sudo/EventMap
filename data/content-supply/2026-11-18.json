@@ -1,0 +1,377 @@
+{
+  "checked_at": "2026-11-18T19:04:26Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Rotacja: warmińsko-mazurskie, śląskie, lubuskie i lubelskie. Uzupełnienie pustych katalogów Mrągowa, Częstochowy i Kazimierza Dolnego. Wydarzenia rodzinne, kultura, koncerty i bezpłatny taniec.",
+  "geocoding_attribution": "Geoportal GUGiK i istniejące punkty obiektów z potwierdzonym pochodzeniem.",
+  "events": [
+    {
+      "title": "Parostatkiem w piękny rejs — Największe Polskie Przeboje w Mrągowie",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-20T18:30:00+01:00",
+      "end_at": null,
+      "short_description": "Polskie przeboje w symfonicznych aranżacjach Morningstar Orchestra zabrzmią w sali MCK.",
+      "description": "Morningstar Orchestra i wokaliści przypomną polskie przeboje w nowych aranżacjach symfonicznych. Koncert rozpocznie się o 18:30 w Mrągowskim Centrum Kultury. Wstęp biletowany; link do aktualnej sprzedaży udostępnia obiekt. Cena nie została potwierdzona.",
+      "location": {
+        "name": "Mrągowskie Centrum Kultury",
+        "address": "Warszawska 26",
+        "city": "Mrągowo",
+        "latitude": 53.865401,
+        "longitude": 21.304562,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/540/mragowskie-centrum-kultury",
+        "coordinate_note": "Dokładny nazwany punkt MCK z karty obiektu i FAQ współrzędnych. Adres potwierdza oficjalna stopka MCK. Odrzucono błędny szablonowy marker MCK w Warszawie (52.258277,20.972733). Istniejący rekord 47be67de-569e-4a77-ade2-b3e105dcee8a; adres potwierdzono ponownie w źródle wydarzenia 18.11.2026.",
+        "city_slug": "mragowo"
+      },
+      "source_name": "Mrągowskie Centrum Kultury",
+      "source_url": "https://mck.mragowo.pl/pl/news/info/3714/parostatkiem-w-piekny-rejs-najwieksze-polskie-przeboje.html",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji plakatu w EventMap. Istniejący EventVisual zapewnia oprawę; bez AI i pobierania nowych ilustracji.",
+      "checked_at": "2026-11-18T19:03:09Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-18T19:03:09Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Opowieść wigilijna — Teatr Piasku Tetiany Galitsyny w Mrągowie, godz. 10:00",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-25T10:00:00+01:00",
+      "end_at": null,
+      "short_description": "Rodzinne widowisko łączy historię Scrooge’a z obrazami tworzonymi piaskiem i światłem.",
+      "description": "Teatr Piasku Tetiany Galitsyny przedstawi historię przemiany Scrooge’a w scenerii powstającej z piasku i światła. Rodzinny spektakl odbędzie się w MCK. Ten wpis dotyczy pokazu o 10:00; organizator zapowiada też osobny pokaz o 17:00. Wstęp biletowany, sprzedaż przez link na stronie obiektu. Cena nie została potwierdzona.",
+      "location": {
+        "name": "Mrągowskie Centrum Kultury",
+        "address": "Warszawska 26",
+        "city": "Mrągowo",
+        "latitude": 53.865401,
+        "longitude": 21.304562,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/540/mragowskie-centrum-kultury",
+        "coordinate_note": "Dokładny nazwany punkt MCK z karty obiektu i FAQ współrzędnych. Adres potwierdza oficjalna stopka MCK. Odrzucono błędny szablonowy marker MCK w Warszawie (52.258277,20.972733). Istniejący rekord 47be67de-569e-4a77-ade2-b3e105dcee8a; adres potwierdzono ponownie w źródle wydarzenia 18.11.2026.",
+        "city_slug": "mragowo"
+      },
+      "source_name": "Mrągowskie Centrum Kultury",
+      "source_url": "https://mck.mragowo.pl/pl/news/info/3715/teatr-piasku-tetiany-galitsyny-opowiesc-wigilijna.html",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji plakatu w EventMap. Istniejący EventVisual zapewnia oprawę; bez AI i pobierania nowych ilustracji.",
+      "checked_at": "2026-11-18T19:03:10Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-18T19:03:10Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Opowieść wigilijna — Teatr Piasku Tetiany Galitsyny w Mrągowie, godz. 17:00",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-25T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Popołudniowy pokaz rodzinnej Opowieści wigilijnej w scenerii malowanej piaskiem i światłem.",
+      "description": "Popołudniowy pokaz Teatru Piasku Tetiany Galitsyny przypomni opowieść o Scrooge’u, życzliwości i przemianie bohatera. Spektakl wykorzystuje obrazy tworzone piaskiem i światłem. Ten wpis dotyczy pokazu o 17:00 w MCK; pokaz poranny ma osobny termin. Wstęp biletowany, aktualna sprzedaż przez stronę obiektu. Cena nie została potwierdzona.",
+      "location": {
+        "name": "Mrągowskie Centrum Kultury",
+        "address": "Warszawska 26",
+        "city": "Mrągowo",
+        "latitude": 53.865401,
+        "longitude": 21.304562,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/540/mragowskie-centrum-kultury",
+        "coordinate_note": "Dokładny nazwany punkt MCK z karty obiektu i FAQ współrzędnych. Adres potwierdza oficjalna stopka MCK. Odrzucono błędny szablonowy marker MCK w Warszawie (52.258277,20.972733). Istniejący rekord 47be67de-569e-4a77-ade2-b3e105dcee8a; adres potwierdzono ponownie w źródle wydarzenia 18.11.2026.",
+        "city_slug": "mragowo"
+      },
+      "source_name": "Mrągowskie Centrum Kultury",
+      "source_url": "https://mck.mragowo.pl/pl/news/info/3715/teatr-piasku-tetiany-galitsyny-opowiesc-wigilijna.html",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji plakatu w EventMap. Istniejący EventVisual zapewnia oprawę; bez AI i pobierania nowych ilustracji.",
+      "checked_at": "2026-11-18T19:03:10Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-18T19:03:10Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Stwórz świąteczny wianek — warsztaty w Mrągowie",
+      "category_slug": "kultura",
+      "start_at": "2026-12-14T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Warsztaty dekoracji bożonarodzeniowych z gałązek, suszonych owoców i przypraw w sali kameralnej MCK.",
+      "description": "Uczestnicy przygotują świąteczny wianek na drzwi z gałązek iglastych, suszonych owoców, przypraw i ozdób. Organizator zapewnia materiały oraz pomoc osobom bez doświadczenia. Początek o 17:00 w sali kameralnej MCK. Udział kosztuje 119 zł; zapisy i zakup w recepcji lub online przez stronę organizatora. Liczba miejsc ograniczona.",
+      "location": {
+        "name": "Mrągowskie Centrum Kultury",
+        "address": "Warszawska 26",
+        "city": "Mrągowo",
+        "latitude": 53.865401,
+        "longitude": 21.304562,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/540/mragowskie-centrum-kultury",
+        "coordinate_note": "Dokładny nazwany punkt MCK z karty obiektu i FAQ współrzędnych. Adres potwierdza oficjalna stopka MCK. Odrzucono błędny szablonowy marker MCK w Warszawie (52.258277,20.972733). Istniejący rekord 47be67de-569e-4a77-ade2-b3e105dcee8a; adres potwierdzono ponownie w źródle wydarzenia 18.11.2026.",
+        "city_slug": "mragowo"
+      },
+      "source_name": "Mrągowskie Centrum Kultury",
+      "source_url": "https://mck.mragowo.pl/pl/news/info/3743/stworz-swiateczny-wianek.html",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 119,
+      "price_max": 119,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji plakatu w EventMap. Istniejący EventVisual zapewnia oprawę; bez AI i pobierania nowych ilustracji.",
+      "checked_at": "2026-11-18T19:03:13Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-18T19:03:13Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "DAGADANA z orkiestrą — finał konkursu im. Haliny Poświatowskiej",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-21T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "DAGADANA wystąpi z Orkiestrą Symfoniczną Filharmonii Częstochowskiej pod dyrekcją Adama Klocka.",
+      "description": "Koncert zespołu DAGADANA z Orkiestrą Symfoniczną Filharmonii Częstochowskiej będzie częścią finału 47. Ogólnopolskiego Konkursu Poetyckiego im. Haliny Poświatowskiej. Orkiestrę poprowadzi Adam Klocek; program obejmuje też wręczenie nagród laureatom. Początek o 17:00 w sali koncertowej. Wstęp biletowany, aktualna cena i dostępność w sprzedaży filharmonii.",
+      "location": {
+        "name": "Filharmonia Częstochowska im. Bronisława Hubermana",
+        "address": "Tomasza Wilsona 16",
+        "city": "Częstochowa",
+        "city_slug": "czestochowa",
+        "latitude": 50.8140200622788,
+        "longitude": 19.1221780778936,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Cz%C4%99stochowa%2C%20Tomasza%20Wilsona%2016",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK (zgodna miejscowość, pełna nazwa ulicy i numer). Obiekt i adres potwierdza organizator."
+      },
+      "source_name": "Filharmonia Częstochowska im. Bronisława Hubermana",
+      "source_url": "https://www.filharmonia.com.pl/repertuar/2854-DAGADANA-z-orkiestra",
+      "evidence_urls": [
+        "https://bilety.filharmonia.com.pl/MSI/Default.aspx?event_id=15688&typetran=0&returnlink=%7e%2fmvc%2fpl%3fsort%3dDate%26date%3d2026-11"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji plakatu w EventMap. Istniejący EventVisual zapewnia oprawę; bez AI i pobierania nowych ilustracji.",
+      "checked_at": "2026-11-18T19:03:09Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-18T19:03:09Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Wieczór Uniwersytecki — Moja ballada i Absurdalia",
+      "category_slug": "kultura",
+      "start_at": "2026-11-25T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Wykład o balladzie, koncert Joanny Świniarskiej-Szebeszczyk i wernisaż Apolonii Morawskiej.",
+      "description": "Wieczór w ramach XXIV Święta Muzyki połączy wykład Korneliusza Wiatra o balladzie, koncert Moja ballada oraz wernisaż Absurdalia Apolonii Morawskiej. Joannie Świniarskiej-Szebeszczyk towarzyszyć będą Agnieszka Derlak, Michał Kapczuk i Przemysław Jarosz. Początek o 19:00 w sali kameralnej filharmonii. Wstęp biletowany; aktualne ceny i dostępność na stronie sprzedaży obiektu.",
+      "location": {
+        "name": "Filharmonia Częstochowska im. Bronisława Hubermana",
+        "address": "Tomasza Wilsona 16",
+        "city": "Częstochowa",
+        "city_slug": "czestochowa",
+        "latitude": 50.8140200622788,
+        "longitude": 19.1221780778936,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Cz%C4%99stochowa%2C%20Tomasza%20Wilsona%2016",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK (zgodna miejscowość, pełna nazwa ulicy i numer). Obiekt i adres potwierdza organizator."
+      },
+      "source_name": "Filharmonia Częstochowska im. Bronisława Hubermana",
+      "source_url": "https://www.filharmonia.com.pl/repertuar/2782-WIECZOR-UNIWERSYTECKI",
+      "evidence_urls": [
+        "https://bilety.filharmonia.com.pl/MSI/Default.aspx?event_id=15642&typetran=0&returnlink=%7e%2fmvc%2fpl%3fsort%3dDate%26date%3d2026-11"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji plakatu w EventMap. Istniejący EventVisual zapewnia oprawę; bez AI i pobierania nowych ilustracji.",
+      "checked_at": "2026-11-18T19:03:10Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-18T19:03:10Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Muzyka bez granic — Chór Filharmonii Częstochowskiej",
+      "category_slug": "koncerty",
+      "start_at": "2026-11-26T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Chór pod dyrekcją Aleksandry Szafarewicz wykona utwory m.in. Poulenca, Brucknera, Ravela i Debussy’ego.",
+      "description": "Chór Filharmonii Częstochowskiej pod dyrekcją Aleksandry Szafarewicz zaprezentuje program Muzyka bez granic. W repertuarze znajdują się m.in. dzieła Poulenca, Brucknera, Ravela, Debussy’ego i Griega. Koncert odbędzie się w sali kameralnej o 19:00. Wstęp biletowany; aktualne ceny i dostępność w systemie sprzedaży filharmonii.",
+      "location": {
+        "name": "Filharmonia Częstochowska im. Bronisława Hubermana",
+        "address": "Tomasza Wilsona 16",
+        "city": "Częstochowa",
+        "city_slug": "czestochowa",
+        "latitude": 50.8140200622788,
+        "longitude": 19.1221780778936,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Cz%C4%99stochowa%2C%20Tomasza%20Wilsona%2016",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK (zgodna miejscowość, pełna nazwa ulicy i numer). Obiekt i adres potwierdza organizator."
+      },
+      "source_name": "Filharmonia Częstochowska im. Bronisława Hubermana",
+      "source_url": "https://www.filharmonia.com.pl/repertuar/2776-Muzyka-bez-granic",
+      "evidence_urls": [
+        "https://bilety.filharmonia.com.pl/MSI/Default.aspx?event_id=15645&typetran=0&returnlink=%7e%2fmvc%2fpl%3fsort%3dDate%26date%3d2026-11"
+      ],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji plakatu w EventMap. Istniejący EventVisual zapewnia oprawę; bez AI i pobierania nowych ilustracji.",
+      "checked_at": "2026-11-18T19:03:11Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-18T19:03:11Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Postmortem — kulisy medycyny sądowej, wieczór w SOWA Gorzów",
+      "category_slug": "kultura",
+      "start_at": "2026-11-19T18:00:00+01:00",
+      "end_at": null,
+      "short_description": "Spotkanie z technikiem kryminalistyki Romualdem Karpaczem i transmisja wykładu z Centrum Nauki Kopernik.",
+      "description": "Romuald Karpacz opowie o pracy technika kryminalistyki i sprawach z regionu; zapowiedziano pytania oraz prezentację narzędzi wykorzystywanych w śledztwach. O 19:15 rozpocznie się transmisja wykładu Moniki Głąbińskiej z Centrum Nauki Kopernik. Spotkanie dla osób pełnoletnich, początek o 18:00. Wstęp wolny. SOWA mieści się na drugim piętrze budynku C CEZiB przy Warszawskiej 48.",
+      "location": {
+        "name": "SOWA Gorzów — CEZiB",
+        "address": "Warszawska 48",
+        "city": "Gorzów Wielkopolski",
+        "latitude": 52.7337714,
+        "longitude": 15.252362,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Gorz%C3%B3w%20Wielkopolski%2C%20Warszawska%2048",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK. Miasto, ulica i numer zgodne z adresem obiektu. Istniejący rekord c3588fc4-e761-400e-9457-95acc03398a7; adres potwierdzono ponownie w źródle wydarzenia 18.11.2026.",
+        "city_slug": "gorzow-wielkopolski"
+      },
+      "source_name": "Miejskie Centrum Kultury w Gorzowie Wielkopolskim",
+      "source_url": "https://mckgorzow.pl/event/wieczor-dla-doroslych-postmortem-kulisy-medycyny-sadowej/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji plakatu w EventMap. Istniejący EventVisual zapewnia oprawę; bez AI i pobierania nowych ilustracji.",
+      "checked_at": "2026-11-18T19:03:09Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-18T19:03:09Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Jeden z nas musi się ożenić — premiera na 5. urodziny Teatru Mostów",
+      "category_slug": "kultura",
+      "start_at": "2026-11-19T19:00:00+01:00",
+      "end_at": null,
+      "short_description": "Premiera komedii Eugène’a Labiche’a w reżyserii Małgorzaty Kocik i jubileuszowa gala Teatru Mostów.",
+      "description": "Teatr Mostów uczci piąte urodziny premierą komedii Jeden z nas musi się ożenić Eugène’a Labiche’a. Spektakl wyreżyserowała Małgorzata Kocik. Po przedstawieniu zaplanowano galę ze wspomnieniami dotychczasowych realizacji i nagrodami Przyjaciel Teatru Mostów. Początek o 19:00 w MCK przy Hawelańskiej 6a. Wstęp biletowany; bilety w MCK i przez odnośnik sprzedaży na stronie organizatora. Cena nie została potwierdzona.",
+      "location": {
+        "name": "Miejskie Centrum Kultury w Gorzowie Wielkopolskim",
+        "address": "Hawelańska 6a",
+        "city": "Gorzów Wielkopolski",
+        "city_slug": "gorzow-wielkopolski",
+        "latitude": 52.7323245105134,
+        "longitude": 15.2380434676692,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Gorz%C3%B3w%20Wielkopolski%2C%20Hawela%C5%84ska%206a",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK (zgodna miejscowość, pełna nazwa ulicy i numer). Obiekt i adres potwierdza organizator."
+      },
+      "source_name": "Miejskie Centrum Kultury w Gorzowie Wielkopolskim",
+      "source_url": "https://mckgorzow.pl/event/5-urodziny-teatru-mostow-premiera-komedii-jeden-z-nas-musi-sie-ozenic/",
+      "evidence_urls": [],
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji plakatu w EventMap. Istniejący EventVisual zapewnia oprawę; bez AI i pobierania nowych ilustracji.",
+      "checked_at": "2026-11-18T19:03:10Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-18T19:03:10Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Warsztaty wikliniarskie dla dorosłych — dwa spotkania w Zodiaku",
+      "category_slug": "kultura",
+      "start_at": "2026-11-19T16:30:00+01:00",
+      "end_at": "2026-11-20T18:30:00+01:00",
+      "short_description": "Dwudniowe zajęcia dla początkujących z Markiem Batogiem; uczestnicy wyplotą własny koszyczek.",
+      "description": "Marek Batóg pokaże podstawy wikliniarstwa, a uczestnicy wyplotą koszyczek. Warsztaty obejmują dwa spotkania: 19 i 20 listopada, każdego dnia w godzinach 16:30–18:30; między nimi jest przerwa nocna. Cały cykl kosztuje 45 zł, płatność wyłącznie gotówką; materiały zapewnia organizator. Obowiązują zapisy pod numerem 785 187 282, liczba miejsc ograniczona. Zajęcia w Klubie Kultury MCK Zodiak przy Słonecznej 62a.",
+      "location": {
+        "name": "Klub Kultury MCK Zodiak",
+        "address": "Słoneczna 62a",
+        "city": "Gorzów Wielkopolski",
+        "latitude": 52.7252825,
+        "longitude": 15.2052371,
+        "coordinate_source": "https://kartamiejska.um.gorzow.pl/wydarzenia/5073-jesienne-rozgrzanie-warsztaty-wege-dla-doroslych",
+        "coordinate_note": "Jawny punkt q= w osadzonej mapie miejsca na miejskiej karcie. Aktualny adres Słoneczna 62a potwierdzony w karcie warsztatów i kontaktach MCK. Starsza zbiorcza strona klubów z adresem 63 nie została użyta. Istniejący rekord 6009b01b-b151-4df2-b6aa-df742e059584; adres potwierdzono ponownie w źródle wydarzenia 18.11.2026.",
+        "city_slug": "gorzow-wielkopolski"
+      },
+      "source_name": "Miejskie Centrum Kultury w Gorzowie Wielkopolskim",
+      "source_url": "https://mckgorzow.pl/event/warsztaty-wikliniarskie-dla-doroslych-26/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 45,
+      "price_max": 45,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji plakatu w EventMap. Istniejący EventVisual zapewnia oprawę; bez AI i pobierania nowych ilustracji.",
+      "checked_at": "2026-11-18T19:03:11Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-18T19:03:11Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Bezpłatny dzień tańca w Kazimierzu Dolnym — latino i taniec użytkowy",
+      "category_slug": "sport",
+      "start_at": "2026-11-20T13:30:00+01:00",
+      "end_at": null,
+      "short_description": "Pokazowe zajęcia dla seniorów, dzieci, młodzieży i dorosłych w KOKPiT przy Lubelskiej 12.",
+      "description": "KOKPiT zaprasza na bezpłatne zajęcia pokazowe z tańca. Program 20 listopada: 13:30 Latino Solo Senior, 14:30 Latino Kids, 15:30 Latino Teens oraz 16:30 taniec użytkowy dla dorosłych w edycji andrzejkowej. Na ostatnie zajęcia zapisy w parach. Dla wszystkich grup obowiązują zgłoszenia telefoniczne pod numerem 664 051 788. Miejsce: KOKPiT, Lubelska 12.",
+      "location": {
+        "name": "Kazimierski Ośrodek Kultury, Promocji i Turystyki",
+        "address": "Lubelska 12",
+        "city": "Kazimierz Dolny",
+        "city_slug": "kazimierz-dolny",
+        "latitude": 51.3212980531365,
+        "longitude": 21.9489716718695,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Kazimierz%20Dolny%2C%20Lubelska%2012",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK (zgodna miejscowość, pełna nazwa ulicy i numer). Obiekt i adres potwierdza organizator."
+      },
+      "source_name": "Kazimierski Ośrodek Kultury, Promocji i Turystyki",
+      "source_url": "https://kokpit.com.pl/aktualnosci/bezplatne-zajecia-pokazowe-z-tanca/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Krótki przegląd nie potwierdził prawa do publikacji plakatu w EventMap. Istniejący EventVisual zapewnia oprawę; bez AI i pobierania nowych ilustracji.",
+      "checked_at": "2026-11-18T19:03:09Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-18T19:03:09Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import { listOrganizerEvents } from "../lib/organizer-events";
 const gte = vi.fn();
 const lt = vi.fn();
 const inFilter = vi.fn();
+const or = vi.fn();
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -16,6 +17,7 @@ beforeEach(() => {
   const query = {
     select: vi.fn(() => query), order: vi.fn(() => query), range: vi.fn(() => query),
     eq: vi.fn(() => query),
+    or: vi.fn((...args: unknown[]) => { or(...args); return query; }),
     in: vi.fn((...args: unknown[]) => { inFilter(...args); return query; }),
     gte: vi.fn((...args: unknown[]) => { gte(...args); return query; }),
     lt: vi.fn((...args: unknown[]) => { lt(...args); return query; }),
@@ -39,4 +41,10 @@ it("leaves the unprovided end unbounded", async () => {
   await listOrganizerEvents({ dateFrom: "2026-10-08" });
   expect(gte).toHaveBeenCalledWith("start_at", "2026-10-07T22:00:00.000Z");
   expect(lt).not.toHaveBeenCalled();
+});
+
+it("includes legacy events displayed as drafts in the draft filter", async () => {
+  await listOrganizerEvents({ status: "draft" });
+  expect(or).toHaveBeenCalledExactlyOnceWith("status.eq.draft,status.is.null");
+  expect(inFilter).toHaveBeenCalledWith("submitted_by_organizer_id", ["organizer-a"]);
 });

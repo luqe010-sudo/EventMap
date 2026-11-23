@@ -1,0 +1,392 @@
+{
+  "checked_at": "2026-11-20T19:38:49Z",
+  "timezone": "Europe/Warsaw",
+  "scope": "Kujawsko-pomorskie, mazowieckie i dolnośląskie. Toruń, Otwock i Zgorzelec: literatura, rodziny, teatr i taniec. Dziesięć wydarzeń bezpłatnych.",
+  "geocoding_attribution": "Dokładne adresy GUGiK w Toruniu i istniejące punkty obiektów z zachowanym pochodzeniem.",
+  "events": [
+    {
+      "title": "Emilia Sułek — Baranie oko. Reportaż z Kirgistanu",
+      "category_slug": "kultura",
+      "start_at": "2026-11-24T18:30:00+01:00",
+      "end_at": null,
+      "short_description": "Spotkanie z autorką reportażu o Kirgistanie podczas Toruńskiego Festiwalu Książki.",
+      "description": "Emilia Sułek opowie o książce Baranie oko. Reportaż z Kirgistanu. Rozmowę poprowadzi Tomasz Więcławski. Spotkanie rozpocznie się o 18:30 w Dworze Artusa przy Rynku Staromiejskim 6. Wstęp wolny.",
+      "location": {
+        "name": "Centrum Kultury Dwór Artusa",
+        "address": "Rynek Staromiejski 6",
+        "city": "Toruń",
+        "city_slug": "torun",
+        "latitude": 53.0100168984065,
+        "longitude": 18.6044113927382,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Toru%C5%84%2C%20Rynek%20Staromiejski%206",
+        "coordinate_checked_at": "2026-11-20T19:37:19Z",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK (accuracy=1), zgodny numer i nazwa ulicy/placu. Adres wydarzenia potwierdza aktualna karta festiwalu."
+      },
+      "source_name": "Toruński Festiwal Książki — Centrum Kultury Dwór Artusa",
+      "source_url": "https://tfk.artus.torun.pl/wydarzenie/emilia-sulek/",
+      "evidence_urls": [
+        "https://tfk.artus.torun.pl/program/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do dalszej publikacji materiałów oficjalnych. main_image_url puste; istniejąca oprawa EventVisual. Nie generowano grafik AI.",
+      "checked_at": "2026-11-20T19:34:32Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-20T19:34:32Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Paweł Sołtys — spotkanie wokół książki Monolok",
+      "category_slug": "kultura",
+      "start_at": "2026-11-25T18:30:00+01:00",
+      "end_at": null,
+      "short_description": "Literacka rozmowa z Pawłem Sołtysem, prowadzona przez Beatę Kwiatkowską.",
+      "description": "Paweł Sołtys spotka się z czytelnikami podczas Toruńskiego Festiwalu Książki. Tematem rozmowy z Beatą Kwiatkowską będzie Monolok. Początek o 18:30 w Dworze Artusa. Wstęp bezpłatny.",
+      "location": {
+        "name": "Centrum Kultury Dwór Artusa",
+        "address": "Rynek Staromiejski 6",
+        "city": "Toruń",
+        "city_slug": "torun",
+        "latitude": 53.0100168984065,
+        "longitude": 18.6044113927382,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Toru%C5%84%2C%20Rynek%20Staromiejski%206",
+        "coordinate_checked_at": "2026-11-20T19:37:19Z",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK (accuracy=1), zgodny numer i nazwa ulicy/placu. Adres wydarzenia potwierdza aktualna karta festiwalu."
+      },
+      "source_name": "Toruński Festiwal Książki — Centrum Kultury Dwór Artusa",
+      "source_url": "https://tfk.artus.torun.pl/wydarzenie/pawel-soltys/",
+      "evidence_urls": [
+        "https://tfk.artus.torun.pl/program/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do dalszej publikacji materiałów oficjalnych. main_image_url puste; istniejąca oprawa EventVisual. Nie generowano grafik AI.",
+      "checked_at": "2026-11-20T19:34:33Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-20T19:34:33Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Bartek Kieżun — Via Flaminia i kulinarne opowieści z Włoch",
+      "category_slug": "kultura",
+      "start_at": "2026-11-27T17:30:00+01:00",
+      "end_at": null,
+      "short_description": "Autor przewodników kulinarnych porozmawia z Martyną Podolską w Książnicy Kopernikańskiej.",
+      "description": "Spotkanie z Bartkiem Kieżunem będzie poświęcone książce Via Flaminia. Opowieści z Umbrii oraz innym publikacjom autora. Rozmowę poprowadzi Martyna Podolska. Początek o 17:30 w Książnicy Kopernikańskiej przy Słowackiego 8. Wstęp wolny.",
+      "location": {
+        "name": "Książnica Kopernikańska",
+        "address": "Juliusza Słowackiego 8",
+        "city": "Toruń",
+        "city_slug": "torun",
+        "latitude": 53.0130258875077,
+        "longitude": 18.5955439543276,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Toru%C5%84%2C%20Juliusza%20S%C5%82owackiego%208",
+        "coordinate_checked_at": "2026-11-20T19:37:20Z",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK (accuracy=1), zgodny numer i nazwa ulicy/placu. Adres wydarzenia potwierdza aktualna karta festiwalu."
+      },
+      "source_name": "Toruński Festiwal Książki — Centrum Kultury Dwór Artusa",
+      "source_url": "https://tfk.artus.torun.pl/wydarzenie/bartek-kiezun/",
+      "evidence_urls": [
+        "https://tfk.artus.torun.pl/program/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do dalszej publikacji materiałów oficjalnych. main_image_url puste; istniejąca oprawa EventVisual. Nie generowano grafik AI.",
+      "checked_at": "2026-11-20T19:34:34Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-20T19:34:34Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Antonina Tosiek — Pamiętniki wiejskich kobiet",
+      "category_slug": "kultura",
+      "start_at": "2026-11-29T17:00:00+01:00",
+      "end_at": null,
+      "short_description": "Rozmowa o książce Przepraszam za brzydkie pismo, prowadzona przez Amelię Sarnowską.",
+      "description": "Antonina Tosiek opowie o książce Przepraszam za brzydkie pismo. Pamiętniki wiejskich kobiet. Spotkanie z udziałem Amelii Sarnowskiej odbędzie się w Książnicy Kopernikańskiej o 17:00, w ramach Toruńskiego Festiwalu Książki. Wstęp bezpłatny.",
+      "location": {
+        "name": "Książnica Kopernikańska",
+        "address": "Juliusza Słowackiego 8",
+        "city": "Toruń",
+        "city_slug": "torun",
+        "latitude": 53.0130258875077,
+        "longitude": 18.5955439543276,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Toru%C5%84%2C%20Juliusza%20S%C5%82owackiego%208",
+        "coordinate_checked_at": "2026-11-20T19:37:20Z",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK (accuracy=1), zgodny numer i nazwa ulicy/placu. Adres wydarzenia potwierdza aktualna karta festiwalu."
+      },
+      "source_name": "Toruński Festiwal Książki — Centrum Kultury Dwór Artusa",
+      "source_url": "https://tfk.artus.torun.pl/wydarzenie/antonina-tosiek/",
+      "evidence_urls": [
+        "https://tfk.artus.torun.pl/program/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do dalszej publikacji materiałów oficjalnych. main_image_url puste; istniejąca oprawa EventVisual. Nie generowano grafik AI.",
+      "checked_at": "2026-11-20T19:34:35Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-20T19:34:35Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Łukasz Wierzbicki — spotkanie z autorem książek dla dzieci",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-25T11:00:00+01:00",
+      "end_at": null,
+      "short_description": "Autor Afryki Kazika i Dziadka i niedźwiadka spotka się z młodymi czytelnikami w Dworze Artusa.",
+      "description": "Łukasz Wierzbicki, autor książek Afryka Kazika oraz Dziadek i niedźwiadek, zaprasza młodych czytelników na spotkanie w Dworze Artusa. Początek o 11:00, czas trwania około godziny. Wstęp bezpłatny. Grupy zorganizowane obowiązują zapisy pod adresem edukacja@artus.torun.pl.",
+      "location": {
+        "name": "Centrum Kultury Dwór Artusa",
+        "address": "Rynek Staromiejski 6",
+        "city": "Toruń",
+        "city_slug": "torun",
+        "latitude": 53.0100168984065,
+        "longitude": 18.6044113927382,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Toru%C5%84%2C%20Rynek%20Staromiejski%206",
+        "coordinate_checked_at": "2026-11-20T19:37:19Z",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK (accuracy=1), zgodny numer i nazwa ulicy/placu. Adres wydarzenia potwierdza aktualna karta festiwalu."
+      },
+      "source_name": "Toruński Festiwal Książki — Centrum Kultury Dwór Artusa",
+      "source_url": "https://tfk.artus.torun.pl/wydarzenie/lukasz-wierzbicki/",
+      "evidence_urls": [
+        "https://tfk.artus.torun.pl/program/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do dalszej publikacji materiałów oficjalnych. main_image_url puste; istniejąca oprawa EventVisual. Nie generowano grafik AI.",
+      "checked_at": "2026-11-20T19:34:36Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-20T19:34:36Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Grzegorz Kasdepke — Lufcik. Spotkanie dla młodych czytelników",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-29T13:00:00+01:00",
+      "end_at": null,
+      "short_description": "Niedzielne spotkanie z autorem książek dla dzieci w Toruńskim Festiwalu Książki.",
+      "description": "Grzegorz Kasdepke porozmawia z Tomaszem Więcławskim o książce Lufcik. Spotkanie dla młodych czytelników odbędzie się o 13:00 w Dworze Artusa przy Rynku Staromiejskim 6. Wstęp wolny.",
+      "location": {
+        "name": "Centrum Kultury Dwór Artusa",
+        "address": "Rynek Staromiejski 6",
+        "city": "Toruń",
+        "city_slug": "torun",
+        "latitude": 53.0100168984065,
+        "longitude": 18.6044113927382,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Toru%C5%84%2C%20Rynek%20Staromiejski%206",
+        "coordinate_checked_at": "2026-11-20T19:37:19Z",
+        "coordinate_note": "Dokładny punkt adresowy GUGiK (accuracy=1), zgodny numer i nazwa ulicy/placu. Adres wydarzenia potwierdza aktualna karta festiwalu."
+      },
+      "source_name": "Toruński Festiwal Książki — Centrum Kultury Dwór Artusa",
+      "source_url": "https://tfk.artus.torun.pl/wydarzenie/grzegorz-kasdepke/",
+      "evidence_urls": [
+        "https://tfk.artus.torun.pl/program/"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do dalszej publikacji materiałów oficjalnych. main_image_url puste; istniejąca oprawa EventVisual. Nie generowano grafik AI.",
+      "checked_at": "2026-11-20T19:34:37Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-20T19:34:37Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Krewniaki — 100 lat Teatru Jaracza w Otwocku",
+      "category_slug": "kultura",
+      "start_at": "2026-11-21T20:00:00+01:00",
+      "end_at": null,
+      "short_description": "Jubileuszowy pokaz spektaklu w reżyserii Edwarda Garwolińskiego z bezpłatnymi wejściówkami.",
+      "description": "Teatr Jaracza świętuje stulecie działalności pokazem Krewniaków w reżyserii Edwarda Garwolińskiego. Spektakl rozpocznie się 21 listopada o 20:00 przy Armii Krajowej 4. Wstęp bezpłatny, obowiązują wejściówki odbierane wyłącznie w kasie teatru. Liczba miejsc ograniczona; dostępność należy sprawdzić w kasie.",
+      "location": {
+        "name": "Amatorski Teatr Miejski im. Stefana Jaracza",
+        "address": "Armii Krajowej 4",
+        "city": "Otwock",
+        "latitude": 52.104639,
+        "longitude": 21.267611,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/1820/amatorski-teatr-miejski-im-stefana-jaracza",
+        "coordinate_note": "Punkt nazwanego teatru z karty obiektu sprzedawcy biletów. Potwierdzony zgodnym adresem teatru i punktem adresowym GUGiK oddalonym o ok. 10 m. Użyto istniejącej lokalizacji; adres potwierdzono w aktualnym źródle.",
+        "city_slug": "otwock"
+      },
+      "source_name": "MOKTiS Otwock — Teatr im. Stefana Jaracza",
+      "source_url": "https://www.moktis.pl/aktualnosci/1692-otwocki-festiwal-komedii",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do dalszej publikacji materiałów oficjalnych. main_image_url puste; istniejąca oprawa EventVisual. Nie generowano grafik AI.",
+      "checked_at": "2026-11-20T19:33:54Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:54Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Związek otwarty — komedia w Teatrze Jaracza",
+      "category_slug": "kultura",
+      "start_at": "2026-12-04T19:00:00+01:00",
+      "end_at": "2026-12-04T20:30:00+01:00",
+      "short_description": "Spektakl dla dorosłych w reżyserii Krzysztofa Czekajewskiego, z bezpłatnymi wejściówkami.",
+      "description": "Amatorski Teatr Miejski im. Stefana Jaracza pokaże komedię o kryzysie małżeńskim i próbach ratowania związku. Reżyseruje Krzysztof Czekajewski. Spektakl dla widzów od 18 lat rozpocznie się o 19:00. Wstęp bezpłatny, wejściówki dostępne wyłącznie w kasie teatru; liczba miejsc ograniczona.",
+      "location": {
+        "name": "Amatorski Teatr Miejski im. Stefana Jaracza",
+        "address": "Armii Krajowej 4",
+        "city": "Otwock",
+        "latitude": 52.104639,
+        "longitude": 21.267611,
+        "coordinate_source": "https://www.kupbilecik.pl/pl/place/1820/amatorski-teatr-miejski-im-stefana-jaracza",
+        "coordinate_note": "Punkt nazwanego teatru z karty obiektu sprzedawcy biletów. Potwierdzony zgodnym adresem teatru i punktem adresowym GUGiK oddalonym o ok. 10 m. Użyto istniejącej lokalizacji; adres potwierdzono w aktualnym źródle.",
+        "city_slug": "otwock"
+      },
+      "source_name": "MOKTiS Otwock — Teatr im. Stefana Jaracza",
+      "source_url": "https://www.moktis.pl/teatr-im-s-jaracza/1596-spektakl-amatorskiego-teatru-miejskiego-im-stefana-jaracza-zwiazek-otwarty-rez-krzysztof-czekajewski/2026-12-04-19-00",
+      "evidence_urls": [
+        "https://www.moktis.pl/aktualnosci/1692-otwocki-festiwal-komedii"
+      ],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do dalszej publikacji materiałów oficjalnych. main_image_url puste; istniejąca oprawa EventVisual. Nie generowano grafik AI.",
+      "checked_at": "2026-11-20T19:37:20Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-20T19:37:20Z",
+        "no_cancellation_notice": true
+      },
+      "source_note": "Kalendarz i program festiwalu zgodnie potwierdzają 4.12.2026 o 19:00. Literówka 04.12.06.2026 w tekście karty nie jest podstawą daty."
+    },
+    {
+      "title": "Warsztaty taneczne z Mieszkiem Masłowskim w Zgorzelcu",
+      "category_slug": "sport",
+      "start_at": "2026-11-22T15:00:00+01:00",
+      "end_at": null,
+      "short_description": "Bezpłatne zajęcia taneczne dla osób od 16 lat; wymagane wcześniejsze zapisy.",
+      "description": "Mieszko Masłowski poprowadzi warsztaty taneczne w Miejskim Domu Kultury w Zgorzelcu. Zajęcia rozpoczną się o 15:00 i są przeznaczone dla osób od 16 lat. Udział jest bezpłatny, liczba miejsc ograniczona. Obowiązują zapisy telefoniczne pod numerem 75 775 24 15.",
+      "location": {
+        "name": "Miejski Dom Kultury w Zgorzelcu",
+        "city": "Zgorzelec",
+        "city_slug": "zgorzelec",
+        "address": "Parkowa 1",
+        "latitude": 51.147061027894,
+        "longitude": 15.0028079711203,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Zgorzelec%2C%20Parkowa%201",
+        "coordinate_note": "Dokładny punkt adresowy Geoportalu GUGiK w WGS84. Adres obiektu potwierdza zapowiedź lub sprzedaż. Użyto istniejącej lokalizacji; adres potwierdzono w aktualnym źródle."
+      },
+      "source_name": "Miejski Dom Kultury w Zgorzelcu",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/10/30/listopad-w-mdk/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do dalszej publikacji materiałów oficjalnych. main_image_url puste; istniejąca oprawa EventVisual. Nie generowano grafik AI.",
+      "checked_at": "2026-11-20T19:33:55Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-20T19:33:55Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Spoko Loko — koncert dla dzieci w Zgorzelcu",
+      "category_slug": "rodzinne",
+      "start_at": "2026-11-28T16:00:00+01:00",
+      "end_at": null,
+      "short_description": "Muzyczna zabawa dla dzieci z tańcem, wspólnym śpiewaniem i bańkami mydlanymi.",
+      "description": "Spoko Loko wystąpi w MDK w Zgorzelcu z programem piosenek i zabaw dla najmłodszych. Początek o 16:00, pokaz potrwa około godziny. Bilet ulgowy dla dziecka od 2 lat kosztuje 55 zł, normalny dla opiekuna 60 zł. Dzieci poniżej 2 lat uczestniczą bezpłatnie na kolanach rodzica. Bilety w kasie MDK i przez odnośnik sprzedażowy w zapowiedzi.",
+      "location": {
+        "name": "Miejski Dom Kultury w Zgorzelcu",
+        "city": "Zgorzelec",
+        "city_slug": "zgorzelec",
+        "address": "Parkowa 1",
+        "latitude": 51.147061027894,
+        "longitude": 15.0028079711203,
+        "coordinate_source": "https://services.gugik.gov.pl/uug/?request=GetAddress&srid=4326&address=Zgorzelec%2C%20Parkowa%201",
+        "coordinate_note": "Dokładny punkt adresowy Geoportalu GUGiK w WGS84. Adres obiektu potwierdza zapowiedź lub sprzedaż. Użyto istniejącej lokalizacji; adres potwierdzono w aktualnym źródle."
+      },
+      "source_name": "Miejski Dom Kultury w Zgorzelcu",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/11/20/spoko-loko-koncert-dla-najmlodszych/",
+      "evidence_urls": [],
+      "price_type": "paid",
+      "price_min": 55,
+      "price_max": 60,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do dalszej publikacji materiałów oficjalnych. main_image_url puste; istniejąca oprawa EventVisual. Nie generowano grafik AI.",
+      "checked_at": "2026-11-20T19:34:31Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-20T19:34:31Z",
+        "no_cancellation_notice": true
+      }
+    },
+    {
+      "title": "Mikołajkowa Awaria w Fabryce Świętego Mikołaja — Zgorzelec",
+      "category_slug": "rodzinne",
+      "start_at": "2026-12-06T14:00:00+01:00",
+      "end_at": null,
+      "short_description": "Bezpłatne rodzinne Mikołajki w PGE Turów Arenie z warsztatami i spektaklem O!Choinko!.",
+      "description": "MDK zaprasza dzieci i opiekunów do PGE Turów Areny na mikołajkowe zabawy od 14:00. Zaplanowano twórcze warsztaty, przygotowywanie pluszaków i świąteczną pocztę. O 16:30 Teatr Kulturka pokaże O!Choinko!, a o 17:00 przewidziano spotkanie z Mikołajem. Wstęp bezpłatny.",
+      "location": {
+        "name": "PGE Turów Arena",
+        "address": "Lubańska 9a",
+        "city": "Zgorzelec",
+        "latitude": 51.158828,
+        "longitude": 15.0144864,
+        "coordinate_source": "https://mapcarta.com/N5506003541",
+        "coordinate_note": "Użyto istniejącego punktu PGE Turów Arena, zgodnego z nazwą i adresem obiektu oraz punktem OSM 5506003541 z dokładnością około 2 m. Użyto istniejącej lokalizacji; adres potwierdzono w aktualnym źródle.",
+        "city_slug": "zgorzelec"
+      },
+      "source_name": "Miejski Dom Kultury w Zgorzelcu",
+      "source_url": "https://www.mdk.zgorzelec.eu/2026/11/16/mikolajki-z-mdk/",
+      "evidence_urls": [],
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "currency": "PLN",
+      "main_image_url": null,
+      "media_review": "Nie potwierdzono prawa do dalszej publikacji materiałów oficjalnych. main_image_url puste; istniejąca oprawa EventVisual. Nie generowano grafik AI.",
+      "checked_at": "2026-11-20T19:34:32Z",
+      "source_verification": {
+        "status": 200,
+        "checked_at": "2026-11-20T19:34:32Z",
+        "no_cancellation_notice": true
+      }
+    }
+  ]
+}

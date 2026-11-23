@@ -43,6 +43,7 @@ type HomePageProps = {
   availableCategoryCityRoutes?: CategoryCityRoute[];
 };
 
+const EMPTY_MAP_MARKERS: EventMapMarker[] = [];
 const POPULAR_CITIES = [
   { label: "Wrocław", slug: "wroclaw" },
   { label: "Warszawa", slug: "warszawa" },
@@ -78,7 +79,7 @@ export default function HomePage({
   const [openedEventId, setOpenedEventId] = useState<string | null>(null);
   const [events, setEvents] = useState(initialEvents);
   const [recommendedPool, setRecommendedPool] = useState(initialFeaturedEvents);
-  const [mapEvents, setMapEvents] = useState<EventMapMarker[]>(() => initialEvents.map(mapEventToMarker));
+  const [mapEvents, setMapEvents] = useState<EventMapMarker[] | null>(null);
   const [selectedMapEvent, setSelectedMapEvent] = useState<EventItem | null>(null);
   const [selectedMapEventLoading, setSelectedMapEventLoading] = useState(false);
   const [categoryCounts, setCategoryCounts] = useState<PublicCategoryCount[]>(() => buildCategoryCounts(initialEvents, categoryOptions));
@@ -101,6 +102,7 @@ export default function HomePage({
   const [failedEventsPage, setFailedEventsPage] = useState(1);
   const [markersLoading, setMarkersLoading] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
+  const [sidebarMapRequested, setSidebarMapRequested] = useState(false);
   const [historySearchRevision, setHistorySearchRevision] = useState(0);
   const homePageRef = useRef<HTMLElement | null>(null);
   const mobileEventViewRef = useRef<HTMLElement | null>(null);
@@ -252,7 +254,7 @@ export default function HomePage({
   const venueGroups = useMemo(() => groupEventsByVenue(visibleEvents), [visibleEvents]);
   const shownEventsCount = Math.min(eventSearch.shownCount, eventSearch.maxResults);
   const cappedTotalCount = Math.min(eventSearch.totalCount, eventSearch.maxResults);
-  const mapPointsCount = mapEvents.filter(hasLocationCoordinates).length;
+  const mapPointsCount = mapEvents?.length;
   const canLoadMoreEvents = !eventsLoading && eventSearch.hasMore && shownEventsCount < eventSearch.maxResults;
   const eventById = useMemo(
     () => new Map([...recommendedPool, ...events].map((event) => [event.id, event])),
@@ -271,7 +273,7 @@ export default function HomePage({
   }, [events, openedEvent]);
 
   useEffect(() => {
-    if (viewMode === "event") return;
+    if (viewMode === "event" || !mapEvents) return;
     if (
       selectedEventId &&
       !mapEvents.some((event) => event.id === selectedEventId)
@@ -562,7 +564,7 @@ export default function HomePage({
     markerRequestRef.current = requestId;
     setMarkersLoading(true);
     setMarkersError(null);
-    setMapEvents([]);
+    setMapEvents(null);
 
     try {
       const response = await fetch(`/api/events/markers?${currentMarkerApiParams().toString()}`);
@@ -719,15 +721,19 @@ export default function HomePage({
   useEffect(() => {
     if (!hasSkippedInitialSearchRef.current) {
       hasSkippedInitialSearchRef.current = true;
-      void loadMapMarkers();
       void loadCategoryCounts();
       return;
     }
 
     void loadEventsPage(1, "replace");
-    void loadMapMarkers();
     void loadCategoryCounts();
-  }, [eventsSearchKey, historySearchRevision, loadCategoryCounts, loadEventsPage, loadMapMarkers]);
+  }, [eventsSearchKey, historySearchRevision, loadCategoryCounts, loadEventsPage]);
+
+  const requestSidebarMap = useCallback(() => setSidebarMapRequested(true), []);
+  const shouldLoadMarkers = sidebarMapRequested || hasOpenedMap;
+  useEffect(() => {
+    if (shouldLoadMarkers) void loadMapMarkers();
+  }, [shouldLoadMarkers, historySearchRevision, loadMapMarkers]);
 
   const handleFindSubmit = useCallback(() => {
     const url = currentSearchUrl();
@@ -1189,7 +1195,7 @@ export default function HomePage({
             </div>
             <p className="mainEventsCount" role="status">
               {eventsLoading ? "Szukam wydarzeń dla Twoich filtrów…" : eventsError ? "Wyniki wymagają ponownego pobrania." : eventSearch.totalCount > 0
-                ? `${formatNumber(eventSearch.totalCount)} wydarzeń · wyświetlono ${formatNumber(shownEventsCount)}${!markersLoading && !markersError ? ` · ${formatNumber(mapPointsCount)} na mapie` : ""}${eventSearch.totalCount > cappedTotalCount ? ` · limit tego widoku: ${formatNumber(cappedTotalCount)}` : ""}`
+                ? `${formatNumber(eventSearch.totalCount)} wydarzeń · wyświetlono ${formatNumber(shownEventsCount)}${mapPointsCount != null ? ` · ${formatNumber(mapPointsCount)} na mapie` : ""}${eventSearch.totalCount > cappedTotalCount ? ` · limit tego widoku: ${formatNumber(cappedTotalCount)}` : ""}`
                 : "Brak wydarzeń dla wybranych filtrów."}
             </p>
             {eventsError ? (
@@ -1345,7 +1351,8 @@ export default function HomePage({
 
         <Sidebar
           events={filteredEvents}
-          mapEvents={mapEvents}
+          mapEvents={mapEvents ?? EMPTY_MAP_MARKERS}
+          onRequestMap={requestSidebarMap}
           categoryCounts={categoryCounts}
           categoryCountsLoading={categoryCountsLoading}
           categoryCountsError={categoryCountsError}
@@ -1366,7 +1373,7 @@ export default function HomePage({
         <MobileMapView
           active={viewMode === "map"}
           parked={viewMode === "event"}
-          events={mapEvents}
+          events={mapEvents ?? EMPTY_MAP_MARKERS}
           markersLoading={markersLoading}
           markersError={markersError}
           onRetryMarkers={() => void loadMapMarkers()}
@@ -1464,24 +1471,6 @@ function clampRadius(value: number) {
 
 function formatNumber(value: number) {
   return new Intl.NumberFormat("pl-PL").format(value);
-}
-
-function mapEventToMarker(event: EventItem): EventMapMarker {
-  return {
-    id: event.id,
-    title: event.title,
-    slug: event.slug,
-    startDate: event.startDate,
-    address: event.address,
-    city: event.city,
-    citySlug: event.citySlug,
-    latitude: event.latitude,
-    longitude: event.longitude,
-    category: event.category,
-    categorySlug: event.categorySlug,
-    categoryColor: event.categoryColor,
-    categoryIcon: event.categoryRelation?.icon ?? null
-  };
 }
 
 function buildCategoryCounts(events: EventItem[], categoryOptions: CategoryOption[]): PublicCategoryCount[] {

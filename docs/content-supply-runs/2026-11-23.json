@@ -1,0 +1,1022 @@
+{
+  "run_date": "2026-11-23",
+  "completed_at": "2026-11-23T16:04:42.531Z",
+  "outcome": "database_published_production_verification_blocked",
+  "scope": "Warmińsko-mazurskie, opolskie i lubuskie: Olsztyn, Giżycko, Opole i Nowa Sól. Rodziny, kultura, targi i koncerty; cztery wydarzenia z bezpłatnym wstępem.",
+  "batch": "data/content-supply/2026-11-23.json",
+  "database_inserted_published_count": 10,
+  "anonymous_verified_count": 10,
+  "production_confirmed_count": 0,
+  "free_count": 4,
+  "events": [
+    {
+      "id": "1d9dcf62-a16a-401c-9053-a16ce296e8fa",
+      "title": "Lista przebojów street artu — spotkanie z Proembrionem",
+      "url": "https://mapaimprez.pl/kultura/olsztyn/curated-lista-przebojow-street-artu-spotkanie-z-proembrionem-olsztyn-2026-11-25-38f42b367052",
+      "source_url": "https://mok.olsztyn.pl/wydarzenia/lista-przebojow-street-artu/",
+      "city": "Olsztyn",
+      "city_slug": "olsztyn",
+      "category": "kultura",
+      "start_at": "2026-11-25T18:00:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "status": "published",
+      "visibility": "public",
+      "is_cancelled": false,
+      "anonymous_read": true,
+      "location_id": "ebccc0d6-0ad0-4fb5-b7e4-ac3110cf9104",
+      "latitude": 53.7765089,
+      "longitude": 20.4753991,
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "organizer_id": null,
+      "submitted_by_organizer_id": null,
+      "main_image_url": null,
+      "production_visibility_confirmed": false,
+      "marker_count": null,
+      "canonical": null,
+      "sitemap": null,
+      "mobile": null,
+      "cover": "Istniejący EventVisual — odbiór produkcyjny zablokowany przez DEPLOYMENT_DISABLED"
+    },
+    {
+      "id": "32171c99-94c1-42ef-8fdc-244a3522e10f",
+      "title": "Barstukowy Plac Budowy — rodzinne warsztaty w Amfiteatrze",
+      "url": "https://mapaimprez.pl/rodzinne/olsztyn/curated-barstukowy-plac-budowy-rodzinne-warsztaty-w-amfiteatrze-olsztyn-2026-11-28-e067200098fa",
+      "source_url": "https://mok.olsztyn.pl/wydarzenia/barstukowy-plac-budowy-odslona-pierwsza/",
+      "city": "Olsztyn",
+      "city_slug": "olsztyn",
+      "category": "rodzinne",
+      "start_at": "2026-11-28T12:00:00+01:00",
+      "end_at": "2026-11-28T15:00:00+01:00",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "status": "published",
+      "visibility": "public",
+      "is_cancelled": false,
+      "anonymous_read": true,
+      "location_id": "edcb3396-8da0-4bbe-9bd1-4233b0610bad",
+      "latitude": 53.7773205,
+      "longitude": 20.4743778,
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "organizer_id": null,
+      "submitted_by_organizer_id": null,
+      "main_image_url": null,
+      "production_visibility_confirmed": false,
+      "marker_count": null,
+      "canonical": null,
+      "sitemap": null,
+      "mobile": null,
+      "cover": "Istniejący EventVisual — odbiór produkcyjny zablokowany przez DEPLOYMENT_DISABLED"
+    },
+    {
+      "id": "f25107df-5313-46b2-ac6a-d7e4cd9510e4",
+      "title": "Odpalamy Święta 2026 — rozświetlenie choinki w Olsztynie",
+      "url": "https://mapaimprez.pl/rodzinne/olsztyn/curated-odpalamy-swieta-2026-rozswietlenie-choinki-w-olsztynie-olsztyn-2026-12-06-6d5f2992c929",
+      "source_url": "https://mok.olsztyn.pl/wydarzenia/odpalamy-swieta-2026/",
+      "city": "Olsztyn",
+      "city_slug": "olsztyn",
+      "category": "rodzinne",
+      "start_at": "2026-12-06T16:30:00+01:00",
+      "end_at": null,
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "status": "published",
+      "visibility": "public",
+      "is_cancelled": false,
+      "anonymous_read": true,
+      "location_id": "ebccc0d6-0ad0-4fb5-b7e4-ac3110cf9104",
+      "latitude": 53.7765089,
+      "longitude": 20.4753991,
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "organizer_id": null,
+      "submitted_by_organizer_id": null,
+      "main_image_url": null,
+      "production_visibility_confirmed": false,
+      "marker_count": null,
+      "canonical": null,
+      "sitemap": null,
+      "mobile": null,
+      "cover": "Istniejący EventVisual — odbiór produkcyjny zablokowany przez DEPLOYMENT_DISABLED"
+    },
+    {
+      "id": "9699f10b-e1f1-4afc-8a54-f39510814ae3",
+      "title": "Warmiński Jarmark Świąteczny 2026 w Olsztynie",
+      "url": "https://mapaimprez.pl/targi/olsztyn/curated-warminski-jarmark-swiateczny-2026-w-olsztynie-olsztyn-2026-12-10-951b6f524e38",
+      "source_url": "https://mok.olsztyn.pl/wydarzenia/warminski-jarmark-swiateczny-2026-dzien-1/",
+      "city": "Olsztyn",
+      "city_slug": "olsztyn",
+      "category": "targi",
+      "start_at": "2026-12-10T13:00:00+01:00",
+      "end_at": "2026-12-13T18:00:00+01:00",
+      "price_type": "free",
+      "price_min": 0,
+      "price_max": 0,
+      "status": "published",
+      "visibility": "public",
+      "is_cancelled": false,
+      "anonymous_read": true,
+      "location_id": "6fbba432-6c2d-4634-8299-38d9637f3c64",
+      "latitude": 53.7773,
+      "longitude": 20.4764,
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "organizer_id": null,
+      "submitted_by_organizer_id": null,
+      "main_image_url": null,
+      "production_visibility_confirmed": false,
+      "marker_count": null,
+      "canonical": null,
+      "sitemap": null,
+      "mobile": null,
+      "cover": "Istniejący EventVisual — odbiór produkcyjny zablokowany przez DEPLOYMENT_DISABLED"
+    },
+    {
+      "id": "dee734d9-b75c-4239-a8bb-d3bc3ecc4e44",
+      "title": "Familijny Spektakl Iluzji — Łukasz Ogonowski w Giżycku",
+      "url": "https://mapaimprez.pl/rodzinne/gizycko/curated-familijny-spektakl-iluzji-lukasz-ogonowski-w-gizycku-gizycko-2026-12-06-4b962de239ca",
+      "source_url": "https://gck.gizycko.pl/familijny-spektakl-iluzji-lukasz-ogonowski-6-grudnia/",
+      "city": "Giżycko",
+      "city_slug": "gizycko",
+      "category": "rodzinne",
+      "start_at": "2026-12-06T15:30:00+01:00",
+      "end_at": null,
+      "price_type": "unknown",
+      "price_min": null,
+      "price_max": null,
+      "status": "published",
+      "visibility": "public",
+      "is_cancelled": false,
+      "anonymous_read": true,
+      "location_id": "6fc2438f-c4dd-49ca-a2fc-ecb73ac477a7",
+      "latitude": 54.038106,
+      "longitude": 21.767351,
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "organizer_id": null,
+      "submitted_by_organizer_id": null,
+      "main_image_url": null,
+      "production_visibility_confirmed": false,
+      "marker_count": null,
+      "canonical": null,
+      "sitemap": null,
+      "mobile": null,
+      "cover": "Istniejący EventVisual — odbiór produkcyjny zablokowany przez DEPLOYMENT_DISABLED"
+    },
+    {
+      "id": "5bd3f3e6-0000-4d30-90db-20ec5846159c",
+      "title": "Spanish Night — hiszpańskie rytmy z Filharmonią Opolską",
+      "url": "https://mapaimprez.pl/koncerty/opole/curated-spanish-night-hiszpanskie-rytmy-z-filharmonia-opolska-opole-2026-11-27-5b74264cdba7",
+      "source_url": "https://filharmonia.opole.pl/wydarzenia/spanish-night/",
+      "city": "Opole",
+      "city_slug": "opole",
+      "category": "koncerty",
+      "start_at": "2026-11-27T19:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 39,
+      "price_max": 69,
+      "status": "published",
+      "visibility": "public",
+      "is_cancelled": false,
+      "anonymous_read": true,
+      "location_id": "d9c6edb7-a46a-442e-844d-20d595e91a39",
+      "latitude": 50.6647339,
+      "longitude": 17.9165997,
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "organizer_id": null,
+      "submitted_by_organizer_id": null,
+      "main_image_url": null,
+      "production_visibility_confirmed": false,
+      "marker_count": null,
+      "canonical": null,
+      "sitemap": null,
+      "mobile": null,
+      "cover": "Istniejący EventVisual — odbiór produkcyjny zablokowany przez DEPLOYMENT_DISABLED"
+    },
+    {
+      "id": "6c4bce7a-d4b8-46ef-8321-75438305ef5e",
+      "title": "Gruzińska dusza — Magdalena Bojanowicz i Filharmonia Opolska",
+      "url": "https://mapaimprez.pl/koncerty/opole/curated-gruzinska-dusza-magdalena-bojanowicz-i-filharmonia-opolska-opole-2026-12-11-24fba1634532",
+      "source_url": "https://filharmonia.opole.pl/wydarzenia/koncert-symfoniczny-6/",
+      "city": "Opole",
+      "city_slug": "opole",
+      "category": "koncerty",
+      "start_at": "2026-12-11T19:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 33,
+      "price_max": 59,
+      "status": "published",
+      "visibility": "public",
+      "is_cancelled": false,
+      "anonymous_read": true,
+      "location_id": "d9c6edb7-a46a-442e-844d-20d595e91a39",
+      "latitude": 50.6647339,
+      "longitude": 17.9165997,
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "organizer_id": null,
+      "submitted_by_organizer_id": null,
+      "main_image_url": null,
+      "production_visibility_confirmed": false,
+      "marker_count": null,
+      "canonical": null,
+      "sitemap": null,
+      "mobile": null,
+      "cover": "Istniejący EventVisual — odbiór produkcyjny zablokowany przez DEPLOYMENT_DISABLED"
+    },
+    {
+      "id": "3ef63697-5e34-4082-8ead-c83a28925359",
+      "title": "Koncert relaksacyjny Filharmonii Opolskiej — Lexus Opole",
+      "url": "https://mapaimprez.pl/koncerty/opole/curated-koncert-relaksacyjny-filharmonii-opolskiej-lexus-opole-opole-2026-12-16-e4ae57f5e0ef",
+      "source_url": "https://filharmonia.opole.pl/wydarzenia/koncert-relaksacyjny-3/",
+      "city": "Opole",
+      "city_slug": "opole",
+      "category": "koncerty",
+      "start_at": "2026-12-16T19:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 50,
+      "price_max": 50,
+      "status": "published",
+      "visibility": "public",
+      "is_cancelled": false,
+      "anonymous_read": true,
+      "location_id": "23e5954b-80e8-46b8-a7ee-f08f45836587",
+      "latitude": 50.6793528,
+      "longitude": 17.8789502,
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "organizer_id": null,
+      "submitted_by_organizer_id": null,
+      "main_image_url": null,
+      "production_visibility_confirmed": false,
+      "marker_count": null,
+      "canonical": null,
+      "sitemap": null,
+      "mobile": null,
+      "cover": "Istniejący EventVisual — odbiór produkcyjny zablokowany przez DEPLOYMENT_DISABLED"
+    },
+    {
+      "id": "66f51fb6-2527-47b8-8119-69d577b766bb",
+      "title": "Bohdan Luts — zwycięzca Konkursu Wieniawskiego w Opolu",
+      "url": "https://mapaimprez.pl/koncerty/opole/curated-bohdan-luts-zwyciezca-konkursu-wieniawskiego-w-opolu-opole-2026-12-18-a6c5e8c43650",
+      "source_url": "https://filharmonia.opole.pl/wydarzenia/zwyciezca-konkursu-wieniawskiego/",
+      "city": "Opole",
+      "city_slug": "opole",
+      "category": "koncerty",
+      "start_at": "2026-12-18T19:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 39,
+      "price_max": 69,
+      "status": "published",
+      "visibility": "public",
+      "is_cancelled": false,
+      "anonymous_read": true,
+      "location_id": "d9c6edb7-a46a-442e-844d-20d595e91a39",
+      "latitude": 50.6647339,
+      "longitude": 17.9165997,
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "organizer_id": null,
+      "submitted_by_organizer_id": null,
+      "main_image_url": null,
+      "production_visibility_confirmed": false,
+      "marker_count": null,
+      "canonical": null,
+      "sitemap": null,
+      "mobile": null,
+      "cover": "Istniejący EventVisual — odbiór produkcyjny zablokowany przez DEPLOYMENT_DISABLED"
+    },
+    {
+      "id": "630c4174-d73a-43eb-94a6-51bd6b4046d7",
+      "title": "PSC Jazz Trio — przedpremierowy koncert Try This w Nowej Soli",
+      "url": "https://mapaimprez.pl/koncerty/nowa-sol/curated-psc-jazz-trio-przedpremierowy-koncert-try-this-w-nowej-soli-nowa-sol-2026-11-27-33a1524168c2",
+      "source_url": "https://nowosolski.bilety24.pl/kup-bilety/?id=1023371",
+      "city": "Nowa Sól",
+      "city_slug": "nowa-sol",
+      "category": "koncerty",
+      "start_at": "2026-11-27T18:00:00+01:00",
+      "end_at": null,
+      "price_type": "paid",
+      "price_min": 43,
+      "price_max": 43,
+      "status": "published",
+      "visibility": "public",
+      "is_cancelled": false,
+      "anonymous_read": true,
+      "location_id": "2c79ba95-ac8f-44a3-ad8b-c0a963a6d25e",
+      "latitude": 51.8053186,
+      "longitude": 15.7237021,
+      "coordinates_confirmed": true,
+      "description_confirmed": true,
+      "source_confirmed": true,
+      "organizer_id": null,
+      "submitted_by_organizer_id": null,
+      "main_image_url": null,
+      "production_visibility_confirmed": false,
+      "marker_count": null,
+      "canonical": null,
+      "sitemap": null,
+      "mobile": null,
+      "cover": "Istniejący EventVisual — odbiór produkcyjny zablokowany przez DEPLOYMENT_DISABLED"
+    }
+  ],
+  "apply": {
+    "mode": "apply",
+    "checked_at": "2026-11-23T16:00:43.000Z",
+    "results": [
+      {
+        "title": "Lista przebojów street artu — spotkanie z Proembrionem",
+        "source_url": "https://mok.olsztyn.pl/wydarzenia/lista-przebojow-street-artu",
+        "outcome": "inserted_and_published",
+        "event_id": "1d9dcf62-a16a-401c-9053-a16ce296e8fa",
+        "slug": "curated-lista-przebojow-street-artu-spotkanie-z-proembrionem-olsztyn-2026-11-25-38f42b367052"
+      },
+      {
+        "title": "Barstukowy Plac Budowy — rodzinne warsztaty w Amfiteatrze",
+        "source_url": "https://mok.olsztyn.pl/wydarzenia/barstukowy-plac-budowy-odslona-pierwsza",
+        "outcome": "inserted_and_published",
+        "event_id": "32171c99-94c1-42ef-8fdc-244a3522e10f",
+        "slug": "curated-barstukowy-plac-budowy-rodzinne-warsztaty-w-amfiteatrze-olsztyn-2026-11-28-e067200098fa"
+      },
+      {
+        "title": "Odpalamy Święta 2026 — rozświetlenie choinki w Olsztynie",
+        "source_url": "https://mok.olsztyn.pl/wydarzenia/odpalamy-swieta-2026",
+        "outcome": "inserted_and_published",
+        "event_id": "f25107df-5313-46b2-ac6a-d7e4cd9510e4",
+        "slug": "curated-odpalamy-swieta-2026-rozswietlenie-choinki-w-olsztynie-olsztyn-2026-12-06-6d5f2992c929"
+      },
+      {
+        "title": "Warmiński Jarmark Świąteczny 2026 w Olsztynie",
+        "source_url": "https://mok.olsztyn.pl/wydarzenia/warminski-jarmark-swiateczny-2026-dzien-1",
+        "outcome": "inserted_and_published",
+        "event_id": "9699f10b-e1f1-4afc-8a54-f39510814ae3",
+        "slug": "curated-warminski-jarmark-swiateczny-2026-w-olsztynie-olsztyn-2026-12-10-951b6f524e38"
+      },
+      {
+        "title": "Familijny Spektakl Iluzji — Łukasz Ogonowski w Giżycku",
+        "source_url": "https://gck.gizycko.pl/familijny-spektakl-iluzji-lukasz-ogonowski-6-grudnia",
+        "outcome": "inserted_and_published",
+        "event_id": "dee734d9-b75c-4239-a8bb-d3bc3ecc4e44",
+        "slug": "curated-familijny-spektakl-iluzji-lukasz-ogonowski-w-gizycku-gizycko-2026-12-06-4b962de239ca"
+      },
+      {
+        "title": "Spanish Night — hiszpańskie rytmy z Filharmonią Opolską",
+        "source_url": "https://filharmonia.opole.pl/wydarzenia/spanish-night",
+        "outcome": "inserted_and_published",
+        "event_id": "5bd3f3e6-0000-4d30-90db-20ec5846159c",
+        "slug": "curated-spanish-night-hiszpanskie-rytmy-z-filharmonia-opolska-opole-2026-11-27-5b74264cdba7"
+      },
+      {
+        "title": "Gruzińska dusza — Magdalena Bojanowicz i Filharmonia Opolska",
+        "source_url": "https://filharmonia.opole.pl/wydarzenia/koncert-symfoniczny-6",
+        "outcome": "inserted_and_published",
+        "event_id": "6c4bce7a-d4b8-46ef-8321-75438305ef5e",
+        "slug": "curated-gruzinska-dusza-magdalena-bojanowicz-i-filharmonia-opolska-opole-2026-12-11-24fba1634532"
+      },
+      {
+        "title": "Koncert relaksacyjny Filharmonii Opolskiej — Lexus Opole",
+        "source_url": "https://filharmonia.opole.pl/wydarzenia/koncert-relaksacyjny-3",
+        "outcome": "inserted_and_published",
+        "event_id": "3ef63697-5e34-4082-8ead-c83a28925359",
+        "slug": "curated-koncert-relaksacyjny-filharmonii-opolskiej-lexus-opole-opole-2026-12-16-e4ae57f5e0ef"
+      },
+      {
+        "title": "Bohdan Luts — zwycięzca Konkursu Wieniawskiego w Opolu",
+        "source_url": "https://filharmonia.opole.pl/wydarzenia/zwyciezca-konkursu-wieniawskiego",
+        "outcome": "inserted_and_published",
+        "event_id": "66f51fb6-2527-47b8-8119-69d577b766bb",
+        "slug": "curated-bohdan-luts-zwyciezca-konkursu-wieniawskiego-w-opolu-opole-2026-12-18-a6c5e8c43650"
+      },
+      {
+        "title": "PSC Jazz Trio — przedpremierowy koncert Try This w Nowej Soli",
+        "source_url": "https://nowosolski.bilety24.pl/kup-bilety?id=1023371",
+        "outcome": "inserted_and_published",
+        "event_id": "630c4174-d73a-43eb-94a6-51bd6b4046d7",
+        "slug": "curated-psc-jazz-trio-przedpremierowy-koncert-try-this-w-nowej-soli-nowa-sol-2026-11-27-33a1524168c2"
+      }
+    ]
+  },
+  "post_import_duplicate_review": [
+    {
+      "id": "1d9dcf62-a16a-401c-9053-a16ce296e8fa",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "32171c99-94c1-42ef-8fdc-244a3522e10f",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "f25107df-5313-46b2-ac6a-d7e4cd9510e4",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "9699f10b-e1f1-4afc-8a54-f39510814ae3",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "dee734d9-b75c-4239-a8bb-d3bc3ecc4e44",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "5bd3f3e6-0000-4d30-90db-20ec5846159c",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "6c4bce7a-d4b8-46ef-8321-75438305ef5e",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "3ef63697-5e34-4082-8ead-c83a28925359",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "66f51fb6-2527-47b8-8119-69d577b766bb",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    },
+    {
+      "id": "630c4174-d73a-43eb-94a6-51bd6b4046d7",
+      "outcome": "existing_published",
+      "duplicate_id": null
+    }
+  ],
+  "production_issue": {
+    "diagnostic": [
+      {
+        "url": "https://mapaimprez.pl/",
+        "status": 402,
+        "checked_at": "2026-11-23T16:02:32Z",
+        "final_url": "https://mapaimprez.pl/",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "server": "Vercel",
+          "x-vercel-error": "DEPLOYMENT_DISABLED"
+        },
+        "body": "Payment required\n\nDEPLOYMENT_DISABLED\n\narn1::s7v75-1795449752478-f73f7d39960f\n"
+      },
+      {
+        "url": "https://mapaimprez.pl/api/events/1d9dcf62-a16a-401c-9053-a16ce296e8fa",
+        "status": 402,
+        "checked_at": "2026-11-23T16:02:32Z",
+        "final_url": "https://mapaimprez.pl/api/events/1d9dcf62-a16a-401c-9053-a16ce296e8fa",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "server": "Vercel",
+          "x-vercel-error": "DEPLOYMENT_DISABLED"
+        },
+        "body": "Payment required\n\nDEPLOYMENT_DISABLED\n\narn1::7whmq-1795449752599-6405c4b7a9e9\n"
+      },
+      {
+        "url": "https://mapaimprez.pl/api/events/markers?citySlug=olsztyn",
+        "status": 402,
+        "checked_at": "2026-11-23T16:02:32Z",
+        "final_url": "https://mapaimprez.pl/api/events/markers?citySlug=olsztyn",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "server": "Vercel",
+          "x-vercel-error": "DEPLOYMENT_DISABLED"
+        },
+        "body": "Payment required\n\nDEPLOYMENT_DISABLED\n\narn1::vvp9l-1795449752482-c83d042658df\n"
+      },
+      {
+        "url": "https://mapaimprez.pl/sitemap-events.xml",
+        "status": 402,
+        "checked_at": "2026-11-23T16:02:32Z",
+        "final_url": "https://mapaimprez.pl/sitemap-events.xml",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "server": "Vercel",
+          "x-vercel-error": "DEPLOYMENT_DISABLED"
+        },
+        "body": "Payment required\n\nDEPLOYMENT_DISABLED\n\narn1::q74zf-1795449752628-ce2d0d0254ff\n"
+      },
+      {
+        "url": "https://www.mapaimprez.pl/",
+        "status": 402,
+        "checked_at": "2026-11-23T16:02:32Z",
+        "final_url": "https://www.mapaimprez.pl/",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "server": "Vercel",
+          "x-vercel-error": "DEPLOYMENT_DISABLED"
+        },
+        "body": "Payment required\n\nDEPLOYMENT_DISABLED\n\narn1::2wzrf-1795449752733-4dc5662cf4a5\n"
+      }
+    ],
+    "final_probe": {
+      "url": "https://mapaimprez.pl/",
+      "status": 402,
+      "checked_at": "2026-11-23T16:04:42.505Z",
+      "code": "DEPLOYMENT_DISABLED",
+      "body": "Payment required\n\nDEPLOYMENT_DISABLED\n\narn1::l9ncw-1795449882449-5afe53ce8284\n"
+    },
+    "impact": "Domena główna, www, API i mapa witryny zwracają 402 DEPLOYMENT_DISABLED. Brak potwierdzenia publicznych kart, pinezek, sitemap i wyglądu mobilnego.",
+    "required_action": "Właściciel powinien sprawdzić blokadę i rozliczenia projektu Vercel event-map oraz przywrócić wdrożenie. Nie zmieniano ustawień hostingu ani konta.",
+    "followup": "Po przywróceniu strony zweryfikować zapisane ID; nie importować ponownie jako nowych wydarzeń."
+  },
+  "prior_events_review": {
+    "selected_events": 70,
+    "source_urls": 65,
+    "accessible_pages": 62,
+    "events_with_accessible_source": 67,
+    "new_cancellations": [],
+    "new_date_changes": [],
+    "availability_observations": [
+      {
+        "id": "4e7afa91-c2a2-4120-a798-3eef3833ffed",
+        "title": "Diamenty to węgiel, który wziął się do roboty — spektakl w Wałbrzychu",
+        "source_url": "https://teatr.walbrzych.pl/spektakl/diamenty-to-wegiel-ktory-wzial-sie-do-roboty",
+        "checked_at": "2026-11-23T15:56:23Z",
+        "note": "Aktualna karta podaje brak miejsc 28 i 29.11 o 19:00. W katalogu zidentyfikowano jeden własny wpis na 28.11; nie aktualizowano rekordu."
+      },
+      {
+        "title": "Artemas 23.11 / Bracia Figo Fagot 27.11 — Progresja",
+        "note": "Nadal wyprzedane, komunikaty znane z wcześniejszych raportów."
+      }
+    ],
+    "blocked": [
+      {
+        "url": "https://zok.com.pl/katarzyna-groniec-blizej",
+        "reason": "robots.txt",
+        "checked_at": "2026-11-23T15:56:22Z",
+        "events": [
+          {
+            "id": "b098bee8-e608-4a37-bdde-71cacf758248",
+            "title": "Katarzyna Groniec — Bliżej",
+            "start_at": "2026-11-29T18:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/kwalifikacje-do-mistrzostw-swiata-w-koszykowce-mezczyzn-2027-polska-chorwacja",
+        "reason": "robots.txt",
+        "checked_at": "2026-11-23T15:56:22Z",
+        "events": [
+          {
+            "id": "b5030d93-367a-4280-aac5-5746c2a7b324",
+            "title": "Polska – Chorwacja: kwalifikacje MŚ w koszykówce mężczyzn 2027",
+            "start_at": "2026-11-27T19:45:00+00:00"
+          }
+        ]
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/ultra-fest-one-retro-edm-music",
+        "reason": "robots.txt",
+        "checked_at": "2026-11-23T15:56:22Z",
+        "events": [
+          {
+            "id": "daa0d8f9-63b7-42f1-be3d-06017f67530a",
+            "title": "Ultra Fest One — Retro & EDM Music w Gliwicach",
+            "start_at": "2026-11-28T19:00:00+00:00"
+          }
+        ]
+      }
+    ],
+    "source_checks": [
+      {
+        "url": "https://sapik.szczecinek.pl/kalendarz-wydarzen/rafal-rutkowski-stand-up-.html",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:21Z",
+        "blocked": null
+      },
+      {
+        "url": "https://dkwesterplatte.pl/wydarzenia/spoleczne/konwent-wieza-cisnien/61",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:21Z",
+        "blocked": null
+      },
+      {
+        "url": "https://mnki.pl/index.php/pl/aktualnosci/harmonogram-niedziela-w-muzeum-2026",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:21Z",
+        "blocked": null
+      },
+      {
+        "url": "https://sok.slupsk.pl/index.php/kino-rejs/aktualnosci-rejs-top/5274-21-edycja-miejsce-kobiet-2026",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:21Z",
+        "blocked": null
+      },
+      {
+        "url": "https://zok.com.pl/katarzyna-groniec-blizej",
+        "status": 0,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": "robots.txt"
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/kwalifikacje-do-mistrzostw-swiata-w-koszykowce-mezczyzn-2027-polska-chorwacja",
+        "status": 0,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": "robots.txt"
+      },
+      {
+        "url": "https://prezeroarenagliwice.pl/events/ultra-fest-one-retro-edm-music",
+        "status": 0,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": "robots.txt"
+      },
+      {
+        "url": "https://www.targislubne.pl/kielce-bilety",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://craftticket.pl/produkt/targi-rzeczy-wyjatkowych-szczecin-11-2026",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://sapik.szczecinek.pl/kalendarz-wydarzen/krolewski-balet-klasyczny-dziadek-do-orzechow-.html",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://wydarzenia.gliwice.eu/8061-gliwice-mita-gra-dobro",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.stodola.pl/koncerty/volkanov-137078.html",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.targikielce.pl/wystawa-psow/zwiedzajacy",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://halastulecia.pl/wydarzenie/accantus-live",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.filharmonia.com.pl/repertuar/2776-Muzyka-bez-granic",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://dok.pl/dok/wydarzenia/pulapka",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://promocjachojnice.pl/calendar-inline",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://ckmuza.eu/27-11-29-11-2026-kosci-zostaly-rzucone-czyli-33-weekend-z-grami-bez-pradu",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://kultura.olawa.pl/wydarzenia/32812",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://starakopalnia.pl/wydarzenia/iii-edycja-vintagecraft",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.kupbilecik.pl/pl/event/215681/swietochlowice/duo-elvisy",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.stodola.pl/koncerty/ira-137016.html",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://halastulecia.pl/wydarzenie/kabaret-neo-nowka-pokolenie-dna",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://progresja.com/wydarzenie/artemas",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://dabrowskiego.rdk.rzeszow.pl/16-30-listopada-2026-wystawa-fotografii-damiana-budziwojskiego-kiedy-nikt-nie-patrzy",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://mok.olsztyn.pl/wydarzenia/listopadowe-wspomnienia-kiermasy-na-warmii",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://tfk.artus.torun.pl/wydarzenie/pawel-soltys",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://progresja.com/wydarzenie/muna",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://umbielskpodlaski.pl/wydarzenie/bdk-klub-filmowy-29",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:22Z",
+        "blocked": null
+      },
+      {
+        "url": "https://mokisbielawa.pl/nowy-termin-koncertu-czas-na-oskary",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://kalendarzimprez.plock.eu/event/z-plecakiem-przez-etiopie-agnieszka-wasztyl-gosciem-klubu-podroze-im-tonyego-halika-w-plocku",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://bck.bielsko-biala.pl/chcemisie-sobota-pelna-dobrych-chwil",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://soksuwalki.eu/class/jubileusz-75-lecia-zpitsuwalszczyzna-na-bis",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://mck.mragowo.pl/pl/news/info/3715/teatr-piasku-tetiany-galitsyny-opowiesc-wigilijna.html",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.mdk.zgorzelec.eu/2026/11/20/spoko-loko-koncert-dla-najmlodszych",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://teatr.walbrzych.pl/spektakl/diamenty-to-wegiel-ktory-wzial-sie-do-roboty",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://kartuskiecentrum.bilety24.pl/b24-do-wydarzenia-2?id=964803",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.filharmonia.com.pl/repertuar/2782-WIECZOR-UNIWERSYTECKI",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://ackkultura.pl/rzezba-typu-ludowego-spotkanie-ze-sztuka-ludowa-naszego-regionu",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://ergoarena.pl/wydarzenia-lista/hype-rap-fest-ii",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.stodola.pl/koncerty/klimakterium-2-czyli-menopauzy-szal-137020.html",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://gck.gizycko.pl/cebula-spektakl-o-milosci-emocjach-i-probie-zrozumienia-drugiego-czlowieka",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:23Z",
+        "blocked": null
+      },
+      {
+        "url": "https://filharmoniakoszalinska.pl/wydarzenie/familijny-park-sztuki-sekrety-pana-dyrygenta",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:24Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.ndk.nysa.pl/wydarzenie-1647-parostatkiem_w_piekny_rejs_koncert-szczegoly-65041.html",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:24Z",
+        "blocked": null
+      },
+      {
+        "url": "https://tfk.artus.torun.pl/wydarzenie/antonina-tosiek",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:24Z",
+        "blocked": null
+      },
+      {
+        "url": "https://amfiteatr.radom.pl/wydarzenia/spotkania-z-nauka-naturalne-ataki-z-kosmosu-co-sie-dzieje-gdy-planetoida-uderza-w-ziemie-dr-anna-losiak",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:24Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.mdk.zgorzelec.eu/2026/11/04/koncert-jestem-stad-dr-kazimierza-pichlaka-i-jacek-szreniawa-band",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:24Z",
+        "blocked": null
+      },
+      {
+        "url": "https://teatr.polanica.pl/wydarzenie/koncert-andrzejkowy-scena-pod-regalem",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:24Z",
+        "blocked": null
+      },
+      {
+        "url": "https://twierdza.gizycko.pl/andrzejkowa-gra-terenowa-29-11-2026",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:24Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.stodola.pl/koncerty/t-love-137003.html",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:24Z",
+        "blocked": null
+      },
+      {
+        "url": "https://tfk.artus.torun.pl/wydarzenie/grzegorz-kasdepke",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:25Z",
+        "blocked": null
+      },
+      {
+        "url": "https://progresja.com/wydarzenie/kodak-black-richie-wess-yung-dred-2026",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:25Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.mdk.zgorzelec.eu/2026/11/04/nadprzyrodzone-w-sztuce-rekonstrukcja-wystawy-obrazow-malarza-i-mistyka-bo-yin-ra",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:25Z",
+        "blocked": null
+      },
+      {
+        "url": "https://tfk.artus.torun.pl/wydarzenie/lukasz-wierzbicki",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:25Z",
+        "blocked": null
+      },
+      {
+        "url": "https://ackkultura.pl/czy-wizyta-w-muzeum-kojarzy-wam-sie-z-kilometrami-korytarzy-obrazami-zawieszonymi-zbyt-wysoko-dla-dzieciecego-wzroku-i-poczuciem-ze-jako-dorosli-musicie-zamienic-sie-w-encyklopedie-sztuki",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:25Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.stodola.pl/koncerty/kasia-kowalska-137012.html",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:25Z",
+        "blocked": null
+      },
+      {
+        "url": "https://muzeumgdynia.pl/wydarzenie/swiatlo-gdyni-fotografie-boleslawy-i-edmunda-zdanowskich-1945-1970-oprowadzanie-z-przewodnikiem-po-wystawie-3",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:25Z",
+        "blocked": null
+      },
+      {
+        "url": "https://filharmoniapoznanska.pl/koncerty/przeboje-symfoniki-xvii-maltanski-koncert-charytatywny",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:25Z",
+        "blocked": null
+      },
+      {
+        "url": "https://progresja.com/wydarzenie/bracia-figo-fagot-urodziny-progresji-2026",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:26Z",
+        "blocked": null
+      },
+      {
+        "url": "https://idkielce.pl/targi-hurty-detale-vol-5",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:26Z",
+        "blocked": null
+      },
+      {
+        "url": "https://progresja.com/wydarzenie/polyphia",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:26Z",
+        "blocked": null
+      },
+      {
+        "url": "https://tfk.artus.torun.pl/wydarzenie/bartek-kiezun",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:26Z",
+        "blocked": null
+      },
+      {
+        "url": "https://tfk.artus.torun.pl/wydarzenie/emilia-sulek",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:27Z",
+        "blocked": null
+      },
+      {
+        "url": "https://ackkultura.pl/warsztat-z-ozdabiania-kurtki-jeansowej",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:27Z",
+        "blocked": null
+      },
+      {
+        "url": "https://www.mok.siedlce.pl/pl/repertuar/koncert-niekompletni-na-ludowo",
+        "status": 200,
+        "checked_at": "2026-11-23T15:56:27Z",
+        "blocked": null
+      }
+    ]
+  },
+  "omissions": [
+    {
+      "title": "Nene Heroine — Olsztyn, 27.11",
+      "reason": "Oficjalny kalendarz MOK oznacza koncert jako wyprzedany."
+    },
+    {
+      "title": "Rodzinne warsztaty haiku — Nysa, 26.11",
+      "reason": "Potwierdzono termin, godzinę i kawiarenkę NDK, ale nie jednoznaczne zasady wstępu. Odłożono do wyjaśnienia."
+    },
+    {
+      "title": "Jarmark Bożonarodzeniowy — Giżycko, 19–20.12",
+      "reason": "Potwierdzono daty, godziny i bezpłatny wstęp. Nominatim zwrócił drogę o nazwie Plac Grunwaldzki i przystanek, bez jednoznacznego punktu placu. Nie zgadywano pinezki; zachowano zapowiedź do kolejnego przebiegu."
+    },
+    {
+      "title": "Żarski Dom Kultury",
+      "reason": "Żary nie występują w obecnym katalogu miast; nie dodawano miasta."
+    }
+  ],
+  "media": {
+    "main_image_url": null,
+    "new_ai_images": 0,
+    "official_images_republished": 0,
+    "rights": "Nie potwierdzono prawa do dalszej publikacji oficjalnych materiałów.",
+    "expected_cover": "Obecny EventVisual; odbiór produkcyjny i mobilny niemożliwy przez wyłączony hosting."
+  },
+  "evidence_prefix": "scratch/content-supply/2026-11-23-"
+}

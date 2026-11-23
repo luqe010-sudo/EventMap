@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { PROMOTION_DURATION_LABEL, PROMOTION_PAGE_PATH, PROMOTION_PRICE_LABEL } from "@/lib/promotion";
 
 export const metadata: Metadata = {
   title: "Dodaj wydarzenie — dla organizatorów | MapaImprez.pl",
@@ -21,6 +22,8 @@ export default function OrganizerIntroduction() {
         <li>Wyślij wydarzenie do sprawdzenia. Pojawi się publicznie po akceptacji moderatora.</li>
       </ol>
       <p>Możesz edytować swoje zgłoszenia. Zmiana opublikowanego wydarzenia wymaga ponownej moderacji.</p>
+      <h2>Chcesz więcej odbiorców?</h2>
+      <p>Dodanie wydarzenia jest bezpłatne. Opcjonalnie możesz je wyróżnić za <strong>{PROMOTION_PRICE_LABEL}</strong> – trafi do karuzeli „Polecane wydarzenia” z oznaczeniem „Promowane” {PROMOTION_DURATION_LABEL}. <Link href={PROMOTION_PAGE_PATH}>Zobacz szczegóły polecania</Link>.</p>
       <p><Link href="/register?next=%2Forganizer" className="primaryButton">Załóż konto organizatora</Link></p>
       <p><Link href="/login?next=%2Forganizer">Mam już konto — przejdź do panelu</Link></p>
     </section>
