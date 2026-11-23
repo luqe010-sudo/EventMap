@@ -4,6 +4,7 @@
 
 - Migracja `supabase/migrations/20261123210000_events_featured_until.sql` dodaje `events.featured_until`, uzupełnia datę dla istniejących rekordów `is_featured` (koniec dnia wydarzenia, maks. 30 dni) i w jednej transakcji łata dwa fragmenty `guard_organizer_event_write` (lista kolumn + zakaz ustawiania przy insercie organizatora). Bez łatki każdy zapis organizatora kończyłby się błędem „Event schema changed”.
 - Kolejność: najpierw migracja (`npx supabase db query --linked -f supabase/migrations/20261123210000_events_featured_until.sql`), potem regeneracja `database.types.ts` i dopiero wtedy wdrożenie kodu — kod czyta i filtruje `featured_until`, więc bez kolumny publiczne zapytania by padały.
+- Wykonano 2026-11-23 na EventMap (`db query --linked -f`, bez `db push` i bez zmiany historii migracji). Przed wykonaniem odczyt potwierdził oba fragmenty wyzwalacza. Po wykonaniu: kolumna `timestamptz`, wyzwalacz zawiera nowe fragmenty, `search_path=pg_catalog` i SECURITY INVOKER bez zmian, 3 aktywne polecenia, 0 bez daty (2 wyróżnione wydarzenia z przeszłości wygasły). Test w transakcji wycofanej wyjątkiem: zwykły insert organizatora przechodzi, insert z `featured_until` i update `featured_until` są blokowane („Protected event insert/update fields”), brak pozostałych danych testowych. `gen types` dał plik identyczny z `database.types.ts`.
 - Rollback: `docs/featured-until-rollback.sql` (najpierw wycofać kod).
 - Manifest/testy pakietu ochrony zapisu organizatora z 16.11 porównują treść funkcji — po tej migracji zgłoszą zmianę treści; to oczekiwane.
 
