@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { CalendarDays, CarFront, HeartHandshake, MicVocal, Music2, PartyPopper, Sprout, Store, Theater, Trophy, UsersRound } from "lucide-react";
 import type { EventItem } from "@/lib/events";
 import { formatPolishDate } from "@/lib/date-format";
-import { getEventCoverPhoto } from "@/lib/event-cover-media";
+import { getEventCategoryCoverPhoto, getEventCoverPhoto } from "@/lib/event-cover-media";
 
 type VisualEvent = Pick<EventItem, "main_image_url" | "title" | "startDate" | "city" | "category" | "categorySlug" | "is_all_day">;
 
@@ -36,14 +36,14 @@ const categories = {
   inne: { Icon: CalendarDays, accent: "#c4d6e1", tint: "#354f5d" }
 };
 
-/** A real poster stays intact; unavailable artwork becomes a factual editorial cover. */
+/** Keep official posters intact and reserve event text for the card body. */
 export default function EventVisual({ event, variant = "card", decorative = true, loading = "lazy", className = "", imageClassName = "", draggable }: Props) {
   const source = event.main_image_url?.trim() || "";
   const [failedSource, setFailedSource] = useState<string | null>(null);
   const [failedBackdrop, setFailedBackdrop] = useState<string | null>(null);
   const image = useRef<HTMLImageElement>(null);
   const backdrop = useRef<HTMLImageElement>(null);
-  const contextualPhoto = getEventCoverPhoto(event);
+  const contextualPhoto = getEventCoverPhoto(event) ?? (variant === "detail" ? undefined : getEventCategoryCoverPhoto(event));
   const photo = contextualPhoto && failedBackdrop !== contextualPhoto.url ? contextualPhoto : undefined;
   useEffect(() => {
     // A cached error may have fired before React hydrated the server-rendered image.
@@ -72,13 +72,17 @@ export default function EventVisual({ event, variant = "card", decorative = true
             onError={() => setFailedBackdrop(photo.url)} /> : null}
           <span className="eventVisualOrbit" />
           <Icon className="eventVisualSymbol" strokeWidth={1.1} aria-hidden="true" />
-          <div className="eventVisualEyebrow"><Icon size={14} strokeWidth={1.8} aria-hidden="true" /><span>{event.category}</span>
-            {photo ? <span className="eventVisualImageNote">Zdjęcie ilustracyjne</span> : null}
-          </div>
-          <div className="eventVisualHeadline">{event.title}</div>
-          <div className="eventVisualFooter"><span>{date}<span className="eventVisualTime"> · {time}</span></span><span className="eventVisualCity">{event.city || "Polska"}</span>
-            {photo && variant === "detail" ? <span className="eventVisualPhotoCredit">Fot. {photo.author} · {photo.source.includes("pexels.com") ? "Pexels" : "Unsplash"}</span> : null}
-          </div>
+          {variant === "detail" ? (
+            <>
+              <div className="eventVisualEyebrow"><Icon size={14} strokeWidth={1.8} aria-hidden="true" /><span>{event.category}</span>
+                {photo ? <span className="eventVisualImageNote">Zdjęcie ilustracyjne</span> : null}
+              </div>
+              <div className="eventVisualHeadline">{event.title}</div>
+              <div className="eventVisualFooter"><span>{date}<span className="eventVisualTime"> · {time}</span></span><span className="eventVisualCity">{event.city || "Polska"}</span>
+                {photo ? <span className="eventVisualPhotoCredit">Fot. {photo.author} · {photo.source.includes("pexels.com") ? "Pexels" : "Unsplash"}</span> : null}
+              </div>
+            </>
+          ) : photo ? <span className="eventVisualIllustrationNote">Zdjęcie ilustracyjne</span> : <Icon className="eventVisualCategoryIcon" strokeWidth={1.4} aria-hidden="true" />}
         </div>
       )}
     </div>

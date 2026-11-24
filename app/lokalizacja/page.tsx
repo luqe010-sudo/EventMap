@@ -62,6 +62,7 @@ export default async function LocationPage({ searchParams }: Props) {
       radiusKm: radius,
       dateFilter: initialFilters.dateFilter ?? "all",
       customDate: initialFilters.customDate,
+      query: initialFilters.query,
       priceMode: initialFilters.priceMode ?? "all",
       maxPrice: initialFilters.maxPrice,
       sortBy: initialFilters.sortBy

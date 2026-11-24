@@ -81,10 +81,10 @@ export function useMobileWorkspaceAccessibility({ workspaceRef, view, event, onC
 
       if (changedView || changedEvent) {
         const savedFocus = visibleView === "list" ? returnFocus.current.list : visibleView === "map" ? returnFocus.current.map : null;
-        const savedFocusVisible = savedFocus?.isConnected && !savedFocus.matches(":disabled") && !savedFocus.closest('[inert], [aria-hidden="true"]');
+        const savedFocusVisible = savedFocus?.isConnected && savedFocus.getClientRects().length > 0 && !savedFocus.matches(":disabled") && !savedFocus.closest('[inert], [aria-hidden="true"]');
         const fallback = visibleView === "event"
           ? workspace.querySelector<HTMLElement>("#event-detail-title") ?? workspace.querySelector<HTMLElement>("#mobile-event-view")
-          : workspace.querySelector<HTMLElement>(visibleView === "map" ? "#mobile-map-view" : "#events-list");
+          : workspace.querySelector<HTMLElement>(visibleView === "map" ? "#mobile-map-view" : workspace.classList.contains("mobileResultsMode") ? "#events-list" : "#discovery-intro");
         const focusTarget = savedFocusVisible ? savedFocus : fallback;
         if (focusTarget) {
           if (!focusTarget.hasAttribute("tabindex") && !focusTarget.matches("a[href], button, input, select, textarea")) {

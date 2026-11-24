@@ -1,13 +1,20 @@
 "use client";
 
-import { useEffect, useId, useState, type CSSProperties } from "react";
-import { CalendarDays, ChevronDown, Search, SlidersHorizontal, Trash2, X } from "lucide-react";
-import { type EventCategory, type CategoryOption, type KnownLocation } from "@/lib/events";
+import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
+import { createPortal } from "react-dom";
+import { CalendarDays, ChevronDown, Gift, Grid2X2, Layers, Music2, PersonStanding, Search, SlidersHorizontal, Smile, Tent, Theater, Trash2, Wheat, X } from "lucide-react";
+import type { CategoryOption, EventCategory, KnownLocation } from "@/lib/events";
+import { PUBLIC_EVENT_QUERY_MAX_LENGTH } from "@/lib/event-search";
 import { MAX_PRICE_FILTER_LIMIT, MAX_RADIUS_FILTER_LIMIT, type DateFilter, type PriceFilterMode } from "@/lib/filters";
+import { toPluralCategoryName, toPluralCategorySlug, toSlug } from "@/lib/slugs";
 import CityAutocomplete from "@/components/CityAutocomplete";
 import CategoryIcon from "@/components/CategoryIcon";
 
 type SearchPanelProps = {
+  query: string;
+  onQueryChange: (value: string) => void;
+  onShowResults: () => void;
+  advancedRequest?: number;
   locationInput: string;
   onLocationInputChange: (value: string) => void;
   onLocationSelect: (location: KnownLocation) => void;
@@ -33,19 +40,33 @@ type SearchPanelProps = {
   maxPrice: number;
   onPriceModeChange: (mode: PriceFilterMode) => void;
   onMaxPriceChange: (price: number) => void;
-  onSubmit?: () => void;
 };
 
-const dateOptions: Array<{ label: string; shortLabel: string; value: DateFilter }> = [
-  { label: "Wszystkie terminy", shortLabel: "Wszystkie", value: "all" },
-  { label: "Dziś", shortLabel: "Dziś", value: "today" },
-  { label: "Jutro", shortLabel: "Jutro", value: "tomorrow" },
-  { label: "Najbliższy weekend", shortLabel: "Weekend", value: "weekend" },
-  { label: "Ten tydzień", shortLabel: "Ten tydzień", value: "week" },
-  { label: "Własny termin", shortLabel: "Własny termin", value: "custom" }
+const DATE_OPTIONS: Array<{ label: string; value: DateFilter }> = [
+  { label: "Wszystkie terminy", value: "all" },
+  { label: "Dziś", value: "today" },
+  { label: "Jutro", value: "tomorrow" },
+  { label: "Ten weekend", value: "weekend" },
+  { label: "Ten tydzień", value: "week" },
+  { label: "Własny zakres", value: "custom" }
 ];
 
+const QUICK_CATEGORIES = [
+  { slug: "koncerty", icon: Music2, color: "#ed6bfc" },
+  { slug: "festyny", icon: Tent, color: "#ffc52e" },
+  { slug: "dozynki", icon: Wheat, color: "#ffb619" },
+  { slug: "sport", icon: PersonStanding, color: "#35aafd" },
+  { slug: "kultura", icon: Theater, color: "#e771fa" },
+  { slug: "rodzinne", icon: Smile, color: "#ffd34a", label: "Dla dzieci" }
+];
+
+const MOBILE_FILTER_QUERY = "(max-width: 760px)";
+
 export default function SearchPanel({
+  query,
+  onQueryChange,
+  onShowResults,
+  advancedRequest = 0,
   locationInput,
   onLocationInputChange,
   onLocationSelect,
@@ -70,227 +91,395 @@ export default function SearchPanel({
   priceMode,
   maxPrice,
   onPriceModeChange,
-  onMaxPriceChange,
-  onSubmit,
+  onMaxPriceChange
 }: SearchPanelProps) {
-  const customDateRange = parseCustomDateRangeValue(customDate);
-  const [advancedOpen, setAdvancedOpen] = useState(false);
-  const controlsId = useId();
+  const id = useId();
+  const [advancedMode, setAdvancedMode] = useState<"inline" | "sheet" | null>(null);
+  const handledRequest = useRef(0);
+  const triggerRef = useRef<HTMLElement | null>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
   const [radiusInput, setRadiusInput] = useState(String(radiusKm));
   const [maxPriceInput, setMaxPriceInput] = useState(String(maxPrice));
+  const [dateFrom = "", dateTo = ""] = customDate.split("/");
   const isNearby = !isAllPoland && locationMode === "radius" && hasLocationCenter;
-  const additionalFilterCount = Number(isNearby) + Number(priceMode !== "all") + Number(category !== "Wszystkie");
   const canAdjustRadius = !isAllPoland && hasLocationCenter;
   const hasLocationFeedback = !/^(Szukam |Przeglądasz |Pokazuję |Używam )/.test(locationStatus);
+  const categoriesBySlug = new Map(categories.map((option) => [categorySlug(option), option]));
+  const quickCategories = QUICK_CATEGORIES.flatMap((shortcut) => {
+    const option = categoriesBySlug.get(shortcut.slug);
+    return option ? [{ ...shortcut, option }] : [];
+  });
+  const hasSecondaryCategory = category !== "Wszystkie" && !quickCategories.some(({ option }) => option.name === category);
+  const additionalFilterCount = Number(isNearby) + Number(priceMode !== "all") + Number(hasSecondaryCategory);
+  const dateRangeLabel = formatDateRangeLabel(dateFrom, dateTo);
+  const isAdvancedOpen = advancedMode !== null;
+  const advancedId = `${id}-advanced`;
 
   useEffect(() => { setRadiusInput(String(radiusKm)); }, [radiusKm]);
   useEffect(() => { setMaxPriceInput(String(maxPrice)); }, [maxPrice]);
 
-  function handleCustomDateFromChange(value: string) {
-    const nextTo = customDateRange.to && value && customDateRange.to < value ? value : customDateRange.to;
-    onCustomDateChange(serializeCustomDateRange(value, nextTo));
+  useEffect(() => {
+    if (!advancedRequest || handledRequest.current === advancedRequest) return;
+    handledRequest.current = advancedRequest;
+    triggerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setAdvancedMode("sheet");
+  }, [advancedRequest]);
+
+  useEffect(() => {
+    if (advancedMode === "inline") {
+      closeRef.current?.focus({ preventScroll: true });
+    }
+    if (advancedMode !== "sheet") return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const previousOverflow = document.body.style.overflow;
+    dialog.showModal();
+    closeRef.current?.focus({ preventScroll: true });
+    document.body.style.overflow = "hidden";
+    return () => {
+      if (dialog.open) dialog.close();
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [advancedMode]);
+
+  function openAdvancedFilters(trigger: HTMLElement) {
+    if (advancedMode) {
+      closeAdvancedFilters();
+      return;
+    }
+    triggerRef.current = trigger;
+    setAdvancedMode(window.matchMedia(MOBILE_FILTER_QUERY).matches ? "sheet" : "inline");
   }
 
-  function handleCustomDateToChange(value: string) {
-    const nextFrom = customDateRange.from && value && customDateRange.from > value ? value : customDateRange.from;
-    onCustomDateChange(serializeCustomDateRange(nextFrom, value));
+  function closeAdvancedFilters() {
+    dialogRef.current?.close();
+    setAdvancedMode(null);
+    triggerRef.current?.focus({ preventScroll: true });
+    triggerRef.current = null;
   }
 
-  function handleMaxPriceInputChange(value: string) {
-    setMaxPriceInput(value);
-    onPriceModeChange("max");
-    if (!value.trim()) return;
-    const parsed = Number(value.replace(",", "."));
-    if (Number.isFinite(parsed)) onMaxPriceChange(parsed);
+  function changeDate(filter: DateFilter) {
+    onDateFilterChange(filter);
+    if (filter !== "custom") onCustomDateChange("");
   }
 
-  function handleRadiusInputChange(value: string) {
-    setRadiusInput(value);
-    if (!value.trim()) return;
-    const parsed = Number(value.replace(",", "."));
-    if (Number.isFinite(parsed)) onRadiusChange(parsed);
-  }
+  const activeFilters = [
+    query.trim() ? { key: "query", label: query.trim(), clear: () => onQueryChange("") } : null,
+    !isAllPoland ? { key: "location", label: isNearby ? `${locationInput} + ${radiusKm} km` : locationInput, clear: onAllPolandSelect } : null,
+    dateFilter !== "all" ? { key: "date", label: dateRangeLabel || DATE_OPTIONS.find(({ value }) => value === dateFilter)?.label, clear: () => changeDate("all") } : null,
+    priceMode !== "all" ? { key: "price", label: priceMode === "free" ? "Za darmo" : `Do ${maxPrice} zł`, clear: () => onPriceModeChange("all") } : null,
+    category !== "Wszystkie" ? { key: "category", label: toPluralCategoryName(category), clear: () => onCategoryChange("Wszystkie") } : null
+  ];
 
-  const activeFilters: Array<{ key: string; label: string; clearLabel: string; onClear: () => void }> = [];
-  if (!isAllPoland && locationInput.trim()) {
-    activeFilters.push({
-      key: "location",
-      label: `${locationInput}${isNearby ? ` + ${radiusKm} km` : ""}`,
-      clearLabel: "Usuń lokalizację i szukaj w całej Polsce",
-      onClear: onAllPolandSelect
-    });
-  }
-  if (dateFilter !== "all") {
-    const dateLabel = dateFilter === "custom" && customDate
-      ? formatDateRangeSummary(customDateRange.from, customDateRange.to)
-      : dateOptions.find((option) => option.value === dateFilter)?.label ?? "Własny termin";
-    activeFilters.push({ key: "date", label: dateLabel, clearLabel: "Usuń filtr terminu", onClear: () => onDateFilterChange("all") });
-  }
-  if (priceMode !== "all") {
-    activeFilters.push({ key: "price", label: priceMode === "free" ? "Bezpłatne" : `Do ${maxPrice} zł`, clearLabel: "Usuń filtr ceny", onClear: () => onPriceModeChange("all") });
-  }
-  if (category !== "Wszystkie") {
-    activeFilters.push({ key: "category", label: category, clearLabel: "Usuń filtr kategorii", onClear: () => onCategoryChange("Wszystkie") });
-  }
-
-  function handleClearAllFilters() {
+  function clearFilters() {
+    onQueryChange("");
     onLocationInputChange("");
     onAllPolandSelect();
-    onDateFilterChange("all");
+    changeDate("all");
     onPriceModeChange("all");
     onCategoryChange("Wszystkie");
   }
 
-  function handleSubmit() {
-    if (onSubmit) onSubmit();
-    else document.getElementById("events-list")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  function updateDateRange(from: string, to: string) {
+    onCustomDateChange(to ? `${from}/${to}` : from);
   }
 
-  return (
-    <section className="discoverySearch" id="search-panel" aria-labelledby={`${controlsId}-heading`} data-advanced-open={advancedOpen}>
-      <h2 className="discoverySearchHeading" id={`${controlsId}-heading`}>Znajdź wydarzenia</h2>
+  function renderLocation(inputId: string) {
+    return (
+      <CityAutocomplete
+        id={inputId}
+        value={locationInput}
+        onChange={onLocationInputChange}
+        onSelect={onLocationSelect}
+        onUseGPS={onUseGPS}
+        onAllPolandSelect={onAllPolandSelect}
+        priorityLocations={citySuggestions}
+        placeholder={isAllPoland ? "Cała Polska" : "Wpisz miejscowość…"}
+      />
+    );
+  }
 
-      <div className="discoverySearchControls">
-        <div className="discoverySearchField discoverySearchLocation">
-          <label className="discoverySearchLabel" htmlFor="location">Lokalizacja</label>
-          <CityAutocomplete value={locationInput} onChange={onLocationInputChange} onSelect={onLocationSelect} onUseGPS={onUseGPS} priorityLocations={citySuggestions} />
-          <p className={`discoverySearchStatus${hasLocationFeedback ? "" : " discoverySearchStatusQuiet"}`} role="status">{locationStatus}</p>
+  function renderDatePicker(inputId: string, compact = false) {
+    return (
+      <div className="discoverySearchDatePicker">
+        <CalendarDays size={20} aria-hidden="true" />
+        <select id={inputId} value={dateFilter} onChange={(event) => {
+          const next = event.target.value as DateFilter;
+          changeDate(next);
+          if (compact && next === "custom" && !isAdvancedOpen) openAdvancedFilters(event.currentTarget);
+        }}>
+          {DATE_OPTIONS.map(({ label, value }) => (
+            <option key={value} value={value}>{compact && value === "all" ? "Wybierz datę" : compact && value === "custom" && dateRangeLabel ? dateRangeLabel : label}</option>
+          ))}
+        </select>
+        <ChevronDown size={17} aria-hidden="true" />
+      </div>
+    );
+  }
+
+  function renderCategory(option?: CategoryOption, quick = false) {
+    const shortcut = option ? QUICK_CATEGORIES.find(({ slug }) => slug === categorySlug(option)) : null;
+    const Icon = option ? shortcut?.icon : Layers;
+    const name = option?.name ?? "Wszystkie";
+    const selected = category === name;
+    const label = option ? (quick && shortcut?.label) || toPluralCategoryName(name) : name;
+    return (
+      <button
+        type="button"
+        key={option?.id ?? "all"}
+        className={quick && (!option || shortcut?.slug === "rodzinne") ? "discoverySearchDesktopShortcut" : undefined}
+        aria-pressed={selected}
+        onClick={() => onCategoryChange(selected ? "Wszystkie" : name)}
+        style={categoryColor(shortcut?.color ?? option?.color ?? "var(--brand)")}
+      >
+        {Icon ? <Icon size={21} aria-hidden="true" /> : <CategoryIcon iconName={option?.icon} size={21} />}
+        <span>{label}</span>
+      </button>
+    );
+  }
+
+  const locationFeedback = (
+    <p className={`discoverySearchStatus${hasLocationFeedback ? "" : " discoverySearchVisuallyHidden"}`} role="status">{locationStatus}</p>
+  );
+
+  const advancedContents = (
+    <>
+      <div className="discoveryFilterHeader">
+        <h2 id={`${id}-filter-heading`}>Filtry wydarzeń</h2>
+        <button ref={closeRef} type="button" className="discoveryFilterClose" aria-label="Zamknij filtry" onClick={closeAdvancedFilters}><X size={21} aria-hidden="true" /></button>
+      </div>
+
+      {activeFilters.some(Boolean) ? (
+        <div className="discoveryFilterChips" role="group" aria-label="Aktywne filtry">
+          {activeFilters.map((filter) => filter?.label ? (
+            <button key={filter.key} type="button" aria-label={`Usuń filtr ${filter.label}`} onClick={filter.clear}>
+              <span>{filter.label}</span> <X size={14} aria-hidden="true" />
+            </button>
+          ) : null)}
         </div>
+      ) : null}
 
-        <div className="discoverySearchField discoverySearchDate" role="group" aria-labelledby={`${controlsId}-date-label`}>
-          <span className="discoverySearchLabel" id={`${controlsId}-date-label`}>Kiedy?</span>
-          <div className="discoverySearchSegments discoverySearchDateOptions">
-            {dateOptions.map((option) => (
-              <button type="button" key={option.value} aria-label={option.label} aria-pressed={dateFilter === option.value} onClick={() => onDateFilterChange(option.value)} title={option.value === "custom" ? option.label : undefined}>
-                {option.value === "custom" ? <CalendarDays size={16} aria-hidden="true" /> : option.shortLabel}
-              </button>
-            ))}
+      <div className="discoverySearchAdvanced">
+        {advancedMode === "sheet" ? (
+          <div className="discoverySearchField discoveryFilterLocation">
+            <label className="discoverySearchLabel" htmlFor={`${id}-sheet-location`}>Lokalizacja</label>
+            {renderLocation(`${id}-sheet-location`)}
+            {locationFeedback}
           </div>
+        ) : null}
+
+        <fieldset className="discoveryFilterCategories">
+          <legend>Kategoria</legend>
+          <div className="discoverySearchCategoryOptions">
+            {renderCategory()}
+            {categories.map((option) => renderCategory(option))}
+          </div>
+        </fieldset>
+
+        <div className="discoverySearchField discoveryFilterDates">
+          <label className="discoverySearchLabel" htmlFor={`${id}-date-range`}>Termin</label>
+          {renderDatePicker(`${id}-date-range`)}
           {dateFilter === "custom" ? (
             <div className="discoverySearchDateRange">
-              <label><span>Od</span><input type="date" value={customDateRange.from} max={customDateRange.to || undefined} onInput={(event) => handleCustomDateFromChange(event.currentTarget.value)} onChange={(event) => handleCustomDateFromChange(event.target.value)} /></label>
-              <label><span>Do</span><input type="date" value={customDateRange.to} min={customDateRange.from || undefined} onInput={(event) => handleCustomDateToChange(event.currentTarget.value)} onChange={(event) => handleCustomDateToChange(event.target.value)} /></label>
+              <label>
+                <span>Od</span>
+                <input type="date" value={dateFrom} onChange={(event) => {
+                  const value = event.target.value;
+                  updateDateRange(value, dateTo && value > dateTo ? value : dateTo);
+                }} />
+              </label>
+              <label>
+                <span>Do</span>
+                <input type="date" value={dateTo} onChange={(event) => {
+                  const value = event.target.value;
+                  updateDateRange(dateFrom && value && value < dateFrom ? value : dateFrom, value);
+                }} />
+              </label>
             </div>
           ) : null}
         </div>
 
-        <button type="button" className="discoverySearchToggle" aria-expanded={advancedOpen} aria-controls={`${controlsId}-advanced`} onClick={() => setAdvancedOpen(!advancedOpen)}>
-          <SlidersHorizontal size={17} aria-hidden="true" />
-          Filtry
-          {additionalFilterCount > 0 ? <span className="discoverySearchFilterCount" aria-label={`Liczba aktywnych filtrów: ${additionalFilterCount}`}>{additionalFilterCount}</span> : null}
-          <ChevronDown size={16} aria-hidden="true" />
-        </button>
+        <fieldset className="discoverySearchField discoveryFilterRadius">
+          <legend>Promień</legend>
+          <div className="discoverySearchSegments" role="group" aria-label="Obszar wyszukiwania">
+            {!isAllPoland && canSearchCity ? <button type="button" aria-pressed={locationMode === "city"} onClick={() => onLocationModeChange("city")}>W mieście</button> : null}
+            {!isAllPoland ? <button type="button" aria-pressed={locationMode === "radius"} disabled={!hasLocationCenter} onClick={() => onLocationModeChange("radius")}>W okolicy</button> : null}
+            <button type="button" aria-pressed={isAllPoland} onClick={onAllPolandSelect}>Cała Polska</button>
+          </div>
+          <div className="discoverySearchRangeRow">
+            <input
+              type="range" className="discoverySearchSlider" min={5} max={MAX_RADIUS_FILTER_LIMIT} step={1} value={radiusKm} disabled={!canAdjustRadius}
+              onChange={(event) => onRadiusChange(Number(event.target.value))}
+              style={{ "--discovery-range-progress": `${((radiusKm - 5) / (MAX_RADIUS_FILTER_LIMIT - 5)) * 100}%` } as CSSProperties}
+              aria-label="Promień wyszukiwania" aria-valuetext={`${radiusKm} km`} aria-describedby={`${id}-radius-help`}
+            />
+            <label className="discoverySearchNumber">
+              <input type="text" inputMode="numeric" value={radiusInput} aria-label="Promień w kilometrach" disabled={!canAdjustRadius}
+                onFocus={(event) => event.currentTarget.select()}
+                onBlur={() => setRadiusInput(String(radiusKm))}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  setRadiusInput(value);
+                  if (isWithinRange(value, 5, MAX_RADIUS_FILTER_LIMIT)) onRadiusChange(Number(value));
+                }} />
+              <span>km</span>
+            </label>
+          </div>
+          <p className="discoverySearchHelp" id={`${id}-radius-help`}>
+            {isAllPoland ? "Wybierz miejscowość, aby ustawić promień." : !hasLocationCenter ? "Lokalizacja bez współrzędnych. Możesz szukać w mieście." : "Odległość od wybranej lokalizacji."}
+          </p>
+        </fieldset>
 
-        <div className="discoverySearchAdvanced" id={`${controlsId}-advanced`}>
-          <div className="discoverySearchField discoverySearchRadius" role="group" aria-labelledby={`${controlsId}-radius-label`}>
-            <div className="discoverySearchFieldHeader">
-              <span className="discoverySearchLabel" id={`${controlsId}-radius-label`}>Promień</span>
-              <div className="discoverySearchSegments discoverySearchScope" role="group" aria-label="Obszar wyszukiwania">
-                {!isAllPoland && canSearchCity ? <button type="button" aria-pressed={locationMode === "city"} onClick={() => onLocationModeChange("city")}>W mieście</button> : null}
-                {!isAllPoland ? <button type="button" aria-pressed={locationMode === "radius"} disabled={!hasLocationCenter} onClick={() => onLocationModeChange("radius")}>W okolicy</button> : null}
-                <button type="button" aria-pressed={isAllPoland} onClick={onAllPolandSelect}>Cała Polska</button>
-              </div>
-            </div>
+        <fieldset className="discoverySearchField discoveryFilterPrice">
+          <legend>Cena</legend>
+          <div className="discoverySearchSegments" role="group" aria-label="Cena biletu">
+            <button type="button" aria-pressed={priceMode === "all"} onClick={() => onPriceModeChange("all")}>Bez limitu</button>
+            <button type="button" aria-pressed={priceMode === "free"} onClick={() => onPriceModeChange("free")}>Za darmo</button>
+            <button type="button" aria-pressed={priceMode === "max"} onClick={() => onPriceModeChange("max")}>Do kwoty</button>
+          </div>
+          {priceMode === "max" ? (
             <div className="discoverySearchRangeRow">
               <input
-                id={`${controlsId}-radius`} type="range" className="discoverySearchSlider" min={5} max={MAX_RADIUS_FILTER_LIMIT} step={5} value={radiusKm} disabled={!canAdjustRadius}
-                onChange={(event) => onRadiusChange(Number(event.target.value))}
-                style={{ "--discovery-range-progress": `${((radiusKm - 5) / (MAX_RADIUS_FILTER_LIMIT - 5)) * 100}%` } as CSSProperties}
-                aria-label="Promień wyszukiwania w kilometrach" aria-valuetext={`${radiusKm} kilometrów`} aria-describedby={`${controlsId}-radius-help`}
-              />
-              <label className="discoverySearchNumber">
-                <span>do</span>
-                <input type="text" inputMode="decimal" value={radiusInput} aria-label="Promień w kilometrach" disabled={!canAdjustRadius}
-                  onFocus={(event) => event.currentTarget.select()}
-                  onBlur={() => { if (!radiusInput.trim()) setRadiusInput(String(radiusKm)); }}
-                  onChange={(event) => handleRadiusInputChange(event.target.value)} />
-                <span>km</span>
-              </label>
-            </div>
-            <div className="discoverySearchRangeBounds"><span>5 km</span><span>{MAX_RADIUS_FILTER_LIMIT} km</span></div>
-            <p className="discoverySearchHelp" id={`${controlsId}-radius-help`}>
-              {isAllPoland ? "Wybierz miejscowość, aby ustawić promień." : !hasLocationCenter ? "Brak współrzędnych — dostępne wyszukiwanie w mieście." : locationMode === "city" ? "Zmień promień, aby szukać także w okolicy." : "Odległość od wybranej lokalizacji."}
-            </p>
-          </div>
-
-          <div className="discoverySearchField discoverySearchPrice" role="group" aria-labelledby={`${controlsId}-price-label`}>
-            <div className="discoverySearchFieldHeader">
-              <span className="discoverySearchLabel" id={`${controlsId}-price-label`}>Cena</span>
-              <div className="discoverySearchSegments discoverySearchPriceOptions" role="group" aria-label="Cena biletu">
-                <button type="button" aria-pressed={priceMode === "free"} onClick={() => onPriceModeChange("free")}>Za darmo</button>
-                <button type="button" aria-pressed={priceMode === "max"} onClick={() => onPriceModeChange("max")}>Do kwoty</button>
-                <button type="button" aria-pressed={priceMode === "all"} onClick={() => onPriceModeChange("all")}>Bez limitu</button>
-              </div>
-            </div>
-            <div className="discoverySearchRangeRow">
-              <input type="range" className="discoverySearchSlider" min={0} max={MAX_PRICE_FILTER_LIMIT} step={10} value={maxPrice} disabled={priceMode !== "max"}
+                type="range" className="discoverySearchSlider" min={0} max={MAX_PRICE_FILTER_LIMIT} step={1} value={maxPrice}
                 onChange={(event) => onMaxPriceChange(Number(event.target.value))}
                 style={{ "--discovery-range-progress": `${(maxPrice / MAX_PRICE_FILTER_LIMIT) * 100}%` } as CSSProperties}
-                aria-label="Cena maksymalna" aria-valuetext={`${maxPrice} złotych`} />
+                aria-label="Maksymalna cena biletu" aria-valuetext={`${maxPrice} zł`}
+              />
               <label className="discoverySearchNumber">
-                <span>do</span>
-                <input type="text" inputMode="decimal" value={maxPriceInput} aria-label="Maksymalna cena w złotych" disabled={priceMode !== "max"}
+                <input type="text" inputMode="numeric" value={maxPriceInput} aria-label="Maksymalna cena w złotych"
                   onFocus={(event) => event.currentTarget.select()}
-                  onBlur={() => { if (!maxPriceInput.trim()) setMaxPriceInput(String(maxPrice)); }}
-                  onChange={(event) => handleMaxPriceInputChange(event.target.value)} />
+                  onBlur={() => setMaxPriceInput(String(maxPrice))}
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    setMaxPriceInput(value);
+                    if (isWithinRange(value, 0, MAX_PRICE_FILTER_LIMIT)) onMaxPriceChange(Number(value));
+                  }} />
                 <span>zł</span>
               </label>
             </div>
-            <div className="discoverySearchRangeBounds"><span>0 zł</span><span>{MAX_PRICE_FILTER_LIMIT} zł</span></div>
-          </div>
-
-          <fieldset className="discoverySearchCategories">
-            <legend>Kategoria</legend>
-            <div className="discoverySearchCategoryOptions" role="group" aria-label="Kategoria wydarzenia">
-              <button type="button" aria-pressed={category === "Wszystkie"} onClick={() => onCategoryChange("Wszystkie")} style={{ "--discovery-category-color": "var(--brand)" } as CSSProperties}>
-                <CategoryIcon iconName="Compass" size={17} color="var(--discovery-category-color)" />Wszystkie
-              </button>
-              {categories.map((option) => (
-                <button type="button" key={option.id} aria-pressed={category === option.name} onClick={() => onCategoryChange(option.name)} style={{ "--discovery-category-color": option.color || "var(--brand)" } as CSSProperties}>
-                  <CategoryIcon iconName={option.icon} size={17} color="var(--discovery-category-color)" />{option.name}
-                </button>
-              ))}
-            </div>
-          </fieldset>
-        </div>
+          ) : null}
+        </fieldset>
       </div>
 
-      <div className="discoverySearchFooter">
-        <div className="discoverySearchSummary" aria-label="Wybrane filtry">
-          <span className="discoverySearchSummaryLabel">Aktywne filtry:</span>
-          <div className="discoverySearchSummaryItems">
-            {activeFilters.length > 0 ? activeFilters.map((filter) => (
-              <button type="button" key={filter.key} className="discoverySearchChip" onClick={filter.onClear} aria-label={filter.clearLabel}><span>{filter.label}</span><X size={14} aria-hidden="true" /></button>
-            )) : <span className="discoverySearchSummaryEmpty">Brak aktywnych filtrów</span>}
+      <div className="discoveryFilterFooter">
+        <button type="button" className="discoverySearchClear" onClick={clearFilters} disabled={!activeFilters.some(Boolean)}><Trash2 size={16} aria-hidden="true" />Wyczyść filtry</button>
+        <button type="button" className="discoveryFilterDone" onClick={closeAdvancedFilters}>Gotowe</button>
+      </div>
+    </>
+  );
+
+  return (
+    <section className="discoverySearch" id="search-panel" aria-labelledby={`${id}-heading`}>
+      <h2 className="discoverySearchVisuallyHidden" id={`${id}-heading`}>Znajdź wydarzenia</h2>
+
+      <form className="discoverySearchControls" onSubmit={(event) => {
+        event.preventDefault();
+        onShowResults();
+      }}>
+        <div className="discoverySearchField discoverySearchLocation">
+          <label className="discoverySearchVisuallyHidden" htmlFor={`${id}-location`}>Lokalizacja</label>
+          {renderLocation(`${id}-location`)}
+          {locationFeedback}
+        </div>
+
+        <div className="discoverySearchField discoverySearchKeyword">
+          <label className="discoverySearchVisuallyHidden" htmlFor={`${id}-query`}>Szukaj wydarzeń</label>
+          <div className="discoverySearchKeywordInput">
+            <Search size={21} aria-hidden="true" />
+            <input id={`${id}-query`} type="search" maxLength={PUBLIC_EVENT_QUERY_MAX_LENGTH} placeholder="Szukaj wydarzeń, np. „jarmark”, „koncert”…" value={query} onChange={(event) => onQueryChange(event.target.value)} />
+            <button
+              type="button" className="discoverySearchToggle" aria-label={additionalFilterCount ? `Filtry zaawansowane (${additionalFilterCount})` : "Filtry zaawansowane"}
+              aria-expanded={isAdvancedOpen} aria-haspopup={advancedMode === "sheet" ? "dialog" : undefined} aria-controls={isAdvancedOpen ? advancedId : undefined}
+              onClick={(event) => openAdvancedFilters(event.currentTarget)}
+            >
+              <SlidersHorizontal size={20} aria-hidden="true" />
+              {additionalFilterCount > 0 ? <span className="discoverySearchFilterCount" aria-hidden="true">{additionalFilterCount}</span> : null}
+            </button>
           </div>
         </div>
-        <div className="discoverySearchActions">
-          <button type="button" className="discoverySearchClear" onClick={handleClearAllFilters} disabled={activeFilters.length === 0}><Trash2 size={15} aria-hidden="true" />Wyczyść wszystko</button>
-          <button type="button" className="discoverySearchSubmit" onClick={handleSubmit}><Search size={18} aria-hidden="true" />Znajdź</button>
+
+        <div className="discoverySearchField discoverySearchDate">
+          <label className="discoverySearchVisuallyHidden" htmlFor={`${id}-date`}>Termin</label>
+          {renderDatePicker(`${id}-date`, true)}
         </div>
-      </div>
+
+        <button type="submit" className="discoverySearchSubmit"><Search size={20} aria-hidden="true" /> Szukaj</button>
+      </form>
+
+      <fieldset className="discoverySearchCategories">
+        <legend className="discoverySearchVisuallyHidden">Szybkie filtry</legend>
+        <div className="discoverySearchCategoryOptions">
+          {renderCategory(undefined, true)}
+          {quickCategories.map(({ option }) => renderCategory(option, true))}
+          <button type="button" className="discoverySearchDesktopShortcut" aria-pressed={priceMode === "free"} onClick={() => onPriceModeChange(priceMode === "free" ? "all" : "free")} style={categoryColor("#22e0a0")}>
+            <Gift size={21} aria-hidden="true" /><span>Za darmo</span>
+          </button>
+          <button type="button" className="discoverySearchDesktopShortcut" aria-pressed={dateFilter === "weekend"} onClick={() => changeDate(dateFilter === "weekend" ? "all" : "weekend")} style={categoryColor("#35aafd")}>
+            <CalendarDays size={21} aria-hidden="true" /><span>Na weekend</span>
+          </button>
+          <button
+            type="button" className="discoverySearchMore" aria-expanded={isAdvancedOpen} aria-haspopup="dialog" aria-controls={isAdvancedOpen ? advancedId : undefined}
+            onClick={(event) => openAdvancedFilters(event.currentTarget)} style={categoryColor("var(--ink-secondary)")}
+          >
+            <Grid2X2 size={21} aria-hidden="true" /><span>Więcej</span>
+          </button>
+        </div>
+      </fieldset>
+
+      {advancedMode === "inline" ? (
+        <div
+          className="discoveryFilterPanel discoveryFilterInline" id={advancedId} role="region" aria-labelledby={`${id}-filter-heading`}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") {
+              event.preventDefault();
+              closeAdvancedFilters();
+            }
+          }}
+        >
+          {advancedContents}
+        </div>
+      ) : null}
+      {advancedMode === "sheet" ? createPortal(
+        <dialog
+          ref={dialogRef}
+          className="discoveryFilterPanel discoveryFilterDialog"
+          id={advancedId}
+          aria-labelledby={`${id}-filter-heading`}
+          onCancel={(event) => {
+            event.preventDefault();
+            closeAdvancedFilters();
+          }}
+          onClick={(event) => {
+            if (event.target !== event.currentTarget) return;
+            const rect = event.currentTarget.getBoundingClientRect();
+            if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) closeAdvancedFilters();
+          }}
+        >
+          {advancedContents}
+        </dialog>,
+        document.body
+      ) : null}
     </section>
   );
 }
 
-function parseCustomDateRangeValue(value: string) {
-  const [from = "", to = ""] = value.split("/");
-  return { from, to };
+function categorySlug(option: CategoryOption) {
+  return toPluralCategorySlug(option.slug || toSlug(option.name));
 }
 
-function serializeCustomDateRange(from: string, to: string) {
-  if (from && to) return `${from}/${to}`;
-  if (to) return `/${to}`;
-  return from;
+function categoryColor(color: string) {
+  return { "--search-category-color": color } as CSSProperties;
 }
 
-function formatDateRangeSummary(from: string, to: string) {
-  const format = (value: string) => {
-    const [year, month, day] = value.split("-");
-    return `${day}.${month}.${year}`;
-  };
-  if (from && to) return from === to ? format(from) : `${format(from)} – ${format(to)}`;
-  if (from) return `Od ${format(from)}`;
-  if (to) return `Do ${format(to)}`;
-  return "Własny termin";
+function isWithinRange(value: string, min: number, max: number) {
+  const parsed = Number(value);
+  return /^\d+$/.test(value) && parsed >= min && parsed <= max;
+}
+
+function formatDateRangeLabel(from: string, to: string) {
+  const dateLabel = (value: string) => value.split("-").slice(1).reverse().join(".");
+  if (from && to && from !== to) return `${dateLabel(from)}–${dateLabel(to)}`;
+  if (from) return to ? dateLabel(from) : `Od ${dateLabel(from)}`;
+  return to ? `Do ${dateLabel(to)}` : "";
 }

@@ -152,6 +152,7 @@ export default async function EventOrTimePage({
         radiusKm: initialFilters.radiusKm,
         dateFilter: initialFilters.dateFilter ?? dateFilterMap[eventOrTime],
         customDate: initialFilters.customDate,
+        query: initialFilters.query,
         priceMode: initialFilters.priceMode ?? "all",
         maxPrice: initialFilters.maxPrice,
         sortBy: initialFilters.sortBy

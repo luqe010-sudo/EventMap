@@ -19,6 +19,7 @@ export function publicSearchOptionsFromParams(params: URLSearchParams): PublicEv
     throw new PublicSearchInputError("Wybierz lokalizację dla promienia lub sortowania według odległości.");
   }
   return {
+    ...(filters.query ? { query: filters.query } : {}),
     dateFilter: filters.dateFilter ?? "all",
     customDate: filters.customDate,
     categorySlug: params.get("categorySlug")?.trim() || undefined,

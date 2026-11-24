@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getEventCoverPhoto } from "@/lib/event-cover-media";
+import { getEventCategoryCoverPhoto, getEventCoverPhoto } from "@/lib/event-cover-media";
 import media from "@/data/media/editorial-photos.json";
 import fs from "node:fs";
 import { createHash } from "node:crypto";
@@ -19,13 +19,19 @@ describe("contextual event photographs", () => {
     expect(getEventCoverPhoto({ title: "Warsztaty chóralne" })?.id).toBe("piano");
   });
 
+  it("uses thematic category photos when artwork is unavailable", () => {
+    expect(getEventCategoryCoverPhoto({ title: "Acid Drinkers", categorySlug: "koncerty" })?.id).toBe("concert-crowd");
+    expect(getEventCategoryCoverPhoto({ title: "Jarmark bożonarodzeniowy", categorySlug: "targi" })?.id).toBe("winter-market");
+    expect(getEventCategoryCoverPhoto({ title: "Bieg charytatywny", categorySlug: "charytatywne" })?.id).toBe("community-race");
+  });
+
   it("ships every photo locally with traceable authorship, license and checked bytes", () => {
-    expect(media.photos).toHaveLength(8);
+    expect(new Set(media.photos.map(photo => photo.id)).size).toBe(media.photos.length);
     for (const photo of media.photos) {
       expect(photo.author).toBeTruthy();
       expect(photo.source).toMatch(/^https:\/\/(unsplash\.com|www\.pexels\.com)\/photos?\//);
       expect(photo.license_url).toMatch(/^https:\/\/(unsplash\.com|www\.pexels\.com)\/license\/?$/);
-      expect(photo.url).toMatch(/^\/images\/editorial\/[a-z-]+\.jpg$/);
+      expect(photo.url).toMatch(/^\/images\/editorial\/[a-z-]+\.(jpg|webp)$/);
       const bytes = fs.readFileSync(`public${photo.url}`);
       expect(bytes.length).toBeLessThan(500_000);
       expect(createHash("sha256").update(bytes).digest("hex")).toBe(photo.sha256);

@@ -24,9 +24,14 @@ type MapLibreMapProps = {
   showEventPopup?: boolean;
   isVisible?: boolean;
   detailMode?: boolean;
+  discoveryTheme?: boolean;
+  fullscreenControl?: boolean;
+  controlsOnRight?: boolean;
+  bottomInset?: number;
 };
 
 type EventFeatureProperties = {
+  pin: string;
   id: string;
   title: string;
   address: string;
@@ -48,6 +53,7 @@ type CategoryLayers = {
   glow: string;
   cluster: string;
   clusterIcon: string;
+  clusterCount: string;
   pin: string;
   icon: string;
 };
@@ -62,11 +68,12 @@ type MapSpider = {
 
 const STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
 const EVENT_SOURCE_ID = "eventmap-events";
+const POLAND_SOURCE_ID = "eventmap-poland";
 const VOIVODESHIP_SOURCE_ID = "eventmap-voivodeships";
 const LOCATION_MARKER_CLASS = "locationMarker";
 const NO_SELECTED_EVENT_ID = "__none__";
 const EVENT_CLUSTER_MAX_ZOOM = 11;
-const EVENT_CLUSTER_RADIUS = 34;
+const EVENT_CLUSTER_RADIUS = 96;
 const SPIDER_MIN_ZOOM = EVENT_CLUSTER_MAX_ZOOM + 1;
 const SPIDER_REFRESH_INTERVAL = 80;
 const SPIDER_LAYERS: PinLayers = {
@@ -76,16 +83,18 @@ const SPIDER_LINES = "eventmap-spider-lines";
 const EMPTY_SPIDER_DATA: GeoJSON.FeatureCollection = { type: "FeatureCollection", features: [] };
 const EMPTY_EVENT_FEATURES: EventFeatureCollection = { type: "FeatureCollection", features: [] };
 const EVENT_CATEGORY_COLOR: ExpressionSpecification = ["to-color", ["get", "color"], "#ef3f18"];
-const EVENT_ICON_LAYOUT = {
-  "icon-image": ["get", "icon"] as ExpressionSpecification,
-  "icon-size": 0.61,
+const DEFAULT_PIN_COLOR = "#ef3f18";
+// Teardrop pin artwork (see buildPinSvg): 44x54 units, tip 7 units above the bottom edge.
+const PIN_TIP_OFFSET: [number, number] = [0, 7];
+const PIN_BADGE_OFFSET: [number, number] = [14, -40];
+const EVENT_PIN_LAYOUT = {
+  "icon-image": ["get", "pin"] as ExpressionSpecification,
+  "icon-anchor": "bottom" as const,
+  "icon-offset": PIN_TIP_OFFSET,
+  "icon-size": ["interpolate", ["linear"], ["zoom"], 4, .69, 6.5, .82, 12, 1] as ExpressionSpecification,
   "icon-allow-overlap": true,
   "icon-ignore-placement": true
 };
-const CLUSTER_DOT_RADIUS: ExpressionSpecification = [
-  "interpolate", ["linear"], ["get", "point_count"],
-  2, 16, 10, 18, 30, 21, 80, 24, 200, 27, 1000, 30, 10000, 33
-];
 const CLUSTER_SORT_KEY: ExpressionSpecification = ["-", 0, ["get", "point_count"]];
 const POLAND_CENTER: [number, number] = [19.1451, 51.9194];
 const POLAND_BOUNDS: [[number, number], [number, number]] = [
@@ -97,10 +106,86 @@ const MAP_LOCALE = {
   "NavigationControl.ZoomIn": "Powiększ",
   "NavigationControl.ZoomOut": "Pomniejsz",
   "NavigationControl.ResetBearing": "Resetuj obrót",
-  "AttributionControl.ToggleAttribution": "Pokaż atrybucję"
+  "AttributionControl.ToggleAttribution": "Pokaż atrybucję",
+  "FullscreenControl.Enter": "Powiększ mapę",
+  "FullscreenControl.Exit": "Zamknij pełny ekran"
 };
 
+function discoveryMapPaint(layer: maplibregl.LayerSpecification): Record<string, unknown> {
+  const name = `${layer.id} ${"source-layer" in layer ? layer["source-layer"] : ""}`.toLowerCase();
+  // Poland glows teal with a neon border against a darker surrounding map.
+  if (layer.id === "eventmap-voivodeship-fill") return { "fill-color": "#0e7c82", "fill-opacity": .4 };
+  if (layer.id === "eventmap-voivodeship-boundaries") return { "line-color": "#3fd8da", "line-opacity": .42, "line-width": 1 };
+  if (layer.id === "eventmap-county-boundaries") return { "line-color": "#1b5d66", "line-opacity": .35 };
+  if (layer.id === "eventmap-outside-poland") return { "fill-opacity": ["interpolate", ["linear"], ["zoom"], 4, 0.87, 7, 0.77, 11, 0.40, 15, 0.18] };
+  if (layer.id === "eventmap-poland-label") return { "text-opacity": ["interpolate", ["linear"], ["zoom"], 4.5, 1, 6.35, 0.0] };
+  if (layer.id === "eventmap-country-glow") return { "line-opacity": .68 };
+  if (layer.id === "eventmap-country-line") return { "line-opacity": .95 };
+  // Category pins, their glow and clustering retain their own colors.
+  if (layer.id.startsWith("eventmap-") && layer.id !== "eventmap-house-numbers" && layer.id !== "eventmap-major-city-labels") return {};
+  if (layer.type === "background") return { "background-color": "#06141c" };
+  if (layer.type === "fill") return {
+    "fill-color": /water/.test(name) ? "#040d14" : /wood|forest|park|grass|landcover/.test(name) ? "#0a2229" : /building/.test(name) ? "#16323c" : "#091c24"
+  };
+  if (layer.type === "raster") return { "raster-opacity": 0 };
+  if (layer.type === "hillshade") return { "hillshade-exaggeration": 0 };
+  if (layer.type === "fill-extrusion") return { "fill-extrusion-color": "#173540" };
+  if (layer.type === "line") return {
+    "line-color": /boundary/.test(name) ? "#246c78" : /water/.test(name) ? "#145267" : /motorway|trunk|primary/.test(name) ? "#3b5a64" : "#203f4b"
+  };
+  if (layer.type === "symbol" && layer.layout?.["text-field"]) return {
+    "text-color": /city|town|country|state/.test(name) ? "#b6d7de" : "#8baab8",
+    "text-halo-color": "#08202b",
+    ...(/country/.test(name) ? { "text-opacity": 0 } : {})
+  };
+  return {};
+}
 
+function observeDiscoveryTheme(map: maplibregl.Map) {
+  const originalPaint = new Map<string, unknown>();
+  const applyTheme = () => {
+    const dark = document.documentElement.dataset.theme === "dark";
+    for (const layer of map.getStyle().layers ?? []) {
+      for (const [property, value] of Object.entries(discoveryMapPaint(layer))) {
+        const key = layer.id + ":" + property;
+        if (!originalPaint.has(key)) originalPaint.set(key, map.getPaintProperty(layer.id, property) ?? null);
+        map.setPaintProperty(layer.id, property, dark ? value : originalPaint.get(key));
+      }
+    }
+  };
+  applyTheme();
+  const observer = new MutationObserver(applyTheme);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  return observer;
+}
+
+function addPolandDiscoveryLayers(map: maplibregl.Map) {
+  map.addSource(POLAND_SOURCE_ID, { type: "geojson", data: "/data/polska-outline.geojson" });
+  const country: FilterSpecification = ["==", ["get", "kind"], "poland"];
+  map.addLayer({
+    id: "eventmap-outside-poland",
+    type: "fill",
+    source: POLAND_SOURCE_ID,
+    filter: ["==", ["get", "kind"], "outside"],
+    paint: { "fill-color": "#04121c", "fill-opacity": 0 }
+  });
+  map.addLayer({
+    id: "eventmap-country-glow", type: "line", source: POLAND_SOURCE_ID, filter: country,
+    layout: { "line-join": "round", "line-cap": "round" },
+    paint: { "line-color": "#10d8ee", "line-opacity": 0, "line-width": 9, "line-blur": 6 }
+  });
+  map.addLayer({
+    id: "eventmap-country-line", type: "line", source: POLAND_SOURCE_ID, filter: country,
+    layout: { "line-join": "round", "line-cap": "round" },
+    paint: { "line-color": "#49f4fa", "line-opacity": 0, "line-width": 1.8 }
+  });
+  map.addLayer({
+    id: "eventmap-poland-label", type: "symbol", source: POLAND_SOURCE_ID,
+    filter: ["==", ["get", "kind"], "label"],
+    layout: { "text-field": "Polska", "text-font": ["Noto Sans Bold"], "text-size": 21 },
+    paint: { "text-color": "#b5d6df", "text-opacity": 0, "text-halo-color": "#062231", "text-halo-width": 1 }
+  });
+}
 
 export default function MapLibreMap({
   events,
@@ -110,6 +195,10 @@ export default function MapLibreMap({
   onSelectEvent,
   showEventPopup = true,
   detailMode = false,
+  discoveryTheme = false,
+  fullscreenControl = false,
+  controlsOnRight = false,
+  bottomInset = 0,
   isVisible = true
 }: MapLibreMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -148,22 +237,49 @@ export default function MapLibreMap({
       locale: MAP_LOCALE
     });
 
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-left");
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), controlsOnRight ? "top-right" : "top-left");
     map.addControl(new maplibregl.AttributionControl({ compact: true }), "bottom-right");
+    if (fullscreenControl) map.addControl(new maplibregl.FullscreenControl(), "top-right");
     mapRef.current = map;
     const categoryLayers = categoryLayersRef.current;
 
-    map.on("load", () => {
+    let themeObserver: MutationObserver | undefined;
+    let styleReady = false;
+    const fallbackTimer = discoveryTheme ? window.setTimeout(() => {
+      if (styleReady) return;
+      map.setStyle({
+        version: 8,
+        glyphs: "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf",
+        sources: {},
+        layers: [{ id: "background", type: "background", paint: { "background-color": "#13202c" } }]
+      });
+    }, 6500) : undefined;
+
+    map.on("style.load", () => {
+      if (styleReady) return;
+      styleReady = true;
+      window.clearTimeout(fallbackTimer);
       applyPolishLabels(map);
       addAdministrativeBoundaryLayers(map);
       addHouseNumberLayer(map);
+      if (discoveryTheme) {
+        addPolandDiscoveryLayers(map);
+        themeObserver = observeDiscoveryTheme(map);
+      }
       spiderRef.current = bindEventLayerInteractions(
         map, categoryLayers, onSelectEventRef, showEventPopupRef, selectedEventIdRef, setSpiderPage
       );
+      map.once("idle", () => {
+        const attribution = containerRef.current?.querySelector(".maplibregl-ctrl-attrib");
+        attribution?.classList.remove("maplibregl-compact-show");
+        attribution?.querySelector("button")?.setAttribute("aria-expanded", "false");
+      });
       setMapReady(true);
     });
 
     return () => {
+      window.clearTimeout(fallbackTimer);
+      themeObserver?.disconnect();
       locationMarkerRef.current?.remove();
       locationMarkerRef.current = null;
       categoryLayers.clear();
@@ -173,7 +289,7 @@ export default function MapLibreMap({
       mapRef.current = null;
       setMapReady(false);
     };
-  }, []);
+  }, [controlsOnRight, discoveryTheme, fullscreenControl]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -211,6 +327,11 @@ export default function MapLibreMap({
     if (!map || !mapReady || !focusedEventId || spiderRef.current?.contains(focusedEventId)) return;
     focusMapOnEvent(map, eventFeatures, focusedEventId);
   }, [eventFeatures, focusedEventId, mapReady]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (map && mapReady) map.setPadding({ top: 0, left: 0, right: 0, bottom: bottomInset });
+  }, [bottomInset, mapReady]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -253,6 +374,7 @@ function eventLayerIds(source: string): CategoryLayers {
     glow: `${source}-glow`,
     cluster: `${source}-cluster`,
     clusterIcon: `${source}-cluster-icon`,
+    clusterCount: `${source}-cluster-count`,
     pin: `${source}-pin`,
     icon: `${source}-pin-icon`
   };
@@ -274,7 +396,7 @@ function syncEventSources(
 
   for (const [sourceId, layers] of categoryLayers) {
     if (categoryData.has(sourceId)) continue;
-    for (const layerId of [layers.glow, layers.cluster, layers.clusterIcon, layers.pin, layers.icon]) {
+    for (const layerId of [layers.glow, layers.cluster, layers.clusterIcon, layers.clusterCount, layers.pin, layers.icon]) {
       map.removeLayer(layerId);
     }
     map.removeSource(sourceId);
@@ -288,10 +410,10 @@ function syncEventSources(
     const source = map.getSource<maplibregl.GeoJSONSource>(sourceId);
     if (source) {
       source.setData(features);
-      for (const layer of [layers.glow, layers.cluster]) {
-        map.setPaintProperty(layer, "circle-translate", offset);
-      }
+      map.setPaintProperty(layers.glow, "circle-translate", offset);
+      map.setPaintProperty(layers.cluster, "circle-translate", badgeTranslate(offset));
       map.setPaintProperty(layers.clusterIcon, "icon-translate", offset);
+      map.setPaintProperty(layers.clusterCount, "text-translate", badgeTranslate(offset));
     } else {
       addCategoryLayers(map, layers, features, offset, categoryLayers.values().next().value);
     }
@@ -324,15 +446,12 @@ function addCategoryLayers(
     clusterRadius: EVENT_CLUSTER_RADIUS,
     clusterProperties: {
       color: [["accumulated"], ["get", "color"]],
-      icon: [["accumulated"], ["get", "icon"]]
+      icon: [["accumulated"], ["get", "icon"]],
+      pin: [["accumulated"], ["get", "pin"]]
     }
   });
 
-  const clusterPaint = {
-    "circle-color": EVENT_CATEGORY_COLOR,
-    "circle-translate": offset,
-    "circle-translate-anchor": "viewport" as const
-  };
+  // A cluster is the category pin with a count badge; its glow sits under the tip.
   map.addLayer({
     id: layers.glow,
     ...visibleZoom,
@@ -340,12 +459,27 @@ function addCategoryLayers(
     source: layers.source,
     filter: ["has", "point_count"],
     paint: {
-      ...clusterPaint,
-      "circle-radius": ["+", CLUSTER_DOT_RADIUS, 7],
-      "circle-blur": 0.55,
-      "circle-opacity": 0.36
+      "circle-color": EVENT_CATEGORY_COLOR,
+      "circle-translate": offset,
+      "circle-translate-anchor": "viewport",
+      "circle-radius": 11,
+      "circle-blur": 1,
+      "circle-opacity": 0.6
     }
   }, firstCategoryLayers?.cluster);
+
+  map.addLayer({
+    id: layers.clusterIcon,
+    ...visibleZoom,
+    type: "symbol",
+    source: layers.source,
+    filter: ["has", "point_count"],
+    layout: { ...EVENT_PIN_LAYOUT, "symbol-sort-key": CLUSTER_SORT_KEY },
+    paint: {
+      "icon-translate": offset,
+      "icon-translate-anchor": "viewport"
+    }
+  }, firstCategoryLayers?.pin);
 
   map.addLayer({
     id: layers.cluster,
@@ -355,26 +489,32 @@ function addCategoryLayers(
     filter: ["has", "point_count"],
     layout: { "circle-sort-key": CLUSTER_SORT_KEY },
     paint: {
-      ...clusterPaint,
-      "circle-radius": CLUSTER_DOT_RADIUS,
-      "circle-stroke-color": "#ffffff",
-      "circle-stroke-width": 1.8,
-      "circle-stroke-opacity": 0.76,
-      "circle-opacity": 0.74
+      "circle-color": "#0b1620",
+      "circle-radius": ["interpolate", ["linear"], ["get", "point_count"], 2, 9, 100, 12, 1000, 14],
+      "circle-stroke-color": EVENT_CATEGORY_COLOR,
+      "circle-stroke-width": 2,
+      "circle-translate": badgeTranslate(offset),
+      "circle-translate-anchor": "viewport"
     }
   }, firstCategoryLayers?.pin);
 
   map.addLayer({
-    id: layers.clusterIcon,
+    id: layers.clusterCount,
     ...visibleZoom,
     type: "symbol",
     source: layers.source,
     filter: ["has", "point_count"],
-    layout: { ...EVENT_ICON_LAYOUT, "symbol-sort-key": CLUSTER_SORT_KEY },
+    layout: {
+      "text-field": ["get", "point_count_abbreviated"],
+      "text-font": ["Noto Sans Bold"],
+      "text-size": 11,
+      "text-allow-overlap": true,
+      "text-ignore-placement": true
+    },
     paint: {
-      "icon-translate": offset,
-      "icon-translate-anchor": "viewport",
-      "icon-opacity": 0.84
+      "text-color": "#ffffff",
+      "text-translate": badgeTranslate(offset),
+      "text-translate-anchor": "viewport"
     }
   }, firstCategoryLayers?.pin);
 
@@ -394,10 +534,10 @@ function addEventPinLayers(
     type: "circle",
     source: layers.source,
     filter,
+    // Glow under the pin tip; the teardrop itself is the symbol layer.
     paint: {
       "circle-color": EVENT_CATEGORY_COLOR,
-      "circle-stroke-color": "#ffffff",
-      "circle-stroke-opacity": 0.76
+      "circle-blur": 1
     }
   }, beforePin);
 
@@ -407,7 +547,7 @@ function addEventPinLayers(
     type: "symbol",
     source: layers.source,
     filter,
-    layout: EVENT_ICON_LAYOUT
+    layout: EVENT_PIN_LAYOUT
   });
 }
 
@@ -507,8 +647,8 @@ function bindEventLayerInteractions(
 
   const getEventFeature = (point: maplibregl.Point) => {
     const layers = map.getZoom() >= SPIDER_MIN_ZOOM
-      ? [SPIDER_LAYERS.pin]
-      : [...categoryLayers.values()].flatMap(({ cluster, pin }) => [cluster, pin]);
+      ? [SPIDER_LAYERS.icon, SPIDER_LAYERS.pin]
+      : [...categoryLayers.values()].flatMap(({ cluster, clusterIcon, icon }) => [cluster, clusterIcon, icon]);
     return layers.length ? map.queryRenderedFeatures(point, { layers })[0] : undefined;
   };
 
@@ -637,6 +777,7 @@ function buildEventFeatureCollection(events: MapEvent[]): EventFeatureCollection
         categorySlug: event.categorySlug,
         color: event.categoryColor,
         icon: getMapEventIcon(event),
+        pin: pinImageId(event.categoryColor, getMapEventIcon(event)),
         description: "short_description" in event ? event.short_description ?? event.description ?? "" : undefined,
         imageUrl: "imageUrl" in event ? event.imageUrl : undefined,
         startDate: event.startDate,
@@ -724,26 +865,20 @@ function updateSelectedPaint(
 function updatePinSelectedPaint(map: maplibregl.Map, { pin, icon }: PinLayers, selectedEventId?: string) {
   if (!map.getLayer(pin)) return;
   const selectedId = selectedEventId ?? NO_SELECTED_EVENT_ID;
-  map.setPaintProperty(pin, "circle-radius", selectedCircleRadius(selectedId));
-  map.setPaintProperty(pin, "circle-stroke-width", selectedStrokeWidth(selectedId));
-  map.setPaintProperty(pin, "circle-opacity", selectedCircleOpacity(selectedId));
-  map.setPaintProperty(icon, "icon-opacity", selectedIconOpacity(selectedId));
+  const isSelected: ExpressionSpecification = ["==", ["get", "id"], selectedId];
+  map.setPaintProperty(pin, "circle-radius", ["case", isSelected, 16, 9]);
+  map.setPaintProperty(pin, "circle-opacity", ["case", isSelected, 0.85, 0.55]);
+  map.setLayoutProperty(icon, "icon-size", [
+    "interpolate", ["linear"], ["zoom"],
+    4, ["case", isSelected, .94, .69],
+    6.5, ["case", isSelected, 1.03, .82],
+    12, ["case", isSelected, 1.22, 1]
+  ]);
+  map.setLayoutProperty(icon, "symbol-sort-key", ["case", isSelected, 1, 0]);
 }
 
-function selectedCircleRadius(selectedEventId: string): ExpressionSpecification {
-  return ["case", ["==", ["get", "id"], selectedEventId], 19, 14];
-}
-
-function selectedStrokeWidth(selectedEventId: string): ExpressionSpecification {
-  return ["case", ["==", ["get", "id"], selectedEventId], 3.5, 1.8];
-}
-
-function selectedCircleOpacity(selectedEventId: string): ExpressionSpecification {
-  return ["case", ["==", ["get", "id"], selectedEventId], 0.88, 0.64];
-}
-
-function selectedIconOpacity(selectedEventId: string): ExpressionSpecification {
-  return ["case", ["==", ["get", "id"], selectedEventId], 0.96, 0.78];
+function badgeTranslate([x, y]: [number, number]): [number, number] {
+  return [x + PIN_BADGE_OFFSET[0], y + PIN_BADGE_OFFSET[1]];
 }
 
 function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
@@ -911,6 +1046,8 @@ function addAdministrativeBoundaryLayers(map: maplibregl.Map) {
       beforeId
     );
   }
+
+
 }
 
 function addHouseNumberLayer(map: maplibregl.Map) {
@@ -986,6 +1123,7 @@ async function addCategoryImages(map: maplibregl.Map, data: EventFeatureCollecti
   if (signal.aborted) return;
 
   const uniqueIcons = new Set(data.features.map(({ properties }) => properties.icon));
+  const pins = new Map(data.features.map(({ properties }) => [properties.pin, properties]));
 
   await Promise.all(
     Array.from(uniqueIcons, async (iconName) => {
@@ -1002,6 +1140,58 @@ async function addCategoryImages(map: maplibregl.Map, data: EventFeatureCollecti
       }
     })
   );
+
+  await Promise.all(
+    Array.from(pins, async ([pinId, { color, icon }]) => {
+      if (map.hasImage(pinId)) return;
+      try {
+        const image = await loadSvgImage(buildPinSvg(color, getLucideIconSvgString(icon)), 88, 108);
+        if (!signal.aborted && !map.hasImage(pinId)) map.addImage(pinId, image, { pixelRatio: 2 });
+      } catch (err) {
+        console.error(`Failed to load map pin ${pinId}:`, err);
+      }
+    })
+  );
+}
+
+function pinImageId(color: string | null | undefined, icon: string) {
+  return `eventmap-pin|${normalizePinColor(color)}|${icon}`;
+}
+
+function normalizePinColor(color: string | null | undefined) {
+  return color && /^#[0-9a-f]{3}([0-9a-f]{3})?$/i.test(color.trim()) ? color.trim().toLowerCase() : DEFAULT_PIN_COLOR;
+}
+
+function mixHex(color: string, target: string, amount: number) {
+  const parse = (value: string) => {
+    const hex = value.slice(1);
+    const full = hex.length === 3 ? hex.split("").map((char) => char + char).join("") : hex;
+    return [0, 2, 4].map((index) => parseInt(full.slice(index, index + 2), 16));
+  };
+  const from = parse(color);
+  const to = parse(target);
+  return `#${from.map((value, index) => Math.round(value + (to[index] - value) * amount).toString(16).padStart(2, "0")).join("")}`;
+}
+
+/** Teardrop pin: category gradient, white rim, soft glow and the white category icon. */
+function buildPinSvg(rawColor: string | null | undefined, iconSvg: string) {
+  const color = normalizePinColor(rawColor);
+  const light = mixHex(color, "#ffffff", 0.32);
+  const dark = mixHex(color, "#000000", 0.28);
+  const icon = iconSvg
+    .replace(/\s(width|height)="[^"]*"/g, "")
+    .replace("<svg", '<svg x="13" y="11" width="18" height="18"');
+  const drop = "M22 47C22 47 7 33.6 7 20.5a15 15 0 0 1 30 0C37 33.6 22 47 22 47Z";
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="88" height="108" viewBox="0 0 44 54">
+<defs>
+<linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${light}"/><stop offset="1" stop-color="${dark}"/></linearGradient>
+<filter id="f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.6"/></filter>
+</defs>
+<path d="${drop}" fill="${color}" opacity=".75" filter="url(#f)"/>
+<path d="${drop}" fill="url(#g)" stroke="#ffffff" stroke-opacity=".92" stroke-width="1.8"/>
+<ellipse cx="17" cy="13" rx="7" ry="4" fill="#ffffff" opacity=".18"/>
+${icon}
+</svg>`;
 }
 
 // Build a case-insensitive map of Lucide icon names for backward compatibility
@@ -1046,9 +1236,9 @@ function getLucideIconSvgString(iconName: string): string {
 }
 
 
-function loadSvgImage(svg: string) {
+function loadSvgImage(svg: string, width = 32, height = 32) {
   return new Promise<HTMLImageElement>((resolve, reject) => {
-    const image = new Image(32, 32);
+    const image = new Image(width, height);
     image.onload = () => resolve(image);
     image.onerror = () => reject(new Error("Nie udało się załadować ikony mapy."));
     image.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
@@ -1244,6 +1434,7 @@ function eventToFeatureProperties(event: EventItem): EventFeatureProperties {
     categorySlug: event.categorySlug,
     color: event.categoryColor,
     icon: event.categoryRelation?.icon || "CircleHelp",
+    pin: pinImageId(event.categoryColor, event.categoryRelation?.icon || "CircleHelp"),
     description: event.short_description ?? event.description ?? "",
     imageUrl: event.imageUrl,
     startDate: event.startDate,

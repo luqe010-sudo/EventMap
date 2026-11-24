@@ -61,17 +61,20 @@ beforeEach(() => {
   fetchMock = vi.fn().mockResolvedValue({ ok: true, json: async () => ({ events: [], markers: [], categoryCounts: [], totalCount: 0, page: 1, pageSize: 20, maxResults: 300, shownCount: 0, hasMore: false }) });
   vi.stubGlobal("fetch", fetchMock);
   vi.stubGlobal("window", {
-    location: { origin: "https://mapaimprez.pl", reload },
+    location: { origin: "https://mapaimprez.pl", hash: "", reload },
     addEventListener: addListener, removeEventListener: vi.fn(),
     matchMedia: () => ({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() }),
-    history: { state: {}, replaceState: vi.fn(), pushState: vi.fn() }
+    history: { state: {}, replaceState: vi.fn(), pushState: vi.fn() },
+    requestAnimationFrame: (callback: FrameRequestCallback) => { callback(0); return 1; },
+    scrollY: 0,
+    scrollTo: vi.fn()
   });
   vi.stubGlobal("document", { body: { style: {}, classList: { add: vi.fn(), remove: vi.fn() } } });
 });
 afterEach(() => vi.unstubAllGlobals());
 
 describe("HomePage Back/Forward", () => {
-  it("restores controls and fetches list, map and category counts for the earlier URL", async () => {
+  it("restores controls and fetches the list and map for the earlier URL", async () => {
     render(); runEffects();
     expect(fetchMock.mock.calls.some(([url]) => url.startsWith("/api/events/markers"))).toBe(false);
     await pop({ eventMapWorkspace: { view: "map", workspaceUrl: "/koncerty/warszawa?kiedy=custom&dataOd=2026-10-10&dataDo=2026-10-12&cena=max&cenaMax=80&radius=25&sort=nearest" } });
@@ -80,12 +83,31 @@ describe("HomePage Back/Forward", () => {
     expect(controls).toMatchObject({ category: "Koncerty", locationInput: "Warszawa", isAllPoland: false, locationMode: "radius", radiusKm: 25, dateFilter: "custom", customDate: "2026-10-10/2026-10-12", priceMode: "max", maxPrice: 80 });
     runEffects();
     const calls = fetchMock.mock.calls.map(call => new URL(call[0], "https://mapaimprez.pl"));
-    for (const route of ["search", "markers", "category-counts"]) {
+    for (const route of ["search", "markers"]) {
       const url = calls.find(call => call.pathname === `/api/events/${route}` && !call.searchParams.has("featured"));
       expect(url).toBeDefined();
-      expect(Object.fromEntries(url!.searchParams)).toMatchObject({ categorySlug: "koncerty", citySlug: "warszawa", radius: "25", sort: "nearest", kiedy: "custom", dataOd: "2026-10-10", dataDo: "2026-10-12", cena: "max", cenaMax: "80" });
+      expect(url!.searchParams.get("sort")).toBe(route === "search" ? "nearest" : null);
+      expect(Object.fromEntries(url!.searchParams)).toMatchObject({ categorySlug: "koncerty", citySlug: "warszawa", radius: "25", kiedy: "custom", dataOd: "2026-10-10", dataDo: "2026-10-12", cena: "max", cenaMax: "80" });
     }
     expect(reload).not.toHaveBeenCalled();
+  });
+
+  it("updates results and the address as filters change without submitting a search", () => {
+    const controls = panel(render());
+    runEffects();
+    controls.onLocationSelect(warsaw);
+    controls.onDateFilterChange("weekend");
+    controls.onCategoryChange("Koncerty");
+    controls.onPriceModeChange("free");
+    fetchMock.mockClear();
+
+    render(); runEffects();
+
+    const request = fetchMock.mock.calls.map(([url]) => new URL(url, window.location.origin))
+      .find(url => url.pathname === "/api/events/search" && !url.searchParams.has("featured"));
+    expect(request).toBeDefined();
+    expect(Object.fromEntries(request!.searchParams)).toMatchObject({ citySlug: "warszawa", categorySlug: "koncerty", kiedy: "weekend", cena: "free" });
+    expect(window.history.replaceState).toHaveBeenLastCalledWith(expect.any(Object), "", "/koncerty/warszawa?kiedy=weekend&cena=free");
   });
 
   it("keeps event overlay history in its workspace and retains an event outside the loaded page", async () => {
@@ -94,8 +116,10 @@ describe("HomePage Back/Forward", () => {
     render(); runEffects();
     await pop({ eventMapWorkspace: { view: "event", eventId: event.id, workspaceUrl: "/krakow", originView: "map" } });
     expect(hooks.states[0]).toBe("event");
+    // State order: viewMode, listDestination, hasOpenedMap, selectedEventId, openedEventId, …, selectedMapEvent.
     expect(hooks.states[3]).toBe(event.id);
-    expect(hooks.states[7]).toBe(event);
+    expect(hooks.states[4]).toBe(event.id);
+    expect(hooks.states[8]).toBe(event);
     expect(panel(render())).toMatchObject({ locationInput: "Kraków", dateFilter: "all", category: "Wszystkie" });
     expect(reload).not.toHaveBeenCalled();
   });

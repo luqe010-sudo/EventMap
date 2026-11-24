@@ -148,6 +148,7 @@ export default async function CategoryCityPage({
         radiusKm: radius,
         dateFilter: initialFilters.dateFilter ?? "all",
         customDate: initialFilters.customDate,
+        query: initialFilters.query,
         priceMode: initialFilters.priceMode ?? "all",
         maxPrice: initialFilters.maxPrice,
         sortBy: initialFilters.sortBy
@@ -217,6 +218,7 @@ export default async function CategoryCityPage({
         radiusKm: initialFilters.radiusKm,
         dateFilter: initialFilters.dateFilter ?? "all",
         customDate: initialFilters.customDate,
+        query: initialFilters.query,
         priceMode: initialFilters.priceMode ?? "all",
         maxPrice: initialFilters.maxPrice,
         sortBy: initialFilters.sortBy
@@ -274,6 +276,7 @@ export default async function CategoryCityPage({
         radiusKm: initialFilters.radiusKm,
         dateFilter: initialFilters.dateFilter ?? dateFilterMap[citySlug],
         customDate: initialFilters.customDate,
+        query: initialFilters.query,
         priceMode: initialFilters.priceMode ?? "all",
         maxPrice: initialFilters.maxPrice,
         sortBy: initialFilters.sortBy

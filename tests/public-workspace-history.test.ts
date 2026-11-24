@@ -15,6 +15,12 @@ const locations = new Map([warsaw, krakow, missing].map(location => [location.sl
 const restore = (url: string) => restorePublicWorkspaceSearch(url, origin, categories, locations);
 
 describe("browser search history", () => {
+  it("keeps a keyword together with the location and date in the shareable URL", () => {
+    const url = buildSearchUrl({ query: "Jarmark Świąteczny", citySlug: "krakow", dateFilter: "weekend" });
+    expect(restore(url)).toMatchObject({ query: "Jarmark Świąteczny", location: krakow, dateFilter: "weekend" });
+    expect(restore("/krakow")).not.toHaveProperty("query");
+  });
+
   it("restores all filters when returning to an earlier search and resets omitted filters", () => {
     const earlier = buildSearchUrl({ categorySlug: "koncerty", citySlug: "warszawa", dateFilter: "custom", customDate: "2026-10-10/2026-10-12", priceMode: "max", maxPrice: 80, radiusKm: 25, sortBy: "nearest" });
     const later = buildSearchUrl({ categorySlug: "sport", citySlug: "krakow", dateFilter: "tomorrow", priceMode: "free" });

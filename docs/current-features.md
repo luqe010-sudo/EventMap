@@ -1,5 +1,14 @@
 # Current Features
 
+## Odkryj, Lista i Mapa — lokalna aktualizacja 2026-11-24
+
+- Portal uruchamia się domyślnie w ciemnym motywie. Przełącznik zachowuje wybór jasnego lub ciemnego motywu. Publiczny interfejs używa lokalnie dostarczanego kroju Inter. Na stronie głównej zdjęcie koncertu przechodzi w granatowe tło, a polecane i pozostałe sekcje pokazują zdjęcia, kolor kategorii, datę, miejsce, cenę i zapis wydarzenia.
+- Wyszukiwanie po nazwie, miejscu i dacie aktualizuje wyniki i mapę bez przeładowania. Szybkie filtry obejmują główne kategorie, wydarzenia rodzinne, bezpłatne oraz weekend. Pozostałe kategorie są pod „Więcej”. Panel zaawansowany obejmuje promień, kategorię, cenę i zakres dat. Na telefonie otwiera się od dołu również nad aktywną mapą.
+- Polecane wydarzenia uwzględniają aktywne płatne wyróżnienie i aktualne filtry. Odkryj pokazuje także weekend, najbliższe wydarzenia w kolejności dat oraz niepuste sekcje z wczytanych wyników, np. wydarzenia w okolicy, bezpłatne, rodzinne i sezonowe. Zakończone wydarzenia są pomijane.
+- Mapa MapLibre używa rzeczywistej kartografii, polskich etykiet, turkusowych granic Polski i województw oraz kolorowych pinezek i klastrów. Na komputerze pozostaje widoczna przy przewijaniu i może zostać otwarta na pełnym ekranie. Na telefonie kliknięcie pinezki otwiera podgląd od dołu. Miasto i geolokalizacja są dostępne z filtrów mapy.
+- Dolny pasek telefonu prowadzi do Odkryj, Listy, Mapy i Profilu. Odkryj i Lista pamiętają własne pozycje przewijania. Widoki korzystają ze wspólnych filtrów w adresie. Powrót z Profilu przez dolne menu odtwarza ostatnie filtry i pozycję w danej karcie przeglądarki.
+- Oryginalne grafiki są wyświetlane z zachowaniem czytelności plakatu. Wydarzenia bez zdjęcia mogą korzystać z fotografii ilustracyjnej oznaczonej na okładce. Promowane wydarzenie ma etykietę „Promowane”.
+
 ## Płatne polecanie wydarzeń — 2026-11-23
 
 - Nowa publiczna strona `/promowanie-wydarzen` (w `sitemap-main.xml`): cena 39 zł brutto za wydarzenie, sprzedawca zwolniony z VAT, wyróżnienie do dnia zakończenia wydarzenia (maks. 30 dni), korzyści, kroki zamówienia i dane sprzedawcy. Linki: stopka („Promuj wydarzenie – 39 zł”), `/dla-organizatorow`, notka pod karuzelą „Polecane wydarzenia”.

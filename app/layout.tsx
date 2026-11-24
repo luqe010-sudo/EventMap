@@ -10,6 +10,8 @@ import "./event-venue-deck.css";
 import "./event-visual.css";
 import "./audit-fixes.css";
 import "./promotion.css";
+import "./discovery-carousel.css";
+import "./discovery-map.css";
 
 const SITE_DESCRIPTION =
   "Znajdź koncerty, festyny, targi, wydarzenia sportowe, rodzinne i kulturalne w Polsce. Filtruj wydarzenia po dacie, mieście, kategorii, cenie i promieniu.";
@@ -19,18 +21,14 @@ const THEME_INIT_SCRIPT = `
   try {
     var key = "eventmap-theme";
     var storedTheme = window.localStorage.getItem(key);
-    var systemPrefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    var isMobileViewport = window.matchMedia && window.matchMedia("(max-width: 760px)").matches;
     var theme = storedTheme === "dark" || storedTheme === "light"
       ? storedTheme
-      : isMobileViewport || systemPrefersDark
-        ? "dark"
-        : "light";
+      : "dark";
 
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
   } catch (error) {
-    document.documentElement.dataset.theme = "light";
+    document.documentElement.dataset.theme = "dark";
   }
 })();
 `;

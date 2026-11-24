@@ -1,17 +1,21 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { ChevronDown, LocateFixed, MapPin } from "lucide-react";
 import { knownLocations, type KnownLocation } from "@/lib/events";
 import { normalizeText } from "@/lib/filters";
 import { toSlug } from "@/lib/slugs";
 import { isPhotonSettlement, uniqueSuggestionsByLabel } from "@/lib/location-suggestions";
 
 type CityAutocompleteProps = {
+  id?: string;
   value: string;
   onChange: (value: string) => void;
   onSelect: (location: KnownLocation) => void;
   onUseGPS?: () => void;
+  onAllPolandSelect?: () => void;
   priorityLocations?: KnownLocation[];
+  placeholder?: string;
 };
 
 type PhotonFeature = {
@@ -33,6 +37,7 @@ type PhotonFeature = {
 };
 
 const MAX_SUGGESTIONS = 8;
+const NO_PRIORITY_LOCATIONS: KnownLocation[] = [];
 const PHOTON_API_URL = "https://photon.komoot.io/api";
 const VOIVODESHIP_NAME_MAP: Record<string, string> = {
   "lower silesian": "dolnośląskie",
@@ -97,11 +102,14 @@ const popularCitiesList: KnownLocation[] = [
 ];
 
 export default function CityAutocomplete({
+  id = "location",
   value,
   onChange,
   onSelect,
   onUseGPS,
-  priorityLocations = []
+  onAllPolandSelect,
+  priorityLocations = NO_PRIORITY_LOCATIONS,
+  placeholder = "Wpisz miejscowość…"
 }: CityAutocompleteProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [suggestions, setSuggestions] = useState<KnownLocation[]>(popularCitiesList);
@@ -110,16 +118,18 @@ export default function CityAutocomplete({
   const [highlightIndex, setHighlightIndex] = useState(-1);
   const suggestionsId = useId();
   const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
 
   const normalizedInput = normalizeText(value);
 
   // Debounced Photon search-as-you-type for Polish places.
   useEffect(() => {
+    if (!isOpen) return;
     const trimmed = value.trim();
     setSearchUnavailable(false);
     if (trimmed.length < 2) {
-      setSuggestions(popularCitiesList);
+      setSuggestions(uniqueSuggestionsByLabel([...popularCitiesList, ...priorityLocations]).slice(0, MAX_SUGGESTIONS));
       setIsLoading(false);
       return;
     }
@@ -147,21 +157,22 @@ export default function CityAutocomplete({
     }, 350);
 
     return () => { clearTimeout(delayDebounce); controller.abort(); };
-  }, [priorityLocations, value]);
+  }, [isOpen, priorityLocations, value]);
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    function handleClickOutside(event: PointerEvent) {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    if (!isOpen) return;
+    document.addEventListener("pointerdown", handleClickOutside);
+    return () => document.removeEventListener("pointerdown", handleClickOutside);
+  }, [isOpen]);
 
   useEffect(() => {
     setHighlightIndex(-1);
-  }, [value]);
+  }, [isOpen, value]);
 
   useEffect(() => {
     if (highlightIndex >= 0 && listRef.current) {
@@ -177,8 +188,13 @@ export default function CityAutocomplete({
   }
 
   function handleKeyDown(event: React.KeyboardEvent) {
-    if (event.key === "Escape") { setIsOpen(false); setHighlightIndex(-1); return; }
-    if (isLoading) return;
+    if (event.key === "Escape" && isOpen) {
+      event.preventDefault();
+      event.stopPropagation();
+      setIsOpen(false);
+      return;
+    }
+    if (event.key === "Enter" && isOpen) event.preventDefault();
     if (!isOpen || suggestions.length === 0) {
       if (event.key === "ArrowDown" && suggestions.length > 0) {
         setIsOpen(true);
@@ -205,14 +221,11 @@ export default function CityAutocomplete({
           selectLocation(suggestions[0]);
         }
         break;
-      case "Escape":
-        setIsOpen(false);
-        setHighlightIndex(-1);
-        break;
     }
   }
 
   function highlightMatch(text: string): React.ReactNode {
+    if (!normalizedInput) return text;
     const normalized = normalizeText(text);
     const idx = normalized.indexOf(normalizedInput);
     if (idx === -1) return text;
@@ -230,81 +243,116 @@ export default function CityAutocomplete({
     );
   }
 
+  const useLocation = () => {
+    inputRef.current?.focus();
+    onUseGPS?.();
+    setIsOpen(false);
+  };
+
   return (
-    <div className="autocompleteContainer" ref={containerRef}>
-      <span className="locationBoxPin">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--brand)" }}>
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="var(--brand-light)" />
-          <circle cx="12" cy="10" r="3" fill="var(--brand)" />
-        </svg>
-      </span>
+    <div
+      className="autocompleteContainer"
+      ref={containerRef}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setIsOpen(false);
+      }}
+    >
+      <span className="locationBoxPin" aria-hidden="true"><MapPin size={20} /></span>
       <input
-        id="location"
+        ref={inputRef}
+        id={id}
         type="text"
         value={value}
-        onChange={(e) => {
-          onChange(e.target.value);
+        onChange={(event) => {
+          onChange(event.target.value);
           setIsOpen(true);
         }}
-        onFocus={() => {
-          setIsOpen(true);
-        }}
+        onFocus={() => setIsOpen(true)}
         onKeyDown={handleKeyDown}
-        placeholder="Wpisz miejscowość…"
+        placeholder={placeholder}
         autoComplete="off"
         role="combobox"
         aria-label="Miejscowość"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
         aria-autocomplete="list"
-        aria-controls={suggestionsId}
-        aria-activedescendant={isOpen && !isLoading && highlightIndex >= 0 && highlightIndex < suggestions.length ? `${suggestionsId}-${highlightIndex}` : undefined}
+        aria-controls={isOpen ? suggestionsId : undefined}
+        aria-activedescendant={isOpen && highlightIndex >= 0 && highlightIndex < suggestions.length ? `${suggestionsId}-${highlightIndex}` : undefined}
       />
-      {onUseGPS && (
+      {onAllPolandSelect ? (
+        <button
+          type="button"
+          className="locationBoxDropdownBtn"
+          onClick={() => {
+            if (isOpen) {
+              setIsOpen(false);
+            } else {
+              setIsOpen(true);
+              inputRef.current?.focus();
+            }
+          }}
+          aria-expanded={isOpen}
+          aria-controls={isOpen ? suggestionsId : undefined}
+          aria-label="Pokaż opcje lokalizacji"
+        >
+          <ChevronDown size={19} aria-hidden="true" />
+        </button>
+      ) : onUseGPS ? (
         <button
           type="button"
           className="locationBoxGpsBtn"
-          onClick={onUseGPS}
+          onClick={useLocation}
           title="Użyj mojej lokalizacji"
           aria-label="Użyj mojej lokalizacji"
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="3" />
-            <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
-          </svg>
+          <LocateFixed size={18} aria-hidden="true" />
         </button>
-      )}
+      ) : null}
       {isOpen && (
-        <ul
-          id={suggestionsId}
-          className="autocompleteDropdown"
-          role="listbox"
-          ref={listRef}
-        >
-          {isLoading ? (
-            <li className="autocompleteLoading">Wyszukiwanie miejscowości…</li>
-          ) : suggestions.length === 0 ? (
-            <li className="autocompleteLoading" role="presentation">{searchUnavailable ? "Podpowiedzi są chwilowo niedostępne. Spróbuj ponownie lub użyj GPS." : "Nie znaleziono miejscowości. Spróbuj pełnej nazwy."}</li>
-          ) : (
-            suggestions.map((loc, idx) => (
-              <li
-                key={`${loc.label}-${loc.latitude}-${loc.longitude}`}
-                role="option"
-                id={`${suggestionsId}-${idx}`}
-                aria-selected={idx === highlightIndex}
-                className={`autocompleteItem ${idx === highlightIndex ? "highlighted" : ""}`}
-                onMouseDown={(e) => {
-                  e.preventDefault();
-                  selectLocation(loc);
+        <div className="autocompleteDropdown">
+          {onAllPolandSelect ? (
+            <div className="autocompleteActions">
+              <button
+                type="button"
+                className="autocompleteAction"
+                onClick={() => {
+                  inputRef.current?.focus();
+                  onAllPolandSelect();
+                  setIsOpen(false);
                 }}
-                onMouseEnter={() => setHighlightIndex(idx)}
               >
-                <span className="autocompleteIcon">📍</span>
-                <span className="autocompleteName">{highlightMatch(loc.label)}</span>
+                <MapPin size={16} aria-hidden="true" /> Cała Polska
+              </button>
+              {onUseGPS ? (
+                <button type="button" className="autocompleteAction" onClick={useLocation}>
+                  <LocateFixed size={16} aria-hidden="true" /> Moja lokalizacja
+                </button>
+              ) : null}
+            </div>
+          ) : null}
+          {suggestions.length === 0 ? (
+            <p className="autocompleteLoading" role="status">
+              {isLoading ? "Wyszukiwanie miejscowości…" : searchUnavailable ? "Podpowiedzi są chwilowo niedostępne." : "Nie znaleziono miejscowości. Spróbuj pełnej nazwy."}
+            </p>
+          ) : null}
+          <ul className="autocompleteSuggestions" id={suggestionsId} role="listbox" aria-label="Podpowiedzi miejscowości" aria-busy={isLoading} ref={listRef}>
+            {suggestions.map((location, index) => (
+              <li
+                key={`${location.label}-${location.latitude}-${location.longitude}`}
+                role="option"
+                id={`${suggestionsId}-${index}`}
+                aria-selected={index === highlightIndex}
+                className={`autocompleteItem${index === highlightIndex ? " highlighted" : ""}`}
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={() => selectLocation(location)}
+                onMouseEnter={() => setHighlightIndex(index)}
+              >
+                <span className="autocompleteIcon" aria-hidden="true">📍</span>
+                <span className="autocompleteName">{highlightMatch(location.label)}</span>
               </li>
-            ))
-          )}
-        </ul>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );

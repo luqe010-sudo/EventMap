@@ -1,18 +1,15 @@
 export default function Loading() {
   return (
-    <main className="homePage loadingHomePage" aria-busy="true" aria-label="Ladowanie wydarzen">
+    <main className="homePage loadingHomePage" aria-busy="true" aria-label="Ładowanie wydarzeń">
       <section className="loadingHero">
-        <div className="loadingBlock loadingTitle" />
-        <div className="loadingBlock loadingSubtitle" />
-        <div className="loadingHeroTiles">
-          <span />
-          <span />
-          <span />
-          <span />
+        <div>
+          <div className="loadingBlock loadingTitle" />
+          <div className="loadingBlock loadingSubtitle" />
         </div>
       </section>
 
-      <section className="loadingSearchPanel">
+      <section className="loadingSearchPanel" aria-hidden="true">
+        <div className="loadingQuickFilters">{Array.from({ length: 6 }, (_, index) => <span key={index} />)}</div>
         <div className="loadingSearchGrid">
           <span />
           <span />
@@ -22,22 +19,14 @@ export default function Loading() {
       </section>
 
       <div className="loadingMainLayout">
-        <section className="loadingEventsList">
-          {Array.from({ length: 8 }).map((_, index) => (
-            <div key={index} className="loadingEventRow">
-              <span />
-              <div>
-                <b />
-                <i />
-                <em />
-              </div>
-            </div>
-          ))}
+        <section className="loadingFeatured" aria-hidden="true">
+          <div className="loadingBlock loadingShelfHeading" />
+          <div className="loadingFeaturedGrid">
+            {Array.from({ length: 3 }, (_, index) => <div className="loadingBlock loadingFeaturedCard" key={index} />)}
+          </div>
         </section>
 
         <aside className="loadingSidebar">
-          <div />
-          <div />
           <div />
         </aside>
       </div>

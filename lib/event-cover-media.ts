@@ -25,3 +25,18 @@ export function getEventCoverPhoto(event: { title: string; categorySlug?: string
   else if (/warsztat|edukac|finanse|portfel|w kontakcie|spotkanie|salon kobiet|wyklad/.test(title)) theme = "education";
   return theme ? photos.get(theme) : undefined;
 }
+
+const categoryPhotos: Readonly<Record<string, string>> = {
+  koncerty: "concert-crowd", kultura: "cinema", rodzinne: "blocks", sport: "stadium", mecze: "stadium",
+  targi: "craft", festyny: "craft", dozynki: "craft", charytatywne: "education",
+  imprezy: "concert-crowd", festiwale: "concert-crowd", "stand-up": "cinema", kabarety: "cinema",
+  motoryzacja: "stadium", inne: "education"
+};
+
+export function getEventCategoryCoverPhoto(event: { title: string; categorySlug?: string }) {
+  const title = event.title.toLocaleLowerCase("pl-PL");
+  if (/jarmark.*(świątecz|bożonarodzeniow|adwent)/.test(title)) return photos.get("winter-market");
+  if (/bieg|maraton/.test(title) && !/film/.test(title)) return photos.get("community-race");
+  if (/koncert|festiwal muzycz/.test(title)) return photos.get("concert-crowd");
+  return photos.get(categoryPhotos[event.categorySlug ?? ""] ?? "education");
+}

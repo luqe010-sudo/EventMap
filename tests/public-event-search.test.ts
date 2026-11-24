@@ -71,6 +71,12 @@ function mockDatabase(
       or(expression: string) {
         trace.methods.push(["or", expression]);
         if (expression === "is_cancelled.is.null,is_cancelled.eq.false") filters.push(row => row.is_cancelled !== true);
+        if (expression.startsWith("title.ilike.")) {
+          const patterns = expression.split(",").map(clause => clause.split(".ilike.%"));
+          filters.push(row => patterns.some(([column, suffix]) =>
+            String(valueAt(row, column)).toLocaleLowerCase("pl").includes(suffix.slice(0, -1).toLocaleLowerCase("pl"))
+          ));
+        }
         return builder;
       },
       range(start: number, end: number) { trace.from = start; trace.to = end; trace.methods.push(["range", start, end]); return builder; },
@@ -124,6 +130,23 @@ describe("saved public event hydration", () => {
 });
 
 describe("global public search", () => {
+  it("searches the whole public catalogue by name across list and map, including cached markers", async () => {
+    mockDatabase([
+      event("earlier", { title: "Warsztaty w mieście" }),
+      event("hit", { title: "Jarmark Świąteczny w Łodzi", slug: "jarmark-swiateczny-w-lodzi" }),
+      event("other", { title: "Jarmark nocny" }),
+      event("hidden", { title: "Jarmark w Łodzi", slug: "jarmark-w-lodzi", visibility: "private" }),
+      event("cancelled", { title: "Jarmark w Łodzi", slug: "jarmark-w-lodzi", is_cancelled: true })
+    ]);
+    const options = { query: "JARMARK / lodzi", dateFrom: "2026-10-01T00:00:00Z", pageSize: 1 };
+    const inventory = await readPublicMarkerInventory(options.dateFrom);
+    const results = await searchPublicEvents(options);
+    expect(results.events.map(({ id }) => id)).toEqual(["hit"]);
+    expect(results.totalCount).toBe(1);
+    expect((await searchPublicEventMarkers(options)).map(({ id }) => id)).toEqual(["hit"]);
+    expect((await searchPublicEventMarkers(options, async () => inventory)).map(({ id }) => id)).toEqual(["hit"]);
+  });
+
   it("finds nearest events beyond the date page and display cap before pagination", async () => {
     const events = Array.from({ length: 45 }, (_, index) => event(`event-${String(index).padStart(2, "0")}`, {
       start_at: `2026-11-${String(1 + Math.floor(index / 2)).padStart(2, "0")}T10:00:00Z`,

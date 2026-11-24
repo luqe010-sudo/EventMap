@@ -8,7 +8,7 @@ import { toAppDate } from "@/lib/date-format";
 import { isPromotionActive } from "@/lib/promotion";
 import { slugify } from "@/lib/slugify";
 import type { DateFilter, PriceFilterMode } from "@/lib/filters";
-import { comparePublicSearchItems, distanceBetweenCoordinates, hasLocationCoordinates, radiusBoundingBox, type Coordinates, type PublicEventSort } from "./event-search";
+import { comparePublicSearchItems, distanceBetweenCoordinates, hasLocationCoordinates, matchesPublicEventQuery, publicEventSearchTerms, radiusBoundingBox, type Coordinates, type PublicEventSort } from "./event-search";
 export { hasLocationCoordinates } from "./event-search";
 
 type Tables = Database["public"]["Tables"];
@@ -125,6 +125,7 @@ export type PublicEventSitemapEntry = {
 };
 
 export type PublicEventSearchOptions = {
+  query?: string;
   page?: number;
   pageSize?: number;
   maxResults?: number;
@@ -577,6 +578,12 @@ function buildPublicSearchQuery(context: PublicSearchContext, select: string) {
   if (context.dateRange.dateTo) query = query.lt("start_at", context.dateRange.dateTo);
   if (context.categoryId) query = query.eq("category_id", context.categoryId);
   if (context.cityId) query = query.eq("location.city_id", context.cityId);
+  for (const term of publicEventSearchTerms(context.options.query)) {
+    // Terms contain only letters and digits, so PostgREST delimiters and LIKE wildcards cannot enter the expression.
+    query = term.slug
+      ? query.or(`title.ilike.%${term.title}%,slug.ilike.%${term.slug}%`)
+      : query.ilike("title", `%${term.title}%`);
+  }
   if (context.radiusKm != null && context.origin) {
     const bounds = radiusBoundingBox(context.origin, context.radiusKm);
     query = query.gte("location.latitude", bounds.minLatitude).lte("location.latitude", bounds.maxLatitude);
@@ -670,6 +677,7 @@ async function filterPublicMarkerInventory(
     if (cityId && cityId !== record.location?.city_id) return false;
     if (!eventOverlapsWindow(record.start_at, record.end_at, from, to)) return false;
     if (radiusKm != null && distanceBetweenCoordinates(origin, getSearchRecordCoordinates(record)) > radiusKm) return false;
+    if (options.query && !matchesPublicEventQuery(record, options.query)) return false;
 
     const isFree = record.price_type === "free" || record.price_type === "bezplatne";
     if (options.priceMode === "free") return isFree;

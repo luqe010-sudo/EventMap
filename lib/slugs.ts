@@ -64,6 +64,7 @@ export function formatInCity(city: string): string {
 }
 
 export type SearchUrlParams = {
+  query?: string;
   categorySlug?: string;       // plural slug, e.g. "koncerty"
   citySlug?: string;           // e.g. "wroclaw"
   geoLocation?: { lat: number; lng: number; radius: number };
@@ -77,7 +78,7 @@ export type SearchUrlParams = {
 
 /**
  * Builds a navigation URL from the current search filter state.
- * Used by the "Znajdź" button on all pages.
+ * Shared by the live filters and mobile workspace.
  */
 export function buildSearchUrl(params: SearchUrlParams): string {
   const { categorySlug, citySlug, geoLocation } = params;
@@ -118,8 +119,9 @@ export function buildSearchUrl(params: SearchUrlParams): string {
   return appendQuery(`/`, query);
 }
 
-export function buildFilterQuery(params: Pick<SearchUrlParams, "dateFilter" | "customDate" | "priceMode" | "maxPrice" | "radiusKm" | "sortBy">) {
+export function buildFilterQuery(params: Pick<SearchUrlParams, "query" | "dateFilter" | "customDate" | "priceMode" | "maxPrice" | "radiusKm" | "sortBy">) {
   const query = new URLSearchParams();
+  if (params.query) query.set("q", params.query);
 
   if (params.dateFilter && params.dateFilter !== "all") {
     query.set("kiedy", params.dateFilter);

@@ -1,241 +1,199 @@
+
 "use client";
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { MapPinned } from "lucide-react";
+import { ArrowRight, CalendarDays, MapPin, MapPinned, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { type EventCategory, type EventItem, type EventMapMarker, type KnownLocation } from "@/lib/events";
+import type { EventItem, EventMapMarker, KnownLocation } from "@/lib/events";
 import { formatPolishDate } from "@/lib/date-format";
 import { eventPath } from "@/lib/slugs";
 import EventCardSaveButton from "@/components/EventCardSaveButton";
 
 const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
   ssr: false,
-  loading: () => <div className="mapLoading">Ładowanie mapy...</div>
+  loading: () => <div className="mapLoading" role="status">Ładowanie mapy…</div>
 });
 
-type MapLoadState = "waiting" | "queued" | "loaded";
-
-type WindowWithIdleCallback = Window & {
-  requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
-  cancelIdleCallback?: (id: number) => void;
-};
-
 type SidebarProps = {
-  events: Array<{ event: EventItem; distanceKm: number }>;
   mapEvents: EventMapMarker[];
-  onRequestMap?: () => void;
-  categoryCounts: Array<{ category: EventCategory; count: number; color?: string | null }>;
-  onCategorySelect: (category: EventCategory | "Wszystkie") => void;
-  selectedCategory: EventCategory | "Wszystkie";
+  onRequestMap: () => void;
+  selectedEventId?: string;
+  focusedEventId?: string;
+  selectedEvent: EventItem | null;
+  selectedEventLoading: boolean;
+  onSelectEvent: (eventId: string) => void;
+  onClearSelection: () => void;
   location: KnownLocation;
   isAllPoland: boolean;
-  markersLoading?: boolean;
-  markersError?: string | null;
-  onRetryMarkers?: () => void;
-  categoryCountsLoading?: boolean;
-  categoryCountsError?: string | null;
-  onRetryCategoryCounts?: () => void;
+  markersLoading: boolean;
+  markersError: string | null;
+  onRetryMarkers: () => void;
+  upcomingEvents: EventItem[];
+  onShowResults: () => void;
+  onOpenEvent: (eventId: string) => void;
 };
 
 export default function Sidebar({
-  events,
   mapEvents,
   onRequestMap,
-  categoryCounts,
-  onCategorySelect,
-  selectedCategory,
+  selectedEventId,
+  focusedEventId,
+  selectedEvent,
+  selectedEventLoading,
+  onSelectEvent,
+  onClearSelection,
   location,
   isAllPoland,
-  markersLoading = false,
-  markersError = null,
+  markersLoading,
+  markersError,
   onRetryMarkers,
-  categoryCountsLoading = false,
-  categoryCountsError = null,
-  onRetryCategoryCounts
+  upcomingEvents,
+  onShowResults,
+  onOpenEvent
 }: SidebarProps) {
-  const [mapLoadState, setMapLoadState] = useState<MapLoadState>("waiting");
+  const [isMapLoaded, setMapLoaded] = useState(false);
+  const [isExpanded, setExpanded] = useState(false);
+  const [isNativeExpanded, setNativeExpanded] = useState(false);
+  const mapCloseRef = useRef<HTMLButtonElement | null>(null);
   const mapWrapRef = useRef<HTMLDivElement | null>(null);
-  const loadScheduledRef = useRef(false);
-  const isMapLoaded = mapLoadState === "loaded";
+  const mapOpenRef = useRef<HTMLButtonElement | null>(null);
 
   const loadMapNow = useCallback(() => {
-    loadScheduledRef.current = true;
-    onRequestMap?.();
-    setMapLoadState("loaded");
+    onRequestMap();
+    setMapLoaded(true);
   }, [onRequestMap]);
 
   useEffect(() => {
+    if (selectedEventId && window.matchMedia("(min-width: 761px)").matches) loadMapNow();
+  }, [selectedEventId, loadMapNow]);
+
+  useEffect(() => {
     const mapElement = mapWrapRef.current;
-    let delayTimer: number | undefined;
-    let idleCallbackId: number | undefined;
-    let observer: IntersectionObserver | undefined;
-
-    function scheduleMapLoad() {
-      if (loadScheduledRef.current) return;
-
-      loadScheduledRef.current = true;
-      setMapLoadState("queued");
-      onRequestMap?.();
-
-      const connection = "connection" in navigator
-        ? (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
-        : undefined;
-      const delayMs = connection?.saveData ? 4200 : 1400;
-
-      delayTimer = window.setTimeout(() => {
-        const idleWindow = window as WindowWithIdleCallback;
-
-        if (typeof idleWindow.requestIdleCallback === "function") {
-          idleCallbackId = idleWindow.requestIdleCallback(
-            () => setMapLoadState("loaded"),
-            { timeout: 3200 }
-          );
-          return;
-        }
-
-        setMapLoadState("loaded");
-      }, delayMs);
+    if (!mapElement) return;
+    if (typeof window.IntersectionObserver !== "function") {
+      const desktop = window.matchMedia("(min-width: 761px)");
+      if (desktop.matches) loadMapNow();
+      function onDesktopChange() { if (desktop.matches) loadMapNow(); }
+      desktop.addEventListener("change", onDesktopChange);
+      return () => desktop.removeEventListener("change", onDesktopChange);
     }
-
-    if (mapElement && "IntersectionObserver" in window) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          if (entries.some((entry) => entry.isIntersecting)) {
-            scheduleMapLoad();
-            observer?.disconnect();
-          }
-        },
-        { rootMargin: "650px 0px" }
-      );
-      observer.observe(mapElement);
-    } else {
-      delayTimer = window.setTimeout(scheduleMapLoad, 2600);
-    }
-
-    return () => {
-      observer?.disconnect();
-      if (delayTimer !== undefined) window.clearTimeout(delayTimer);
-      if (idleCallbackId !== undefined) {
-        const idleWindow = window as WindowWithIdleCallback;
-        idleWindow.cancelIdleCallback?.(idleCallbackId);
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        loadMapNow();
+        observer.disconnect();
       }
+    }, { rootMargin: "200px 0px" });
+    observer.observe(mapElement);
+    return () => observer.disconnect();
+  }, [loadMapNow]);
+
+  const closeExpandedMap = useCallback(() => {
+    if (document.fullscreenElement === mapWrapRef.current) void document.exitFullscreen();
+    setExpanded(false);
+    mapOpenRef.current?.focus({ preventScroll: true });
+  }, []);
+
+  useEffect(() => {
+    function syncFullscreen() {
+      setNativeExpanded(document.fullscreenElement === mapWrapRef.current);
+    }
+    document.addEventListener("fullscreenchange", syncFullscreen);
+    return () => document.removeEventListener("fullscreenchange", syncFullscreen);
+  }, []);
+
+  useEffect(() => {
+    if (isExpanded || isNativeExpanded) mapCloseRef.current?.focus({ preventScroll: true });
+  }, [isExpanded, isNativeExpanded]);
+
+  useEffect(() => {
+    if (!isExpanded) return;
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeExpandedMap();
     };
-  }, [onRequestMap]);
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [closeExpandedMap, isExpanded]);
+
+  function openMap() {
+    loadMapNow();
+    const target = mapWrapRef.current;
+    if (!target?.requestFullscreen) {
+      setExpanded(true);
+      return;
+    }
+    void target.requestFullscreen().catch(() => setExpanded(true));
+  }
+
+  const previewEvent = selectedEventId && selectedEventId === selectedEvent?.id ? selectedEvent : null;
 
   return (
-    <aside className="sidebar" aria-label="Panel boczny">
-      <div className="sidebarSection sidebarMapSection">
+    <aside className="sidebar" aria-label="Mapa i nadchodzące wydarzenia">
+      <section className="sidebarSection sidebarMapSection" aria-labelledby="sidebar-map-title">
         <div className="sidebarSectionHeader">
-          <h3>Wydarzenia na mapie</h3>
+          <h3 id="sidebar-map-title">Wydarzenia na mapie</h3>
+          <button ref={mapOpenRef} type="button" onClick={openMap}>Otwórz mapę <ArrowRight size={16} aria-hidden="true" /></button>
         </div>
-        <div id="desktop-map" className="sidebarMapWrap" ref={mapWrapRef}>
+        <div id="desktop-map" className={isExpanded ? "sidebarMapWrap sidebarMapExpanded" : "sidebarMapWrap"} ref={mapWrapRef}>
+          {isExpanded || isNativeExpanded ? <button ref={mapCloseRef} type="button" className="resultsAction sidebarMapExpandedClose" onClick={closeExpandedMap}>Zamknij mapę <X size={16} aria-hidden="true" /></button> : null}
           {isMapLoaded ? (
             <MapLibreMap
               events={mapEvents}
+              selectedEventId={selectedEventId}
+              focusedEventId={focusedEventId}
               location={isAllPoland ? undefined : location}
-              onSelectEvent={() => {}}
+              onSelectEvent={onSelectEvent}
+              showEventPopup={false}
+              discoveryTheme
             />
           ) : (
             <div className="sidebarMapPlaceholder">
               <MapPinned size={28} strokeWidth={2.2} aria-hidden="true" />
-              <div>
-                <strong>Mapa wydarzeń</strong>
-                <p>
-                  {mapLoadState === "queued"
-                    ? "Mapa załaduje się za chwilę, gdy strona skończy najważniejsze zadania."
-                    : "Mapa załaduje się automatycznie, gdy zbliżysz się do tej sekcji."}
-                </p>
-              </div>
-              <button
-                type="button"
-                className="sidebarMapLoadButton"
-                onClick={loadMapNow}
-              >
-                <MapPinned size={16} strokeWidth={2.4} aria-hidden="true" />
-                {mapLoadState === "queued" ? "Pokaż teraz" : "Pokaż mapę"}
-              </button>
+              <button type="button" className="sidebarMapLoadButton" onClick={loadMapNow}>Wczytaj mapę</button>
             </div>
           )}
+          {selectedEventLoading || previewEvent ? (
+            <div className="sidebarMapDesktopPreview">
+              {previewEvent ? <Link href={eventPath(previewEvent)}>{previewEvent.title} <ArrowRight size={14} aria-hidden="true" /></Link> : <span role="status">Ładowanie wydarzenia…</span>}
+              <button type="button" className="resultsAction" onClick={onClearSelection} aria-label="Zamknij podgląd"><X size={18} aria-hidden="true" /></button>
+            </div>
+          ) : null}
         </div>
-        {markersLoading ? <p className="sidebarMapStatus" role="status">Odświeżam punkty…</p> : markersError ? <div className="sidebarMapStatus" role="alert"><p>{markersError}</p><button type="button" className="resultsAction" onClick={onRetryMarkers}>Spróbuj ponownie</button></div> : null}
-      </div>
-
-      <div className="sidebarSection">
-        <div className="sidebarSectionHeader">
-          <h3>Nadchodzące wydarzenia</h3>
-        </div>
-        <div className="sidebarUpcoming">
-          {events.slice(0, 4).map((item) => {
-            if (!item || !item.event) return null;
-            const { event, distanceKm } = item;
-            return (
-              <div key={event.id} className="sidebarUpcomingItem">
-                <Link
-                  href={eventPath(event)}
-                  className="sidebarUpcomingLink"
-                  aria-label={`Zobacz wydarzenie: ${event.title}`}
-                >
-                  <div className="sidebarUpcomingDate">
-                    <span className="sidebarUpcomingDay">
-                      {formatPolishDate(event.startDate, { day: "numeric" })}
-                    </span>
-                    <span className="sidebarUpcomingMonth">
-                      {formatPolishDate(event.startDate, { month: "short" })}
-                    </span>
-                  </div>
-                  <div className="sidebarUpcomingInfo">
-                    <span className="sidebarUpcomingTitle">{event.title}</span>
-                    <span className="sidebarUpcomingMeta">
-                      {event.city}{Number.isFinite(distanceKm) ? ` · ${distanceKm.toFixed(0)} km` : ""}
-                    </span>
-                  </div>
-                </Link>
-                <EventCardSaveButton
-                  eventId={event.id}
-                  returnTo={eventPath(event)}
-                  className="sidebarUpcomingFav"
-                  iconSize={16}
-                />
-              </div>
-            );
-          })}
-        </div>
-        <div className="sidebarSectionFooter">
-          <Link href="#events-list" className="sidebarSeeAll">
-            Zobacz kalendarz wydarzeń
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
-          </Link>
-        </div>
-      </div>
-
-      <div className="sidebarSection">
-        <div className="sidebarSectionHeader">
-          <h3>Popularne kategorie</h3>
-        </div>
-        <div className="sidebarCategories">
-          {categoryCountsLoading ? <p className="hint" role="status">Liczę kategorie…</p> : categoryCountsError ? (
-            <div className="sidebarMapStatus" role="alert"><p>{categoryCountsError}</p><button type="button" className="resultsAction" onClick={onRetryCategoryCounts}>Spróbuj ponownie</button></div>
-          ) : categoryCounts.length === 0 ? <p className="hint">Brak kategorii dla wybranych filtrów.</p> : null}
-          {categoryCounts.map(({ category, count }) => {
-            const isActive = selectedCategory === category;
-            return (
-              <button
-                key={category}
-                type="button"
-                className={`sidebarCategoryChip ${isActive ? "sidebarCategoryActive" : ""}`}
-                onClick={() => onCategorySelect(isActive ? "Wszystkie" : category)}
-                aria-pressed={isActive}
-              >
-                {category}{" "}
-                <span className="sidebarCategoryCount">
-                  ({count})
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
+        {markersLoading ? <p className="sidebarMapStatus" role="status">Odświeżam wydarzenia…</p> : markersError ? <div className="sidebarMapStatus" role="alert"><p>{markersError}</p><button type="button" className="resultsAction" onClick={onRetryMarkers}>Spróbuj ponownie</button></div> : null}
+      </section>
+      {upcomingEvents.length > 0 ? (
+        <section className="sidebarSection sidebarUpcomingSection" aria-labelledby="sidebar-upcoming-title">
+          <div className="sidebarSectionHeader">
+            <h3 id="sidebar-upcoming-title"><CalendarDays size={20} aria-hidden="true" /> Nadchodzące wydarzenia</h3>
+            <button type="button" onClick={onShowResults}>Zobacz listę <ArrowRight size={16} aria-hidden="true" /></button>
+          </div>
+          <div className="sidebarUpcoming">
+            {upcomingEvents.map((event) => {
+              const href = eventPath(event);
+              const location = [event.city, event.location?.name].filter(Boolean).join(" · ");
+              return (
+                <div key={event.id} className="sidebarUpcomingItem">
+                  <Link href={href} className="sidebarUpcomingLink" onClick={(click) => {
+                    if (!window.matchMedia("(max-width: 760px)").matches || click.metaKey || click.ctrlKey || click.shiftKey || click.altKey) return;
+                    click.preventDefault();
+                    onOpenEvent(event.id);
+                  }}>
+                    <time dateTime={event.startDate} className="sidebarUpcomingDate">
+                      <span className="sidebarUpcomingDay">{formatPolishDate(event.startDate, { day: "numeric" })}</span>
+                      <span className="sidebarUpcomingMonth">{formatPolishDate(event.startDate, { month: "short" }).replace(/\.$/, "")}</span>
+                    </time>
+                    <div className="sidebarUpcomingInfo">
+                      <span className="sidebarUpcomingTitle">{event.title}</span>
+                      {location ? <span className="sidebarUpcomingMeta"><MapPin size={13} aria-hidden="true" /><span>{location}</span></span> : null}
+                    </div>
+                  </Link>
+                  <EventCardSaveButton eventId={event.id} returnTo={href} className="sidebarUpcomingFav" iconSize={17} />
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      ) : null}
     </aside>
   );
 }

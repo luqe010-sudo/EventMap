@@ -1,4 +1,19 @@
 import { toAppDate } from "./date-format";
+import { slugify } from "./slugify";
+
+export const PUBLIC_EVENT_QUERY_MAX_LENGTH = 80;
+
+export function publicEventSearchTerms(query = "") {
+  const words = query.slice(0, PUBLIC_EVENT_QUERY_MAX_LENGTH).normalize("NFC").match(/[\p{L}\p{N}]+/gu) ?? [];
+  return words.slice(0, 8).map((title) => ({ title, slug: slugify(title) }));
+}
+
+export function matchesPublicEventQuery(event: { title: string; slug?: string | null }, query?: string) {
+  const title = event.title.normalize("NFC").toLocaleLowerCase("pl");
+  return publicEventSearchTerms(query).every((term) =>
+    title.includes(term.title.toLocaleLowerCase("pl")) || Boolean(term.slug && event.slug?.includes(term.slug))
+  );
+}
 
 export type PublicEventSort = "date" | "nearest";
 

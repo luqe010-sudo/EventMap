@@ -112,6 +112,62 @@
       "sha256": "85b5511b8434bba1dea17dfa62016dfb7e557e4e4af7e65bc9f0eb75df27b0f4",
       "bytes": 164462,
       "usage": "Thematic illustrative background; does not depict the actual event or venue."
+    },
+    {
+      "id": "winter-market",
+      "author": "Bengisu ÇELİK",
+      "source": "https://www.pexels.com/photo/cozy-christmas-market-at-night-with-festive-stalls-35334243/",
+      "download": "https://images.pexels.com/photos/35334243/pexels-photo-35334243.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/",
+      "file": "public/images/editorial/winter-market.webp",
+      "url": "/images/editorial/winter-market.webp",
+      "checked_at": "2026-11-24T22:16:59.629Z",
+      "sha256": "879176d70e1e26513d08861f068d128df6281083627b909532b7f8c2b7a8c7fc",
+      "bytes": 61918,
+      "usage": "Thematic illustrative background; does not depict the actual event or venue."
+    },
+    {
+      "id": "community-race",
+      "author": "Anh Tuấn Lê",
+      "source": "https://www.pexels.com/photo/group-of-runners-participating-in-a-marathon-29151592/",
+      "download": "https://images.pexels.com/photos/29151592/pexels-photo-29151592.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/",
+      "file": "public/images/editorial/community-race.webp",
+      "url": "/images/editorial/community-race.webp",
+      "checked_at": "2026-11-24T22:16:59.640Z",
+      "sha256": "732574da87ee31e30ce9309276b75fd330a3a6abf103453ee2f15d7696f46c13",
+      "bytes": 49660,
+      "usage": "Thematic illustrative background; does not depict the actual event or venue."
+    },
+    {
+      "id": "stadium",
+      "author": "Sami TÜRK",
+      "source": "https://www.pexels.com/photo/packed-soccer-stadium-at-night-under-bright-lights-39757690/",
+      "download": "https://images.pexels.com/photos/39757690/pexels-photo-39757690.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/",
+      "file": "public/images/editorial/stadium.webp",
+      "url": "/images/editorial/stadium.webp",
+      "checked_at": "2026-11-24T22:16:59.642Z",
+      "sha256": "dfaf3feacae11ff6732d9a137020549c42a716afe13aec32e8e153fa652567d6",
+      "bytes": 160570,
+      "usage": "Thematic illustrative background; does not depict the actual event or venue."
+    },
+    {
+      "id": "concert-crowd",
+      "author": "Caleb Oquendo",
+      "source": "https://www.pexels.com/photo/vibrant-audience-at-live-concert-event-34680735/",
+      "download": "https://images.pexels.com/photos/34680735/pexels-photo-34680735.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "license": "Pexels License",
+      "license_url": "https://www.pexels.com/license/",
+      "file": "public/images/editorial/concert-crowd.webp",
+      "url": "/images/editorial/concert-crowd.webp",
+      "checked_at": "2026-11-24T22:16:59.643Z",
+      "sha256": "7b8f691bf0db45d16056c668a192f5b051fa6677ea3112f290a22812a328f5b3",
+      "bytes": 49206,
+      "usage": "Thematic illustrative background; does not depict the actual event or venue."
     }
   ]
 }

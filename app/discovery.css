@@ -9,20 +9,33 @@ html[data-theme="dark"] {
   --discovery-shadow: 0 2px 12px rgba(0, 0, 0, .12);
 }
 
-html[data-theme] .mainContent { background: var(--bg); }
+html[data-theme] .mainContent { background: var(--bg); overflow: clip; }
 html[data-theme] .mainContent::before { opacity: .24; }
+html[data-theme] .mainContent:has(.homePage)::before { content: none; }
 html[data-theme] .navbar { background: var(--bg-card); border-color: var(--border); box-shadow: none; }
 html[data-theme] .navHamburger, html[data-theme] .themeToggle { min-width: 44px; min-height: 44px; }
 html[data-theme] .homePage { width: min(var(--max-width), calc(100% - 64px)); max-width: none; margin-inline: auto; }
-html[data-theme] .homePage .heroSection { grid-template-columns: minmax(0, 1fr) minmax(340px, .9fr); gap: 32px; min-height: 0; padding: 40px 0 32px; }
-html[data-theme] .homePage .heroTitle { margin: 0 0 14px; font-size: clamp(2.2rem, 3.7vw, 3.5rem); font-weight: 750; line-height: 1.1; letter-spacing: -.045em; color: var(--ink); text-shadow: none; }
-html[data-theme] .homePage .heroSubtitle { margin: 0; color: var(--ink-secondary); font-size: .95rem; line-height: 1.65; }
-html[data-theme] .homePage .heroCard { padding: 18px; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); }
-html[data-theme] .homePage .heroCardTitle { margin: 0 0 14px; font-size: .85rem; font-weight: 600; color: var(--ink-secondary); }
-html[data-theme] .homePage .heroQuickTiles { gap: 8px; grid-template-columns: repeat(5, minmax(0, 1fr)); }
-html[data-theme] .homePage .heroQuickTile { min-height: 76px; padding: 10px 4px; border: 1px solid var(--border); border-radius: var(--discovery-control-radius); background: var(--bg-soft) !important; box-shadow: none; }
-html[data-theme] .homePage .heroQuickTileLabel { margin: 0; font-size: .75rem; font-weight: 600; line-height: 1.35; color: var(--ink); white-space: normal; }
-html[data-theme] .homePage .heroQuickTileIcon svg { width: 24px; height: 24px; stroke-width: 2; }
+html[data-theme] .homePage .heroSection {
+  position: relative;
+  isolation: isolate;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 215px;
+  padding: 25px 0 22px;
+  text-align: left;
+}
+.homePage .heroBackdrop {
+  position: absolute;
+  z-index: 0;
+  inset: 0 -6vw -56px;
+  background: url("/discovery-concert.webp") 96% 48% / cover no-repeat;
+  mask-image: linear-gradient(to bottom, black 60%, transparent), linear-gradient(to right, transparent 22%, black 70%);
+  mask-composite: intersect;
+  pointer-events: none;
+}
+html[data-theme="light"] .homePage .heroBackdrop { opacity: .32; }
+.homePage .heroLeft { position: relative; z-index: 1; align-items: flex-start; min-width: 0; }
+html[data-theme] .homePage .heroTitle { max-width: 720px; margin: 0 0 8px; font-size: clamp(2.45rem, 4.4vw, 3.9rem); font-weight: 800; line-height: 1; letter-spacing: -.049em; color: var(--ink); text-shadow: none; overflow-wrap: anywhere; }
+html[data-theme] .homePage .heroSubtitle { max-width: 535px; margin: 0; color: var(--ink-secondary); font-size: .97rem; line-height: 1.45; }
 
 /* One card system for rails, venue groups and the main list. */
 .eventCarousel { min-width: 0; max-width: 100%; margin: 0 0 28px; }
@@ -33,7 +46,8 @@ html[data-theme] .homePage .heroQuickTileIcon svg { width: 24px; height: 24px; s
 .eventCarouselHeader h2 { margin: 0; font-size: 1.25rem; line-height: 1.3; font-weight: 700; letter-spacing: -.02em; color: var(--ink); overflow-wrap: anywhere; }
 .eventCarouselHeader p, .eventCarouselHint { margin: 6px 0 0; color: var(--ink-secondary); font-size: .85rem; line-height: 1.5; }
 .eventCarouselActions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-.eventCarouselActions > a { color: var(--brand-dark); font-size: .85rem; font-weight: 600; }
+.eventCarouselActions > a, .eventCarouselSeeAll { display: inline-flex; align-items: center; min-height: 44px; padding: 0; border: 0; border-radius: 4px; background: transparent; color: var(--brand-dark); font-size: .875rem; font-weight: 600; white-space: nowrap; }
+.eventCarouselSeeAll { cursor: pointer; }
 .eventCarouselNav { display: flex; gap: 6px; }
 .eventCarouselNav button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--border); border-radius: var(--discovery-control-radius); background: var(--bg-card); color: var(--ink); cursor: pointer; }
 .eventCarouselNav button:disabled { opacity: .35; cursor: default; }
@@ -45,10 +59,10 @@ html[data-theme] .homePage .heroQuickTileIcon svg { width: 24px; height: 24px; s
 .eventCarouselImageWrap { aspect-ratio: 2 / 1; overflow: hidden; background: var(--bg-soft); }
 .eventCarouselImageWrap img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .eventCarouselBody { display: flex; flex-direction: column; flex: 1; padding: 14px; gap: 8px; }
-.eventCarouselCategory { font-size: .72rem; line-height: 1.3; font-weight: 650; }
+.eventCarouselCategory { font-size: .8125rem; line-height: 1.3; font-weight: 650; }
 .eventCarouselBody h3 { margin: 0; font-size: 1rem; font-weight: 700; line-height: 1.4; min-height: 2.8em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.eventCarouselDate { display: flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 500; color: var(--ink-secondary); }
-.eventCarouselLocation { display: flex; align-items: center; gap: 6px; margin: 0; color: var(--ink-secondary); font-size: .8rem; white-space: nowrap; overflow: hidden; }
+.eventCarouselDate { display: flex; align-items: center; gap: 6px; font-size: .875rem; font-weight: 500; color: var(--ink-secondary); }
+.eventCarouselLocation { display: flex; align-items: center; gap: 6px; margin: 0; color: var(--ink-secondary); font-size: .875rem; white-space: nowrap; overflow: hidden; }
 .eventCarouselLocation span { overflow: hidden; text-overflow: ellipsis; }
 .eventCarouselDate svg, .eventCarouselLocation svg { flex-shrink: 0; }
 .eventCarouselPrice { display: flex; gap: 8px; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 4px; font-size: .9rem; font-weight: 650; }
@@ -56,7 +70,8 @@ html[data-theme] .homePage .heroQuickTileIcon svg { width: 24px; height: 24px; s
 .eventCarouselSave, html[data-theme] .homePage .eventCardH > .eventCardHFav { position: absolute; top: 10px; right: 10px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--border); border-radius: 50%; background: var(--bg-card); color: var(--ink); box-shadow: var(--discovery-shadow); cursor: pointer; }
 .eventCarouselSave.eventCardHFavActive, html[data-theme] .homePage .eventCardH > .eventCardHFavActive { color: var(--brand); }
 .eventCardSaveFeedback { position: absolute; z-index: 3; right: 8px; bottom: 8px; max-width: calc(100% - 16px); padding: 10px 12px; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--bg-card); color: var(--ink); box-shadow: var(--discovery-shadow); font-size: .8rem; line-height: 1.4; }
-html[data-theme] .homePage .mainLayout { grid-template-columns: minmax(0, 1fr) 310px; gap: 28px; }
+html[data-theme] .homePage .mainLayout { grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr); gap: 20px; align-items: start; }
+html[data-theme] .homePage .mainColumn { gap: 24px; }
 html[data-theme] .homePage .mainEventsHeader { gap: 16px; margin: 0 0 8px; }
 html[data-theme] .homePage .mainEventsHeader h2 { font-size: 1.25rem; font-weight: 700; line-height: 1.35; letter-spacing: -.02em; }
 html[data-theme] .homePage .mainEventsCount { margin: 0 0 20px; font-size: .85rem; font-weight: 400; color: var(--ink-secondary); }
@@ -118,11 +133,14 @@ html[data-theme] .homePage .searchActiveFiltersEmpty { color: var(--ink-secondar
 html[data-theme] .homePage .searchActiveFiltersClear { min-height: 44px; border: 1px solid var(--border); border-radius: var(--discovery-control-radius); background: transparent; color: var(--ink-secondary); font-size: .85rem; font-weight: 500; }
 html[data-theme] .homePage .searchSubmitBtn { min-height: 44px; height: auto; border-radius: var(--discovery-control-radius); background: var(--brand); box-shadow: none; color: #fff; font-size: .85rem; font-weight: 650; }
 html[data-theme] .homePage .hint { color: var(--ink-secondary); font-size: .8rem; line-height: 1.5; }
-html[data-theme] .homePage .sidebar { border: 0; padding: 0; gap: 16px; background: transparent; box-shadow: none; }
-html[data-theme] .homePage .sidebarSection, html[data-theme] .homePage .seoTextCard, html[data-theme] .homePage .valueGrid { border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); }
-html[data-theme] .homePage .sidebarSection { padding: 16px; }
+html[data-theme] .homePage .sidebar { position: sticky; top: 88px; border: 0; padding: 0; gap: 16px; background: transparent; box-shadow: none; }
+html[data-theme] .homePage .seoTextCard, html[data-theme] .homePage .valueGrid { padding: 24px 0; border: 0; border-top: 1px solid var(--border); border-radius: 0; background: transparent; box-shadow: none; }
+html[data-theme] .homePage .sidebarSection { padding: 14px; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); }
 html[data-theme] .homePage .sidebarSection + .sidebarSection { margin-top: 0; }
-html[data-theme] .homePage .sidebarSectionHeader h3 { color: var(--ink); font-size: 1rem; font-weight: 700; }
+html[data-theme] .homePage .sidebarSectionHeader { display: block; padding: 0 0 12px; }
+html[data-theme] .homePage .sidebarSectionHeader h3 { color: var(--ink); font-size: 1.25rem; font-weight: 700; letter-spacing: -.02em; }
+html[data-theme] .homePage .sidebarMapWrap { height: clamp(300px, 36vh, 415px); border: 1px solid var(--border); border-radius: var(--discovery-control-radius); background: var(--bg-soft); }
+html[data-theme] .homePage .sidebarMapWrap .mapLibreCanvas { border-radius: inherit; }
 html[data-theme] .homePage .sidebarMapPlaceholder { background: var(--bg-soft); color: var(--ink); }
 html[data-theme] .homePage .sidebarMapLoadButton { min-height: 44px; border-radius: var(--discovery-control-radius); font-weight: 600; }
 html[data-theme] .homePage .sidebarUpcomingItem { padding-right: 50px; border-color: var(--border); }
@@ -137,6 +155,13 @@ html[data-theme] .homePage .emptyState h3 { font-size: 1.15rem; font-weight: 700
 
 /* Route loading must follow the selected theme too. */
 html[data-theme] .loadingHomePage .loadingSearchPanel, html[data-theme] .loadingHomePage .loadingEventRow { border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); }
+html[data-theme] .loadingHomePage { min-height: 100vh; }
+html[data-theme] .loadingHomePage .loadingHero { min-height: 215px; padding: 25px 0 22px; grid-template-columns: minmax(0, 1fr); align-items: center; }
+html[data-theme] .loadingHomePage .loadingTitle { height: 104px; max-width: 540px; }
+html[data-theme] .loadingHomePage .loadingSubtitle { height: 36px; }
+html[data-theme] .loadingHomePage .loadingSearchPanel { padding: 10px 0; border: 0; background: none; }
+html[data-theme] .loadingHomePage .loadingMainLayout { grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr); gap: 20px; }
+html[data-theme] .loadingHomePage .loadingSidebar > div { min-height: 355px; }
 html[data-theme] .loadingHomePage :is(.loadingBlock, .loadingHeroTiles span, .loadingSearchGrid span, .loadingEventRow span, .loadingEventRow b, .loadingEventRow i, .loadingEventRow em, .loadingSidebar div) { background: color-mix(in srgb, var(--ink) 9%, var(--bg-card)); animation: searchSkeletonPulse 1.5s ease-in-out infinite alternate; }
 html[data-theme] :is(.edSaveBtn, .edShareBtn, .edGoogleMapsLink, .edOrgLink) { border-radius: var(--discovery-control-radius); min-height: 44px; font-weight: 600; box-shadow: none; }
 /* A grid's automatic minimum must not widen the embedded event beyond a phone. */
@@ -171,22 +196,26 @@ html[data-theme] .homePage .searchSlider:focus-visible { outline: 3px solid var(
 .homePage .eventCardHLink:focus-visible, .eventCarouselCardLink:focus-visible { outline-offset: -3px; }
 
 @media (max-width: 1100px) {
+  .eventCarouselNav { display: none; }
   html[data-theme] .homePage .searchTopRow { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  html[data-theme] .homePage .heroSection { grid-template-columns: 1fr; gap: 20px; }
-  html[data-theme] .homePage .heroCard { max-width: none; }
-  html[data-theme] .homePage .mainLayout { grid-template-columns: minmax(0, 1fr); }
+  html[data-theme] :is(.homePage .mainLayout, .loadingHomePage .loadingMainLayout) { grid-template-columns: minmax(0, 1.55fr) minmax(270px, 1fr); gap: 18px; }
 }
 @media (max-width: 760px) {
+  html[data-theme] .siteWrapper:has(.homePage) .navbarInner { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; gap: 8px; }
+  .siteWrapper:has(.homePage) .navbarInner .navLeft { grid-column: 2; grid-row: 1; justify-self: center; }
+  .siteWrapper:has(.homePage) .navbarInner .navHamburger { grid-column: 1; grid-row: 1; justify-self: start; }
   html[data-theme] .homePage { width: calc(100% - 32px); }
-  html[data-theme] .homePage .heroSection { padding: 28px 0 24px; gap: 20px; text-align: left; }
-  html[data-theme] .homePage .heroTitle { font-size: 2rem; max-width: 100%; line-height: 1.15; }
-  html[data-theme] .homePage .heroSubtitle { font-size: .9rem; line-height: 1.6; }
-  html[data-theme] .homePage .heroCard { padding: 14px 12px; }
-  html[data-theme] .homePage .heroCardTitle { margin-bottom: 10px; font-size: .8rem; }
-  html[data-theme] .homePage .heroQuickTile { min-height: 68px; padding: 8px 2px; }
-  html[data-theme] .homePage .heroQuickTileLabel { font-size: .7rem; }
-  .eventCarouselHeader { flex-wrap: wrap; gap: 10px; align-items: flex-start; }
-  .eventCarouselActions { width: 100%; justify-content: space-between; }
+  html[data-theme] :is(.homePage .heroSection, .loadingHomePage .loadingHero) { min-height: 0; padding: 20px 0; }
+  .homePage .heroBackdrop { inset: 0 -16px -46px; background-position: 70% center; opacity: .78; mask-image: linear-gradient(to bottom, black 50%, transparent), linear-gradient(to right, transparent 8%, black 94%); }
+  html[data-theme] .homePage .heroTitle { font-size: clamp(1.7rem, 7vw, 2.7rem); max-width: 100%; line-height: 1.08; }
+  html[data-theme] .homePage .heroSubtitle { max-width: 30ch; font-size: .875rem; line-height: 1.45; }
+  html[data-theme] .loadingHomePage .loadingTitle { height: 68px; }
+  html[data-theme] .homePage .mainLayout, html[data-theme] .loadingHomePage .loadingMainLayout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  html[data-theme] .homePage .sidebar { display: none; }
+  .eventCarouselHeader { flex-wrap: nowrap; gap: 12px; align-items: center; }
+  .eventCarouselActions { width: auto; }
+  .eventCarouselNav { display: none; }
+  .eventCarouselActions > a, .eventCarouselSeeAll { font-size: .8125rem; }
   .eventCarouselHeader h2 { font-size: 1.15rem; }
   .eventCarouselHeader p, .eventCarouselHint { font-size: .8rem; }
   .eventCarouselTrack { scroll-padding-inline: 2px; }
@@ -230,6 +259,11 @@ html[data-theme] .homePage .searchSlider:focus-visible { outline: 3px solid var(
   html[data-theme] .mobileEventView .edShellEmbedded .edContentGrid { padding-inline: 16px; }
   html[data-theme] .mobileEventView .edShellEmbedded .edBottomGrid { padding-inline: 16px; }
   body.mobileMapActive .cookieSettingsButton { left: 12px; right: auto; }
+  .homePage .mobileViewSwitcher { --mobile-view-count: 4; }
+  .homePage .mobileViewSwitcherWithEvent { --mobile-view-count: 5; }
+  .homePage .mobileViewSwitcher :is(button, a) { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--ink-secondary); font-size: .75rem; font-weight: 650; line-height: 1.15; }
+  .homePage .mobileViewSwitcher button[aria-pressed="true"] { border: 1px solid color-mix(in srgb, var(--brand) 43%, transparent); background: var(--brand-light); color: var(--brand-dark); }
+  .homePage .mobileViewSwitcher a:focus-visible { outline-offset: -2px; }
   .resultsFeedback { flex-wrap: wrap; padding: 16px; }
   .resultsFeedback .resultsAction { width: 100%; }
   .emptyStateActions { flex-direction: column; }
@@ -254,4 +288,353 @@ html[data-theme] .homePage .searchSlider:focus-visible { outline: 3px solid var(
 .searchLocationScope button:disabled {
   opacity: .5;
   cursor: not-allowed;
+}
+
+/* Discovery workspace, navigation and sidebar. */
+.homePage .discoveryShelves { display: grid; gap: 21px; min-width: 0; }
+.homePage .discoveryShelves > .eventCarousel { margin: 0; }
+.homePage .sidebarSectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+html[data-theme] .homePage .sidebarSectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin-bottom: 8px;
+}
+html[data-theme] .homePage .sidebarSectionHeader h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(.94rem, 1.4vw, 1.2rem);
+  line-height: 1.2;
+}
+.sidebarSectionHeader h3 svg, .sidebarUpcomingDay, .sidebarUpcomingMonth { color: var(--brand-dark); }
+.sidebarSectionHeader :is(a, button) {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  white-space: nowrap;
+  color: var(--brand-dark);
+  font: inherit;
+  font-size: .8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.sidebarSectionHeader :is(a, button):hover { text-decoration: underline; }
+html[data-theme] .homePage .sidebarMapSection { padding: 0; overflow: hidden; }
+html[data-theme] .homePage .sidebarMapSection .sidebarSectionHeader { padding: 0 12px; margin: 0; }
+html[data-theme] .homePage .sidebarMapWrap {
+  position: relative;
+  height: clamp(220px, 27vh, 270px);
+  border: 0;
+  border-radius: 0;
+}
+html[data-theme] .homePage .sidebarMapWrap:fullscreen {
+  width: 100%;
+  height: 100%;
+  background: #071724;
+}
+html[data-theme] .homePage .sidebarMapWrap.sidebarMapExpanded {
+  position: fixed;
+  inset: 12px;
+  z-index: 975;
+  height: auto;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--discovery-radius);
+  box-shadow: 0 0 0 32px rgba(2, 8, 16, .84);
+}
+html[data-theme] .homePage .sidebar:has(.sidebarMapExpanded) { z-index: 975; }
+.sidebarMapExpandedClose {
+  position: absolute;
+  z-index: 4;
+  top: 8px;
+  left: 8px;
+}
+.sidebarMapDesktopPreview {
+  position: absolute;
+  z-index: 3;
+  right: 10px;
+  bottom: 28px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-md);
+}
+.sidebarMapDesktopPreview a { flex: 1; min-width: 0; color: var(--ink); font-weight: 700; }
+.sidebarMapDesktopPreview a:hover { color: var(--brand-dark); }
+.sidebarMapDesktopPreview button { min-width: 44px; min-height: 44px; padding: 0; }
+.sidebarUpcomingMeta { display: flex; align-items: center; gap: 5px; }
+.sidebarUpcomingMeta svg { flex: 0 0 auto; }
+.sidebarUpcomingMeta span, .sidebarUpcomingTitle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sidebarUpcomingTitle { font-weight: 720; }
+html[data-theme] .homePage .sidebarUpcomingItem { min-height: 58px; }
+html[data-theme] .homePage .sidebarUpcomingDate { min-width: 46px; border: 1px solid var(--border); }
+html[data-theme] .homePage .sidebarUpcomingDay { color: var(--brand-dark); }
+html[data-theme] .homePage .sidebarUpcomingMonth { color: var(--brand-dark); }
+.homePage .mainEvents { scroll-margin-top: 78px; }
+.discoveryShelfSkeleton .resultSkeletonCard { min-height: 200px; }
+.discoveryShelfSkeleton .resultSkeletonCard > span { flex: 1; width: auto; }
+.discoveryShelfSkeleton .resultSkeletonCard > div { display: none; }
+
+html[data-theme="dark"] .siteWrapper:has(.homePage) {
+  --bg: #08121e;
+  --bg-soft: #101e2d;
+  --bg-card: #0e1926;
+  --bg-card-hover: #142336;
+  --ink: #f6f8fc;
+  --ink-secondary: #c5d0df;
+  --ink-muted: #a1afbf;
+  --border: #2a3a4b;
+  --border-strong: #45586c;
+  --brand: #ff6900;
+  --brand-dark: #ff8b39;
+  --brand-light: #352117;
+  --brand-gradient: linear-gradient(180deg, #ff7808, #fa5c00);
+  background:
+    radial-gradient(ellipse 31rem 17rem at -2% 8%, #f46522 0%, #753522 21%, transparent 77%),
+    radial-gradient(ellipse 32rem 26rem at 104% 59%, #e76118 0%, #461c1b 32%, transparent 72%),
+    radial-gradient(ellipse 37rem 21rem at 105% 92%, #0874af 0%, #092b54 39%, transparent 78%),
+    linear-gradient(142deg, #161723 0%, #0c2744 54%, #080f1c 100%);
+  background-attachment: fixed;
+}
+html[data-theme="dark"] .siteWrapper:has(.homePage) > .mainContent {
+  background: radial-gradient(ellipse 80% 25rem at 68% 18rem, #0c1a29, transparent), linear-gradient(160deg, #07101b, #091522 47rem, #080f19 73rem);
+}
+html[data-theme] .siteWrapper:has(.homePage) > .navbar { background: var(--bg-card); }
+.siteWrapper:has(.homePage) .navOrganizerCta { display: none; }
+.homePage .heroSubtitleShort { display: none; }
+
+html[data-theme] .homePage .heroTitle {
+  font-size: clamp(2rem, 3.35vw, 3.4rem);
+  line-height: .99;
+  letter-spacing: -.052em;
+  overflow-wrap: normal;
+}
+html[data-theme] .homePage .heroSection { min-height: 168px; margin: 0; padding: 16px 0 14px; }
+.homePage .heroBackdrop {
+  inset: 0 -27px -32px 10%;
+  background-position: right 54%;
+  background-size: cover;
+  mask-image: linear-gradient(to bottom, black 58%, transparent 100%), linear-gradient(to right, transparent 15%, black 61%);
+}
+html[data-theme] .homePage .heroSubtitle { max-width: 540px; font-size: .94rem; line-height: 1.4; }
+
+@media (min-width: 761px) {
+  html[data-theme] .siteWrapper:has(.homePage) > :is(.navbar, .mainContent) {
+    width: min(1340px, calc(100% - 32px));
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+  html[data-theme="dark"] .siteWrapper:has(.homePage) > .navbar {
+    border: 1px solid var(--border);
+    border-top-color: #36617e;
+  }
+  html[data-theme="dark"] .siteWrapper:has(.homePage) > .mainContent {
+    border: 1px solid var(--border);
+    border-top: 0;
+  }
+  html[data-theme] .homePage { width: min(1280px, calc(100% - 42px)); }
+  html[data-theme] .homePage .sidebar { top: 70px; }
+  html[data-theme] .homePage .heroSection { padding-left: clamp(0px, 2vw, 30px); }
+  html[data-theme] .siteWrapper:has(.homePage) > .navbar { height: 58px; padding-inline: 0; }
+  html[data-theme] .siteWrapper:has(.homePage) > .navbar .navbarInner { height: 57px; padding-inline: clamp(18px, 4.2vw, 62px); }
+  html[data-theme] .homePage .discoverySearch { width: auto; margin-inline: clamp(0px, 2vw, 30px); }
+}
+@media (min-width: 1100px) {
+  html[data-theme] .siteWrapper:has(.homePage) > .navbar { margin-top: 14px; border-radius: 22px 22px 0 0; }
+  html[data-theme] .siteWrapper:has(.homePage) > :is(.navbar, .mainContent) { width: min(1340px, 84.4vw); }
+  html[data-theme="dark"] .siteWrapper:has(.homePage) > :is(.navbar, .mainContent) { border-inline-color: #306087; }
+  .siteWrapper:has(.homePage) .navOrganizerCta {
+    display: inline-flex;
+    min-height: 38px;
+    align-items: center;
+    padding-inline: 14px;
+    border: 1px solid var(--brand);
+    border-radius: 999px;
+    background: var(--brand-light);
+    color: var(--ink);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .siteWrapper:has(.homePage) .navOrganizerCta:hover { box-shadow: 0 0 15px color-mix(in srgb, var(--brand) 40%, transparent); }
+}
+
+@media (max-width: 760px) {
+  html[data-theme] .homePage { width: calc(100% - 28px); }
+  html[data-theme] .siteWrapper:has(.homePage) .navbarInner { min-height: 62px; padding-inline: 12px; }
+  .siteWrapper:has(.homePage) .brandLogoText { font-size: clamp(1rem, 5.5vw, 1.42rem); }
+  .siteWrapper:has(.homePage) .brandLogoMark { width: 27px; height: 34px; }
+  html[data-theme] .homePage .heroSection { min-height: 0; padding: 19px 2px 21px; }
+  .homePage .heroBackdrop {
+    inset: -8px -14px -42px;
+    background-position: 78% 57%;
+    background-size: cover;
+    opacity: 1;
+    mask-image: linear-gradient(to bottom, black 58%, transparent 98%), linear-gradient(to right, transparent 17%, black 89%);
+  }
+  html[data-theme] .homePage .heroTitle { font-size: clamp(1.78rem, 7.2vw, 2.35rem); line-height: 1.05; }
+  html[data-theme] .homePage .heroSubtitle { font-size: clamp(.85rem, 3.9vw, 1rem); }
+  .homePage .heroSubtitleLong { display: none; }
+  .homePage .heroSubtitleShort { display: inline; }
+  html[data-theme] .homePage .mainLayout { display: flex; flex-direction: column; gap: 20px; }
+  html[data-theme] .homePage :is(.mainColumn, .sidebar) { display: contents; }
+  .homePage .discoveryShelves { order: 1; width: 100%; }
+  html[data-theme] .homePage .sidebarMapSection { display: none; }
+  .homePage .sidebarUpcomingSection { order: 2; width: 100%; }
+  .homePage .mainEvents { order: 3; width: 100%; }
+  .homePage :is(.cityCategoriesSec, .internalLinksSec, .seoTextSec) { order: 4; width: 100%; }
+  .homePage.mobileResultsMode :is(.heroSection, .discoveryShelves, .sidebarUpcomingSection, .valueProps) { display: none; }
+  .homePage.mobileDiscoverMode:not(.discoveryNeedsResults) .mainEvents { display: none; }
+
+  .siteWrapper .mobileViewSwitcher {
+    --mobile-view-count: 4;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: min(100%, 570px);
+    height: calc(var(--mobile-switcher-height) + var(--mobile-switcher-bottom));
+    padding: 5px 8px var(--mobile-switcher-bottom);
+    border-radius: 20px 20px 0 0;
+    border-bottom: 0;
+    background: color-mix(in srgb, var(--bg-card) 94%, transparent);
+    backdrop-filter: blur(16px);
+    gap: 4px;
+  }
+  .siteWrapper .mobileViewSwitcher :is(button, a) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 0;
+    min-height: 44px;
+    border-radius: 13px;
+    color: var(--ink-secondary);
+    font-size: .76rem;
+    font-weight: 700;
+  }
+  .siteWrapper .mobileViewSwitcher :is(button[aria-pressed="true"], a[aria-current="page"]) {
+    border: 1px solid color-mix(in srgb, var(--brand) 68%, transparent);
+    background: var(--brand-light);
+    color: var(--brand-dark);
+  }
+  html[data-theme="dark"] .siteWrapper .mobileViewSwitcher :is(button[aria-pressed="true"], a[aria-current="page"]) {
+    background: radial-gradient(ellipse at top left, #512a16, #2d1c17 73%);
+    box-shadow: inset 0 0 19px #fa650327, 0 0 10px #ff690019;
+  }
+  .siteWrapper .mobileViewSwitcher :is(a, button):focus-visible { outline-offset: -2px; }
+  .siteWrapper:has(.homePage) .navSavedShortcut {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    color: var(--ink);
+  }
+  .siteWrapper:has(.homePage) .navSavedShortcut:hover { color: var(--brand-dark); }
+}
+.navSavedShortcut, .navOrganizerCta { display: none; }
+
+
+.loadingQuickFilters { display: flex; gap: 8px; margin-bottom: 12px; }
+.loadingQuickFilters span { flex: 1 1 0; height: 38px; border-radius: 14px; background: var(--bg-card); }
+.loadingShelfHeading { max-width: 230px; height: 21px; margin-bottom: 16px; }
+.loadingFeaturedGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.loadingFeaturedCard { height: 252px; border-radius: var(--discovery-radius); }
+@media (max-width: 760px) {
+  .loadingHomePage { padding-top: 0; }
+  .loadingQuickFilters span { height: 60px; }
+  .loadingFeaturedGrid { grid-template-columns: minmax(0, 1fr); }
+  .loadingFeaturedCard { height: 230px; }
+  .loadingFeaturedCard:not(:first-child), .loadingHomePage .loadingSidebar { display: none; }
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("/fonts/inter-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.siteWrapper:has(.homePage), .siteWrapper:has(.mobileViewSwitcher), .discoveryFilterDialog {
+  --font-title: Inter, system-ui, sans-serif;
+  --font-body: Inter, system-ui, sans-serif;
+  font-family: var(--font-body);
+  font-optical-sizing: auto;
+}
+
+html[data-theme="dark"] .siteWrapper:has(.homePage) > .navbar {
+  background: linear-gradient(110deg, #101c28, #0a1420 56%, #0d1925);
+  border-bottom-color: #2e4051;
+}
+.siteWrapper:has(.homePage) .navLink { font-weight: 660; }
+.siteWrapper:has(.homePage) .navLinkActive::after {
+  right: 0;
+  left: 0;
+  height: 4px;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 0 11px #ff69004d;
+}
+html[data-theme="dark"] .siteWrapper:has(.homePage) .navOrganizerCta {
+  border: 1px solid #ff791a;
+  background: radial-gradient(ellipse at center top, #592a12, #281a17 84%);
+  box-shadow: inset 0 0 0 1px #ff7d2538, 0 0 12px #ff65004d;
+}
+html[data-theme="dark"] .siteWrapper:has(.homePage) .sidebarSection {
+  background: linear-gradient(150deg, #111e2b, #0b1621 68%);
+  border-color: #304255;
+  box-shadow: inset 0 1px 0 #ffffff09, 0 8px 22px #050a1326;
+}
+
+@media (min-width: 1100px) {
+  html[data-theme="dark"] .siteWrapper:has(.homePage) {
+    background:
+      linear-gradient(134deg, transparent 5%, #ff7a1d66 10%, transparent 12%),
+      radial-gradient(ellipse 31rem 17rem at -2% 8%, #ff781f 0%, #79331d 25%, transparent 77%),
+      radial-gradient(ellipse 28rem 25rem at 105% 52%, #ff771e 0%, #532521 33%, transparent 77%),
+      radial-gradient(ellipse 36rem 21rem at 105% 93%, #078ace 0%, #092b54 39%, transparent 78%),
+      linear-gradient(142deg, #171724 0%, #0c2642 51%, #08111d 100%);
+    background-attachment: fixed;
+  }
+  html[data-theme] .homePage { width: min(1276px, calc(100% - 60px)); }
+  html[data-theme] .homePage .heroSection { padding-left: clamp(20px, 2.1vw, 32px); }
+  html[data-theme] .homePage .discoverySearch { margin-inline: clamp(20px, 2.1vw, 32px); }
+}
+@media (max-width: 760px) {
+  .siteWrapper:has(.homePage) .navHamburger span { width: 24px; }
+  .siteWrapper:has(.homePage) .navSavedShortcut {
+    border: 1px solid transparent;
+    border-radius: 12px;
+  }
+  .siteWrapper:has(.homePage) .navSavedShortcut:hover { border-color: var(--border); }
+  .siteWrapper .mobileViewSwitcher { border-radius: 23px 23px 0 0; }
+  .siteWrapper .mobileViewSwitcher :is(button, a) > svg { width: 22px; height: 22px; }
+  html[data-theme="dark"] .siteWrapper .mobileViewSwitcher {
+    border-color: #394b5e;
+    background: linear-gradient(135deg, #101c28fa 0%, #09131ffb 76%);
+    box-shadow: inset 0 1px 0 #ffffff13, 0 -8px 28px #05081173;
+  }
+  html[data-theme="dark"] .siteWrapper .mobileViewSwitcher :is(button[aria-pressed="true"], a[aria-current="page"]) {
+    border-color: #f66c15;
+    background: radial-gradient(ellipse at 15% 4%, #633315 0%, #362117 69%);
+    color: #ff9449;
+    box-shadow: inset 0 0 13px #ff7f1d2f, 0 0 14px #ff69003b;
+  }
 }

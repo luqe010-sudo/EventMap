@@ -5,6 +5,7 @@ import { normalizeCitySearchFilters, publicSearchOptionsFromParams } from "./pub
 import { toPluralCategorySlug, toSlug } from "./slugs";
 
 export type PublicWorkspaceSearchState = {
+  query?: string;
   category: EventCategory | "Wszystkie";
   location: KnownLocation | null;
   locationMode: "city" | "radius";
@@ -15,6 +16,8 @@ export type PublicWorkspaceSearchState = {
   maxPrice: number;
   sortBy: "date" | "nearest";
 };
+
+export const WORKSPACE_RETURN_STORAGE_KEY = "eventmap-workspace-return";
 
 const ROUTE_DATES: Record<string, DateFilter> = { dzis: "today", weekend: "weekend", "ten-tydzien": "week" };
 
@@ -54,6 +57,7 @@ export function restorePublicWorkspaceSearch(
     }
 
     return {
+      ...(filters.query ? { query: filters.query } : {}),
       category,
       location,
       locationMode: location && filters.radiusKm != null ? "radius" : "city",

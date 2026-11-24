@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Moon, Sun } from "lucide-react";
+import { Compass, Heart, List, Map as MapIcon, Moon, Sun, UserRound } from "lucide-react";
+import { WORKSPACE_RETURN_STORAGE_KEY } from "@/lib/public-workspace-history";
 import { useState, useEffect, useRef } from "react";
 
 type NavbarAuth =
@@ -109,10 +110,13 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const [theme, setTheme] = useState<ThemeMode>("light");
+  const [theme, setTheme] = useState<ThemeMode>("dark");
   const [resolvedAuth, setResolvedAuth] = useState<NavbarAuth>(auth);
   const [authReady, setAuthReady] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
+  const [workspaceHref, setWorkspaceHref] = useState("/");
+  const profileRoute = pathname === "/account" || pathname === "/login" || pathname?.startsWith("/organizer");
+  const savedHref = resolvedAuth.isLoggedIn && resolvedAuth.role === "organizer" ? "/organizer/saved" : "/account#saved-events";
 
   const dashboardHref =
     resolvedAuth.isLoggedIn && resolvedAuth.role === "admin"
@@ -133,6 +137,14 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
     setMenuOpen(false);
     setProfileOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!profileRoute) return;
+    try {
+      const stored = JSON.parse(window.sessionStorage.getItem(WORKSPACE_RETURN_STORAGE_KEY) ?? "null") as { url?: string } | null;
+      if (stored?.url && /^\/(?![\\/])/.test(stored.url)) setWorkspaceHref(stored.url);
+    } catch { /* Session storage is optional. */ }
+  }, [pathname, profileRoute]);
 
   useEffect(() => {
     let active = true;
@@ -232,12 +244,13 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
     window.location.assign("/");
   }
 
-  function handleMapClick(event: React.MouseEvent<HTMLAnchorElement>, href: string) {
-    if (href !== "/#mapa" || pathname !== "/") return;
+  function handleWorkspaceClick(event: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    if (href !== "/#mapa" && href !== "/") return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (!document.querySelector(".homePage:not(.loadingHomePage)")) return;
     event.preventDefault();
     setMenuOpen(false);
-    window.location.hash = "mapa";
-    window.dispatchEvent(new Event("hashchange"));
+    window.dispatchEvent(new Event(href === "/#mapa" ? "eventmap:show-map" : "eventmap:show-discover"));
   }
 
   const navLinks = [
@@ -266,7 +279,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
               key={link.href}
               href={link.href}
               className={`navLink${isActive(link.href) ? " navLinkActive" : ""}`}
-              onClick={(event) => handleMapClick(event, link.href)}
+              onClick={(event) => handleWorkspaceClick(event, link.href)}
             >
               {link.label}
             </Link>
@@ -275,6 +288,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
 
         {/* ── Right: Auth area (desktop) ── */}
         <div className="navRight">
+          <Link href="/dla-organizatorow" className="navOrganizerCta">Dla organizatorów</Link>
           <button
             type="button"
             className="themeToggle"
@@ -346,6 +360,10 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
           )}
         </div>
 
+        <Link href={savedHref} className="navSavedShortcut" aria-label="Zapisane wydarzenia">
+          <Heart size={22} strokeWidth={2} aria-hidden="true" />
+        </Link>
+
         {/* ── Hamburger (mobile) ── */}
         <button
           className={`navHamburger${menuOpen ? " navHamburgerOpen" : ""}`}
@@ -372,7 +390,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
               key={link.href}
               href={link.href}
               className={`navMobileLink${isActive(link.href) ? " navMobileLinkActive" : ""}`}
-              onClick={(event) => { setMenuOpen(false); handleMapClick(event, link.href); }}
+              onClick={(event) => { setMenuOpen(false); handleWorkspaceClick(event, link.href); }}
             >
               {link.icon}
               <span>{link.label}</span>
@@ -441,6 +459,14 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
           )}
         </div>
       </div>
+      {profileRoute ? (
+        <nav className="mobileViewSwitcher" aria-label="Nawigacja mobilna">
+          <Link href={workspaceHref + "#odkryj"} scroll={false}><Compass size={21} aria-hidden="true" />Odkryj</Link>
+          <Link href={workspaceHref + "#events-list"} scroll={false}><List size={21} aria-hidden="true" />Lista</Link>
+          <Link href={workspaceHref + "#mapa"} scroll={false}><MapIcon size={21} aria-hidden="true" />Mapa</Link>
+          <Link href="/account" aria-current="page"><UserRound size={21} aria-hidden="true" />Profil</Link>
+        </nav>
+      ) : null}
     </>
   );
 }

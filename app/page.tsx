@@ -26,6 +26,7 @@ async function HomeContent({ searchParams }: { searchParams: Promise<SearchParam
   const { events, featuredEvents, eventSearch, categories, activeCityLocations } = await getHomeData({
     dateFilter: initialFilters.dateFilter ?? "all",
     customDate: initialFilters.customDate,
+    query: initialFilters.query,
     priceMode: initialFilters.priceMode ?? "all",
     maxPrice: initialFilters.maxPrice,
     sortBy: "date"

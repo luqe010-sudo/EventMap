@@ -1,6 +1,6 @@
 import type { EventCategory, EventItem, KnownLocation } from "./events";
 import { isFreeEvent } from "./events";
-import { comparePublicSearchItems, distanceBetweenCoordinates, type PublicEventSort } from "./event-search";
+import { comparePublicSearchItems, distanceBetweenCoordinates, matchesPublicEventQuery, PUBLIC_EVENT_QUERY_MAX_LENGTH, type PublicEventSort } from "./event-search";
 import { eventOverlapsWindow } from "./event-dates";
 import { normalizeDateInput, resolveDateRange } from "./date-range";
 export { resolveDateRange } from "./date-range";
@@ -13,6 +13,7 @@ export const MAX_PRICE_FILTER_LIMIT = 500;
 export const MAX_RADIUS_FILTER_LIMIT = 200;
 
 export type EventFilters = {
+  query?: string;
   dateFilter: DateFilter;
   customDate: string;
   radiusKm: number | null;
@@ -25,6 +26,7 @@ export type EventFilters = {
 };
 
 export type PublicFilterParams = {
+  query?: string;
   dateFilter?: DateFilter;
   customDate?: string;
   priceMode?: PriceFilterMode;
@@ -44,6 +46,7 @@ export function normalizeText(value: string) {
 export function parsePublicFilterParams(
   params: Record<string, string | string[] | undefined>
 ): PublicFilterParams {
+  const query = readParam(params.q)?.trim().slice(0, PUBLIC_EVENT_QUERY_MAX_LENGTH);
   const dateFilter = parseDateFilterParam(readParam(params.kiedy));
   const customDate = serializeCustomDateRangeParam(
     normalizeDateInput(readParam(params.dataOd)),
@@ -56,6 +59,7 @@ export function parsePublicFilterParams(
   const sortBy = sortParam === "date" || sortParam === "nearest" ? sortParam : undefined;
 
   return {
+    ...(query ? { query } : {}),
     ...(dateFilter ? { dateFilter } : {}),
     ...(customDate ? { customDate } : {}),
     ...(priceMode ? { priceMode } : {}),
@@ -90,7 +94,8 @@ export function filterEvents(events: EventItem[], filters: EventFilters, now = n
       const matchesCategory = filters.category === "Wszystkie" || event.category === filters.category;
       const matchesFree = !filters.isFree || isFreeEvent(event);
       const matchesPrice = matchesPriceFilter(event, priceMode, filters.maxPrice);
-      return matchesDate && matchesRadius && matchesCategory && matchesFree && matchesPrice;
+      return matchesDate && matchesRadius && matchesCategory && matchesFree && matchesPrice &&
+        (!filters.query || matchesPublicEventQuery(event, filters.query));
     })
     .sort((first, second) => comparePublicSearchItems(first.event, second.event, filters.sortBy, filters.location));
 }

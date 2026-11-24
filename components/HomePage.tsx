@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { List as ListIcon, Map as MapIcon, CalendarDays, Search, RotateCcw, ArrowRight } from "lucide-react";
+import { List as ListIcon, Map as MapIcon, Compass, Search, RotateCcw, ArrowRight, UserRound } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { PUBLIC_EVENTS_MAX_RESULTS, PUBLIC_EVENTS_PAGE_SIZE, type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type EventMapMarker, type KnownLocation, type PublicCategoryCount, type PublicEventSearchResult, getDefaultLocation, knownLocations } from "@/lib/events";
+import { PUBLIC_EVENTS_MAX_RESULTS, PUBLIC_EVENTS_PAGE_SIZE, type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type EventMapMarker, type KnownLocation, type PublicEventSearchResult, getDefaultLocation, knownLocations } from "@/lib/events";
 import {
   DEFAULT_MAX_PRICE,
   MAX_RADIUS_FILTER_LIMIT,
@@ -19,6 +19,8 @@ import CategoryIcon from "@/components/CategoryIcon";
 import MobileMapView from "@/components/MobileMapView";
 import EventDetailView from "@/components/EventDetailView";
 import FeaturedEvents from "@/components/FeaturedEvents";
+import EventCarousel from "@/components/EventCarousel";
+import { buildDiscoverySections, type DiscoverySection } from "@/lib/event-discovery";
 import EventVenueDeck from "@/components/EventVenueDeck";
 import { groupEventsByVenue } from "@/lib/event-groups";
 import EventCard from "@/components/EventCard";
@@ -26,8 +28,8 @@ import Sidebar from "@/components/Sidebar";
 import ValueProps from "@/components/ValueProps";
 import { toSlug, toPluralCategoryName, toPluralCategorySlug, formatInCity, buildSearchUrl, eventPath } from "@/lib/slugs";
 import { generateSeoText } from "@/lib/seo-texts";
-import { hasLocationCoordinates } from "@/lib/event-search";
-import { restorePublicWorkspaceSearch } from "@/lib/public-workspace-history";
+import { hasLocationCoordinates, PUBLIC_EVENT_QUERY_MAX_LENGTH } from "@/lib/event-search";
+import { WORKSPACE_RETURN_STORAGE_KEY, restorePublicWorkspaceSearch } from "@/lib/public-workspace-history";
 import { useMobileWorkspaceAccessibility } from "@/components/useMobileWorkspaceAccessibility";
 
 type HomePageProps = {
@@ -60,11 +62,13 @@ type MobileWorkspaceHistory = {
   eventId?: string;
   workspaceUrl: string;
   originView?: "list" | "map";
+  destination?: "discover" | "results";
+  scroll?: { discover: number; results: number };
 };
 
 export default function HomePage({
   initialEvents,
-  initialFeaturedEvents = [],
+  initialFeaturedEvents,
   initialEventSearch,
   categoryOptions,
   initialLocation,
@@ -74,17 +78,15 @@ export default function HomePage({
   activeCityLocations = []
 }: HomePageProps) {
   const [viewMode, setViewMode] = useState<MobileView>("list");
+  const [listDestination, setListDestination] = useState<"discover" | "results">("discover");
   const [hasOpenedMap, setHasOpenedMap] = useState(false);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [openedEventId, setOpenedEventId] = useState<string | null>(null);
   const [events, setEvents] = useState(initialEvents);
-  const [recommendedPool, setRecommendedPool] = useState(initialFeaturedEvents);
+  const [recommendedPool, setRecommendedPool] = useState(initialFeaturedEvents ?? []);
   const [mapEvents, setMapEvents] = useState<EventMapMarker[] | null>(null);
   const [selectedMapEvent, setSelectedMapEvent] = useState<EventItem | null>(null);
   const [selectedMapEventLoading, setSelectedMapEventLoading] = useState(false);
-  const [categoryCounts, setCategoryCounts] = useState<PublicCategoryCount[]>(() => buildCategoryCounts(initialEvents, categoryOptions));
-  const [categoryCountsLoading, setCategoryCountsLoading] = useState(true);
-  const [categoryCountsError, setCategoryCountsError] = useState<string | null>(null);
   const [eventSearch, setEventSearch] = useState<PublicEventSearchResult>(
     initialEventSearch ?? {
       events: initialEvents,
@@ -100,13 +102,15 @@ export default function HomePage({
   const [eventsLoadingMore, setEventsLoadingMore] = useState(false);
   const [eventsError, setEventsError] = useState<string | null>(null);
   const [failedEventsPage, setFailedEventsPage] = useState(1);
+  const [focusedMapEventId, setFocusedMapEventId] = useState<string>();
   const [markersLoading, setMarkersLoading] = useState(false);
   const [markersError, setMarkersError] = useState<string | null>(null);
   const [sidebarMapRequested, setSidebarMapRequested] = useState(false);
   const [historySearchRevision, setHistorySearchRevision] = useState(0);
   const homePageRef = useRef<HTMLElement | null>(null);
   const mobileEventViewRef = useRef<HTMLElement | null>(null);
-  const listScrollPositionRef = useRef(0);
+  const listScrollPositionRef = useRef({ discover: 0, results: 0 });
+  const [advancedRequest, setAdvancedRequest] = useState(0);
   const workspaceUrlRef = useRef("");
   const eventOriginViewRef = useRef<"list" | "map">("list");
   const pointerStartRef = useRef<{
@@ -127,12 +131,14 @@ export default function HomePage({
   const suppressClickRef = useRef(false);
   const searchRequestRef = useRef(0);
   const markerRequestRef = useRef(0);
-  const categoryCountsRequestRef = useRef(0);
   const mapEventRequestRef = useRef(0);
   const historyRestoreRequestRef = useRef(0);
-  const hasSkippedInitialSearchRef = useRef(false);
+  const eventsAbortRef = useRef<AbortController | null>(null);
+  const markersAbortRef = useRef<AbortController | null>(null);
 
   // Filter state
+  const [queryInput, setQueryInput] = useState(initialFilters?.query ?? "");
+  const [searchQuery, setSearchQuery] = useState(initialFilters?.query ?? "");
   const [dateFilter, setDateFilter] = useState<DateFilter>(
     initialFilters?.dateFilter ?? initialDateFilter ?? "all"
   );
@@ -170,6 +176,34 @@ export default function HomePage({
   const activeLocationPhrase = activeLocation
     ? `${getLocationPhrase(activeLocationLabel ?? activeLocation.label)}${effectiveRadius != null ? ` i okolicy · ${radiusKm} km` : ""}`
     : undefined;
+
+  useEffect(() => {
+    const nextQuery = queryInput.trim();
+    if (nextQuery === searchQuery) return;
+    const timeoutId = window.setTimeout(() => setSearchQuery(nextQuery), nextQuery ? 300 : 0);
+    return () => window.clearTimeout(timeoutId);
+  }, [queryInput, searchQuery]);
+
+  useEffect(() => {
+    if (!window.matchMedia("(max-width: 760px)").matches) return;
+    const stored = (window.history.state as { eventMapWorkspace?: MobileWorkspaceHistory } | null)?.eventMapWorkspace;
+    const { pathname, search, hash } = window.location;
+    if (stored?.scroll) listScrollPositionRef.current = stored.scroll;
+    if (hash === "#odkryj" || hash === "#events-list" || hash === "#mapa") {
+      try {
+        const saved = JSON.parse(window.sessionStorage.getItem(WORKSPACE_RETURN_STORAGE_KEY) ?? "null") as { url: string; scroll: MobileWorkspaceHistory["scroll"] } | null;
+        if (saved?.url === pathname + search && saved.scroll) listScrollPositionRef.current = saved.scroll;
+      } catch { /* Session storage is optional. */ }
+    }
+    const destination = hash === "#events-list" ? "results" : hash === "#odkryj" ? "discover" : stored?.destination;
+    if (destination) setListDestination(destination);
+    if (stored?.view === "map" && hash !== "#events-list" && hash !== "#odkryj") {
+      setHasOpenedMap(true);
+      setViewMode("map");
+    } else if (destination && (stored?.scroll || hash === "#events-list" || hash === "#odkryj")) {
+      window.requestAnimationFrame(() => window.scrollTo({ top: listScrollPositionRef.current[destination], behavior: "instant" }));
+    }
+  }, []);
 
   // Visible copy follows the live filters, not only the route used for the first render.
   const pageTitle = useMemo(() => {
@@ -221,6 +255,7 @@ export default function HomePage({
   const filteredEvents = useMemo(
     () => {
       const results = filterEvents(events, {
+        query: searchQuery,
         dateFilter,
         customDate,
         radiusKm: effectiveRadius,
@@ -232,12 +267,13 @@ export default function HomePage({
       });
       return isAllPoland ? results.map((item) => ({ ...item, distanceKm: Number.POSITIVE_INFINITY })) : results;
     },
-    [events, dateFilter, customDate, effectiveRadius, isAllPoland, category, location, priceMode, maxPrice, effectiveSort]
+    [events, searchQuery, dateFilter, customDate, effectiveRadius, isAllPoland, category, location, priceMode, maxPrice, effectiveSort]
   );
 
   // Featured events
   const featuredEvents = useMemo(
     () => filterEvents([...new Map([...recommendedPool, ...events].map((event) => [event.id, event])).values()], {
+      query: searchQuery,
       dateFilter,
       customDate,
       radiusKm: effectiveRadius,
@@ -247,14 +283,22 @@ export default function HomePage({
       maxPrice
     }).sort((a, b) => Number(b.event.isFeatured) - Number(a.event.isFeatured)).slice(0, 8)
       .map((item) => isAllPoland ? { ...item, distanceKm: Number.POSITIVE_INFINITY } : item),
-    [events, recommendedPool, dateFilter, customDate, category, location, isAllPoland, effectiveRadius, priceMode, maxPrice]
+    [events, recommendedPool, searchQuery, dateFilter, customDate, category, location, isAllPoland, effectiveRadius, priceMode, maxPrice]
   );
 
   const visibleEvents = filteredEvents;
   const venueGroups = useMemo(() => groupEventsByVenue(visibleEvents), [visibleEvents]);
+  const discoverySections = useMemo(
+    () => buildDiscoverySections(filteredEvents, {
+      dateFilter,
+      category,
+      priceMode,
+      locationLabel: activeLocationLabel,
+      shownEventIds: featuredEvents.map(({ event }) => event.id)
+    }),
+    [filteredEvents, featuredEvents, dateFilter, category, priceMode, activeLocationLabel]
+  );
   const shownEventsCount = Math.min(eventSearch.shownCount, eventSearch.maxResults);
-  const cappedTotalCount = Math.min(eventSearch.totalCount, eventSearch.maxResults);
-  const mapPointsCount = mapEvents?.length;
   const canLoadMoreEvents = !eventsLoading && eventSearch.hasMore && shownEventsCount < eventSearch.maxResults;
   const eventById = useMemo(
     () => new Map([...recommendedPool, ...events].map((event) => [event.id, event])),
@@ -279,6 +323,7 @@ export default function HomePage({
       !mapEvents.some((event) => event.id === selectedEventId)
     ) {
       ++mapEventRequestRef.current;
+      setFocusedMapEventId(undefined);
       setSelectedEventId(null);
       setSelectedMapEvent(null);
       setSelectedMapEventLoading(false);
@@ -372,6 +417,29 @@ export default function HomePage({
     setLocationStatus("Pokazuję wydarzenia z całej Polski.");
   }
 
+  function selectDiscovery(section: DiscoverySection) {
+    if (section.filters?.dateFilter) {
+      setDateFilter(section.filters.dateFilter);
+      setCustomDate("");
+    }
+    if (section.filters?.category) {
+      const slug = toPluralCategorySlug(toSlug(section.filters.category));
+      const option = categoryOptions.find((item) => toPluralCategorySlug(item.slug) === slug);
+      setCategory(option?.name ?? section.filters.category);
+    }
+    if (section.filters?.priceMode) setPriceMode(section.filters.priceMode);
+    showResults();
+  }
+
+  function changeQuery(value: string) {
+    setQueryInput(value.slice(0, PUBLIC_EVENT_QUERY_MAX_LENGTH));
+  }
+
+  function showSearchResults() {
+    setSearchQuery(queryInput.trim());
+    showResults();
+  }
+
   // Combine hardcoded known cities and database active city slugs
   const allKnownSlugs = useMemo(() => {
     const hardcoded = knownLocations.flatMap(loc => loc.aliases);
@@ -415,9 +483,7 @@ export default function HomePage({
     return Boolean(loc.slug && allKnownSlugs.includes(loc.slug));
   }, [allKnownSlugs]);
 
-  /**
-   * "Znajdź" button handler — builds a URL from current filter state and navigates.
-   */
+  // The URL follows the live filters and is reused by the mobile workspace.
   const currentSearchUrl = useCallback(() => {
     // Resolve category slug (or undefined if "Wszystkie")
     const catSlug = category !== "Wszystkie"
@@ -442,6 +508,7 @@ export default function HomePage({
     // If isAllPoland and no category → stay on home, just scroll
 
     const url = buildSearchUrl({
+      query: searchQuery,
       categorySlug: catSlug,
       citySlug,
       geoLocation,
@@ -453,13 +520,14 @@ export default function HomePage({
       sortBy: effectiveSort
     });
     return url;
-  }, [category, location, isAllPoland, radiusKm, isKnownCity, dateFilter, customDate, priceMode, maxPrice, effectiveRadius, effectiveSort]);
+  }, [searchQuery, category, location, isAllPoland, radiusKm, isKnownCity, dateFilter, customDate, priceMode, maxPrice, effectiveRadius, effectiveSort]);
 
   const currentEventsApiParams = useCallback((page: number) => {
     const params = new URLSearchParams({
       page: String(page),
       pageSize: String(PUBLIC_EVENTS_PAGE_SIZE)
     });
+    if (searchQuery) params.set("q", searchQuery);
 
     if (category !== "Wszystkie") {
       params.set("categorySlug", toPluralCategorySlug(toSlug(category)));
@@ -490,26 +558,31 @@ export default function HomePage({
     }
 
     return params;
-  }, [category, customDate, dateFilter, isAllPoland, isKnownCity, location, maxPrice, priceMode, effectiveRadius, effectiveSort]);
-
-  const currentMarkerApiParams = useCallback(() => {
-    const params = currentEventsApiParams(1);
-    params.delete("page");
-    params.delete("pageSize");
-    return params;
-  }, [currentEventsApiParams]);
+  }, [searchQuery, category, customDate, dateFilter, isAllPoland, isKnownCity, location, maxPrice, priceMode, effectiveRadius, effectiveSort]);
 
   const eventsSearchKey = useMemo(
     () => currentEventsApiParams(1).toString(),
     [currentEventsApiParams]
   );
+  const markerSearchKey = useMemo(() => {
+    const params = new URLSearchParams(eventsSearchKey);
+    params.delete("page");
+    params.delete("pageSize");
+    params.delete("sort");
+    return params.toString();
+  }, [eventsSearchKey]);
+  const initialMarkerSearchKey = useRef(markerSearchKey);
+  const lastSearchIdentity = useRef(`0:${eventsSearchKey}`);
 
   useEffect(() => {
+    if (initialFeaturedEvents && markerSearchKey === initialMarkerSearchKey.current) {
+      setRecommendedPool(initialFeaturedEvents);
+      return;
+    }
     const controller = new AbortController();
-    const params = new URLSearchParams(eventsSearchKey);
+    const params = new URLSearchParams(markerSearchKey);
     params.set("featured", "1");
     params.set("pageSize", "8");
-    setRecommendedPool([]);
     void fetch(`/api/events/search?${params}`, { signal: controller.signal })
       .then(async (response) => {
         if (!response.ok) throw new Error("Featured search failed");
@@ -520,20 +593,23 @@ export default function HomePage({
         if (!controller.signal.aborted) console.error("[home] Failed to load featured events", error);
       });
     return () => controller.abort();
-  }, [eventsSearchKey]);
+  }, [initialFeaturedEvents, markerSearchKey]);
 
   const loadEventsPage = useCallback(async (page: number, mode: "replace" | "append") => {
-    const requestId = searchRequestRef.current + 1;
-    searchRequestRef.current = requestId;
+    const requestId = ++searchRequestRef.current;
+    eventsAbortRef.current?.abort();
+    const controller = new AbortController();
+    eventsAbortRef.current = controller;
     setEventsError(null);
     if (mode === "append") setEventsLoadingMore(true);
     else {
       setEventsLoading(true);
+      setEventsLoadingMore(false);
       setEvents([]);
     }
 
     try {
-      const response = await fetch(`/api/events/search?${currentEventsApiParams(page).toString()}`);
+      const response = await fetch(`/api/events/search?${currentEventsApiParams(page).toString()}`, { signal: controller.signal });
       if (!response.ok) throw new Error("Events search request failed");
       const result = (await response.json()) as PublicEventSearchResult;
       if (searchRequestRef.current !== requestId) return;
@@ -546,6 +622,7 @@ export default function HomePage({
         return Array.from(byId.values());
       });
     } catch (error) {
+      if (controller.signal.aborted) return;
       console.error("[home] Failed to load filtered events", error);
       if (searchRequestRef.current === requestId) {
         setFailedEventsPage(page);
@@ -560,46 +637,28 @@ export default function HomePage({
   }, [currentEventsApiParams]);
 
   const loadMapMarkers = useCallback(async () => {
-    const requestId = markerRequestRef.current + 1;
-    markerRequestRef.current = requestId;
+    const requestId = ++markerRequestRef.current;
+    markersAbortRef.current?.abort();
+    const controller = new AbortController();
+    markersAbortRef.current = controller;
     setMarkersLoading(true);
     setMarkersError(null);
     setMapEvents(null);
 
     try {
-      const response = await fetch(`/api/events/markers?${currentMarkerApiParams().toString()}`);
+      const response = await fetch(`/api/events/markers?${markerSearchKey}`, { signal: controller.signal });
       if (!response.ok) throw new Error("Event markers request failed");
       const result = (await response.json()) as { markers: EventMapMarker[] };
       if (markerRequestRef.current !== requestId) return;
       setMapEvents(result.markers);
     } catch (error) {
+      if (controller.signal.aborted) return;
       console.error("[home] Failed to load event markers", error);
       if (markerRequestRef.current === requestId) setMarkersError("Nie udało się pobrać punktów na mapę.");
     } finally {
       if (markerRequestRef.current === requestId) setMarkersLoading(false);
     }
-  }, [currentMarkerApiParams]);
-
-  const loadCategoryCounts = useCallback(async () => {
-    const requestId = categoryCountsRequestRef.current + 1;
-    categoryCountsRequestRef.current = requestId;
-    setCategoryCounts([]);
-    setCategoryCountsLoading(true);
-    setCategoryCountsError(null);
-
-    try {
-      const response = await fetch(`/api/events/category-counts?${currentMarkerApiParams().toString()}`);
-      if (!response.ok) throw new Error("Event category counts request failed");
-      const result = (await response.json()) as { categoryCounts: PublicCategoryCount[] };
-      if (categoryCountsRequestRef.current !== requestId) return;
-      setCategoryCounts(result.categoryCounts);
-    } catch (error) {
-      console.error("[home] Failed to load category counts", error);
-      if (categoryCountsRequestRef.current === requestId) setCategoryCountsError("Nie udało się policzyć kategorii dla aktualnych filtrów.");
-    } finally {
-      if (categoryCountsRequestRef.current === requestId) setCategoryCountsLoading(false);
-    }
-  }, [currentMarkerApiParams]);
+  }, [markerSearchKey]);
 
   const loadMapEventDetail = useCallback(async (eventId: string) => {
     const requestId = ++mapEventRequestRef.current;
@@ -629,6 +688,18 @@ export default function HomePage({
     }
   }, [eventById]);
 
+  const rememberMobileScroll = useCallback(() => {
+    if (viewMode === "list" && window.matchMedia("(max-width: 760px)").matches) {
+      listScrollPositionRef.current[listDestination] = window.scrollY;
+    }
+  }, [listDestination, viewMode]);
+
+  const restoreMobileScroll = useCallback((destination: "discover" | "results") => {
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: listScrollPositionRef.current[destination], behavior: "instant" });
+    });
+  }, []);
+
   useEffect(() => {
     async function handlePopState(popEvent: PopStateEvent) {
       const requestId = ++historyRestoreRequestRef.current;
@@ -647,7 +718,6 @@ export default function HomePage({
         // Reject outstanding results from the workspace being left immediately.
         ++searchRequestRef.current;
         ++markerRequestRef.current;
-        ++categoryCountsRequestRef.current;
         ++mapEventRequestRef.current;
         setHistorySearchRevision(revision => revision + 1);
         setCategory(restored.category);
@@ -658,6 +728,8 @@ export default function HomePage({
         setRadiusKm(restored.radiusKm);
         setDateFilter(restored.dateFilter);
         setCustomDate(restored.customDate);
+        setQueryInput(restored.query ?? "");
+        setSearchQuery(restored.query ?? "");
         setPriceMode(restored.priceMode);
         setMaxPrice(restored.maxPrice);
         setSortBy(restored.sortBy);
@@ -666,6 +738,9 @@ export default function HomePage({
           : `Szukam wydarzeń w miejscowości: ${restored.location.label}.`);
       }
       workspaceUrlRef.current = historyState.workspaceUrl;
+      if (historyState.scroll) listScrollPositionRef.current = { ...historyState.scroll };
+      const restoredDestination = historyState.destination ?? "discover";
+      setListDestination(restoredDestination);
       if (historyState.view === "event" && historyState.eventId) {
         // Preserve the canonical event URL while its detail is being restored.
         setViewMode("event");
@@ -689,14 +764,17 @@ export default function HomePage({
       if (restoredEventId) setSelectedEventId(restoredEventId);
       if (historyState.view === "map") setHasOpenedMap(true);
       setViewMode(historyState.view === "map" ? "map" : "list");
+      if (historyState.view === "list" && window.matchMedia("(max-width: 760px)").matches) restoreMobileScroll(restoredDestination);
     }
     window.addEventListener("popstate", handlePopState);
     return () => { window.removeEventListener("popstate", handlePopState); };
-  }, [categoryOptions, currentSearchUrl, eventById, loadMapEventDetail, locationBySlug]);
+  }, [categoryOptions, currentSearchUrl, eventById, loadMapEventDetail, locationBySlug, restoreMobileScroll]);
 
   useEffect(() => () => {
     ++historyRestoreRequestRef.current;
     ++mapEventRequestRef.current;
+    eventsAbortRef.current?.abort();
+    markersAbortRef.current?.abort();
   }, []);
 
   useEffect(() => {
@@ -710,24 +788,22 @@ export default function HomePage({
         eventMapWorkspace: {
           view: viewMode,
           eventId: openedEventId ?? undefined,
-          workspaceUrl: url
+          workspaceUrl: url,
+          destination: listDestination,
+          scroll: { ...listScrollPositionRef.current }
         } satisfies MobileWorkspaceHistory
       },
       "",
       url + window.location.hash
     );
-  }, [currentSearchUrl, openedEventId, viewMode]);
+  }, [currentSearchUrl, listDestination, openedEventId, viewMode]);
 
   useEffect(() => {
-    if (!hasSkippedInitialSearchRef.current) {
-      hasSkippedInitialSearchRef.current = true;
-      void loadCategoryCounts();
-      return;
-    }
-
+    const identity = `${historySearchRevision}:${eventsSearchKey}`;
+    if (lastSearchIdentity.current === identity) return;
+    lastSearchIdentity.current = identity;
     void loadEventsPage(1, "replace");
-    void loadCategoryCounts();
-  }, [eventsSearchKey, historySearchRevision, loadCategoryCounts, loadEventsPage]);
+  }, [eventsSearchKey, historySearchRevision, loadEventsPage]);
 
   const requestSidebarMap = useCallback(() => setSidebarMapRequested(true), []);
   const shouldLoadMarkers = sidebarMapRequested || hasOpenedMap;
@@ -735,34 +811,21 @@ export default function HomePage({
     if (shouldLoadMarkers) void loadMapMarkers();
   }, [shouldLoadMarkers, historySearchRevision, loadMapMarkers]);
 
-  const handleFindSubmit = useCallback(() => {
-    const url = currentSearchUrl();
-    workspaceUrlRef.current = url;
+  const pushWorkspaceHistory = useCallback((view: "list" | "map", destination: "discover" | "results") => {
+    const workspaceUrl = currentSearchUrl();
+    const state = window.history.state;
+    if (state?.eventMapWorkspace) {
+      window.history.replaceState({ ...state, eventMapWorkspace: { ...state.eventMapWorkspace, scroll: { ...listScrollPositionRef.current } } }, "");
+    }
     window.history.pushState(
       {
-        ...window.history.state,
-        eventMapWorkspace: {
-          view: "list",
-          eventId: openedEventId ?? undefined,
-          workspaceUrl: url
-        } satisfies MobileWorkspaceHistory
-      },
-      "",
-      url
-    );
-    setViewMode("list");
-    document.getElementById("events-list")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, [currentSearchUrl, openedEventId]);
-
-  const pushWorkspaceHistory = useCallback((view: "list" | "map") => {
-    const workspaceUrl = workspaceUrlRef.current || currentSearchUrl();
-    window.history.pushState(
-      {
-        ...window.history.state,
+        ...state,
         eventMapWorkspace: {
           view,
           eventId: openedEventId ?? undefined,
-          workspaceUrl
+          workspaceUrl,
+          destination,
+          scroll: { ...listScrollPositionRef.current }
         } satisfies MobileWorkspaceHistory
       },
       "",
@@ -771,43 +834,80 @@ export default function HomePage({
   }, [currentSearchUrl, openedEventId]);
 
   const selectMapEvent = useCallback((eventId: string) => {
+    setFocusedMapEventId(undefined);
     setSelectedEventId(eventId);
     void loadMapEventDetail(eventId);
   }, [loadMapEventDetail]);
 
   const clearMapSelection = useCallback(() => {
     ++mapEventRequestRef.current;
+    setFocusedMapEventId(undefined);
     setSelectedEventId(null);
     setSelectedMapEvent(null);
     setSelectedMapEventLoading(false);
   }, []);
 
-  const showMobileMap = useCallback((eventId?: string) => {
-    listScrollPositionRef.current = window.scrollY;
-    if (eventId) selectMapEvent(eventId);
-    if (viewMode === "event") pushWorkspaceHistory("map");
+  const showMobileMap = useCallback((eventId?: string, fromHash = false) => {
+    if (eventId) {
+      selectMapEvent(eventId);
+      setFocusedMapEventId(eventId);
+    }
+    if (!window.matchMedia("(max-width: 760px)").matches) {
+      setSidebarMapRequested(true);
+      document.getElementById("desktop-map")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      return;
+    }
+    if (viewMode === "map") return;
+    rememberMobileScroll();
+    if (!fromHash) pushWorkspaceHistory("map", listDestination);
     setHasOpenedMap(true);
-    window.requestAnimationFrame(() => setViewMode("map"));
-  }, [pushWorkspaceHistory, selectMapEvent, viewMode]);
+    setViewMode("map");
+  }, [listDestination, pushWorkspaceHistory, rememberMobileScroll, selectMapEvent, viewMode]);
+
+  const showMobileList = useCallback((destination = listDestination, fromStart = false) => {
+    if (viewMode !== "list" || destination !== listDestination) {
+      rememberMobileScroll();
+      if (fromStart) listScrollPositionRef.current[destination] = 0;
+      pushWorkspaceHistory("list", destination);
+      setListDestination(destination);
+      setViewMode("list");
+      restoreMobileScroll(destination);
+    } else if (fromStart) {
+      listScrollPositionRef.current[destination] = 0;
+      restoreMobileScroll(destination);
+    }
+  }, [listDestination, pushWorkspaceHistory, rememberMobileScroll, restoreMobileScroll, viewMode]);
 
   useEffect(() => {
     function navigateToMap() {
       if (window.location.hash !== "#mapa") return;
-      if (window.matchMedia("(max-width: 760px)").matches) showMobileMap();
+      if (window.matchMedia("(max-width: 760px)").matches) showMobileMap(undefined, true);
       else document.getElementById("desktop-map")?.scrollIntoView({ block: "start" });
+    }
+    function openMap() { showMobileMap(); }
+    function openDiscover() {
+      if (window.matchMedia("(max-width: 760px)").matches) showMobileList("discover");
+      else window.scrollTo({ top: 0, behavior: "smooth" });
     }
     navigateToMap();
     window.addEventListener("hashchange", navigateToMap);
-    return () => window.removeEventListener("hashchange", navigateToMap);
-  }, [showMobileMap]);
+    window.addEventListener("eventmap:show-map", openMap);
+    window.addEventListener("eventmap:show-discover", openDiscover);
+    return () => {
+      window.removeEventListener("hashchange", navigateToMap);
+      window.removeEventListener("eventmap:show-map", openMap);
+      window.removeEventListener("eventmap:show-discover", openDiscover);
+    };
+  }, [showMobileList, showMobileMap]);
 
-  const showMobileList = useCallback(() => {
-    if (viewMode === "event") pushWorkspaceHistory("list");
-    setViewMode("list");
-    window.requestAnimationFrame(() => {
-      window.scrollTo({ top: listScrollPositionRef.current, behavior: "auto" });
-    });
-  }, [pushWorkspaceHistory, viewMode]);
+  function showResults() {
+    if (window.matchMedia("(max-width: 760px)").matches) showMobileList("results", true);
+    else scrollToResults();
+  }
+
+  function showMapFilters() {
+    setAdvancedRequest((request) => request + 1);
+  }
 
   const openMobileEvent = useCallback((eventId: string) => {
     const event = eventById.get(eventId) ?? (selectedMapEvent?.id === eventId ? selectedMapEvent : null);
@@ -816,12 +916,15 @@ export default function HomePage({
     const workspaceUrl = workspaceUrlRef.current || currentSearchUrl();
     if (viewMode !== "event") {
       eventOriginViewRef.current = viewMode === "map" ? "map" : "list";
-      if (viewMode === "list") listScrollPositionRef.current = window.scrollY;
+      rememberMobileScroll();
     }
     workspaceUrlRef.current = workspaceUrl;
+    const state = window.history.state;
+    if (state?.eventMapWorkspace && viewMode !== "event") {
+      window.history.replaceState({ ...state, eventMapWorkspace: { ...state.eventMapWorkspace, scroll: { ...listScrollPositionRef.current } } }, "");
+    }
     setSelectedEventId(eventId);
     setOpenedEventId(eventId);
-    setHasOpenedMap(true);
     setViewMode("event");
     window.history.pushState(
       {
@@ -830,18 +933,15 @@ export default function HomePage({
           view: "event",
           eventId,
           workspaceUrl,
-          originView: eventOriginViewRef.current
+          originView: eventOriginViewRef.current,
+          destination: listDestination,
+          scroll: { ...listScrollPositionRef.current }
         } satisfies MobileWorkspaceHistory
       },
       "",
       eventPath(event)
     );
-  }, [currentSearchUrl, eventById, selectedMapEvent, viewMode]);
-
-  const showOpenedEvent = useCallback(() => {
-    if (!openedEvent) return;
-    openMobileEvent(openedEvent.id);
-  }, [openMobileEvent, openedEvent]);
+  }, [currentSearchUrl, eventById, listDestination, rememberMobileScroll, selectedMapEvent, viewMode]);
 
   const closeMobileEvent = useCallback(() => {
     const workspaceUrl = workspaceUrlRef.current || currentSearchUrl();
@@ -851,6 +951,8 @@ export default function HomePage({
         ...window.history.state,
         eventMapWorkspace: {
           view: returnView,
+          destination: listDestination,
+          scroll: { ...listScrollPositionRef.current },
           workspaceUrl
         } satisfies MobileWorkspaceHistory
       },
@@ -860,8 +962,8 @@ export default function HomePage({
     setOpenedEventId(null);
     if (returnView === "map") setHasOpenedMap(true);
     setViewMode(returnView);
-    if (returnView === "list") window.requestAnimationFrame(() => window.scrollTo({ top: listScrollPositionRef.current, behavior: "auto" }));
-  }, [currentSearchUrl]);
+    if (returnView === "list") restoreMobileScroll(listDestination);
+  }, [currentSearchUrl, listDestination, restoreMobileScroll]);
 
   useMobileWorkspaceAccessibility({ workspaceRef: homePageRef, view: viewMode, event: openedEvent, onCloseEvent: closeMobileEvent, onShowList: showMobileList });
 
@@ -983,7 +1085,7 @@ export default function HomePage({
         : "vertical";
 
       if (start.direction === "horizontal" && viewMode === "list") {
-        listScrollPositionRef.current = window.scrollY;
+        rememberMobileScroll();
         setHasOpenedMap(true);
       }
     }
@@ -1008,7 +1110,6 @@ export default function HomePage({
     page.style.setProperty("--mobile-list-drag-x", `${-position}px`);
     page.style.setProperty("--mobile-map-drag-x", `${viewportWidth - position}px`);
     page.style.setProperty("--mobile-event-drag-x", `${2 * viewportWidth - position}px`);
-    page.style.setProperty("--mobile-indicator-drag-offset", `${(position / viewportWidth) * 100}%`);
     page.classList.add("mobileViewDragging");
   }
 
@@ -1053,7 +1154,6 @@ export default function HomePage({
       page.style.removeProperty("--mobile-map-drag-x");
       page.style.removeProperty("--mobile-list-drag-x");
       page.style.removeProperty("--mobile-event-drag-x");
-      page.style.removeProperty("--mobile-indicator-drag-offset");
       dragSettleTimerRef.current = window.setTimeout(() => {
         page.classList.remove("mobileViewSettling");
         dragSettleTimerRef.current = null;
@@ -1071,7 +1171,7 @@ export default function HomePage({
   return (
     <main
       ref={homePageRef}
-      className={`homePage ${viewMode === "map" ? "mobileMapMode" : viewMode === "event" ? "mobileEventMode" : "mobileListMode"}`}
+      className={`homePage ${eventsError || (!filteredEvents.length && !featuredEvents.length) ? "discoveryNeedsResults" : ""} ${viewMode === "map" ? "mobileMapMode" : viewMode === "event" ? "mobileEventMode" : listDestination === "results" ? "mobileListMode mobileResultsMode" : "mobileListMode mobileDiscoverMode"}`}
       onPointerDownCapture={handlePointerStart}
       onPointerMoveCapture={handlePointerMove}
       onPointerUpCapture={handlePointerEnd}
@@ -1131,15 +1231,13 @@ export default function HomePage({
         </nav>
       )}
 
-      <HeroSection
-        onSelectCategory={(cat) => { setCategory(cat); setDateFilter("all"); setCustomDate(""); setPriceMode("all"); scrollToResults(); }}
-        onSelectFree={() => { setPriceMode("free"); setCategory("Wszystkie"); setDateFilter("all"); setCustomDate(""); scrollToResults(); }}
-        onSelectDateFilter={(f) => { setDateFilter(f); setCustomDate(""); setCategory("Wszystkie"); setPriceMode("all"); scrollToResults(); }}
-        title={pageTitle}
-        subtitle={pageSubtitle}
-      />
+      <HeroSection title={pageTitle} subtitle={pageSubtitle} />
 
       <SearchPanel
+        query={queryInput}
+        onQueryChange={changeQuery}
+        onShowResults={showSearchResults}
+        advancedRequest={advancedRequest}
         locationInput={locationInput}
         onLocationInputChange={setLocationInput}
         onLocationSelect={handleLocationSelect}
@@ -1165,17 +1263,32 @@ export default function HomePage({
         maxPrice={maxPrice}
         onPriceModeChange={setPriceMode}
         onMaxPriceChange={(price) => setMaxPrice(clampMaxPrice(price))}
-        onSubmit={handleFindSubmit}
       />
 
-
-
-      {/* Main 70/30 layout: events list + sidebar */}
+      {/* Discovery and the map share the main workspace. */}
       <div className="mainLayout">
         <div className="mainColumn">
 
-          {/* Recommended carousel leads the column, above the full results list */}
-          <FeaturedEvents events={featuredEvents} onOpenEvent={openMobileEvent} />
+          <div className="discoveryShelves">
+            <FeaturedEvents events={featuredEvents} onOpenEvent={openMobileEvent} onSeeAll={showResults} />
+
+            {eventsLoading && featuredEvents.length === 0 ? (
+              <div className="discoveryShelfSkeleton resultsSkeleton" aria-hidden="true">
+                <div className="resultSkeletonCard"><span /></div>
+              </div>
+            ) : null}
+
+            {!eventsLoading && discoverySections.map((section) => (
+              <EventCarousel
+                key={section.id}
+                events={section.events}
+                title={section.title}
+                onOpenEvent={openMobileEvent}
+                seeAllHref={section.href}
+                onSeeAll={section.filters ? () => selectDiscovery(section) : undefined}
+              />
+            ))}
+          </div>
 
           <section className="mainEvents" id="events-list" aria-label="Lista wydarzeń" aria-busy={eventsLoading || eventsLoadingMore}>
             <div className="mainEventsHeader">
@@ -1195,7 +1308,7 @@ export default function HomePage({
             </div>
             <p className="mainEventsCount" role="status">
               {eventsLoading ? "Szukam wydarzeń dla Twoich filtrów…" : eventsError ? "Wyniki wymagają ponownego pobrania." : eventSearch.totalCount > 0
-                ? `${formatNumber(eventSearch.totalCount)} wydarzeń · wyświetlono ${formatNumber(shownEventsCount)}${mapPointsCount != null ? ` · ${formatNumber(mapPointsCount)} na mapie` : ""}${eventSearch.totalCount > cappedTotalCount ? ` · limit tego widoku: ${formatNumber(cappedTotalCount)}` : ""}`
+                ? `${formatNumber(eventSearch.totalCount)} wydarzeń · wyświetlono ${formatNumber(shownEventsCount)}`
                 : "Brak wydarzeń dla wybranych filtrów."}
             </p>
             {eventsError ? (
@@ -1245,7 +1358,7 @@ export default function HomePage({
                 <h3>Jeszcze nie mamy takiego planu</h3>
                 <p>Oferta zależy od miejsca i terminu. Zmień filtry lub sprawdź wydarzenia w całej Polsce.</p>
                 <div className="emptyStateActions">
-                  <button type="button" className="resultsAction" onClick={() => { setCategory("Wszystkie"); setDateFilter("all"); setCustomDate(""); setPriceMode("all"); }}>Wyczyść datę, kategorię i cenę</button>
+                  <button type="button" className="resultsAction" onClick={() => { setQueryInput(""); setSearchQuery(""); setCategory("Wszystkie"); setDateFilter("all"); setCustomDate(""); setPriceMode("all"); }}>Wyczyść filtry</button>
                   {!isAllPoland ? <button type="button" className="resultsAction resultsActionPrimary" onClick={handleAllPolandSelect}>Sprawdź całą Polskę<ArrowRight size={16} aria-hidden="true" /></button> : null}
                 </div>
               </div>
@@ -1350,15 +1463,20 @@ export default function HomePage({
         </div>
 
         <Sidebar
-          events={filteredEvents}
           mapEvents={mapEvents ?? EMPTY_MAP_MARKERS}
+          upcomingEvents={eventsLoading ? [] : visibleEvents
+            .map(({ event }) => event)
+            .sort((first, second) => Date.parse(first.startDate) - Date.parse(second.startDate))
+            .slice(0, 3)}
           onRequestMap={requestSidebarMap}
-          categoryCounts={categoryCounts}
-          categoryCountsLoading={categoryCountsLoading}
-          categoryCountsError={categoryCountsError}
-          onRetryCategoryCounts={() => void loadCategoryCounts()}
-          onCategorySelect={setCategory}
-          selectedCategory={category}
+          selectedEventId={selectedEventId ?? undefined}
+          focusedEventId={focusedMapEventId}
+          onSelectEvent={selectMapEvent}
+          onShowResults={showResults}
+          onOpenEvent={openMobileEvent}
+          selectedEvent={selectedMapEvent}
+          selectedEventLoading={selectedMapEventLoading}
+          onClearSelection={clearMapSelection}
           location={location}
           isAllPoland={isAllPoland}
           markersLoading={markersLoading}
@@ -1371,6 +1489,11 @@ export default function HomePage({
 
       {hasOpenedMap ? (
         <MobileMapView
+          query={queryInput}
+          onQueryChange={changeQuery}
+          onShowFilters={showMapFilters}
+          onUseGPS={handleUseGPS}
+          locationStatus={locationStatus}
           active={viewMode === "map"}
           parked={viewMode === "event"}
           events={mapEvents ?? EMPTY_MAP_MARKERS}
@@ -1380,6 +1503,7 @@ export default function HomePage({
           selectedEvent={selectedMapEvent}
           selectedEventLoading={selectedMapEventLoading}
           selectedEventId={selectedEventId}
+          focusedEventId={focusedMapEventId}
           location={isAllPoland ? undefined : location}
           onSelectEvent={selectMapEvent}
           onClearSelection={clearMapSelection}
@@ -1409,16 +1533,19 @@ export default function HomePage({
         </section>
       ) : null}
 
-      <div className={`mobileViewSwitcher ${openedEventId ? "mobileViewSwitcherWithEvent" : ""}`} role="group" aria-label="Widok wyników">
-        <span
-          className="mobileViewSwitcherIndicator"
-          data-view={viewMode}
-          aria-hidden="true"
-        />
+      <nav className="mobileViewSwitcher" aria-label="Nawigacja mobilna">
         <button
           type="button"
-          onClick={showMobileList}
-          aria-pressed={viewMode === "list"}
+          onClick={() => showMobileList("discover")}
+          aria-pressed={viewMode === "list" && listDestination === "discover"}
+        >
+          <Compass size={20} strokeWidth={2.2} aria-hidden="true" />
+          Odkryj
+        </button>
+        <button
+          type="button"
+          onClick={() => showMobileList("results")}
+          aria-pressed={viewMode === "list" && listDestination === "results"}
         >
           <ListIcon size={20} strokeWidth={2.2} aria-hidden="true" />
           Lista
@@ -1431,24 +1558,27 @@ export default function HomePage({
           <MapIcon size={20} strokeWidth={2.2} aria-hidden="true" />
           Mapa
         </button>
-        {openedEventId ? (
-          <button
-            type="button"
-            onClick={showOpenedEvent}
-            aria-pressed={viewMode === "event"}
-          >
-            <CalendarDays size={20} strokeWidth={2.2} aria-hidden="true" />
-            Wydarzenie
-          </button>
-        ) : null}
-      </div>
+        <Link href="/account" onClick={() => {
+          rememberMobileScroll();
+          try {
+            window.sessionStorage.setItem(WORKSPACE_RETURN_STORAGE_KEY, JSON.stringify({ url: currentSearchUrl(), scroll: listScrollPositionRef.current }));
+          } catch { /* Session storage is optional. */ }
+          const state = window.history.state;
+          if (state?.eventMapWorkspace) {
+            window.history.replaceState({ ...state, eventMapWorkspace: { ...state.eventMapWorkspace, scroll: { ...listScrollPositionRef.current } } }, "");
+          }
+        }}>
+          <UserRound size={20} strokeWidth={2.2} aria-hidden="true" />
+          Profil
+        </Link>
+      </nav>
 
       <span className="srOnly" aria-live="polite">
         {viewMode === "map"
           ? "Widok mapy"
           : viewMode === "event"
             ? `Widok wydarzenia: ${openedEvent?.title ?? ""}`
-            : "Widok listy"}
+            : listDestination === "results" ? "Widok listy" : "Widok odkrywania"}
       </span>
     </main>
   );
@@ -1456,7 +1586,7 @@ export default function HomePage({
 
 function shouldIgnoreViewSwipe(target: EventTarget | null) {
   return target instanceof Element && Boolean(
-    target.closest("button, input, select, textarea, [role='button'], .eventCarousel, .eventVenueDeck, .mobileMapPreview, .maplibregl-control-container")
+    target.closest("button, input, select, textarea, dialog, [role='button'], .eventCarousel, .eventVenueDeck, .discoveryQuickCategories, .mobileMapPreview, .maplibregl-control-container")
   );
 }
 
@@ -1471,22 +1601,6 @@ function clampRadius(value: number) {
 
 function formatNumber(value: number) {
   return new Intl.NumberFormat("pl-PL").format(value);
-}
-
-function buildCategoryCounts(events: EventItem[], categoryOptions: CategoryOption[]): PublicCategoryCount[] {
-  const counts = new Map<EventCategory, number>();
-  for (const event of events) {
-    counts.set(event.category, (counts.get(event.category) || 0) + 1);
-  }
-
-  return categoryOptions
-    .filter((item) => counts.has(item.name))
-    .map((item) => ({
-      category: item.name,
-      count: counts.get(item.name)!,
-      color: item.color
-    }))
-    .sort((a, b) => b.count - a.count);
 }
 
 function getPublicLocationLabel(label: string) {
