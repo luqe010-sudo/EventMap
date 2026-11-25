@@ -4,6 +4,7 @@ import { serializeJsonLd } from "@/lib/json-ld";
 import Link from "next/link";
 import EventCarousel from "./EventCarousel";
 import EventVisual from "./EventVisual";
+import CategoryIcon from "./CategoryIcon";
 import { CalendarDays, DollarSign, MapPin, Tag } from "lucide-react";
 import EventHeroCta, { EventSaveButton } from "@/components/EventDetailActions";
 import EventAnalyticsTracker, { TrackedEventLink } from "@/components/EventAnalyticsTracker";
@@ -223,6 +224,7 @@ export default function EventDetailView({
                 className="edCategoryBadge"
                 style={{ backgroundColor: event.categoryColor }}
               >
+                <CategoryIcon iconName={event.categoryRelation?.icon} size={16} />
                 {event.category}
               </span>
               <EventVisual event={event} variant="detail" decorative={false} loading="eager" imageClassName="edHeroImage" />

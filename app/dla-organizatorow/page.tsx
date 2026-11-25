@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 export default function OrganizerIntroduction() {
   return <main className="appShell legalPage">
     <section className="legalHero">
+      <p className="legalEyebrow">Dla organizatorów</p>
       <h1>Dodaj swoje wydarzenie</h1>
       <p>Organizujesz koncert, festyn, targi lub inne lokalne wydarzenie w Polsce? Zgłoś je, aby odbiorcy mogli znaleźć je na mapie i w kalendarzu.</p>
     </section>

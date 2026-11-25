@@ -38,7 +38,7 @@ export default function RegisterPage() {
         <section className="managementPanel loginPanel">
           <p className="eyebrow">MapaImprez.pl</p>
           <h1>Rejestracja</h1>
-          <div style={{ minHeight: "350px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div className="authLoading" role="status" aria-label="Ładowanie formularza rejestracji">
             <span className="locationPickerSpinner" />
           </div>
         </section>
@@ -75,16 +75,17 @@ export default function RegisterPage() {
       <section className="managementPanel loginPanel">
         <p className="eyebrow">MapaImprez.pl</p>
         <h1>Rejestracja</h1>
+        <p className="authOnboardingIntro">Zapisuj wydarzenia, do których chcesz wrócić. Dziel się tym, co organizujesz.</p>
 
         {error && (
-          <div className="formError" style={{ color: "#ef4444", marginBottom: "1rem", fontWeight: 500 }}>
+          <div className="formError" role="alert">
             {error}
           </div>
         )}
 
         <div className="managementForm">
           <label>
-            Typ konta (Rola)
+            Typ konta
             <select name="role" value={role} onChange={(e) => setRole(e.target.value)}>
               <option value="user">Chcę przeglądać wydarzenia (Widz)</option>
               <option value="organizer">Chcę zgłaszać wydarzenia (Organizator)</option>
@@ -174,9 +175,9 @@ export default function RegisterPage() {
           </button>
         </form>
 
-        <p style={{ marginTop: "1.5rem", textAlign: "center", fontSize: "0.9rem", color: "#64748b" }}>
+        <p className="authSwitchAccount">
           Masz już konto?{" "}
-          <Link href={`/login?next=${encodeURIComponent(next)}`} style={{ color: "#d95d39", fontWeight: 600, textDecoration: "underline" }}>
+          <Link href={`/login?next=${encodeURIComponent(next)}`}>
             Zaloguj się
           </Link>
         </p>

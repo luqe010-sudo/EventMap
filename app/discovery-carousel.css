@@ -1,125 +1,81 @@
-/* Discovery shelves share one photographic card and a smaller weekend layout. */
-.eventCarousel--discover .eventCarouselHeader {
-  gap: 10px;
-  min-height: 42px;
-  margin-bottom: 10px;
-}
-.eventCarousel--discover .eventCarouselHeader h2 {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-weight: 760;
-}
-.eventCarouselHeadingIcon { flex-shrink: 0; color: var(--brand); }
-.eventCarousel--discover .eventCarouselActions { gap: 5px; }
-.eventCarousel--discover .eventCarouselActions > :is(a, button) { gap: 6px; }
-.eventCarousel--discover .eventCarouselNav { order: -1; gap: 2px; }
-.eventCarousel--discover .eventCarouselNav button { border-color: transparent; background: none; }
-.eventCarousel--discover .eventCarouselTrack { align-items: stretch; gap: 12px; padding-bottom: 3px; }
+/* Photographic shelves follow the same glass, colour and spacing as the map. */
+.eventCarousel--discover { position: relative; }
+.eventCarousel--discover .eventCarouselHeader { align-items: center; gap: 12px; min-height: 34px; margin-bottom: 10px; }
+.eventCarousel--discover .eventCarouselHeader h2 { display: flex; align-items: center; gap: 10px; font-weight: 780; letter-spacing: -.035em; }
+.eventCarouselHeadingIcon { flex-shrink: 0; color: var(--brand); filter: drop-shadow(0 0 7px rgb(255 112 0 / .23)); }
+.eventCarousel--discover .eventCarouselHeader p { margin: 2px 0 0; color: var(--ink-secondary); }
+.eventCarousel--discover .eventCarouselActions { gap: 0; }
+.eventCarousel--discover .eventCarouselActions > :is(a, button) { gap: 8px; min-height: 34px; color: var(--brand); font-size: .82rem; font-weight: 650; }
+.eventCarouselLinkMobile { display: none; }
+.eventCarousel--discover .eventCarouselNav { display: flex; justify-content: space-between; position: absolute; z-index: 4; top: calc(50% + 10px); right: 7px; left: 7px; opacity: 0; pointer-events: none; transition: opacity .18s ease; }
+.eventCarousel--discover:hover .eventCarouselNav, .eventCarousel--discover:focus-within .eventCarouselNav { opacity: 1; }
+.eventCarousel--discover .eventCarouselNav button { width: 34px; height: 40px; border: 1px solid #61758e80; border-radius: 10px; background: #0a1726e6; box-shadow: 0 3px 10px #0005; color: #fff; pointer-events: auto; backdrop-filter: blur(8px); }
+.eventCarousel--discover .eventCarouselNav button:disabled { visibility: hidden; }
+.eventCarousel--discover .eventCarouselTrack { align-items: stretch; gap: 12px; padding: 1px 1px 3px; scroll-padding-inline: 1px; }
 .eventCarousel--discover .eventCarouselCard {
   --card-category-color: var(--rail-category);
-  min-width: 0;
-  max-width: none;
-  border: 1px solid var(--border-strong);
-  border-radius: 16px;
-  background: #101b28;
-  color: #f7f9fb;
-  box-shadow: 0 5px 17px rgb(4 9 16 / .3);
+  display: flex; flex-direction: column; min-width: 0; max-width: none;
+  border: 1px solid #62778a76; border-radius: 16px; background: #0b1722; color: #f8f9fc;
+  box-shadow: inset 0 1px 0 #d8e9ff0b, 0 6px 20px #020a1533;
+  transition: border-color .18s ease, box-shadow .18s ease;
 }
 .eventCarouselCard[data-category="koncerty"] { --card-category-color: #8e37d7; }
 .eventCarouselCard[data-category="targi"] { --card-category-color: #9b429d; }
 .eventCarouselCard[data-category="charytatywne"] { --card-category-color: #54834b; }
 .eventCarouselCard[data-category="kultura"] { --card-category-color: #9b47bb; }
 .eventCarouselCard[data-category="sport"] { --card-category-color: #087cca; }
-.eventCarouselCard[data-category="dozynki"] { --card-category-color: #b87516; }
-.eventCarousel--discover .eventCarouselCard:hover {
-  border-color: color-mix(in srgb, var(--card-category-color) 70%, #e8e9ff);
-}
-.eventCarousel--discover .eventCarouselCardLink {
-  position: relative;
-  color: inherit;
-}
-.eventCarousel--discover .eventCarouselImageWrap {
-  position: relative;
-  flex-shrink: 0;
-  overflow: visible;
-  aspect-ratio: auto;
-  background: #172639;
-}
+.eventCarouselCard[data-category="dozynki"] { --card-category-color: #d9930b; }
+.eventCarouselCard[data-category="festyny"] { --card-category-color: #bb8a08; }
+.eventCarouselCard[data-category="rodzinne"] { --card-category-color: #09a55b; }
+.eventCarousel--discover .eventCarouselCard:hover { border-color: color-mix(in srgb, var(--card-category-color) 42%, #a0b7d0); box-shadow: inset 0 1px 0 #d8e9ff12, 0 6px 24px #020a154d; }
+.eventCarousel--discover .eventCarouselCardLink { position: relative; flex: 1; min-height: inherit; height: auto; color: inherit; }
+.eventCarousel--discover .eventCarouselImageWrap { position: relative; flex-shrink: 0; overflow: visible; aspect-ratio: auto; background: #172639; }
 .eventCarousel--discover .eventCarouselImageWrap > .eventVisual { height: 100%; }
-.eventCarousel--discover .eventCarouselImageWrap :is(.eventVisualImage, .eventVisualBackdrop) {
-  object-fit: cover;
-  object-position: 50% 38%;
-}
-.eventCarousel--discover .eventCarouselImageWrap::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(180deg, transparent 35%, #0e1824 100%);
-}
+.eventCarousel--discover .eventCarouselImageWrap :is(.eventVisualImage, .eventVisualBackdrop) { object-fit: cover; object-position: 50% 38%; }
+.eventCarousel--discover .eventCarouselImageWrap::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, transparent 43%, #0b1722 100%); }
 .eventCarouselCoverCategory {
-  position: absolute;
-  z-index: 2;
-  top: 9px;
-  left: 9px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  max-width: calc(100% - 62px);
-  min-height: 27px;
-  padding: 4px 8px;
-  border: 1px solid color-mix(in srgb, var(--card-category-color) 80%, #fff 12%);
-  border-radius: 999px;
-  background: linear-gradient(120deg, color-mix(in srgb, var(--card-category-color) 76%, #081018), color-mix(in srgb, var(--card-category-color) 57%, #15162a));
-  box-shadow: 0 2px 10px color-mix(in srgb, var(--card-category-color) 50%, transparent);
-  color: #fff;
-  font-size: .67rem;
-  line-height: 1.2;
-  font-weight: 750;
-  text-transform: uppercase;
+  position: absolute; z-index: 2; top: 9px; left: 9px; display: inline-flex; align-items: center; gap: 6px;
+  max-width: calc(100% - 57px); min-height: 25px; padding: 4px 9px;
+  border: 1px solid color-mix(in srgb, var(--card-category-color) 70%, #fff 25%); border-radius: 999px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--card-category-color) 85%, #ffffff08), color-mix(in srgb, var(--card-category-color) 72%, #090e1a));
+  box-shadow: inset 0 1px 0 #ffffff20, 0 2px 10px #0002; backdrop-filter: blur(9px);
+  color: #fff; font-size: .66rem; line-height: 1.2; font-weight: 750; text-transform: uppercase;
 }
 .eventCarouselCoverCategory > span:first-child { display: flex; flex-shrink: 0; }
 .eventCarouselCoverCategory > span:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.eventCarousel--discover .eventVisualIllustrationNote { z-index: 2; top: 40px; right: auto; bottom: auto; left: 9px; padding: 2px 5px; font-size: .58rem; }
-.eventCarousel--discover .eventCarouselBody { position: relative; z-index: 2; gap: 5px; padding: 0 12px 12px; }
-.eventCarousel--discover .eventCarouselBody h3 { min-height: 0; font-weight: 760; line-height: 1.23; }
-.eventCarousel--discover :is(.eventCarouselDate, .eventCarouselLocation) { font-size: .775rem; line-height: 1.34; color: #e2e9f3; }
-.eventCarouselCardFooter { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; margin-top: auto; padding-top: 3px; }
-.eventCarouselTicketPrice { color: #f7f9fc; font-size: .86rem; font-weight: 760; line-height: 1.25; }
-.eventCarouselPriceFree { padding: 4px 9px; border-radius: 999px; background: #253448; font-size: .73rem; }
-.eventCarouselCardFooter .promotedBadge { margin-left: auto; font-size: .675rem; }
-.eventCarouselDistance { margin-left: auto; color: #d4dfed; font-size: .75rem; white-space: nowrap; }
-.eventCarousel--discover .eventCarouselSave {
-  z-index: 3;
-  top: 6px;
-  right: 6px;
-  width: 41px;
-  height: 41px;
-  border-color: #ffffff33;
-  background: #07111dda;
-  color: #fff;
-}
+.eventCarousel--discover .eventVisualIllustrationNote { z-index: 2; top: 39px; right: auto; bottom: auto; left: 10px; padding: 2px 5px; background: #08121c99; font-size: .6rem; }
+.eventCarousel--discover .eventCarouselBody { position: relative; z-index: 2; gap: 6px; padding: 0 12px 12px; }
+.eventCarousel--discover .eventCarouselBody h3 { min-height: 0; margin: 0 0 2px; color: #fff; font-weight: 780; line-height: 1.2; letter-spacing: -.025em; text-shadow: 0 2px 8px #0006; }
+.eventCarousel--discover :is(.eventCarouselDate, .eventCarouselLocation) { gap: 7px; font-size: .775rem; line-height: 1.35; color: #e2e8f1; }
+.eventCarousel--discover .eventCarouselDate { min-width: 0; }
+.eventCarouselDate > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.eventCarouselCardFooter { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 3px; }
+.eventCarouselTicketPrice { padding: 4px 9px; border-radius: 999px; background: linear-gradient(135deg, #2e3c4d, #233242); color: #f8faff; font-size: .76rem; font-weight: 760; line-height: 1.2; }
+.eventCarouselTicketPrice--range { padding-inline: 0; background: none; font-size: .84rem; }
+.eventCarouselCardFooter .promotedBadge { margin-left: auto; padding: 5px 9px; border: 1px solid #ff961a; border-radius: 999px; background: linear-gradient(180deg, #ff8600, #ff6500); color: #fff; font-size: .66rem; line-height: 1.2; box-shadow: inset 0 1px 0 #ffc36666, 0 2px 9px #ff650022; }
+.eventCarouselDistance { margin-left: auto; color: #d4dfed; font-size: .72rem; white-space: nowrap; }
+.eventCarousel--discover .eventCarouselSave { z-index: 3; top: 7px; right: 7px; width: 34px; height: 34px; padding: 0; border: 1px solid #92a8c12b; background: linear-gradient(145deg, #0d1b29f2, #050d16e6); box-shadow: inset 0 1px 0 #c6e1ff12, 0 3px 8px #0005; backdrop-filter: blur(8px); color: #f5f8ff; }
+/* Keep the visual circle small while retaining a 44px touch target. */
+.eventCarousel--discover .eventCarouselSave::before { content: ""; position: absolute; inset: -5px; border-radius: 50%; }
+.eventCarousel--discover .eventCarouselSave:hover { border-color: #a3b7d58c; background: #112536; }
 .eventCarousel--discover .eventCarouselSave.eventCardHFavActive { color: #ff8441; }
-.eventCarousel--featured .eventCarouselCard {
-  flex: 0 0 calc((100% - 24px) / 3);
-  min-height: 252px;
-  border-color: #64759678;
-}
+.eventCarousel--featured .eventCarouselCard { flex: 0 0 calc((100% - 24px) / 3); min-height: 240px; border-color: #7e8dab7d; }
 .eventCarousel--featured .eventCarouselCardLink { justify-content: flex-end; }
 .eventCarousel--featured .eventCarouselImageWrap { position: absolute; inset: 0; }
-.eventCarousel--featured .eventCarouselImageWrap::after {
-  background: linear-gradient(180deg, #08121c26 0%, transparent 30%, #09142128 42%, #091421da 67%, #0d1825 100%);
-}
-.eventCarousel--featured .eventCarouselBody { flex: 0 0 auto; gap: 5px; padding: 54px 14px 12px; }
-.eventCarousel--featured .eventCarouselBody h3 { font-size: 1.04rem; color: #fff; text-shadow: 0 1px 8px #000a; }
-.eventCarousel--compact .eventCarouselCard { flex: 0 0 calc((100% - 36px) / 4); }
-.eventCarousel--compact .eventCarouselImageWrap { height: 99px; }
-.eventCarousel--compact .eventCarouselBody { margin-top: -8px; }
-.eventCarousel--compact .eventCarouselBody h3 { font-size: .84rem; }
-.eventCarousel--compact .eventCarouselLocation { font-size: .73rem; }
-.eventCarousel--compact .eventCarouselSave { width: 36px; height: 36px; }
+.eventCarousel--featured .eventCarouselImageWrap::after { background: linear-gradient(180deg, #07121c12 0%, transparent 30%, #07121c24 43%, #091421c7 65%, #0b1722fa 100%); }
+.eventCarousel--featured .eventCarouselBody { flex: 0 0 auto; gap: 7px; padding: 58px 14px 12px; }
+.eventCarousel--featured .eventCarouselBody h3 { font-size: 1.02rem; }
+.eventCarousel--compact .eventCarouselCard { flex: 0 0 calc((100% - 36px) / 4); min-height: 174px; }
+.eventCarousel--compact .eventCarouselImageWrap { height: 88px; }
+.eventCarousel--compact .eventCarouselBody { gap: 4px; margin-top: -7px; padding: 0 10px 8px; }
+.eventCarousel--compact .eventCarouselBody h3 { min-height: 2.4em; font-size: .8rem; }
+.eventCarousel--compact .eventCarouselDate { gap: 5px; font-size: .69rem; }
+.eventCarousel--compact .eventCarouselDate svg { width: 12px; height: 12px; }
+.eventCarousel--compact .eventCarouselCardFooter { padding-top: 0; }
+.eventCarousel--compact .eventCarouselTicketPrice { padding: 3px 8px; font-size: .69rem; }
+.eventCarousel--compact .eventCarouselCoverCategory { top: 6px; left: 7px; min-height: 22px; gap: 4px; padding: 3px 7px; font-size: .58rem; }
+.eventCarousel--compact .eventCarouselCoverCategory svg { width: 13px; height: 13px; }
+.eventCarousel--compact .eventVisualIllustrationNote { top: 33px; left: 7px; font-size: .54rem; }
 .eventCarouselDots { display: none; }
 
 @media (min-width: 761px) and (max-width: 1050px) {
@@ -127,30 +83,41 @@
   .eventCarousel--compact .eventCarouselCard { flex-basis: calc((100% - 24px) / 3); }
 }
 @media (max-width: 760px) {
-  .eventCarousel--discover .eventCarouselHeader h2 { font-size: clamp(.93rem, 4.6vw, 1.22rem); }
-  .eventCarousel--discover .eventCarouselHeadingIcon { width: 22px; height: 22px; }
-  .eventCarousel--discover .eventCarouselActions > :is(a, button) { font-size: .76rem; }
+  .eventCarousel--discover .eventCarouselNav { display: none; }
+  .eventCarousel--discover .eventCarouselHeader { min-height: 35px; margin-bottom: 11px; gap: 6px; }
+  .eventCarousel--discover .eventCarouselHeader h2 { gap: 8px; font-size: clamp(1rem, 4.6vw, 1.35rem); }
+  .eventCarousel--discover .eventCarouselHeadingIcon { width: 24px; height: 24px; }
+  .eventCarousel--discover .eventCarouselActions > :is(a, button) { gap: 5px; font-size: .76rem; }
+  .eventCarouselLinkDesktop { display: none; }
+  .eventCarouselLinkMobile { display: inline; }
   .eventCarousel--featured .eventCarouselTrack { margin-right: -14px; padding-right: 14px; }
-  .eventCarousel--featured .eventCarouselCard { flex-basis: calc(100% - 25px); min-height: clamp(218px, 60vw, 287px); border-radius: 19px; }
-  .eventCarousel--featured .eventCarouselBody { padding: 58px 14px 14px; }
-  .eventCarousel--featured .eventCarouselBody h3 { font-size: clamp(1.15rem, 5.1vw, 1.65rem); }
-  .eventCarousel--featured .eventCarouselDate, .eventCarousel--featured .eventCarouselLocation { font-size: .85rem; }
-  .eventCarousel--featured .eventCarouselSave { width: 44px; height: 44px; top: 10px; right: 10px; }
-  .eventCarousel--featured .eventCarouselCoverCategory { min-height: 30px; top: 11px; left: 11px; font-size: .72rem; }
-  .eventCarousel--featured .eventVisualIllustrationNote { top: 45px; left: 11px; }
-  .eventCarousel--compact .eventCarouselCard { flex-basis: min(67%, 229px); }
-  .eventCarousel--compact .eventCarouselSave { width: 44px; height: 44px; }
+  .eventCarousel--featured .eventCarouselCard { flex-basis: calc(100% - 16px); min-height: clamp(218px, 56vw, 278px); border-radius: 19px; border-color: #8e83b5a6; }
+  .eventCarousel--featured .eventCarouselBody { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 8px; row-gap: 8px; padding: 62px 13px 13px; }
+  .eventCarousel--featured .eventCarouselBody h3 { grid-column: 1 / -1; margin-bottom: 1px; font-size: clamp(1.2rem, 5.55vw, 1.65rem); line-height: 1.16; letter-spacing: -.035em; }
+  .eventCarousel--featured .eventCarouselDate { grid-column: 1 / -1; }
+  .eventCarousel--featured .eventCarouselLocation { min-width: 0; }
+  .eventCarousel--featured :is(.eventCarouselDate, .eventCarouselLocation) { gap: 8px; font-size: .85rem; }
+  .eventCarousel--featured :is(.eventCarouselDate, .eventCarouselLocation) svg { width: 17px; height: 17px; }
+  .eventCarousel--featured .eventCarouselCardFooter { justify-content: flex-end; gap: 4px; padding-top: 0; }
+  .eventCarousel--featured .eventCarouselTicketPrice { max-width: 160px; padding: 5px 10px; font-size: .8rem; }
+  .eventCarousel--featured .eventCarouselTicketPrice--range { padding-inline: 0; }
+  .eventCarousel--featured .eventCarouselDistance { flex-basis: 100%; text-align: right; font-size: .65rem; }
+  .eventCarousel--featured .eventCarouselCard--promoted .eventCarouselLocation { grid-column: 1 / -1; }
+  .eventCarousel--featured .eventCarouselCard--promoted .eventCarouselCardFooter { grid-column: 1 / -1; justify-content: space-between; }
+  .eventCarousel--featured .eventCarouselSave { width: 36px; height: 36px; top: 11px; right: 11px; }
+  .eventCarousel--featured .eventCarouselSave::before { inset: -4px; }
+  .eventCarousel--featured .eventCarouselSave svg { width: 23px; height: 23px; }
+  .eventCarousel--featured .eventCarouselCoverCategory { min-height: 27px; top: 12px; left: 12px; padding: 5px 10px; font-size: .72rem; }
+  .eventCarousel--featured .eventCarouselCoverCategory svg { width: 17px; height: 17px; }
+  .eventCarousel--featured .eventVisualIllustrationNote { top: 45px; left: 12px; }
+  .eventCarousel--compact .eventCarouselCard { flex-basis: min(61%, 225px); min-height: 190px; }
+  .eventCarousel--compact .eventCarouselImageWrap { height: 108px; }
+  .eventCarousel--compact .eventCarouselBody h3 { font-size: .87rem; }
+  .eventCarousel--compact .eventCarouselDate { font-size: .75rem; }
+  .eventCarousel--compact .eventCarouselTicketPrice { font-size: .74rem; }
   .eventCarouselDots { display: flex; justify-content: center; margin: 1px auto 0; }
-  .eventCarouselDots button {
-    display: grid;
-    place-items: center;
-    width: min(11vw, 44px);
-    min-height: 40px;
-    padding: 0;
-    border: 0;
-    border-radius: 8px;
-    background: none;
-  }
-  .eventCarouselDots button::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #45546c; }
-  .eventCarouselDots button[aria-current="true"]::after { width: 10px; height: 10px; background: var(--brand); box-shadow: 0 0 11px #ff680076; }
+  .eventCarouselDots button { display: grid; place-items: center; width: 24px; min-height: 40px; padding: 0; border: 0; border-radius: 8px; background: none; cursor: pointer; }
+  .eventCarouselDots button::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, #475363, #303e50); box-shadow: inset 0 1px 0 #ffffff12; }
+  .eventCarouselDots button[aria-current="true"]::after { width: 10px; height: 10px; background: linear-gradient(180deg, #ff8b00, #ff6500); box-shadow: 0 0 10px #ff680046; }
 }
+@media (prefers-reduced-motion: reduce) { .eventCarousel--discover .eventCarouselCard { transition: none; } }

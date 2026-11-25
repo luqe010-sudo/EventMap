@@ -91,7 +91,7 @@ const EVENT_PIN_LAYOUT = {
   "icon-image": ["get", "pin"] as ExpressionSpecification,
   "icon-anchor": "bottom" as const,
   "icon-offset": PIN_TIP_OFFSET,
-  "icon-size": ["interpolate", ["linear"], ["zoom"], 4, .69, 6.5, .82, 12, 1] as ExpressionSpecification,
+  "icon-size": ["interpolate", ["linear"], ["zoom"], 4, .84, 6.5, .94, 12, 1.06] as ExpressionSpecification,
   "icon-allow-overlap": true,
   "icon-ignore-placement": true
 };
@@ -114,12 +114,13 @@ const MAP_LOCALE = {
 function discoveryMapPaint(layer: maplibregl.LayerSpecification): Record<string, unknown> {
   const name = `${layer.id} ${"source-layer" in layer ? layer["source-layer"] : ""}`.toLowerCase();
   // Poland glows teal with a neon border against a darker surrounding map.
-  if (layer.id === "eventmap-voivodeship-fill") return { "fill-color": "#0e7c82", "fill-opacity": .4 };
-  if (layer.id === "eventmap-voivodeship-boundaries") return { "line-color": "#3fd8da", "line-opacity": .42, "line-width": 1 };
+  if (layer.id === "eventmap-voivodeship-fill") return { "fill-color": "#07606d", "fill-opacity": .46 };
+  if (layer.id === "eventmap-voivodeship-boundaries") return { "line-color": "#28cad5", "line-opacity": .4, "line-width": .8 };
   if (layer.id === "eventmap-county-boundaries") return { "line-color": "#1b5d66", "line-opacity": .35 };
   if (layer.id === "eventmap-outside-poland") return { "fill-opacity": ["interpolate", ["linear"], ["zoom"], 4, 0.87, 7, 0.77, 11, 0.40, 15, 0.18] };
   if (layer.id === "eventmap-poland-label") return { "text-opacity": ["interpolate", ["linear"], ["zoom"], 4.5, 1, 6.35, 0.0] };
-  if (layer.id === "eventmap-country-glow") return { "line-opacity": .68 };
+  if (layer.id === "eventmap-country-halo") return { "line-opacity": .3 };
+  if (layer.id === "eventmap-country-glow") return { "line-opacity": .74 };
   if (layer.id === "eventmap-country-line") return { "line-opacity": .95 };
   // Category pins, their glow and clustering retain their own colors.
   if (layer.id.startsWith("eventmap-") && layer.id !== "eventmap-house-numbers" && layer.id !== "eventmap-major-city-labels") return {};
@@ -170,6 +171,11 @@ function addPolandDiscoveryLayers(map: maplibregl.Map) {
     paint: { "fill-color": "#04121c", "fill-opacity": 0 }
   });
   map.addLayer({
+    id: "eventmap-country-halo", type: "line", source: POLAND_SOURCE_ID, filter: country,
+    layout: { "line-join": "round", "line-cap": "round" },
+    paint: { "line-color": "#00e1ee", "line-opacity": 0, "line-width": 22, "line-blur": 16 }
+  });
+  map.addLayer({
     id: "eventmap-country-glow", type: "line", source: POLAND_SOURCE_ID, filter: country,
     layout: { "line-join": "round", "line-cap": "round" },
     paint: { "line-color": "#10d8ee", "line-opacity": 0, "line-width": 9, "line-blur": 6 }
@@ -177,7 +183,7 @@ function addPolandDiscoveryLayers(map: maplibregl.Map) {
   map.addLayer({
     id: "eventmap-country-line", type: "line", source: POLAND_SOURCE_ID, filter: country,
     layout: { "line-join": "round", "line-cap": "round" },
-    paint: { "line-color": "#49f4fa", "line-opacity": 0, "line-width": 1.8 }
+    paint: { "line-color": "#7effff", "line-opacity": 0, "line-width": 1.6 }
   });
   map.addLayer({
     id: "eventmap-poland-label", type: "symbol", source: POLAND_SOURCE_ID,
@@ -870,9 +876,9 @@ function updatePinSelectedPaint(map: maplibregl.Map, { pin, icon }: PinLayers, s
   map.setPaintProperty(pin, "circle-opacity", ["case", isSelected, 0.85, 0.55]);
   map.setLayoutProperty(icon, "icon-size", [
     "interpolate", ["linear"], ["zoom"],
-    4, ["case", isSelected, .94, .69],
-    6.5, ["case", isSelected, 1.03, .82],
-    12, ["case", isSelected, 1.22, 1]
+    4, ["case", isSelected, 1.04, .84],
+    6.5, ["case", isSelected, 1.14, .94],
+    12, ["case", isSelected, 1.26, 1.06]
   ]);
   map.setLayoutProperty(icon, "symbol-sort-key", ["case", isSelected, 1, 0]);
 }
@@ -1176,20 +1182,21 @@ function mixHex(color: string, target: string, amount: number) {
 /** Teardrop pin: category gradient, white rim, soft glow and the white category icon. */
 function buildPinSvg(rawColor: string | null | undefined, iconSvg: string) {
   const color = normalizePinColor(rawColor);
-  const light = mixHex(color, "#ffffff", 0.32);
-  const dark = mixHex(color, "#000000", 0.28);
+  const light = mixHex(color, "#ffffff", 0.24);
+  const dark = mixHex(color, "#000000", 0.2);
   const icon = iconSvg
     .replace(/\s(width|height)="[^"]*"/g, "")
-    .replace("<svg", '<svg x="13" y="11" width="18" height="18"');
+    .replace("<svg", '<svg x="12" y="10" width="20" height="20"');
   const drop = "M22 47C22 47 7 33.6 7 20.5a15 15 0 0 1 30 0C37 33.6 22 47 22 47Z";
   return `<svg xmlns="http://www.w3.org/2000/svg" width="88" height="108" viewBox="0 0 44 54">
 <defs>
 <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${light}"/><stop offset="1" stop-color="${dark}"/></linearGradient>
 <filter id="f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.6"/></filter>
+<radialGradient id="s" cx=".35" cy=".15" r=".8"><stop offset="0" stop-color="#ffffff" stop-opacity=".28"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
 </defs>
 <path d="${drop}" fill="${color}" opacity=".75" filter="url(#f)"/>
-<path d="${drop}" fill="url(#g)" stroke="#ffffff" stroke-opacity=".92" stroke-width="1.8"/>
-<ellipse cx="17" cy="13" rx="7" ry="4" fill="#ffffff" opacity=".18"/>
+<path d="${drop}" fill="url(#g)" stroke="#ffffff" stroke-opacity=".85" stroke-width="1.5"/>
+<circle cx="22" cy="20.5" r="12" fill="url(#s)" stroke="#ffffff" stroke-opacity=".18" stroke-width=".8"/>
 ${icon}
 </svg>`;
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SearchX } from "lucide-react";
 
 export const metadata = {
   title: "Nie znaleziono strony | MapaImprez",
@@ -10,8 +11,9 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <main className="appShell">
-      <div className="emptyState">
+    <main className="appShell managementShell statusPage">
+      <div className="managementPanel statusPanel emptyState">
+        <SearchX className="statusPageIcon" size={36} strokeWidth={1.7} aria-hidden="true" />
         <h1>Nie znaleziono strony</h1>
         <p>Ten adres nie prowadzi do aktywnej strony MapaImprez.pl.</p>
         <Link href="/" className="primaryButton">

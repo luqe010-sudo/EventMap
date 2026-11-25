@@ -1,5 +1,13 @@
 # Current Features
 
+## Ujednolicenie UI według wizualizacji — 2026-11-25
+
+- Wspólne menu, Inter, granatowe szkło, obrysy, pomarańczowe akcenty i dolna nawigacja obejmują również podstrony logowania, konta, szczegółów, regulaminu, sezonowe oraz panele administratora i organizatora.
+- Fotografie i gradienty zajmują całą powierzchnię polecanej karty. Desktop pokazuje trzy karty polecane i cztery zwarte karty w sekcji weekendowej. Mobilne karty mają większy tytuł, czytelny pill ceny i szklany przycisk zapisu.
+- Mobilny dzwonek otwiera plan z działającymi odnośnikami do zapisanych wydarzeń i konta. Nie pokazuje fikcyjnych powiadomień ani liczników.
+- Mapa ma silniejszą turkusową poświatę granic, ikony pinezek z połyskiem i dopracowany podgląd od dołu. Uchwyt panelu zamyka podgląd. Rzeczywista kartografia, klastrowanie, filtry i istniejące dane pozostają wspólne dla widoków.
+- Szczegóły wzorca i ograniczenie bieżącej kontroli przeglądarkowej opisano w [specyfikacji UI](ui-reference-2026-11-25.md).
+
 ## Odkryj, Lista i Mapa — lokalna aktualizacja 2026-11-24
 
 - Portal uruchamia się domyślnie w ciemnym motywie. Przełącznik zachowuje wybór jasnego lub ciemnego motywu. Publiczny interfejs używa lokalnie dostarczanego kroju Inter. Na stronie głównej zdjęcie koncertu przechodzi w granatowe tło, a polecane i pozostałe sekcje pokazują zdjęcia, kolor kategorii, datę, miejsce, cenę i zapis wydarzenia.

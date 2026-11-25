@@ -1,5 +1,7 @@
 "use client";
 
+import { CircleAlert } from "lucide-react";
+
 export default function Error({
   error,
   reset
@@ -8,12 +10,13 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <main className="appShell">
-      <div className="emptyState">
-        <h3>Nie udalo sie pobrac wydarzen.</h3>
+    <main className="appShell managementShell statusPage">
+      <div className="managementPanel statusPanel emptyState">
+        <CircleAlert className="statusPageIcon" size={36} strokeWidth={1.7} aria-hidden="true" />
+        <h1>Nie udało się pobrać wydarzeń</h1>
         <p>{error.message}</p>
         <button type="button" className="primaryButton" onClick={reset}>
-          Sprobuj ponownie
+          Spróbuj ponownie
         </button>
       </div>
     </main>

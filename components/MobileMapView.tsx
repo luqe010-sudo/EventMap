@@ -2,15 +2,14 @@
 
 import { useState, type CSSProperties } from "react";
 import dynamic from "next/dynamic";
-import { ArrowLeft, CalendarDays, LocateFixed, List, Map, MapPin, Search, SlidersHorizontal, X } from "lucide-react";
+import { CalendarDays, ChevronRight, LocateFixed, List, Map, MapPin, Search, SlidersHorizontal } from "lucide-react";
 import type { EventItem, EventMapMarker, KnownLocation } from "@/lib/events";
-import { formatPolishDate } from "@/lib/date-format";
 import EventVisual from "./EventVisual";
 import EventCardSaveButton from "./EventCardSaveButton";
 import PromotedBadge from "./PromotedBadge";
 import CategoryIcon from "./CategoryIcon";
 import { eventPath } from "@/lib/slugs";
-import { formatEventCardPrice } from "@/lib/event-presentation";
+import { formatEventCardDate, formatEventCardLocation, formatEventCardPrice } from "@/lib/event-presentation";
 
 const MapLibreMap = dynamic(() => import("@/components/MapLibreMap"), {
   ssr: false,
@@ -63,10 +62,6 @@ export default function MobileMapView({
   locationStatus
 }: MobileMapViewProps) {
   const [gpsRequested, setGPSRequested] = useState(false);
-  const selectedEventDescription = selectedEvent
-    ? selectedEvent.short_description ?? selectedEvent.description
-    : null;
-
   return (
     <section
       id="mobile-map-view"
@@ -78,12 +73,11 @@ export default function MobileMapView({
     >
       <header className="mobileMapToolbar">
         <div className="mobileMapTitleRow">
-          <button type="button" className="mobileMapBack" onClick={onShowList} aria-label="Wróć do odkrywania"><ArrowLeft size={22} aria-hidden="true" /></button>
           <h1>Mapa wydarzeń</h1>
         </div>
         <div className="mobileMapSearchBox">
           <Search size={21} aria-hidden="true" />
-          <input type="search" aria-label="Szukaj na mapie" placeholder="Szukaj na mapie" value={query} onChange={(event) => onQueryChange?.(event.target.value)} />
+          <input type="search" aria-label="Szukaj na mapie" placeholder="Szukaj na mapie, np. „jarmark”, „koncert”…" value={query} onChange={(event) => onQueryChange?.(event.target.value)} />
           {onShowFilters ? <button type="button" onClick={onShowFilters} aria-label="Filtry mapy"><SlidersHorizontal size={22} aria-hidden="true" /></button> : null}
         </div>
       </header>
@@ -139,9 +133,9 @@ export default function MobileMapView({
             onClick={onClearSelection}
             aria-label="Zamknij podgląd wydarzenia"
           >
-            <X size={17} aria-hidden="true" />
+            <span aria-hidden="true" />
           </button>
-          <EventCardSaveButton eventId={selectedEvent.id} returnTo={eventPath(selectedEvent)} className="mobileMapPreviewSave" />
+          <EventCardSaveButton eventId={selectedEvent.id} returnTo={eventPath(selectedEvent)} className="mobileMapPreviewSave" iconSize={23} />
           <EventVisual event={selectedEvent} variant="compact" />
           <div className="mobileMapPreviewBody">
             <div className="mobileMapPreviewBadges">
@@ -149,37 +143,25 @@ export default function MobileMapView({
               {selectedEvent.isFeatured ? <PromotedBadge /> : null}
             </div>
             <h2>{selectedEvent.title}</h2>
-            {selectedEventDescription ? (
-              <p className="mobileMapPreviewDescription">{selectedEventDescription}</p>
-            ) : null}
             <div className="mobileMapPreviewMeta">
               <span>
-                <CalendarDays size={14} aria-hidden="true" />
-                {formatPreviewDate(selectedEvent.startDate)}
+                <CalendarDays size={16} aria-hidden="true" />
+                {formatEventCardDate(selectedEvent)}
               </span>
               <span>
-                <MapPin size={14} aria-hidden="true" />
-                {selectedEvent.city || selectedEvent.address}
+                <MapPin size={16} aria-hidden="true" />
+                {formatEventCardLocation(selectedEvent)}
               </span>
             </div>
             <div className="mobileMapPreviewFooter">
               <strong>{formatEventCardPrice(selectedEvent)}</strong>
-              <button type="button" onClick={() => onOpenEvent(selectedEvent.id)}>Zobacz szczegóły</button>
+              <button type="button" onClick={() => onOpenEvent(selectedEvent.id)}>Zobacz szczegóły<ChevronRight size={17} aria-hidden="true" /></button>
             </div>
           </div>
         </article>
       ) : null}
     </section>
   );
-}
-
-function formatPreviewDate(value: string) {
-  return formatPolishDate(value, {
-    day: "numeric",
-    month: "short",
-    hour: "2-digit",
-    minute: "2-digit"
-  });
 }
 
 function formatEventCount(count: number) {

@@ -17,6 +17,7 @@ export default function EventDetailMap({ event, location }: EventDetailMapProps)
   return (
     <MapLibreMap
       detailMode
+      discoveryTheme
       events={[event]}
       selectedEventId={event.id}
       location={location}

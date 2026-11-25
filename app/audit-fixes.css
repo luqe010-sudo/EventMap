@@ -25,8 +25,6 @@ html[data-theme="light"] .homePage .eventCardHDesc { color: #59504b; }
   .discoverySearchSummary:has(.discoverySearchSummaryEmpty) { display: none; }
   html[data-theme] .homePage .heroCardTitle { display: none; }
   html[data-theme] .homePage .heroSubtitle br { display: none; }
-  html[data-theme] .homePage .heroSection { padding-block: 20px; gap: 12px; }
-  html[data-theme] .homePage .heroTitle { font-size: 2rem; }
   .heroSubtitle { margin-block: 12px; }
   .heroCard { padding: 12px; }
   .heroQuickTiles { gap: 6px; }

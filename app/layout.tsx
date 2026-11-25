@@ -12,6 +12,8 @@ import "./audit-fixes.css";
 import "./promotion.css";
 import "./discovery-carousel.css";
 import "./discovery-map.css";
+import "./subpages.css";
+import "./site-chrome.css";
 
 const SITE_DESCRIPTION =
   "Znajdź koncerty, festyny, targi, wydarzenia sportowe, rodzinne i kulturalne w Polsce. Filtruj wydarzenia po dacie, mieście, kategorii, cenie i promieniu.";

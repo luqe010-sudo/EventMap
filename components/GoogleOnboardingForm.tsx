@@ -23,7 +23,7 @@ export default function GoogleOnboardingForm({ next = "/" }: { next?: string }) 
       ) : null}
 
       <label>
-        Typ konta (Rola)
+        Typ konta
         <select
           name="role"
           value={role}

@@ -8,14 +8,16 @@ const event = {
   city: "Łódź", category: "Rodzinne", categorySlug: "rodzinne", is_all_day: false
 };
 
-it("missing artwork renders event facts on details without an unrelated image request", () => {
+it("missing artwork uses a labelled local category photo without duplicating the event facts", () => {
   const html = renderToStaticMarkup(createElement(EventVisual, { event, variant: "detail" }));
   expect(html).toContain("eventVisual--cover");
-  expect(html).toContain("Rodzinny poranek &lt;razem&gt;");
-  expect(html).toContain("7 lis 2026");
-  expect(html).toContain("11:00");
-  expect(html).toContain("Łódź");
-  expect(html).not.toContain("<img");
+  expect(html).toContain('src="/images/editorial/blocks.jpg"');
+  expect(html).toContain("Zdjęcie ilustracyjne");
+  expect(html).not.toContain("Rodzinny poranek");
+  expect(html).not.toContain("7 lis 2026");
+  expect(html).not.toContain("11:00");
+  expect(html).not.toContain("Łódź");
+  expect(html).not.toContain('src="https://');
   expect(html).toContain('aria-hidden="true"');
 });
 
@@ -29,23 +31,25 @@ it("a real source is preserved and the presentation identifies it as event artwo
   expect(html).not.toContain("eventVisualCover");
 });
 
-it("whitespace artwork is absent and unknown categories still receive a factual cover", () => {
+it("whitespace artwork and unknown categories receive a labelled local photo with accessible event facts", () => {
   const html = renderToStaticMarkup(createElement(EventVisual, {
     event: { ...event, main_image_url: "  ", categorySlug: "nowa-kategoria" }, decorative: false, variant: "detail"
   }));
   expect(html).toContain("eventVisual--detail eventVisual--cover");
   expect(html).toContain('role="img"');
   expect(html).toContain("Rodzinny poranek &lt;razem&gt;. 7 lis 2026, 11:00. Łódź.");
-  expect(html).not.toContain("<img");
+  expect(html).toContain("eventVisual--photo");
+  expect(html).toContain("Zdjęcie ilustracyjne");
+  expect(html).not.toContain('src="https://');
 });
 
 it("all-day events never invent a midnight start in the detail cover", () => {
-  const html = renderToStaticMarkup(createElement(EventVisual, { event: { ...event, is_all_day: true }, variant: "detail" }));
+  const html = renderToStaticMarkup(createElement(EventVisual, { event: { ...event, is_all_day: true }, variant: "detail", decorative: false }));
   expect(html).toContain("Cały dzień");
   expect(html).not.toContain("11:00");
 });
 
-it.each(["card", "compact"] as const)("%s covers leave event text to the adjacent card body", (variant) => {
+it.each(["card", "compact", "detail"] as const)("%s covers leave event text to the adjacent card body", (variant) => {
   const html = renderToStaticMarkup(createElement(EventVisual, { event, variant }));
   expect(html).toContain('src="/images/editorial/blocks.jpg"');
   expect(html).toContain("Zdjęcie ilustracyjne");

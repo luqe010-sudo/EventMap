@@ -26,23 +26,14 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       <section className="managementPanel loginPanel">
         <p className="eyebrow">MapaImprez.pl</p>
         <h1>Logowanie</h1>
+        <p className="authOnboardingIntro">Wróć do swoich ulubionych wydarzeń i odkrywaj kolejne.</p>
 
         {params.reset === "success" ? (
           <p className="formSuccess" role="status">Hasło zostało zmienione. Zaloguj się nowym hasłem.</p>
         ) : null}
 
         {isSignupSuccess && (
-          <div className="signupSuccessAlert" style={{
-            backgroundColor: "#f0fdf4",
-            border: "1px solid #bbf7d0",
-            color: "#166534",
-            padding: "1rem",
-            borderRadius: "6px",
-            marginBottom: "1.5rem",
-            fontSize: "0.92rem",
-            fontWeight: 500,
-            textAlign: "center"
-          }}>
+          <div className="formSuccess signupSuccessAlert" role="status">
             Konto utworzone. Jeśli otrzymasz wiadomość aktywacyjną, potwierdź adres e-mail przed logowaniem. Sprawdź też folder spam.
           </div>
         )}

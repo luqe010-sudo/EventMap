@@ -1,0 +1,341 @@
+/* The discovery visual language also applies to account, editorial and management pages. */
+.siteWrapper:has(:is(.managementShell, .legalPage, .eventDetailPage, .seasonalPage)) {
+  --font-title: Inter, system-ui, sans-serif;
+  --font-body: Inter, system-ui, sans-serif;
+  --subpage-surface: var(--bg-card);
+  --subpage-control: var(--bg-soft);
+  --subpage-glow: 0 3px 14px #ff690025;
+  font-family: var(--font-body);
+  font-optical-sizing: auto;
+}
+html[data-theme="dark"] .siteWrapper:has(:is(.managementShell, .legalPage, .eventDetailPage, .seasonalPage)) {
+  --bg: #07121e;
+  --bg-soft: #101e2d;
+  --bg-card: #0d1926;
+  --bg-card-hover: #152334;
+  --ink: #f7f8fc;
+  --ink-secondary: #c4cdd9;
+  --ink-muted: #94a5b9;
+  --border: #2e4154;
+  --border-strong: #52677f;
+  --brand: #ff7900;
+  --brand-dark: #ff8a24;
+  --brand-light: #ff790019;
+  --brand-gradient: linear-gradient(180deg, #ff8c0a, #ff6900);
+  --subpage-surface: linear-gradient(145deg, #132333 0%, #0b1723 74%);
+  --subpage-control: linear-gradient(140deg, #1a293a, #101c2a);
+  --dark-block: var(--subpage-surface);
+  --dark-search-control: var(--subpage-control);
+}
+
+/* Shared page rhythm and surfaces. */
+html[data-theme] :is(.managementShell, .eventDetailPage) {
+  width: min(1212px, calc(100% - 64px));
+  max-width: none;
+  padding: 36px 0 64px;
+  margin-inline: auto;
+}
+:is(.managementShell, .legalPage, .eventDetailPage, .seasonalPage) :is(h1, h2, h3) {
+  font-family: var(--font-title);
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+.managementShell .managementHeader h1 {
+  margin: 5px 0 8px;
+  font-size: clamp(1.85rem, 3vw, 2.65rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+.managementShell .managementHeader p { color: var(--ink-secondary); }
+.managementShell .eyebrow { color: var(--brand-dark); font-size: .75rem; letter-spacing: .055em; font-weight: 750; }
+html[data-theme] .managementShell :is(.managementPanel, .managementStat, .qualityChecklist) {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--subpage-surface);
+  box-shadow: inset 0 1px 0 #ffffff09, 0 8px 28px #030a141a;
+}
+.managementShell .managementPanel { padding: 24px; min-width: 0; }
+.managementShell .managementPanelHeader { margin-bottom: 20px; }
+.managementShell .managementPanelHeader h2 { margin: 0; font-size: 1.2rem; font-weight: 750; }
+.managementShell :is(.managementHeader, .managementPanelHeader) p { margin-top: 6px; }
+.managementShell .managementStat { padding: 22px; }
+.managementShell .managementStat span { color: var(--brand-dark); font-size: 2.25rem; letter-spacing: -.04em; }
+.managementShell :is(.managementStat p, .panelMutedText, .formHint, .tableSubtext, .locationPickerHint, .qualityChecklist p, .organizerEventList span, .organizerPlainList span) {
+  color: var(--ink-secondary);
+  line-height: 1.6;
+}
+.managementShell .adminSectionNav { border-color: var(--border); padding-bottom: 18px; margin-bottom: 26px; }
+.managementShell .adminSectionTabs { gap: 8px; }
+.managementShell .adminSectionTab {
+  min-height: 44px;
+  border-color: var(--border);
+  border-radius: 13px;
+  background: var(--subpage-control);
+  color: var(--ink-secondary);
+  font-size: .875rem;
+  font-weight: 650;
+  transition: border-color .2s, color .2s;
+}
+.managementShell .adminSectionTab:hover { border-color: var(--brand); color: var(--brand-dark); }
+.managementShell .adminSectionTabActive { box-shadow: inset 0 0 15px #ff79001a, var(--subpage-glow); }
+html[data-theme="dark"] .managementShell .adminSectionTabActive { --dark-search-control: #3d2518; }
+
+/* Account forms use the same softly lit controls as the compact search. */
+.managementShell :is(.managementForm, .adminFiltersGrid) label { color: var(--ink); font-size: .875rem; font-weight: 600; gap: 8px; }
+.managementShell :is(.managementForm, .adminFiltersGrid) :is(input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="color"]), select, textarea),
+.managementShell .tableActionInput {
+  min-height: 48px;
+  border: 1px solid var(--border-strong);
+  border-radius: 13px;
+  background: var(--subpage-control);
+  color: var(--ink);
+  padding: 12px 14px;
+  font-size: .9375rem;
+  font-weight: 450;
+  box-shadow: inset 0 1px 0 #ffffff08;
+}
+.managementShell :is(input, textarea)::placeholder { color: var(--ink-muted); opacity: 1; }
+.managementShell :is(input, textarea, select):focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+.managementShell :is(input[type="checkbox"], input[type="radio"]) { accent-color: var(--brand); width: 18px; height: 18px; margin: 0; }
+.managementShell .legalConsentCheckbox { padding: 14px; border-radius: 13px; background: var(--brand-light); border-color: color-mix(in srgb, var(--brand) 25%, transparent); }
+.managementShell .legalConsentCheckbox span { font-weight: 450; }
+.managementShell .legalConsentCheckbox a { color: var(--brand-dark); font-weight: 650; }
+.managementShell :is(.managementSubsection, .organizerEventList li, .organizerPlainList li, .accountDetails > div) { border-color: var(--border); }
+.managementShell :is(.organizerEventList strong, .organizerPlainList strong, .organizerMetricList, .qualityChecklist li, .qualityMini span, .accountDetails dd) { color: var(--ink); }
+.managementShell .accountDetails dt { color: var(--ink-muted); font-size: .75rem; font-weight: 650; }
+.managementShell .locationPickerSuggestions { border-color: var(--border); border-radius: 13px; background: var(--bg-card); }
+.managementShell .locationPickerSuggestionItem { color: var(--ink); min-height: 44px; }
+.managementShell .eventEditorImagePreview { border-color: var(--border); border-radius: 14px; background: var(--bg-soft); }
+
+/* Buttons keep their existing actions, with a shared orange treatment. */
+:is(.managementShell, .legalPage, .eventDetailPage, .edShellEmbedded) .primaryButton,
+:is(.eventDetailPage, .edShellEmbedded) .edTicketBtn,
+.managementShell .accountEmptyState a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 11px 22px;
+  border: 1px solid #ff891c;
+  border-radius: 999px;
+  background: var(--brand-gradient);
+  color: #fff;
+  box-shadow: inset 0 1px 0 #ffffff26, 0 3px 16px #ff690032;
+  font-size: .9rem;
+  font-weight: 700;
+  line-height: 1.4;
+  cursor: pointer;
+  text-decoration: none;
+}
+:is(.managementShell, .legalPage) .primaryButton:hover,
+:is(.eventDetailPage, .edShellEmbedded) .edTicketBtn:hover { filter: brightness(1.08); box-shadow: 0 3px 22px #ff69004a; }
+:is(.managementShell, .legalPage) .secondaryButton {
+  min-height: 46px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--subpage-control);
+  color: var(--ink);
+  padding: 11px 20px;
+  font-size: .875rem;
+  font-weight: 650;
+}
+:is(.managementShell, .legalPage) .secondaryButton:hover { border-color: var(--brand); color: var(--brand-dark); }
+.managementShell button:disabled { cursor: wait; opacity: .65; }
+.managementShell :is(.formError, .formSuccess, .schemaNotice) { border-radius: 13px; line-height: 1.6; font-size: .875rem; font-weight: 500; }
+html[data-theme="dark"] .managementShell .formError { border-color: #f7797940; background: #cd383816; color: #ffb8b8; }
+html[data-theme="dark"] .managementShell .formSuccess { border-color: #40d69740; background: #18a36c18; color: #9fe6c5; }
+html[data-theme="dark"] .managementShell .schemaNotice { border-color: #ffb24c40; background: #ff9b2515; color: #ffd2a0; }
+.managementShell .tableActions :is(button, a) { min-height: 40px; border-radius: 10px; font-weight: 600; }
+.managementShell .tableActions :is(button, a):hover { border-color: var(--brand); }
+.managementShell .tableActions .dangerButton { color: #f89191; border-color: #e56c6c66; }
+.managementShell .managementTable { font-size: .875rem; }
+.managementShell .managementTable :is(th, td) { padding: 16px 12px; border-color: var(--border); }
+.managementShell .managementTable th { font-size: .72rem; font-weight: 650; letter-spacing: .04em; color: var(--ink-muted); }
+.managementShell .managementTable tbody tr:hover { background: color-mix(in srgb, var(--ink) 3%, transparent); }
+html[data-theme="dark"] .managementShell .statusPill { background: #7765f126; color: #c6baff; }
+html[data-theme="dark"] .managementShell .successPill { background: #20be8421; color: #a2edce; }
+html[data-theme="dark"] .managementShell .warningPill { background: #ffb43f20; color: #ffd394; }
+.managementShell :is(.statusPill, .successPill, .warningPill) { padding: 5px 10px; font-size: .75rem; }
+
+/* Authentication */
+html[data-theme] .managementShell .loginPanel { max-width: 470px; margin: 24px auto; padding: 34px; border-radius: 24px; }
+.managementShell .loginPanel h1 { margin: 6px 0 12px; color: var(--ink); font-size: 2rem; font-weight: 800; line-height: 1.12; }
+.managementShell .loginPanel > .eyebrow { margin: 0; color: var(--brand-dark); }
+.managementShell .loginPanel .authOnboardingIntro { margin: 0 0 26px; color: var(--ink-secondary); font-size: .9375rem; line-height: 1.65; }
+.managementShell .loginPanel .managementForm { gap: 18px; }
+.managementShell .loginPanel .primaryButton { margin-top: 3px; min-height: 48px; }
+.managementShell .loginPanel .googleAuthButton {
+  min-height: 48px;
+  border: 1px solid var(--border-strong);
+  border-radius: 13px;
+  background: var(--subpage-control);
+  color: var(--ink);
+  box-shadow: inset 0 1px 0 #ffffff08;
+  font-size: .9rem;
+  font-weight: 650;
+}
+.managementShell .loginPanel .googleAuthButton:hover { border-color: var(--brand); }
+.managementShell .authDivider { color: var(--ink-muted); margin-block: 24px; font-size: .8125rem; }
+.managementShell .authDivider::before, .managementShell .authDivider::after { background: var(--border); }
+.managementShell .authHelpLinks { margin-top: 18px; }
+.managementShell .authHelpLinks a { color: var(--brand-dark); font-size: .875rem; }
+.authSwitchAccount { margin: 24px 0 0; text-align: center; font-size: .875rem; line-height: 1.6; color: var(--ink-secondary); }
+.authSwitchAccount a { color: var(--brand-dark); font-weight: 650; text-decoration: underline; text-underline-offset: 3px; }
+.authLoading { min-height: 350px; display: grid; place-items: center; }
+.authLoading .locationPickerSpinner { position: static; width: 24px; height: 24px; }
+.managementShell .loginPanel > :is(.formError, .formSuccess) { margin: 0 0 20px; }
+.managementShell .googleRegisterForm { margin-top: 22px; }
+.managementShell .statusPanel { max-width: 640px; margin: 40px auto; padding: 42px 30px; text-align: center; }
+.statusPageIcon { display: block; margin: 0 auto 20px; color: var(--brand-dark); filter: drop-shadow(0 0 14px #ff790044); }
+.statusPanel h1 { margin: 0 0 14px; color: var(--ink); font-size: clamp(1.65rem, 3vw, 2.1rem); line-height: 1.15; font-weight: 800; }
+.statusPanel p { margin: 0 0 24px; color: var(--ink-secondary); line-height: 1.7; overflow-wrap: anywhere; }
+
+/* Saved events */
+html[data-theme] .managementShell .accountSavedCard { border-color: var(--border); border-radius: 16px; background: var(--subpage-surface); }
+.managementShell .accountSavedCardBody h3 { color: var(--ink); font-weight: 750; line-height: 1.3; }
+.managementShell .accountSavedCardBody p, .managementShell .accountSavedCardBody > span:last-child { color: var(--ink-secondary); }
+.managementShell .accountSavedCount { background: var(--brand-light); color: var(--brand-dark); }
+.managementShell .accountSavedRemove { min-height: 44px; color: var(--ink-secondary); font-size: .8125rem; }
+.managementShell .accountSavedRemove:hover { color: var(--brand-dark); }
+html[data-theme="dark"] .managementShell .promotionOffer {
+  border-color: #9b5b2a;
+  background: radial-gradient(ellipse at top left, #65351942, transparent 65%), var(--subpage-surface);
+}
+.managementShell .promotionOfferIcon { border-radius: 14px; background: var(--brand-gradient); box-shadow: var(--subpage-glow); }
+
+/* Informational pages and the seasonal calendar */
+html[data-theme] .legalPage { width: min(1050px, calc(100% - 64px)); padding: 30px 0 64px; }
+.legalPage .legalHero { padding: 28px 0 32px; }
+.legalPage .legalHero h1 { max-width: 820px; font-size: clamp(2rem, 4.2vw, 3.6rem); font-weight: 800; line-height: 1.05; }
+.legalPage .legalHero p { font-size: 1rem; line-height: 1.7; }
+.legalPage .legalHero .legalEyebrow { margin: 0 0 12px; color: var(--brand-dark); font-size: .75rem; }
+.legalPage .legalHero span { border-radius: 999px; font-size: .8125rem; }
+html[data-theme] .legalPage .legalToc { border-radius: 16px; background: var(--subpage-surface); border-color: var(--border); box-shadow: inset 0 1px 0 #ffffff08; }
+.legalPage .legalToc a { min-height: 44px; border-radius: 11px; font-size: .875rem; font-weight: 600; }
+html[data-theme] .legalPage .legalDocument { border-radius: 20px; border-color: var(--border); background: var(--subpage-surface); box-shadow: inset 0 1px 0 #ffffff08, 0 8px 24px #030b141a; }
+html[data-theme] .legalPage .legalDocumentHeader { background: color-mix(in srgb, var(--bg-soft) 65%, transparent); border-color: var(--border); padding: 30px; }
+.legalPage .legalDocumentHeader h2 { font-size: 1.8rem; font-weight: 750; }
+.legalPage .legalSection { padding: 28px 30px; border-color: var(--border); }
+.legalPage .legalSection h2 { font-size: 1.2rem; font-weight: 750; }
+.legalPage .legalSection h2:not(:first-child) { margin-top: 30px; }
+.legalPage .legalSection :is(p, li) { color: var(--ink-secondary); font-size: .9375rem; line-height: 1.85; }
+.legalPage .legalSection li + li { margin-top: 9px; }
+.legalPage .legalSection :is(ul, ol) { padding-left: 22px; }
+.legalPage .legalSection li::marker { color: var(--brand-dark); }
+.legalPage .legalSection a:not(.primaryButton):not(.secondaryButton) { color: var(--brand-dark); text-decoration: underline; text-underline-offset: 3px; }
+.legalPage .legalSection strong { color: var(--ink); }
+.legalPage .promotionPriceCard { border-radius: 18px; padding: 28px; gap: 9px; background: radial-gradient(ellipse at top left, #ff790026, transparent 75%), var(--subpage-control); }
+.legalPage .promotionPriceAmount { color: var(--brand-dark); font-size: 3rem; letter-spacing: -.04em; }
+html[data-theme] .seasonalPage { padding-top: 28px; }
+.seasonalPage .seasonalHero { max-width: 900px; padding-bottom: 30px; }
+.seasonalPage .seasonalHero h1 { font-size: clamp(2rem, 4vw, 3.35rem); font-weight: 800; line-height: 1.08; }
+.seasonalPage .seasonalHero p { font-size: 1rem; line-height: 1.75; }
+.seasonalPage .seasonalHero .seasonalEyebrow { color: var(--brand-dark); font-size: .75rem; }
+.seasonalPage :is(.seasonalCityChip, .seasonalRelated a) { min-height: 44px; background: var(--subpage-control); border-color: var(--border); font-size: .875rem; }
+.seasonalPage :is(.seasonalTips, .seasonalRelated) { max-width: none; }
+.seasonalPage .seasonalTips { margin-top: 28px; padding: 26px; border: 1px solid var(--border); border-radius: 20px; background: var(--subpage-surface); }
+.seasonalPage .seasonalTips summary { min-height: 30px; font-size: .9375rem; }
+.seasonalPage .seasonalEventList { gap: 16px; }
+
+/* Event details retain their source information and interactions. */
+:is(.eventDetailPage, .edShellEmbedded) .edShell { gap: 28px; }
+:is(.eventDetailPage, .edShellEmbedded) .edHero { gap: 32px; margin-bottom: 0; }
+:is(.eventDetailPage, .edShellEmbedded) .edHeroInfo { padding: 4px 0; gap: 18px; }
+:is(.eventDetailPage, .edShellEmbedded) .edHeroInfo h1 { font-size: clamp(1.8rem, 2.8vw, 2.75rem); font-weight: 800; line-height: 1.12; letter-spacing: -.04em; }
+:is(.eventDetailPage, .edShellEmbedded) .edHeroImageWrap { border: 1px solid var(--border); border-radius: 22px; box-shadow: 0 12px 32px #02081433; }
+.edShellEmbedded { --subpage-surface: var(--bg-card); --subpage-control: var(--bg-soft); }
+html[data-theme="dark"] .edShellEmbedded { --subpage-surface: linear-gradient(145deg, #132333, #0b1723 74%); --subpage-control: linear-gradient(140deg, #1a293a, #101c2a); --dark-search-control: var(--subpage-control); }
+:is(.eventDetailPage, .edShellEmbedded) .eventVisual--detail.eventVisual--photo { aspect-ratio: 4 / 3; max-height: 520px; }
+:is(.eventDetailPage, .edShellEmbedded) .eventVisual--detail.eventVisual--photo .eventVisualCover::after { background: linear-gradient(180deg, transparent 55%, #07121ec9); }
+.eventVisualDetailCaption { position: absolute; z-index: 2; right: 18px; bottom: 18px; left: 18px; display: grid; gap: 3px; color: #eef4fb; font-size: .75rem; line-height: 1.5; }
+.eventVisualDetailCaption > span:first-child { font-weight: 650; }
+.eventVisualDetailCaption > span:last-child { opacity: .8; }
+:is(.eventDetailPage, .edShellEmbedded) .edCategoryBadge { gap: 7px; min-height: 32px; border: 1px solid #ffffff30; border-radius: 999px; padding: 6px 13px; font-size: .75rem; letter-spacing: .01em; backdrop-filter: blur(12px); }
+:is(.eventDetailPage, .edShellEmbedded) .edHeroDesc { font-size: .9375rem; line-height: 1.7; }
+:is(.eventDetailPage, .edShellEmbedded) .edMetaChip { min-height: 36px; font-size: .8125rem; padding: 7px 12px; }
+:is(.eventDetailPage, .edShellEmbedded) :is(.edSaveBtn, .edShareBtn, .edOrgLink, .edExpandToggle) { min-height: 44px; border-radius: 999px; padding-inline: 16px; font-size: .8125rem; }
+:is(.eventDetailPage, .edShellEmbedded) .edInfoBar { margin-top: 4px; border: 1px solid var(--border); border-radius: 18px; padding: 4px 18px; background: var(--subpage-surface, var(--bg-card)); }
+:is(.eventDetailPage, .edShellEmbedded) .edInfoBarHeader { padding: 14px 0; }
+:is(.eventDetailPage, .edShellEmbedded) .edInfoBarHeader h2 { font-weight: 750; }
+:is(.eventDetailPage, .edShellEmbedded) .edInfoItem { gap: 12px; padding: 13px 0; }
+:is(.eventDetailPage, .edShellEmbedded) .edInfoIcon { width: 36px; height: 36px; background: var(--brand-light); color: var(--brand-dark); }
+:is(.eventDetailPage, .edShellEmbedded) .edInfoLabel { font-size: .6875rem; font-weight: 600; letter-spacing: .045em; }
+:is(.eventDetailPage, .edShellEmbedded) .edInfoText strong { font-size: .875rem; font-weight: 600; line-height: 1.5; }
+:is(.eventDetailPage, .edShellEmbedded) .edContentGrid { gap: 24px; border: 0; padding: 0; margin: 0; }
+:is(.eventDetailPage, .edShellEmbedded) :is(.edDescSection, .edMapSection, .edOrgSection, .edSourcesSection, .edMoreLinksSection) {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--subpage-surface, var(--bg-card));
+  box-shadow: inset 0 1px 0 #ffffff08;
+  margin: 0;
+}
+:is(.eventDetailPage, .edShellEmbedded) :is(.edDescSection, .edMapSection, .edOrgSection, .edSourcesSection, .edMoreLinksSection) h2 { font-size: 1.2rem; font-weight: 750; }
+:is(.eventDetailPage, .edShellEmbedded) .edExpandGradient { background: linear-gradient(transparent, var(--bg-card)); }
+:is(.eventDetailPage, .edShellEmbedded) .edExpandContent { font-size: .9375rem; line-height: 1.85; }
+:is(.eventDetailPage, .edShellEmbedded) .edMapContainer { height: 290px; border-radius: 14px; box-shadow: none; }
+:is(.eventDetailPage, .edShellEmbedded) .edBottomGrid { gap: 24px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+:is(.eventDetailPage, .edShellEmbedded) .edBottomLeft { gap: 24px; }
+:is(.eventDetailPage, .edShellEmbedded) .edMoreLinksGrid { grid-template-columns: 1fr; }
+:is(.eventDetailPage, .edShellEmbedded) .edMoreLinkCard { min-height: 72px; padding: 16px; border-radius: 14px; font-size: .9375rem; font-weight: 600; background: var(--subpage-control, var(--bg-soft)); }
+:is(.eventDetailPage, .edShellEmbedded) .edSourceItem { border-radius: 13px; background: var(--subpage-control, var(--bg-soft)); }
+:is(.eventDetailPage, .edShellEmbedded) .edRelatedSection { padding-top: 4px; }
+.edShellEmbedded .edBreadcrumbs { display: none; }
+
+@media (max-width: 900px) {
+  html[data-theme] :is(.managementShell, .eventDetailPage, .legalPage) { width: calc(100% - 36px); padding-top: 24px; }
+  .managementShell .managementHeader { flex-wrap: wrap; }
+  .managementShell .adminSectionNav { display: block; }
+  .managementShell .adminSectionTabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-block: 2px 6px; }
+  .managementShell .adminSectionTabs::-webkit-scrollbar { display: none; }
+  .managementShell .adminSectionTab { flex: 0 0 auto; }
+  :is(.eventDetailPage, .edShellEmbedded) :is(.edHero, .edContentGrid, .edBottomGrid) { grid-template-columns: 1fr; }
+  :is(.eventDetailPage, .edShellEmbedded) .edHeroImageCol { min-width: 0; }
+}
+@media (max-width: 600px) {
+  html[data-theme] :is(.managementShell, .eventDetailPage, .legalPage) { width: calc(100% - 28px); padding: 18px 0 32px; }
+  .managementShell .managementHeader { gap: 16px; margin-bottom: 24px; }
+  .managementShell .managementHeader h1 { font-size: 1.85rem; }
+  .managementShell .managementPanel { padding: 20px 16px; border-radius: 18px; }
+  .managementShell .managementPanelHeader { margin-bottom: 18px; }
+  html[data-theme] .managementShell .loginPanel { margin: 8px auto; padding: 26px 20px; border-radius: 22px; }
+  .managementShell .loginPanel h1 { font-size: 1.8rem; }
+  .managementShell .loginPanel .authOnboardingIntro { font-size: .875rem; margin-bottom: 24px; }
+  .managementShell .managementActions { flex-wrap: wrap; }
+  .managementShell .managementStats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .managementShell .managementStat { padding: 16px 12px; border-radius: 16px; }
+  .managementShell .managementStat span { font-size: 1.9rem; }
+  .managementShell .managementStat p { font-size: .8125rem; }
+  .managementShell .accountSavedCardLink { grid-template-columns: 105px minmax(0, 1fr); }
+  .managementShell .accountSavedCardBody { padding: 12px 12px 52px; }
+  .managementShell .accountSavedCardBody h3 { font-size: .9375rem; }
+  .legalPage .legalHero { padding: 16px 4px 26px; }
+  .legalPage .legalHero h1 { font-size: 2.15rem; }
+  .legalPage .legalHero p { font-size: .9375rem; }
+  .legalPage .legalToc { position: static; padding: 8px; gap: 3px; }
+  .legalPage .legalToc a { font-size: .8125rem; padding-inline: 10px; }
+  .legalPage :is(.legalSection, .legalDocumentHeader) { padding: 22px 18px; }
+  .legalPage .legalDocumentHeader h2 { font-size: 1.5rem; }
+  .legalPage .promotionPageActions { flex-direction: column; align-items: stretch; }
+  html[data-theme] .seasonalPage { padding-top: 18px; }
+  .seasonalPage .seasonalHero { padding-top: 18px; }
+  .seasonalPage .seasonalHero h1 { font-size: 2.1rem; }
+  .seasonalPage .seasonalHero p { font-size: .9375rem; }
+  .seasonalPage .seasonalTips { padding: 22px 18px; }
+  :is(.eventDetailPage, .edShellEmbedded) .edShell { gap: 20px; }
+  :is(.eventDetailPage, .edShellEmbedded) .edHero { gap: 22px; }
+  :is(.eventDetailPage, .edShellEmbedded) .edHeroImageWrap { border-radius: 20px; }
+  :is(.eventDetailPage, .edShellEmbedded) .edHeroInfo h1 { font-size: 1.8rem; }
+  :is(.eventDetailPage, .edShellEmbedded) .edHeroInfo { gap: 16px; }
+  :is(.eventDetailPage, .edShellEmbedded) .edMetaChip { font-size: .75rem; padding-inline: 10px; }
+  :is(.eventDetailPage, .edShellEmbedded) .edHeroCta { gap: 8px; }
+  :is(.eventDetailPage, .edShellEmbedded) .edTicketBtn { flex: 1 0 auto; }
+  :is(.eventDetailPage, .edShellEmbedded) :is(.edDescSection, .edMapSection, .edOrgSection, .edSourcesSection, .edMoreLinksSection) { padding: 20px 16px; border-radius: 18px; }
+  :is(.eventDetailPage, .edShellEmbedded) .edMapContainer { height: 250px; }
+  :is(.eventDetailPage, .edShellEmbedded) .edSourceItem { padding: 12px 10px; gap: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.managementShell, .legalPage, .eventDetailPage, .seasonalPage) * { scroll-behavior: auto; transition: none; }
+}

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Compass, Heart, List, Map as MapIcon, Moon, Sun, UserRound } from "lucide-react";
+import { Bell, Compass, Heart, List, Map as MapIcon, Moon, Sun, UserRound } from "lucide-react";
 import { WORKSPACE_RETURN_STORAGE_KEY } from "@/lib/public-workspace-history";
 import { useState, useEffect, useRef } from "react";
 
@@ -110,12 +110,16 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [planOpen, setPlanOpen] = useState(false);
+  const [mapActive, setMapActive] = useState(false);
   const [theme, setTheme] = useState<ThemeMode>("dark");
   const [resolvedAuth, setResolvedAuth] = useState<NavbarAuth>(auth);
   const [authReady, setAuthReady] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
+  const planRef = useRef<HTMLDivElement>(null);
+  const planTriggerRef = useRef<HTMLButtonElement>(null);
   const [workspaceHref, setWorkspaceHref] = useState("/");
-  const profileRoute = pathname === "/account" || pathname === "/login" || pathname?.startsWith("/organizer");
+  const profileRoute = /^\/(account|login|register|forgot-password|auth|organizer|admin)(\/|$)/.test(pathname ?? "");
   const savedHref = resolvedAuth.isLoggedIn && resolvedAuth.role === "organizer" ? "/organizer/saved" : "/account#saved-events";
 
   const dashboardHref =
@@ -136,15 +140,44 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
   useEffect(() => {
     setMenuOpen(false);
     setProfileOpen(false);
+    setPlanOpen(false);
   }, [pathname]);
 
   useEffect(() => {
-    if (!profileRoute) return;
+    const syncMap = () => setMapActive(window.location.hash === "#mapa");
+    syncMap();
+    window.addEventListener("hashchange", syncMap);
+    window.addEventListener("popstate", syncMap);
+    return () => {
+      window.removeEventListener("hashchange", syncMap);
+      window.removeEventListener("popstate", syncMap);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
     try {
       const stored = JSON.parse(window.sessionStorage.getItem(WORKSPACE_RETURN_STORAGE_KEY) ?? "null") as { url?: string } | null;
       if (stored?.url && /^\/(?![\\/])/.test(stored.url)) setWorkspaceHref(stored.url);
     } catch { /* Session storage is optional. */ }
   }, [pathname, profileRoute]);
+
+  useEffect(() => {
+    if (!planOpen) return;
+    function closeOutside(event: MouseEvent) {
+      if (!planRef.current?.contains(event.target as Node)) setPlanOpen(false);
+    }
+    function closeWithEscape(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      setPlanOpen(false);
+      planTriggerRef.current?.focus();
+    }
+    document.addEventListener("mousedown", closeOutside);
+    document.addEventListener("keydown", closeWithEscape);
+    return () => {
+      document.removeEventListener("mousedown", closeOutside);
+      document.removeEventListener("keydown", closeWithEscape);
+    };
+  }, [planOpen]);
 
   useEffect(() => {
     let active = true;
@@ -206,7 +239,8 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
 
   function isActive(href: string) {
     if (!pathname) return false;
-    if (href === "/") return pathname === "/";
+    if (href === "/#mapa") return pathname === "/" && mapActive;
+    if (href === "/") return pathname === "/" && !mapActive;
     return pathname.startsWith(href);
   }
 
@@ -250,6 +284,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
     if (!document.querySelector(".homePage:not(.loadingHomePage)")) return;
     event.preventDefault();
     setMenuOpen(false);
+    setMapActive(href === "/#mapa");
     window.dispatchEvent(new Event(href === "/#mapa" ? "eventmap:show-map" : "eventmap:show-discover"));
   }
 
@@ -360,14 +395,24 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
           )}
         </div>
 
-        <Link href={savedHref} className="navSavedShortcut" aria-label="Zapisane wydarzenia">
-          <Heart size={22} strokeWidth={2} aria-hidden="true" />
-        </Link>
+        <div className="navPlan" ref={planRef}>
+          <button ref={planTriggerRef} type="button" className="navSavedShortcut" aria-label="Twój plan wydarzeń" aria-expanded={planOpen} aria-controls={planOpen ? "nav-event-plan" : undefined} onClick={() => { setPlanOpen(!planOpen); setMenuOpen(false); }}>
+            <Bell size={25} strokeWidth={1.8} aria-hidden="true" />
+          </button>
+          {planOpen ? (
+            <div id="nav-event-plan" className="navPlanPanel">
+              <strong>Twój plan wydarzeń</strong>
+              <p>Zachowaj wydarzenia, na które chcesz się wybrać.</p>
+              <Link href={savedHref} onClick={() => setPlanOpen(false)}><Heart size={18} aria-hidden="true" /> Zapisane wydarzenia</Link>
+              <Link href={dashboardHref ?? "/account"} onClick={() => setPlanOpen(false)}><UserRound size={18} aria-hidden="true" /> {dashboardHref ? "Przejdź do panelu" : "Moje konto"}</Link>
+            </div>
+          ) : null}
+        </div>
 
         {/* ── Hamburger (mobile) ── */}
         <button
           className={`navHamburger${menuOpen ? " navHamburgerOpen" : ""}`}
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => { setMenuOpen(!menuOpen); setPlanOpen(false); }}
           aria-label="Menu nawigacji"
           aria-expanded={menuOpen}
         >
@@ -459,14 +504,12 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
           )}
         </div>
       </div>
-      {profileRoute ? (
-        <nav className="mobileViewSwitcher" aria-label="Nawigacja mobilna">
-          <Link href={workspaceHref + "#odkryj"} scroll={false}><Compass size={21} aria-hidden="true" />Odkryj</Link>
+        <nav className="mobileViewSwitcher mobileGlobalNav" aria-label="Nawigacja mobilna">
+          <Link href={workspaceHref + "#odkryj"} scroll={false} aria-current={!profileRoute ? "page" : undefined}><Compass size={21} aria-hidden="true" />Odkryj</Link>
           <Link href={workspaceHref + "#events-list"} scroll={false}><List size={21} aria-hidden="true" />Lista</Link>
           <Link href={workspaceHref + "#mapa"} scroll={false}><MapIcon size={21} aria-hidden="true" />Mapa</Link>
-          <Link href="/account" aria-current="page"><UserRound size={21} aria-hidden="true" />Profil</Link>
+          <Link href="/account" aria-current={profileRoute ? "page" : undefined}><UserRound size={21} aria-hidden="true" />Profil</Link>
         </nav>
-      ) : null}
     </>
   );
 }

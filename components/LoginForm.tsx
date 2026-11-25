@@ -60,9 +60,9 @@ export default function LoginForm({
         <Link href={`/forgot-password?next=${encodeURIComponent(next)}`}>Nie pamiętasz hasła?</Link>
       </p>
 
-      <p style={{ marginTop: "1.5rem", textAlign: "center", fontSize: "0.9rem", color: "#64748b" }}>
+      <p className="authSwitchAccount">
         Nie masz konta?{" "}
-        <Link href={`/register?next=${encodeURIComponent(next)}`} style={{ color: "#d95d39", fontWeight: 600, textDecoration: "underline" }}>
+        <Link href={`/register?next=${encodeURIComponent(next)}`}>
           Zarejestruj się
         </Link>
       </p>

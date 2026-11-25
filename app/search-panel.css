@@ -1,7 +1,7 @@
 /* Compact discovery controls and the shared desktop disclosure / mobile sheet. */
 .discoverySearch, .discoveryFilterPanel {
   --search-control-height: 46px;
-  --search-control-radius: 16px;
+  --search-control-radius: 21px;
   --search-surface: color-mix(in srgb, var(--bg-card) 92%, transparent);
   --search-surface-border: var(--border-strong);
   --search-control-glass: linear-gradient(164deg, color-mix(in srgb, var(--bg-card) 92%, white), var(--search-surface));
@@ -14,9 +14,9 @@
 }
 html[data-theme="dark"] :is(.discoverySearch, .discoveryFilterPanel) {
   --search-surface: rgb(16 30 46 / .94);
-  --search-surface-border: #475a74;
+  --search-surface-border: #4c5e72;
   --search-control-glass: linear-gradient(165deg, rgb(25 43 65 / .94), rgb(16 31 50 / .94) 70%, rgb(18 36 55 / .96));
-  --search-tile-glass: radial-gradient(ellipse at 45% 96%, rgb(37 69 102 / .24), transparent 66%), linear-gradient(156deg, #17283d, #0c1727 76%);
+  --search-tile-glass: radial-gradient(ellipse at 45% 96%, rgb(37 69 102 / .2), transparent 66%), linear-gradient(156deg, #142332, #0b1522 76%);
   --search-tile-active: radial-gradient(ellipse at 50% 0, #773405 0%, transparent 69%), linear-gradient(150deg, #3c2215, #1e1519 75%, #51250f);
   --search-panel: #101c29;
   --search-active-ink: #ff9f4a;
@@ -188,7 +188,7 @@ html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocom
   padding: 0 20px;
   border: 1px solid #ff7522;
   border-radius: var(--search-control-radius);
-  background: linear-gradient(180deg, #fa7421 0%, #bf4404 21%, #bb3d00 76%, #ed5b0d 100%);
+  background: linear-gradient(180deg, #ff8b00 0%, #ff7900 45%, #ff6500 100%);
   color: #fff;
   font-size: .96rem;
   font-weight: 750;
@@ -457,6 +457,8 @@ html[data-theme="dark"] .discoverySearchCategoryOptions button svg {
 }
 @media (max-width: 760px) {
   .discoverySearch { gap: 12px; margin-bottom: 22px; }
+  html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocompleteContainer input,
+  .discoverySearchKeywordInput input, .discoverySearchDatePicker select { font-size: 1rem !important; }
   .discoverySearchControls {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas: "keyword keyword" "location date";
@@ -519,5 +521,5 @@ html[data-theme="dark"] .discoverySearchCategoryOptions button svg {
 @media (min-width: 1100px) {
   html[data-theme] .homePage .discoverySearch { padding-inline: 0; }
   .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 7px; }
-  .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions button { flex: 1 0 auto; padding-inline: clamp(6px, .75vw, 12px); font-size: clamp(.7rem, .88vw, .8rem); }
+  .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions button { flex: 1 0 auto; min-height: 40px; border-radius: 19px; padding-inline: clamp(6px, .75vw, 12px); font-size: clamp(.7rem, .88vw, .8rem); }
 }

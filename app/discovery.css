@@ -421,7 +421,7 @@ html[data-theme] .siteWrapper:has(.homePage) > .navbar { background: var(--bg-ca
 html[data-theme] .homePage .heroTitle {
   font-size: clamp(2rem, 3.35vw, 3.4rem);
   line-height: .99;
-  letter-spacing: -.052em;
+  letter-spacing: -.032em;
   overflow-wrap: normal;
 }
 html[data-theme] .homePage .heroSection { min-height: 168px; margin: 0; padding: 16px 0 14px; }

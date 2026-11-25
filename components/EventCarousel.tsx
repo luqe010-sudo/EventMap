@@ -7,6 +7,7 @@ import type { EventItem } from "@/lib/events";
 import { isFreeEvent } from "@/lib/events";
 import { eventPath } from "@/lib/slugs";
 import { formatEventCardDate, formatEventCardDistance, formatEventCardLocation, formatEventCardPrice } from "@/lib/event-presentation";
+import { formatPolishDate } from "@/lib/date-format";
 import EventCardSaveButton from "./EventCardSaveButton";
 import EventVisual from "./EventVisual";
 import PromotedBadge from "./PromotedBadge";
@@ -37,7 +38,7 @@ export default function EventCarousel({ events, title, description, featured = f
     const measure = () => {
       setEdges({ left: element.scrollLeft > 2, right: element.scrollLeft + element.clientWidth < element.scrollWidth - 2 });
       const first = element.firstElementChild as HTMLElement | null;
-      if (first) setActiveIndex(Math.round(element.scrollLeft / (first.offsetWidth + 12)));
+      if (first) setActiveIndex(Math.max(0, Math.min(events.length - 1, Math.round(element.scrollLeft / (first.offsetWidth + 12)))));
     };
     element.scrollLeft = 0;
     measure();
@@ -57,8 +58,13 @@ export default function EventCarousel({ events, title, description, featured = f
 
   if (!events.length) return null;
   const canScroll = edges.left || edges.right;
+  const dotCount = Math.min(3, events.length);
+  const dotGroups = Array.from({ length: dotCount }, (_, index) => ({
+    start: Math.floor(index * events.length / dotCount),
+    end: Math.floor((index + 1) * events.length / dotCount) - 1
+  }));
   const HeadingIcon = featured ? Star : CalendarDays;
-  const linkLabel = <><span>Zobacz listę</span><ArrowRight size={15} aria-hidden="true" /></>;
+  const linkLabel = <><span className="eventCarouselLinkDesktop">Zobacz więcej</span><span className="eventCarouselLinkMobile">Zobacz listę</span><ArrowRight size={17} aria-hidden="true" /></>;
 
   return (
     <section className={featured ? "eventCarousel eventCarousel--discover eventCarousel--featured" : "eventCarousel eventCarousel--discover eventCarousel--compact"} aria-labelledby={`${id}-title`}>
@@ -81,7 +87,7 @@ export default function EventCarousel({ events, title, description, featured = f
           if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); scroll(e.key === "ArrowLeft" ? -1 : 1); }
         }}>
         {events.map(({ event, distanceKm }, index) => (
-          <article className="eventCarouselCard" key={event.id} data-category={event.categorySlug} style={{ "--rail-category": event.categoryColor || "var(--brand)" } as CSSProperties}>
+          <article className={`eventCarouselCard${event.isFeatured ? " eventCarouselCard--promoted" : ""}`} key={event.id} data-category={event.categorySlug} style={{ "--rail-category": event.categoryColor || "var(--brand)" } as CSSProperties}>
             <Link className="eventCarouselCardLink" href={eventPath(event)} onClick={(e) => {
               if (!onOpenEvent || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !window.matchMedia("(max-width: 760px)").matches) return;
               e.preventDefault(); onOpenEvent(event.id);
@@ -95,30 +101,31 @@ export default function EventCarousel({ events, title, description, featured = f
               </div>
               <div className="eventCarouselBody">
                 <h3>{event.title}</h3>
-                <time className="eventCarouselDate" dateTime={event.startDate}>
+                <time className="eventCarouselDate" dateTime={event.startDate} title={featured ? undefined : `${formatEventCardDate(event)} · ${formatEventCardLocation(event)}`}>
                   <CalendarDays size={14} aria-hidden="true" />
-                  {formatEventCardDate(event)}
+                  <span>{featured ? formatEventCardDate(event) : `${event.city ? `${event.city} · ` : ""}${formatPolishDate(event.startDate, { day: "numeric", month: "short" })}${event.is_all_day ? "" : ` · ${formatPolishDate(event.startDate, { hour: "2-digit", minute: "2-digit" })}`}`}</span>
                 </time>
-                <p className="eventCarouselLocation"><MapPin size={14} aria-hidden="true" /><span>{formatEventCardLocation(event)}</span></p>
+                {featured ? <p className="eventCarouselLocation"><MapPin size={14} aria-hidden="true" /><span>{formatEventCardLocation(event)}</span></p> : null}
                 <div className="eventCarouselCardFooter">
-                  <span className={`eventCarouselTicketPrice${isFreeEvent(event) ? " eventCarouselPriceFree" : ""}`}>{formatEventCardPrice(event)}</span>
+                  <span className={`eventCarouselTicketPrice${isFreeEvent(event) ? " eventCarouselPriceFree" : ""}${event.price_min != null && event.price_max != null && event.price_min !== event.price_max ? " eventCarouselTicketPrice--range" : ""}`}>{formatEventCardPrice(event)}</span>
                   {event.isFeatured ? <PromotedBadge /> : null}
                   {Number.isFinite(distanceKm) ? <span className="eventCarouselDistance">{formatEventCardDistance(distanceKm)}</span> : null}
                 </div>
               </div>
             </Link>
-            <EventCardSaveButton eventId={event.id} returnTo={eventPath(event)} className="eventCarouselSave" />
+            <EventCardSaveButton eventId={event.id} returnTo={eventPath(event)} className="eventCarouselSave" iconSize={22} />
           </article>
         ))}
       </div>
       {featured && canScroll ? (
-        <div className="eventCarouselDots" aria-label="Pozycja w karuzeli">
-          {events.map(({ event }, index) => (
-            <button key={event.id} type="button" aria-label={"Przewiń do wydarzenia " + (index + 1)}
-              aria-current={activeIndex === index ? "true" : undefined} onClick={() => {
+        <div className="eventCarouselDots" role="group" aria-label="Pozycja w karuzeli">
+          {dotGroups.map(({ start, end }) => (
+            <button key={start} type="button" aria-controls={id}
+              aria-label={start === end ? `Przewiń do wydarzenia ${start + 1} z ${events.length}` : `Przewiń do wydarzeń ${start + 1}–${end + 1} z ${events.length}`}
+              aria-current={activeIndex >= start && activeIndex <= end ? "true" : undefined} onClick={() => {
                 const element = track.current;
                 const first = element?.firstElementChild as HTMLElement | null;
-                if (element && first) element.scrollTo({ left: index * (first.offsetWidth + 12), behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+                if (element && first) element.scrollTo({ left: start * (first.offsetWidth + 12), behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
               }} />
           ))}
         </div>

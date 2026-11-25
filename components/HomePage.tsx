@@ -1283,6 +1283,7 @@ export default function HomePage({
                 key={section.id}
                 events={section.events}
                 title={section.title}
+                description={section.id === "weekend" ? "Najciekawsze wydarzenia w najbliższych dniach." : undefined}
                 onOpenEvent={openMobileEvent}
                 seeAllHref={section.href}
                 onSeeAll={section.filters ? () => selectDiscovery(section) : undefined}

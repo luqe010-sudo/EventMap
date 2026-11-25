@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
-import { CalendarDays, ChevronDown, Gift, Grid2X2, Layers, Music2, PersonStanding, Search, SlidersHorizontal, Smile, Tent, Theater, Trash2, Wheat, X } from "lucide-react";
+import { CalendarDays, ChevronDown, Drama, Gift, Layers, Music2, Search, SlidersHorizontal, Smile, Tent, Trash2, Wheat, X } from "lucide-react";
 import type { CategoryOption, EventCategory, KnownLocation } from "@/lib/events";
 import { PUBLIC_EVENT_QUERY_MAX_LENGTH } from "@/lib/event-search";
 import { MAX_PRICE_FILTER_LIMIT, MAX_RADIUS_FILTER_LIMIT, type DateFilter, type PriceFilterMode } from "@/lib/filters";
@@ -52,11 +52,11 @@ const DATE_OPTIONS: Array<{ label: string; value: DateFilter }> = [
 ];
 
 const QUICK_CATEGORIES = [
-  { slug: "koncerty", icon: Music2, color: "#ed6bfc" },
+  { slug: "koncerty", icon: Music2, color: "#f25ea8" },
   { slug: "festyny", icon: Tent, color: "#ffc52e" },
   { slug: "dozynki", icon: Wheat, color: "#ffb619" },
-  { slug: "sport", icon: PersonStanding, color: "#35aafd" },
-  { slug: "kultura", icon: Theater, color: "#e771fa" },
+  { slug: "sport", icon: RunningIcon, color: "#00a5ff" },
+  { slug: "kultura", icon: Drama, color: "#dc59f7" },
   { slug: "rodzinne", icon: Smile, color: "#ffd34a", label: "Dla dzieci" }
 ];
 
@@ -422,7 +422,7 @@ export default function SearchPanel({
             type="button" className="discoverySearchMore" aria-expanded={isAdvancedOpen} aria-haspopup="dialog" aria-controls={isAdvancedOpen ? advancedId : undefined}
             onClick={(event) => openAdvancedFilters(event.currentTarget)} style={categoryColor("var(--ink-secondary)")}
           >
-            <Grid2X2 size={21} aria-hidden="true" /><span>Więcej</span>
+            <MoreCategoriesIcon size={21} /><span>Więcej</span>
           </button>
         </div>
       </fieldset>
@@ -466,6 +466,14 @@ export default function SearchPanel({
 
 function categorySlug(option: CategoryOption) {
   return toPluralCategorySlug(option.slug || toSlug(option.name));
+}
+
+function MoreCategoriesIcon({ size = 21 }: { size?: number }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="6.5" cy="6.5" r="3.4" /><circle cx="17.5" cy="6.5" r="3.4" /><circle cx="6.5" cy="17.5" r="3.4" /><circle cx="17.5" cy="17.5" r="3.4" /></svg>;
+}
+
+function RunningIcon({ size = 21 }: { size?: number }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="16.5" cy="3.5" r="2" /><path d="m8 9 4-3 4 5 4-1M12 6l-2 7 4 3-2 5M10 13l-4 4H2M5 7h3M3 11h3" /></svg>;
 }
 
 function categoryColor(color: string) {

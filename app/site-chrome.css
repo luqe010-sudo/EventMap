@@ -1,0 +1,173 @@
+/* Shared chrome follows the supplied desktop and phone references. */
+:root {
+  --font-title: Inter, system-ui, sans-serif;
+  --font-body: Inter, system-ui, sans-serif;
+}
+html[data-theme="dark"] .siteWrapper, html[data-theme="dark"] .siteWrapper:has(.homePage) {
+  --bg: #08121e;
+  --bg-soft: #122131;
+  --bg-card: #0e1926;
+  --bg-card-hover: #172738;
+  --ink: #f7f8fc;
+  --ink-secondary: #c6ceda;
+  --ink-muted: #99a7b8;
+  --border: #2c3c4e;
+  --border-strong: #526176;
+  --brand: #ff7900;
+  --brand-dark: #ff871c;
+  --brand-light: #352116;
+  --brand-gradient: linear-gradient(180deg, #ff8900, #ff6300);
+  background: #071221;
+}
+.siteWrapper {
+  font-family: var(--font-body);
+  font-optical-sizing: auto;
+}
+html[data-theme="dark"] .siteWrapper > .mainContent {
+  background: radial-gradient(ellipse at 65% 17rem, #0b1c2b80, transparent 40rem), linear-gradient(150deg, #060e18, #091623 52rem, #070f1a);
+}
+html[data-theme="dark"] .siteWrapper > .mainContent::before { content: none; }
+html[data-theme] .siteWrapper > .navbar {
+  height: 58px;
+  padding-inline: 0;
+  box-shadow: none;
+}
+html[data-theme="dark"] .siteWrapper > .navbar {
+  background: linear-gradient(112deg, #101c26, #09131e 58%, #0d1924);
+  border-color: #314354;
+}
+html[data-theme] .siteWrapper > .navbar .navbarInner {
+  height: 57px;
+  max-width: none;
+  padding-inline: clamp(18px, 4vw, 62px);
+}
+.siteWrapper .navLogo { gap: 9px; font-size: 1.4rem; letter-spacing: -.045em; font-weight: 850; }
+.siteWrapper .navLogo .brandLogoMark { width: 29px; height: 36px; }
+.siteWrapper .navLinks { gap: clamp(20px, 2.8vw, 44px); }
+.siteWrapper .navLink { color: var(--ink); font-weight: 650; padding-block: 20px; }
+.siteWrapper .navLink:hover { transform: none; }
+.siteWrapper .navLinkActive::after { height: 4px; left: 0; right: 0; box-shadow: 0 0 10px #ff790044; }
+.siteWrapper .navRight { gap: 16px; }
+.siteWrapper .navOrganizerCta { display: none; }
+.siteWrapper .themeToggle { min-width: 36px; min-height: 36px; width: 36px; height: 36px; border-radius: 50%; }
+html[data-theme="dark"] .siteWrapper :is(.themeToggle, .navProfileTrigger, .navLoginBtn) {
+  border: 1px solid #283746;
+  background: linear-gradient(145deg, #111e29, #08121c);
+  box-shadow: inset 0 1px 0 #ffffff05;
+}
+.siteWrapper .navUserInitial { background: var(--brand-gradient); box-shadow: 0 0 12px #ff790044; }
+.siteWrapper .navProfileTrigger, .siteWrapper .navLoginBtn { font-size: .8rem; }
+.navPlan { display: none; }
+.siteWrapper .navPlanPanel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: min(305px, calc(100vw - 28px));
+  padding: 18px;
+  border: 1px solid var(--border-strong);
+  border-radius: 18px;
+  background: var(--bg-card);
+  color: var(--ink);
+  box-shadow: 0 14px 40px #0008, inset 0 1px 0 #ffffff0d;
+}
+.navPlanPanel strong { font-size: 1rem; }
+.navPlanPanel p { margin: 8px 0 12px; color: var(--ink-secondary); font-size: .85rem; line-height: 1.5; }
+.navPlanPanel a { display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: .88rem; color: var(--ink); }
+.navPlanPanel a:hover { color: var(--brand-dark); }
+.siteWrapper:has(.homePage) > .mobileGlobalNav { display: none; }
+.siteWrapper .siteFooter { background: transparent; border-top-color: var(--border); }
+.siteWrapper .footerInner { max-width: 1210px; }
+.siteWrapper .footerColumn h3 { color: var(--ink); }
+html[data-theme="dark"] .siteWrapper .siteFooter { color: var(--ink-secondary); }
+
+@media (min-width: 761px) {
+  html[data-theme] .siteWrapper > :is(.navbar, .mainContent) { width: min(1340px, calc(100% - 32px)); margin-inline: auto; box-sizing: border-box; }
+  html[data-theme="dark"] .siteWrapper > .mainContent { border: 1px solid #305b78; border-top: 0; border-radius: 0 0 25px 25px; }
+  html[data-theme="dark"] .siteWrapper > .navbar { border: 1px solid #305b78; border-bottom-color: #314354; }
+  .siteWrapper .navPlanPanel { display: none; }
+}
+@media (min-width: 1100px) {
+  html[data-theme="dark"] .siteWrapper, html[data-theme="dark"] .siteWrapper:has(.homePage) {
+    background:
+      linear-gradient(135deg, transparent 4%, #ff8c3240 8.9%, #ff8a21bb 9.35%, #ffbf69e6 9.5%, #ff761699 9.65%, transparent 11.6%),
+      linear-gradient(135deg, transparent 72%, #ff7e1b66 76%, #ff9c3dbb 76.5%, #ff710344 77%, transparent 80%),
+      radial-gradient(ellipse 29rem 19rem at -2% 6%, #ae492f 0%, #5a2b2a88 37%, transparent 77%),
+      radial-gradient(ellipse 33rem 25rem at 104% 57%, #8d3d2466, transparent 76%),
+      radial-gradient(ellipse 31rem 21rem at 104% 94%, #007fca99, #092e5655 39%, transparent 76%),
+      linear-gradient(145deg, #101a2d, #0b2340 58%, #061121);
+    background-attachment: fixed;
+  }
+  html[data-theme] .siteWrapper > :is(.navbar, .mainContent) { width: min(1340px, 84.4vw); }
+  html[data-theme] .siteWrapper > .navbar { margin-top: 14px; border-radius: 25px 25px 0 0; }
+  .siteWrapper .navOrganizerCta, .siteWrapper:has(.homePage) .navOrganizerCta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding-inline: 18px;
+    border: 1.5px solid #ff820e;
+    border-radius: 999px;
+    color: var(--ink);
+    font-size: .75rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  html[data-theme="dark"] .siteWrapper .navOrganizerCta, html[data-theme="dark"] .siteWrapper:has(.homePage) .navOrganizerCta {
+    background: radial-gradient(ellipse at 40% 0, #623017, #241914 80%);
+    box-shadow: inset 0 0 0 1px #ffbc5244, 0 0 5px #ff8612a3, 0 0 17px #ff6b0357;
+  }
+}
+@media (max-width: 1099px) and (min-width: 761px) {
+  .siteWrapper .navLinks { gap: 18px; }
+  .siteWrapper .navLink { font-size: .78rem; }
+  .siteWrapper .navLogo { font-size: 1.2rem; }
+}
+@media (max-width: 760px) {
+  /* Tablet navigation is handled separately to keep the desktop frame intact. */
+  html[data-theme] .siteWrapper > .navbar { height: 64px; border: 0; }
+  html[data-theme="dark"] .siteWrapper > .navbar { background: linear-gradient(180deg, #08121f, #08121ff0); }
+  html[data-theme] .siteWrapper > .navbar .navbarInner {
+    height: 64px;
+    min-height: 64px;
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) 40px;
+    gap: 8px;
+    padding-inline: 12px;
+  }
+  .siteWrapper .navbarInner .navLeft { grid-column: 2; grid-row: 1; justify-self: center; }
+  .siteWrapper .navbarInner .navHamburger { grid-column: 1; grid-row: 1; justify-self: start; }
+  .siteWrapper .navbarInner .navPlan { grid-column: 3; grid-row: 1; justify-self: end; display: block; position: relative; }
+  .siteWrapper .navLogo .brandLogoText { font-size: clamp(1rem, 5.4vw, 1.45rem); letter-spacing: -.035em; }
+  .siteWrapper .navLogo .brandLogoMark { width: 25px; height: 32px; }
+  .siteWrapper .navSavedShortcut, .siteWrapper:has(.homePage) .navSavedShortcut { display: grid; place-items: center; min-width: 40px; height: 44px; padding: 0; border: 0; background: none; color: var(--ink); cursor: pointer; }
+  .siteWrapper .navHamburger { min-width: 40px; width: 40px; min-height: 44px; gap: 5px; }
+  .siteWrapper .navHamburger span { width: 24px; height: 2px; border-radius: 2px; }
+  .siteWrapper .navMobileMenu { border-color: var(--border); border-radius: 0 0 22px 22px; }
+  .siteWrapper:has(.mobileViewSwitcher) { --mobile-switcher-height: 70px; --mobile-switcher-bottom: calc(10px + env(safe-area-inset-bottom)); }
+  .siteWrapper .mobileViewSwitcher {
+    max-width: min(100%, 570px);
+    height: calc(var(--mobile-switcher-height) + var(--mobile-switcher-bottom));
+    padding: 5px 10px var(--mobile-switcher-bottom);
+    gap: 5px;
+    border: 1px solid #455465;
+    border-bottom: 0;
+    border-radius: 25px 25px 0 0;
+  }
+  .siteWrapper .mobileViewSwitcher :is(button, a) { gap: 5px; border-radius: 13px; font-size: .82rem; font-weight: 600; }
+  .siteWrapper .mobileViewSwitcher :is(button, a) > svg { width: 25px; height: 25px; stroke-width: 1.8; }
+  html[data-theme="dark"] .siteWrapper .mobileViewSwitcher :is(button[aria-pressed="true"], a[aria-current="page"]) {
+    border: 1px solid #f57712;
+    background: radial-gradient(ellipse at 12% 0, #6b3416, #382116 72%);
+    color: #ff871d;
+    box-shadow: inset 0 0 15px #ff8c2729, 0 0 11px #ff79002b;
+  }
+  .siteWrapper:not(:has(.homePage)) > .mainContent { padding-bottom: var(--mobile-switcher-clearance); }
+}
+@media (min-width: 761px) and (max-width: 1249px) {
+  .siteWrapper .navOrganizerCta, .siteWrapper:has(.homePage) .navOrganizerCta { display: none; }
+  .siteWrapper .navLinks { gap: 22px; }
+}
+@media (min-width: 761px) and (max-width: 1024px) {
+  html[data-theme] .siteWrapper > .navbar, html[data-theme] .siteWrapper:has(.homePage) > .navbar { height: 64px; }
+  html[data-theme] .siteWrapper > .navbar .navbarInner, html[data-theme] .siteWrapper:has(.homePage) > .navbar .navbarInner { height: 63px; }
+}

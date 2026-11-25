@@ -43,7 +43,7 @@ export default function EventVisual({ event, variant = "card", decorative = true
   const [failedBackdrop, setFailedBackdrop] = useState<string | null>(null);
   const image = useRef<HTMLImageElement>(null);
   const backdrop = useRef<HTMLImageElement>(null);
-  const contextualPhoto = getEventCoverPhoto(event) ?? (variant === "detail" ? undefined : getEventCategoryCoverPhoto(event));
+  const contextualPhoto = getEventCoverPhoto(event) ?? getEventCategoryCoverPhoto(event);
   const photo = contextualPhoto && failedBackdrop !== contextualPhoto.url ? contextualPhoto : undefined;
   useEffect(() => {
     // A cached error may have fired before React hydrated the server-rendered image.
@@ -72,16 +72,11 @@ export default function EventVisual({ event, variant = "card", decorative = true
             onError={() => setFailedBackdrop(photo.url)} /> : null}
           <span className="eventVisualOrbit" />
           <Icon className="eventVisualSymbol" strokeWidth={1.1} aria-hidden="true" />
-          {variant === "detail" ? (
-            <>
-              <div className="eventVisualEyebrow"><Icon size={14} strokeWidth={1.8} aria-hidden="true" /><span>{event.category}</span>
-                {photo ? <span className="eventVisualImageNote">Zdjęcie ilustracyjne</span> : null}
-              </div>
-              <div className="eventVisualHeadline">{event.title}</div>
-              <div className="eventVisualFooter"><span>{date}<span className="eventVisualTime"> · {time}</span></span><span className="eventVisualCity">{event.city || "Polska"}</span>
-                {photo ? <span className="eventVisualPhotoCredit">Fot. {photo.author} · {photo.source.includes("pexels.com") ? "Pexels" : "Unsplash"}</span> : null}
-              </div>
-            </>
+          {variant === "detail" && photo ? (
+            <div className="eventVisualDetailCaption">
+              <span>Zdjęcie ilustracyjne</span>
+              <span>Fot. {photo.author} · {photo.source.includes("pexels.com") ? "Pexels" : "Unsplash"}</span>
+            </div>
           ) : photo ? <span className="eventVisualIllustrationNote">Zdjęcie ilustracyjne</span> : <Icon className="eventVisualCategoryIcon" strokeWidth={1.4} aria-hidden="true" />}
         </div>
       )}
