@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import dynamic from "next/dynamic";
 import { CalendarDays, ChevronRight, LocateFixed, List, Map, MapPin, Search, SlidersHorizontal } from "lucide-react";
 import type { EventItem, EventMapMarker, KnownLocation } from "@/lib/events";
@@ -62,8 +62,34 @@ export default function MobileMapView({
   locationStatus
 }: MobileMapViewProps) {
   const [gpsRequested, setGPSRequested] = useState(false);
+  const viewRef = useRef<HTMLElement>(null);
+  const previewRef = useRef<HTMLElement>(null);
+  const hasPreview = Boolean(selectedEvent || (selectedEventLoading && selectedEventId));
+  const [sheetInset, setSheetInset] = useState(hasPreview ? 286 : 76);
+
+  // Keep the map framed above the event sheet or the bottom menu, including safe areas.
+  useEffect(() => {
+    const view = viewRef.current;
+    if (!view || !active) return;
+    const measure = () => {
+      const preview = previewRef.current;
+      if (preview) {
+        setSheetInset(Math.max(0, Math.round(view.clientHeight - preview.offsetTop + 6)));
+        return;
+      }
+      const switcher = document.querySelector<HTMLElement>(".mobileViewSwitcher");
+      if (switcher) setSheetInset(Math.max(0, Math.round(window.innerHeight - switcher.getBoundingClientRect().top + 8)));
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(view);
+    if (previewRef.current) observer.observe(previewRef.current);
+    return () => observer.disconnect();
+  }, [active, hasPreview, selectedEvent]);
+
   return (
     <section
+      ref={viewRef}
       id="mobile-map-view"
       className={`mobileMapView ${active ? "mobileMapViewActive" : ""} ${parked ? "mobileMapViewParked" : ""}`}
       aria-label="Mapa wydarzeń"
@@ -77,7 +103,7 @@ export default function MobileMapView({
         </div>
         <div className="mobileMapSearchBox">
           <Search size={21} aria-hidden="true" />
-          <input type="search" aria-label="Szukaj na mapie" placeholder="Szukaj na mapie, np. „jarmark”, „koncert”…" value={query} onChange={(event) => onQueryChange?.(event.target.value)} />
+          <input type="search" aria-label="Szukaj na mapie" placeholder="Szukaj na mapie, np. „jarmark”, „koncert”, „festiwal”…" value={query} onChange={(event) => onQueryChange?.(event.target.value)} />
           {onShowFilters ? <button type="button" onClick={onShowFilters} aria-label="Filtry mapy"><SlidersHorizontal size={22} aria-hidden="true" /></button> : null}
         </div>
       </header>
@@ -91,7 +117,7 @@ export default function MobileMapView({
         isVisible={active || parked}
         discoveryTheme
         controlsOnRight
-        bottomInset={selectedEvent || selectedEventLoading ? 231 : 74}
+        bottomInset={sheetInset}
       />
       {onUseGPS ? (
         <button type="button" className="mobileMapLocate" aria-label="Użyj mojej lokalizacji" onClick={() => {
@@ -119,14 +145,14 @@ export default function MobileMapView({
       ) : null}
 
       {selectedEventLoading && selectedEventId ? (
-        <article className="mobileMapPreview mobileMapPreviewLoading" aria-label="Ładowanie wydarzenia">
+        <article ref={previewRef} className="mobileMapPreview mobileMapPreviewLoading" aria-label="Ładowanie wydarzenia">
           <div className="mobileMapPreviewBody">
             <span className="mobileMapPreviewCategory">Ładowanie</span>
             <h2>Pobieram wydarzenie...</h2>
           </div>
         </article>
       ) : selectedEvent ? (
-        <article className="mobileMapPreview" aria-label={`Wybrane wydarzenie: ${selectedEvent.title}`} style={{ "--rail-category": selectedEvent.categoryColor || "var(--brand)" } as CSSProperties}>
+        <article ref={previewRef} className="mobileMapPreview" data-category={selectedEvent.categorySlug} aria-label={`Wybrane wydarzenie: ${selectedEvent.title}`} style={{ "--rail-category": selectedEvent.categoryColor || "var(--brand)" } as CSSProperties}>
           <button
             type="button"
             className="mobileMapPreviewClose"

@@ -1,10 +1,21 @@
 # Current Features
 
+## Odwzorowanie wizualizacji — druga iteracja, 2026-11-25
+
+Porównanie pikselowe z trzema wizualizacjami (desktop 1586 × 992, telefon 390 × 844) i poprawki proporcji, kolorów, krawędzi i cieni. Priorytetem jest widok telefonu.
+
+- **Desktop:** dwa rzędy treści jak na wizualizacji — polecane obok mapy (ok. 2:1), a „W ten weekend” obok szerszego panelu „Nadchodzące wydarzenia” (ok. 60/40, panel przyklejony przy przewijaniu). Wyszukiwarka 44 px w proporcjach 232/475/242/208, chipy 38 px z promieniem 13 px, tytuł hero 47–48 px bez ściskania liter, podtytuł 15/22 px z tekstem „Znajdź ciekawe wydarzenia w Twojej okolicy…”, linki menu przesunięte jak na wzorcu. Między 1100 a 1300 px pola i chipy zwężają odstępy, żeby nic się nie ucinało; poniżej 1100 px zostaje dotychczasowy układ z bocznym panelem.
+- **Telefon:** nagłówek bez osobnego paska leży na zdjęciu hero do pierwszego przewinięcia; marginesy 11 px; tytuł 27 px, podtytuł 12,5 px; kafelki 64 px (ikona nut ♫ dla koncertów, maska teatralna dla kultury); wyszukiwarka 41 px i pola 40 px z promieniem 12 px; wyszukiwarka na Odkryj nie ma ikony filtrów (filtry zaawansowane są pod „Więcej”, z licznikiem aktywnych filtrów). Polecana karta ma ok. 352 px szerokości z wąskim fragmentem następnej karty. Tekst w polach ma rozmiar wzorca, ale na iOS wpisywany tekst zostaje 16 px, żeby Safari nie powiększało strony; etykieta terminu jest rysowana nad prawdziwym `<select>`.
+- **Krawędzie i cienie:** obrysy pól, kafelków, chipów, paneli, arkusza mapy, przycisku lokalizacji i dolnego menu są gradientowe (jaśniejsza góra, ciemniejszy dół). Obrys kart wydarzeń to półprzezroczysta jasna linia rysowana na zdjęciu, więc przyjmuje jego kolor (np. fioletowy na zdjęciu koncertu, szaroniebieski nad ciemnym podpisem). Elementy rzucają miękkie cienie, dolne menu i arkusz mapy — ku górze.
+- **Kolory:** jedna paleta chipów kategorii dla kart i podglądu na mapie (np. Targi — śliwkowy, Koncerty — fiolet), ciemniejsze szkło kafelków i pól, tło poza Polską w ciemnym turkusie jak na wzorcu.
+- **Mapa:** start zawsze od całej Polski w kadrze (na telefonie nad dolnym menu lub nad kartą wydarzenia, z ponownym dopasowaniem po otwarciu karty). Naprawiono błąd, przez który `setPadding()` przerywał animację dopasowania i mapa zostawała na zbyt dużym przybliżeniu. Nazwy miejscowości pojawiają się dopiero po przybliżeniu (polskie etykiety bez zmian). Pinezki mają okrągłą główkę z krótkim ogonkiem, połysk i poświatę; liczniki klastrów są mniejsze. Podgląd na desktopie używa okrągłych znaczników bez liczników (klastrowanie i przybliżanie po kliknięciu działają dalej). Licznik „N wydarzeń” na telefonie jest tylko dla czytników ekranu. Karta podglądu: uchwyt, cena i „Zobacz szczegóły” w jednym rzędzie, miejsce z wielokropkiem, atrybucja nad kartą.
+- **Świadome różnice wobec wizualizacji:** krój pisma pozostaje Inter (dopasowano rozmiary, grubości i odstępy); etykieta „Zdjęcie ilustracyjne” zostaje (wymóg [polityki mediów](event-media-policy.md)), ale jest mniejsza; desktopowa wyszukiwarka zachowuje ikonę filtrów, bo daje dostęp do promienia, ceny i pozostałych kategorii; atrybucja mapy zostaje (licencja OSM/OpenFreeMap); treść kart, zdjęcia i kolory pinezek pochodzą z bazy.
+
 ## Ujednolicenie UI według wizualizacji — 2026-11-25
 
 - Wspólne menu, Inter, granatowe szkło, obrysy, pomarańczowe akcenty i dolna nawigacja obejmują również podstrony logowania, konta, szczegółów, regulaminu, sezonowe oraz panele administratora i organizatora.
 - Fotografie i gradienty zajmują całą powierzchnię polecanej karty. Desktop pokazuje trzy karty polecane i cztery zwarte karty w sekcji weekendowej. Mobilne karty mają większy tytuł, czytelny pill ceny i szklany przycisk zapisu.
-- Mobilny dzwonek otwiera plan z działającymi odnośnikami do zapisanych wydarzeń i konta. Nie pokazuje fikcyjnych powiadomień ani liczników.
+- Mobilny dzwonek otwiera plan z działającymi odnośnikami do zapisanych wydarzeń i konta. Nie pokazuje fikcyjnych powiadomień ani liczników; pomarańczowa kropka z wizualizacji oznacza tylko nieotwarty jeszcze plan i znika po pierwszym otwarciu (`localStorage` `eventmap.planSeen`).
 - Mapa ma silniejszą turkusową poświatę granic, ikony pinezek z połyskiem i dopracowany podgląd od dołu. Uchwyt panelu zamyka podgląd. Rzeczywista kartografia, klastrowanie, filtry i istniejące dane pozostają wspólne dla widoków.
 - Szczegóły wzorca i ograniczenie bieżącej kontroli przeglądarkowej opisano w [specyfikacji UI](ui-reference-2026-11-25.md).
 

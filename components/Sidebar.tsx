@@ -145,6 +145,7 @@ export default function Sidebar({
               onSelectEvent={onSelectEvent}
               showEventPopup={false}
               discoveryTheme
+              markerVariant="dot"
             />
           ) : (
             <div className="sidebarMapPlaceholder">

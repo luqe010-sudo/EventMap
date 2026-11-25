@@ -19,7 +19,7 @@ export default function HeroSection({ title, subtitle }: HeroSectionProps) {
         <p className="heroSubtitle">
           {subtitle || (
           <>
-            <span className="heroSubtitleLong">Koncerty, festyny, dożynki, sport i kultura – wszystko w jednej mapie.<br />Znajdź wydarzenia w swojej okolicy i w całej Polsce.</span>
+            <span className="heroSubtitleLong">Koncerty, festyny, dożynki, sport i kultura – wszystko w jednej mapie.<br />Znajdź ciekawe wydarzenia w Twojej okolicy i w całej Polsce.</span>
             <span className="heroSubtitleShort">Koncerty, festyny, dożynki, sport i kultura – wszystko w jednym miejscu.</span>
           </>
         )}

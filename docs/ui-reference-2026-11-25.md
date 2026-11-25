@@ -17,3 +17,20 @@ Trzy wizualizacje użytkownika są wzorcem wspólnego interfejsu. Ramka telefonu
 ## Zakres weryfikacji
 
 Walidacja kodu obejmuje TypeScript, testy, lint i build. Bieżąca kontrola wizualna w przeglądarce została zablokowana przez zapisane uprawnienie narzędzia dla localhost, również po ponownej zgodzie użytkownika. Nie stanowi to potwierdzenia zgodności pikselowej. Wymaga odbioru w rzeczywistej przeglądarce przy szerokości 390 px i 1440–1586 px.
+
+### Odbiór 25.11.2026 (druga iteracja)
+
+Porównanie wykonano na zrzutach z Chrome przy 1586 × 992 (DPR 1) oraz 390 × 844 w skali makiety (DPR ≈ 1,75), zestawionych obok wycinków wizualizacji. Mierzono położenie i wymiary bloków, wysokość wersalików i interlinię tekstu oraz kolory pikseli tła, wypełnień i krawędzi. Wartości referencyjne:
+
+| Element | Wizualizacja | Po zmianach |
+|---|---|---|
+| Wyszukiwarka desktop | 189–1396 × 250–294 px | 187–1398 × 250–294 px |
+| Karty polecane desktop | 418–673 px wysokości ok. 255 | 418–673 px |
+| Panel mapy / „Nadchodzące” | 376–675 / 696–942 px | 376–676 / 698–943 px |
+| Karty weekendowe | 756–942 px, ok. 180 px szerokości | 759–944 px, 178 px |
+| Telefon: wyszukiwarka / pola | 41 / 40 px, promień ok. 12 px | 41 / 40 px, 12 px |
+| Telefon: polecana karta | ok. 352 × 215 px | 351 × 216 px |
+| Obrys karty na zdjęciu | jasna linia ok. 28% bieli | `rgb(255 255 255 / .27)` nad zdjęciem |
+| Tło poza Polską (telefon) | `#001e28`–`#01121c` | `#031a26` |
+
+Sprawdzono też 1440, 1280, 1100, 1024, 768 i 360 px, jasny motyw, widok listy, aktywny filtr kategorii i wybrane wydarzenie na mapie. Zgodność nie obejmuje kroju pisma (Inter zamiast kroju z makiety), treści i zdjęć wydarzeń ani paska systemowego telefonu.

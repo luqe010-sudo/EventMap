@@ -28,7 +28,11 @@ type MapLibreMapProps = {
   fullscreenControl?: boolean;
   controlsOnRight?: boolean;
   bottomInset?: number;
+  /** "dot" draws compact round markers without count badges (sidebar preview). */
+  markerVariant?: MarkerVariant;
 };
+
+type MarkerVariant = "pin" | "dot";
 
 type EventFeatureProperties = {
   pin: string;
@@ -84,9 +88,10 @@ const EMPTY_SPIDER_DATA: GeoJSON.FeatureCollection = { type: "FeatureCollection"
 const EMPTY_EVENT_FEATURES: EventFeatureCollection = { type: "FeatureCollection", features: [] };
 const EVENT_CATEGORY_COLOR: ExpressionSpecification = ["to-color", ["get", "color"], "#ef3f18"];
 const DEFAULT_PIN_COLOR = "#ef3f18";
-// Teardrop pin artwork (see buildPinSvg): 44x54 units, tip 7 units above the bottom edge.
-const PIN_TIP_OFFSET: [number, number] = [0, 7];
-const PIN_BADGE_OFFSET: [number, number] = [14, -40];
+// Pin artwork (see buildPinSvg): 44x54 units, tip 12.5 units above the bottom edge;
+// the count badge sits on the upper right of the round head.
+const PIN_TIP_OFFSET: [number, number] = [0, 12.5];
+const PIN_BADGE_OFFSET: [number, number] = [11, -31];
 const EVENT_PIN_LAYOUT = {
   "icon-image": ["get", "pin"] as ExpressionSpecification,
   "icon-anchor": "bottom" as const,
@@ -114,10 +119,10 @@ const MAP_LOCALE = {
 function discoveryMapPaint(layer: maplibregl.LayerSpecification): Record<string, unknown> {
   const name = `${layer.id} ${"source-layer" in layer ? layer["source-layer"] : ""}`.toLowerCase();
   // Poland glows teal with a neon border against a darker surrounding map.
-  if (layer.id === "eventmap-voivodeship-fill") return { "fill-color": "#07606d", "fill-opacity": .46 };
+  if (layer.id === "eventmap-voivodeship-fill") return { "fill-color": "#004356", "fill-opacity": .46 };
   if (layer.id === "eventmap-voivodeship-boundaries") return { "line-color": "#28cad5", "line-opacity": .4, "line-width": .8 };
   if (layer.id === "eventmap-county-boundaries") return { "line-color": "#1b5d66", "line-opacity": .35 };
-  if (layer.id === "eventmap-outside-poland") return { "fill-opacity": ["interpolate", ["linear"], ["zoom"], 4, 0.87, 7, 0.77, 11, 0.40, 15, 0.18] };
+  if (layer.id === "eventmap-outside-poland") return { "fill-color": "#031a26", "fill-opacity": ["interpolate", ["linear"], ["zoom"], 4, 0.93, 7, 0.8, 11, 0.40, 15, 0.18] };
   if (layer.id === "eventmap-poland-label") return { "text-opacity": ["interpolate", ["linear"], ["zoom"], 4.5, 1, 6.35, 0.0] };
   if (layer.id === "eventmap-country-halo") return { "line-opacity": .3 };
   if (layer.id === "eventmap-country-glow") return { "line-opacity": .74 };
@@ -134,10 +139,11 @@ function discoveryMapPaint(layer: maplibregl.LayerSpecification): Record<string,
   if (layer.type === "line") return {
     "line-color": /boundary/.test(name) ? "#246c78" : /water/.test(name) ? "#145267" : /motorway|trunk|primary/.test(name) ? "#3b5a64" : "#203f4b"
   };
+  // The country overview stays label-free; Polish place names appear once zoomed in.
   if (layer.type === "symbol" && layer.layout?.["text-field"]) return {
     "text-color": /city|town|country|state/.test(name) ? "#b6d7de" : "#8baab8",
     "text-halo-color": "#08202b",
-    ...(/country/.test(name) ? { "text-opacity": 0 } : {})
+    "text-opacity": /country/.test(name) ? 0 : ["interpolate", ["linear"], ["zoom"], 5.6, 0, 6.3, 1]
   };
   return {};
 }
@@ -205,7 +211,8 @@ export default function MapLibreMap({
   fullscreenControl = false,
   controlsOnRight = false,
   bottomInset = 0,
-  isVisible = true
+  isVisible = true,
+  markerVariant = "pin"
 }: MapLibreMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
@@ -215,11 +222,17 @@ export default function MapLibreMap({
   const onSelectEventRef = useRef(onSelectEvent);
   const showEventPopupRef = useRef(showEventPopup);
   const selectedEventIdRef = useRef(selectedEventId);
-  const initialMapViewRef = useRef({
+  // Without a location the map opens on the whole country, already above any bottom sheet.
+  const initialMapViewRef = useRef(location ? {
     center: hasLocationCoordinates(location) ? [location.longitude, location.latitude] as [number, number] : POLAND_CENTER,
-    zoom: location ? 6 : 4.8,
+    zoom: 6,
+    scrollZoom: !detailMode
+  } : {
+    bounds: POLAND_BOUNDS,
+    fitBoundsOptions: { padding: polandOverviewPadding(bottomInset, bottomInset) },
     scrollZoom: !detailMode
   });
+  const bottomInsetRef = useRef(bottomInset);
   const [mapReady, setMapReady] = useState(false);
   const [spiderPage, setSpiderPage] = useState<SpiderPage | null>(null);
   const eventFeatures = useMemo(() => buildEventFeatureCollection(events), [events]);
@@ -303,13 +316,35 @@ export default function MapLibreMap({
 
     const controller = new AbortController();
     spiderRef.current?.setEvents(EMPTY_EVENT_FEATURES);
-    void addCategoryImages(map, eventFeatures, controller.signal).then(() => {
+    void addCategoryImages(map, eventFeatures, controller.signal, markerVariant).then(() => {
       if (controller.signal.aborted) return;
       syncEventSources(map, eventFeatures, categoryLayersRef.current, selectedEventIdRef.current);
+      if (markerVariant === "dot") {
+        // The compact preview keeps clustering but shows centred dots without count badges.
+        for (const layers of categoryLayersRef.current.values()) {
+          map.setLayoutProperty(layers.cluster, "visibility", "none");
+          map.setLayoutProperty(layers.clusterCount, "visibility", "none");
+          for (const iconLayer of [layers.icon, layers.clusterIcon]) {
+            map.setLayoutProperty(iconLayer, "icon-anchor", "center");
+            map.setLayoutProperty(iconLayer, "icon-offset", [0, 0]);
+          }
+        }
+      }
       spiderRef.current?.setEvents(eventFeatures);
     });
     return () => controller.abort();
-  }, [eventFeatures, mapReady]);
+  }, [eventFeatures, mapReady, markerVariant]);
+
+  // setPadding() runs jumpTo(), which stops camera animations, so the padding is
+  // applied before any fit below. A country overview is refitted above a new sheet.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !mapReady) return;
+    const previousInset = bottomInsetRef.current;
+    bottomInsetRef.current = bottomInset;
+    map.setPadding({ top: 0, left: 0, right: 0, bottom: bottomInset });
+    if (!location && previousInset !== bottomInset && map.getZoom() < 5.4) fitMapToPoland(map, 350);
+  }, [bottomInset, location, mapReady]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -333,11 +368,6 @@ export default function MapLibreMap({
     if (!map || !mapReady || !focusedEventId || spiderRef.current?.contains(focusedEventId)) return;
     focusMapOnEvent(map, eventFeatures, focusedEventId);
   }, [eventFeatures, focusedEventId, mapReady]);
-
-  useEffect(() => {
-    const map = mapRef.current;
-    if (map && mapReady) map.setPadding({ top: 0, left: 0, right: 0, bottom: bottomInset });
-  }, [bottomInset, mapReady]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -496,9 +526,10 @@ function addCategoryLayers(
     layout: { "circle-sort-key": CLUSTER_SORT_KEY },
     paint: {
       "circle-color": "#0b1620",
-      "circle-radius": ["interpolate", ["linear"], ["get", "point_count"], 2, 9, 100, 12, 1000, 14],
+      "circle-opacity": 0.92,
+      "circle-radius": ["interpolate", ["linear"], ["get", "point_count"], 2, 7.5, 100, 9.5, 1000, 11],
       "circle-stroke-color": EVENT_CATEGORY_COLOR,
-      "circle-stroke-width": 2,
+      "circle-stroke-width": 1.5,
       "circle-translate": badgeTranslate(offset),
       "circle-translate-anchor": "viewport"
     }
@@ -513,7 +544,7 @@ function addCategoryLayers(
     layout: {
       "text-field": ["get", "point_count_abbreviated"],
       "text-font": ["Noto Sans Bold"],
-      "text-size": 11,
+      "text-size": 9.5,
       "text-allow-overlap": true,
       "text-ignore-placement": true
     },
@@ -843,8 +874,17 @@ function fitMapToPoints(map: maplibregl.Map, location: KnownLocation | undefined
   map.fitBounds(bounds, { padding: 32, maxZoom: 12, duration: 500 });
 }
 
-function fitMapToPoland(map: maplibregl.Map) {
-  map.fitBounds(POLAND_BOUNDS, { padding: 18, duration: 500 });
+function fitMapToPoland(map: maplibregl.Map, duration = 500) {
+  map.fitBounds(POLAND_BOUNDS, { padding: polandOverviewPadding(map.getPadding().bottom ?? 0, 0), duration });
+}
+
+/** Country framing: narrow side margins on the phone map, even ones in the sidebar preview.
+ *  `sheet` adds a bottom sheet height that is not yet applied as map padding. */
+function polandOverviewPadding(bottomInset: number, sheet: number) {
+  const phone = bottomInset > 0;
+  const edge = phone ? 9 : 16;
+  const vertical = phone ? 16 : 6;
+  return { top: vertical, right: edge, bottom: vertical + sheet, left: edge };
 }
 
 function focusMapOnEvent(map: maplibregl.Map, data: EventFeatureCollection, eventId: string) {
@@ -1123,7 +1163,7 @@ const POLISH_VOIVODESHIP_NAME = ["match", ["get", "name"],
   "Greater Poland Voivodeship", "wielkopolskie", "West Pomeranian Voivodeship", "zachodniopomorskie",
   ["get", "name"]] as unknown as ExpressionSpecification;
 
-async function addCategoryImages(map: maplibregl.Map, data: EventFeatureCollection, signal: AbortSignal) {
+async function addCategoryImages(map: maplibregl.Map, data: EventFeatureCollection, signal: AbortSignal, variant: MarkerVariant) {
   // Lucide icons are rendered synchronously into a separate React root.
   await Promise.resolve();
   if (signal.aborted) return;
@@ -1151,7 +1191,7 @@ async function addCategoryImages(map: maplibregl.Map, data: EventFeatureCollecti
     Array.from(pins, async ([pinId, { color, icon }]) => {
       if (map.hasImage(pinId)) return;
       try {
-        const image = await loadSvgImage(buildPinSvg(color, getLucideIconSvgString(icon)), 88, 108);
+        const image = await loadSvgImage(buildPinSvg(color, getLucideIconSvgString(icon), variant), 88, 108);
         if (!signal.aborted && !map.hasImage(pinId)) map.addImage(pinId, image, { pixelRatio: 2 });
       } catch (err) {
         console.error(`Failed to load map pin ${pinId}:`, err);
@@ -1179,25 +1219,38 @@ function mixHex(color: string, target: string, amount: number) {
   return `#${from.map((value, index) => Math.round(value + (to[index] - value) * amount).toString(16).padStart(2, "0")).join("")}`;
 }
 
-/** Teardrop pin: category gradient, white rim, soft glow and the white category icon. */
-function buildPinSvg(rawColor: string | null | undefined, iconSvg: string) {
+/** Glossy category marker with a white icon. "pin": round head with a short tail whose tip
+ *  is the anchor; "dot": round badge centred on the anchor. Both use a 44x54 canvas. */
+function buildPinSvg(rawColor: string | null | undefined, iconSvg: string, variant: MarkerVariant = "pin") {
   const color = normalizePinColor(rawColor);
-  const light = mixHex(color, "#ffffff", 0.24);
-  const dark = mixHex(color, "#000000", 0.2);
-  const icon = iconSvg
+  const light = mixHex(color, "#ffffff", 0.3);
+  const dark = mixHex(color, "#000000", 0.16);
+  const rim = mixHex(color, "#ffffff", 0.58);
+  const placeIcon = (x: number, y: number, size: number) => iconSvg
     .replace(/\s(width|height)="[^"]*"/g, "")
-    .replace("<svg", '<svg x="12" y="10" width="20" height="20"');
-  const drop = "M22 47C22 47 7 33.6 7 20.5a15 15 0 0 1 30 0C37 33.6 22 47 22 47Z";
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="88" height="108" viewBox="0 0 44 54">
-<defs>
+    .replace("<svg", `<svg x="${x}" y="${y}" width="${size}" height="${size}"`);
+  const defs = `<defs>
 <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${light}"/><stop offset="1" stop-color="${dark}"/></linearGradient>
-<filter id="f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.6"/></filter>
-<radialGradient id="s" cx=".35" cy=".15" r=".8"><stop offset="0" stop-color="#ffffff" stop-opacity=".28"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
-</defs>
-<path d="${drop}" fill="${color}" opacity=".75" filter="url(#f)"/>
-<path d="${drop}" fill="url(#g)" stroke="#ffffff" stroke-opacity=".85" stroke-width="1.5"/>
-<circle cx="22" cy="20.5" r="12" fill="url(#s)" stroke="#ffffff" stroke-opacity=".18" stroke-width=".8"/>
-${icon}
+<filter id="f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.1"/></filter>
+<radialGradient id="s" cx=".36" cy=".18" r=".72"><stop offset="0" stop-color="#ffffff" stop-opacity=".34"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+</defs>`;
+  if (variant === "dot") {
+    // Drawn around the canvas centre; the sidebar layers anchor these images at "center".
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="88" height="108" viewBox="0 0 44 54">
+${defs}
+<circle cx="22" cy="27" r="17.4" fill="${color}" opacity=".45" filter="url(#f)"/>
+<circle cx="22" cy="27" r="16.6" fill="url(#g)" stroke="${rim}" stroke-opacity=".95" stroke-width="2"/>
+<circle cx="22" cy="27" r="15.2" fill="url(#s)"/>
+${placeIcon(12.2, 17.2, 19.6)}
+</svg>`;
+  }
+  const head = "M22 41.5L16.9 34.1A15 15 0 1 1 27.1 34.1Z";
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="88" height="108" viewBox="0 0 44 54">
+${defs}
+<path d="${head}" fill="${color}" opacity=".6" filter="url(#f)"/>
+<path d="${head}" fill="url(#g)" stroke="${rim}" stroke-opacity=".6" stroke-width="1"/>
+<circle cx="22" cy="20" r="13.6" fill="url(#s)"/>
+${placeIcon(13.5, 11.5, 17)}
 </svg>`;
 }
 

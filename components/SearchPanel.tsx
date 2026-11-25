@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
-import { CalendarDays, ChevronDown, Drama, Gift, Layers, Music2, Search, SlidersHorizontal, Smile, Tent, Trash2, Wheat, X } from "lucide-react";
+import { CalendarDays, ChevronDown, Gift, Layers, Music, Search, SlidersHorizontal, Smile, Tent, Trash2, Wheat, X } from "lucide-react";
 import type { CategoryOption, EventCategory, KnownLocation } from "@/lib/events";
 import { PUBLIC_EVENT_QUERY_MAX_LENGTH } from "@/lib/event-search";
 import { MAX_PRICE_FILTER_LIMIT, MAX_RADIUS_FILTER_LIMIT, type DateFilter, type PriceFilterMode } from "@/lib/filters";
@@ -52,11 +52,11 @@ const DATE_OPTIONS: Array<{ label: string; value: DateFilter }> = [
 ];
 
 const QUICK_CATEGORIES = [
-  { slug: "koncerty", icon: Music2, color: "#f25ea8" },
+  { slug: "koncerty", icon: Music, color: "#f25ea8" },
   { slug: "festyny", icon: Tent, color: "#ffc52e" },
   { slug: "dozynki", icon: Wheat, color: "#ffb619" },
   { slug: "sport", icon: RunningIcon, color: "#00a5ff" },
-  { slug: "kultura", icon: Drama, color: "#dc59f7" },
+  { slug: "kultura", icon: TheaterMaskIcon, color: "#dc59f7" },
   { slug: "rodzinne", icon: Smile, color: "#ffd34a", label: "Dla dzieci" }
 ];
 
@@ -204,18 +204,25 @@ export default function SearchPanel({
     return (
       <div className="discoverySearchDatePicker">
         <CalendarDays size={20} aria-hidden="true" />
+        <span className="discoverySearchDateLabel" aria-hidden="true">{dateOptionLabel(dateFilter, compact)}</span>
         <select id={inputId} value={dateFilter} onChange={(event) => {
           const next = event.target.value as DateFilter;
           changeDate(next);
           if (compact && next === "custom" && !isAdvancedOpen) openAdvancedFilters(event.currentTarget);
         }}>
-          {DATE_OPTIONS.map(({ label, value }) => (
-            <option key={value} value={value}>{compact && value === "all" ? "Wybierz datę" : compact && value === "custom" && dateRangeLabel ? dateRangeLabel : label}</option>
+          {DATE_OPTIONS.map(({ value }) => (
+            <option key={value} value={value}>{dateOptionLabel(value, compact)}</option>
           ))}
         </select>
         <ChevronDown size={17} aria-hidden="true" />
       </div>
     );
+  }
+
+  function dateOptionLabel(value: DateFilter, compact: boolean) {
+    if (compact && value === "all") return "Wybierz datę";
+    if (compact && value === "custom" && dateRangeLabel) return dateRangeLabel;
+    return DATE_OPTIONS.find((option) => option.value === value)?.label ?? "";
   }
 
   function renderCategory(option?: CategoryOption, quick = false) {
@@ -387,7 +394,7 @@ export default function SearchPanel({
           <label className="discoverySearchVisuallyHidden" htmlFor={`${id}-query`}>Szukaj wydarzeń</label>
           <div className="discoverySearchKeywordInput">
             <Search size={21} aria-hidden="true" />
-            <input id={`${id}-query`} type="search" maxLength={PUBLIC_EVENT_QUERY_MAX_LENGTH} placeholder="Szukaj wydarzeń, np. „jarmark”, „koncert”…" value={query} onChange={(event) => onQueryChange(event.target.value)} />
+            <input id={`${id}-query`} type="search" maxLength={PUBLIC_EVENT_QUERY_MAX_LENGTH} placeholder="Szukaj wydarzeń, np. „jarmark”, „koncert”, „festiwal”…" value={query} onChange={(event) => onQueryChange(event.target.value)} />
             <button
               type="button" className="discoverySearchToggle" aria-label={additionalFilterCount ? `Filtry zaawansowane (${additionalFilterCount})` : "Filtry zaawansowane"}
               aria-expanded={isAdvancedOpen} aria-haspopup={advancedMode === "sheet" ? "dialog" : undefined} aria-controls={isAdvancedOpen ? advancedId : undefined}
@@ -423,6 +430,7 @@ export default function SearchPanel({
             onClick={(event) => openAdvancedFilters(event.currentTarget)} style={categoryColor("var(--ink-secondary)")}
           >
             <MoreCategoriesIcon size={21} /><span>Więcej</span>
+            {additionalFilterCount > 0 ? <span className="discoverySearchFilterCount" aria-hidden="true">{additionalFilterCount}</span> : null}
           </button>
         </div>
       </fieldset>
@@ -470,6 +478,10 @@ function categorySlug(option: CategoryOption) {
 
 function MoreCategoriesIcon({ size = 21 }: { size?: number }) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="6.5" cy="6.5" r="3.4" /><circle cx="17.5" cy="6.5" r="3.4" /><circle cx="6.5" cy="17.5" r="3.4" /><circle cx="17.5" cy="17.5" r="3.4" /></svg>;
+}
+
+function TheaterMaskIcon({ size = 21 }: { size?: number }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4.5 4.8c5-1.9 10-1.9 15 0v6.9c0 4.7-3.2 8-7.5 9.3-4.3-1.3-7.5-4.6-7.5-9.3V4.8Z" /><path d="M7.7 9.9c.9-.8 2.2-.9 3.1-.1M13.2 9.8c.9-.8 2.2-.7 3.1.1M8.9 15.7c1.8-1.5 4.4-1.5 6.2 0" /></svg>;
 }
 
 function RunningIcon({ size = 21 }: { size?: number }) {

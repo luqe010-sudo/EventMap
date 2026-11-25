@@ -138,12 +138,14 @@ html[data-theme="dark"] .siteWrapper .siteFooter { color: var(--ink-secondary); 
   .siteWrapper .navbarInner .navHamburger { grid-column: 1; grid-row: 1; justify-self: start; }
   .siteWrapper .navbarInner .navPlan { grid-column: 3; grid-row: 1; justify-self: end; display: block; position: relative; }
   .siteWrapper .navLogo .brandLogoText { font-size: clamp(1rem, 5.4vw, 1.45rem); letter-spacing: -.035em; }
-  .siteWrapper .navLogo .brandLogoMark { width: 25px; height: 32px; }
-  .siteWrapper .navSavedShortcut, .siteWrapper:has(.homePage) .navSavedShortcut { display: grid; place-items: center; min-width: 40px; height: 44px; padding: 0; border: 0; background: none; color: var(--ink); cursor: pointer; }
+  .siteWrapper .navLogo .brandLogoMark { width: 24px; height: 30px; }
+  .siteWrapper .navSavedShortcut, .siteWrapper:has(.homePage) .navSavedShortcut { position: relative; display: grid; place-items: center; min-width: 40px; height: 44px; padding: 0; border: 0; background: none; color: var(--ink); cursor: pointer; }
+  .siteWrapper .navSavedShortcut > svg { width: 25px; height: 25px; stroke-width: 1.75; }
+  .navPlanDot { position: absolute; top: 9px; right: 7px; width: 8px; height: 8px; border-radius: 50%; background: #ff7a00; box-shadow: 0 0 0 2px #08121e, 0 0 8px #ff7a00b3; }
   .siteWrapper .navHamburger { min-width: 40px; width: 40px; min-height: 44px; gap: 5px; }
-  .siteWrapper .navHamburger span { width: 24px; height: 2px; border-radius: 2px; }
+  .siteWrapper .navHamburger span { width: 22px; height: 2px; border-radius: 2px; }
   .siteWrapper .navMobileMenu { border-color: var(--border); border-radius: 0 0 22px 22px; }
-  .siteWrapper:has(.mobileViewSwitcher) { --mobile-switcher-height: 70px; --mobile-switcher-bottom: calc(10px + env(safe-area-inset-bottom)); }
+  .siteWrapper:has(.mobileViewSwitcher) { --mobile-switcher-height: 64px; --mobile-switcher-bottom: calc(4px + env(safe-area-inset-bottom)); }
   .siteWrapper .mobileViewSwitcher {
     max-width: min(100%, 570px);
     height: calc(var(--mobile-switcher-height) + var(--mobile-switcher-bottom));
@@ -153,11 +155,17 @@ html[data-theme="dark"] .siteWrapper .siteFooter { color: var(--ink-secondary); 
     border-bottom: 0;
     border-radius: 25px 25px 0 0;
   }
-  .siteWrapper .mobileViewSwitcher :is(button, a) { gap: 5px; border-radius: 13px; font-size: .82rem; font-weight: 600; }
-  .siteWrapper .mobileViewSwitcher :is(button, a) > svg { width: 25px; height: 25px; stroke-width: 1.8; }
+  .siteWrapper .mobileViewSwitcher :is(button, a) { gap: 4px; border-radius: 13px; font-size: .8125rem; font-weight: 500; }
+  html[data-theme="dark"] .siteWrapper .mobileViewSwitcher :is(button, a) { color: #e3e8ef; }
+  html[data-theme="dark"] .siteWrapper .mobileViewSwitcher {
+    border-color: transparent;
+    background: linear-gradient(135deg, #0d1824fa 0%, #08131efb 76%) padding-box, linear-gradient(180deg, #5a687e, #2c3848 34%, #19222d) border-box;
+    box-shadow: inset 0 1px 0 #ffffff0d, 0 -10px 26px #000000a6;
+  }
+  .siteWrapper .mobileViewSwitcher :is(button, a) > svg { width: 25px; height: 25px; stroke-width: 1.7; }
   html[data-theme="dark"] .siteWrapper .mobileViewSwitcher :is(button[aria-pressed="true"], a[aria-current="page"]) {
-    border: 1px solid #f57712;
-    background: radial-gradient(ellipse at 12% 0, #6b3416, #382116 72%);
+    border: 1px solid transparent;
+    background: radial-gradient(ellipse at 12% 0, #5e2e12, #331d12 72%) padding-box, linear-gradient(180deg, #ff9b3e, #f07012 55%, #c9560a) border-box;
     color: #ff871d;
     box-shadow: inset 0 0 15px #ff8c2729, 0 0 11px #ff79002b;
   }

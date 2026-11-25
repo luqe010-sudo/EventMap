@@ -22,6 +22,7 @@ type NavbarClientProps = {
 type ThemeMode = "light" | "dark";
 
 const THEME_STORAGE_KEY = "eventmap-theme";
+const PLAN_SEEN_STORAGE_KEY = "eventmap.planSeen";
 
 /* ── SVG icon helpers (inline, no dependency) ── */
 
@@ -119,7 +120,9 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
   const planRef = useRef<HTMLDivElement>(null);
   const planTriggerRef = useRef<HTMLButtonElement>(null);
   const [workspaceHref, setWorkspaceHref] = useState("/");
-  const profileRoute = /^\/(account|login|register|forgot-password|auth|organizer|admin)(\/|$)/.test(pathname ?? "");
+  const [planSeen, setPlanSeen] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
+  const profileRoute =/^\/(account|login|register|forgot-password|auth|organizer|admin)(\/|$)/.test(pathname ?? "");
   const savedHref = resolvedAuth.isLoggedIn && resolvedAuth.role === "organizer" ? "/organizer/saved" : "/account#saved-events";
 
   const dashboardHref =
@@ -142,6 +145,15 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
     setProfileOpen(false);
     setPlanOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    try { setPlanSeen(window.localStorage.getItem(PLAN_SEEN_STORAGE_KEY) === "1"); } catch { /* Storage is optional. */ }
+    // The phone header sits over the hero until the page scrolls.
+    const syncScrolled = () => setScrolled(window.scrollY > 4);
+    syncScrolled();
+    window.addEventListener("scroll", syncScrolled, { passive: true });
+    return () => window.removeEventListener("scroll", syncScrolled);
+  }, []);
 
   useEffect(() => {
     const syncMap = () => setMapActive(window.location.hash === "#mapa");
@@ -297,7 +309,7 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
 
   return (
     <>
-      <nav className={`navbar${menuOpen ? " navbarFixed" : ""}`} aria-label="Nawigacja główna">
+      <nav className={`navbar${menuOpen ? " navbarFixed" : ""}${scrolled ? " navbarScrolled" : ""}`} aria-label="Nawigacja główna">
         <div className="navbarInner">
         {/* ── Left: Logo ── */}
         <div className="navLeft">
@@ -396,8 +408,16 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
         </div>
 
         <div className="navPlan" ref={planRef}>
-          <button ref={planTriggerRef} type="button" className="navSavedShortcut" aria-label="Twój plan wydarzeń" aria-expanded={planOpen} aria-controls={planOpen ? "nav-event-plan" : undefined} onClick={() => { setPlanOpen(!planOpen); setMenuOpen(false); }}>
+          <button ref={planTriggerRef} type="button" className="navSavedShortcut" aria-label="Twój plan wydarzeń" aria-expanded={planOpen} aria-controls={planOpen ? "nav-event-plan" : undefined} onClick={() => {
+            setPlanOpen(!planOpen);
+            setMenuOpen(false);
+            if (!planSeen) {
+              setPlanSeen(true);
+              try { window.localStorage.setItem(PLAN_SEEN_STORAGE_KEY, "1"); } catch { /* Storage is optional. */ }
+            }
+          }}>
             <Bell size={25} strokeWidth={1.8} aria-hidden="true" />
+            {planSeen ? null : <span className="navPlanDot" aria-hidden="true" />}
           </button>
           {planOpen ? (
             <div id="nav-event-plan" className="navPlanPanel">

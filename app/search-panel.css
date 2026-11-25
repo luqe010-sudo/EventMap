@@ -1,7 +1,7 @@
 /* Compact discovery controls and the shared desktop disclosure / mobile sheet. */
 .discoverySearch, .discoveryFilterPanel {
-  --search-control-height: 46px;
-  --search-control-radius: 21px;
+  --search-control-height: 44px;
+  --search-control-radius: 13px;
   --search-surface: color-mix(in srgb, var(--bg-card) 92%, transparent);
   --search-surface-border: var(--border-strong);
   --search-control-glass: linear-gradient(164deg, color-mix(in srgb, var(--bg-card) 92%, white), var(--search-surface));
@@ -60,9 +60,9 @@ html[data-theme="dark"] :is(.discoverySearch, .discoveryFilterPanel) {
 
 .discoverySearchControls {
   display: grid;
-  grid-template-columns: minmax(145px, 1fr) minmax(0, 2.05fr) minmax(145px, 1.04fr) minmax(138px, .9fr);
+  grid-template-columns: minmax(178px, 232fr) minmax(0, 475fr) minmax(176px, 242fr) minmax(128px, 208fr);
   grid-template-areas: "location keyword date submit";
-  gap: 12px;
+  gap: 16px;
   align-items: start;
   margin: 0;
 }
@@ -87,16 +87,16 @@ html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocom
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--search-accent) 24%, transparent) !important;
 }
 html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocompleteContainer {
-  gap: 10px;
-  padding: 0 2px 0 13px !important;
+  gap: clamp(8px, .95vw, 15px);
+  padding: 0 4px 0 clamp(12px, 1.35vw, 21px) !important;
 }
 html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocompleteContainer input {
   min-width: 0;
   min-height: 42px !important;
   padding: 0 !important;
   color: var(--ink) !important;
-  font-size: .9rem !important;
-  font-weight: 550 !important;
+  font-size: .875rem !important;
+  font-weight: 500 !important;
   text-overflow: ellipsis;
 }
 html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocompleteContainer input::placeholder {
@@ -106,8 +106,8 @@ html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocom
 .discoverySearchKeywordInput {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 0 2px 0 13px;
+  gap: clamp(9px, 1.15vw, 18px);
+  padding: 0 4px 0 clamp(12px, 1.2vw, 19px);
 }
 .discoverySearchKeywordInput > svg, .discoverySearchDatePicker > svg { flex-shrink: 0; color: var(--ink); }
 .discoverySearchKeywordInput input {
@@ -119,28 +119,48 @@ html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocom
   outline: 0;
   background: transparent;
   color: var(--ink);
-  font-size: .9rem;
+  font-size: .8125rem;
   text-overflow: ellipsis;
 }
 .discoverySearchKeywordInput input::placeholder { color: var(--ink-secondary); opacity: 1; }
+html[data-theme="dark"] .discoverySearchKeywordInput input::placeholder { color: #c3cbd6; }
 .discoverySearchKeywordInput input:placeholder-shown::-webkit-search-cancel-button { display: none; }
 .discoverySearchDatePicker { position: relative; display: flex; align-items: center; }
+/* The select stays the real control; its visible text is drawn by the label
+   so phones keep a 16 px control (no focus zoom) with reference-sized text. */
 .discoverySearchDatePicker select {
   appearance: none;
+  width: 100%;
   min-width: 0;
-  min-height: 44px;
-  padding: 0 35px 0 43px;
+  min-height: 42px;
+  padding: 0 var(--date-label-right) 0 var(--date-label-left);
   border: 0;
   outline: 0;
   background: transparent;
-  color: var(--ink);
-  font-size: .9rem;
-  font-weight: 550;
+  color: transparent;
+  font-size: 1rem;
   cursor: pointer;
-  text-overflow: ellipsis;
 }
-.discoverySearchDatePicker > svg { position: absolute; left: 13px; pointer-events: none; }
-.discoverySearchDatePicker > svg:last-child { left: auto; right: 12px; }
+.discoverySearchDatePicker {
+  --date-icon-left: clamp(12px, 1.35vw, 21px);
+  --date-chevron-right: clamp(10px, 1.35vw, 21px);
+  --date-label-left: calc(var(--date-icon-left) + 20px + clamp(8px, 1.05vw, 17px));
+  --date-label-right: calc(var(--date-chevron-right) + 23px);
+}
+.discoverySearchDateLabel {
+  position: absolute;
+  left: var(--date-label-left);
+  right: var(--date-label-right);
+  overflow: hidden;
+  color: var(--ink);
+  font-size: .875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+.discoverySearchDatePicker > svg { position: absolute; left: var(--date-icon-left); pointer-events: none; }
+.discoverySearchDatePicker > svg:last-child { left: auto; right: var(--date-chevron-right); }
 .discoverySearchDatePicker select option { background: var(--search-panel); color: var(--ink); }
 :is(.discoverySearch, .discoveryFilterPanel) :is(.discoverySearchKeywordInput input, .discoverySearchDatePicker select):focus {
   outline: none;
@@ -183,15 +203,15 @@ html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocom
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   min-height: var(--search-control-height);
   padding: 0 20px;
   border: 1px solid #ff7522;
   border-radius: var(--search-control-radius);
   background: linear-gradient(180deg, #ff8b00 0%, #ff7900 45%, #ff6500 100%);
   color: #fff;
-  font-size: .96rem;
-  font-weight: 750;
+  font-size: .9375rem;
+  font-weight: 700;
   white-space: nowrap;
   box-shadow: inset 0 1px 0 rgb(255 210 165 / .3), 0 5px 19px rgb(255 98 9 / .4);
   transition: box-shadow .16s ease, border-color .16s ease;
@@ -456,14 +476,30 @@ html[data-theme="dark"] .discoverySearchCategoryOptions button svg {
   }
 }
 @media (max-width: 760px) {
-  .discoverySearch { gap: 12px; margin-bottom: 22px; }
+  .discoverySearch, .discoveryFilterPanel { --search-control-height: 40px; --search-control-radius: 12px; }
+  .discoverySearch { gap: 14px; margin-bottom: 18px; }
   html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocompleteContainer input,
-  .discoverySearchKeywordInput input, .discoverySearchDatePicker select { font-size: 1rem !important; }
+  .discoverySearchKeywordInput input { font-size: .8125rem !important; }
+  html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocompleteContainer input::placeholder,
+  .discoverySearchKeywordInput input::placeholder { font-size: .75rem; }
+  /* iOS zooms into controls under 16 px; typed text keeps that size there. */
+  @supports (-webkit-touch-callout: none) {
+    html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocompleteContainer input,
+    .discoverySearchKeywordInput input { font-size: 1rem !important; }
+  }
   .discoverySearchControls {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas: "keyword keyword" "location date";
-    gap: 10px;
+    gap: 15px 14px;
   }
+  .discoverySearchKeywordInput { min-height: 41px !important; }
+  .discoverySearchKeywordInput input { min-height: 37px; }
+  html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocompleteContainer input { min-height: 36px !important; }
+  .discoverySearch :is(.locationBoxDropdownBtn, .locationBoxGpsBtn) { height: 38px; min-height: 38px; }
+  .discoverySearch .discoverySearchKeywordInput .discoverySearchToggle { display: none; }
+  .discoverySearchDatePicker { --date-icon-left: 13px; --date-chevron-right: 11px; --date-label-left: 41px; --date-label-right: 30px; }
+  .discoverySearchDateLabel { font-size: .8125rem; }
+  .discoverySearchDatePicker select { min-height: 38px; }
   /* Keep implicit submit available for keyboards without adding a third row. */
   .discoverySearchSubmit {
     position: absolute;
@@ -494,32 +530,84 @@ html[data-theme="dark"] .discoverySearchCategoryOptions button svg {
   }
   .discoverySearchCategories .discoverySearchCategoryOptions::-webkit-scrollbar { display: none; }
   .discoverySearchCategories .discoverySearchCategoryOptions button {
+    position: relative;
     flex: 1 0 max(52px, calc((100% - 30px) / 6));
     flex-direction: column;
-    gap: 6px;
-    min-height: 67px;
-    padding: 7px 4px;
-    border-radius: 15px;
-    font-size: clamp(.67rem, 2.8vw, .83rem);
+    gap: 7px;
+    min-height: 64px;
+    padding: 7px 4px 6px;
+    border-radius: 14px;
+    font-size: clamp(.67rem, 2.8vw, .78rem);
+    font-weight: 600;
     scroll-snap-align: start;
   }
-  .discoverySearchCategories .discoverySearchCategoryOptions button svg { width: 25px; height: 25px; }
-  html[data-theme="dark"] .discoverySearchCategories button[aria-pressed="true"] { color: #fff3e7; }
-  .discoverySearchKeywordInput { gap: 7px; padding-left: 12px; }
-  .discoverySearchKeywordInput input::placeholder { font-size: .84rem; }
+  .discoverySearchCategories .discoverySearchCategoryOptions button svg { width: 24px; height: 24px; stroke-width: 1.85; }
+  /* Phone reference colours: flat dark tiles with a faint edge, brighter field edges. */
+  html[data-theme="dark"] :is(.discoverySearch, .discoveryFilterPanel) {
+    --search-control-glass: linear-gradient(165deg, rgb(19 33 50 / .95), rgb(14 26 41 / .95) 70%, rgb(16 29 45 / .96));
+    --search-tile-glass: linear-gradient(180deg, #0f1826, #101c29);
+    --search-surface-border: #4c5868;
+  }
+
+  html[data-theme="dark"] .discoverySearchCategories button[aria-pressed="true"] { color: #fff; }
+  .discoverySearchCategories .discoverySearchMore .discoverySearchFilterCount { inset: 5px 5px auto auto; }
+  .discoverySearchKeywordInput { gap: 11px; padding: 0 12px 0 14px; }
   .discoverySearchCategories .discoverySearchCategoryOptions .discoverySearchDesktopShortcut { display: none; }
   .discoverySearchCategories .discoverySearchMore { display: inline-flex; }
-  html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocompleteContainer { gap: 6px; padding-left: 10px !important; }
-  .discoverySearchDatePicker > svg { left: 10px; }
-  .discoverySearchDatePicker > svg:last-child { left: auto; right: 9px; }
-  .discoverySearchDatePicker select { padding-inline: 36px 28px; }
+  html[data-theme] :is(.homePage .discoverySearch, .discoveryFilterPanel) .autocompleteContainer { gap: 9px; padding-left: 13px !important; }
+
 }
 @media (prefers-reduced-motion: reduce) {
   .discoveryFilterDialog[open], :is(.discoverySearch, .discoveryFilterPanel) .autocompleteDropdown { animation: none; }
 }
 
+/* Reference edges (dark): borders are graded, lighter on top, and every control
+   casts a soft shadow. A transparent border shows the border-box gradient. */
+html[data-theme="dark"] :is(.discoverySearch, .discoveryFilterPanel) {
+  --search-control-edge: linear-gradient(180deg, #56627a, #414d60 55%, #354152);
+  --search-keyword-edge: linear-gradient(180deg, #68738a, #56627a 55%, #4b586b);
+  --search-tile-edge: linear-gradient(180deg, #3a4657, #2b3543 55%, #242d39);
+  --search-tile-active-edge: linear-gradient(180deg, #ffa449, #ff7a14 50%, #e05e0a);
+}
+html[data-theme="dark"] :is(.homePage .discoverySearch, .discoveryFilterPanel) :is(.autocompleteContainer, .discoverySearchKeywordInput, .discoverySearchDatePicker) {
+  border-color: transparent !important;
+  background: var(--search-control-glass) padding-box, var(--search-control-edge) border-box !important;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .05), 0 8px 20px rgb(0 0 0 / .3);
+}
+html[data-theme="dark"] .homePage .discoverySearch .discoverySearchKeywordInput {
+  background: var(--search-control-glass) padding-box, var(--search-keyword-edge) border-box !important;
+}
+html[data-theme="dark"] :is(.homePage .discoverySearch, .discoveryFilterPanel) :is(.autocompleteContainer, .discoverySearchKeywordInput, .discoverySearchDatePicker):focus-within {
+  border-color: var(--search-accent) !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--search-accent) 24%, transparent), 0 8px 20px rgb(0 0 0 / .3);
+}
+html[data-theme="dark"] .discoverySearchCategoryOptions button:not([aria-pressed="true"]):not(:hover) {
+  border-color: transparent;
+  background: var(--search-tile-glass) padding-box, var(--search-tile-edge) border-box;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .04), 0 8px 18px rgb(0 0 0 / .32);
+}
+html[data-theme="dark"] .discoverySearchCategoryOptions button[aria-pressed="true"] {
+  border-color: transparent;
+  background: var(--search-tile-active) padding-box, var(--search-tile-active-edge) border-box;
+  box-shadow: inset 0 0 14px rgb(255 113 20 / .16), 0 0 14px rgb(255 101 10 / .48), 0 8px 18px rgb(0 0 0 / .3);
+}
+html[data-theme="dark"] .discoverySearchSubmit { box-shadow: inset 0 1px 0 rgb(255 210 165 / .3), 0 6px 20px rgb(255 98 9 / .42), 0 8px 18px rgb(0 0 0 / .28); }
+
 @media (min-width: 1100px) {
   html[data-theme] .homePage .discoverySearch { padding-inline: 0; }
-  .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 7px; }
-  .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions button { flex: 1 0 auto; min-height: 40px; border-radius: 19px; padding-inline: clamp(6px, .75vw, 12px); font-size: clamp(.7rem, .88vw, .8rem); }
+  .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions { flex-wrap: nowrap; justify-content: space-between; overflow-x: auto; scrollbar-width: none; gap: 10px; padding: 2px 1px 4px; }
+  .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions button { flex: 0 0 auto; gap: 10px; min-height: 38px; border-radius: 13px; padding: 0 clamp(10px, 1.15vw, 18px) 0 clamp(10px, 1.2vw, 19px); font-size: clamp(.72rem, .82vw, .8125rem); font-weight: 500; }
+  .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions button svg { width: 20px; height: 20px; stroke-width: 2; }
+}
+@media (min-width: 761px) {
+  .discoverySearch .locationBoxDropdownBtn { flex-basis: 36px; width: 36px; }
+}
+@media (min-width: 1100px) and (max-width: 1299px) {
+  .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions { gap: 6px; }
+  .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions button { gap: 6px; padding: 0 8px; font-size: .72rem; }
+  .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions button svg { width: 17px; height: 17px; }
+}
+@media (min-width: 1100px) and (max-width: 1199px) {
+  .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions { gap: 5px; }
+  .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions button { gap: 5px; padding: 0 6px; }
 }
