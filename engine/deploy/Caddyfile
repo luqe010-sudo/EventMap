@@ -1,0 +1,16 @@
+{$ENGINE_PUBLIC_HOST} {
+	encode gzip
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		-Server
+	}
+	# Only the control API and the health probe are exposed; everything else is 404.
+	@allowed path /api/* /healthz
+	handle @allowed {
+		reverse_proxy control:8787
+	}
+	handle {
+		respond 404
+	}
+}

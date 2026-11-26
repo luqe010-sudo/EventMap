@@ -43,3 +43,9 @@ scraping/
 
 .vercel
 .env*
+
+# Event Engine local state and VPS secrets
+/engine/.data/
+/engine/deploy/compose.env
+/engine/deploy/env/*.env
+/engine/deploy/secrets/*.env

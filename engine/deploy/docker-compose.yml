@@ -1,0 +1,78 @@
+# MapaImprez Event Engine — production/staging stack for a single VPS.
+#   cd /opt/mapaimprez && docker compose -f engine/deploy/docker-compose.yml --env-file engine/deploy/compose.env up -d --build
+#
+# Isolation:
+#   worker     fetches untrusted web content; has NO Supabase service key
+#   publisher  writes to Supabase; never fetches arbitrary URLs
+#   control    authenticated API for the admin panel; no service key
+#   caddy      TLS reverse proxy for the control API only
+# All three engine services share one SQLite volume (same host => file locks are safe).
+
+x-engine: &engine
+  build:
+    context: ../..
+    dockerfile: engine/deploy/Dockerfile
+  image: mapaimprez-engine:${ENGINE_IMAGE_TAG:-latest}
+  restart: unless-stopped
+  env_file:
+    - ./env/common.env
+  volumes:
+    - engine-data:/data
+    - engine-backups:/backups
+  read_only: true
+  tmpfs:
+    - /tmp
+  security_opt:
+    - no-new-privileges:true
+  cap_drop: [ALL]
+  logging:
+    driver: json-file
+    options: { max-size: "20m", max-file: "5" }
+
+services:
+  worker:
+    <<: *engine
+    environment:
+      ENGINE_ROLE: worker
+    mem_limit: 768m
+    cpus: 1.5
+
+  publisher:
+    <<: *engine
+    env_file:
+      - ./env/common.env
+      - ./secrets/publisher.env   # EVENTMAP_SUPABASE_SERVICE_ROLE_KEY — never in common.env
+    environment:
+      ENGINE_ROLE: publisher
+    mem_limit: 384m
+    cpus: 0.5
+
+  control:
+    <<: *engine
+    env_file:
+      - ./env/common.env
+      - ./secrets/control.env     # ENGINE_CONTROL_TOKEN (≥32 random chars), shared with Vercel
+    environment:
+      ENGINE_ROLE: control
+      ENGINE_CONTROL_HOST: 0.0.0.0
+    expose: ["8787"]
+    mem_limit: 256m
+    cpus: 0.5
+
+  caddy:
+    image: caddy:2.8.4-alpine
+    restart: unless-stopped
+    depends_on: [control]
+    ports: ["80:80", "443:443"]
+    environment:
+      ENGINE_PUBLIC_HOST: ${ENGINE_PUBLIC_HOST:?set ENGINE_PUBLIC_HOST, e.g. engine.mapaimprez.pl}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  engine-data:
+  engine-backups:
+  caddy-data:
+  caddy-config:

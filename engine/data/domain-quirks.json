@@ -1,0 +1,5 @@
+{
+  "progresja.com": { "treatUtcAsLocal": true },
+  "tauronarenakrakow.pl": { "ignoreEndDate": true },
+  "ergoarena.pl": { "ignoreEndDate": true }
+}

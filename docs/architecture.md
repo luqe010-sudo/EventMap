@@ -1,5 +1,9 @@
 # Architecture
 
+## Event Engine — 2026-11-26
+
+Autonomiczny system pozyskiwania wydarzeń działa poza Vercel, na VPS (Docker Compose): role `worker` (pobiera niezaufane treści, bez klucza serwisowego), `publisher` (zapis do Supabase), `control` (API dla panelu). Stan (kolejka, rejestr źródeł, pamięć, koszty, audyt) jest w SQLite na VPS — bez nowych tabel w Supabase; zapis tylko do `events`, `locations`, `event_sources` (`source_type='engine'`). Next.js łączy się z API przez `lib/engine-control.ts` (zmienne serwerowe `ENGINE_CONTROL_URL`, `ENGINE_CONTROL_TOKEN`), każda akcja sprawdza rolę admina po stronie serwera. Kod: `engine/`; opis: [event-engine/architecture.md](event-engine/architecture.md). Migracja SQL nie jest potrzebna.
+
 ## Jedenasty pakiet — aktualność geokodowania, 2026-10-08
 
 `LocationPickerMap` porównuje wersję intencji lokalizacji przed zastosowaniem asynchronicznego wyniku miasta, adresu, potwierdzenia adresu i reverse geocoding. Zmiana kontekstu kasuje oba debounce i podpowiedzi; cleanup unieważnia wyniki po unmount. Ochrona nie zależy od obsługi anulowania przez zewnętrznego providera i nie ogranicza liczby już rozpoczętych requestów. Nowy punkt mapy usuwa dane poprzedniego miejsca przed odczytem nowego adresu.

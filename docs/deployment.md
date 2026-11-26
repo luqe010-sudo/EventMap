@@ -1,5 +1,11 @@
 # Deployment
 
+## Event Engine — 2026-11-26 (przygotowane, niewdrożone)
+
+- Nowe opcjonalne zmienne Vercel (serwerowe, nie `NEXT_PUBLIC_*`): `ENGINE_CONTROL_URL`, `ENGINE_CONTROL_TOKEN`. Bez nich `/admin/engine` pokazuje instrukcję, reszta aplikacji działa bez zmian.
+- Silnik wdraża się osobno na VPS: `engine/deploy/bootstrap-vps.sh`, potem `engine/deploy/update.sh` (build z tagiem commita, test dymny, healthcheck, automatyczny rollback). Klucz serwisowy Supabase tylko w `engine/deploy/secrets/publisher.env` na VPS. Instrukcja: [event-engine/RUNBOOK.md](event-engine/RUNBOOK.md).
+- `npm run typecheck` sprawdza też `engine/tsconfig.json`; testy silnika są w `engine/test` (vitest).
+
 ## Płatne polecanie z datą końca — 2026-11-23
 
 - Migracja `supabase/migrations/20261123210000_events_featured_until.sql` dodaje `events.featured_until`, uzupełnia datę dla istniejących rekordów `is_featured` (koniec dnia wydarzenia, maks. 30 dni) i w jednej transakcji łata dwa fragmenty `guard_organizer_event_write` (lista kolumn + zakaz ustawiania przy insercie organizatora). Bez łatki każdy zapis organizatora kończyłby się błędem „Event schema changed”.

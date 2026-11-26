@@ -1,0 +1,2100 @@
+[
+  {
+    "url": "https://www.stodola.pl/",
+    "name": "Klub Stodoła / Go Ahead",
+    "city": "Warszawa",
+    "kind": "organizer",
+    "category": "koncerty"
+  },
+  {
+    "url": "https://progresja.com/",
+    "name": "Progresja",
+    "city": "Warszawa",
+    "kind": "venue",
+    "venue": {
+      "name": "Progresja",
+      "address": "Fort Wola 22",
+      "city": "Warszawa",
+      "latitude": 52.2247998,
+      "longitude": 20.9288574
+    },
+    "category": "koncerty"
+  },
+  {
+    "url": "https://www.tauronarenakrakow.pl/",
+    "name": "TAURON Arena Kraków",
+    "city": "Kraków",
+    "kind": "venue",
+    "venue": {
+      "name": "TAURON Arena Kraków",
+      "address": "Stanisława Lema 7",
+      "city": "Kraków",
+      "latitude": 50.0677202,
+      "longitude": 19.991549
+    },
+    "category": "koncerty"
+  },
+  {
+    "url": "https://prezeroarenagliwice.pl/",
+    "name": "PreZero Arena Gliwice",
+    "city": "Gliwice",
+    "kind": "venue",
+    "venue": {
+      "name": "PreZero Arena Gliwice",
+      "address": "Akademicka 50",
+      "city": "Gliwice",
+      "latitude": 50.2852585,
+      "longitude": 18.6876316
+    }
+  },
+  {
+    "url": "https://soksuwalki.eu/",
+    "name": "Suwalski Ośrodek Kultury",
+    "city": "Suwałki",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://mckgorzow.pl/",
+    "name": "Miejskie Centrum Kultury w Gorzowie Wielkopolskim",
+    "city": "Gorzów Wielkopolski",
+    "kind": "organizer",
+    "category": "kultura"
+  },
+  {
+    "url": "https://starakopalnia.pl/",
+    "name": "Centrum Nauki, Kultury i Sztuki Stara Kopalnia",
+    "city": "Wałbrzych",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://teatr.grudziadz.pl/",
+    "name": "Centrum Kultury Teatr w Grudziądzu",
+    "city": "Grudziądz",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://bck.bielsko-biala.pl/",
+    "name": "Bielskie Centrum Kultury",
+    "city": "Bielsko-Biała",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://www.mdk.zgorzelec.eu/",
+    "name": "Miejski Dom Kultury w Zgorzelcu",
+    "city": "Zgorzelec",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://ckmuza.eu/",
+    "name": "Centrum Kultury Muza w Lubinie",
+    "city": "Lubin",
+    "kind": "venue",
+    "venue": {
+      "name": "Centrum Kultury „Muza”",
+      "address": "Armii Krajowej 1",
+      "city": "Lubin",
+      "latitude": 51.39898,
+      "longitude": 16.20427
+    }
+  },
+  {
+    "url": "https://ergoarena.pl/",
+    "name": "ERGO ARENA",
+    "city": "Gdańsk",
+    "kind": "venue",
+    "venue": {
+      "name": "ERGO ARENA",
+      "address": "Plac Dwóch Miast 1",
+      "city": "Gdańsk",
+      "latitude": 54.42611111111111,
+      "longitude": 18.58
+    }
+  },
+  {
+    "url": "https://rck.pila.pl/",
+    "name": "Regionalne Centrum Kultury – Fabryka Emocji",
+    "city": "Piła",
+    "kind": "venue",
+    "venue": {
+      "name": "Regionalne Centrum Kultury – Fabryka Emocji",
+      "address": "Plac Staszica 1",
+      "city": "Piła",
+      "latitude": 53.1459,
+      "longitude": 16.743968
+    }
+  },
+  {
+    "url": "https://www.ckchojnice.pl/",
+    "name": "Chojnickie Centrum Kultury",
+    "city": "Chojnice",
+    "kind": "venue",
+    "venue": {
+      "name": "Chojnickie Centrum Kultury",
+      "address": "Swarożyca 1",
+      "city": "Chojnice",
+      "latitude": 53.6942,
+      "longitude": 17.56731
+    }
+  },
+  {
+    "url": "https://dok.pl/",
+    "name": "Dzierżoniowski Ośrodek Kultury",
+    "city": "Dzierżoniów",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://sok.slupsk.pl/",
+    "name": "Słupski Ośrodek Kultury",
+    "city": "Słupsk",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://mok.olsztyn.pl/",
+    "name": "MOK Olsztyn",
+    "city": "Olsztyn",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://filharmonia.opole.pl/",
+    "name": "Filharmonia Opolska",
+    "city": "Opole",
+    "kind": "venue",
+    "venue": {
+      "name": "Państwowa Szkoła Muzyczna I i II stopnia im. Fryderyka Chopina — sala koncertowa",
+      "address": "Strzelców Bytomskich 18",
+      "city": "Opole",
+      "latitude": 50.6647339329707,
+      "longitude": 17.9165996553665
+    },
+    "category": "koncerty"
+  },
+  {
+    "url": "https://tfk.artus.torun.pl/",
+    "name": "Toruński Festiwal Książki — Centrum Kultury Dwór Artusa",
+    "city": "Toruń",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://bok.bialystok.pl/",
+    "name": "Białostocki Ośrodek Kultury / Centrum im. Ludwika Zamenhofa",
+    "city": "Białystok",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://mok.siedlce.pl/",
+    "name": "Miejski Ośrodek Kultury w Siedlcach",
+    "city": "Siedlce",
+    "kind": "venue",
+    "venue": {
+      "name": "Sala widowiskowa „Podlasie” MOK",
+      "address": "Henryka Sienkiewicza 63",
+      "city": "Siedlce",
+      "latitude": 52.1648127,
+      "longitude": 22.2697005
+    }
+  },
+  {
+    "url": "https://umbielskpodlaski.pl/",
+    "name": "Urząd Miasta Bielsk Podlaski",
+    "city": "Bielsk Podlaski",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://mck.mragowo.pl/",
+    "name": "Mrągowskie Centrum Kultury",
+    "city": "Mrągowo",
+    "kind": "venue",
+    "venue": {
+      "name": "Mrągowskie Centrum Kultury",
+      "address": "Warszawska 26",
+      "city": "Mrągowo",
+      "latitude": 53.865401,
+      "longitude": 21.304562
+    }
+  },
+  {
+    "url": "https://filharmonia.rzeszow.pl/",
+    "name": "Filharmonia Podkarpacka",
+    "city": "Rzeszów",
+    "kind": "venue",
+    "venue": {
+      "name": "Filharmonia Podkarpacka im. Artura Malawskiego",
+      "address": "Chopina 30",
+      "city": "Rzeszów",
+      "latitude": 50.0335311,
+      "longitude": 22.0041879
+    }
+  },
+  {
+    "url": "https://www.targikielce.pl/",
+    "name": "Expo Kielce",
+    "city": "Kielce",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://teatrrudasl.pl/",
+    "name": "Śląski Teatr Impresaryjny",
+    "city": "Ruda Śląska",
+    "kind": "venue",
+    "venue": {
+      "name": "Śląski Teatr Impresaryjny im. Henryka Bisty",
+      "address": "Piotra Niedurnego 69",
+      "city": "Ruda Śląska",
+      "latitude": 50.2877418169001,
+      "longitude": 18.8749571657882
+    }
+  },
+  {
+    "url": "https://ackkultura.pl/",
+    "name": "Aleksandrowskie Centrum Kultury",
+    "city": "Aleksandrów Łódzki",
+    "kind": "venue",
+    "venue": {
+      "name": "Aleksandrowskie Centrum Kultury",
+      "address": "Ludwika Waryńskiego 22/26",
+      "city": "Aleksandrów Łódzki",
+      "latitude": 51.8155272223368,
+      "longitude": 19.3095950258967
+    },
+    "category": "kultura"
+  },
+  {
+    "url": "https://zdk.zamosc.pl/",
+    "name": "Zamojski Dom Kultury",
+    "city": "Zamość",
+    "kind": "venue",
+    "venue": {
+      "name": "Zamojska Akademia Kultury",
+      "address": "Akademicka 8",
+      "city": "Zamość",
+      "latitude": 50.7184040528271,
+      "longitude": 23.2511751427175
+    }
+  },
+  {
+    "url": "https://filharmoniapoznanska.pl/",
+    "name": "Filharmonia Poznańska",
+    "city": "Poznań",
+    "kind": "venue",
+    "venue": {
+      "name": "Aula Uniwersytecka UAM",
+      "address": "Wieniawskiego 1",
+      "city": "Poznań",
+      "latitude": 52.4078448,
+      "longitude": 16.9157469
+    }
+  },
+  {
+    "url": "https://mck-bydgoszcz.pl/",
+    "name": "Miejskie Centrum Kultury w Bydgoszczy",
+    "city": "Bydgoszcz",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://dkwesterplatte.pl/",
+    "name": "Dom Kultury Westerplatte / Tarnowskie Centrum Kultury",
+    "city": "Tarnów",
+    "kind": "venue",
+    "venue": {
+      "name": "Dom Kultury Westerplatte",
+      "address": "Westerplatte 8a",
+      "city": "Tarnów",
+      "latitude": 50.0273746,
+      "longitude": 21.0086257
+    }
+  },
+  {
+    "url": "https://sapik.szczecinek.pl/",
+    "name": "Samorządowa Agencja Promocji i Kultury w Szczecinku",
+    "city": "Szczecinek",
+    "kind": "venue",
+    "venue": {
+      "name": "Kino Wolność",
+      "address": "Wyszyńskiego 65",
+      "city": "Szczecinek",
+      "latitude": 53.70451,
+      "longitude": 16.69844
+    }
+  },
+  {
+    "url": "https://zci.zamosc.pl/",
+    "name": "Zamojskie Centrum Informacji Turystycznej i Historycznej",
+    "city": "Zamość",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://www.ndk.nysa.pl/",
+    "name": "Nyski Dom Kultury",
+    "city": "Nysa",
+    "kind": "venue",
+    "venue": {
+      "name": "Nyski Dom Kultury — sala widowiskowa",
+      "address": "Wałowa 7",
+      "city": "Nysa",
+      "latitude": 50.4748437,
+      "longitude": 17.3365829
+    }
+  },
+  {
+    "url": "https://kiepura.pl/",
+    "name": "Zagłębiowskie Centrum Kultury im. Jana Kiepury",
+    "city": "Sosnowiec",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://polsatplusarena.gdynia.pl/",
+    "name": "Polsat Plus Arena Gdynia",
+    "city": "Gdynia",
+    "kind": "venue",
+    "venue": {
+      "name": "Polsat Plus Arena Gdynia",
+      "address": "Kazimierza Górskiego 8",
+      "city": "Gdynia",
+      "latitude": 54.4989221,
+      "longitude": 18.5313642
+    }
+  },
+  {
+    "url": "https://krakow.pl/",
+    "name": "Miasto Kraków",
+    "city": "Kraków",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://swiatowid.elblag.pl/",
+    "name": "Centrum Spotkań Europejskich „Światowid”",
+    "city": "Elbląg",
+    "kind": "venue",
+    "venue": {
+      "name": "Centrum Spotkań Europejskich „Światowid”",
+      "address": "Plac Kazimierza Jagiellończyka 1",
+      "city": "Elbląg",
+      "latitude": 54.1668613,
+      "longitude": 19.4045688
+    }
+  },
+  {
+    "url": "https://kultura.olawa.pl/",
+    "name": "Centrum Sztuki w Oławie",
+    "city": "Oława",
+    "kind": "venue",
+    "venue": {
+      "name": "OWE Odra",
+      "address": "Młyńska 3",
+      "city": "Oława",
+      "latitude": 50.94193,
+      "longitude": 17.30052
+    }
+  },
+  {
+    "url": "https://kalendarzimprez.plock.eu/",
+    "name": "Kalendarz Imprez Płock — miejski kalendarz",
+    "city": "Płock",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://orkiestraplock.pl/",
+    "name": "Płocka Orkiestra Symfoniczna — organizator",
+    "city": "Płock",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://www.mokis.myslenice.pl/",
+    "name": "Myślenicki Ośrodek Kultury i Sportu",
+    "city": "Myślenice",
+    "kind": "venue",
+    "venue": {
+      "name": "Myślenicki Ośrodek Kultury i Sportu",
+      "address": "M.J. Piłsudskiego 20",
+      "city": "Myślenice",
+      "latitude": 49.8294782,
+      "longitude": 19.9427192
+    }
+  },
+  {
+    "url": "https://mokmarki.pl/",
+    "name": "Marecki Ośrodek Kultury im. Tadeusza Lużyńskiego",
+    "city": "Marki",
+    "kind": "venue",
+    "venue": {
+      "name": "Marecki Ośrodek Kultury im. Tadeusza Lużyńskiego",
+      "address": "Fabryczna 2",
+      "city": "Marki",
+      "latitude": 52.321002524607,
+      "longitude": 21.103696813544
+    }
+  },
+  {
+    "url": "https://rdk.rzeszow.pl/",
+    "name": "Rzeszowski Dom Kultury",
+    "city": "Rzeszów",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://filharmoniakoszalinska.pl/",
+    "name": "Filharmonia Koszalińska",
+    "city": "Koszalin",
+    "kind": "venue",
+    "venue": {
+      "name": "Filharmonia Koszalińska im. Stanisława Moniuszki",
+      "address": "Piastowska 2",
+      "city": "Koszalin",
+      "latitude": 54.1912739967459,
+      "longitude": 16.1879842232148
+    }
+  },
+  {
+    "url": "https://www.mok.siedlce.pl/",
+    "name": "Miejski Ośrodek Kultury w Siedlcach",
+    "city": "Siedlce",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://mck.zywiec.pl/",
+    "name": "Miejskie Centrum Kultury w Żywcu",
+    "city": "Żywiec",
+    "kind": "venue",
+    "venue": {
+      "name": "Miejskie Centrum Kultury w Żywcu — sala widowiskowa",
+      "address": "Aleja Wolności 4",
+      "city": "Żywiec",
+      "latitude": 49.6897789607568,
+      "longitude": 19.1945209473743
+    }
+  },
+  {
+    "url": "https://www.wroclaw.pl/",
+    "name": "Miasto Wrocław",
+    "city": "Wrocław",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://filharmonia.szczecin.pl/",
+    "name": "Filharmonia w Szczecinie",
+    "city": "Szczecin",
+    "kind": "venue",
+    "venue": {
+      "name": "Filharmonia im. Mieczysława Karłowicza w Szczecinie",
+      "address": "Małopolska 48",
+      "city": "Szczecin",
+      "latitude": 53.4293931,
+      "longitude": 14.5581298
+    }
+  },
+  {
+    "url": "https://muzeumgdynia.pl/",
+    "name": "Muzeum Miasta Gdyni",
+    "city": "Gdynia",
+    "kind": "venue",
+    "venue": {
+      "name": "Muzeum Miasta Gdyni",
+      "address": "Zawiszy Czarnego 1A",
+      "city": "Gdynia",
+      "latitude": 54.5159606,
+      "longitude": 18.5473029
+    }
+  },
+  {
+    "url": "https://bilet.swiatowid.elblag.pl/",
+    "name": "Kino Światowid",
+    "city": "Elbląg",
+    "kind": "venue",
+    "venue": {
+      "name": "Centrum Spotkań Europejskich „Światowid”",
+      "address": "Plac Kazimierza Jagiellończyka 1",
+      "city": "Elbląg",
+      "latitude": 54.1668613,
+      "longitude": 19.4045688
+    }
+  },
+  {
+    "url": "https://www.opole.pl/",
+    "name": "Miasto Opole",
+    "city": "Opole",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://bilet.rck.pila.pl/",
+    "name": "Regionalne Centrum Kultury – Fabryka Emocji",
+    "city": "Piła",
+    "kind": "venue",
+    "venue": {
+      "name": "Regionalne Centrum Kultury – Fabryka Emocji",
+      "address": "Plac Staszica 1",
+      "city": "Piła",
+      "latitude": 53.1459,
+      "longitude": 16.743968
+    }
+  },
+  {
+    "url": "https://gck.gizycko.pl/",
+    "name": "Giżyckie Centrum Kultury",
+    "city": "Giżycko",
+    "kind": "venue",
+    "venue": {
+      "name": "Giżyckie Centrum Kultury",
+      "address": "Konarskiego 8",
+      "city": "Giżycko",
+      "latitude": 54.038106,
+      "longitude": 21.767351
+    }
+  },
+  {
+    "url": "https://halastulecia.pl/",
+    "name": "Hala Stulecia",
+    "city": "Wrocław",
+    "kind": "venue",
+    "venue": {
+      "name": "Hala Stulecia",
+      "address": "Wystawowa 1",
+      "city": "Wrocław",
+      "latitude": 51.1068875,
+      "longitude": 17.0773185
+    }
+  },
+  {
+    "url": "https://www.filharmonia.com.pl/",
+    "name": "Filharmonia Częstochowska im. Bronisława Hubermana",
+    "city": "Częstochowa",
+    "kind": "venue",
+    "venue": {
+      "name": "Filharmonia Częstochowska im. Bronisława Hubermana",
+      "address": "Tomasza Wilsona 16",
+      "city": "Częstochowa",
+      "latitude": 50.8140200622788,
+      "longitude": 19.1221780778936
+    }
+  },
+  {
+    "url": "https://www.kartuskiecentrum.kultury.pl/",
+    "name": "Kartuskie Centrum Kultury",
+    "city": "Kartuzy",
+    "kind": "venue",
+    "venue": {
+      "name": "Kartuskie Centrum Kultury",
+      "address": "Klasztorna 1",
+      "city": "Kartuzy",
+      "latitude": 54.335531,
+      "longitude": 18.194583
+    }
+  },
+  {
+    "url": "https://tck.pl/",
+    "name": "Tarnowskie Centrum Kultury",
+    "city": "Tarnów",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://mok.art.pl/",
+    "name": "Miejski Ośrodek Kultury w Zabrzu — Kino ROMA",
+    "city": "Zabrze",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://100.gdynia.pl/",
+    "name": "Miasto Gdynia",
+    "city": "Gdynia",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://www.opera.wroclaw.pl/",
+    "name": "Opera Wrocławska",
+    "city": "Wrocław",
+    "kind": "venue",
+    "venue": {
+      "name": "Opera Wrocławska",
+      "address": "Świdnicka 35",
+      "city": "Wrocław",
+      "latitude": 51.1056963,
+      "longitude": 17.0306062
+    }
+  },
+  {
+    "url": "https://warsztatykultury.pl/",
+    "name": "Warsztaty Kultury w Lublinie",
+    "city": "Lublin",
+    "kind": "venue",
+    "venue": {
+      "name": "Warsztaty Kultury — sala widowiskowa, II piętro",
+      "address": "Grodzka 5a",
+      "city": "Lublin",
+      "latitude": 51.2484615,
+      "longitude": 22.5686916
+    }
+  },
+  {
+    "url": "https://ec1lodz.pl/",
+    "name": "EC1 Łódź — Miasto Kultury",
+    "city": "Łódź",
+    "kind": "venue",
+    "venue": {
+      "name": "Centrum Nauki i Techniki EC1 — Strefa Wejścia",
+      "address": "Targowa 1/3",
+      "city": "Łódź",
+      "latitude": 51.7675351,
+      "longitude": 19.4680828
+    }
+  },
+  {
+    "url": "https://hala.olsztyn.eu/",
+    "name": "Hala Urania",
+    "city": "Olsztyn",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://www.centrumzamenhofa.pl/",
+    "name": "Białostocki Ośrodek Kultury / Centrum im. Ludwika Zamenhofa",
+    "city": "Białystok",
+    "kind": "venue",
+    "venue": {
+      "name": "Centrum im. Ludwika Zamenhofa",
+      "address": "Warszawska 19",
+      "city": "Białystok",
+      "latitude": 53.1336903,
+      "longitude": 23.1698715
+    }
+  },
+  {
+    "url": "https://ck105.koszalin.pl/",
+    "name": "Centrum Kultury 105 w Koszalinie",
+    "city": "Koszalin",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://www.sok.slupsk.pl/",
+    "name": "Słupski Ośrodek Kultury",
+    "city": "Słupsk",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://resursa.radom.pl/",
+    "name": "Ośrodek Kultury i Sztuki Resursa Obywatelska",
+    "city": "Radom",
+    "kind": "venue",
+    "venue": {
+      "name": "Ośrodek Kultury i Sztuki Resursa Obywatelska",
+      "address": "Jacka Malczewskiego 16",
+      "city": "Radom",
+      "latitude": 51.4041421,
+      "longitude": 21.1501765
+    }
+  },
+  {
+    "url": "https://www.torun.pl/",
+    "name": "Miasto Toruń / Centrum Sztuki Współczesnej Znaki Czasu",
+    "city": "Toruń",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://zgorzelec.eu/",
+    "name": "Miasto Zgorzelec",
+    "city": "Zgorzelec",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://www.i-kolobrzeg.pl/",
+    "name": "Urząd Miasta Kołobrzeg",
+    "city": "Kołobrzeg",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://szczecinek.pl/",
+    "name": "Urząd Miasta Szczecinek",
+    "city": "Szczecinek",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://kartuskiecentrum.kultury.pl/",
+    "name": "Kartuskie Centrum Kultury",
+    "city": "Kartuzy",
+    "kind": "venue",
+    "venue": {
+      "name": "Kartuskie Centrum Kultury",
+      "address": "Klasztorna 1",
+      "city": "Kartuzy",
+      "latitude": 54.3355310221287,
+      "longitude": 18.194583
+    }
+  },
+  {
+    "url": "https://www.gizycko.pl/",
+    "name": "Urząd Miejski w Giżycku",
+    "city": "Giżycko",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://tworczehoryzonty.pl/",
+    "name": "Stowarzyszenie Twórcze Horyzonty — współorganizator",
+    "city": "Nowa Sól",
+    "kind": "venue",
+    "venue": {
+      "name": "Miejska Biblioteka Publiczna im. Edwarda Stachury",
+      "address": "Bankowa 3",
+      "city": "Nowa Sól",
+      "latitude": 51.79986983290384,
+      "longitude": 15.713998831965105
+    }
+  },
+  {
+    "url": "https://mnki.pl/",
+    "name": "Muzeum Narodowe w Kielcach",
+    "city": "Kielce",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://otwock.pl/",
+    "name": "Miasto Otwock — Otwocki Festiwal Muzyczny",
+    "city": "Otwock",
+    "kind": "venue",
+    "venue": {
+      "name": "Amatorski Teatr Miejski im. Stefana Jaracza",
+      "address": "Armii Krajowej 4",
+      "city": "Otwock",
+      "latitude": 52.104639,
+      "longitude": 21.267611
+    }
+  },
+  {
+    "url": "https://www.biblioteka.sosnowiec.pl/",
+    "name": "Miejska Biblioteka Publiczna w Sosnowcu",
+    "city": "Sosnowiec",
+    "kind": "venue",
+    "venue": {
+      "name": "Zagłębiowska Mediateka",
+      "address": "Kościelna 11",
+      "city": "Sosnowiec",
+      "latitude": 50.2721501,
+      "longitude": 19.1295005
+    }
+  },
+  {
+    "url": "https://teatr.polanica.pl/",
+    "name": "Teatr Zdrojowy w Polanicy-Zdroju",
+    "city": "Polanica-Zdrój",
+    "kind": "venue",
+    "venue": {
+      "name": "Teatr Zdrojowy Polanica-Zdrój",
+      "address": "Parkowa 2",
+      "city": "Polanica-Zdrój",
+      "latitude": 50.4079682,
+      "longitude": 16.5115257
+    }
+  },
+  {
+    "url": "https://amfiteatr.radom.pl/",
+    "name": "Amfiteatr. Miejski Ośrodek Kultury w Radomiu",
+    "city": "Radom",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://biegmikolajow.pl/",
+    "name": "Stowarzyszenie Kultury Fizycznej Maraton Toruński",
+    "city": "Toruń",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://ndk.nysa.pl/",
+    "name": "Nyski Dom Kultury",
+    "city": "Nysa",
+    "kind": "venue",
+    "venue": {
+      "name": "Nyski Dom Kultury — sala widowiskowa",
+      "address": "Wałowa 7",
+      "city": "Nysa",
+      "latitude": 50.4748437,
+      "longitude": 17.3365829
+    }
+  },
+  {
+    "url": "https://www.opera.bydgoszcz.pl/",
+    "name": "Opera Nova",
+    "city": "Bydgoszcz",
+    "kind": "venue",
+    "venue": {
+      "name": "Opera Nova w Bydgoszczy",
+      "address": "Focha 5",
+      "city": "Bydgoszcz",
+      "latitude": 53.1243914,
+      "longitude": 17.9977638
+    }
+  },
+  {
+    "url": "https://teatr.walbrzych.pl/",
+    "name": "Teatr Dramatyczny w Wałbrzychu",
+    "city": "Wałbrzych",
+    "kind": "venue",
+    "venue": {
+      "name": "Teatr Dramatyczny im. Jerzego Szaniawskiego w Wałbrzychu",
+      "address": "plac Teatralny 1",
+      "city": "Wałbrzych",
+      "latitude": 50.767604,
+      "longitude": 16.2748895
+    }
+  },
+  {
+    "url": "https://bilety.filharmonia.olsztyn.pl/",
+    "name": "Filharmonia Warmińsko-Mazurska — bilety",
+    "city": "Olsztyn",
+    "kind": "venue",
+    "venue": {
+      "name": "Warmińsko-Mazurska Filharmonia im. Feliksa Nowowiejskiego",
+      "address": "Bartosza Głowackiego 1",
+      "city": "Olsztyn",
+      "latitude": 53.780197,
+      "longitude": 20.4931285
+    }
+  },
+  {
+    "url": "https://www.filharmoniagorzowska.pl/",
+    "name": "Filharmonia Gorzowska",
+    "city": "Gorzów Wielkopolski",
+    "kind": "venue",
+    "venue": {
+      "name": "Filharmonia Gorzowska",
+      "address": "Dziewięciu Muz 10",
+      "city": "Gorzów Wielkopolski",
+      "latitude": 52.7359839,
+      "longitude": 15.2471398
+    }
+  },
+  {
+    "url": "https://craftticket.pl/",
+    "name": "Craft Event",
+    "city": "Wrocław",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://kartamiejska.um.gorzow.pl/",
+    "name": "Karta Miejska Gorzów Wielkopolski",
+    "city": "Gorzów Wielkopolski",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://mokisbielawa.pl/",
+    "name": "Miejski Ośrodek Kultury i Sztuki w Bielawie",
+    "city": "Bielawa",
+    "kind": "venue",
+    "venue": {
+      "name": "MOKiS w Bielawie",
+      "address": "Piastowska 19a",
+      "city": "Bielawa",
+      "latitude": 50.6817622,
+      "longitude": 16.6071739
+    }
+  },
+  {
+    "url": "https://www.mnki.pl/",
+    "name": "Muzeum Narodowe w Kielcach",
+    "city": "Kielce",
+    "kind": "organizer"
+  },
+  {
+    "url": "https://www.moktis.pl/",
+    "name": "MOKTiS Otwock — Teatr im. Stefana Jaracza",
+    "city": "Otwock",
+    "kind": "venue",
+    "venue": {
+      "name": "Amatorski Teatr Miejski im. Stefana Jaracza",
+      "address": "Armii Krajowej 4",
+      "city": "Otwock",
+      "latitude": 52.104639,
+      "longitude": 21.267611
+    }
+  },
+  {
+    "url": "https://boto.art.pl/",
+    "name": "Teatr BOTO",
+    "city": "Sopot",
+    "kind": "venue",
+    "venue": {
+      "name": "Teatr BOTO",
+      "address": "Bohaterów Monte Cassino 54B",
+      "city": "Sopot",
+      "latitude": 54.4439498,
+      "longitude": 18.5678058
+    }
+  },
+  {
+    "url": "https://www.gdansk.pl/",
+    "name": "Miasto Gdańsk",
+    "city": "Gdańsk",
+    "kind": "venue",
+    "venue": {
+      "name": "Dwór Artusa",
+      "address": "Długi Targ 43–44",
+      "city": "Gdańsk",
+      "latitude": 54.3487673,
+      "longitude": 18.6533705
+    }
+  },
+  {
+    "url": "https://sklep.otop.org.pl/",
+    "name": "Ogólnopolskie Towarzystwo Ochrony Ptaków",
+    "city": "Gdynia",
+    "kind": "venue",
+    "venue": {
+      "name": "Fontanna na Skwerze Kościuszki — miejsce zbiórki",
+      "address": "Skwer Kościuszki",
+      "city": "Gdynia",
+      "latitude": 54.5190757039532,
+      "longitude": 18.548498369170183
+    }
+  },
+  {
+    "url": "https://dks.art.pl/",
+    "name": "Dom Kultury Śródmieście",
+    "city": "Warszawa",
+    "kind": "venue",
+    "venue": {
+      "name": "Międzypokoleniowa Klubokawiarnia",
+      "address": "Anielewicza 3/5",
+      "city": "Warszawa",
+      "latitude": 52.2488742,
+      "longitude": 20.9963346
+    }
+  },
+  {
+    "url": "https://domsztuki.art.pl/",
+    "name": "Dom Sztuki SMB Jary",
+    "city": "Warszawa",
+    "kind": "venue",
+    "venue": {
+      "name": "Kino Domu Sztuki",
+      "address": "Wiolinowa 14",
+      "city": "Warszawa",
+      "latitude": 52.1614066,
+      "longitude": 21.0268164
+    }
+  },
+  {
+    "url": "https://www.kck.com.pl/",
+    "name": "Kieleckie Centrum Kultury",
+    "city": "Kielce",
+    "kind": "venue",
+    "venue": {
+      "name": "Galeria Winda — Kieleckie Centrum Kultury",
+      "address": "plac Moniuszki 2B",
+      "city": "Kielce",
+      "latitude": 50.868626,
+      "longitude": 20.637316
+    }
+  },
+  {
+    "url": "https://www.uni.lodz.pl/",
+    "name": "Uniwersytet Łódzki",
+    "city": "Łódź",
+    "kind": "venue",
+    "venue": {
+      "name": "Centrum Szkoleniowo-Konferencyjne Uniwersytetu Łódzkiego",
+      "address": "Kopcińskiego 16/18",
+      "city": "Łódź",
+      "latitude": 51.7754351,
+      "longitude": 19.4830035
+    }
+  },
+  {
+    "url": "https://www.wimbp.gorzow.pl/",
+    "name": "Wojewódzka i Miejska Biblioteka Publiczna im. Zbigniewa Herberta",
+    "city": "Gorzów Wielkopolski",
+    "kind": "venue",
+    "venue": {
+      "name": "Biblioteka Herberta — Oddział Dziecięcy",
+      "address": "Sikorskiego 107",
+      "city": "Gorzów Wielkopolski",
+      "latitude": 52.7306092,
+      "longitude": 15.2315019
+    }
+  },
+  {
+    "url": "https://mbp.opole.pl/",
+    "name": "Miejska Biblioteka Publiczna w Opolu",
+    "city": "Opole",
+    "kind": "venue",
+    "venue": {
+      "name": "Miejska Biblioteka Publiczna — sala konferencyjna",
+      "address": "Minorytów 4",
+      "city": "Opole",
+      "latitude": 50.666704,
+      "longitude": 17.92209
+    }
+  },
+  {
+    "url": "https://zok.com.pl/",
+    "name": "Zielonogórski Ośrodek Kultury",
+    "city": "Zielona Góra",
+    "kind": "venue",
+    "venue": {
+      "name": "Centrum Nauki Keplera — Planetarium Wenus",
+      "address": "Generała Władysława Sikorskiego 10",
+      "city": "Zielona Góra",
+      "latitude": 51.93606,
+      "longitude": 15.50639
+    }
+  },
+  {
+    "url": "https://www.muzeum.rzeszow.pl/",
+    "name": "Muzeum Okręgowe w Rzeszowie",
+    "city": "Rzeszów",
+    "kind": "venue",
+    "venue": {
+      "name": "Muzeum Okręgowe — budynek główny",
+      "address": "3 Maja 19",
+      "city": "Rzeszów",
+      "latitude": 50.0352678,
+      "longitude": 22.0012648
+    }
+  },
+  {
+    "url": "https://teatrmuzycznyhalka.rzeszow.pl/",
+    "name": "Podkarpacki Teatr Muzyczny HALKA",
+    "city": "Rzeszów",
+    "kind": "venue",
+    "venue": {
+      "name": "Wojewódzki Dom Kultury — sala widowiskowa",
+      "address": "Stefana Okrzei 7",
+      "city": "Rzeszów",
+      "latitude": 50.0393774,
+      "longitude": 22.0037627
+    }
+  },
+  {
+    "url": "https://www.akademiasztuki.eu/",
+    "name": "Akademia Sztuki w Szczecinie",
+    "city": "Szczecin",
+    "kind": "venue",
+    "venue": {
+      "name": "Pałac Ziemstwa Pomorskiego — Sala Perłowa",
+      "address": "aleja Niepodległości 40",
+      "city": "Szczecin",
+      "latitude": 53.4269889,
+      "longitude": 14.5510278
+    }
+  },
+  {
+    "url": "https://www.bptorun.edu.pl/",
+    "name": "Biblioteka Pedagogiczna w Toruniu",
+    "city": "Toruń",
+    "kind": "venue",
+    "venue": {
+      "name": "Biblioteka Pedagogiczna im. Elżbiety Zawackiej",
+      "address": "Generała Jana Henryka Dąbrowskiego 4",
+      "city": "Toruń",
+      "latitude": 53.0143041,
+      "longitude": 18.6122927
+    }
+  },
+  {
+    "url": "https://ndk.systembiletowy.pl/",
+    "name": "Nyski Dom Kultury",
+    "city": "Nysa",
+    "kind": "venue",
+    "venue": {
+      "name": "Nyski Dom Kultury — sala widowiskowa",
+      "address": "Wałowa 7",
+      "city": "Nysa",
+      "latitude": 50.474843664665,
+      "longitude": 17.336582946138
+    }
+  },
+  {
+    "url": "https://kinojanosik.pl/",
+    "name": "Kino Janosik",
+    "city": "Żywiec",
+    "kind": "venue",
+    "venue": {
+      "name": "Kino Janosik",
+      "address": "Jana III Sobieskiego 1",
+      "city": "Żywiec",
+      "latitude": 49.68942,
+      "longitude": 19.20007
+    }
+  },
+  {
+    "url": "https://karta.grudziadzmiastootwarte.pl/",
+    "name": "Grudziądz Miasto Otwarte",
+    "city": "Grudziądz",
+    "kind": "venue",
+    "venue": {
+      "name": "Las Komunalny – parking leśny przy rondzie ks. Popiełuszki",
+      "address": "Konarskiego, przy rondzie ks. Jerzego Popiełuszki",
+      "city": "Grudziądz",
+      "latitude": 53.46698,
+      "longitude": 18.75338
+    }
+  },
+  {
+    "url": "https://fenikssiedlce.pl/",
+    "name": "Siedlecki Klub Sportowy Feniks",
+    "city": "Siedlce",
+    "kind": "venue",
+    "venue": {
+      "name": "Park miejski Aleksandria — okolice altany",
+      "address": "Stanisława Konarskiego",
+      "city": "Siedlce",
+      "latitude": 52.17077,
+      "longitude": 22.28566
+    }
+  },
+  {
+    "url": "https://grudziadz.pl/",
+    "name": "Urząd Miejski w Grudziądzu",
+    "city": "Grudziądz",
+    "kind": "venue",
+    "venue": {
+      "name": "Centrum Kultury Teatr",
+      "address": "Teatralna 1",
+      "city": "Grudziądz",
+      "latitude": 53.485105555555556,
+      "longitude": 18.756013888888887
+    }
+  },
+  {
+    "url": "https://konferencje.pans.nysa.pl/",
+    "name": "Państwowa Akademia Nauk Stosowanych w Nysie",
+    "city": "Nysa",
+    "kind": "venue",
+    "venue": {
+      "name": "Hala Sportowa AZS PANS w Nysie",
+      "address": "Głuchołaska 12",
+      "city": "Nysa",
+      "latitude": 50.458324643222,
+      "longitude": 17.347999796295
+    }
+  },
+  {
+    "url": "https://informacja-turystyczna.nysa.pl/",
+    "name": "Punkt Informacji Turystycznej w Nysie",
+    "city": "Nysa",
+    "kind": "venue",
+    "venue": {
+      "name": "Miejska i Gminna Biblioteka Publiczna w Nysie — Czytelnia Czasopism",
+      "address": "Sukiennicza 2",
+      "city": "Nysa",
+      "latitude": 50.473298282405,
+      "longitude": 17.332774813502
+    }
+  },
+  {
+    "url": "https://www.mragowo.pl/",
+    "name": "Urząd Miejski w Mrągowie",
+    "city": "Mrągowo",
+    "kind": "venue",
+    "venue": {
+      "name": "Mrągowskie Centrum Kultury",
+      "address": "Warszawska 26",
+      "city": "Mrągowo",
+      "latitude": 53.865401,
+      "longitude": 21.304562
+    }
+  },
+  {
+    "url": "https://ks.cuprum.pl/",
+    "name": "Stilon Gorzów",
+    "city": "Gorzów Wielkopolski",
+    "kind": "venue",
+    "venue": {
+      "name": "Arena Gorzów",
+      "address": "Słowiańska 16",
+      "city": "Gorzów Wielkopolski",
+      "latitude": 52.74475,
+      "longitude": 15.21643
+    }
+  },
+  {
+    "url": "https://biletyexpo.pl/",
+    "name": "GeoExpo – oficjalna sprzedaż BiletyExpo",
+    "city": "Gorzów Wielkopolski",
+    "kind": "venue",
+    "venue": {
+      "name": "Arena Gorzów",
+      "address": "Słowiańska 16",
+      "city": "Gorzów Wielkopolski",
+      "latitude": 52.74475,
+      "longitude": 15.21643
+    }
+  },
+  {
+    "url": "https://bilety.nowaruda.pl/",
+    "name": "Miejski Ośrodek Kultury w Nowej Rudzie",
+    "city": "Nowa Ruda",
+    "kind": "venue",
+    "venue": {
+      "name": "Miejski Ośrodek Kultury w Nowej Rudzie",
+      "address": "Strzelecka 2a",
+      "city": "Nowa Ruda",
+      "latitude": 50.5766639,
+      "longitude": 16.5036906
+    }
+  },
+  {
+    "url": "https://gizycko.pl/",
+    "name": "Urząd Miejski w Giżycku",
+    "city": "Giżycko",
+    "kind": "venue",
+    "venue": {
+      "name": "Twierdza Boyen",
+      "address": "Turystyczna 1",
+      "city": "Giżycko",
+      "latitude": 54.0343624,
+      "longitude": 21.7498238
+    }
+  },
+  {
+    "url": "https://kultura-zwierzyniec.pl/",
+    "name": "Centrum Kultury i Biblioteka Publiczna w Zwierzyńcu",
+    "city": "Zwierzyniec",
+    "kind": "venue",
+    "venue": {
+      "name": "Kino Skarb",
+      "address": "Partyzantów 26A",
+      "city": "Zwierzyniec",
+      "latitude": 50.6139331018717,
+      "longitude": 22.9730299505288
+    }
+  },
+  {
+    "url": "https://www.zielona-gora.pl/",
+    "name": "Urząd Miasta Zielona Góra",
+    "city": "Zielona Góra",
+    "kind": "venue",
+    "venue": {
+      "name": "Restauracja Winiarnia Srebrna Góra",
+      "address": "Plac Słowiański 10",
+      "city": "Zielona Góra",
+      "latitude": 51.9362962,
+      "longitude": 15.5036609
+    }
+  },
+  {
+    "url": "https://aleksandrow-lodzki.pl/",
+    "name": "Urząd Miejski w Aleksandrowie Łódzkim",
+    "city": "Aleksandrów Łódzki",
+    "kind": "venue",
+    "venue": {
+      "name": "Park Miejski przy pomniku Tadeusza Kościuszki",
+      "address": "Plac Tadeusza Kościuszki",
+      "city": "Aleksandrów Łódzki",
+      "latitude": 51.820362,
+      "longitude": 19.302828
+    }
+  },
+  {
+    "url": "https://visitzielonagora.pl/",
+    "name": "Oficjalny portal turystyczny Zielonej Góry",
+    "city": "Zielona Góra",
+    "kind": "venue",
+    "venue": {
+      "name": "Park Tysiąclecia",
+      "address": "Wazów",
+      "city": "Zielona Góra",
+      "latitude": 51.9424,
+      "longitude": 15.5166
+    }
+  },
+  {
+    "url": "https://www.muzeumczestochowa.pl/",
+    "name": "Muzeum Częstochowskie",
+    "city": "Częstochowa",
+    "kind": "venue",
+    "venue": {
+      "name": "Ratusz — Muzeum Częstochowskie",
+      "address": "Aleja Najświętszej Maryi Panny 45",
+      "city": "Częstochowa",
+      "latitude": 50.811318739491,
+      "longitude": 19.113152495147
+    }
+  },
+  {
+    "url": "https://swietochlowice.pl/",
+    "name": "Urząd Miejski w Świętochłowicach",
+    "city": "Świętochłowice",
+    "kind": "venue",
+    "venue": {
+      "name": "Kościół św. Józefa Robotnika",
+      "address": "Wojska Polskiego 13",
+      "city": "Świętochłowice",
+      "latitude": 50.283645307126,
+      "longitude": 18.92423412107
+    }
+  },
+  {
+    "url": "https://wzorytargi.pl/",
+    "name": "Wzory Targi",
+    "city": "Białystok",
+    "kind": "venue",
+    "venue": {
+      "name": "Stadion Miejski, Białystok",
+      "address": "ul. Słoneczna 1, 15-323 Białystok",
+      "city": "Białystok",
+      "latitude": 53.106032,
+      "longitude": 23.149052
+    }
+  },
+  {
+    "url": "https://kierunekkultura.pl/",
+    "name": "Miejsko-Gminny Ośrodek Kultury w Lubawce",
+    "city": "Lubawka",
+    "kind": "venue",
+    "venue": {
+      "name": "Dom Kultury w Lubawce",
+      "address": "Kamiennogórska 19",
+      "city": "Lubawka",
+      "latitude": 50.7091426,
+      "longitude": 16.0006536
+    }
+  },
+  {
+    "url": "https://www.mok.pl/",
+    "name": "Miejski Ośrodek Kultury „Centrum” w Zawierciu",
+    "city": "Zawiercie",
+    "kind": "venue",
+    "venue": {
+      "name": "Miejski Ośrodek Kultury im. A. Mickiewicza \"CENTRUM\"",
+      "address": "Piastowska 1",
+      "city": "Zawiercie",
+      "latitude": 50.4856686,
+      "longitude": 19.4314503
+    }
+  },
+  {
+    "url": "https://promocjachojnice.pl/",
+    "name": "Promocja Regionu Chojnickiego",
+    "city": "Chojnice",
+    "kind": "venue",
+    "venue": {
+      "name": "Plac przy firmie Karma",
+      "address": "Towarowa 17",
+      "city": "Chojnice",
+      "latitude": 53.6907915692679,
+      "longitude": 17.5779071560601
+    }
+  },
+  {
+    "url": "https://www.orkiestraksiezniczek.pl/",
+    "name": "Tomczyk Art — Orkiestra Księżniczek",
+    "city": "Kołobrzeg",
+    "kind": "venue",
+    "venue": {
+      "name": "Regionalne Centrum Kultury im. Zbigniewa Herberta",
+      "address": "Solna 1",
+      "city": "Kołobrzeg",
+      "latitude": 54.1819998,
+      "longitude": 15.5654614
+    }
+  },
+  {
+    "url": "https://old.tck.pl/",
+    "name": "Tarnowskie Centrum Kultury",
+    "city": "Tarnów",
+    "kind": "venue",
+    "venue": {
+      "name": "Piwnice Tarnowskiego Centrum Kultury",
+      "address": "Rynek 5",
+      "city": "Tarnów",
+      "latitude": 50.0121859878988,
+      "longitude": 20.9878632302183
+    }
+  },
+  {
+    "url": "https://biegikoszalin.eu/",
+    "name": "Koszalińskie Towarzystwo Krzewienia Kultury Fizycznej",
+    "city": "Koszalin",
+    "kind": "venue",
+    "venue": {
+      "name": "Hala Widowiskowo-Sportowa w Koszalinie",
+      "address": "Śniadeckich 4",
+      "city": "Koszalin",
+      "latitude": 54.2059869,
+      "longitude": 16.2021536
+    }
+  },
+  {
+    "url": "https://www.sopot.pl/",
+    "name": "Miasto Sopot",
+    "city": "Sopot",
+    "kind": "venue",
+    "venue": {
+      "name": "Mamuszki 14",
+      "address": "Sopot, Mamuszki 14",
+      "city": "Sopot",
+      "latitude": 54.450072,
+      "longitude": 18.567104
+    }
+  },
+  {
+    "url": "https://sopotjazz.pl/",
+    "name": "Sopot Jazz Festival — BART",
+    "city": "Sopot",
+    "kind": "venue",
+    "venue": {
+      "name": "Mamuszki 14",
+      "address": "Sopot, Mamuszki 14",
+      "city": "Sopot",
+      "latitude": 54.450072,
+      "longitude": 18.567104
+    }
+  },
+  {
+    "url": "https://www.targi.radom.pl/",
+    "name": "Organizator Radomskich Targów Ślubnych",
+    "city": "Radom",
+    "kind": "venue",
+    "venue": {
+      "name": "Enea Radomskie Centrum Sportu — hala widowiskowo-sportowa",
+      "address": "Andrzeja Struga 63",
+      "city": "Radom",
+      "latitude": 51.4090392,
+      "longitude": 21.1714255
+    }
+  },
+  {
+    "url": "https://lff.lublin.pl/",
+    "name": "Lubelski Festiwal Filmowy",
+    "city": "Lublin",
+    "kind": "venue",
+    "venue": {
+      "name": "Kino CK — Centrum Kultury w Lublinie",
+      "address": "Peowiaków 12",
+      "city": "Lublin",
+      "latitude": 51.246513,
+      "longitude": 22.557638
+    }
+  },
+  {
+    "url": "https://polskanockabaretowa.pl/",
+    "name": "Polska Noc Kabaretowa",
+    "city": "Radom",
+    "kind": "venue",
+    "venue": {
+      "name": "Enea Radomskie Centrum Sportu — hala widowiskowo-sportowa",
+      "address": "Andrzeja Struga 63",
+      "city": "Radom",
+      "latitude": 51.4090392,
+      "longitude": 21.1714255
+    }
+  },
+  {
+    "url": "https://bikeexpo.pl/",
+    "name": "PEKAO BIKE EXPO",
+    "city": "Katowice",
+    "kind": "venue",
+    "venue": {
+      "name": "Międzynarodowe Centrum Kongresowe w Katowicach",
+      "address": "Plac Sławika i Antalla 1",
+      "city": "Katowice",
+      "latitude": 50.2662477,
+      "longitude": 19.0276219
+    }
+  },
+  {
+    "url": "https://opera.bydgoszcz.pl/",
+    "name": "Opera Nova",
+    "city": "Bydgoszcz",
+    "kind": "venue",
+    "venue": {
+      "name": "Opera Nova w Bydgoszczy",
+      "address": "Focha 5",
+      "city": "Bydgoszcz",
+      "latitude": 53.1243914,
+      "longitude": 17.9977638
+    }
+  },
+  {
+    "url": "https://targiksiazek.pl/",
+    "name": "Wrocławskie Targi Dobrych Książek",
+    "city": "Wrocław",
+    "kind": "venue",
+    "venue": {
+      "name": "Hala Stulecia",
+      "address": "Wystawowa 1",
+      "city": "Wrocław",
+      "latitude": 51.1068875,
+      "longitude": 17.0773185
+    }
+  },
+  {
+    "url": "https://artus.torun.pl/",
+    "name": "Dwór Artusa",
+    "city": "Toruń",
+    "kind": "venue",
+    "venue": {
+      "name": "Centrum Kulturalno-Kongresowe Jordanki",
+      "address": "aleja Solidarności 3–13",
+      "city": "Toruń",
+      "latitude": 53.0139607,
+      "longitude": 18.6014001
+    }
+  },
+  {
+    "url": "https://operanova.bydgoszcz.pl/",
+    "name": "Opera Nova",
+    "city": "Bydgoszcz",
+    "kind": "venue",
+    "venue": {
+      "name": "Opera Nova w Bydgoszczy",
+      "address": "Focha 5",
+      "city": "Bydgoszcz",
+      "latitude": 53.1243914,
+      "longitude": 17.9977638
+    }
+  },
+  {
+    "url": "https://experyment.gdynia.pl/",
+    "name": "Centrum Nauki Experyment",
+    "city": "Gdynia",
+    "kind": "venue",
+    "venue": {
+      "name": "Centrum Nauki Experyment",
+      "address": "aleja Zwycięstwa 96/98",
+      "city": "Gdynia",
+      "latitude": 54.4948431,
+      "longitude": 18.5384205
+    }
+  },
+  {
+    "url": "https://fundacja-przymierze.pl/",
+    "name": "Fundacja Przymierze",
+    "city": "Koszalin",
+    "kind": "venue",
+    "venue": {
+      "name": "Filharmonia Koszalińska im. Stanisława Moniuszki",
+      "address": "Piastowska 2",
+      "city": "Koszalin",
+      "latitude": 54.191274,
+      "longitude": 16.1879842
+    }
+  },
+  {
+    "url": "https://teatr.zgora.pl/",
+    "name": "Lubuski Teatr",
+    "city": "Zielona Góra",
+    "kind": "venue",
+    "venue": {
+      "name": "Lubuski Teatr im. Leona Kruczkowskiego",
+      "address": "aleja Niepodległości 3/5",
+      "city": "Zielona Góra",
+      "latitude": 51.9402668,
+      "longitude": 15.5072821
+    }
+  },
+  {
+    "url": "https://hobbycon.pl/",
+    "name": "Grupa MTP — HobbyCon",
+    "city": "Poznań",
+    "kind": "venue",
+    "venue": {
+      "name": "MTP - Międzynarodowe Targi Poznańskie",
+      "address": "Głogowska 14",
+      "city": "Poznań",
+      "latitude": 52.4030144,
+      "longitude": 16.9079869
+    }
+  },
+  {
+    "url": "https://www.targislubne.pl/",
+    "name": "Organizator Świętokrzyskich Targów Ślubnych",
+    "city": "Kielce",
+    "kind": "venue",
+    "venue": {
+      "name": "Centrum Kongresowe Targów Kielce",
+      "address": "Zakładowa 1",
+      "city": "Kielce",
+      "latitude": 50.89901944444444,
+      "longitude": 20.58904722222222
+    }
+  },
+  {
+    "url": "https://targifantastyki.pl/",
+    "name": "Warszawskie Targi Fantastyki",
+    "city": "Warszawa",
+    "kind": "venue",
+    "venue": {
+      "name": "EXPO XXI",
+      "address": "Prądzyńskiego 12/14",
+      "city": "Warszawa",
+      "latitude": 52.2253023,
+      "longitude": 20.9617941
+    }
+  },
+  {
+    "url": "https://visualproduction.pl/",
+    "name": "Visual Production",
+    "city": "Łódź",
+    "kind": "venue",
+    "venue": {
+      "name": "Atlas Arena",
+      "address": "aleja Władysława Bandurskiego 7",
+      "city": "Łódź",
+      "latitude": 51.75694444444444,
+      "longitude": 19.425
+    }
+  },
+  {
+    "url": "https://kultura.poznan.pl/",
+    "name": "Miasto Poznań — Kultura",
+    "city": "Poznań",
+    "kind": "venue",
+    "venue": {
+      "name": "Galeria u Jezuitów",
+      "address": "Dominikańska 8",
+      "city": "Poznań",
+      "latitude": 52.4096961,
+      "longitude": 16.9357652
+    }
+  },
+  {
+    "url": "https://teatr.olsztyn.pl/",
+    "name": "Teatr im. Stefana Jaracza w Olsztynie",
+    "city": "Olsztyn",
+    "kind": "venue",
+    "venue": {
+      "name": "Teatr im. Stefana Jaracza — Scena Duża",
+      "address": "1 Maja 4",
+      "city": "Olsztyn",
+      "latitude": 53.7801215,
+      "longitude": 20.4794422
+    }
+  },
+  {
+    "url": "https://pik.katowice.pl/",
+    "name": "PIK Katowice",
+    "city": "Katowice",
+    "kind": "venue",
+    "venue": {
+      "name": "Rynek w Katowicach",
+      "address": "Rynek, 40-003 Katowice",
+      "city": "Katowice",
+      "latitude": 50.259253,
+      "longitude": 19.021736
+    }
+  },
+  {
+    "url": "https://jarmarktorun.pl/",
+    "name": "Toruński Jarmark Bożonarodzeniowy",
+    "city": "Toruń",
+    "kind": "venue",
+    "venue": {
+      "name": "Rynek Staromiejski",
+      "address": "Rynek Staromiejski, Toruń",
+      "city": "Toruń",
+      "latitude": 53.010592,
+      "longitude": 18.604428
+    }
+  },
+  {
+    "url": "https://betlejempoznanskie.pl/",
+    "name": "Betlejem Poznańskie",
+    "city": "Poznań",
+    "kind": "venue",
+    "venue": {
+      "name": "Plac Wolności",
+      "address": "Plac Wolności, Poznań",
+      "city": "Poznań",
+      "latitude": 52.408111,
+      "longitude": 16.927611
+    }
+  },
+  {
+    "url": "https://www.muzeumkrakowa.pl/",
+    "name": "Muzeum Krakowa",
+    "city": "Kraków",
+    "kind": "venue",
+    "venue": {
+      "name": "Pomnik Adama Mickiewicza",
+      "address": "Rynek Główny",
+      "city": "Kraków",
+      "latitude": 50.061482,
+      "longitude": 19.938003
+    }
+  },
+  {
+    "url": "https://mkteamevents.pl/",
+    "name": "MK Team Events",
+    "city": "Katowice",
+    "kind": "venue",
+    "venue": {
+      "name": "Dolina Trzech Stawów — parking główny od strony Muchowca",
+      "address": "Francuska 184",
+      "city": "Katowice",
+      "latitude": 50.2325390011613,
+      "longitude": 19.0296695354854
+    }
+  },
+  {
+    "url": "https://nospr.org.pl/",
+    "name": "NOSPR",
+    "city": "Katowice",
+    "kind": "venue",
+    "venue": {
+      "name": "Narodowa Orkiestra Symfoniczna Polskiego Radia - NOSPR",
+      "address": "Plac Wojciecha Kilara 1",
+      "city": "Katowice",
+      "latitude": 50.2639042,
+      "longitude": 19.0286749
+    }
+  },
+  {
+    "url": "https://jarmark.poznan.pl/",
+    "name": "Grupa MTP",
+    "city": "Poznań",
+    "kind": "venue",
+    "venue": {
+      "name": "MTP - Międzynarodowe Targi Poznańskie",
+      "address": "Głogowska 14",
+      "city": "Poznań",
+      "latitude": 52.4030144,
+      "longitude": 16.9079869
+    }
+  },
+  {
+    "url": "https://lodzkietargiksiazki.pl/",
+    "name": "Łódzkie Targi Książki i Sztuki",
+    "city": "Łódź",
+    "kind": "venue",
+    "venue": {
+      "name": "Dworzec Łódź Fabryczna",
+      "address": "plac Bronisława Sałacińskiego 1",
+      "city": "Łódź",
+      "latitude": 51.7693946180857,
+      "longitude": 19.4674654297924
+    }
+  },
+  {
+    "url": "https://www.jarmarkbozonarodzeniowy.com/",
+    "name": "Wrocławski Jarmark Bożonarodzeniowy",
+    "city": "Wrocław",
+    "kind": "venue",
+    "venue": {
+      "name": "Rynek we Wrocławiu",
+      "address": "Rynek",
+      "city": "Wrocław",
+      "latitude": 51.11,
+      "longitude": 17.031944444444
+    }
+  },
+  {
+    "url": "https://www.jarmark.waw.pl/",
+    "name": "Jarmark Warszawski",
+    "city": "Warszawa",
+    "kind": "venue",
+    "venue": {
+      "name": "Plac Centralny — Plac Defilad",
+      "address": "Plac Defilad",
+      "city": "Warszawa",
+      "latitude": 52.2321366,
+      "longitude": 21.0079257
+    }
+  },
+  {
+    "url": "https://bozonarodzeniowy.pl/",
+    "name": "Międzynarodowe Targi Gdańskie",
+    "city": "Gdańsk",
+    "kind": "venue",
+    "venue": {
+      "name": "Targ Węglowy",
+      "address": "Targ Węglowy",
+      "city": "Gdańsk",
+      "latitude": 54.351,
+      "longitude": 18.648
+    }
+  },
+  {
+    "url": "https://icefestival.pl/",
+    "name": "Miasto Poznań — POZnań Ice Festival",
+    "city": "Poznań",
+    "kind": "venue",
+    "venue": {
+      "name": "Stary Rynek w Poznaniu",
+      "address": "Stary Rynek",
+      "city": "Poznań",
+      "latitude": 52.408258333333,
+      "longitude": 16.933538888889
+    }
+  },
+  {
+    "url": "https://pzkosz.pl/",
+    "name": "Polski Związek Koszykówki",
+    "city": "Gorzów Wielkopolski",
+    "kind": "venue",
+    "venue": {
+      "name": "Arena Gorzów",
+      "address": "Słowiańska 16",
+      "city": "Gorzów Wielkopolski",
+      "latitude": 52.74475,
+      "longitude": 15.21643
+    }
+  },
+  {
+    "url": "https://wdkkielce.pl/",
+    "name": "Wojewódzki Dom Kultury w Kielcach",
+    "city": "Kielce",
+    "kind": "venue",
+    "venue": {
+      "name": "Wojewódzki Dom Kultury im. Józefa Piłsudskiego w Kielcach",
+      "address": "Księdza Piotra Ściegiennego 2",
+      "city": "Kielce",
+      "latitude": 50.8632484319233,
+      "longitude": 20.6269621863223
+    }
+  },
+  {
+    "url": "https://idkielce.pl/",
+    "name": "Instytut Dizajnu w Kielcach",
+    "city": "Kielce",
+    "kind": "venue",
+    "venue": {
+      "name": "Instytut Dizajnu w Kielcach",
+      "address": "Zamkowa 3",
+      "city": "Kielce",
+      "latitude": 50.867961722966,
+      "longitude": 20.627029538155
+    }
+  },
+  {
+    "url": "https://bilety.agencjamuza.pl/",
+    "name": "Agencja Artystyczna Muza",
+    "city": "Zamość",
+    "kind": "venue",
+    "venue": {
+      "name": "Zamojski Dom Kultury",
+      "address": "Partyzantów 13",
+      "city": "Zamość",
+      "latitude": 50.7136456188707,
+      "longitude": 23.2646469562237
+    }
+  },
+  {
+    "url": "https://old2.tck.pl/",
+    "name": "Tarnowskie Centrum Kultury",
+    "city": "Tarnów",
+    "kind": "venue",
+    "venue": {
+      "name": "Piwnice Tarnowskiego Centrum Kultury",
+      "address": "Rynek 5",
+      "city": "Tarnów",
+      "latitude": 50.012186,
+      "longitude": 20.9878632
+    }
+  },
+  {
+    "url": "https://dzierzoniow.pl/",
+    "name": "Urząd Miasta Dzierżoniów",
+    "city": "Dzierżoniów",
+    "kind": "venue",
+    "venue": {
+      "name": "Hala OSiR w Dzierżoniowie",
+      "address": "Strumykowa 1",
+      "city": "Dzierżoniów",
+      "latitude": 50.7187565644975,
+      "longitude": 16.6438896325112
+    }
+  },
+  {
+    "url": "https://www.swiatowid.elblag.pl/",
+    "name": "Centrum Spotkań Europejskich „Światowid”",
+    "city": "Elbląg",
+    "kind": "venue",
+    "venue": {
+      "name": "Centrum Spotkań Europejskich „Światowid”",
+      "address": "Plac Kazimierza Jagiellończyka 1",
+      "city": "Elbląg",
+      "latitude": 54.1668613,
+      "longitude": 19.4045688
+    }
+  },
+  {
+    "url": "https://kino.swiatowid.elblag.pl/",
+    "name": "Centrum Spotkań Europejskich „Światowid”",
+    "city": "Elbląg",
+    "kind": "venue",
+    "venue": {
+      "name": "Centrum Spotkań Europejskich „Światowid”",
+      "address": "Plac Kazimierza Jagiellończyka 1",
+      "city": "Elbląg",
+      "latitude": 54.1668613,
+      "longitude": 19.4045688
+    }
+  },
+  {
+    "url": "https://ftp.tck.pl/",
+    "name": "Tarnowskie Centrum Kultury",
+    "city": "Tarnów",
+    "kind": "venue",
+    "venue": {
+      "name": "Kino Marzenie",
+      "address": "Stanisława Staszica 4",
+      "city": "Tarnów",
+      "latitude": 50.0118308780182,
+      "longitude": 20.9834252633823
+    }
+  },
+  {
+    "url": "https://twierdza.gizycko.pl/",
+    "name": "Twierdza Boyen",
+    "city": "Giżycko",
+    "kind": "venue",
+    "venue": {
+      "name": "Twierdza Boyen",
+      "address": "Turystyczna 1",
+      "city": "Giżycko",
+      "latitude": 54.0343624,
+      "longitude": 21.7498238
+    }
+  },
+  {
+    "url": "https://bydgoszczinformuje.pl/",
+    "name": "Bydgoszcz Informuje (Urząd Miasta Bydgoszczy)",
+    "city": "Bydgoszcz",
+    "kind": "venue",
+    "venue": {
+      "name": "Stary Rynek w Bydgoszczy",
+      "address": "Stary Rynek, Bydgoszcz",
+      "city": "Bydgoszcz",
+      "latitude": 53.12111,
+      "longitude": 17.99944
+    }
+  },
+  {
+    "url": "https://rck.kolobrzeg.eu/",
+    "name": "Regionalne Centrum Kultury w Kołobrzegu",
+    "city": "Kołobrzeg",
+    "kind": "venue",
+    "venue": {
+      "name": "Regionalne Centrum Kultury im. Zbigniewa Herberta",
+      "address": "Solna 1",
+      "city": "Kołobrzeg",
+      "latitude": 54.1819998,
+      "longitude": 15.5654614
+    }
+  },
+  {
+    "url": "https://app.evently.pl/",
+    "name": "Fundacja 22q11 — Evently",
+    "city": "Kraków",
+    "kind": "venue",
+    "venue": {
+      "name": "Auditorium Maximum UJ",
+      "address": "Krupnicza 33",
+      "city": "Kraków",
+      "latitude": 50.0627383977052,
+      "longitude": 19.9252229976129
+    }
+  },
+  {
+    "url": "https://wydarzenia.gliwice.eu/",
+    "name": "GAMA — Centrum Kultury Victoria w Gliwicach",
+    "city": "Gliwice",
+    "kind": "venue",
+    "venue": {
+      "name": "Scena Bojków — Centrum Kultury Victoria",
+      "address": "Parkowa 5",
+      "city": "Gliwice",
+      "latitude": 50.2507379442441,
+      "longitude": 18.6778050366445
+    }
+  },
+  {
+    "url": "https://gdansk.dominikanie.pl/",
+    "name": "Dominikanie Gdańsk",
+    "city": "Gdańsk",
+    "kind": "venue",
+    "venue": {
+      "name": "Dziedziniec klasztoru Dominikanów",
+      "address": "Świętojańska 72",
+      "city": "Gdańsk",
+      "latitude": 54.3521308173878,
+      "longitude": 18.6514296522356
+    }
+  },
+  {
+    "url": "https://biegiempomagam.pl/",
+    "name": "Stowarzyszenie Terapeutów — Biegiem Pomagam",
+    "city": "Warszawa",
+    "kind": "venue",
+    "venue": {
+      "name": "Miasteczko Biegacza — WCSM Agrykola",
+      "address": "Agrykola / aleja Tomasza Hopfera",
+      "city": "Warszawa",
+      "latitude": 52.2176979,
+      "longitude": 21.0330702
+    }
+  },
+  {
+    "url": "https://pobitno.rdk.rzeszow.pl/",
+    "name": "Rzeszowski Dom Kultury",
+    "city": "Rzeszów",
+    "kind": "venue",
+    "venue": {
+      "name": "Rzeszowski Dom Kultury — filia Pobitno",
+      "address": "Konfederatów Barskich 43a",
+      "city": "Rzeszów",
+      "latitude": 50.0460818,
+      "longitude": 22.0270178
+    }
+  },
+  {
+    "url": "https://dabrowskiego.rdk.rzeszow.pl/",
+    "name": "Rzeszowski Dom Kultury",
+    "city": "Rzeszów",
+    "kind": "venue",
+    "venue": {
+      "name": "Rzeszowski Dom Kultury — filia Dąbrowskiego",
+      "address": "Jarosława Dąbrowskiego 17",
+      "city": "Rzeszów",
+      "latitude": 50.0308069610586,
+      "longitude": 21.9954143235238
+    }
+  },
+  {
+    "url": "https://kokpit.com.pl/",
+    "name": "Kazimierski Ośrodek Kultury, Promocji i Turystyki",
+    "city": "Kazimierz Dolny",
+    "kind": "venue",
+    "venue": {
+      "name": "Kazimierski Ośrodek Kultury, Promocji i Turystyki",
+      "address": "Lubelska 12",
+      "city": "Kazimierz Dolny",
+      "latitude": 51.3212980531365,
+      "longitude": 21.9489716718695
+    }
+  },
+  {
+    "url": "https://lodz.travel/",
+    "name": "Łódzka Organizacja Turystyczna (lodz.travel)",
+    "city": "Łódź",
+    "kind": "venue",
+    "venue": {
+      "name": "ul. Piotrkowska — pasaż Rubinsteina",
+      "address": "ul. Piotrkowska (odcinek od pasażu Rubinsteina do pasażu Schillera), Łódź",
+      "city": "Łódź",
+      "latitude": 51.7675065,
+      "longitude": 19.4553456
+    }
+  },
+  {
+    "url": "https://kolorowaaleja.pl/",
+    "name": "Kolorowa Aleja — Żegluga Szczecińska Turystyka Wydarzenia (organizator)",
+    "city": "Szczecin",
+    "kind": "venue",
+    "venue": {
+      "name": "Plac Lotników w Szczecinie",
+      "address": "Plac Lotników, Szczecin",
+      "city": "Szczecin",
+      "latitude": 53.430278,
+      "longitude": 14.550833
+    }
+  },
+  {
+    "url": "https://bwa.tarnow.pl/",
+    "name": "Biuro Wystaw Artystycznych w Tarnowie",
+    "city": "Tarnów",
+    "kind": "venue",
+    "venue": {
+      "name": "Multimedialne Centrum Artystyczne — BWA Tarnów",
+      "address": "Wałowa 25",
+      "city": "Tarnów",
+      "latitude": 50.013811,
+      "longitude": 20.987848
+    }
+  }
+]

@@ -1,0 +1,244 @@
+/* Event Engine admin module — builds on the shared management* styles. */
+
+.engineShell .managementHeader {
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.engineKill {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.engineKillButton {
+  border: 0;
+  border-radius: 10px;
+  background: #b91c1c;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.engineKillButton:hover { background: #991b1b; }
+
+.engineKillActive {
+  border: 1px solid rgba(185, 28, 28, 0.35);
+  border-radius: 12px;
+  background: #fef2f2;
+  padding: 8px 10px;
+}
+
+.engineKillState {
+  color: #991b1b;
+  font-weight: 700;
+}
+
+.engineNotice {
+  border-radius: 10px;
+  background: var(--green-light);
+  color: #166534;
+  padding: 10px 14px;
+  font-weight: 600;
+}
+
+.engineEmpty {
+  color: var(--ink-secondary);
+  margin: 0;
+}
+
+.engineStats {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.engineStatWarn span { color: #b45309; }
+
+.engineMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 0.88rem;
+  color: var(--ink-secondary);
+}
+
+.engineError {
+  max-width: 260px;
+  overflow-wrap: anywhere;
+  color: #b91c1c;
+  font-size: 0.82rem;
+}
+
+.engineDanger { color: #b91c1c; font-weight: 700; }
+.engineMuted { opacity: 0.6; }
+
+.engineTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.engineTabs a {
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  padding: 5px 11px;
+  color: var(--ink);
+  font-size: 0.84rem;
+  text-decoration: none;
+}
+
+.engineTabs a.engineTabActive {
+  border-color: var(--brand);
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  font-weight: 700;
+}
+
+.engineInlineForm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.engineTwoCols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.engineTwoCols h2 { margin-top: 0; }
+
+.engineBudget {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.engineBudget label {
+  display: grid;
+  gap: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.engineBudget input {
+  min-height: 38px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font: inherit;
+}
+
+.engineList {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.engineLog {
+  max-height: 380px;
+  overflow: auto;
+  font-size: 0.82rem;
+}
+
+.engineLog time { color: var(--ink-muted); }
+
+.engineDecisions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.engineDecisions > li {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  background: var(--bg-card);
+}
+
+.engineDecisions h3 {
+  margin: 2px 0 6px;
+  font-size: 1rem;
+}
+
+.engineDecisionForm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.engineDecisionForm fieldset {
+  flex-basis: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.engineRule {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.86rem;
+}
+
+.engineCoverage {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(160px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.engineGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-auto-rows: minmax(84px, auto);
+  gap: 6px;
+}
+
+.engineTile {
+  --intensity: 0;
+  display: grid;
+  align-content: center;
+  gap: 2px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 8px;
+  background: color-mix(in srgb, var(--brand) calc(var(--intensity) * 70%), #f3f1ed);
+  color: var(--ink);
+  font-size: 0.74rem;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  min-width: 0;
+}
+
+.engineTile strong { font-size: 0.8rem; }
+.engineTileGap { border-color: #b45309; }
+
+.engineReport {
+  white-space: pre-wrap;
+  font-size: 0.85rem;
+  background: var(--bg-soft);
+  border-radius: 10px;
+  padding: 14px;
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .engineCoverage { grid-template-columns: 1fr; }
+  .engineGrid { grid-auto-rows: minmax(70px, auto); gap: 4px; }
+  .engineTile { padding: 5px; font-size: 0.66rem; }
+  .engineTile strong { font-size: 0.68rem; }
+}
