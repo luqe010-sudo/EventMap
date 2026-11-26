@@ -29,7 +29,7 @@ html[data-theme="dark"] .siteWrapper:has(:is(.managementShell, .legalPage, .even
 }
 
 /* Shared page rhythm and surfaces. */
-html[data-theme] :is(.managementShell, .eventDetailPage) {
+html[data-theme] .managementShell {
   width: min(1212px, calc(100% - 64px));
   max-width: none;
   padding: 36px 0 64px;
@@ -238,64 +238,16 @@ html[data-theme] .seasonalPage { padding-top: 28px; }
 .seasonalPage .seasonalTips summary { min-height: 30px; font-size: .9375rem; }
 .seasonalPage .seasonalEventList { gap: 16px; }
 
-/* Event details retain their source information and interactions. */
-:is(.eventDetailPage, .edShellEmbedded) .edShell { gap: 28px; }
-:is(.eventDetailPage, .edShellEmbedded) .edHero { gap: 32px; margin-bottom: 0; }
-:is(.eventDetailPage, .edShellEmbedded) .edHeroInfo { padding: 4px 0; gap: 18px; }
-:is(.eventDetailPage, .edShellEmbedded) .edHeroInfo h1 { font-size: clamp(1.8rem, 2.8vw, 2.75rem); font-weight: 800; line-height: 1.12; letter-spacing: -.04em; }
-:is(.eventDetailPage, .edShellEmbedded) .edHeroImageWrap { border: 1px solid var(--border); border-radius: 22px; box-shadow: 0 12px 32px #02081433; }
-.edShellEmbedded { --subpage-surface: var(--bg-card); --subpage-control: var(--bg-soft); }
-html[data-theme="dark"] .edShellEmbedded { --subpage-surface: linear-gradient(145deg, #132333, #0b1723 74%); --subpage-control: linear-gradient(140deg, #1a293a, #101c2a); --dark-search-control: var(--subpage-control); }
-:is(.eventDetailPage, .edShellEmbedded) .eventVisual--detail.eventVisual--photo { aspect-ratio: 4 / 3; max-height: 520px; }
-:is(.eventDetailPage, .edShellEmbedded) .eventVisual--detail.eventVisual--photo .eventVisualCover::after { background: linear-gradient(180deg, transparent 55%, #07121ec9); }
-.eventVisualDetailCaption { position: absolute; z-index: 2; right: 18px; bottom: 18px; left: 18px; display: grid; gap: 3px; color: #eef4fb; font-size: .75rem; line-height: 1.5; }
-.eventVisualDetailCaption > span:first-child { font-weight: 650; }
-.eventVisualDetailCaption > span:last-child { opacity: .8; }
-:is(.eventDetailPage, .edShellEmbedded) .edCategoryBadge { gap: 7px; min-height: 32px; border: 1px solid #ffffff30; border-radius: 999px; padding: 6px 13px; font-size: .75rem; letter-spacing: .01em; backdrop-filter: blur(12px); }
-:is(.eventDetailPage, .edShellEmbedded) .edHeroDesc { font-size: .9375rem; line-height: 1.7; }
-:is(.eventDetailPage, .edShellEmbedded) .edMetaChip { min-height: 36px; font-size: .8125rem; padding: 7px 12px; }
-:is(.eventDetailPage, .edShellEmbedded) :is(.edSaveBtn, .edShareBtn, .edOrgLink, .edExpandToggle) { min-height: 44px; border-radius: 999px; padding-inline: 16px; font-size: .8125rem; }
-:is(.eventDetailPage, .edShellEmbedded) .edInfoBar { margin-top: 4px; border: 1px solid var(--border); border-radius: 18px; padding: 4px 18px; background: var(--subpage-surface, var(--bg-card)); }
-:is(.eventDetailPage, .edShellEmbedded) .edInfoBarHeader { padding: 14px 0; }
-:is(.eventDetailPage, .edShellEmbedded) .edInfoBarHeader h2 { font-weight: 750; }
-:is(.eventDetailPage, .edShellEmbedded) .edInfoItem { gap: 12px; padding: 13px 0; }
-:is(.eventDetailPage, .edShellEmbedded) .edInfoIcon { width: 36px; height: 36px; background: var(--brand-light); color: var(--brand-dark); }
-:is(.eventDetailPage, .edShellEmbedded) .edInfoLabel { font-size: .6875rem; font-weight: 600; letter-spacing: .045em; }
-:is(.eventDetailPage, .edShellEmbedded) .edInfoText strong { font-size: .875rem; font-weight: 600; line-height: 1.5; }
-:is(.eventDetailPage, .edShellEmbedded) .edContentGrid { gap: 24px; border: 0; padding: 0; margin: 0; }
-:is(.eventDetailPage, .edShellEmbedded) :is(.edDescSection, .edMapSection, .edOrgSection, .edSourcesSection, .edMoreLinksSection) {
-  min-width: 0;
-  padding: 24px;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background: var(--subpage-surface, var(--bg-card));
-  box-shadow: inset 0 1px 0 #ffffff08;
-  margin: 0;
-}
-:is(.eventDetailPage, .edShellEmbedded) :is(.edDescSection, .edMapSection, .edOrgSection, .edSourcesSection, .edMoreLinksSection) h2 { font-size: 1.2rem; font-weight: 750; }
-:is(.eventDetailPage, .edShellEmbedded) .edExpandGradient { background: linear-gradient(transparent, var(--bg-card)); }
-:is(.eventDetailPage, .edShellEmbedded) .edExpandContent { font-size: .9375rem; line-height: 1.85; }
-:is(.eventDetailPage, .edShellEmbedded) .edMapContainer { height: 290px; border-radius: 14px; box-shadow: none; }
-:is(.eventDetailPage, .edShellEmbedded) .edBottomGrid { gap: 24px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-:is(.eventDetailPage, .edShellEmbedded) .edBottomLeft { gap: 24px; }
-:is(.eventDetailPage, .edShellEmbedded) .edMoreLinksGrid { grid-template-columns: 1fr; }
-:is(.eventDetailPage, .edShellEmbedded) .edMoreLinkCard { min-height: 72px; padding: 16px; border-radius: 14px; font-size: .9375rem; font-weight: 600; background: var(--subpage-control, var(--bg-soft)); }
-:is(.eventDetailPage, .edShellEmbedded) .edSourceItem { border-radius: 13px; background: var(--subpage-control, var(--bg-soft)); }
-:is(.eventDetailPage, .edShellEmbedded) .edRelatedSection { padding-top: 4px; }
-.edShellEmbedded .edBreadcrumbs { display: none; }
-
 @media (max-width: 900px) {
-  html[data-theme] :is(.managementShell, .eventDetailPage, .legalPage) { width: calc(100% - 36px); padding-top: 24px; }
+  html[data-theme] :is(.managementShell, .legalPage) { width: calc(100% - 36px); padding-top: 24px; }
   .managementShell .managementHeader { flex-wrap: wrap; }
   .managementShell .adminSectionNav { display: block; }
   .managementShell .adminSectionTabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-block: 2px 6px; }
   .managementShell .adminSectionTabs::-webkit-scrollbar { display: none; }
   .managementShell .adminSectionTab { flex: 0 0 auto; }
-  :is(.eventDetailPage, .edShellEmbedded) :is(.edHero, .edContentGrid, .edBottomGrid) { grid-template-columns: 1fr; }
-  :is(.eventDetailPage, .edShellEmbedded) .edHeroImageCol { min-width: 0; }
 }
 @media (max-width: 600px) {
-  html[data-theme] :is(.managementShell, .eventDetailPage, .legalPage) { width: calc(100% - 28px); padding: 18px 0 32px; }
+  html[data-theme] :is(.managementShell, .legalPage) { width: calc(100% - 28px); padding: 18px 0 32px; }
   .managementShell .managementHeader { gap: 16px; margin-bottom: 24px; }
   .managementShell .managementHeader h1 { font-size: 1.85rem; }
   .managementShell .managementPanel { padding: 20px 16px; border-radius: 18px; }
@@ -324,18 +276,772 @@ html[data-theme="dark"] .edShellEmbedded { --subpage-surface: linear-gradient(14
   .seasonalPage .seasonalHero h1 { font-size: 2.1rem; }
   .seasonalPage .seasonalHero p { font-size: .9375rem; }
   .seasonalPage .seasonalTips { padding: 22px 18px; }
-  :is(.eventDetailPage, .edShellEmbedded) .edShell { gap: 20px; }
-  :is(.eventDetailPage, .edShellEmbedded) .edHero { gap: 22px; }
-  :is(.eventDetailPage, .edShellEmbedded) .edHeroImageWrap { border-radius: 20px; }
-  :is(.eventDetailPage, .edShellEmbedded) .edHeroInfo h1 { font-size: 1.8rem; }
-  :is(.eventDetailPage, .edShellEmbedded) .edHeroInfo { gap: 16px; }
-  :is(.eventDetailPage, .edShellEmbedded) .edMetaChip { font-size: .75rem; padding-inline: 10px; }
-  :is(.eventDetailPage, .edShellEmbedded) .edHeroCta { gap: 8px; }
-  :is(.eventDetailPage, .edShellEmbedded) .edTicketBtn { flex: 1 0 auto; }
-  :is(.eventDetailPage, .edShellEmbedded) :is(.edDescSection, .edMapSection, .edOrgSection, .edSourcesSection, .edMoreLinksSection) { padding: 20px 16px; border-radius: 18px; }
-  :is(.eventDetailPage, .edShellEmbedded) .edMapContainer { height: 250px; }
-  :is(.eventDetailPage, .edShellEmbedded) .edSourceItem { padding: 12px 10px; gap: 9px; }
 }
 @media (prefers-reduced-motion: reduce) {
   :is(.managementShell, .legalPage, .eventDetailPage, .seasonalPage) * { scroll-behavior: auto; transition: none; }
+}
+
+/* Event details use the same panels in the route and the mobile workspace. */
+html[data-theme] .eventDetailPage { width: calc(100% - clamp(32px, 5.8vw, 94px)); max-width: none; margin-inline: auto; padding: 13px 0 24px; }
+:is(.eventDetailPage, .edShellEmbedded) {
+  --ed-gap: clamp(14px, 1.35vw, 21px);
+  --ed-border: linear-gradient(155deg, #cdd9e4, #e0e7ef);
+  --ed-panel: linear-gradient(#fff, #fff);
+  --ed-panel-end: #fff;
+  --ed-control: #f4f7fb;
+  --ed-icon: var(--brand-dark);
+  --ed-icon-bg: var(--brand-light);
+}
+html[data-theme="dark"] :is(.eventDetailPage, .edShellEmbedded) {
+  --ed-border: linear-gradient(150deg, #546b80, #35495d 60%, #283848);
+  --ed-panel: linear-gradient(145deg, #132231, #0e1926 65%, #0b1723);
+  --ed-panel-end: #0e1926;
+  --ed-control: linear-gradient(145deg, #172a3b, #0d1927);
+  --ed-icon: #ff970e;
+  --ed-icon-bg: radial-gradient(ellipse at top left, #65421e, #30231d 76%);
+}
+.eventDetailPage .edBreadcrumbs {
+  gap: 12px;
+  min-width: 0;
+  margin-bottom: 11px;
+  padding: 4px 0;
+  color: var(--ink-secondary);
+  font-size: .8rem;
+}
+.eventDetailPage .edBreadcrumbs .separator { color: var(--ink-muted); }
+.eventDetailPage .edBreadcrumbs .current { max-width: min(58%, 620px); }
+:is(.eventDetailPage, .edShellEmbedded) .edShell { gap: var(--ed-gap); }
+:is(.eventDetailPage, .edShellEmbedded) :is(.edHero, .edContentGrid, .edBottomGrid) {
+  display: grid;
+  gap: var(--ed-gap);
+  margin: 0;
+  padding: 0;
+}
+.eventDetailPage .edHero {
+  grid-template-columns: minmax(0, 31fr) minmax(0, 38fr) minmax(0, 27fr);
+  align-items: start;
+}
+.eventDetailPage .edContentGrid {
+  grid-template-columns: minmax(0, 38fr) minmax(0, 32fr) minmax(0, 29fr);
+  border: 0;
+}
+.eventDetailPage .edBottomGrid { grid-template-columns: minmax(0, 1fr); align-items: stretch; }
+.eventDetailPage .edBottomGrid:has(.edRelatedSection) {
+  grid-template-columns: minmax(0, 69fr) minmax(0, 31fr);
+}
+.edOrganizerColumn { display: grid; align-content: start; gap: var(--ed-gap); }
+:is(.eventDetailPage, .edShellEmbedded) .edHeroImageWrap {
+  isolation: isolate;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px #02081226;
+}
+.edShell .edHeroImageWrap > .eventVisual--detail {
+  height: 100%;
+  max-height: none;
+  aspect-ratio: auto;
+}
+.edShell .edHeroImageWrap > .eventVisual--detail img.eventVisualImage {
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.edShell .eventVisual--detail.eventVisual--photo .eventVisualCover::after {
+  background: linear-gradient(180deg, #07121e16, transparent 50%, #07121ed9);
+}
+.eventVisualDetailCaption {
+  position: absolute;
+  z-index: 2;
+  right: 16px;
+  bottom: 12px;
+  left: 16px;
+  display: grid;
+  gap: 3px;
+  color: #f7f9fc;
+  font-size: .72rem;
+  line-height: 1.32;
+}
+.eventVisualDetailCaption > span:first-child { font-weight: 700; }
+.eventVisualDetailCaption > span:last-child { font-size: .66rem; }
+:is(.eventDetailPage, .edShellEmbedded) .edCategoryBadge {
+  z-index: 3;
+  top: 13px;
+  left: 13px;
+  gap: 7px;
+  min-height: 31px;
+  max-width: calc(100% - 72px);
+  border: 1px solid #ffffff55;
+  border-radius: 999px;
+  padding: 5px 12px;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--ed-category-color) 78%, #0c1320), color-mix(in srgb, var(--ed-category-color) 58%, #070d17));
+  font-size: .72rem;
+  line-height: 1.16;
+  letter-spacing: .01em;
+  overflow-wrap: anywhere;
+}
+.edShell .edCategoryBadge > span { display: flex; flex-shrink: 0; }
+.edShell .edCategoryBadge[data-category="charytatywne"] { background: linear-gradient(145deg, #de301c, #ad180e); }
+.edShell .edCategoryBadge[data-category="koncerty"] { background: linear-gradient(145deg, #8332d4, #521c99); }
+.edShell .edPastEventOverlay { gap: 8px; padding: 46px 12px 10px; background: #07111cd1; }
+.edShell .edPastEventOverlay p { font-size: clamp(.85rem, 1.15vw, 1.1rem); line-height: 1.35; }
+.edShell .edImageActions { position: absolute; z-index: 4; top: 9px; right: 9px; align-items: flex-start; gap: 5px; }
+.edShell .edImageActions :is(.edSaveBtn, .edEmbeddedClose) {
+  position: relative;
+  inset: auto;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 1px solid #9fb7ce66;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #102030eb, #06101ce8);
+  box-shadow: inset 0 1px 0 #d9eaff1a, 0 3px 9px #0005;
+  color: #fff;
+  backdrop-filter: blur(9px);
+  cursor: pointer;
+}
+.edShell .edImageActions :is(.edSaveBtn, .edEmbeddedClose):hover { border-color: #ff951c; background: #112536; }
+.edShell .edImageActions .edSaveBtnActive svg { color: #ff8441; }
+.edShell .edImageActions .eventSaveError {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: max-content;
+  max-width: min(230px, 70vw);
+  padding: 6px 8px;
+  border: 1px solid #b77374;
+  border-radius: 8px;
+  background: #321b22;
+  color: #ffe0df;
+  text-align: left;
+}
+:is(.eventDetailPage, .edShellEmbedded) .edHeroInfo { min-width: 0; padding: 4px 0 0; gap: 15px; }
+html[data-theme] :is(.eventDetailPage, .edShellEmbedded) .edHeroInfo h1 {
+  font-size: clamp(1.75rem, 2.2vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: -.042em;
+}
+.edShell .edHeroMeta { gap: 8px; }
+.edShell .edMetaChip {
+  gap: 7px;
+  min-height: 34px;
+  padding: 5px 11px;
+  background: var(--ed-control);
+  border-color: var(--border-strong);
+  color: var(--ink);
+  font-size: .82rem;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+.edShell .edMetaChip svg { color: var(--ink-secondary); }
+.edShell .edHeroDesc { color: var(--ink); font-size: .94rem; line-height: 1.48; }
+.edShell .edHeroCta { gap: 8px 12px; }
+.edShell .edTicketBtn { justify-content: center; text-align: center; padding-inline: 14px; }
+.edShell .edHeroCta svg { flex-shrink: 0; }
+.edShell :is(.edShareBtn, .edOrgLink, .edExpandToggle, .edGoogleMapsLink) {
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--ed-control);
+  color: var(--ink);
+  font-weight: 650;
+}
+.edShell :is(.edShareBtn, .edOrgLink, .edExpandToggle, .edGoogleMapsLink):hover { border-color: var(--ed-icon); color: var(--ed-icon); text-decoration: none; }
+.edShell .edShareBtn { justify-content: center; padding-inline: 13px; }
+.edShell :is(.edInfoBar, .edDescSection, .edMapSection, .edOrgSection, .edSourcesSection, .edRelatedSection, .edMoreLinksSection) {
+  min-width: 0;
+  margin: 0;
+  padding: 14px 17px;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background: var(--ed-panel) padding-box, var(--ed-border) border-box;
+  box-shadow: inset 0 1px 0 #ffffff09;
+}
+html[data-theme] .edShell :is(.edDescSection, .edMapSection, .edOrgSection, .edSourcesSection, .edMoreLinksSection) h2 {
+  margin: 0 0 12px;
+  font-size: clamp(1.06rem, 1.28vw, 1.25rem);
+  font-weight: 750;
+  letter-spacing: -.035em;
+  line-height: 1.18;
+}
+.edShell .edInfoBar { align-self: stretch; padding-block: 11px; }
+.edShell .edInfoBarHeader { padding: 0 0 10px; }
+.edShell .edInfoBarHeader h2 { font-size: 1.06rem; font-weight: 750; }
+.edShell .edInfoItem { flex: 1 0 auto; align-items: center; gap: 10px; padding: 5px 0; }
+.edShell :is(.edInfoIcon, .edOrgAvatar, .edSourceIcon, .edMoreLinkIcon) {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: var(--ed-icon-bg);
+  color: var(--ed-icon);
+}
+.edShell .edOrgAvatar { width: 45px; height: 45px; }
+.edShell .edInfoLabel { color: var(--ink-secondary); font-size: .66rem; letter-spacing: .045em; }
+.edShell .edInfoText strong { font-size: .82rem; font-weight: 650; line-height: 1.4; }
+.edShell .edExpandContent { color: var(--ink); font-size: .91rem; line-height: 1.66; }
+.edShell .edExpandGradient { background: linear-gradient(transparent, var(--ed-panel-end)); }
+.edShell .edMapSection { gap: 6px; }
+html[data-theme] .edShell .edMapSection h2 { margin-bottom: 5px; }
+.edShell .edMapContainer {
+  height: clamp(125px, 9.2vw, 148px);
+  border-color: var(--border-strong);
+  border-radius: 11px;
+  background: var(--bg-soft);
+  box-shadow: none;
+}
+.edShell .edMapContainer :is(.mapLibreCanvas, .mapLoading):not(:fullscreen) { height: 100%; min-height: 0; }
+.edShell .edMapContainer .maplibregl-ctrl-group { border-radius: 7px; box-shadow: 0 3px 8px #0005; }
+.edShell .edMapAddress { color: var(--ink); font-size: .8rem; line-height: 1.35; overflow-wrap: anywhere; }
+.edShell .edGoogleMapsLink { padding: 5px 10px; font-size: .8rem; }
+.edShell .edOrgRow { flex-direction: row; align-items: center; gap: 9px 12px; }
+.edShell .edOrgInfo { flex-basis: 60%; }
+.edShell .edOrgInfo strong { overflow-wrap: anywhere; }
+.edShell .edOrgLink { min-height: 36px; }
+.edShell .edSourceList, .edShell .edMoreLinksGrid { gap: 9px; }
+.edShell .edMoreLinksGrid { grid-template-columns: minmax(0, 1fr); }
+.edShell :is(.edSourceItem, .edMoreLinkCard) {
+  min-height: 51px;
+  gap: 9px;
+  padding: 8px 10px;
+  border-color: var(--border);
+  border-radius: 11px;
+  background: var(--ed-control);
+  box-shadow: none;
+  line-height: 1.35;
+}
+.edShell .edMoreLinkCard { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; font-size: .82rem; overflow-wrap: anywhere; }
+.edShell .edMoreLinkCard:hover, .edShell a.edSourceItem:hover { transform: none; border-color: var(--ed-icon); background: var(--ed-control); }
+.edShell .edMoreLinkIcon { width: 30px; height: 30px; }
+.edShell .edMoreLinkIcon svg { color: inherit; transform: none; }
+.edBottomGrid .edRelatedSection { grid-column: auto; scroll-margin-top: 76px; }
+.edRelatedSection .eventCarousel--discover .eventCarouselHeader { margin: 0 0 12px; }
+html[data-theme] .edShell .edRelatedSection .eventCarouselHeader h2 { margin: 0; gap: 8px; font-size: 1.16rem; line-height: 1.2; }
+.edRelatedSection .eventCarousel--discover .eventCarouselHeader h2 svg { width: 23px; height: 23px; }
+.edRelatedSection .eventCarousel--discover .eventCarouselActions > :is(a, button) { color: var(--ed-icon); white-space: nowrap; }
+.edRelatedSection .eventCarousel--featured .eventCarouselTrack { margin: 0; padding: 1px 1px 3px; gap: 12px; }
+.edRelatedSection .eventCarousel--featured .eventCarouselCard { flex-basis: calc((100% - 24px) / 3); min-height: 190px; border-radius: 13px; }
+.edRelatedSection .eventCarousel--featured .eventCarouselBody { gap: 4px; padding: 52px 11px 9px; }
+.edRelatedSection .eventCarousel--featured .eventCarouselBody h3 { font-size: .92rem; }
+.edRelatedSection .eventCarousel--featured :is(.eventCarouselDate, .eventCarouselLocation) { gap: 4px; font-size: .72rem; }
+.edRelatedSection .eventCarousel--featured :is(.eventCarouselDate, .eventCarouselLocation) svg { width: 13px; height: 13px; }
+.edRelatedSection .eventCarouselTicketPrice { padding: 3px 8px; font-size: .74rem; }
+.edRelatedSection .eventCarouselPriceFree { color: #f8faff; }
+
+@media (min-width: 1100px) {
+  html[data-theme] .siteWrapper:has(.eventDetailPage) > :is(.navbar, .mainContent) { width: min(1480px, 93.2vw); }
+  html[data-theme] .siteWrapper:has(.eventDetailPage) > .navbar { margin-top: 5px; }
+  .edShell .edHeroCta:has(.edTicketBtn) {
+    display: grid;
+    max-width: 510px;
+    grid-template-columns: minmax(0, 2.2fr) minmax(128px, 1fr);
+    gap: 8px 16px;
+  }
+  .edShell .edHeroCta .edShareStatus { grid-column: 1 / -1; }
+  .edRelatedSection .eventCarousel--featured .eventCarouselBody {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+  .edRelatedSection .eventCarouselBody :is(h3, .eventCarouselDate) { grid-column: 1 / -1; }
+  .edRelatedSection .eventCarouselCard--promoted .eventCarouselLocation { grid-column: 1 / -1; }
+}
+@media (min-width: 761px) {
+  html[data-theme] .edShell .edGoogleMapsLink { min-height: 36px; }
+}
+@media (min-width: 761px) and (max-width: 1050px) {
+  .eventDetailPage .edHero { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+  .eventDetailPage .edInfoBar { grid-column: 1 / -1; }
+  .eventDetailPage .edContentGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .eventDetailPage .edOrganizerColumn { grid-column: 1 / -1; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .edRelatedSection .eventCarousel--featured .eventCarouselCard { flex-basis: calc((100% - 12px) / 2); }
+}
+@media (max-width: 760px) {
+  html[data-theme] .eventDetailPage { width: calc(100% - 24px); padding: 4px 0 15px; }
+  html[data-theme] .mobileEventView { background: var(--bg); }
+  .mobileEventView .edShellEmbedded { padding: 10px 12px 0; }
+  :is(.eventDetailPage, .edShellEmbedded) { --ed-gap: 10px; }
+  .eventDetailPage .edBreadcrumbs { position: relative; gap: 8px; margin-bottom: 6px; font-size: .72rem; }
+  .eventDetailPage .edBreadcrumbs .current { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .eventDetailPage .edBottomGrid:has(.edRelatedSection),
+  :is(.eventDetailPage, .mobileEventView .edShellEmbedded) :is(.edHero, .edContentGrid, .edBottomGrid) { grid-template-columns: minmax(0, 1fr); }
+  .mobileEventView .edShellEmbedded .edShell { gap: var(--ed-gap); }
+  .mobileEventView .edShellEmbedded .edHero { display: grid; gap: var(--ed-gap); padding: 0; }
+  html[data-theme] .mobileEventView .edShellEmbedded :is(.edHeroInfo, .edImageActions, .edContentGrid, .edBottomGrid) { padding: 0; }
+  :is(.eventDetailPage, .mobileEventView .edShellEmbedded) .edHeroImageWrap {
+    border-radius: 13px;
+    aspect-ratio: 2.48;
+    max-height: none;
+  }
+  .edShell .edHeroImageWrap.edHeroImagePast { min-height: 156px; }
+  .mobileEventView .edShellEmbedded .edCategoryBadge { max-width: calc(100% - 100px); }
+  .edShell .edCategoryBadge { top: 8px; left: 9px; min-height: 25px; padding: 4px 8px; font-size: .64rem; }
+  .edShell .edCategoryBadge svg { width: 13px; height: 13px; }
+  .edShell .edImageActions { top: 5px; right: 5px; gap: 2px; }
+  .edShell .edImageActions :is(.edSaveBtn, .edEmbeddedClose) {
+    border-color: transparent;
+    background: radial-gradient(circle, #0d1c2cec 56%, #98aec56b 58%, transparent 61%);
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+  .edShell .edImageActions :is(.edSaveBtn, .edEmbeddedClose):hover { border-color: transparent; background: radial-gradient(circle, #112536 56%, #ff951c 58%, transparent 61%); }
+  .edShell .edImageActions svg { width: 19px; height: 19px; }
+  .eventVisualDetailCaption { right: 9px; bottom: 8px; left: 9px; font-size: .66rem; }
+  .eventVisualDetailCaption > span:last-child { font-size: .61rem; }
+  html[data-theme] :is(.eventDetailPage, .edShellEmbedded) .edHeroInfo h1 {
+    font-size: clamp(1.35rem, 5.9vw, 1.75rem);
+    line-height: 1.1;
+    letter-spacing: -.04em;
+  }
+  :is(.eventDetailPage, .edShellEmbedded) .edHeroInfo { padding: 0; gap: 8px; }
+  .edShell .edHeroMeta { gap: 6px; }
+  .edShell .edMetaChip { min-height: 27px; padding: 4px 8px; gap: 5px; font-size: .72rem; }
+  .edShell .edMetaChip svg { width: 13px; height: 13px; }
+  .edShell .edHeroDesc { font-size: .84rem; line-height: 1.43; }
+  :is(.eventDetailPage, .mobileEventView .edShellEmbedded) .edHeroCta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    margin: 0;
+  }
+  .edShell .edShareBtn, .edShell .edTicketBtn { width: 100%; font-size: .82rem; }
+  .edShell :is(.edInfoBar, .edDescSection, .edMapSection, .edOrgSection, .edSourcesSection, .edRelatedSection, .edMoreLinksSection) {
+    padding: 8px 11px;
+    border-radius: 12px;
+  }
+  html[data-theme] .edShell :is(.edDescSection, .edMapSection, .edOrgSection, .edSourcesSection, .edMoreLinksSection) h2 { margin-bottom: 6px; font-size: .98rem; }
+  .edShell .edInfoBarHeader { padding: 0 0 3px; border: 0; }
+  .edShell .edInfoBarHeader h2 { font-size: .98rem; }
+  .edShell .edInfoItem { gap: 8px; padding: 0; border: 0; }
+  .edShell .edInfoText {
+    display: grid;
+    grid-template-columns: minmax(63px, 26%) minmax(0, 1fr);
+    align-items: center;
+    flex: 1;
+    min-height: 27px;
+    padding: 3px 0;
+    border-bottom: 1px solid var(--border);
+    column-gap: 4px;
+  }
+  .edShell .edInfoItem:last-child .edInfoText { border: 0; }
+  .edShell .edInfoIcon { width: 25px; height: 25px; }
+  .edShell .edInfoIcon svg { width: 14px; height: 14px; }
+  .edShell .edInfoLabel { font-size: .61rem; }
+  .edShell .edInfoText strong { font-size: .74rem; }
+  .edShell .edExpandContent { font-size: .81rem; line-height: 1.48; }
+  .edShell .edMapSection { gap: 5px; }
+  html[data-theme] .edShell .edMapSection h2 { margin-bottom: 1px; }
+  .edShell .edMapContainer { height: 92px; }
+  .edShell .edMapAddress { font-size: .74rem; }
+  .edShell .edGoogleMapsLink { font-size: .76rem; }
+  .edShell .edOrgAvatar { width: 34px; height: 34px; }
+  .edShell .edOrgInfo strong { font-size: .79rem; }
+  .edShell .edOrgInfo span { font-size: .72rem; }
+  .edRelatedSection .eventCarousel--discover .eventCarouselHeader { flex-wrap: wrap; gap: 2px 6px; }
+  html[data-theme] .edShell .edRelatedSection .eventCarouselHeader h2 { font-size: .98rem; }
+  .edRelatedSection .eventCarousel--featured .eventCarouselCard { flex-basis: min(86%, 300px); min-height: 179px; }
+  .edRelatedSection .eventCarousel--featured .eventCarouselBody .eventCarouselTicketPrice { padding: 4px 8px; font-size: .73rem; }
+}
+
+
+/* The lower discovery sections and footer share the glass surfaces used above. */
+:is(.homePage, .siteWrapper > .siteFooter) {
+  --discovery-glass: linear-gradient(145deg, var(--bg-card), var(--bg-soft));
+  --discovery-glass-edge: var(--border);
+  --discovery-glass-shadow: inset 0 1px 0 #ffffff12, 0 4px 16px #1727380a;
+}
+
+html[data-theme="dark"] :is(.homePage, .siteWrapper > .siteFooter) {
+  --discovery-glass: linear-gradient(145deg, #132333, #0e1926 53%, #08121e);
+  --discovery-glass-edge: #35495e;
+  --discovery-glass-shadow: inset 0 1px 0 #ffffff0c, 0 4px 18px #030a1429;
+}
+
+html[data-theme] .homePage :is(.cityCategoriesSec, .internalLinksSec, .seoTextSec, .valueSection) {
+  min-width: 0;
+  margin: 0;
+}
+
+html[data-theme] .homePage :is(.citySecHeader h2, .internalLinksSec h3, .seoTextCard h2) {
+  margin: 0 0 8px;
+  padding: 0;
+  border: 0;
+  color: var(--ink);
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+
+.homePage :is(.citySecHeader h2, .internalLinksSec h3, .mainEventsHeader h2) {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+}
+
+.homePage :is(.citySecHeader h2, .internalLinksSec h3, .mainEventsHeader h2) > svg {
+  width: 1.15em;
+  height: 1.15em;
+  align-self: start;
+  flex: none;
+  color: var(--brand-dark);
+}
+
+html[data-theme] .homePage :is(.seoTextCard, .valueCard, .cityTileCard, .internalLinkCard, .cityTimeBtn),
+html[data-theme] .homePage:not(.homePageListing) :is(.mainEvents .eventCardH, .emptyState, .resultsFeedback, .resultSkeletonCard) {
+  border: 1px solid var(--discovery-glass-edge);
+  border-radius: 15px;
+  background: var(--discovery-glass);
+  box-shadow: var(--discovery-glass-shadow);
+}
+
+html[data-theme] .homePage :is(.cityTileCard, .internalLinkCard, .cityTimeBtn):hover,
+html[data-theme] .homePage:not(.homePageListing) .mainEvents .eventCardH:hover {
+  border-color: var(--brand);
+  transform: none;
+}
+
+.homePage .citySecHeader { margin-bottom: 12px; }
+.homePage .cityTilesGrid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 136px), 1fr)); }
+.homePage .cityTileCard { flex-direction: row; justify-content: flex-start; gap: 8px; min-height: 48px; padding: 7px 10px; text-align: left; }
+.homePage .cityTileIcon { width: 30px; height: 30px; margin: 0; flex: none; background: color-mix(in srgb, currentColor 13%, transparent); }
+.homePage .cityTileIcon svg { width: 17px; height: 17px; }
+.homePage .cityTileName { font-size: .82rem; white-space: normal; overflow-wrap: anywhere; }
+.homePage .internalLinksGrid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 178px), 1fr)); gap: 8px; }
+.homePage .internalLinkCard { min-height: 46px; padding: 9px 12px; gap: 8px; font-size: .83rem; }
+.homePage .internalLinkCard svg { flex: none; color: var(--brand-dark); }
+html[data-theme] .homePage .cityTimeBtn { min-height: 44px; border-radius: 999px; }
+.homePage .cityTimeBtn svg { width: 16px; height: 16px; flex: none; color: var(--brand-dark); }
+
+.homePage .seoTextSec { position: relative; }
+.homePage .seoTextSec > svg { position: absolute; top: 20px; left: 20px; width: 21px; height: 21px; color: var(--brand-dark); }
+html[data-theme] .homePage .seoTextCard { padding: 18px 20px; color: var(--ink-secondary); font-size: .875rem; line-height: 1.65; }
+html[data-theme] .homePage .seoTextSec:has(> svg) .seoTextCard > h2:first-child { padding-inline-start: 30px; }
+
+html[data-theme] .homePage .valueSection { margin-block: clamp(24px, 4vw, 48px) 10px; }
+html[data-theme] .homePage .valueGrid { padding: 0; gap: 12px; border: 0; }
+.homePage .valueCard { grid-template-columns: 34px minmax(0, 1fr); align-content: start; gap: 5px 10px; padding: 15px; }
+.homePage .valueCard .valueIcon { width: 34px; height: 34px; border-radius: 10px; background: color-mix(in srgb, var(--brand) 13%, transparent); color: var(--brand-dark); }
+.homePage .valueCard .valueIcon svg { width: 19px; height: 19px; }
+.homePage .valueCard h3 { margin: 0; color: var(--ink); font-size: .94rem; font-weight: 750; line-height: 1.25; }
+.homePage .valueCard p { margin: 0; color: var(--ink-secondary); font-size: .82rem; line-height: 1.48; }
+.homePage .valueLink { display: inline-flex; align-items: center; justify-self: start; min-height: 44px; margin: 0; color: var(--brand-dark); font-size: .82rem; font-weight: 700; }
+.homePage .valueLink:hover { text-decoration: underline; }
+
+html[data-theme] .homePage:not(.homePageListing) .mainEventsHeader h2 {
+  color: var(--ink);
+  font-size: clamp(1.1rem, 1.65vw, 1.38rem);
+  font-weight: 800;
+  letter-spacing: -.035em;
+}
+
+html[data-theme] .homePage:not(.homePageListing) .mainEvents :is(.mainEventsSortSelect, .showMoreBtn, .eventCardHMapButton, .resultsAction, .eventVenueDeckStep) {
+  border-color: var(--discovery-glass-edge);
+  border-radius: 12px;
+  background: var(--discovery-glass);
+  color: var(--ink);
+}
+
+html[data-theme] .homePage:not(.homePageListing) .mainEvents :is(.showMoreBtn, .eventCardHMapButton, .resultsAction):hover {
+  border-color: var(--brand);
+  color: var(--brand-dark);
+}
+
+html[data-theme] .homePage:not(.homePageListing) .mainEvents .resultsActionPrimary {
+  border-color: var(--brand);
+  background: var(--brand-light);
+  color: var(--brand-dark);
+}
+
+.homePage:not(.homePageListing) .mainEvents .eventCardHPrice {
+  padding: 4px 9px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+html[data-theme="dark"] .homePage:not(.homePageListing) .mainEvents .eventCardHFav {
+  border-color: #dce7f050;
+  background: #091420d9;
+  color: #f7f8fc;
+}
+
+html[data-theme="dark"] .homePage:not(.homePageListing) .mainEvents .eventCardHFavActive { color: var(--brand-dark); }
+.homePage :is(.cityTileCard, .internalLinkCard, .cityTimeBtn, .valueLink):focus-visible,
+.siteFooter a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+html[data-theme] .siteWrapper > .siteFooter {
+  width: min(1340px, calc(100% - 32px));
+  margin: 20px auto 0;
+  padding: 26px clamp(18px, 4vw, 44px) 20px;
+  border: 1px solid var(--discovery-glass-edge);
+  border-radius: 18px;
+  background: var(--discovery-glass);
+  color: var(--ink-secondary);
+  box-shadow: var(--discovery-glass-shadow);
+  font-family: var(--font-body);
+}
+
+.siteWrapper > .siteFooter .footerInner { grid-template-columns: 1.25fr repeat(3, minmax(0, 1fr)); gap: 24px; }
+.siteFooter .footerBrand { gap: 9px; }
+.siteFooter .footerLogo { align-self: start; color: var(--ink); font-size: 1.35rem; }
+.siteFooter .footerLogo .brandLogoMark { width: 24px; height: 31px; }
+.siteFooter .footerColumn h3 { display: flex; align-items: center; gap: 7px; margin: 3px 0 7px; font-size: .92rem; font-weight: 750; }
+.siteFooter .footerColumn h3 svg { flex: none; color: var(--brand-dark); }
+.siteFooter .footerColumn ul { gap: 3px; }
+html[data-theme] .siteFooter :is(.footerBrand p, .footerColumn a, .footerBottom) { color: var(--ink-secondary); font-size: .82rem; }
+.siteFooter .footerColumn a { display: inline-flex; align-items: center; min-height: 32px; border-radius: 4px; overflow-wrap: anywhere; }
+html[data-theme] .siteFooter .footerColumn a:hover { color: var(--brand-dark); }
+html[data-theme] .siteFooter .footerBottom { margin-top: 16px; padding-top: 13px; border-color: var(--discovery-glass-edge); }
+html[data-theme] .siteFooter .cookieSettingsButton { min-height: 40px; border-color: var(--discovery-glass-edge); background: var(--discovery-glass); color: var(--ink); }
+html[data-theme] .siteFooter .cookieSettingsButton:hover { border-color: var(--brand); color: var(--brand-dark); }
+.siteFooter .cookieSettingsButton:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+@media (min-width: 1100px) {
+  html[data-theme] .siteWrapper > .siteFooter { width: min(1340px, 84.4vw); }
+}
+
+@media (max-width: 1000px) {
+  html[data-theme] .homePage .valueGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  html[data-theme] .siteWrapper > .siteFooter {
+    width: calc(100% - 22px);
+    padding: 16px 14px calc(16px + var(--mobile-switcher-clearance, 0px));
+  }
+
+  .siteWrapper > .siteFooter .footerInner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 14px; }
+  .siteFooter :is(.footerBrand, .footerSeasons) { grid-column: 1 / -1; }
+  .siteFooter .footerBrand p { max-width: none; }
+  .siteFooter .footerSeasons ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 14px; }
+  .siteFooter .footerColumn a { min-height: 44px; }
+  html[data-theme] .siteFooter .cookieSettingsButton { min-height: 44px; }
+  .homePage .valueCard { grid-template-columns: 30px minmax(0, 1fr); padding: 11px 9px; gap: 5px 7px; }
+  .homePage .valueCard .valueIcon { width: 30px; height: 30px; }
+  .homePage .valueCard h3 { font-size: .86rem; }
+  .homePage .valueCard p { grid-column: 1 / -1; }
+  .homePage .valueLink { grid-column: 1 / -1; }
+  .homePage .mainEventsHeader { align-items: center; }
+}
+
+
+/* Category and city listings share the discovery search and event cards. */
+.homePageListing {
+  --listing-card-surface: linear-gradient(150deg, var(--bg-soft), var(--bg-card) 75%);
+  --listing-card-edge: linear-gradient(180deg, var(--border-strong), var(--border));
+  --listing-control: var(--bg-card);
+  --listing-button: linear-gradient(180deg, #c64805, #a83200);
+}
+html[data-theme="dark"] .homePageListing {
+  --listing-card-surface: linear-gradient(150deg, #142435, #0e1926 69%, #0b1722);
+  --listing-card-edge: linear-gradient(180deg, #52677e, #354759 54%, #293949);
+  --listing-control: linear-gradient(155deg, #152639, #0d1926);
+  --listing-button: linear-gradient(180deg, #cf4904, #b33700);
+}
+html[data-theme] .homePageListing .heroTitle { font-size: clamp(2rem, 2.45vw, 2.5rem); line-height: 1.08; overflow-wrap: anywhere; }
+.homePageListing .heroTitleAccent { color: var(--brand); }
+.homePageListing .subpageBreadcrumbs { position: relative; z-index: 2; gap: 8px; margin: 0; padding: 8px 12px 0; font-size: .8125rem; }
+.homePageListing .subpageBreadcrumbs a { display: inline-flex; align-items: center; gap: 10px; }
+.homePageListing .subpageBreadcrumbs a:first-child svg { margin-right: 8px; }
+.homePageListing .subpageBreadcrumbs .separator { color: var(--ink-muted); }
+.homePageListing .subpageBreadcrumbs .current { font-weight: 600; }
+.homePageListing .mainEventsHeader { align-items: center; }
+.homePageListing .mainEventsHeader h2 { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; }
+.homePageListing .mainEventsHeader h2 > svg { flex: none; color: var(--brand); filter: drop-shadow(0 0 7px rgb(255 112 0 / .28)); }
+.homePageListing .mainEventsHeader small { color: var(--ink-secondary); font-size: .85rem; font-weight: 500; }
+.homePageListing .mainEventsSort, .homePageListing .listingToolbarFilters {
+  position: relative;
+  min-width: 0;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  background: var(--listing-control) padding-box, var(--listing-card-edge) border-box;
+  color: var(--ink);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .04);
+}
+html[data-theme] .homePageListing .mainEventsSortSelect {
+  appearance: none;
+  min-height: 34px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 34px 0 15px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+}
+.homePageListing .mainEventsSortSelect option { color: var(--ink); background: var(--bg-card); }
+.homePageListing .mainEventsSort > svg { position: absolute; flex: none; pointer-events: none; }
+.homePageListing .mainEventsSort > svg:last-child { right: 11px; }
+.homePageListing .listingToolbar, .homePageListing .eventCardHDetails, .homePageListing .eventCardHCoverCategory { display: none; }
+
+html[data-theme] .homePageListing .eventsList { gap: 11px; }
+html[data-theme] .homePageListing .eventCardH {
+  --listing-image-width: clamp(125px, 12vw, 185px);
+  --listing-card-inset: 5px;
+  --listing-fav-size: 34px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: var(--listing-card-surface) padding-box, var(--listing-card-edge) border-box;
+  box-shadow: 0 4px 14px rgb(0 8 20 / .1);
+}
+html[data-theme] .homePageListing .eventCardH:hover { border-color: var(--border-strong); }
+html[data-theme] .homePageListing .eventCardHLink {
+  grid-template-columns: var(--listing-image-width) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 15px;
+  min-height: 108px;
+  padding: var(--listing-card-inset);
+}
+html[data-theme] .homePageListing .eventCardHImageWrap { width: 100%; height: auto; min-height: 0; aspect-ratio: auto; border-radius: 10px; }
+.homePageListing .eventCardHImageWrap > .eventVisual { position: absolute; inset: 0; }
+.homePageListing .eventCardHImageWrap .eventVisual img.eventVisualImage { object-fit: cover; object-position: 50% 38%; }
+.homePageListing .eventCardHImageWrap .eventVisualIllustrationNote { bottom: 4px; left: 4px; font-size: .56rem; }
+html[data-theme] .homePageListing .eventCardH > .eventCardHFav {
+  z-index: 3;
+  top: calc(var(--listing-card-inset) + 4px);
+  left: calc(var(--listing-card-inset) + var(--listing-image-width) - var(--listing-fav-size) - 4px);
+  right: auto;
+  width: var(--listing-fav-size);
+  height: var(--listing-fav-size);
+  border: 1px solid #8094ab75;
+  background: linear-gradient(150deg, #102236ee, #06101bee);
+  color: #f7f9ff;
+  box-shadow: inset 0 1px 0 #d8e9ff12;
+  backdrop-filter: blur(8px);
+}
+html[data-theme] .homePageListing .eventCardH > .eventCardHFav::before { content: ""; position: absolute; inset: -5px; border-radius: inherit; }
+html[data-theme] .homePageListing .eventCardH > .eventCardHFav.eventCardHFavActive { color: #ff8a42; }
+.homePageListing .eventCardHFav svg { width: 19px; height: 19px; }
+html[data-theme] .homePageListing .eventCardHBody { min-width: 0; padding: 0 8px 1px 0; }
+html[data-theme] .homePageListing .eventCardHTop { margin: 0 0 2px; }
+html[data-theme] .homePageListing .eventCardHTitle { margin-bottom: 2px; font-size: .98rem; font-weight: 750; line-height: 1.23; overflow-wrap: anywhere; }
+html[data-theme] .homePageListing .eventCardHDesc { margin: 0 0 4px; font-size: .77rem; line-height: 1.35; }
+html[data-theme] .homePageListing .eventCardHBottom { min-width: 0; flex-wrap: nowrap; align-items: center; gap: 7px; border: 0; padding: 0; }
+html[data-theme] .homePageListing .eventCardHLocation { min-width: 0; }
+.homePageListing .eventCardHLocation svg { color: currentColor; }
+.homePageListing .eventCardHLocation span { white-space: nowrap; }
+.homePageListing .eventCardHActions { min-width: 0; }
+html[data-theme] .homePageListing .eventCardHPriceDist { gap: 6px; flex-wrap: wrap; }
+html[data-theme] .homePageListing .eventCardHPrice {
+  padding: 4px 9px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-soft) 85%, var(--ink) 15%);
+  color: var(--ink);
+  font-size: .75rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.homePageListing .eventVenueDeckVenue > svg { color: var(--brand); }
+.homePageListing .eventVenueDeckStep { border-radius: 11px; background: var(--listing-control); }
+
+@media (min-width: 761px) {
+  html[data-theme] .homePageListing .heroSection { padding: 4px 12px 8px; }
+  .homePageListing .heroBackdrop { inset: -38px -31px -38px 30%; background-position: right 53%; }
+  html[data-theme] .homePageListing .heroSubtitle { max-width: 515px; font-size: .875rem; line-height: 1.35; }
+  html[data-theme] .homePageListing .discoverySearch { gap: 11px; margin: 0 12px 12px; }
+  html[data-theme] .homePageListing .mainLayout { display: grid; grid-template-columns: minmax(0, 2.15fr) minmax(235px, 1fr); align-items: start; gap: 14px 16px; }
+  html[data-theme] .homePageListing .mainLayout :is(.mainColumn, .discoveryShelves, .sidebar) { display: contents; }
+  html[data-theme] .homePageListing .mainLayout :is(.mainColumn, .discoveryShelves) > * { grid-column: 1; min-width: 0; margin: 0; }
+  html[data-theme] .homePageListing .discoveryShelves > .eventCarousel--featured { grid-row: 1; }
+  html[data-theme] .homePageListing .mainColumn > .mainEvents { grid-row: 2; }
+  html[data-theme] .homePageListing .sidebarMapSection { position: relative; display: flex; flex-direction: column; grid-area: 1 / 2; align-self: stretch; margin: 0; padding-bottom: 0; }
+  html[data-theme] .homePageListing .sidebarMapWrap:not(:is(.sidebarMapExpanded, :fullscreen)) { flex: 1 1 auto; height: auto; min-height: 185px; }
+  .homePageListing .sidebarMapStatus[role="status"] { position: absolute; z-index: 3; right: 10px; bottom: 10px; left: 10px; margin: 0; padding: 6px 9px; border-radius: 8px; background: var(--listing-control); font-size: .75rem; pointer-events: none; }
+  html[data-theme] .homePageListing .sidebarUpcomingSection { grid-area: 2 / 2; position: static; min-height: 0; margin: 0; }
+  .homePageListing .eventCarousel--featured .eventCarouselHeader { min-height: 26px; margin-bottom: 10px; }
+  .homePageListing .eventCarousel--featured .eventCarouselCard { min-height: 198px; }
+  .homePageListing .eventCarousel--featured .eventCarouselBody { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 5px 8px; padding: 40px 13px 12px; }
+  .homePageListing .eventCarousel--featured .eventCarouselBody h3, .homePageListing .eventCarousel--featured .eventCarouselDate { grid-column: 1 / -1; }
+  .homePageListing .eventCarousel--featured .eventCarouselLocation { min-width: 0; }
+  .homePageListing .eventCarousel--featured .eventCarouselLocation > span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; white-space: normal; }
+  .homePageListing .eventCarousel--featured .eventCarouselCardFooter { justify-content: flex-end; padding-top: 0; }
+  .homePageListing .eventCarousel--featured .eventCarouselTicketPrice { padding: 4px 8px; font-size: .72rem; }
+  .homePageListing .eventCarousel--featured .eventCarouselCard--promoted .eventCarouselLocation,
+  .homePageListing .eventCarousel--featured .eventCarouselCard--promoted .eventCarouselCardFooter { grid-column: 1 / -1; }
+}
+
+@media (min-width: 1300px) {
+  html[data-theme] .homePageListing .sidebarUpcomingSection .sidebarSectionHeader h3 { gap: 9px; font-size: 1.17rem; white-space: nowrap; }
+}
+
+/* The phone listing puts results first and keeps the discovery shelves below them. */
+@media (max-width: 760px) {
+  .homePageListing .subpageBreadcrumbs { display: none; }
+  html[data-theme] .homePageListing:not(.mobileResultsMode) .heroSection { padding: 12px 4px 13px; }
+  html[data-theme] .homePageListing .heroTitle { margin-bottom: 5px; font-size: clamp(1.5rem, 6.45vw, 2rem); }
+  html[data-theme] .homePageListing .heroSubtitle { max-width: 245px; font-size: .75rem; line-height: 1.38; }
+  .homePageListing .heroBackdrop { inset: -57px -11px -22px; background-position: 75% 33%; }
+  html[data-theme] .homePageListing .discoverySearch { gap: 8px; margin-bottom: 8px; }
+  .homePageListing .discoverySearchControls { gap: 8px; }
+  .homePageListing .discoverySearch .discoverySearchKeywordInput .discoverySearchToggle { display: inline-grid; min-height: 38px; }
+  .homePageListing .listingToolbar { display: flex; align-items: center; justify-content: space-between; gap: 6px; min-width: 0; }
+  .homePageListing .listingToolbarCount { flex: 1; font-size: .84rem; white-space: nowrap; }
+  .homePageListing .listingToolbarCount strong { color: var(--ink); font-weight: 750; }
+  html[data-theme] .homePageListing .listingToolbar .mainEventsSortSelect { min-height: 40px; padding-inline: 27px 24px; font-size: .7rem; }
+  .homePageListing .listingToolbar .mainEventsSort > svg:first-child { left: 7px; }
+  .homePageListing .listingToolbar .mainEventsSort > svg:last-child { right: 7px; }
+  .homePageListing .listingToolbarFilters { display: flex; align-items: center; gap: 5px; min-height: 42px; padding: 0 9px; font-size: .72rem; font-weight: 650; }
+  .homePageListing .listingToolbarFilterDot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
+  html[data-theme] .homePageListing.mobileDiscoverMode .mainEvents { display: block; }
+  .homePageListing .mainEvents { order: 1; }
+  .homePageListing .discoveryShelves { order: 2; }
+  .homePageListing .sidebarUpcomingSection { order: 3; }
+  .homePageListing .mainEventsHeader { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
+  .homePageListing .mainEventsHeader .mainEventsSort { display: none; }
+
+  html[data-theme] .homePageListing .eventsList { gap: 8px; }
+  html[data-theme] .homePageListing .eventCardH { --listing-image-width: 38%; --listing-card-inset: 0px; --listing-fav-size: 28px; }
+  html[data-theme] .homePageListing .eventCardHLink { min-height: 110px; height: 100%; gap: 8px; }
+  html[data-theme] .homePageListing .eventCardHImageWrap { border-radius: 11px 9px 9px 11px; }
+  html[data-theme] .homePageListing .eventCardH > .eventCardHFav { top: 5px; }
+  html[data-theme] .homePageListing .eventCardH > .eventCardHFav::before { inset: -8px; }
+  .homePageListing .eventCardHFav svg { width: 17px; height: 17px; }
+  .homePageListing .eventCardHCoverCategory { display: inline-flex; top: 5px; left: 4px; max-width: calc(100% - 37px); min-height: 22px; gap: 3px; padding: 3px 5px; font-size: .58rem; }
+  .homePageListing .eventCardHCoverCategory svg { width: 12px; height: 12px; }
+  .homePageListing .eventCardH:has(.eventCardHMapButton) .eventVisualIllustrationNote { bottom: 32px; }
+  html[data-theme] .homePageListing .eventCardHMapButton {
+    position: absolute;
+    z-index: 3;
+    bottom: 5px;
+    left: 5px;
+    width: 27px;
+    min-height: 27px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #8094ab75;
+    border-radius: 50%;
+    background: #091728e8;
+    color: #f7f9ff;
+  }
+  .homePageListing .eventCardHMapButton::before { content: ""; position: absolute; inset: -9px; border-radius: inherit; }
+  html[data-theme] .homePageListing .eventCardHBody { display: grid; grid-template-areas: "title" "date" "location" "actions"; align-content: center; justify-content: stretch; gap: 3px; padding: 7px 7px 7px 0; }
+  html[data-theme] .homePageListing .eventCardHTop, html[data-theme] .homePageListing .eventCardHBottom { display: contents; }
+  .homePageListing .eventCardHTopRight { grid-area: date; min-width: 0; }
+  html[data-theme] .homePageListing .eventCardHTitle { grid-area: title; margin: 0 0 2px; font-size: .9rem; }
+  .homePageListing :is(.eventCardHCategory, .eventCardHDesc) { display: none; }
+  .homePageListing .eventCardHLocation { grid-area: location; }
+  html[data-theme] .homePageListing :is(.eventCardHDate, .eventCardHLocation) { gap: 5px; font-size: .69rem; line-height: 1.25; }
+  .homePageListing :is(.eventCardHDate, .eventCardHLocation) svg { width: 13px; height: 13px; flex-shrink: 0; }
+  .homePageListing .eventCardHActions { grid-area: actions; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px; margin-top: 2px; }
+  .homePageListing .eventCardHPriceDist { width: auto; }
+  .homePageListing .eventCardHDetails { display: inline-flex; align-items: center; justify-content: center; gap: 2px; padding: 4px 5px; border: 1px solid #f68335; border-radius: 999px; background: var(--listing-button); color: #fff; box-shadow: inset 0 1px 0 #fff3, 0 2px 8px #ed650033; font-size: .65rem; font-weight: 680; line-height: 1.3; white-space: nowrap; }
+  .homePageListing .eventCardHDetails svg { width: 11px; height: 11px; flex-shrink: 0; }
+  html[data-theme] .homePageListing .eventCardHPrice { padding: 4px 5px; font-size: .65rem; }
+}
+
+@media (max-width: 375px) {
+  html[data-theme] .homePageListing .eventCardH { --listing-image-width: 36%; }
+  .homePageListing .listingToolbarCount { font-size: .76rem; }
 }

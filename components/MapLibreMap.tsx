@@ -78,6 +78,8 @@ const LOCATION_MARKER_CLASS = "locationMarker";
 const NO_SELECTED_EVENT_ID = "__none__";
 const EVENT_CLUSTER_MAX_ZOOM = 11;
 const EVENT_CLUSTER_RADIUS = 96;
+// The small sidebar preview hides cluster counts, so it groups less to keep the spread of dots readable.
+const DOT_CLUSTER_RADIUS = 34;
 const SPIDER_MIN_ZOOM = EVENT_CLUSTER_MAX_ZOOM + 1;
 const SPIDER_REFRESH_INTERVAL = 80;
 const SPIDER_LAYERS: PinLayers = {
@@ -318,7 +320,7 @@ export default function MapLibreMap({
     spiderRef.current?.setEvents(EMPTY_EVENT_FEATURES);
     void addCategoryImages(map, eventFeatures, controller.signal, markerVariant).then(() => {
       if (controller.signal.aborted) return;
-      syncEventSources(map, eventFeatures, categoryLayersRef.current, selectedEventIdRef.current);
+      syncEventSources(map, eventFeatures, categoryLayersRef.current, selectedEventIdRef.current, markerVariant === "dot" ? DOT_CLUSTER_RADIUS : EVENT_CLUSTER_RADIUS);
       if (markerVariant === "dot") {
         // The compact preview keeps clustering but shows centred dots without count badges.
         for (const layers of categoryLayersRef.current.values()) {
@@ -363,18 +365,25 @@ export default function MapLibreMap({
     updateSelectedPaint(map, categoryLayersRef.current, selectedEventId);
   }, [mapReady, selectedEventId]);
 
+  // A new bottom sheet resets the padding (and stops the camera), so the focus is replayed above it.
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !mapReady || !focusedEventId || spiderRef.current?.contains(focusedEventId)) return;
     focusMapOnEvent(map, eventFeatures, focusedEventId);
-  }, [eventFeatures, focusedEventId, mapReady]);
+  }, [bottomInset, eventFeatures, focusedEventId, mapReady]);
 
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !mapReady || !isVisible) return;
 
-    const frameId = window.requestAnimationFrame(() => map.resize());
+    const frameId = window.requestAnimationFrame(() => {
+      map.resize();
+      // A map created while hidden or mid-transition may never have framed the country.
+      if (!location && !focusedEventId && map.getZoom() < 3.5) fitMapToPoland(map, 0);
+    });
     return () => window.cancelAnimationFrame(frameId);
+    // Only visibility changes should trigger this pass.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible, mapReady]);
 
   return (
@@ -420,7 +429,8 @@ function syncEventSources(
   map: maplibregl.Map,
   data: EventFeatureCollection,
   categoryLayers: Map<string, CategoryLayers>,
-  selectedEventId?: string
+  selectedEventId?: string,
+  clusterRadius = EVENT_CLUSTER_RADIUS
 ) {
   const categoryData = new Map<string, EventFeatureCollection>();
   for (const feature of data.features) {
@@ -451,7 +461,7 @@ function syncEventSources(
       map.setPaintProperty(layers.clusterIcon, "icon-translate", offset);
       map.setPaintProperty(layers.clusterCount, "text-translate", badgeTranslate(offset));
     } else {
-      addCategoryLayers(map, layers, features, offset, categoryLayers.values().next().value);
+      addCategoryLayers(map, layers, features, offset, categoryLayers.values().next().value, clusterRadius);
     }
     categoryLayers.set(sourceId, layers);
   }
@@ -471,7 +481,8 @@ function addCategoryLayers(
   layers: CategoryLayers,
   data: EventFeatureCollection,
   offset: [number, number],
-  firstCategoryLayers?: CategoryLayers
+  firstCategoryLayers?: CategoryLayers,
+  clusterRadius = EVENT_CLUSTER_RADIUS
 ) {
   const visibleZoom = { maxzoom: SPIDER_MIN_ZOOM };
   map.addSource(layers.source, {
@@ -479,7 +490,7 @@ function addCategoryLayers(
     data,
     cluster: true,
     clusterMaxZoom: EVENT_CLUSTER_MAX_ZOOM,
-    clusterRadius: EVENT_CLUSTER_RADIUS,
+    clusterRadius,
     clusterProperties: {
       color: [["accumulated"], ["get", "color"]],
       icon: [["accumulated"], ["get", "icon"]],
@@ -894,7 +905,7 @@ function focusMapOnEvent(map: maplibregl.Map, data: EventFeatureCollection, even
   map.easeTo({
     center: feature.geometry.coordinates as [number, number],
     zoom: Math.max(map.getZoom(), 13),
-    offset: [0, -70],
+    offset: [0, 18],
     duration: 550
   });
 }

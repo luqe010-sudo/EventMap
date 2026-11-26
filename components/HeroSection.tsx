@@ -1,15 +1,16 @@
 type HeroSectionProps = {
   title?: string;
   subtitle?: string;
+  accentTitle?: boolean;
 };
 
-export default function HeroSection({ title, subtitle }: HeroSectionProps) {
+export default function HeroSection({ title, subtitle, accentTitle }: HeroSectionProps) {
   return (
     <section className="heroSection" id="discovery-intro" tabIndex={-1}>
       <div className="heroBackdrop" aria-hidden="true" />
       <div className="heroLeft">
         <h1 className="heroTitle">
-          {title || (
+          {title ? <>{title}{accentTitle ? <span className="heroTitleAccent">.</span> : null}</> : (
             <>
               Odkrywaj wydarzenia<br />
               w Polsce<span className="heroTitleAccent">.</span>

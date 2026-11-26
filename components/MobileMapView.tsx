@@ -71,14 +71,18 @@ export default function MobileMapView({
   useEffect(() => {
     const view = viewRef.current;
     if (!view || !active) return;
+    // A bottom inset taller than the map would make every country fit fail and leave the world view.
+    const setClampedInset = (inset: number) => setSheetInset(clamp(Math.round(inset), 0, Math.round(view.clientHeight * .62)));
     const measure = () => {
       const preview = previewRef.current;
       if (preview) {
-        setSheetInset(Math.max(0, Math.round(view.clientHeight - preview.offsetTop + 6)));
+        setClampedInset(view.clientHeight - preview.offsetTop + 6);
         return;
       }
-      const switcher = document.querySelector<HTMLElement>(".mobileViewSwitcher");
-      if (switcher) setSheetInset(Math.max(0, Math.round(window.innerHeight - switcher.getBoundingClientRect().top + 8)));
+      // The global subpage nav shares the class but is hidden here, so only a rendered switcher counts.
+      const switcher = Array.from(document.querySelectorAll<HTMLElement>(".mobileViewSwitcher"))
+        .find((element) => element.getClientRects().length > 0);
+      if (switcher) setClampedInset(window.innerHeight - switcher.getBoundingClientRect().top + 8);
     };
     measure();
     const observer = new ResizeObserver(measure);
@@ -188,6 +192,10 @@ export default function MobileMapView({
       ) : null}
     </section>
   );
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
 }
 
 function formatEventCount(count: number) {

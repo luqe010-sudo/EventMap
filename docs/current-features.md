@@ -1,5 +1,15 @@
 # Current Features
 
+## Spójność podstron i stopki — 2026-11-26
+
+- Dół widoku odkrywania korzysta z tych samych powierzchni i akcentów co sekcje polecane. Dotyczy to listy, kafelków kategorii, odnośników do miast, tekstu SEO, kart informacyjnych i stopki. Stopka na telefonie uwzględnia odstęp od dolnej nawigacji.
+- Listy kategorii i miast mają hero z fotografią, wspólne filtry, poziome karty wyników oraz panel mapy i nadchodzących wydarzeń na desktopie. Na telefonie licznik, sortowanie i filtry są dostępne nad wynikami.
+- Szczegóły wydarzenia układają zdjęcie, tytuł i najważniejsze informacje w siatkę na desktopie oraz w jedną kolumnę na telefonie. Motyw kart, akcji i odnośników jest wspólny dla samodzielnej strony i szczegółów otwieranych w mobilnym widoku odkrywania.
+- Mapa na telefonie znów startuje od całej Polski: margines dolny liczy się tylko z widocznego dolnego menu (ukryte menu podstron ma tę samą klasę) i jest ograniczony do ok. 60% wysokości mapy. Wybranie pinezki przybliża mapę do wydarzenia nad kartą podglądu. Otwarte wydarzenie dodaje do dolnego menu piątą zakładkę „Wydarzenie”, która wraca do jego szczegółów z Listy lub Mapy.
+- Każdy aktywny filtr (kategoria, miejscowość, termin, fraza, cena) przełącza Odkryj w układ listingu: wyniki są od razu pod wyszukiwarką, a polecane pod nimi. Kliknięcie kategorii na stronie głównej nie zostawia już pustego widoku; ponowne kliknięcie aktywnego kafelka wraca do odkrywania. Lista zachowuje nagłówek z fotografią. Kafelki kategorii na podstronach mają ten sam wygląd co na stronie głównej.
+- Do czasu odpowiedzi nowego wyszukiwania lista pokazuje szkielet i „Szukam wydarzeń…” zamiast pustego stanu z poprzednią liczbą wyników. Tytuł karty przeglądarki i nagłówek listy (np. „Wyniki dla „jarmark””) podążają za filtrami.
+- Podgląd mapy w panelu bocznym grupuje pinezki mniejszym promieniem, więc pokazuje rozkład wydarzeń w kraju. Strony sezonowe mają dolną nawigację, a strona 404 przywraca ciemny motyw po ponownym renderze dokumentu.
+
 ## Odwzorowanie wizualizacji — druga iteracja, 2026-11-25
 
 Porównanie pikselowe z trzema wizualizacjami (desktop 1586 × 992, telefon 390 × 844) i poprawki proporcji, kolorów, krawędzi i cieni. Priorytetem jest widok telefonu.

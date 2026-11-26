@@ -9443,14 +9443,10 @@ html[data-theme="dark"] .footerColumn a,
 html[data-theme="dark"] .footerBrand p,
 html[data-theme="dark"] .footerNewsletter p,
 html[data-theme="dark"] .footerBottom,
-html[data-theme="dark"] .edHeroDesc,
-html[data-theme="dark"] .edExpandContent,
 html[data-theme="dark"] .edInfoSub,
-html[data-theme="dark"] .edInfoLabel,
 html[data-theme="dark"] .edSourceText small,
 html[data-theme="dark"] .edRelatedCardDate,
 html[data-theme="dark"] .edRelatedCardLocation,
-html[data-theme="dark"] .edMapAddress,
 html[data-theme="dark"] .panelMutedText,
 html[data-theme="dark"] .formHint,
 html[data-theme="dark"] .tableSubtext,
@@ -9505,11 +9501,6 @@ html[data-theme="dark"] .heroRight .heroCard {
   background: var(--dark-hero-card);
 }
 
-html[data-theme="dark"] .edInfoBar {
-  background: transparent;
-  box-shadow: none;
-}
-
 html[data-theme="dark"] .featuredMapCard,
 html[data-theme="dark"] .sidebar {
   background: var(--dark-block);
@@ -9518,8 +9509,6 @@ html[data-theme="dark"] .sidebar {
 html[data-theme="dark"] .featuredCard,
 html[data-theme="dark"] .eventCardH,
 html[data-theme="dark"] .sidebarNotifContent,
-html[data-theme="dark"] .edMoreLinkCard,
-html[data-theme="dark"] .edSourceItem,
 html[data-theme="dark"] .accountSavedCard,
 html[data-theme="dark"] .cityTileCard,
 html[data-theme="dark"] .internalLinkCard {
@@ -9532,9 +9521,7 @@ html[data-theme="dark"] .featuredCard:hover,
 html[data-theme="dark"] .eventCardH:hover,
 html[data-theme="dark"] .accountSavedCard:hover,
 html[data-theme="dark"] .cityTileCard:hover,
-html[data-theme="dark"] .internalLinkCard:hover,
-html[data-theme="dark"] .edMoreLinkCard:hover,
-html[data-theme="dark"] a.edSourceItem:hover {
+html[data-theme="dark"] .internalLinkCard:hover {
   background: #172028;
 }
 
@@ -9545,8 +9532,6 @@ html[data-theme="dark"] .catPill,
 html[data-theme="dark"] .searchActiveFiltersBox,
 html[data-theme="dark"] .searchActiveFilterChip,
 html[data-theme="dark"] .featuredSeeAll,
-html[data-theme="dark"] .showMoreBtn,
-html[data-theme="dark"] .mainEventsSortSelect,
 html[data-theme="dark"] .sidebarCategoryChip,
 html[data-theme="dark"] .sidebarUpcomingDate,
 html[data-theme="dark"] .footerNewsletterInput,
@@ -9562,13 +9547,7 @@ html[data-theme="dark"] .adminFiltersGrid select,
 html[data-theme="dark"] .tableActions button,
 html[data-theme="dark"] .tableActions a,
 html[data-theme="dark"] .iconSelectTrigger,
-html[data-theme="dark"] .iconSelectDropdown,
-html[data-theme="dark"] .edSaveBtn,
-html[data-theme="dark"] .edShareBtn,
-html[data-theme="dark"] .edExpandToggle,
-html[data-theme="dark"] .edOrgLink,
-html[data-theme="dark"] .edGoogleMapsLink,
-html[data-theme="dark"] .edMetaChip {
+html[data-theme="dark"] .iconSelectDropdown {
   border-color: rgba(139, 159, 179, 0.24) !important;
   background: var(--dark-search-control) !important;
   color: var(--ink) !important;
@@ -9587,15 +9566,9 @@ html[data-theme="dark"] .heroQuickTile {
 html[data-theme="dark"] .heroQuickTile:hover,
 html[data-theme="dark"] .catPill:hover,
 html[data-theme="dark"] .featuredSeeAll:hover,
-html[data-theme="dark"] .showMoreBtn:hover,
 html[data-theme="dark"] .navProfileTrigger:hover,
 html[data-theme="dark"] .navLoginBtn:hover,
-html[data-theme="dark"] .themeToggle:hover,
-html[data-theme="dark"] .edSaveBtn:hover,
-html[data-theme="dark"] .edShareBtn:hover,
-html[data-theme="dark"] .edExpandToggle:hover,
-html[data-theme="dark"] .edOrgLink:hover,
-html[data-theme="dark"] .edGoogleMapsLink:hover {
+html[data-theme="dark"] .themeToggle:hover {
   border-color: rgba(250, 89, 7, 0.48) !important;
   background: rgba(250, 89, 7, 0.1) !important;
 }
@@ -9709,7 +9682,6 @@ html[data-theme="dark"] .eventCardHPriceFree {
 
 html[data-theme="dark"] .sidebarMapWrap,
 html[data-theme="dark"] .featuredMapWrap,
-html[data-theme="dark"] .edMapContainer,
 html[data-theme="dark"] .locationPickerMap {
   border-color: rgba(139, 159, 179, 0.24);
   background: var(--bg-soft);
@@ -9722,10 +9694,7 @@ html[data-theme="dark"] .sidebarMapPlaceholder {
     radial-gradient(circle at 30% 24%, rgba(250, 89, 7, 0.16), transparent 32%);
 }
 
-html[data-theme="dark"] .valueIcon,
-html[data-theme="dark"] .edInfoIcon,
-html[data-theme="dark"] .edOrgAvatar,
-html[data-theme="dark"] .edSourceIcon {
+html[data-theme="dark"] .valueIcon {
   background: rgba(250, 89, 7, 0.16);
   color: var(--brand-dark);
 }

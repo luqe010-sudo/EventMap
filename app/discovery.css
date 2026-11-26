@@ -501,7 +501,7 @@ html[data-theme="dark"] .homePage .heroSubtitle { color: #d7dde6; }
   .homePage .sidebarUpcomingSection { order: 2; width: 100%; }
   .homePage .mainEvents { order: 3; width: 100%; }
   .homePage :is(.cityCategoriesSec, .internalLinksSec, .seoTextSec) { order: 4; width: 100%; }
-  .homePage.mobileResultsMode :is(.heroSection, .discoveryShelves, .sidebarUpcomingSection, .valueProps) { display: none; }
+  .homePage.mobileResultsMode :is(.discoveryShelves, .sidebarUpcomingSection, .valueProps) { display: none; }
   .homePage.mobileDiscoverMode:not(.discoveryNeedsResults) .mainEvents { display: none; }
 
   .siteWrapper .mobileViewSwitcher {

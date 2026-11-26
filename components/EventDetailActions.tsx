@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { RotateCcw } from "lucide-react";
 import { useEffect, useState, useTransition } from "react";
 import { trackEventAnalytics } from "@/components/EventAnalyticsTracker";
 import { toggleSavedEventAction } from "@/lib/user-account-actions";
@@ -62,6 +63,7 @@ export default function EventHeroCta({
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
+            aria-hidden="true"
           >
             <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
             <polyline points="15 3 21 3 21 9" />
@@ -79,6 +81,7 @@ export default function EventHeroCta({
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
+          aria-hidden="true"
         >
           <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8" />
           <polyline points="16 6 12 2 8 6" />
@@ -87,14 +90,14 @@ export default function EventHeroCta({
         Udostępnij
       </button>
       {shareStatus ? (
-        <span className="edShareStatus">{shareStatus}</span>
+        <span className="edShareStatus" role="status">{shareStatus}</span>
       ) : null}
     </div>
   );
 }
 
 /* ================================================================
-   Save / Like button (placed under hero image)
+   Save button on the hero image
    ================================================================ */
 
 type SaveButtonProps = {
@@ -150,20 +153,27 @@ export function EventSaveButton({ eventId, initialSaved, isLoggedIn, returnTo }:
   }, [eventId, initialSaved, isLoggedIn, loadAttempt]);
 
   if (resolvedLoggedIn === null) {
-    if (error) return <div className="eventSaveControl"><button type="button" className="edSaveBtn" onClick={() => setLoadAttempt((attempt) => attempt + 1)}>Spróbuj ponownie</button><span className="eventSaveError" role="alert">{error}</span></div>;
+    if (error) {
+      return (
+        <div className="eventSaveControl">
+          <button type="button" className="edSaveBtn" onClick={() => setLoadAttempt((attempt) => attempt + 1)} aria-label="Spróbuj ponownie" title="Spróbuj ponownie">
+            <RotateCcw size={20} aria-hidden="true" />
+          </button>
+          <span className="eventSaveError" role="alert">{error}</span>
+        </div>
+      );
+    }
     return (
-      <button type="button" className="edSaveBtn" disabled>
+      <button type="button" className="edSaveBtn" aria-label="Sprawdzam zapis…" disabled>
         <HeartIcon filled={false} />
-        Sprawdzam zapis…
       </button>
     );
   }
 
   if (!resolvedLoggedIn) {
     return (
-      <Link className="edSaveBtn" href={`/login?next=${encodeURIComponent(returnTo)}`}>
+      <Link className="edSaveBtn" href={`/login?next=${encodeURIComponent(returnTo)}`} aria-label="Zaloguj się, aby zapisać" title="Zaloguj się, aby zapisać">
         <HeartIcon filled={false} />
-        Zaloguj się, aby zapisać
       </Link>
     );
   }
@@ -189,6 +199,8 @@ export function EventSaveButton({ eventId, initialSaved, isLoggedIn, returnTo }:
     });
   }
 
+  const label = pending ? "Zapisywanie…" : saved ? "Zapisano" : "Zapisz";
+
   return (
     <div className="eventSaveControl">
       <button
@@ -196,10 +208,11 @@ export function EventSaveButton({ eventId, initialSaved, isLoggedIn, returnTo }:
         className={`edSaveBtn ${saved ? "edSaveBtnActive" : ""}`}
         onClick={handleSave}
         aria-pressed={saved}
+        aria-label={label}
+        title={label}
         disabled={pending}
       >
         <HeartIcon filled={saved} />
-        {pending ? "Zapisywanie..." : saved ? "Zapisano" : "Zapisz"}
       </button>
       {error ? <span className="eventSaveError" role="alert">{error}</span> : null}
     </div>
@@ -208,7 +221,7 @@ export function EventSaveButton({ eventId, initialSaved, isLoggedIn, returnTo }:
 
 function HeartIcon({ filled }: { filled: boolean }) {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
     </svg>
   );

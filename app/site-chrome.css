@@ -74,7 +74,8 @@ html[data-theme="dark"] .siteWrapper :is(.themeToggle, .navProfileTrigger, .navL
 .navPlanPanel p { margin: 8px 0 12px; color: var(--ink-secondary); font-size: .85rem; line-height: 1.5; }
 .navPlanPanel a { display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: .88rem; color: var(--ink); }
 .navPlanPanel a:hover { color: var(--brand-dark); }
-.siteWrapper:has(.homePage) > .mobileGlobalNav { display: none; }
+/* Seasonal landing pages reuse .homePage styling but have no workspace switcher of their own. */
+.siteWrapper:has(.homePage:not(.seasonalPage)) > .mobileGlobalNav { display: none; }
 .siteWrapper .siteFooter { background: transparent; border-top-color: var(--border); }
 .siteWrapper .footerInner { max-width: 1210px; }
 .siteWrapper .footerColumn h3 { color: var(--ink); }
@@ -163,15 +164,20 @@ html[data-theme="dark"] .siteWrapper .siteFooter { color: var(--ink-secondary); 
     box-shadow: inset 0 1px 0 #ffffff0d, 0 -10px 26px #000000a6;
   }
   .siteWrapper .mobileViewSwitcher :is(button, a) > svg { width: 25px; height: 25px; stroke-width: 1.7; }
+  /* An opened event adds a fifth tab that returns to its detail view. */
+  .siteWrapper .mobileViewSwitcher.mobileViewSwitcherWithEvent { --mobile-view-count: 5; padding-inline: 6px; gap: 3px; }
+  .siteWrapper .mobileViewSwitcherWithEvent :is(button, a) { font-size: .72rem; letter-spacing: -.01em; }
+  .siteWrapper .mobileViewSwitcherWithEvent :is(button, a) > svg { width: 23px; height: 23px; }
   html[data-theme="dark"] .siteWrapper .mobileViewSwitcher :is(button[aria-pressed="true"], a[aria-current="page"]) {
     border: 1px solid transparent;
     background: radial-gradient(ellipse at 12% 0, #5e2e12, #331d12 72%) padding-box, linear-gradient(180deg, #ff9b3e, #f07012 55%, #c9560a) border-box;
     color: #ff871d;
     box-shadow: inset 0 0 15px #ff8c2729, 0 0 11px #ff79002b;
   }
-  .siteWrapper:not(:has(.homePage)) > .mainContent { padding-bottom: var(--mobile-switcher-clearance); }
+  .siteWrapper:not(:has(.homePage:not(.seasonalPage))) > .mainContent { padding-bottom: var(--mobile-switcher-clearance); }
 }
 @media (min-width: 761px) and (max-width: 1249px) {
+  .siteWrapper .mobileViewSwitcher.mobileViewSwitcherWithEvent { --mobile-view-count: 5; }
   .siteWrapper .navOrganizerCta, .siteWrapper:has(.homePage) .navOrganizerCta { display: none; }
   .siteWrapper .navLinks { gap: 22px; }
 }

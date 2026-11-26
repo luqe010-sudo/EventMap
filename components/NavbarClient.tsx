@@ -258,7 +258,17 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
 
   useEffect(() => {
     function getCurrentTheme(): ThemeMode {
-      return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+      const current = document.documentElement.dataset.theme;
+      if (current === "dark" || current === "light") return current;
+      // A not-found/error render can rebuild <html> and drop the attribute set by the init script.
+      let stored: string | null = null;
+      try {
+        stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+      } catch { /* Storage is optional; dark stays the default. */ }
+      const restored: ThemeMode = stored === "light" ? "light" : "dark";
+      document.documentElement.dataset.theme = restored;
+      document.documentElement.style.colorScheme = restored;
+      return restored;
     }
 
     function handleStorageChange(event: StorageEvent) {

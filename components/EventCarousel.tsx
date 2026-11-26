@@ -20,13 +20,14 @@ type Props = {
   title: string;
   description?: string;
   featured?: boolean;
+  photoCards?: boolean;
   onOpenEvent?: (eventId: string) => void;
   seeAllHref?: string;
   onSeeAll?: () => void;
   footer?: React.ReactNode;
 };
 
-export default function EventCarousel({ events, title, description, featured = false, onOpenEvent, seeAllHref, onSeeAll, footer }: Props) {
+export default function EventCarousel({ events, title, description, featured = false, photoCards = false, onOpenEvent, seeAllHref, onSeeAll, footer }: Props) {
   const id = useId();
   const track = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ left: false, right: false });
@@ -63,11 +64,12 @@ export default function EventCarousel({ events, title, description, featured = f
     start: Math.floor(index * events.length / dotCount),
     end: Math.floor((index + 1) * events.length / dotCount) - 1
   }));
-  const HeadingIcon = featured ? Star : CalendarDays;
+  const usePhotoCards = featured || photoCards;
+  const HeadingIcon = usePhotoCards ? Star : CalendarDays;
   const linkLabel = <><span className="eventCarouselLinkDesktop">Zobacz więcej</span><span className="eventCarouselLinkMobile">Zobacz listę</span><ArrowRight size={17} aria-hidden="true" /></>;
 
   return (
-    <section className={featured ? "eventCarousel eventCarousel--discover eventCarousel--featured" : "eventCarousel eventCarousel--discover eventCarousel--compact"} aria-labelledby={`${id}-title`}>
+    <section className={usePhotoCards ? "eventCarousel eventCarousel--discover eventCarousel--featured" : "eventCarousel eventCarousel--discover eventCarousel--compact"} aria-labelledby={`${id}-title`}>
       <div className="eventCarouselHeader">
         <div>
           <h2 id={`${id}-title`}><HeadingIcon className="eventCarouselHeadingIcon" size={24} strokeWidth={2.2} aria-hidden="true" /><span>{title}</span></h2>
@@ -101,11 +103,11 @@ export default function EventCarousel({ events, title, description, featured = f
               </div>
               <div className="eventCarouselBody">
                 <h3>{event.title}</h3>
-                <time className="eventCarouselDate" dateTime={event.startDate} title={featured ? undefined : `${formatEventCardDate(event)} · ${formatEventCardLocation(event)}`}>
+                <time className="eventCarouselDate" dateTime={event.startDate} title={usePhotoCards ? undefined : `${formatEventCardDate(event)} · ${formatEventCardLocation(event)}`}>
                   <CalendarDays size={14} aria-hidden="true" />
-                  <span>{featured ? formatEventCardDate(event) : `${event.city ? `${event.city} · ` : ""}${formatPolishDate(event.startDate, { day: "numeric", month: "short" })}${event.is_all_day ? "" : ` · ${formatPolishDate(event.startDate, { hour: "2-digit", minute: "2-digit" })}`}`}</span>
+                  <span>{usePhotoCards ? formatEventCardDate(event) : `${event.city ? `${event.city} · ` : ""}${formatPolishDate(event.startDate, { day: "numeric", month: "short" })}${event.is_all_day ? "" : ` · ${formatPolishDate(event.startDate, { hour: "2-digit", minute: "2-digit" })}`}`}</span>
                 </time>
-                {featured ? <p className="eventCarouselLocation"><MapPin size={14} aria-hidden="true" /><span>{formatEventCardLocation(event)}</span></p> : null}
+                {usePhotoCards ? <p className="eventCarouselLocation"><MapPin size={14} aria-hidden="true" /><span>{formatEventCardLocation(event)}</span></p> : null}
                 <div className="eventCarouselCardFooter">
                   <span className={`eventCarouselTicketPrice${isFreeEvent(event) ? " eventCarouselPriceFree" : ""}${event.price_min != null && event.price_max != null && event.price_min !== event.price_max ? " eventCarouselTicketPrice--range" : ""}`}>{formatEventCardPrice(event)}</span>
                   {event.isFeatured ? <PromotedBadge /> : null}

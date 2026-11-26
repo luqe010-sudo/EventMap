@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { CalendarDays, ChevronDown, Gift, Layers, Music, Search, SlidersHorizontal, Smile, Tent, Trash2, Wheat, X } from "lucide-react";
+import { CalendarDays, ChevronDown, Filter, Gift, Layers, Music, Search, SlidersHorizontal, Smile, Tent, Trash2, Wheat, X } from "lucide-react";
 import type { CategoryOption, EventCategory, KnownLocation } from "@/lib/events";
 import { PUBLIC_EVENT_QUERY_MAX_LENGTH } from "@/lib/event-search";
 import { MAX_PRICE_FILTER_LIMIT, MAX_RADIUS_FILTER_LIMIT, type DateFilter, type PriceFilterMode } from "@/lib/filters";
@@ -15,6 +15,7 @@ type SearchPanelProps = {
   onQueryChange: (value: string) => void;
   onShowResults: () => void;
   advancedRequest?: number;
+  listingToolbar?: ReactNode;
   locationInput: string;
   onLocationInputChange: (value: string) => void;
   onLocationSelect: (location: KnownLocation) => void;
@@ -67,6 +68,7 @@ export default function SearchPanel({
   onQueryChange,
   onShowResults,
   advancedRequest = 0,
+  listingToolbar,
   locationInput,
   onLocationInputChange,
   onLocationSelect,
@@ -111,6 +113,7 @@ export default function SearchPanel({
     return option ? [{ ...shortcut, option }] : [];
   });
   const hasSecondaryCategory = category !== "Wszystkie" && !quickCategories.some(({ option }) => option.name === category);
+  const listingCategory = listingToolbar && hasSecondaryCategory ? categories.find((option) => option.name === category) : undefined;
   const additionalFilterCount = Number(isNearby) + Number(priceMode !== "all") + Number(hasSecondaryCategory);
   const dateRangeLabel = formatDateRangeLabel(dateFrom, dateTo);
   const isAdvancedOpen = advancedMode !== null;
@@ -419,6 +422,7 @@ export default function SearchPanel({
         <div className="discoverySearchCategoryOptions">
           {renderCategory(undefined, true)}
           {quickCategories.map(({ option }) => renderCategory(option, true))}
+          {listingCategory ? renderCategory(listingCategory, true) : null}
           <button type="button" className="discoverySearchDesktopShortcut" aria-pressed={priceMode === "free"} onClick={() => onPriceModeChange(priceMode === "free" ? "all" : "free")} style={categoryColor("#22e0a0")}>
             <Gift size={21} aria-hidden="true" /><span>Za darmo</span>
           </button>
@@ -434,6 +438,19 @@ export default function SearchPanel({
           </button>
         </div>
       </fieldset>
+
+      {listingToolbar ? (
+        <div className="listingToolbar">
+          {listingToolbar}
+          <button
+            type="button" className="listingToolbarFilters" aria-expanded={isAdvancedOpen} aria-haspopup="dialog" aria-controls={isAdvancedOpen ? advancedId : undefined}
+            onClick={(event) => openAdvancedFilters(event.currentTarget)}
+          >
+            <Filter size={16} aria-hidden="true" /> Filtry
+            {activeFilters.some(Boolean) ? <span className="listingToolbarFilterDot" aria-hidden="true" /> : null}
+          </button>
+        </div>
+      ) : null}
 
       {advancedMode === "inline" ? (
         <div

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { List as ListIcon, Map as MapIcon, Compass, Search, RotateCcw, ArrowRight, UserRound } from "lucide-react";
+import { List as ListIcon, Map as MapIcon, Compass, Search, RotateCcw, ArrowRight, UserRound, CalendarDays, ArrowDownUp, BookOpenText, CalendarRange, ChevronDown, House, Layers, MapPin } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { PUBLIC_EVENTS_MAX_RESULTS, PUBLIC_EVENTS_PAGE_SIZE, type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type EventMapMarker, type KnownLocation, type PublicEventSearchResult, getDefaultLocation, knownLocations } from "@/lib/events";
 import {
@@ -176,6 +176,11 @@ export default function HomePage({
   const activeLocationPhrase = activeLocation
     ? `${getLocationPhrase(activeLocationLabel ?? activeLocation.label)}${effectiveRadius != null ? ` i okolicy · ${radiusKm} km` : ""}`
     : undefined;
+  // Any active filter turns Odkryj into the listing layout (results right below the search),
+  // so choosing a category on the home page shows its events in place, like a category subpage.
+  const isListingPage = Boolean(
+    activeCategory || activeLocation || searchQuery || dateFilter !== "all" || priceMode !== "all"
+  );
 
   useEffect(() => {
     const nextQuery = queryInput.trim();
@@ -219,6 +224,16 @@ export default function HomePage({
     return undefined;
   }, [activeCategory, activeLocationPhrase]);
 
+  // Client-side filtering changes the URL, so the tab title follows the visible heading.
+  const isFirstTitleRender = useRef(true);
+  useEffect(() => {
+    if (isFirstTitleRender.current) {
+      isFirstTitleRender.current = false;
+      return;
+    }
+    document.title = pageTitle ? `${pageTitle} | MapaImprez` : HOME_DOCUMENT_TITLE;
+  }, [pageTitle]);
+
   const pageSubtitle = useMemo(() => {
     if (activeCategory && activeLocationPhrase) {
       return `Najbliższe ${toPluralCategoryName(activeCategory).toLowerCase()} ${activeLocationPhrase}. Sprawdź zbliżający się kalendarz.`;
@@ -238,13 +253,15 @@ export default function HomePage({
       return `Kalendarz: ${toPluralCategoryName(activeCategory).toLowerCase()} ${activeLocationPhrase}`;
     }
     if (activeCategory) {
+      if (isListingPage && toPluralCategorySlug(toSlug(activeCategory)) === "koncerty") return "Wszystkie koncerty";
       return `Wydarzenia z kategorii ${toPluralCategoryName(activeCategory)} w Polsce`;
     }
     if (activeLocationPhrase) {
       return `Nadchodzące wydarzenia ${activeLocationPhrase}`;
     }
+    if (searchQuery) return `Wyniki dla „${searchQuery}”`;
     return "Nadchodzące wydarzenia w Polsce";
-  }, [activeCategory, activeLocationPhrase]);
+  }, [activeCategory, activeLocationPhrase, isListingPage, searchQuery]);
 
   const seoTextHtml = useMemo(() => {
     const seoLocation = activeLocation?.slug ? activeLocationLabel : undefined;
@@ -299,6 +316,7 @@ export default function HomePage({
     [filteredEvents, featuredEvents, dateFilter, category, priceMode, activeLocationLabel]
   );
   const shownEventsCount = Math.min(eventSearch.shownCount, eventSearch.maxResults);
+  const formattedEventCount = formatNumber(eventSearch.totalCount);
   const canLoadMoreEvents = !eventsLoading && eventSearch.hasMore && shownEventsCount < eventSearch.maxResults;
   const eventById = useMemo(
     () => new Map([...recommendedPool, ...events].map((event) => [event.id, event])),
@@ -573,6 +591,10 @@ export default function HomePage({
   }, [eventsSearchKey]);
   const initialMarkerSearchKey = useRef(markerSearchKey);
   const lastSearchIdentity = useRef(`0:${eventsSearchKey}`);
+  // Results belong to the filters they were fetched for. Until the new search answers,
+  // the list shows its loading state instead of an empty state with the previous count.
+  const [loadedEventsKey, setLoadedEventsKey] = useState(eventsSearchKey);
+  const eventsPending = eventsLoading || loadedEventsKey !== eventsSearchKey;
 
   useEffect(() => {
     if (initialFeaturedEvents && markerSearchKey === initialMarkerSearchKey.current) {
@@ -614,6 +636,7 @@ export default function HomePage({
       const result = (await response.json()) as PublicEventSearchResult;
       if (searchRequestRef.current !== requestId) return;
 
+      if (mode === "replace") setLoadedEventsKey(currentEventsApiParams(1).toString());
       setEventSearch(result);
       setEvents((currentEvents) => {
         if (mode === "replace") return result.events;
@@ -625,6 +648,7 @@ export default function HomePage({
       if (controller.signal.aborted) return;
       console.error("[home] Failed to load filtered events", error);
       if (searchRequestRef.current === requestId) {
+        if (mode === "replace") setLoadedEventsKey(currentEventsApiParams(1).toString());
         setFailedEventsPage(page);
         setEventsError("Nie udało się pobrać wydarzeń dla aktualnych filtrów.");
       }
@@ -834,7 +858,8 @@ export default function HomePage({
   }, [currentSearchUrl, openedEventId]);
 
   const selectMapEvent = useCallback((eventId: string) => {
-    setFocusedMapEventId(undefined);
+    // Choosing a pin also zooms the map onto that event.
+    setFocusedMapEventId(eventId);
     setSelectedEventId(eventId);
     void loadMapEventDetail(eventId);
   }, [loadMapEventDetail]);
@@ -1168,10 +1193,28 @@ export default function HomePage({
     event.stopPropagation();
   }
 
+  function renderResultsSort(compact = false) {
+    return (
+      <div className="mainEventsSort">
+        {compact ? <ArrowDownUp size={16} aria-hidden="true" /> : null}
+        <select
+          value={effectiveSort}
+          onChange={(event) => setSortBy(event.target.value as "nearest" | "date")}
+          className="mainEventsSortSelect"
+          aria-label="Sortowanie wydarzeń"
+        >
+          <option value="nearest" disabled={isAllPoland || !hasLocationCenter}>{compact ? "Sortuj: Odległość" : "Wg odległości"}</option>
+          <option value="date">{compact ? "Sortuj: Najbliższe" : isListingPage ? "Wg daty (najbliższe)" : "Wg daty"}</option>
+        </select>
+        {isListingPage ? <ChevronDown size={16} aria-hidden="true" /> : null}
+      </div>
+    );
+  }
+
   return (
     <main
       ref={homePageRef}
-      className={`homePage ${eventsError || (!filteredEvents.length && !featuredEvents.length) ? "discoveryNeedsResults" : ""} ${viewMode === "map" ? "mobileMapMode" : viewMode === "event" ? "mobileEventMode" : listDestination === "results" ? "mobileListMode mobileResultsMode" : "mobileListMode mobileDiscoverMode"}`}
+      className={`homePage ${isListingPage ? "homePageListing" : ""} ${eventsError || (!filteredEvents.length && !featuredEvents.length) ? "discoveryNeedsResults" : ""} ${viewMode === "map" ? "mobileMapMode" : viewMode === "event" ? "mobileEventMode" : listDestination === "results" ? "mobileListMode mobileResultsMode" : "mobileListMode mobileDiscoverMode"}`}
       onPointerDownCapture={handlePointerStart}
       onPointerMoveCapture={handlePointerMove}
       onPointerUpCapture={handlePointerEnd}
@@ -1191,7 +1234,8 @@ export default function HomePage({
       {(activeCategory || activeLocation || dateFilter !== "all") && (
         <nav className="breadcrumbs subpageBreadcrumbs" aria-label="Ścieżka powrotu">
           <Link href="/" aria-label="Strona główna">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: "-2px" }}><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+            <House size={15} aria-hidden="true" />
+            {isListingPage ? <span>Odkryj</span> : null}
           </Link>
           {activeCategory && (
             <>
@@ -1231,13 +1275,19 @@ export default function HomePage({
         </nav>
       )}
 
-      <HeroSection title={pageTitle} subtitle={pageSubtitle} />
+      <HeroSection title={pageTitle} subtitle={pageSubtitle} accentTitle={isListingPage} />
 
       <SearchPanel
         query={queryInput}
         onQueryChange={changeQuery}
         onShowResults={showSearchResults}
         advancedRequest={advancedRequest}
+        listingToolbar={isListingPage ? (
+          <>
+            <span className="listingToolbarCount" aria-hidden="true">{eventsPending ? "Szukam wydarzeń…" : <><strong>{formattedEventCount}</strong> wydarzeń</>}</span>
+            {renderResultsSort(true)}
+          </>
+        ) : undefined}
         locationInput={locationInput}
         onLocationInputChange={setLocationInput}
         onLocationSelect={handleLocationSelect}
@@ -1272,13 +1322,13 @@ export default function HomePage({
           <div className="discoveryShelves">
             <FeaturedEvents events={featuredEvents} onOpenEvent={openMobileEvent} onSeeAll={showResults} />
 
-            {eventsLoading && featuredEvents.length === 0 ? (
+            {eventsPending && featuredEvents.length === 0 ? (
               <div className="discoveryShelfSkeleton resultsSkeleton" aria-hidden="true">
                 <div className="resultSkeletonCard"><span /></div>
               </div>
             ) : null}
 
-            {!eventsLoading && discoverySections.map((section) => (
+            {!eventsPending && discoverySections.map((section) => (
               <EventCarousel
                 key={section.id}
                 events={section.events}
@@ -1291,25 +1341,14 @@ export default function HomePage({
             ))}
           </div>
 
-          <section className="mainEvents" id="events-list" aria-label="Lista wydarzeń" aria-busy={eventsLoading || eventsLoadingMore}>
+          <section className="mainEvents" id="events-list" aria-label="Lista wydarzeń" aria-busy={eventsPending || eventsLoadingMore}>
             <div className="mainEventsHeader">
-              <h2>{listHeading}</h2>
-              <div className="mainEventsSort">
-                <span>Sortuj:</span>
-                <select
-                  value={effectiveSort}
-                  onChange={(e) => setSortBy(e.target.value as "nearest" | "date")}
-                  className="mainEventsSortSelect"
-                  aria-label="Sortowanie wydarzeń"
-                >
-                  <option value="nearest" disabled={isAllPoland || !hasLocationCenter}>Wg odległości</option>
-                  <option value="date">Wg daty</option>
-                </select>
-              </div>
+              <h2><CalendarDays size={24} strokeWidth={2.2} aria-hidden="true" /><span>{listHeading}</span>{isListingPage && !eventsPending && eventSearch.totalCount > 0 ? <small aria-hidden="true">({formattedEventCount} wydarzeń)</small> : null}</h2>
+              {renderResultsSort()}
             </div>
-            <p className="mainEventsCount" role="status">
-              {eventsLoading ? "Szukam wydarzeń dla Twoich filtrów…" : eventsError ? "Wyniki wymagają ponownego pobrania." : eventSearch.totalCount > 0
-                ? `${formatNumber(eventSearch.totalCount)} wydarzeń · wyświetlono ${formatNumber(shownEventsCount)}`
+            <p className={`mainEventsCount${isListingPage && !eventsPending && !eventsError && eventSearch.totalCount > 0 ? " srOnly" : ""}`} role="status">
+              {eventsPending ? "Szukam wydarzeń dla Twoich filtrów…" : eventsError ? "Wyniki wymagają ponownego pobrania." : eventSearch.totalCount > 0
+                ? `${formattedEventCount} wydarzeń · wyświetlono ${formatNumber(shownEventsCount)}`
                 : "Brak wydarzeń dla wybranych filtrów."}
             </p>
             {eventsError ? (
@@ -1320,7 +1359,7 @@ export default function HomePage({
               </div>
             ) : null}
 
-            {eventsLoading ? (
+            {eventsPending ? (
               <div className="resultsSkeleton" aria-hidden="true">{[0, 1, 2].map((key) => <div className="resultSkeletonCard" key={key}><span /><div><i /><i /><i /></div></div>)}</div>
             ) : filteredEvents.length > 0 ? (
               <div className="eventsList">
@@ -1329,6 +1368,7 @@ export default function HomePage({
                     key={group.key}
                     venue={group.venue}
                     events={group.events}
+                    listing={isListingPage}
                     onOpenEvent={openMobileEvent}
                     onShowOnMap={showMobileMap}
                   />
@@ -1337,6 +1377,7 @@ export default function HomePage({
                     key={event.id}
                     event={event}
                     distanceKm={isAllPoland ? Number.POSITIVE_INFINITY : distanceKm}
+                    listing={isListingPage}
                     onShowOnMap={showMobileMap}
                     onOpenEvent={openMobileEvent}
                   />
@@ -1370,7 +1411,7 @@ export default function HomePage({
           {!activeCategory && activeLocation && (
             <section className="cityCategoriesSec">
               <div className="citySecHeader">
-                <h2>Kategorie wydarzeń {activeLocationPhrase}</h2>
+                <h2><Layers size={24} strokeWidth={2.2} aria-hidden="true" /><span>Kategorie wydarzeń {activeLocationPhrase}</span></h2>
                 <p>Przeglądaj wydarzenia w wybranym klimacie</p>
               </div>
               <div className="cityTilesGrid">
@@ -1385,10 +1426,7 @@ export default function HomePage({
                     >
                       <span
                         className="cityTileIcon"
-                        style={{
-                          color: catColor,
-                          background: `color-mix(in srgb, ${catColor} 10%, white)`
-                        }}
+                        style={{ color: catColor }}
                       >
                         <CategoryIcon iconName={cat.icon} size={22} color={catColor} />
                       </span>
@@ -1401,10 +1439,10 @@ export default function HomePage({
               {activeLocation.slug ? (
                 <div className="cityQuickTimeLinks">
                   <Link href={`/${activeLocation.slug}/dzis`} className="cityTimeBtn">
-                    📅 Wydarzenia dzisiaj {activeLocationPhrase}
+                    <CalendarDays size={17} aria-hidden="true" /> Wydarzenia dzisiaj {activeLocationPhrase}
                   </Link>
                   <Link href={`/${activeLocation.slug}/weekend`} className="cityTimeBtn">
-                    🎉 Wydarzenia w weekend {activeLocationPhrase}
+                    <CalendarRange size={17} aria-hidden="true" /> Wydarzenia w weekend {activeLocationPhrase}
                   </Link>
                 </div>
               ) : null}
@@ -1414,7 +1452,7 @@ export default function HomePage({
           {/* Popular Cities linking cloud (for Category Page) */}
           {activeCategory && !activeLocation && (
             <section className="internalLinksSec">
-              <h3>Popularne miasta dla kategorii {toPluralCategoryName(activeCategory)}</h3>
+              <h3><MapPin size={23} strokeWidth={2.2} aria-hidden="true" /><span>Popularne miasta dla kategorii {toPluralCategoryName(activeCategory)}</span></h3>
               <div className="internalLinksGrid">
                 {POPULAR_CITIES.map((city) => (
                   <Link
@@ -1439,7 +1477,7 @@ export default function HomePage({
           {/* Other Categories linking cloud (for Category + City Page) */}
           {activeCategory && activeLocation && (
             <section className="internalLinksSec">
-              <h3>Inne wydarzenia {activeLocationPhrase}</h3>
+              <h3><Layers size={23} strokeWidth={2.2} aria-hidden="true" /><span>Inne wydarzenia {activeLocationPhrase}</span></h3>
               <div className="internalLinksGrid">
                 {categoryOptions
                   .filter((cat) => cat.name !== toPluralCategoryName(activeCategory))
@@ -1459,16 +1497,17 @@ export default function HomePage({
 
           {/* SEO Text Card */}
           <section className="seoTextSec">
+            <BookOpenText size={24} strokeWidth={2.2} aria-hidden="true" />
             <div className="seoTextCard" dangerouslySetInnerHTML={{ __html: seoTextHtml }} />
           </section>
         </div>
 
         <Sidebar
           mapEvents={mapEvents ?? EMPTY_MAP_MARKERS}
-          upcomingEvents={eventsLoading ? [] : visibleEvents
+          upcomingEvents={eventsPending ? [] : visibleEvents
             .map(({ event }) => event)
             .sort((first, second) => Date.parse(first.startDate) - Date.parse(second.startDate))
-            .slice(0, 3)}
+            .slice(0, isListingPage ? 5 : 3)}
           onRequestMap={requestSidebarMap}
           selectedEventId={selectedEventId ?? undefined}
           focusedEventId={focusedMapEventId}
@@ -1534,7 +1573,7 @@ export default function HomePage({
         </section>
       ) : null}
 
-      <nav className="mobileViewSwitcher" aria-label="Nawigacja mobilna">
+      <nav className={`mobileViewSwitcher ${openedEvent ? "mobileViewSwitcherWithEvent" : ""}`} aria-label="Nawigacja mobilna">
         <button
           type="button"
           onClick={() => showMobileList("discover")}
@@ -1559,6 +1598,17 @@ export default function HomePage({
           <MapIcon size={20} strokeWidth={2.2} aria-hidden="true" />
           Mapa
         </button>
+        {openedEvent ? (
+          <button
+            type="button"
+            onClick={() => openMobileEvent(openedEvent.id)}
+            aria-pressed={viewMode === "event"}
+            aria-label={`Wydarzenie: ${openedEvent.title}`}
+          >
+            <CalendarDays size={20} strokeWidth={2.2} aria-hidden="true" />
+            Wydarzenie
+          </button>
+        ) : null}
         <Link href="/account" onClick={() => {
           rememberMobileScroll();
           try {
@@ -1584,6 +1634,8 @@ export default function HomePage({
     </main>
   );
 }
+
+const HOME_DOCUMENT_TITLE = "Kalendarz imprez w Polsce – imprezy w okolicy dziś | MapaImprez.pl";
 
 function shouldIgnoreViewSwipe(target: EventTarget | null) {
   return target instanceof Element && Boolean(

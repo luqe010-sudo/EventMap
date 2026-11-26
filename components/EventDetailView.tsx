@@ -2,10 +2,11 @@
 import { serializeJsonLd } from "@/lib/json-ld";
 
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import EventCarousel from "./EventCarousel";
 import EventVisual from "./EventVisual";
 import CategoryIcon from "./CategoryIcon";
-import { CalendarDays, DollarSign, MapPin, Tag } from "lucide-react";
+import { CalendarDays, ChevronRight, DollarSign, HeartHandshake, MapPin, Tag, X } from "lucide-react";
 import EventHeroCta, { EventSaveButton } from "@/components/EventDetailActions";
 import EventAnalyticsTracker, { TrackedEventLink } from "@/components/EventAnalyticsTracker";
 import EventDetailMap from "@/components/EventDetailMap";
@@ -70,21 +71,6 @@ export default function EventDetailView({
     <Wrapper className={wrapperClassName}>
       <EventAnalyticsTracker eventId={event.id} />
 
-      {/* Close button for embedded mode */}
-      {embedded && onClose ? (
-        <button
-          type="button"
-          className="edEmbeddedClose"
-          onClick={onClose}
-          aria-label="Zamknij widok wydarzenia"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
-      ) : null}
-
       {/* Breadcrumbs — skip in embedded mode */}
       {!embedded ? (
         <nav
@@ -103,7 +89,7 @@ export default function EventDetailView({
             </>
           ) : null}
           <span className="separator">›</span>
-          <span className="current">{event.title}</span>
+          <span className="current" aria-current="page">{event.title}</span>
         </nav>
       ) : null}
 
@@ -216,15 +202,20 @@ export default function EventDetailView({
       ) : null}
 
       <article className="edShell">
-        {/* ====== HERO SECTION ====== */}
+        {/* ====== HERO: Image | Event | Details ====== */}
         <section className="edHero">
           <div className="edHeroImageCol">
             <div className={`edHeroImageWrap ${isPast ? "edHeroImagePast" : ""}`}>
               <span
                 className="edCategoryBadge"
-                style={{ backgroundColor: event.categoryColor }}
+                data-category={categorySlug}
+                style={{ "--ed-category-color": event.categoryColor } as CSSProperties}
               >
-                <CategoryIcon iconName={event.categoryRelation?.icon} size={16} />
+                <span aria-hidden="true">
+                  {categorySlug === "charytatywne"
+                    ? <HeartHandshake size={16} />
+                    : <CategoryIcon iconName={event.categoryRelation?.icon} size={16} />}
+                </span>
                 {event.category}
               </span>
               <EventVisual event={event} variant="detail" decorative={false} loading="eager" imageClassName="edHeroImage" />
@@ -238,14 +229,24 @@ export default function EventDetailView({
                   </Link>
                 </div>
               ) : null}
-            </div>
-            <div className="edImageActions">
-              <EventSaveButton
-                eventId={event.id}
-                initialSaved={saveState?.isSaved}
-                isLoggedIn={saveState?.isLoggedIn}
-                returnTo={eventPath(event)}
-              />
+              <div className="edImageActions">
+                <EventSaveButton
+                  eventId={event.id}
+                  initialSaved={saveState?.isSaved}
+                  isLoggedIn={saveState?.isLoggedIn}
+                  returnTo={eventPath(event)}
+                />
+                {embedded && onClose ? (
+                  <button
+                    type="button"
+                    className="edEmbeddedClose"
+                    onClick={onClose}
+                    aria-label="Zamknij widok wydarzenia"
+                  >
+                    <X size={20} aria-hidden="true" />
+                  </button>
+                ) : null}
+              </div>
             </div>
           </div>
 
@@ -278,92 +279,86 @@ export default function EventDetailView({
               ticketUrl={event.ticketUrl}
               hideTicketLink={isPast}
             />
-
-            {/* ====== INFO BAR ====== */}
-            <section className="edInfoBar" aria-label="Szczegóły wydarzenia">
-              <div className="edInfoBarHeader">
-                <h2>Szczegóły wydarzenia</h2>
-              </div>
-
-              <div className="edInfoItem">
-                <div className="edInfoIcon">
-                  <CalendarDays size={18} strokeWidth={2.2} aria-hidden="true" />
-                </div>
-                <div className="edInfoText">
-                  <span className="edInfoLabel">Kiedy</span>
-                  <strong>{fullDate}</strong>
-                </div>
-              </div>
-
-              <div className="edInfoItem">
-                <div className="edInfoIcon">
-                  <MapPin size={18} strokeWidth={2.2} aria-hidden="true" />
-                </div>
-                <div className="edInfoText">
-                  <span className="edInfoLabel">Gdzie</span>
-                  <strong>{event.address || "Lokalizacja nieznana"}</strong>
-                </div>
-              </div>
-
-              <div className="edInfoItem">
-                <div className="edInfoIcon">
-                  <DollarSign size={18} strokeWidth={2.2} aria-hidden="true" />
-                </div>
-                <div className="edInfoText">
-                  <span className="edInfoLabel">Cena</span>
-                  <strong>{formatEventCardPrice(event)}</strong>
-                </div>
-              </div>
-
-              <div className="edInfoItem">
-                <div className="edInfoIcon">
-                  <Tag size={18} strokeWidth={2.2} aria-hidden="true" />
-                </div>
-                <div className="edInfoText">
-                  <span className="edInfoLabel">Kategoria</span>
-                  <strong>{event.category}</strong>
-                </div>
-              </div>
-            </section>
           </div>
+
+          <section className="edInfoBar" aria-label="Szczegóły wydarzenia">
+            <div className="edInfoBarHeader">
+              <h2>Szczegóły wydarzenia</h2>
+            </div>
+
+            <div className="edInfoItem">
+              <div className="edInfoIcon">
+                <CalendarDays size={18} strokeWidth={2.2} aria-hidden="true" />
+              </div>
+              <div className="edInfoText">
+                <span className="edInfoLabel">Kiedy</span>
+                <strong>{fullDate}</strong>
+              </div>
+            </div>
+
+            <div className="edInfoItem">
+              <div className="edInfoIcon">
+                <MapPin size={18} strokeWidth={2.2} aria-hidden="true" />
+              </div>
+              <div className="edInfoText">
+                <span className="edInfoLabel">Gdzie</span>
+                <strong>{event.address || "Lokalizacja nieznana"}</strong>
+              </div>
+            </div>
+
+            <div className="edInfoItem">
+              <div className="edInfoIcon">
+                <DollarSign size={18} strokeWidth={2.2} aria-hidden="true" />
+              </div>
+              <div className="edInfoText">
+                <span className="edInfoLabel">Cena</span>
+                <strong>{formatEventCardPrice(event)}</strong>
+              </div>
+            </div>
+
+            <div className="edInfoItem">
+              <div className="edInfoIcon">
+                <Tag size={18} strokeWidth={2.2} aria-hidden="true" />
+              </div>
+              <div className="edInfoText">
+                <span className="edInfoLabel">Kategoria</span>
+                <strong>{event.category}</strong>
+              </div>
+            </div>
+          </section>
         </section>
 
-
-        {/* ====== CONTENT GRID: Description + Map ====== */}
-        <div className={`edContentGrid ${embedded ? "edContentGridEmbedded" : ""}`} id="opis">
+        {/* ====== CONTENT GRID: Description | Map | Organizer and Sources ====== */}
+        <div className="edContentGrid" id="opis">
           <section className="edDescSection">
             <h2>Opis wydarzenia</h2>
             <ExpandableDescription text={event.description ?? event.short_description} />
           </section>
 
-            <section className="edMapSection" id={mapTargetId}>
-              <h2>Lokalizacja</h2>
-              {!embedded && eventLocation ? (
+          <section className="edMapSection" id={mapTargetId}>
+            <h2>Lokalizacja</h2>
+            {!embedded && eventLocation ? (
               <div className="edMapContainer">
                 <EventDetailMap event={event} location={eventLocation} />
               </div>
-              ) : null}
-              <p className="edMapAddress">{event.address || "Lokalizacja nieznana"}</p>
-              {!eventLocation ? <p className="edMapAddress">Punkt na mapie nie jest dostępny. Sprawdź adres i źródło wydarzenia.</p> : null}
-              {googleMapsUrl ? (
-                <TrackedEventLink
-                  eventId={event.id}
-                  eventType="map_click"
-                  href={googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="edGoogleMapsLink"
-                >
-                  {eventLocation || event.location?.google_maps_url?.trim() ? "Otwórz w Google Maps" : "Wyszukaj miejsce w Google Maps"}
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-                </TrackedEventLink>
-              ) : null}
-            </section>
-        </div>
-
-        {/* ====== BOTTOM GRID: Organizer + Sources | Related ====== */}
-        <div className="edBottomGrid">
-          <div className="edBottomLeft">
+            ) : null}
+            <p className="edMapAddress">{event.address || "Lokalizacja nieznana"}</p>
+            {!eventLocation ? <p className="edMapAddress">Punkt na mapie nie jest dostępny. Sprawdź adres i źródło wydarzenia.</p> : null}
+            {googleMapsUrl ? (
+              <TrackedEventLink
+                eventId={event.id}
+                eventType="map_click"
+                href={googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="edGoogleMapsLink"
+              >
+                {eventLocation || event.location?.google_maps_url?.trim() ? "Otwórz w Google Maps" : "Wyszukaj miejsce w Google Maps"}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+              </TrackedEventLink>
+            ) : null}
+          </section>
+          <div className="edOrganizerColumn">
             {/* Organizer */}
             <section className="edOrgSection" id="organizator">
               <h2>Organizator</h2>
@@ -402,7 +397,7 @@ export default function EventDetailView({
                     href={`tel:${event.organizerRelation.phone}`}
                     className="edOrgLink"
                   >
-                    Zadzwon
+                    Zadzwoń
                   </TrackedEventLink>
                 ) : null}
               </div>
@@ -452,27 +447,37 @@ export default function EventDetailView({
                 </div>
               </section>
             ) : null}
-          </div>          {/* Więcej wydarzeń links */}
+          </div>
+        </div>
+
+        {/* ====== BOTTOM GRID: Related Events | More Links ====== */}
+        <div className="edBottomGrid">
+          {relatedEvents.length ? (
+            <section className="edRelatedSection" id="podobne-wydarzenia">
+              <EventCarousel
+                title="Polecane wydarzenia w okolicy"
+                events={relatedEvents.map((event) => ({ event, distanceKm: Number.POSITIVE_INFINITY }))}
+                onOpenEvent={onOpenEvent}
+                seeAllHref={categoryPath(event.category)}
+                photoCards
+              />
+            </section>
+          ) : null}
           <section className="edMoreLinksSection">
             <h2>Więcej ciekawych wydarzeń</h2>
             <div className="edMoreLinksGrid">
               <Link href={`/${categorySlug}/${citySlug}`} className="edMoreLinkCard">
+                <span className="edMoreLinkIcon"><Tag size={18} aria-hidden="true" /></span>
                 <span>Więcej z kategorii <strong>{categoryPlural}</strong> {formatInCity(event.city || "Polska")}</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+                <ChevronRight size={16} aria-hidden="true" />
               </Link>
               <Link href={`/${citySlug}`} className="edMoreLinkCard">
+                <span className="edMoreLinkIcon"><MapPin size={18} aria-hidden="true" /></span>
                 <span>Więcej wydarzeń <strong>{formatInCity(event.city || "Polska")}</strong></span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+                <ChevronRight size={16} aria-hidden="true" />
               </Link>
             </div>
           </section>
-
-          {/* Related Events */}
-          {relatedEvents.length ? (
-            <section className="edRelatedSection" id="podobne-wydarzenia">
-              <EventCarousel title="Podobne wydarzenia" events={relatedEvents.map((event) => ({ event, distanceKm: Number.POSITIVE_INFINITY }))} onOpenEvent={onOpenEvent} seeAllHref={categoryPath(event.category)} />
-            </section>
-          ) : null}
         </div>
       </article>
     </Wrapper>

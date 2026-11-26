@@ -1,3 +1,4 @@
+import { CalendarDays, Compass, MapPin } from "lucide-react";
 import Link from "next/link";
 import { listSeasons } from "@/lib/seasons";
 
@@ -17,7 +18,7 @@ export default function Footer() {
         </div>
 
         <div className="footerColumn">
-          <h3>Nawigacja</h3>
+          <h3><Compass size={17} aria-hidden="true" /> Nawigacja</h3>
           <ul>
             <li><Link href="/">Odkryj wydarzenia</Link></li>
             <li><Link href="/#mapa">Mapa i lista</Link></li>
@@ -28,7 +29,7 @@ export default function Footer() {
         </div>
 
         <div className="footerColumn">
-          <h3>Popularne</h3>
+          <h3><MapPin size={17} aria-hidden="true" /> Popularne</h3>
           <ul>
             <li><Link href="/koncerty">Koncerty</Link></li>
             <li><Link href="/wroclaw">Wydarzenia we Wrocławiu</Link></li>
@@ -36,8 +37,8 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="footerColumn">
-          <h3>Na sezon</h3>
+        <div className="footerColumn footerSeasons">
+          <h3><CalendarDays size={17} aria-hidden="true" /> Na sezon</h3>
           <ul>
             {listSeasons().map((season) => (
               <li key={season.slug}><Link href={`/${season.slug}`}>{season.linkLabel}</Link></li>

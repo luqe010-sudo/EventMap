@@ -10,13 +10,14 @@ import { interpolateVenueDeckSlot, moveVenueDeckIndex, resolveVenueDeckIndex, ve
 type Props = {
   events: EventWithDistance[];
   venue: string | null;
+  listing?: boolean;
   onOpenEvent?: (eventId: string) => void;
   onShowOnMap?: (eventId: string) => void;
 };
 
 type Gesture = { pointerId: number; x: number; y: number; axis: "pending" | "horizontal" | "vertical" };
 
-export default function EventVenueDeck({ events, venue, onOpenEvent, onShowOnMap }: Props) {
+export default function EventVenueDeck({ events, venue, listing, onOpenEvent, onShowOnMap }: Props) {
   const id = useId();
   const stage = useRef<HTMLDivElement>(null);
   const [selection, setSelection] = useState({ id: events[0]?.event.id ?? null, index: 0, direction: -1 as -1 | 1 });
@@ -106,7 +107,7 @@ export default function EventVenueDeck({ events, venue, onOpenEvent, onShowOnMap
   }
 
   if (!active) return null;
-  if (events.length === 1) return <EventCard {...active} onOpenEvent={onOpenEvent} onShowOnMap={onShowOnMap} />;
+  if (events.length === 1) return <EventCard {...active} listing={listing} onOpenEvent={onOpenEvent} onShowOnMap={onShowOnMap} />;
 
   const slots = venueDeckSlots(ids, index, selection.direction);
   const dragDirection = dragX < 0 ? 1 : -1;
@@ -190,10 +191,10 @@ export default function EventVenueDeck({ events, venue, onOpenEvent, onShowOnMap
             <div key={event.id} data-deck-event={event.id} data-deck-slot={slot.position}
               className={`eventVenueDeckLayer${isFront ? " eventVenueDeckFront" : " eventVenueDeckRear"}${slot.position < 0 ? " eventVenueDeckLeft" : " eventVenueDeckRight"}`}
               style={style} aria-hidden={!isFront ? true : undefined} inert={!isFront}>
-              {isFront ? <EventCard {...item} onOpenEvent={onOpenEvent} onShowOnMap={onShowOnMap} /> : painted ? (
+              {isFront ? <EventCard {...item} listing={listing} onOpenEvent={onOpenEvent} onShowOnMap={onShowOnMap} /> : painted ? (
                 <article className="eventCardH eventVenueDeckPreview" aria-hidden="true" inert>
                   <div className="eventCardHLink">
-                    <EventCardContent event={event} distanceKm={item.distanceKm} decorative />
+                    <EventCardContent event={event} distanceKm={item.distanceKm} listing={listing} decorative />
                   </div>
                 </article>
               ) : null}
