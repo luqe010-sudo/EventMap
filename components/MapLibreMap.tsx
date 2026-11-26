@@ -366,11 +366,16 @@ export default function MapLibreMap({
   }, [mapReady, selectedEventId]);
 
   // A new bottom sheet resets the padding (and stops the camera), so the focus is replayed above it.
+  // A map that was hidden (e.g. the mobile tab opened from an event) is centred once it is shown.
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || !mapReady || !focusedEventId || spiderRef.current?.contains(focusedEventId)) return;
-    focusMapOnEvent(map, eventFeatures, focusedEventId);
-  }, [bottomInset, eventFeatures, focusedEventId, mapReady]);
+    if (!map || !mapReady || !isVisible || !focusedEventId || spiderRef.current?.contains(focusedEventId)) return;
+    const frameId = window.requestAnimationFrame(() => {
+      map.resize();
+      focusMapOnEvent(map, eventFeatures, focusedEventId);
+    });
+    return () => window.cancelAnimationFrame(frameId);
+  }, [bottomInset, eventFeatures, focusedEventId, isVisible, mapReady]);
 
   useEffect(() => {
     const map = mapRef.current;

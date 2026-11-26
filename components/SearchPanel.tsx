@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { CalendarDays, ChevronDown, Filter, Gift, Layers, Music, Search, SlidersHorizontal, Smile, Tent, Trash2, Wheat, X } from "lucide-react";
+import { CalendarDays, ChevronDown, Filter, Gift, Layers, MapPin, Music, Search, SlidersHorizontal, Smile, Tent, Ticket, Trash2, Wheat, X } from "lucide-react";
 import type { CategoryOption, EventCategory, KnownLocation } from "@/lib/events";
 import { PUBLIC_EVENT_QUERY_MAX_LENGTH } from "@/lib/event-search";
 import { MAX_PRICE_FILTER_LIMIT, MAX_RADIUS_FILTER_LIMIT, type DateFilter, type PriceFilterMode } from "@/lib/filters";
@@ -105,7 +105,6 @@ export default function SearchPanel({
   const [maxPriceInput, setMaxPriceInput] = useState(String(maxPrice));
   const [dateFrom = "", dateTo = ""] = customDate.split("/");
   const isNearby = !isAllPoland && locationMode === "radius" && hasLocationCenter;
-  const canAdjustRadius = !isAllPoland && hasLocationCenter;
   const hasLocationFeedback = !/^(Szukam |Przeglądasz |Pokazuję |Używam )/.test(locationStatus);
   const categoriesBySlug = new Map(categories.map((option) => [categorySlug(option), option]));
   const quickCategories = QUICK_CATEGORIES.flatMap((shortcut) => {
@@ -240,6 +239,7 @@ export default function SearchPanel({
         key={option?.id ?? "all"}
         className={quick && (!option || shortcut?.slug === "rodzinne") ? "discoverySearchDesktopShortcut" : undefined}
         aria-pressed={selected}
+        data-shortcut={quick ? shortcut?.slug : undefined}
         onClick={() => onCategoryChange(selected ? "Wszystkie" : name)}
         style={categoryColor(shortcut?.color ?? option?.color ?? "var(--brand)")}
       >
@@ -271,25 +271,59 @@ export default function SearchPanel({
       ) : null}
 
       <div className="discoverySearchAdvanced">
-        {advancedMode === "sheet" ? (
-          <div className="discoverySearchField discoveryFilterLocation">
-            <label className="discoverySearchLabel" htmlFor={`${id}-sheet-location`}>Lokalizacja</label>
-            {renderLocation(`${id}-sheet-location`)}
-            {locationFeedback}
-          </div>
-        ) : null}
-
-        <fieldset className="discoveryFilterCategories">
-          <legend>Kategoria</legend>
-          <div className="discoverySearchCategoryOptions">
-            {renderCategory()}
-            {categories.map((option) => renderCategory(option))}
-          </div>
+        <fieldset className="discoveryFilterSection discoveryFilterWhere">
+          <legend className="discoveryFilterSectionTitle"><MapPin size={18} aria-hidden="true" />Gdzie</legend>
+          {advancedMode === "sheet" ? (
+            <div className="discoverySearchField discoveryFilterLocation">
+              <label className="discoverySearchVisuallyHidden" htmlFor={`${id}-sheet-location`}>Miejscowość</label>
+              {renderLocation(`${id}-sheet-location`)}
+              {locationFeedback}
+            </div>
+          ) : null}
+          {/* The area choice only matters once a place is chosen; "Cała Polska" then resets it. */}
+          {!isAllPoland ? (
+            <div className="discoverySearchSegments" role="group" aria-label="Obszar wyszukiwania">
+              {canSearchCity ? <button type="button" aria-pressed={locationMode === "city"} onClick={() => onLocationModeChange("city")}>W mieście</button> : null}
+              <button type="button" aria-pressed={locationMode === "radius"} disabled={!hasLocationCenter} onClick={() => onLocationModeChange("radius")}>W okolicy</button>
+              <button type="button" aria-pressed={false} onClick={onAllPolandSelect}>Cała Polska</button>
+            </div>
+          ) : null}
+          {isNearby ? (
+            <div className="discoverySearchRangeRow">
+              <input
+                type="range" className="discoverySearchSlider" min={5} max={MAX_RADIUS_FILTER_LIMIT} step={1} value={radiusKm}
+                onChange={(event) => onRadiusChange(Number(event.target.value))}
+                style={{ "--discovery-range-progress": `${((radiusKm - 5) / (MAX_RADIUS_FILTER_LIMIT - 5)) * 100}%` } as CSSProperties}
+                aria-label="Promień wyszukiwania" aria-valuetext={`${radiusKm} km`} aria-describedby={`${id}-radius-help`}
+              />
+              <label className="discoverySearchNumber">
+                <input type="text" inputMode="numeric" value={radiusInput} aria-label="Promień w kilometrach"
+                  onFocus={(event) => event.currentTarget.select()}
+                  onBlur={() => setRadiusInput(String(radiusKm))}
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    setRadiusInput(value);
+                    if (isWithinRange(value, 5, MAX_RADIUS_FILTER_LIMIT)) onRadiusChange(Number(value));
+                  }} />
+                <span>km</span>
+              </label>
+            </div>
+          ) : null}
+          <p className="discoverySearchHelp" id={`${id}-radius-help`}>
+            {isAllPoland
+              ? advancedMode === "sheet" ? "Wpisz miejscowość, aby zawęzić wyniki i ustawić promień." : "Wybierz miejscowość w wyszukiwarce, aby ustawić promień."
+              : !hasLocationCenter ? "Lokalizacja bez współrzędnych. Możesz szukać w mieście."
+              : isNearby ? "Promień liczony od wybranej lokalizacji." : "Wybierz „W okolicy”, aby dodać miejscowości w promieniu."}
+          </p>
         </fieldset>
 
-        <div className="discoverySearchField discoveryFilterDates">
-          <label className="discoverySearchLabel" htmlFor={`${id}-date-range`}>Termin</label>
-          {renderDatePicker(`${id}-date-range`)}
+        <fieldset className="discoveryFilterSection discoveryFilterDates">
+          <legend className="discoveryFilterSectionTitle"><CalendarDays size={18} aria-hidden="true" />Kiedy</legend>
+          <div className="discoveryFilterPills" role="group" aria-label="Termin">
+            {DATE_OPTIONS.map(({ label, value }) => (
+              <button key={value} type="button" aria-pressed={dateFilter === value} onClick={() => changeDate(value)}>{label}</button>
+            ))}
+          </div>
           {dateFilter === "custom" ? (
             <div className="discoverySearchDateRange">
               <label>
@@ -308,41 +342,10 @@ export default function SearchPanel({
               </label>
             </div>
           ) : null}
-        </div>
-
-        <fieldset className="discoverySearchField discoveryFilterRadius">
-          <legend>Promień</legend>
-          <div className="discoverySearchSegments" role="group" aria-label="Obszar wyszukiwania">
-            {!isAllPoland && canSearchCity ? <button type="button" aria-pressed={locationMode === "city"} onClick={() => onLocationModeChange("city")}>W mieście</button> : null}
-            {!isAllPoland ? <button type="button" aria-pressed={locationMode === "radius"} disabled={!hasLocationCenter} onClick={() => onLocationModeChange("radius")}>W okolicy</button> : null}
-            <button type="button" aria-pressed={isAllPoland} onClick={onAllPolandSelect}>Cała Polska</button>
-          </div>
-          <div className="discoverySearchRangeRow">
-            <input
-              type="range" className="discoverySearchSlider" min={5} max={MAX_RADIUS_FILTER_LIMIT} step={1} value={radiusKm} disabled={!canAdjustRadius}
-              onChange={(event) => onRadiusChange(Number(event.target.value))}
-              style={{ "--discovery-range-progress": `${((radiusKm - 5) / (MAX_RADIUS_FILTER_LIMIT - 5)) * 100}%` } as CSSProperties}
-              aria-label="Promień wyszukiwania" aria-valuetext={`${radiusKm} km`} aria-describedby={`${id}-radius-help`}
-            />
-            <label className="discoverySearchNumber">
-              <input type="text" inputMode="numeric" value={radiusInput} aria-label="Promień w kilometrach" disabled={!canAdjustRadius}
-                onFocus={(event) => event.currentTarget.select()}
-                onBlur={() => setRadiusInput(String(radiusKm))}
-                onChange={(event) => {
-                  const value = event.target.value;
-                  setRadiusInput(value);
-                  if (isWithinRange(value, 5, MAX_RADIUS_FILTER_LIMIT)) onRadiusChange(Number(value));
-                }} />
-              <span>km</span>
-            </label>
-          </div>
-          <p className="discoverySearchHelp" id={`${id}-radius-help`}>
-            {isAllPoland ? "Wybierz miejscowość, aby ustawić promień." : !hasLocationCenter ? "Lokalizacja bez współrzędnych. Możesz szukać w mieście." : "Odległość od wybranej lokalizacji."}
-          </p>
         </fieldset>
 
-        <fieldset className="discoverySearchField discoveryFilterPrice">
-          <legend>Cena</legend>
+        <fieldset className="discoveryFilterSection discoveryFilterPrice">
+          <legend className="discoveryFilterSectionTitle"><Ticket size={18} aria-hidden="true" />Cena</legend>
           <div className="discoverySearchSegments" role="group" aria-label="Cena biletu">
             <button type="button" aria-pressed={priceMode === "all"} onClick={() => onPriceModeChange("all")}>Bez limitu</button>
             <button type="button" aria-pressed={priceMode === "free"} onClick={() => onPriceModeChange("free")}>Za darmo</button>
@@ -369,6 +372,14 @@ export default function SearchPanel({
               </label>
             </div>
           ) : null}
+        </fieldset>
+
+        <fieldset className="discoveryFilterSection discoveryFilterCategories">
+          <legend className="discoveryFilterSectionTitle"><Layers size={18} aria-hidden="true" />Kategoria</legend>
+          <div className="discoverySearchCategoryOptions">
+            {renderCategory()}
+            {categories.map((option) => renderCategory(option))}
+          </div>
         </fieldset>
       </div>
 

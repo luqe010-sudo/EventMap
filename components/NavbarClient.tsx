@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, Compass, Heart, List, Map as MapIcon, Moon, Sun, UserRound } from "lucide-react";
+import { Bell, Compass, Heart, Map as MapIcon, Moon, Sun, UserRound } from "lucide-react";
 import { WORKSPACE_RETURN_STORAGE_KEY } from "@/lib/public-workspace-history";
 import { useState, useEffect, useRef } from "react";
 
@@ -536,7 +536,6 @@ export default function NavbarClient({ auth }: NavbarClientProps) {
       </div>
         <nav className="mobileViewSwitcher mobileGlobalNav" aria-label="Nawigacja mobilna">
           <Link href={workspaceHref + "#odkryj"} scroll={false} aria-current={!profileRoute ? "page" : undefined}><Compass size={21} aria-hidden="true" />Odkryj</Link>
-          <Link href={workspaceHref + "#events-list"} scroll={false}><List size={21} aria-hidden="true" />Lista</Link>
           <Link href={workspaceHref + "#mapa"} scroll={false}><MapIcon size={21} aria-hidden="true" />Mapa</Link>
           <Link href="/account" aria-current={profileRoute ? "page" : undefined}><UserRound size={21} aria-hidden="true" />Profil</Link>
         </nav>

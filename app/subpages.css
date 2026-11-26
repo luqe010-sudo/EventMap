@@ -955,6 +955,8 @@ html[data-theme] .homePageListing .eventCardHPrice {
   html[data-theme] .homePageListing .mainLayout :is(.mainColumn, .discoveryShelves, .sidebar) { display: contents; }
   html[data-theme] .homePageListing .mainLayout :is(.mainColumn, .discoveryShelves) > * { grid-column: 1; min-width: 0; margin: 0; }
   html[data-theme] .homePageListing .discoveryShelves > .eventCarousel--featured { grid-row: 1; }
+  /* Without upcoming events (an empty filter) the left column must not widen under the map panel. */
+  html[data-theme] .homePage.homePageListing .mainLayout:not(:has(.sidebarUpcomingSection)) :is(.mainColumn, .discoveryShelves) > * { grid-column: 1; }
   html[data-theme] .homePageListing .mainColumn > .mainEvents { grid-row: 2; }
   html[data-theme] .homePageListing .sidebarMapSection { position: relative; display: flex; flex-direction: column; grid-area: 1 / 2; align-self: stretch; margin: 0; padding-bottom: 0; }
   html[data-theme] .homePageListing .sidebarMapWrap:not(:is(.sidebarMapExpanded, :fullscreen)) { flex: 1 1 auto; height: auto; min-height: 185px; }
@@ -995,10 +997,15 @@ html[data-theme] .homePageListing .eventCardHPrice {
   .homePageListing .listingToolbarFilters { display: flex; align-items: center; gap: 5px; min-height: 42px; padding: 0 9px; font-size: .72rem; font-weight: 650; }
   .homePageListing .listingToolbarFilterDot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
   html[data-theme] .homePageListing.mobileDiscoverMode .mainEvents { display: block; }
+  /* Filtered Odkryj: promoted events first, then the results, then the remaining shelves. */
+  .homePageListing .discoveryShelves { display: contents; }
+  .homePageListing .discoveryShelves > * { order: 2; width: 100%; }
+  .homePageListing .discoveryShelves > .eventCarousel--featured { order: 0; }
   .homePageListing .mainEvents { order: 1; }
-  .homePageListing .discoveryShelves { order: 2; }
   .homePageListing .sidebarUpcomingSection { order: 3; }
-  .homePageListing .mainEventsHeader { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
+  /* The promoted carousel sits above the results, so the list keeps its visible heading. */
+  html[data-theme] .homePageListing .mainEventsHeader { margin-bottom: 10px; }
+  html[data-theme] .homePageListing .mainEventsHeader h2 { font-size: 1.12rem; gap: 6px 9px; }
   .homePageListing .mainEventsHeader .mainEventsSort { display: none; }
 
   html[data-theme] .homePageListing .eventsList { gap: 8px; }
@@ -1045,3 +1052,8 @@ html[data-theme] .homePageListing .eventCardHPrice {
   html[data-theme] .homePageListing .eventCardH { --listing-image-width: 36%; }
   .homePageListing .listingToolbarCount { font-size: .76rem; }
 }
+
+/* Event location actions: our own map first, Google Maps as the external option. */
+.edShell .edMapActions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.edShell .edShowOnMapLink { border-color: color-mix(in srgb, var(--ed-icon) 55%, transparent); color: var(--ed-icon); cursor: pointer; font-family: inherit; }
+.edShell .edShowOnMapLink:hover { background: color-mix(in srgb, var(--ed-icon) 12%, var(--ed-control)); }

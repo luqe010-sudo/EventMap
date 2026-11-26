@@ -25,6 +25,8 @@ type EventDetailViewProps = {
   embedded?: boolean;
   onClose?: () => void;
   onOpenEvent?: (eventId: string) => void;
+  /** Embedded in the home workspace: switches to its map tab instead of loading the home page. */
+  onShowOnMap?: (eventId: string) => void;
 };
 
 export default function EventDetailView({
@@ -34,6 +36,7 @@ export default function EventDetailView({
   embedded = false,
   onClose,
   onOpenEvent,
+  onShowOnMap,
 }: EventDetailViewProps) {
   const categoryPlural = toPluralCategoryName(event.category);
   const categorySlug = toPluralCategorySlug(event.categorySlug || toSlug(event.category || "inne"));
@@ -344,18 +347,35 @@ export default function EventDetailView({
             ) : null}
             <p className="edMapAddress">{event.address || "Lokalizacja nieznana"}</p>
             {!eventLocation ? <p className="edMapAddress">Punkt na mapie nie jest dostępny. Sprawdź adres i źródło wydarzenia.</p> : null}
-            {googleMapsUrl ? (
-              <TrackedEventLink
-                eventId={event.id}
-                eventType="map_click"
-                href={googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="edGoogleMapsLink"
-              >
-                {eventLocation || event.location?.google_maps_url?.trim() ? "Otwórz w Google Maps" : "Wyszukaj miejsce w Google Maps"}
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-              </TrackedEventLink>
+            {eventLocation || googleMapsUrl ? (
+              <div className="edMapActions">
+                {eventLocation ? (
+                  onShowOnMap ? (
+                    <button type="button" className="edGoogleMapsLink edShowOnMapLink" onClick={() => onShowOnMap(event.id)}>
+                      <MapPin size={15} aria-hidden="true" />
+                      Pokaż na naszej mapie
+                    </button>
+                  ) : (
+                    <Link href={`/#mapa=${encodeURIComponent(event.id)}`} className="edGoogleMapsLink edShowOnMapLink">
+                      <MapPin size={15} aria-hidden="true" />
+                      Pokaż na naszej mapie
+                    </Link>
+                  )
+                ) : null}
+                {googleMapsUrl ? (
+                  <TrackedEventLink
+                    eventId={event.id}
+                    eventType="map_click"
+                    href={googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="edGoogleMapsLink"
+                  >
+                    {eventLocation || event.location?.google_maps_url?.trim() ? "Otwórz w Google Maps" : "Wyszukaj miejsce w Google Maps"}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+                  </TrackedEventLink>
+                ) : null}
+              </div>
             ) : null}
           </section>
           <div className="edOrganizerColumn">

@@ -7,6 +7,11 @@ import { normalizeText } from "@/lib/filters";
 import { toSlug } from "@/lib/slugs";
 import { isPhotonSettlement, uniqueSuggestionsByLabel } from "@/lib/location-suggestions";
 
+const SMALL_SCREEN_QUERY = "(max-width: 760px)";
+const DROPDOWN_MAX_HEIGHT = 360;
+const DROPDOWN_MIN_HEIGHT = 132;
+const KEYBOARD_MIN_HEIGHT = 120;
+
 type CityAutocompleteProps = {
   id?: string;
   value: string;
@@ -120,6 +125,7 @@ export default function CityAutocomplete({
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
+  const [dropdownMaxHeight, setDropdownMaxHeight] = useState<number>();
 
   const normalizedInput = normalizeText(value);
 
@@ -173,6 +179,44 @@ export default function CityAutocomplete({
   useEffect(() => {
     setHighlightIndex(-1);
   }, [isOpen, value]);
+
+  // Phones: the on-screen keyboard covers the lower part of the page without resizing it.
+  // The list is fitted to the visible viewport, and once the keyboard is up the field is
+  // scrolled to the top so the suggestions get the room above the keyboard.
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    if (!isOpen || !viewport || !window.matchMedia(SMALL_SCREEN_QUERY).matches) {
+      setDropdownMaxHeight(undefined);
+      return;
+    }
+    let fullHeight = viewport.height;
+    let raisedForKeyboard = false;
+    const fit = () => {
+      const container = containerRef.current;
+      if (!container) return;
+      const visibleBottom = viewport.offsetTop + viewport.height;
+      const space = visibleBottom - container.getBoundingClientRect().bottom - 12;
+      setDropdownMaxHeight(Math.round(Math.min(DROPDOWN_MAX_HEIGHT, Math.max(DROPDOWN_MIN_HEIGHT, space))));
+    };
+    const handleResize = () => {
+      const keyboardOpened = viewport.height < fullHeight - KEYBOARD_MIN_HEIGHT;
+      if (!keyboardOpened) fullHeight = Math.max(fullHeight, viewport.height);
+      if (keyboardOpened && !raisedForKeyboard && document.activeElement === inputRef.current) {
+        raisedForKeyboard = true;
+        containerRef.current?.scrollIntoView({ block: "start" });
+      }
+      fit();
+    };
+    fit();
+    viewport.addEventListener("resize", handleResize);
+    viewport.addEventListener("scroll", fit);
+    window.addEventListener("scroll", fit, { passive: true, capture: true });
+    return () => {
+      viewport.removeEventListener("resize", handleResize);
+      viewport.removeEventListener("scroll", fit);
+      window.removeEventListener("scroll", fit, { capture: true });
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (highlightIndex >= 0 && listRef.current) {
@@ -309,7 +353,7 @@ export default function CityAutocomplete({
         </button>
       ) : null}
       {isOpen && (
-        <div className="autocompleteDropdown">
+        <div className="autocompleteDropdown" style={dropdownMaxHeight ? { maxHeight: dropdownMaxHeight } : undefined}>
           {onAllPolandSelect ? (
             <div className="autocompleteActions">
               <button

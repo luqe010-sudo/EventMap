@@ -259,8 +259,8 @@ html[data-theme] .homePage .searchSlider:focus-visible { outline: 3px solid var(
   html[data-theme] .mobileEventView .edShellEmbedded .edContentGrid { padding-inline: 16px; }
   html[data-theme] .mobileEventView .edShellEmbedded .edBottomGrid { padding-inline: 16px; }
   body.mobileMapActive .cookieSettingsButton { left: 12px; right: auto; }
-  .homePage .mobileViewSwitcher { --mobile-view-count: 4; }
-  .homePage .mobileViewSwitcherWithEvent { --mobile-view-count: 5; }
+  .homePage .mobileViewSwitcher { --mobile-view-count: 3; }
+  .homePage .mobileViewSwitcherWithEvent { --mobile-view-count: 4; }
   .homePage .mobileViewSwitcher :is(button, a) { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--ink-secondary); font-size: .75rem; font-weight: 650; line-height: 1.15; }
   .homePage .mobileViewSwitcher button[aria-pressed="true"] { border: 1px solid color-mix(in srgb, var(--brand) 43%, transparent); background: var(--brand-light); color: var(--brand-dark); }
   .homePage .mobileViewSwitcher a:focus-visible { outline-offset: -2px; }
@@ -502,10 +502,10 @@ html[data-theme="dark"] .homePage .heroSubtitle { color: #d7dde6; }
   .homePage .mainEvents { order: 3; width: 100%; }
   .homePage :is(.cityCategoriesSec, .internalLinksSec, .seoTextSec) { order: 4; width: 100%; }
   .homePage.mobileResultsMode :is(.discoveryShelves, .sidebarUpcomingSection, .valueProps) { display: none; }
-  .homePage.mobileDiscoverMode:not(.discoveryNeedsResults) .mainEvents { display: none; }
+  /* Odkryj also holds the results (Lista was merged into it), below the discovery shelves. */
 
   .siteWrapper .mobileViewSwitcher {
-    --mobile-view-count: 4;
+    --mobile-view-count: 3;
     right: 0;
     bottom: 0;
     left: 0;
@@ -671,11 +671,13 @@ html[data-theme="dark"] .siteWrapper:has(.homePage) .sidebarSection {
   html[data-theme="dark"] .siteWrapper:has(.homePage) .navLink.navLinkActive { color: #fff; }
 }
 
-/* Reference phone layout (390 px): the header floats over the hero photo until
-   the page scrolls, 11 px gutters, 27/31 px title, 12.5 px subtitle. */
+/* Reference phone layout (390 px): the header floats over the hero photo and
+   scrolls away with it (a solid bar there would cover the top of the photo),
+   11 px gutters, 27/31 px title, 12.5 px subtitle. */
 @media (max-width: 760px) {
   html[data-theme] .homePage { width: calc(100% - 22px); }
-  html[data-theme] .siteWrapper:has(.homePage.mobileDiscoverMode) > .navbar:not(.navbarScrolled):not(.navbarFixed) {
+  html[data-theme] .siteWrapper:has(.homePage.mobileDiscoverMode) > .navbar:not(.navbarFixed) {
+    position: relative;
     border-color: transparent;
     background: transparent;
     box-shadow: none;

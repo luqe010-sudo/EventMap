@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { List as ListIcon, Map as MapIcon, Compass, Search, RotateCcw, ArrowRight, UserRound, CalendarDays, ArrowDownUp, BookOpenText, CalendarRange, ChevronDown, House, Layers, MapPin } from "lucide-react";
+import { Map as MapIcon, Compass, Search, RotateCcw, ArrowRight, UserRound, CalendarDays, ArrowDownUp, BookOpenText, CalendarRange, ChevronDown, House, Layers, MapPin } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { PUBLIC_EVENTS_MAX_RESULTS, PUBLIC_EVENTS_PAGE_SIZE, type CategoryCityRoute, type CategoryOption, type EventCategory, type EventItem, type EventMapMarker, type KnownLocation, type PublicEventSearchResult, getDefaultLocation, knownLocations } from "@/lib/events";
 import {
@@ -181,6 +181,25 @@ export default function HomePage({
   const isListingPage = Boolean(
     activeCategory || activeLocation || searchQuery || dateFilter !== "all" || priceMode !== "all"
   );
+  // Promoted events regardless of filters; the unfiltered home page already received them.
+  const initialListingRef = useRef(isListingPage);
+  const [promotedFallback, setPromotedFallback] = useState<EventItem[]>(
+    () => initialListingRef.current ? [] : initialFeaturedEvents ?? []
+  );
+  useEffect(() => {
+    if (!initialListingRef.current && initialFeaturedEvents) return;
+    const controller = new AbortController();
+    void fetch("/api/events/search?featured=1&pageSize=8", { signal: controller.signal })
+      .then(async (response) => {
+        if (!response.ok) throw new Error("Promoted fallback search failed");
+        const result = await response.json() as PublicEventSearchResult;
+        if (!controller.signal.aborted) setPromotedFallback(result.events);
+      })
+      .catch((error) => {
+        if (!controller.signal.aborted) console.error("[home] Failed to load promoted events", error);
+      });
+    return () => controller.abort();
+  }, [initialFeaturedEvents]);
 
   useEffect(() => {
     const nextQuery = queryInput.trim();
@@ -194,18 +213,21 @@ export default function HomePage({
     const stored = (window.history.state as { eventMapWorkspace?: MobileWorkspaceHistory } | null)?.eventMapWorkspace;
     const { pathname, search, hash } = window.location;
     if (stored?.scroll) listScrollPositionRef.current = stored.scroll;
-    if (hash === "#odkryj" || hash === "#events-list" || hash === "#mapa") {
+    if (hash === "#odkryj" || hash === "#events-list" || parseMapHash(hash)) {
       try {
         const saved = JSON.parse(window.sessionStorage.getItem(WORKSPACE_RETURN_STORAGE_KEY) ?? "null") as { url: string; scroll: MobileWorkspaceHistory["scroll"] } | null;
         if (saved?.url === pathname + search && saved.scroll) listScrollPositionRef.current = saved.scroll;
       } catch { /* Session storage is optional. */ }
     }
-    const destination = hash === "#events-list" ? "results" : hash === "#odkryj" ? "discover" : stored?.destination;
+    // Lista was merged into Odkryj: its old links and history entries open Odkryj at the results.
+    const destination = hash === "#events-list" || hash === "#odkryj" || stored?.destination ? "discover" : undefined;
     if (destination) setListDestination(destination);
     if (stored?.view === "map" && hash !== "#events-list" && hash !== "#odkryj") {
       setHasOpenedMap(true);
       setViewMode("map");
-    } else if (destination && (stored?.scroll || hash === "#events-list" || hash === "#odkryj")) {
+    } else if (hash === "#events-list") {
+      window.requestAnimationFrame(() => document.getElementById("events-list")?.scrollIntoView({ block: "start" }));
+    } else if (destination && (stored?.scroll || hash === "#odkryj")) {
       window.requestAnimationFrame(() => window.scrollTo({ top: listScrollPositionRef.current[destination], behavior: "instant" }));
     }
   }, []);
@@ -287,20 +309,31 @@ export default function HomePage({
     [events, searchQuery, dateFilter, customDate, effectiveRadius, isAllPoland, category, location, priceMode, maxPrice, effectiveSort]
   );
 
-  // Featured events
+  // Featured events: promoted events matching the filters come first. When the filters leave
+  // too few of them, other promoted events still appear, and filtered events fill the rest.
   const featuredEvents = useMemo(
-    () => filterEvents([...new Map([...recommendedPool, ...events].map((event) => [event.id, event])).values()], {
-      query: searchQuery,
-      dateFilter,
-      customDate,
-      radiusKm: effectiveRadius,
-      category,
-      location,
-      priceMode,
-      maxPrice
-    }).sort((a, b) => Number(b.event.isFeatured) - Number(a.event.isFeatured)).slice(0, 8)
-      .map((item) => isAllPoland ? { ...item, distanceKm: Number.POSITIVE_INFINITY } : item),
-    [events, recommendedPool, searchQuery, dateFilter, customDate, category, location, isAllPoland, effectiveRadius, priceMode, maxPrice]
+    () => {
+      const matching = filterEvents([...new Map([...recommendedPool, ...events].map((event) => [event.id, event])).values()], {
+        query: searchQuery,
+        dateFilter,
+        customDate,
+        radiusKm: effectiveRadius,
+        category,
+        location,
+        priceMode,
+        maxPrice
+      }).map((item) => isAllPoland ? { ...item, distanceKm: Number.POSITIVE_INFINITY } : item);
+      const matchingIds = new Set(matching.map(({ event }) => event.id));
+      const otherPromoted = promotedFallback
+        .filter((event) => event.isFeatured && !matchingIds.has(event.id))
+        .map((event) => ({ event, distanceKm: Number.POSITIVE_INFINITY }));
+      return [
+        ...matching.filter(({ event }) => event.isFeatured),
+        ...otherPromoted,
+        ...matching.filter(({ event }) => !event.isFeatured)
+      ].slice(0, 8);
+    },
+    [events, recommendedPool, promotedFallback, searchQuery, dateFilter, customDate, category, location, isAllPoland, effectiveRadius, priceMode, maxPrice]
   );
 
   const visibleEvents = filteredEvents;
@@ -319,8 +352,8 @@ export default function HomePage({
   const formattedEventCount = formatNumber(eventSearch.totalCount);
   const canLoadMoreEvents = !eventsLoading && eventSearch.hasMore && shownEventsCount < eventSearch.maxResults;
   const eventById = useMemo(
-    () => new Map([...recommendedPool, ...events].map((event) => [event.id, event])),
-    [events, recommendedPool]
+    () => new Map([...promotedFallback, ...recommendedPool, ...events].map((event) => [event.id, event])),
+    [events, promotedFallback, recommendedPool]
   );
 
   const openedEvent = openedEventId
@@ -763,7 +796,7 @@ export default function HomePage({
       }
       workspaceUrlRef.current = historyState.workspaceUrl;
       if (historyState.scroll) listScrollPositionRef.current = { ...historyState.scroll };
-      const restoredDestination = historyState.destination ?? "discover";
+      const restoredDestination = "discover";
       setListDestination(restoredDestination);
       if (historyState.view === "event" && historyState.eventId) {
         // Preserve the canonical event URL while its detail is being restored.
@@ -905,8 +938,10 @@ export default function HomePage({
 
   useEffect(() => {
     function navigateToMap() {
-      if (window.location.hash !== "#mapa") return;
-      if (window.matchMedia("(max-width: 760px)").matches) showMobileMap(undefined, true);
+      const mapHash = parseMapHash(window.location.hash);
+      if (!mapHash) return;
+      // "#mapa=<id>" comes from an event page's "Pokaż na naszej mapie" and focuses that pin.
+      if (mapHash.eventId || window.matchMedia("(max-width: 760px)").matches) showMobileMap(mapHash.eventId, true);
       else document.getElementById("desktop-map")?.scrollIntoView({ block: "start" });
     }
     function openMap() { showMobileMap(); }
@@ -925,9 +960,12 @@ export default function HomePage({
     };
   }, [showMobileList, showMobileMap]);
 
+  // The results live on Odkryj (Lista was merged into it), so "Zobacz listę" scrolls there.
   function showResults() {
-    if (window.matchMedia("(max-width: 760px)").matches) showMobileList("results", true);
-    else scrollToResults();
+    if (window.matchMedia("(max-width: 760px)").matches && viewMode !== "list") {
+      showMobileList("discover");
+      window.requestAnimationFrame(() => window.requestAnimationFrame(scrollToResults));
+    } else scrollToResults();
   }
 
   function showMapFilters() {
@@ -948,7 +986,12 @@ export default function HomePage({
     if (state?.eventMapWorkspace && viewMode !== "event") {
       window.history.replaceState({ ...state, eventMapWorkspace: { ...state.eventMapWorkspace, scroll: { ...listScrollPositionRef.current } } }, "");
     }
+    // The map tab opened from this event starts centred on its pin, with its preview card.
+    ++mapEventRequestRef.current;
     setSelectedEventId(eventId);
+    setSelectedMapEvent(event);
+    setSelectedMapEventLoading(false);
+    setFocusedMapEventId(eventId);
     setOpenedEventId(eventId);
     setViewMode("event");
     window.history.pushState(
@@ -1569,6 +1612,7 @@ export default function HomePage({
             embedded
             onClose={closeMobileEvent}
             onOpenEvent={openMobileEvent}
+            onShowOnMap={showMobileMap}
           />
         </section>
       ) : null}
@@ -1577,18 +1621,10 @@ export default function HomePage({
         <button
           type="button"
           onClick={() => showMobileList("discover")}
-          aria-pressed={viewMode === "list" && listDestination === "discover"}
+          aria-pressed={viewMode === "list"}
         >
           <Compass size={20} strokeWidth={2.2} aria-hidden="true" />
           Odkryj
-        </button>
-        <button
-          type="button"
-          onClick={() => showMobileList("results")}
-          aria-pressed={viewMode === "list" && listDestination === "results"}
-        >
-          <ListIcon size={20} strokeWidth={2.2} aria-hidden="true" />
-          Lista
         </button>
         <button
           type="button"
@@ -1678,4 +1714,12 @@ function getDateFilterLabel(filter: DateFilter) {
 
 function scrollToResults() {
   document.getElementById("events-list")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+// "#mapa" opens the map; "#mapa=<eventId>" also selects and centres that event.
+function parseMapHash(hash: string): { eventId?: string } | null {
+  if (hash === "#mapa") return {};
+  if (!hash.startsWith("#mapa=")) return null;
+  const eventId = decodeURIComponent(hash.slice("#mapa=".length)).trim();
+  return eventId ? { eventId } : {};
 }
