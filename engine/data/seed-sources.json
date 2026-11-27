@@ -4,7 +4,8 @@
     "name": "Klub Stodoła / Go Ahead",
     "city": "Warszawa",
     "kind": "organizer",
-    "category": "koncerty"
+    "category": "koncerty",
+    "categoryShare": 0.9
   },
   {
     "url": "https://progresja.com/",
@@ -18,7 +19,8 @@
       "latitude": 52.2247998,
       "longitude": 20.9288574
     },
-    "category": "koncerty"
+    "category": "koncerty",
+    "categoryShare": 0.92
   },
   {
     "url": "https://www.tauronarenakrakow.pl/",
@@ -32,7 +34,8 @@
       "latitude": 50.0677202,
       "longitude": 19.991549
     },
-    "category": "koncerty"
+    "category": "koncerty",
+    "categoryShare": 0.72
   },
   {
     "url": "https://prezeroarenagliwice.pl/",
@@ -58,7 +61,8 @@
     "name": "Miejskie Centrum Kultury w Gorzowie Wielkopolskim",
     "city": "Gorzów Wielkopolski",
     "kind": "organizer",
-    "category": "kultura"
+    "category": "kultura",
+    "categoryShare": 0.7
   },
   {
     "url": "https://starakopalnia.pl/",
@@ -166,7 +170,8 @@
       "latitude": 50.6647339329707,
       "longitude": 17.9165996553665
     },
-    "category": "koncerty"
+    "category": "koncerty",
+    "categoryShare": 0.83
   },
   {
     "url": "https://tfk.artus.torun.pl/",
@@ -256,7 +261,8 @@
       "latitude": 51.8155272223368,
       "longitude": 19.3095950258967
     },
-    "category": "kultura"
+    "category": "kultura",
+    "categoryShare": 0.8
   },
   {
     "url": "https://zdk.zamosc.pl/",

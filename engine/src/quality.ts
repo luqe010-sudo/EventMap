@@ -17,7 +17,11 @@ const NOT_EVENT = /^(specjalne\s+ceny|zmiana\s+godzin|nieczynn|og[lł]oszenie|na
 /** Venue outside Poland (border towns: Görlitz, Český Těšín, Frankfurt (Oder)…). */
 const FOREIGN_VENUE = /\((de|cz|sk|lt|ua|by|ru)\)|\b(niemcy|germany|deutschland|czechy|czech republic|cesko|slowacja|slovakia|litwa|lithuania|ukraina|bialorus)\b/;
 
-export type QualityContext = { now?: Date; cityId: string | null; categorySlug: string | null; categoryFromFallback?: boolean };
+/** How sure the fallback category is: "strong" = the source's history is ≥85% that category. */
+export type QualityContext = { now?: Date; cityId: string | null; categorySlug: string | null; categoryFromFallback?: boolean | "strong" | "weak" };
+
+/** Categories where a start time matters: a date without time is not publishable automatically. */
+const TIMED_CATEGORIES = new Set(["koncerty", "stand-up", "kabaret", "mecze", "imprezy"]);
 
 export function assessQuality(facts: EventFacts, context: QualityContext): { score: number; issues: QualityIssue[] } {
   const now = context.now ?? new Date();
@@ -45,6 +49,7 @@ export function assessQuality(facts: EventFacts, context: QualityContext): { sco
     add("not_public", true, "Tytuł lub kategoria źródła sugeruje wydarzenie zamknięte lub odwołane.");
   }
   if (NOT_EVENT.test(facts.title.trim())) add("not_event", true, "Ogłoszenie, a nie wydarzenie.");
+  if (/\b(zaj[eę]cia|kurs|lekcj[aei]|korepetycj|trening|nab[oó]r)\b/i.test(facts.title)) add("class_like", false, "Zajęcia/kurs — sprawdź, czy to wydarzenie otwarte dla publiczności.");
   if (FOREIGN_VENUE.test(` ${normalizeText([facts.venueName, facts.address, facts.city].filter(Boolean).join(" "))} `)
     || /\((DE|CZ|SK|LT|UA|BY|RU)\)/.test([facts.venueName, facts.address, facts.city].join(" "))) {
     add("foreign_venue", true, "Miejsce poza Polską.");
@@ -55,13 +60,18 @@ export function assessQuality(facts: EventFacts, context: QualityContext): { sco
   if (!inPoland(facts.latitude, facts.longitude)) add("coords_missing", true, "Brak wiarygodnych współrzędnych w Polsce.");
   if (!context.categorySlug) add("category_unresolved", true, "Nie przypisano kategorii.");
   else if (context.categorySlug === "inne") add("category_generic", false, "Kategoria ogólna „inne” — wymaga przeglądu przed publikacją.");
-  else if (context.categoryFromFallback) add("category_default", false, "Kategoria domyślna źródła, nie z treści wydarzenia.");
+  else if (context.categoryFromFallback === "strong") add("category_default", false, "Kategoria domyślna źródła (≥85% historii), nie z treści wydarzenia.");
+  else if (context.categoryFromFallback) add("category_default_weak", false, "Kategoria domyślna źródła o niepewnym profilu — wymaga przeglądu.");
+  if (facts.isAllDay && context.categorySlug && TIMED_CATEGORIES.has(context.categorySlug)) {
+    add("time_unknown", false, "Źródło podaje tylko datę — brak godziny rozpoczęcia.");
+  }
   if (facts.priceType === "paid" && facts.priceMin === null && facts.priceMax === null) add("price_inconsistent", true, "Cena paid bez kwoty.");
   if (facts.priceMin !== null && facts.priceMax !== null && facts.priceMin > facts.priceMax) add("price_inverted", true, "Odwrócony zakres ceny.");
+  if ((facts.priceMax ?? 0) > 3000) add("price_implausible", false, "Cena powyżej 3000 zł — prawdopodobnie błąd odczytu.");
   try { const url = new URL(facts.url); if (!/^https?:$/.test(url.protocol)) add("url_scheme", true, "Nieprawidłowy URL źródła."); }
   catch { add("url_invalid", true, "Nieprawidłowy URL źródła."); }
 
-  const weights: Record<string, number> = { title_caps: 0.05, midnight_start: 0.25, very_long: 0.1, no_address: 0.15, category_generic: 0.2, category_default: 0.1 };
+  const weights: Record<string, number> = { title_caps: 0.05, midnight_start: 0.25, very_long: 0.1, no_address: 0.15, category_generic: 0.2, category_default: 0.1, category_default_weak: 0.2, time_unknown: 0.2, class_like: 0.2, price_implausible: 0.3 };
   let score = 1;
   for (const issue of issues) score -= issue.blocking ? 1 : (weights[issue.code] ?? 0.1);
   // Structured data (ICS, schema.org) carries no penalty; looser channels do.
@@ -78,6 +88,8 @@ const CATEGORY_RULES: Array<{ slug: string; re: RegExp }> = [
   { slug: "targi", re: /\b(targi|targ\b|jarmark|kiermasz|gield|bazar|expo\b|fair\b|market\b)/ },
   { slug: "motoryzacja", re: /\b(moto|samochod|zlot|rajd|auto\s?show|tuning)/ },
   { slug: "sport", re: /\b(bieg|maraton|p[oó][lł]maraton|parkrun|turniej|zawody|rower|triathlon|sportsevent|fitness|joga|yoga|nordic)/ },
+  // Guided tours of a philharmonic or museum are not concerts.
+  { slug: "kultura", re: /\b(zwiedzan|oprowadzan|wycieczk|spacer z przewodnikiem)/ },
   { slug: "rodzinne", re: /\b(dla dzieci|rodzin|dzieci[eę]c|bajk|childrensevent|warsztaty dla|mikolaj|teatrzyk|familijn|maluch|\d{1,2} \d{1,2} lat[a]?\b)/ },
   { slug: "koncerty", re: /\b(koncert|musicevent|recital|orkiestr|orchest|filharmoni|symfoni|kameraln|kwartet|jazz|rock|metal|hip[\s-]?hop|rap\b|disco polo|chor\b|chorow|tour\b|trasa|tenor|przeboj|piosen|wokal|koled|pastoral|gospel|muzyk)/ },
   { slug: "imprezy", re: /\b(impreza|party|dj\b|potanc|dyskotek|bal\b|sylwester|andrzejk|festyn|dozynk|piknik)/ },
@@ -110,6 +122,11 @@ export function fallbackCategory(facts: EventFacts, sourceDefault: string | null
   if (sourceDefault && available.has(sourceDefault)) return sourceDefault;
   const name = ` ${normalizeText(sourceName ?? "")} `;
   return SOURCE_NAME_RULES.find(rule => available.has(rule.slug) && rule.re.test(name))?.slug ?? null;
+}
+
+/** A source default is "strong" when ≥85% of the source's curated history had that category. */
+export function fallbackStrength(sourceDefaultShare: number | null): "strong" | "weak" {
+  return sourceDefaultShare !== null && sourceDefaultShare >= 0.85 ? "strong" : "weak";
 }
 
 /** Same rule as the curated importer: title + local day + city. */

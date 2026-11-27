@@ -29,6 +29,19 @@ function utcIso(value: string | undefined): string | null {
   return parsed?.iso ?? null;
 }
 
+/**
+ * Amounts from the human-readable `cost` ("PLN140,00", "20–40 zł", "Wstęp wolny") win over
+ * `cost_details.values`, which some sites fill without the decimal separator ("14000" for 140,00).
+ */
+export function tribeAmounts(item: Pick<TribeEvent, "cost" | "cost_details">): number[] {
+  const text = (item.cost ?? "").replace(/\s+/g, " ");
+  if (/bezp[lł]atn|wst[eę]p wolny|free/i.test(text) && !/\d/.test(text)) return [0];
+  const fromText = [...text.matchAll(/(\d{1,5})(?:[.,](\d{1,2}))?/g)].map(match => Number(`${match[1]}.${match[2] ?? "0"}`))
+    .filter(value => Number.isFinite(value) && value >= 0 && value < 100000);
+  if (fromText.length) return fromText;
+  return (item.cost_details?.values ?? []).map(Number).filter(value => Number.isFinite(value) && value >= 0);
+}
+
 export function parseTribe(json: string): { events: EventFacts[]; nextPage: string | null; skipped: number } {
   let payload: { events?: TribeEvent[]; next_rest_url?: string };
   try { payload = JSON.parse(json) as typeof payload; } catch { return { events: [], nextPage: null, skipped: 0 }; }
@@ -43,7 +56,7 @@ export function parseTribe(json: string): { events: EventFacts[]; nextPage: stri
     if (venue?.country && !/^(pl|polska|poland)$/i.test(venue.country.trim())) { skipped += 1; continue; }
     const lat = venue?.geo_lat != null ? Number(venue.geo_lat) : null;
     const lon = venue?.geo_lng != null ? Number(venue.geo_lng) : null;
-    const amounts = (item.cost_details?.values ?? []).map(Number).filter(value => Number.isFinite(value) && value >= 0);
+    const amounts = tribeAmounts(item);
     const price = amounts.length
       ? (Math.max(...amounts) === 0 ? { priceType: "free" as const, priceMin: 0, priceMax: 0 } : { priceType: "paid" as const, priceMin: Math.min(...amounts.filter(v => v > 0)), priceMax: Math.max(...amounts) })
       : priceFromText(item.cost ?? "");

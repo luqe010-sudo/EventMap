@@ -78,7 +78,7 @@ describe("categories", () => {
     expect(fallbackCategory({ ...base, title: "Gala Wolontariusza Roku" }, "koncerty", "Teatr", slugs)).toBeNull();
     expect(fallbackCategory({ ...base, title: "Kudo | Chrenowicz" }, null, "Filharmonia Koszalińska", slugs)).toBe("koncerty");
     expect(fallbackCategory({ ...base, title: "Spotkanie" }, null, "Urząd Miasta", slugs)).toBeNull();
-    const scored = assessQuality(base, { cityId: "c", categorySlug: "koncerty", categoryFromFallback: true, now });
+    const scored = assessQuality(base, { cityId: "c", categorySlug: "koncerty", categoryFromFallback: "strong", now });
     expect(scored.score).toBe(0.9);
   });
 });
@@ -114,5 +114,48 @@ describe("title quoting", () => {
     const text = writeDescriptions({ ...base, title: "Wystawa „Szopki krakowskie”" }, "kultura", "Radom");
     expect(text.long).toContain("Wydarzenie kulturalne Wystawa „Szopki krakowskie” odbędzie się");
     expect(writeDescriptions({ ...base, title: "IRA" }, "koncerty", "Warszawa").long).toContain("Koncert „IRA” odbędzie się");
+  });
+});
+
+describe("autopublish guards from the local pilot", () => {
+  it("keeps date-only concerts out of autopublication but not date-only fairs", () => {
+    const concert = assessQuality({ ...base, title: "DŻEM", isAllDay: true }, { cityId: "c", categorySlug: "koncerty", categoryFromFallback: "strong", now });
+    expect(concert.issues.map(issue => issue.code)).toContain("time_unknown");
+    expect(concert.score).toBeLessThan(0.85);
+    const fair = assessQuality({ ...base, title: "Jarmark", isAllDay: true }, { cityId: "c", categorySlug: "targi", now });
+    expect(fair.score).toBe(1);
+  });
+
+  it("penalises weak source defaults (e.g. a multi-purpose arena) below the autopublish threshold", async () => {
+    const { fallbackStrength } = await import("../src/quality.ts");
+    expect(fallbackStrength(0.9)).toBe("strong");
+    expect(fallbackStrength(0.72)).toBe("weak");
+    expect(fallbackStrength(null)).toBe("weak");
+    expect(assessQuality({ ...base, title: "CAVALIADA Kraków 2027" }, { cityId: "c", categorySlug: "koncerty", categoryFromFallback: "weak", now }).score).toBe(0.8);
+    expect(assessQuality({ ...base, title: "IRA" }, { cityId: "c", categorySlug: "koncerty", categoryFromFallback: "strong", now }).score).toBe(0.9);
+  });
+});
+
+describe("classes and courses", () => {
+  it("sends classes to moderation instead of autopublication", () => {
+    const scored = assessQuality({ ...base, title: "Amanti dell'Opera - zajęcia wokalne" }, { cityId: "c", categorySlug: "koncerty", now });
+    expect(scored.issues.map(issue => issue.code)).toContain("class_like");
+    expect(scored.score).toBeLessThan(0.85);
+  });
+});
+
+describe("prices and tours found in the 300-limit run", () => {
+  it("reads the human cost text before Tribe's separator-less values", async () => {
+    const { tribeAmounts } = await import("../src/extract/tribe.ts");
+    expect(tribeAmounts({ cost: "PLN140,00", cost_details: { values: ["14000"] } })).toEqual([140]);
+    expect(tribeAmounts({ cost: "PLN99,00", cost_details: { values: ["9900"] } })).toEqual([99]);
+    expect(tribeAmounts({ cost: "20 – 40 zł", cost_details: { values: ["20", "40"] } })).toEqual([20, 40]);
+    expect(tribeAmounts({ cost: "Wstęp wolny", cost_details: { values: [] } })).toEqual([0]);
+    expect(tribeAmounts({ cost: "", cost_details: { values: ["35"] } })).toEqual([35]);
+  });
+
+  it("sends implausible prices to moderation and treats guided tours as culture", () => {
+    expect(assessQuality({ ...base, priceType: "paid", priceMin: 14000, priceMax: 14000 }, { cityId: "c", categorySlug: "kultura", now }).score).toBeLessThan(0.85);
+    expect(classifyCategory({ ...base, title: "Zwiedzanie Filharmonii w języku niemieckim" }, slugs)).toBe("kultura");
   });
 });

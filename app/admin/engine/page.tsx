@@ -3,7 +3,7 @@ import AdminSectionNav from "@/components/AdminSectionNav";
 import { requireAdmin } from "@/lib/auth";
 import { formatPolishDate } from "@/lib/date-format";
 import { type EngineCoverage, type EngineDecision, type EngineOverview, engineConfigured, EngineUnavailableError, getEngineOverview } from "@/lib/engine-control";
-import { engineAddSourceAction, engineAgentAction, engineBudgetAction, engineDecisionAction, engineKillAction, engineSourceAction } from "@/lib/engine-control-actions";
+import { engineAddSourceAction, engineAgentAction, engineApproveDecisionAction, engineBudgetAction, engineDecisionAction, engineKillAction, engineRejectDecisionAction, engineSourceAction } from "@/lib/engine-control-actions";
 import "./engine.css";
 
 export const dynamic = "force-dynamic";
@@ -252,8 +252,8 @@ function Decisions({ decisions, legal }: { decisions: EngineDecision[]; legal: E
                   </fieldset>
                 ) : null}
                 <input name="note" className="tableActionInput" placeholder="Notatka (opcjonalnie)" maxLength={2000} />
-                <button type="submit" name="resolution" value="approved" className="primaryButton">Zatwierdź</button>
-                <button type="submit" name="resolution" value="rejected" className="secondaryButton">Odrzuć</button>
+                <button type="submit" formAction={engineApproveDecisionAction} className="primaryButton">Zatwierdź</button>
+                <button type="submit" formAction={engineRejectDecisionAction} className="secondaryButton">Odrzuć</button>
               </form>
             </li>
           ))}

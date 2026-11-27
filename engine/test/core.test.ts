@@ -111,3 +111,50 @@ describe("config", () => {
     expect(loadConfig({ ENGINE_CONTROL_TOKEN: "short" }).controlToken).toBeNull();
   });
 });
+
+describe("owner can revisit a decision", () => {
+  it("recheck after an owner verdict opens a new owner decision instead of re-applying the old one", async () => {
+    const { registerSource, getSource } = await import("../src/sources.ts");
+    const db = openDb(":memory:");
+    const { id } = registerSource(db, { url: "https://krakow.example.pl", discoveredVia: "test" })!;
+    const decision = requestDecision(db, "source_approval", "source", String(id), "Źródło", { url: "https://krakow.example.pl/" });
+    const control = (path: string, body: Record<string, unknown> = {}) => handleControl(db, config, { method: "POST", path, query: new URLSearchParams(), body, actor: "owner" });
+    control(`/api/decisions/${decision}`, { resolution: "rejected" });
+    expect(getSource(db, id)?.status).toBe("blocked");
+    control(`/api/sources/${id}/recheck`);
+    expect(getSource(db, id)?.status).toBe("needs_owner");
+    const open = db.prepare("SELECT id, title FROM decisions WHERE status = 'open'").all() as Array<{ id: number; title: string }>;
+    expect(open).toHaveLength(1);
+    expect(open[0].title).toContain("poprzednio: odrzucone");
+    control(`/api/decisions/${open[0].id}`, { resolution: "approved" });
+    expect(getSource(db, id)?.status).toBe("approved");
+  });
+
+  it("rejects a decision call without an explicit resolution", () => {
+    const db = openDb(":memory:");
+    const decision = requestDecision(db, "legal_ruleset", "rules", "v", "Zatwierdź", {});
+    const response = handleControl(db, config, { method: "POST", path: `/api/decisions/${decision}`, query: new URLSearchParams(), body: {}, actor: "owner" });
+    expect(response.status).toBe(400);
+    expect((db.prepare("SELECT status FROM decisions WHERE id = ?").get(decision) as { status: string }).status).toBe("open");
+  });
+});
+
+describe("publisher write lock", () => {
+  it("runs writes one at a time even when started in parallel, and keeps going after a failure", async () => {
+    const { withWriteLock } = await import("../src/agents/pipeline.ts");
+    const order: string[] = [];
+    let active = 0;
+    let maxActive = 0;
+    const task = (name: string, fail = false) => withWriteLock(async () => {
+      active += 1; maxActive = Math.max(maxActive, active);
+      await new Promise(done => setTimeout(done, 5));
+      order.push(name); active -= 1;
+      if (fail) throw new Error("boom");
+      return name;
+    });
+    const results = await Promise.allSettled([task("a"), task("b", true), task("c")]);
+    expect(maxActive).toBe(1);
+    expect(order).toEqual(["a", "b", "c"]);
+    expect(results.map(result => result.status)).toEqual(["fulfilled", "rejected", "fulfilled"]);
+  });
+});
