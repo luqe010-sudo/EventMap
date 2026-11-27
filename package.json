@@ -9,8 +9,12 @@
     "seo:gsc": "node scripts/gsc-report.mjs",
     "lint": "eslint .",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit --incremental false",
-    "check": "npm run lint && npm run test && npm run typecheck && npm run build"
+    "typecheck": "tsc --noEmit --incremental false && tsc -p engine/tsconfig.json",
+    "check": "npm run lint && npm run test && npm run typecheck && npm run build",
+    "engine": "node engine/src/main.ts run",
+    "engine:once": "node engine/src/main.ts once",
+    "engine:status": "node engine/src/main.ts status",
+    "engine:typecheck": "tsc -p engine/tsconfig.json"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.3",

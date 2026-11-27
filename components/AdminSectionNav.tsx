@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-type AdminSection = "dashboard" | "events" | "review" | "organizers" | "locations" | "categories" | "cities";
+type AdminSection = "dashboard" | "events" | "review" | "organizers" | "locations" | "categories" | "cities" | "engine";
 
 type AdminSectionNavProps = {
   active: AdminSection;
@@ -13,7 +13,8 @@ const sections: Array<{ key: AdminSection; href: string; label: string }> = [
   { key: "organizers", href: "/admin/organizers", label: "Organizatorzy" },
   { key: "locations", href: "/admin/locations", label: "Lokalizacje" },
   { key: "categories", href: "/admin/categories", label: "Kategorie" },
-  { key: "cities", href: "/admin/cities", label: "Miasta SEO" }
+  { key: "cities", href: "/admin/cities", label: "Miasta SEO" },
+  { key: "engine", href: "/admin/engine", label: "Event Engine" }
 ];
 
 export default function AdminSectionNav({ active }: AdminSectionNavProps) {

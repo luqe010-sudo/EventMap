@@ -84,6 +84,10 @@ Najważniejsze relacje:
 - Jeśli formularz wydarzenia nie wybierze istniejącej lokalizacji, kod może utworzyć rekord `locations`.
 - Źródło wydarzenia jest zapisywane w `event_sources`; przy edycji aktualizowany jest pierwszy istniejący rekord źródła.
 
+## Event Engine
+
+Autonomiczny system pozyskiwania wydarzeń (VPS, Docker, SQLite, 13 agentów) jest w `engine/`, panel w `/admin/engine`. Przed pracą przy nim przeczytaj `docs/event-engine/AGENTS.md` i `docs/event-engine/STATE.md`; po pracy zaktualizuj `STATE.md`.
+
 ## Instrukcja dla kolejnych sesji AI
 
 1. Przed zmianami przeanalizuj rzeczywisty kod i `database.types.ts`; nie zgaduj struktury bazy.

@@ -1,5 +1,11 @@
 # Current Features
 
+## Event Engine i strona /bot — 2026-11-26
+
+- Panel admina ma nową sekcję **Event Engine** (`/admin/engine`): status 13 agentów z pauzą, liczby nowych/aktualizowanych wydarzeń, mapa pokrycia województw, rejestr źródeł z podstawą prawną (wstrzymanie, ponowna weryfikacja, autopublikacja, wycofanie rekordów), kolejka decyzji właściciela, incydenty, historia działań, koszty i twarde limity budżetu, raport dzienny oraz globalny wyłącznik awaryjny. Bez skonfigurowanego silnika strona pokazuje instrukcję podłączenia. Szczegóły: [docs/event-engine](event-engine/AGENTS.md).
+- Publiczna strona **/bot** opisuje automat MapaImprezBot (User-Agent crawlera): co pobiera (tylko fakty), poszanowanie robots.txt/TDM, sposób wyłączenia i kontakt.
+- Wydarzenia z silnika trafiają do istniejącej moderacji (`pending_review`) z markerem `EventMap engine v1` w notatce, bez zdjęć (okładki EventVisual) i z linkiem do strony organizatora.
+
 ## Spójność podstron i stopki — 2026-11-26
 
 - Dół widoku odkrywania korzysta z tych samych powierzchni i akcentów co sekcje polecane. Dotyczy to listy, kafelków kategorii, odnośników do miast, tekstu SEO, kart informacyjnych i stopki. Stopka na telefonie uwzględnia odstęp od dolnej nawigacji.
