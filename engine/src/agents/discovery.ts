@@ -50,7 +50,7 @@ export const discoveryAgent: AgentDefinition = {
     async "discovery.seed"(_job, ctx) {
       const path = fileURLToPath(new URL("../../data/seed-sources.json", import.meta.url));
       if (!existsSync(path)) return { registered: 0, note: "brak pliku seed" };
-      const seeds = JSON.parse(readFileSync(path, "utf8")) as Array<{ url: string; name?: string; city?: string; kind?: string; venue?: DefaultVenue; category?: string }>;
+      const seeds = JSON.parse(readFileSync(path, "utf8")) as Array<{ url: string; name?: string; city?: string; kind?: string; venue?: DefaultVenue; category?: string; categoryShare?: number }>;
       let created = 0;
       for (const seed of seeds) {
         if (isBlockedDomain(domainOf(seed.url))) continue;
@@ -59,7 +59,10 @@ export const discoveryAgent: AgentDefinition = {
         // Venue verified in earlier curated batches: used when a page's schema.org lacks a location.
         if (result && seed.venue) remember(ctx.db, "venue", String(result.id), seed.venue);
         // Dominant category of this organiser in curated history (≥70% of its events).
-        if (result) remember(ctx.db, "default_category", String(result.id), seed.category ?? null);
+        if (result) {
+          remember(ctx.db, "default_category", String(result.id), seed.category ?? null);
+          remember(ctx.db, "default_category_share", String(result.id), seed.categoryShare ?? null);
+        }
       }
       ctx.log("info", `Seed: zarejestrowano ${created} nowych źródeł z historii kuratorskiej.`);
       return { registered: created };

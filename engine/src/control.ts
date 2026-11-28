@@ -12,7 +12,7 @@ import { LEGAL_RULES, LEGAL_RULES_VERSION } from "./legal/policy.ts";
 import { enqueue, queueStats } from "./queue.ts";
 import { AGENTS } from "./runtime.ts";
 import { getSource, registerSource, sourceCounts, updateSource } from "./sources.ts";
-import { audit, getMeta, killState, listAgents, listDecisions, metricsForDay, recall, setMeta, warsawDay } from "./store.ts";
+import { audit, getMeta, killState, latestResolution, listAgents, listDecisions, metricsForDay, recall, requestDecision, setMeta, warsawDay } from "./store.ts";
 
 export type ControlRequest = { method: string; path: string; query: URLSearchParams; body: Record<string, unknown>; actor: string };
 export type ControlResponse = { status: number; body: unknown };
@@ -93,7 +93,18 @@ export function handleControl(db: Db, config: EngineConfig, request: ControlRequ
     const action = sourceMatch[2];
     if (action === "pause") updateSource(db, id, { status: "paused" });
     if (action === "resume") updateSource(db, id, { status: source.integration_type !== "unknown" && source.feed_url ? "active" : "discovered", consecutive_failures: 0 });
-    if (action === "recheck") { updateSource(db, id, { status: "legal_review" }); enqueue(db, "legal", "legal.review", { sourceId: id }, { dedupeKey: `legal:${id}` }); }
+    if (action === "recheck") {
+      // An earlier owner verdict would decide the review again, so the owner gets a fresh decision instead.
+      const previous = latestResolution(db, "source_approval", "source", String(id));
+      if (previous) {
+        updateSource(db, id, { status: "needs_owner" });
+        requestDecision(db, "source_approval", "source", String(id), `Ponowna decyzja: ${source.domain} (poprzednio: ${previous.status === "approved" ? "zatwierdzone" : "odrzucone"})`,
+          { ...json<Record<string, unknown>>(previous.details, {}), url: source.url, previousResolution: previous.status, previousAt: previous.resolved_at });
+      } else {
+        updateSource(db, id, { status: "legal_review" });
+        enqueue(db, "legal", "legal.review", { sourceId: id }, { dedupeKey: `legal:${id}` });
+      }
+    }
     if (action === "autopublish") updateSource(db, id, { autopublish: body.enabled === true ? 1 : 0 });
     if (action === "retract") {
       updateSource(db, id, { status: "retracted" });

@@ -37,12 +37,27 @@ export async function engineAgentAction(formData: FormData) {
   await run(`/api/agents/${name}/${action}`, { reason: text(formData, "reason", 300) || "Wstrzymane z panelu" }, `Agent ${name}: ${action === "pause" ? "wstrzymany" : "wznowiony"}.`);
 }
 
-export async function engineDecisionAction(formData: FormData) {
+async function resolveDecision(formData: FormData, resolution: "approved" | "rejected") {
   const id = Number(text(formData, "id", 12));
-  const resolution = text(formData, "resolution", 10) === "approved" ? "approved" : "rejected";
   if (!Number.isSafeInteger(id) || id <= 0) redirect(`${PATH}?error=${encodeURIComponent("Nieprawidłowa decyzja.")}`);
   const rules = formData.getAll("rules").filter((value): value is string => typeof value === "string");
   await run(`/api/decisions/${id}`, { resolution, note: text(formData, "note", 2000) || undefined, ...(rules.length ? { rules } : {}) }, resolution === "approved" ? "Decyzja zatwierdzona." : "Decyzja odrzucona.");
+}
+
+// One action per button: the outcome never depends on the submitter's name/value being forwarded.
+export async function engineApproveDecisionAction(formData: FormData) {
+  await resolveDecision(formData, "approved");
+}
+
+export async function engineRejectDecisionAction(formData: FormData) {
+  await resolveDecision(formData, "rejected");
+}
+
+/** Generic entry point kept for non-JS posts; a missing or unknown resolution is an error, never a rejection. */
+export async function engineDecisionAction(formData: FormData) {
+  const value = text(formData, "resolution", 10);
+  if (value !== "approved" && value !== "rejected") redirect(`${PATH}?error=${encodeURIComponent("Nie rozpoznano decyzji — nic nie zapisano.")}`);
+  await resolveDecision(formData, value);
 }
 
 export async function engineSourceAction(formData: FormData) {

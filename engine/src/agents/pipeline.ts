@@ -3,7 +3,7 @@
 import { writeDescriptions } from "../content.ts";
 import { type Db, json, nowIso } from "../db.ts";
 import { type EventFacts, titleSimilarity } from "../facts.ts";
-import { assessQuality, classifyCategory, fallbackCategory, inPoland, sameOccurrence } from "../quality.ts";
+import { assessQuality, classifyCategory, fallbackCategory, fallbackStrength, inPoland, sameOccurrence } from "../quality.ts";
 import { getSource } from "../sources.ts";
 import type { DefaultVenue } from "./discovery.ts";
 import { audit, bumpMetric, metricsForDay, recall, remember, warsawDay } from "../store.ts";
@@ -106,11 +106,16 @@ export const qualityAgent: AgentDefinition = {
       if (!catalog) throw new DeferError("Brak katalogu kategorii.", HOUR);
       const available = new Set(catalog.categories.keys());
       let categorySlug = classifyCategory(facts, available);
-      let categoryFromFallback = false;
+      let categoryFromFallback: false | "strong" | "weak" = false;
       if (categorySlug === "inne" || !categorySlug) {
         const source = getSource(ctx.db, row.source_id);
-        const fallback = fallbackCategory(facts, recall<string | null>(ctx.db, "default_category", String(row.source_id), null), source?.name ?? null, available);
-        if (fallback) { categorySlug = fallback; categoryFromFallback = true; }
+        const sourceDefault = recall<string | null>(ctx.db, "default_category", String(row.source_id), null);
+        const fallback = fallbackCategory(facts, sourceDefault, source?.name ?? null, available);
+        if (fallback) {
+          categorySlug = fallback;
+          // Only a source default backed by ≥85% of its history is "strong"; name hints are always weak.
+          categoryFromFallback = fallback === sourceDefault ? fallbackStrength(recall<number | null>(ctx.db, "default_category_share", String(row.source_id), null)) : "weak";
+        }
       }
       const { score, issues } = assessQuality(facts, { cityId: row.city_id, categorySlug, categoryFromFallback, now: ctx.now() });
       const blocking = issues.filter(issue => issue.blocking);
@@ -161,6 +166,15 @@ export const contentAgent: AgentDefinition = {
   }
 };
 
+let writeLock: Promise<unknown> = Promise.resolve();
+
+/** Serialises Supabase writes within the publisher process. */
+export function withWriteLock<T>(fn: () => Promise<T>): Promise<T> {
+  const run = writeLock.then(fn, fn);
+  writeLock = run.catch(() => undefined);
+  return run;
+}
+
 function writtenToday(db: Db): number {
   const metrics = metricsForDay(db, warsawDay());
   return (metrics.events_published ?? 0) + (metrics.events_pending_review ?? 0);
@@ -199,16 +213,23 @@ export const publisherAgent: AgentDefinition = {
       if (row.supabase_event_id) {
         const result = await updateOwnedEvent(client, row.supabase_event_id, row.supabase_updated_at, {
           start_at: facts.startAt, end_at: facts.endAt, is_all_day: facts.isAllDay, price_type: facts.priceType, price_min: facts.priceMin,
-          price_max: facts.priceMax, currency: facts.currency, short_description: row.short_description, description: row.description
+          price_max: facts.priceMax, currency: facts.currency, short_description: row.short_description, description: row.description,
+          category_id: categoryId
         });
-        setCandidate(ctx.db, row.id, { status: result.applied ? "published" : "update_conflict", supabase_updated_at: result.updatedAt ?? row.supabase_updated_at });
+        // An update never changes moderation state: a pending_review record stays pending.
+        const supabaseStatus = (ctx.db.prepare("SELECT published_at FROM candidates WHERE id = ?").get(row.id) as { published_at: string | null }).published_at ? "published" : "pending_review";
+        setCandidate(ctx.db, row.id, { status: result.applied ? supabaseStatus : "update_conflict", supabase_updated_at: result.updatedAt ?? row.supabase_updated_at });
         bumpMetric(ctx.db, result.applied ? "events_updated" : "update_conflicts");
         return { updated: result.applied };
       }
 
+      // Cap check, duplicate check and insert run one at a time, so parallel jobs can
+      // neither overshoot the daily cap nor insert the same occurrence twice.
+      return withWriteLock(async () => {
       if (mode !== "dry_run" && writtenToday(ctx.db) >= ctx.config.publishDailyCap) {
         throw new DeferError(`Dzienny limit zapisów (${ctx.config.publishDailyCap}) osiągnięty.`, 3 * HOUR);
       }
+      if (!row.city_id || !row.city_name) throw new DeferError("Brak miasta.", HOUR);
       const existing = await sameDayEvents(client, row.city_id, facts.startAt);
       const duplicate = existing.find(event => sameOccurrence({ title: event.title, startAt: event.start_at, city: row.city_name ?? "" }, { title: facts.title, startAt: facts.startAt, city: row.city_name ?? "" })
         || (titleSimilarity(event.title, facts.title) >= 0.8 && Math.abs(Date.parse(event.start_at) - Date.parse(facts.startAt)) <= 3 * HOUR));
@@ -233,6 +254,7 @@ export const publisherAgent: AgentDefinition = {
         bumpMetric(ctx.db, "events_published");
       } else bumpMetric(ctx.db, "events_pending_review");
       return { eventId: result.eventId, status: result.status };
+      });
     },
 
     async "publish.cancel"(job, ctx) {
