@@ -244,11 +244,10 @@ html[data-theme="dark"] .homePage .maplibregl-ctrl-attrib a { color: #d5e5ef; }
     border-top: 1px solid var(--border);
     border-bottom: 0;
   }
-  html[data-theme] .homePage .sidebarUpcomingItem:last-child { border-bottom: 1px solid var(--border); }
   html[data-theme="dark"] .homePage .sidebarUpcomingItem { border-color: #1f2b38; }
   html[data-theme] .homePage .sidebarUpcomingLink { gap: 16px; }
-  html[data-theme] .homePage .sidebarUpcomingDate { min-width: 56px; width: 56px; height: 44px; border-radius: 8px; }
-  html[data-theme="dark"] .homePage .sidebarUpcomingDate { border: 1px solid #2f3b49; background: #0d1823; }
+  html[data-theme] .homePage .sidebarUpcomingDate { min-width: 56px; width: 56px; height: 44px; border: 0; border-radius: 8px; }
+  html[data-theme="dark"] .homePage .sidebarUpcomingDate { background: #0d1823; }
   html[data-theme] .homePage .sidebarUpcomingDay { font-size: 1.22rem; line-height: 1.05; }
   html[data-theme] .homePage .sidebarUpcomingSection .sidebarUpcomingMonth { font-size: .64rem; line-height: 1.2; letter-spacing: .07em; }
   html[data-theme] .homePage .sidebarUpcomingInfo { gap: 5px; }

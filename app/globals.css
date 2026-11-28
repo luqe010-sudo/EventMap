@@ -2637,7 +2637,6 @@ a { color: inherit; text-decoration: none; }
   gap: 8px;
   margin: 24px 0;
   padding: 10px;
-  border: 1px solid var(--border);
   border-radius: 8px;
   background: rgba(255, 253, 248, 0.92);
   backdrop-filter: blur(12px);
@@ -2664,7 +2663,6 @@ a { color: inherit; text-decoration: none; }
 
 .legalDocument {
   margin-top: 22px;
-  border: 1px solid var(--border);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.94);
   box-shadow: var(--shadow-sm);
@@ -4445,7 +4443,6 @@ select:focus {
   padding: 0 12px;
   border-radius: 999px;
   background: var(--bg-soft);
-  border: 1px solid var(--border);
   color: var(--ink-secondary);
   font-size: 0.82rem;
   font-weight: 600;
@@ -4727,7 +4724,6 @@ select:focus {
   height: 340px;
   border-radius: 14px;
   overflow: hidden;
-  border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
 }
 

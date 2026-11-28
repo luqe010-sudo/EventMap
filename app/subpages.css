@@ -211,9 +211,9 @@ html[data-theme] .legalPage { width: min(1050px, calc(100% - 64px)); padding: 30
 .legalPage .legalHero p { font-size: 1rem; line-height: 1.7; }
 .legalPage .legalHero .legalEyebrow { margin: 0 0 12px; color: var(--brand-dark); font-size: .75rem; }
 .legalPage .legalHero span { border-radius: 999px; font-size: .8125rem; }
-html[data-theme] .legalPage .legalToc { border-radius: 16px; background: var(--subpage-surface); border-color: var(--border); box-shadow: inset 0 1px 0 #ffffff08; }
+html[data-theme] .legalPage .legalToc { border-radius: 16px; background: var(--subpage-surface); box-shadow: inset 0 1px 0 #ffffff08; }
 .legalPage .legalToc a { min-height: 44px; border-radius: 11px; font-size: .875rem; font-weight: 600; }
-html[data-theme] .legalPage .legalDocument { border-radius: 20px; border-color: var(--border); background: var(--subpage-surface); box-shadow: inset 0 1px 0 #ffffff08, 0 8px 24px #030b141a; }
+html[data-theme] .legalPage .legalDocument { border-radius: 20px; background: var(--subpage-surface); box-shadow: inset 0 1px 0 #ffffff08, 0 8px 24px #030b141a; }
 html[data-theme] .legalPage .legalDocumentHeader { background: color-mix(in srgb, var(--bg-soft) 65%, transparent); border-color: var(--border); padding: 30px; }
 .legalPage .legalDocumentHeader h2 { font-size: 1.8rem; font-weight: 750; }
 .legalPage .legalSection { padding: 28px 30px; border-color: var(--border); }
@@ -234,7 +234,7 @@ html[data-theme] .seasonalPage { padding-top: 28px; }
 .seasonalPage .seasonalHero .seasonalEyebrow { color: var(--brand-dark); font-size: .75rem; }
 .seasonalPage :is(.seasonalCityChip, .seasonalRelated a) { min-height: 44px; background: var(--subpage-control); border-color: var(--border); font-size: .875rem; }
 .seasonalPage :is(.seasonalTips, .seasonalRelated) { max-width: none; }
-.seasonalPage .seasonalTips { margin-top: 28px; padding: 26px; border: 1px solid var(--border); border-radius: 20px; background: var(--subpage-surface); }
+.seasonalPage .seasonalTips { margin-top: 28px; padding: 26px; border-radius: 20px; background: var(--subpage-surface); }
 .seasonalPage .seasonalTips summary { min-height: 30px; font-size: .9375rem; }
 .seasonalPage .seasonalEventList { gap: 16px; }
 
@@ -285,7 +285,6 @@ html[data-theme] .seasonalPage { padding-top: 28px; }
 html[data-theme] .eventDetailPage { width: calc(100% - clamp(32px, 5.8vw, 94px)); max-width: none; margin-inline: auto; padding: 13px 0 24px; }
 :is(.eventDetailPage, .edShellEmbedded) {
   --ed-gap: clamp(14px, 1.35vw, 21px);
-  --ed-border: linear-gradient(155deg, #cdd9e4, #e0e7ef);
   --ed-panel: linear-gradient(#fff, #fff);
   --ed-panel-end: #fff;
   --ed-control: #f4f7fb;
@@ -293,7 +292,6 @@ html[data-theme] .eventDetailPage { width: calc(100% - clamp(32px, 5.8vw, 94px))
   --ed-icon-bg: var(--brand-light);
 }
 html[data-theme="dark"] :is(.eventDetailPage, .edShellEmbedded) {
-  --ed-border: linear-gradient(150deg, #546b80, #35495d 60%, #283848);
   --ed-panel: linear-gradient(145deg, #132231, #0e1926 65%, #0b1723);
   --ed-panel-end: #0e1926;
   --ed-control: linear-gradient(145deg, #172a3b, #0d1927);
@@ -333,7 +331,6 @@ html[data-theme="dark"] :is(.eventDetailPage, .edShellEmbedded) {
 :is(.eventDetailPage, .edShellEmbedded) .edHeroImageWrap {
   isolation: isolate;
   aspect-ratio: 16 / 10;
-  border: 1px solid var(--border-strong);
   border-radius: 16px;
   box-shadow: 0 10px 25px #02081226;
 }
@@ -431,7 +428,6 @@ html[data-theme] :is(.eventDetailPage, .edShellEmbedded) .edHeroInfo h1 {
   min-height: 34px;
   padding: 5px 11px;
   background: var(--ed-control);
-  border-color: var(--border-strong);
   color: var(--ink);
   font-size: .82rem;
   font-weight: 650;
@@ -456,9 +452,9 @@ html[data-theme] :is(.eventDetailPage, .edShellEmbedded) .edHeroInfo h1 {
   min-width: 0;
   margin: 0;
   padding: 14px 17px;
-  border: 1px solid transparent;
+  border: 0;
   border-radius: 16px;
-  background: var(--ed-panel) padding-box, var(--ed-border) border-box;
+  background: var(--ed-panel);
   box-shadow: inset 0 1px 0 #ffffff09;
 }
 html[data-theme] .edShell :is(.edDescSection, .edMapSection, .edOrgSection, .edSourcesSection, .edMoreLinksSection) h2 {
@@ -491,7 +487,6 @@ html[data-theme] .edShell :is(.edDescSection, .edMapSection, .edOrgSection, .edS
 html[data-theme] .edShell .edMapSection h2 { margin-bottom: 5px; }
 .edShell .edMapContainer {
   height: clamp(125px, 9.2vw, 148px);
-  border-color: var(--border-strong);
   border-radius: 11px;
   background: var(--bg-soft);
   box-shadow: none;
@@ -695,16 +690,15 @@ html[data-theme] .homePage :is(.citySecHeader h2, .internalLinksSec h3, .seoText
 }
 
 html[data-theme] .homePage :is(.seoTextCard, .valueCard, .cityTileCard, .internalLinkCard, .cityTimeBtn),
-html[data-theme] .homePage:not(.homePageListing) :is(.mainEvents .eventCardH, .emptyState, .resultsFeedback, .resultSkeletonCard) {
-  border: 1px solid var(--discovery-glass-edge);
+html[data-theme] .homePage:not(.homePageListing) :is(.emptyState, .resultsFeedback, .resultSkeletonCard) {
+  border: 0;
   border-radius: 15px;
   background: var(--discovery-glass);
   box-shadow: var(--discovery-glass-shadow);
 }
 
-html[data-theme] .homePage :is(.cityTileCard, .internalLinkCard, .cityTimeBtn):hover,
-html[data-theme] .homePage:not(.homePageListing) .mainEvents .eventCardH:hover {
-  border-color: var(--brand);
+html[data-theme] .homePage :is(.cityTileCard, .internalLinkCard, .cityTimeBtn):hover {
+  background: var(--bg-card-hover);
   transform: none;
 }
 
@@ -742,14 +736,14 @@ html[data-theme] .homePage:not(.homePageListing) .mainEventsHeader h2 {
   letter-spacing: -.035em;
 }
 
-html[data-theme] .homePage:not(.homePageListing) .mainEvents :is(.mainEventsSortSelect, .showMoreBtn, .eventCardHMapButton, .resultsAction, .eventVenueDeckStep) {
+html[data-theme] .homePage:not(.homePageListing) .mainEvents :is(.mainEventsSortSelect, .showMoreBtn, .resultsAction) {
   border-color: var(--discovery-glass-edge);
   border-radius: 12px;
   background: var(--discovery-glass);
   color: var(--ink);
 }
 
-html[data-theme] .homePage:not(.homePageListing) .mainEvents :is(.showMoreBtn, .eventCardHMapButton, .resultsAction):hover {
+html[data-theme] .homePage:not(.homePageListing) .mainEvents :is(.showMoreBtn, .resultsAction):hover {
   border-color: var(--brand);
   color: var(--brand-dark);
 }
@@ -760,22 +754,6 @@ html[data-theme] .homePage:not(.homePageListing) .mainEvents .resultsActionPrima
   color: var(--brand-dark);
 }
 
-.homePage:not(.homePageListing) .mainEvents .eventCardHPrice {
-  padding: 4px 9px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--bg-soft);
-  color: var(--ink);
-  white-space: nowrap;
-}
-
-html[data-theme="dark"] .homePage:not(.homePageListing) .mainEvents .eventCardHFav {
-  border-color: #dce7f050;
-  background: #091420d9;
-  color: #f7f8fc;
-}
-
-html[data-theme="dark"] .homePage:not(.homePageListing) .mainEvents .eventCardHFavActive { color: var(--brand-dark); }
 .homePage :is(.cityTileCard, .internalLinkCard, .cityTimeBtn, .valueLink):focus-visible,
 .siteFooter a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
 
@@ -783,7 +761,7 @@ html[data-theme] .siteWrapper > .siteFooter {
   width: min(1340px, calc(100% - 32px));
   margin: 20px auto 0;
   padding: 26px clamp(18px, 4vw, 44px) 20px;
-  border: 1px solid var(--discovery-glass-edge);
+  border: 0;
   border-radius: 18px;
   background: var(--discovery-glass);
   color: var(--ink-secondary);
@@ -835,14 +813,14 @@ html[data-theme] .siteFooter .cookieSettingsButton:hover { border-color: var(--b
 }
 
 
-/* Category and city listings share the discovery search and event cards. */
-.homePageListing {
+/* Discovery result cards and listing controls share a palette. */
+.homePage {
   --listing-card-surface: linear-gradient(150deg, var(--bg-soft), var(--bg-card) 75%);
   --listing-card-edge: linear-gradient(180deg, var(--border-strong), var(--border));
   --listing-control: var(--bg-card);
   --listing-button: linear-gradient(180deg, #c64805, #a83200);
 }
-html[data-theme="dark"] .homePageListing {
+html[data-theme="dark"] .homePage {
   --listing-card-surface: linear-gradient(150deg, #142435, #0e1926 69%, #0b1722);
   --listing-card-edge: linear-gradient(180deg, #52677e, #354759 54%, #293949);
   --listing-control: linear-gradient(155deg, #152639, #0d1926);
@@ -883,31 +861,29 @@ html[data-theme] .homePageListing .mainEventsSortSelect {
 .homePageListing .mainEventsSortSelect option { color: var(--ink); background: var(--bg-card); }
 .homePageListing .mainEventsSort > svg { position: absolute; flex: none; pointer-events: none; }
 .homePageListing .mainEventsSort > svg:last-child { right: 11px; }
-.homePageListing .listingToolbar, .homePageListing .eventCardHDetails, .homePageListing .eventCardHCoverCategory { display: none; }
+.homePageListing .listingToolbar, .eventsList :is(.eventCardHDetails, .eventCardHCoverCategory) { display: none; }
 
-html[data-theme] .homePageListing .eventsList { gap: 11px; }
-html[data-theme] .homePageListing .eventCardH {
+html[data-theme] .homePage .eventsList { gap: 11px; }
+html[data-theme] .eventsList .eventCardH {
   --listing-image-width: clamp(125px, 12vw, 185px);
   --listing-card-inset: 5px;
   --listing-fav-size: 34px;
-  border: 1px solid transparent;
   border-radius: 14px;
-  background: var(--listing-card-surface) padding-box, var(--listing-card-edge) border-box;
+  background: var(--listing-card-surface);
   box-shadow: 0 4px 14px rgb(0 8 20 / .1);
 }
-html[data-theme] .homePageListing .eventCardH:hover { border-color: var(--border-strong); }
-html[data-theme] .homePageListing .eventCardHLink {
+html[data-theme] .eventsList .eventCardHLink {
   grid-template-columns: var(--listing-image-width) minmax(0, 1fr);
   align-items: stretch;
   gap: 15px;
   min-height: 108px;
   padding: var(--listing-card-inset);
 }
-html[data-theme] .homePageListing .eventCardHImageWrap { width: 100%; height: auto; min-height: 0; aspect-ratio: auto; border-radius: 10px; }
-.homePageListing .eventCardHImageWrap > .eventVisual { position: absolute; inset: 0; }
-.homePageListing .eventCardHImageWrap .eventVisual img.eventVisualImage { object-fit: cover; object-position: 50% 38%; }
-.homePageListing .eventCardHImageWrap .eventVisualIllustrationNote { bottom: 4px; left: 4px; font-size: .56rem; }
-html[data-theme] .homePageListing .eventCardH > .eventCardHFav {
+html[data-theme] .eventsList .eventCardHImageWrap { width: 100%; height: auto; min-height: 0; aspect-ratio: auto; border-radius: 10px; }
+.eventsList .eventCardHImageWrap > .eventVisual { position: absolute; inset: 0; }
+.eventsList .eventCardHImageWrap .eventVisual img.eventVisualImage { object-fit: cover; object-position: 50% 38%; }
+.eventsList .eventCardHImageWrap .eventVisualIllustrationNote { bottom: 4px; left: 4px; font-size: .56rem; }
+html[data-theme] .eventsList .eventCardH > .eventCardHFav {
   z-index: 3;
   top: calc(var(--listing-card-inset) + 4px);
   left: calc(var(--listing-card-inset) + var(--listing-image-width) - var(--listing-fav-size) - 4px);
@@ -920,22 +896,21 @@ html[data-theme] .homePageListing .eventCardH > .eventCardHFav {
   box-shadow: inset 0 1px 0 #d8e9ff12;
   backdrop-filter: blur(8px);
 }
-html[data-theme] .homePageListing .eventCardH > .eventCardHFav::before { content: ""; position: absolute; inset: -5px; border-radius: inherit; }
-html[data-theme] .homePageListing .eventCardH > .eventCardHFav.eventCardHFavActive { color: #ff8a42; }
-.homePageListing .eventCardHFav svg { width: 19px; height: 19px; }
-html[data-theme] .homePageListing .eventCardHBody { min-width: 0; padding: 0 8px 1px 0; }
-html[data-theme] .homePageListing .eventCardHTop { margin: 0 0 2px; }
-html[data-theme] .homePageListing .eventCardHTitle { margin-bottom: 2px; font-size: .98rem; font-weight: 750; line-height: 1.23; overflow-wrap: anywhere; }
-html[data-theme] .homePageListing .eventCardHDesc { margin: 0 0 4px; font-size: .77rem; line-height: 1.35; }
-html[data-theme] .homePageListing .eventCardHBottom { min-width: 0; flex-wrap: nowrap; align-items: center; gap: 7px; border: 0; padding: 0; }
-html[data-theme] .homePageListing .eventCardHLocation { min-width: 0; }
-.homePageListing .eventCardHLocation svg { color: currentColor; }
-.homePageListing .eventCardHLocation span { white-space: nowrap; }
-.homePageListing .eventCardHActions { min-width: 0; }
-html[data-theme] .homePageListing .eventCardHPriceDist { gap: 6px; flex-wrap: wrap; }
-html[data-theme] .homePageListing .eventCardHPrice {
+html[data-theme] .eventsList .eventCardH > .eventCardHFav::before { content: ""; position: absolute; inset: -5px; border-radius: inherit; }
+html[data-theme] .eventsList .eventCardH > .eventCardHFav.eventCardHFavActive { color: #ff8a42; }
+.eventsList .eventCardHFav svg { width: 19px; height: 19px; }
+html[data-theme] .eventsList .eventCardHBody { min-width: 0; padding: 0 8px 1px 0; }
+html[data-theme] .eventsList .eventCardHTop { margin: 0 0 2px; }
+html[data-theme] .eventsList .eventCardHTitle { margin-bottom: 2px; font-size: .98rem; font-weight: 750; line-height: 1.23; overflow-wrap: anywhere; }
+html[data-theme] .eventsList .eventCardHDesc { margin: 0 0 4px; font-size: .77rem; line-height: 1.35; }
+html[data-theme] .eventsList .eventCardHBottom { min-width: 0; flex-wrap: nowrap; align-items: center; gap: 7px; border: 0; padding: 0; }
+html[data-theme] .eventsList .eventCardHLocation { min-width: 0; }
+.eventsList .eventCardHLocation svg { color: currentColor; }
+.eventsList .eventCardHLocation span { white-space: nowrap; }
+.eventsList .eventCardHActions { min-width: 0; }
+html[data-theme] .eventsList .eventCardHPriceDist { gap: 6px; flex-wrap: wrap; }
+html[data-theme] .eventsList .eventCardHPrice {
   padding: 4px 9px;
-  border: 1px solid var(--border);
   border-radius: 999px;
   background: color-mix(in srgb, var(--bg-soft) 85%, var(--ink) 15%);
   color: var(--ink);
@@ -943,8 +918,8 @@ html[data-theme] .homePageListing .eventCardHPrice {
   line-height: 1.2;
   white-space: nowrap;
 }
-.homePageListing .eventVenueDeckVenue > svg { color: var(--brand); }
-.homePageListing .eventVenueDeckStep { border-radius: 11px; background: var(--listing-control); }
+.eventsList .eventVenueDeckVenue > svg { color: var(--brand); }
+.eventsList .eventVenueDeckStep { border-radius: 11px; background: var(--listing-control); }
 
 @media (min-width: 761px) {
   html[data-theme] .homePageListing .heroSection { padding: 4px 12px 8px; }
@@ -1008,17 +983,17 @@ html[data-theme] .homePageListing .eventCardHPrice {
   html[data-theme] .homePageListing .mainEventsHeader h2 { font-size: 1.12rem; gap: 6px 9px; }
   .homePageListing .mainEventsHeader .mainEventsSort { display: none; }
 
-  html[data-theme] .homePageListing .eventsList { gap: 8px; }
-  html[data-theme] .homePageListing .eventCardH { --listing-image-width: 38%; --listing-card-inset: 0px; --listing-fav-size: 28px; }
-  html[data-theme] .homePageListing .eventCardHLink { min-height: 110px; height: 100%; gap: 8px; }
-  html[data-theme] .homePageListing .eventCardHImageWrap { border-radius: 11px 9px 9px 11px; }
-  html[data-theme] .homePageListing .eventCardH > .eventCardHFav { top: 5px; }
-  html[data-theme] .homePageListing .eventCardH > .eventCardHFav::before { inset: -8px; }
-  .homePageListing .eventCardHFav svg { width: 17px; height: 17px; }
-  .homePageListing .eventCardHCoverCategory { display: inline-flex; top: 5px; left: 4px; max-width: calc(100% - 37px); min-height: 22px; gap: 3px; padding: 3px 5px; font-size: .58rem; }
-  .homePageListing .eventCardHCoverCategory svg { width: 12px; height: 12px; }
-  .homePageListing .eventCardH:has(.eventCardHMapButton) .eventVisualIllustrationNote { bottom: 32px; }
-  html[data-theme] .homePageListing .eventCardHMapButton {
+  html[data-theme] .homePage .eventsList { gap: 8px; }
+  html[data-theme] .eventsList .eventCardH { --listing-image-width: 38%; --listing-card-inset: 0px; --listing-fav-size: 28px; }
+  html[data-theme] .eventsList .eventCardHLink { min-height: 110px; height: 100%; gap: 8px; }
+  html[data-theme] .eventsList .eventCardHImageWrap { border-radius: 11px 9px 9px 11px; }
+  html[data-theme] .eventsList .eventCardH > .eventCardHFav { top: 5px; }
+  html[data-theme] .eventsList .eventCardH > .eventCardHFav::before { inset: -8px; }
+  .eventsList .eventCardHFav svg { width: 17px; height: 17px; }
+  .eventsList .eventCardHCoverCategory { display: inline-flex; top: 5px; left: 4px; max-width: calc(100% - 37px); min-height: 22px; gap: 3px; padding: 3px 5px; font-size: .58rem; }
+  .eventsList .eventCardHCoverCategory svg { width: 12px; height: 12px; }
+  .eventsList .eventCardH:has(.eventCardHMapButton) .eventVisualIllustrationNote { bottom: 32px; }
+  html[data-theme] .eventsList .eventCardHMapButton {
     position: absolute;
     z-index: 3;
     bottom: 5px;
@@ -1032,24 +1007,24 @@ html[data-theme] .homePageListing .eventCardHPrice {
     background: #091728e8;
     color: #f7f9ff;
   }
-  .homePageListing .eventCardHMapButton::before { content: ""; position: absolute; inset: -9px; border-radius: inherit; }
-  html[data-theme] .homePageListing .eventCardHBody { display: grid; grid-template-areas: "title" "date" "location" "actions"; align-content: center; justify-content: stretch; gap: 3px; padding: 7px 7px 7px 0; }
-  html[data-theme] .homePageListing .eventCardHTop, html[data-theme] .homePageListing .eventCardHBottom { display: contents; }
-  .homePageListing .eventCardHTopRight { grid-area: date; min-width: 0; }
-  html[data-theme] .homePageListing .eventCardHTitle { grid-area: title; margin: 0 0 2px; font-size: .9rem; }
-  .homePageListing :is(.eventCardHCategory, .eventCardHDesc) { display: none; }
-  .homePageListing .eventCardHLocation { grid-area: location; }
-  html[data-theme] .homePageListing :is(.eventCardHDate, .eventCardHLocation) { gap: 5px; font-size: .69rem; line-height: 1.25; }
-  .homePageListing :is(.eventCardHDate, .eventCardHLocation) svg { width: 13px; height: 13px; flex-shrink: 0; }
-  .homePageListing .eventCardHActions { grid-area: actions; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px; margin-top: 2px; }
-  .homePageListing .eventCardHPriceDist { width: auto; }
-  .homePageListing .eventCardHDetails { display: inline-flex; align-items: center; justify-content: center; gap: 2px; padding: 4px 5px; border: 1px solid #f68335; border-radius: 999px; background: var(--listing-button); color: #fff; box-shadow: inset 0 1px 0 #fff3, 0 2px 8px #ed650033; font-size: .65rem; font-weight: 680; line-height: 1.3; white-space: nowrap; }
-  .homePageListing .eventCardHDetails svg { width: 11px; height: 11px; flex-shrink: 0; }
-  html[data-theme] .homePageListing .eventCardHPrice { padding: 4px 5px; font-size: .65rem; }
+  .eventsList .eventCardHMapButton::before { content: ""; position: absolute; inset: -9px; border-radius: inherit; }
+  html[data-theme] .eventsList .eventCardHBody { display: grid; grid-template-areas: "title" "date" "location" "actions"; align-content: center; justify-content: stretch; gap: 3px; padding: 7px 7px 7px 0; }
+  html[data-theme] .eventsList .eventCardHTop, html[data-theme] .eventsList .eventCardHBottom { display: contents; }
+  .eventsList .eventCardHTopRight { grid-area: date; min-width: 0; }
+  html[data-theme] .eventsList .eventCardHTitle { grid-area: title; margin: 0 0 2px; font-size: .9rem; }
+  .eventsList :is(.eventCardHCategory, .eventCardHDesc) { display: none; }
+  .eventsList .eventCardHLocation { grid-area: location; }
+  html[data-theme] .eventsList :is(.eventCardHDate, .eventCardHLocation) { gap: 5px; font-size: .69rem; line-height: 1.25; }
+  .eventsList :is(.eventCardHDate, .eventCardHLocation) svg { width: 13px; height: 13px; flex-shrink: 0; }
+  .eventsList .eventCardHActions { grid-area: actions; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px; margin-top: 2px; }
+  .eventsList .eventCardHPriceDist { width: auto; }
+  .eventsList .eventCardHDetails { display: inline-flex; align-items: center; justify-content: center; gap: 2px; padding: 4px 5px; border: 1px solid #f68335; border-radius: 999px; background: var(--listing-button); color: #fff; box-shadow: inset 0 1px 0 #fff3, 0 2px 8px #ed650033; font-size: .65rem; font-weight: 680; line-height: 1.3; white-space: nowrap; }
+  .eventsList .eventCardHDetails svg { width: 11px; height: 11px; flex-shrink: 0; }
+  html[data-theme] .eventsList .eventCardHPrice { padding: 4px 5px; font-size: .65rem; }
 }
 
 @media (max-width: 375px) {
-  html[data-theme] .homePageListing .eventCardH { --listing-image-width: 36%; }
+  html[data-theme] .eventsList .eventCardH { --listing-image-width: 36%; }
   .homePageListing .listingToolbarCount { font-size: .76rem; }
 }
 

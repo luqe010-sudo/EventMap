@@ -54,7 +54,7 @@ html[data-theme] .homePage .heroSubtitle { max-width: 535px; margin: 0; color: v
 .eventCarouselNav button:hover:not(:disabled) { border-color: var(--brand); }
 .eventCarouselTrack { display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding: 3px 2px 12px; scrollbar-width: none; min-width: 0; max-width: 100%; }
 .eventCarouselTrack::-webkit-scrollbar { display: none; }
-.eventCarouselCard { position: relative; flex: 0 0 260px; min-width: 0; scroll-snap-align: start; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); overflow: hidden; box-shadow: var(--discovery-shadow); }
+.eventCarouselCard { position: relative; flex: 0 0 260px; min-width: 0; scroll-snap-align: start; border-radius: var(--discovery-radius); background: var(--bg-card); overflow: hidden; box-shadow: var(--discovery-shadow); }
 .eventCarouselCardLink { display: flex; flex-direction: column; height: 100%; color: var(--ink); text-decoration: none; }
 .eventCarouselImageWrap { aspect-ratio: 2 / 1; overflow: hidden; background: var(--bg-soft); }
 .eventCarouselImageWrap img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -77,8 +77,8 @@ html[data-theme] .homePage .mainEventsHeader h2 { font-size: 1.25rem; font-weigh
 html[data-theme] .homePage .mainEventsCount { margin: 0 0 20px; font-size: .85rem; font-weight: 400; color: var(--ink-secondary); }
 html[data-theme] .homePage .mainEventsSortSelect { min-height: 44px; width: auto; max-width: 185px; border-radius: var(--discovery-control-radius); color: var(--ink); background: var(--bg-card); font-size: .8rem; }
 html[data-theme] .homePage .eventsList { display: grid; gap: 16px; border: 0; border-radius: 0; background: transparent; overflow: visible; box-shadow: none; }
-html[data-theme] .homePage .eventCardH { position: relative; margin: 0; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); overflow: hidden; }
-html[data-theme] .homePage .eventCardH:hover { background: var(--bg-card); border-color: var(--border-strong); transform: none; }
+html[data-theme] .homePage .eventCardH { position: relative; margin: 0; border: 0; border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); overflow: hidden; }
+html[data-theme] .homePage .eventCardH:hover { background: var(--bg-card-hover); transform: none; }
 html[data-theme] .homePage .eventCardHLink { display: grid; grid-template-columns: 144px minmax(0, 1fr); gap: 16px; padding: 16px; }
 html[data-theme] .homePage .eventCardHImageWrap { width: 144px; height: 144px; aspect-ratio: 1; border-radius: 10px; }
 html[data-theme] .homePage .eventCardH > .eventCardHFav { top: 24px; left: 108px; right: auto; }
@@ -94,13 +94,13 @@ html[data-theme] .homePage .eventCardHLocation svg { flex-shrink: 0; }
 html[data-theme] .homePage .eventCardHLocation span { overflow: hidden; text-overflow: ellipsis; }
 html[data-theme] .homePage .eventCardHPrice { font-size: .9rem; font-weight: 650; }
 html[data-theme] .homePage .eventCardHDist { font-size: .8rem; color: var(--ink-secondary); }
-html[data-theme] .homePage .eventsList > .eventCarousel { padding: 16px; margin: 0; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); }
+html[data-theme] .homePage .eventsList > .eventCarousel { padding: 16px; margin: 0; border-radius: var(--discovery-radius); background: var(--bg-soft); box-shadow: var(--discovery-shadow); }
 html[data-theme] .homePage .eventsList > .eventCarousel h2 { font-size: 1.05rem; }
 html[data-theme] .homePage .eventsList > .eventCarousel .eventCarouselCard { box-shadow: none; }
 html[data-theme] .homePage .showMoreBtn { min-height: 48px; border: 1px solid var(--border); border-radius: var(--discovery-control-radius); background: var(--bg-card); color: var(--ink); font-size: .9rem; font-weight: 600; }
 
 /* Search: four actual sections, theme-aware controls, one active-state color. */
-html[data-theme] .homePage .searchPanel { padding: 22px; margin: 0 0 32px; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); }
+html[data-theme] .homePage .searchPanel { padding: 22px; margin: 0 0 32px; border: 0; border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); }
 .searchPanelHeading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; }
 .searchPanelHeading h2 { margin: 0; color: var(--ink); font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em; }
 .searchPanelHeading p { margin: 4px 0 0; font-size: .85rem; color: var(--ink-secondary); }
@@ -134,12 +134,12 @@ html[data-theme] .homePage .searchActiveFiltersClear { min-height: 44px; border:
 html[data-theme] .homePage .searchSubmitBtn { min-height: 44px; height: auto; border-radius: var(--discovery-control-radius); background: var(--brand); box-shadow: none; color: #fff; font-size: .85rem; font-weight: 650; }
 html[data-theme] .homePage .hint { color: var(--ink-secondary); font-size: .8rem; line-height: 1.5; }
 html[data-theme] .homePage .sidebar { position: sticky; top: 88px; border: 0; padding: 0; gap: 16px; background: transparent; box-shadow: none; }
-html[data-theme] .homePage .seoTextCard, html[data-theme] .homePage .valueGrid { padding: 24px 0; border: 0; border-top: 1px solid var(--border); border-radius: 0; background: transparent; box-shadow: none; }
-html[data-theme] .homePage .sidebarSection { padding: 14px; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); }
+html[data-theme] .homePage .seoTextCard, html[data-theme] .homePage .valueGrid { padding: 24px 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+html[data-theme] .homePage .sidebarSection { padding: 14px; border: 0; border-radius: var(--discovery-radius); background: var(--bg-card); box-shadow: var(--discovery-shadow); }
 html[data-theme] .homePage .sidebarSection + .sidebarSection { margin-top: 0; }
 html[data-theme] .homePage .sidebarSectionHeader { display: block; padding: 0 0 12px; }
 html[data-theme] .homePage .sidebarSectionHeader h3 { color: var(--ink); font-size: 1.25rem; font-weight: 700; letter-spacing: -.02em; }
-html[data-theme] .homePage .sidebarMapWrap { height: clamp(300px, 36vh, 415px); border: 1px solid var(--border); border-radius: var(--discovery-control-radius); background: var(--bg-soft); }
+html[data-theme] .homePage .sidebarMapWrap { height: clamp(300px, 36vh, 415px); border: 0; border-radius: var(--discovery-control-radius); background: var(--bg-soft); }
 html[data-theme] .homePage .sidebarMapWrap .mapLibreCanvas { border-radius: inherit; }
 html[data-theme] .homePage .sidebarMapPlaceholder { background: var(--bg-soft); color: var(--ink); }
 html[data-theme] .homePage .sidebarMapLoadButton { min-height: 44px; border-radius: var(--discovery-control-radius); font-weight: 600; }
@@ -150,11 +150,11 @@ html[data-theme] .homePage .sidebarUpcomingDate { background: var(--bg-soft); }
 html[data-theme] .homePage .sidebarCategoryChip { min-height: 44px; border: 1px solid var(--border); border-radius: var(--discovery-control-radius); background: var(--bg-soft); color: var(--ink); font-weight: 500; }
 html[data-theme] .homePage .sidebarCategoryChip.sidebarCategoryActive { background: var(--brand-light); border-color: var(--brand); color: var(--brand-dark); }
 html[data-theme] .homePage .sidebarCategoryCount { color: var(--ink-secondary); }
-html[data-theme] .homePage .emptyState { padding: 32px 24px; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); color: var(--ink-secondary); }
+html[data-theme] .homePage .emptyState { padding: 32px 24px; border: 0; border-radius: var(--discovery-radius); background: var(--bg-card); color: var(--ink-secondary); }
 html[data-theme] .homePage .emptyState h3 { font-size: 1.15rem; font-weight: 700; color: var(--ink); }
 
 /* Route loading must follow the selected theme too. */
-html[data-theme] .loadingHomePage .loadingSearchPanel, html[data-theme] .loadingHomePage .loadingEventRow { border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); }
+html[data-theme] .loadingHomePage .loadingSearchPanel, html[data-theme] .loadingHomePage .loadingEventRow { border: 0; border-radius: var(--discovery-radius); background: var(--bg-card); }
 html[data-theme] .loadingHomePage { min-height: 100vh; }
 html[data-theme] .loadingHomePage .loadingHero { min-height: 215px; padding: 25px 0 22px; grid-template-columns: minmax(0, 1fr); align-items: center; }
 html[data-theme] .loadingHomePage .loadingTitle { height: 104px; max-width: 540px; }
@@ -176,7 +176,7 @@ html[data-theme] .edExpandToggle { min-height: 44px; border-radius: var(--discov
 .resultsAction { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 16px; border: 1px solid var(--border-strong); border-radius: var(--discovery-control-radius); color: var(--ink); background: var(--bg-card); font: inherit; font-size: .85rem; font-weight: 600; cursor: pointer; }
 .resultsAction:hover { border-color: var(--brand); }
 .resultsActionPrimary { background: var(--brand); color: white; border-color: var(--brand); }
-.resultsFeedback { display: flex; align-items: center; gap: 14px; padding: 20px; margin: 18px 0; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); color: var(--ink); }
+.resultsFeedback { display: flex; align-items: center; gap: 14px; padding: 20px; margin: 18px 0; border-radius: var(--discovery-radius); background: var(--bg-card); color: var(--ink); }
 .resultsFeedback > svg { flex-shrink: 0; color: var(--brand); }
 .resultsFeedback > div { flex: 1; }
 .resultsFeedback p { margin: 5px 0 0; color: var(--ink-secondary); font-size: .9rem; }
@@ -184,7 +184,7 @@ html[data-theme] .edExpandToggle { min-height: 44px; border-radius: var(--discov
 .emptyStateActions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .sidebarMapStatus { padding: 12px 18px; font-size: .85rem; color: var(--ink-secondary); }
 .resultsSkeleton { display: grid; gap: 16px; }
-.resultSkeletonCard { display: flex; gap: 20px; padding: 16px; border: 1px solid var(--border); border-radius: var(--discovery-radius); background: var(--bg-card); }
+.resultSkeletonCard { display: flex; gap: 20px; padding: 16px; border-radius: var(--discovery-radius); background: var(--bg-card); }
 .resultSkeletonCard > span { width: 144px; min-height: 144px; border-radius: 10px; }
 .resultSkeletonCard > div { flex: 1; padding: 16px 0; display: grid; gap: 14px; }
 .resultSkeletonCard i { display: block; height: 14px; border-radius: 6px; }
@@ -382,7 +382,7 @@ html[data-theme] .homePage .sidebar:has(.sidebarMapExpanded) { z-index: 975; }
 .sidebarUpcomingMeta span, .sidebarUpcomingTitle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sidebarUpcomingTitle { font-weight: 720; }
 html[data-theme] .homePage .sidebarUpcomingItem { min-height: 58px; }
-html[data-theme] .homePage .sidebarUpcomingDate { min-width: 46px; border: 1px solid var(--border); }
+html[data-theme] .homePage .sidebarUpcomingDate { min-width: 46px; border: 0; }
 html[data-theme] .homePage .sidebarUpcomingDay { color: var(--brand-dark); }
 html[data-theme] .homePage .sidebarUpcomingMonth { color: var(--brand-dark); }
 .homePage .mainEvents { scroll-margin-top: 78px; }
@@ -442,14 +442,6 @@ html[data-theme="dark"] .homePage .heroSubtitle { color: #d7dde6; }
     width: min(1340px, calc(100% - 32px));
     margin-inline: auto;
     box-sizing: border-box;
-  }
-  html[data-theme="dark"] .siteWrapper:has(.homePage) > .navbar {
-    border: 1px solid var(--border);
-    border-top-color: #36617e;
-  }
-  html[data-theme="dark"] .siteWrapper:has(.homePage) > .mainContent {
-    border: 1px solid var(--border);
-    border-top: 0;
   }
   html[data-theme] .homePage { width: min(1280px, calc(100% - 42px)); }
   html[data-theme] .homePage .sidebar { top: 70px; }
@@ -602,8 +594,7 @@ html[data-theme="dark"] .siteWrapper:has(.homePage) .navOrganizerCta {
   box-shadow: inset 0 0 0 1px #ff7d2538, 0 0 12px #ff65004d;
 }
 html[data-theme="dark"] .siteWrapper:has(.homePage) .sidebarSection {
-  border-color: transparent;
-  background: linear-gradient(150deg, #111e2b, #0b1621 68%) padding-box, linear-gradient(180deg, #3d4c5e, #2a3644 50%, #212a35) border-box;
+  background: linear-gradient(150deg, #111e2b, #0b1621 68%);
   box-shadow: inset 0 1px 0 #ffffff09, 0 12px 28px #00000066;
 }
 

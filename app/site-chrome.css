@@ -104,8 +104,7 @@ html[data-theme="dark"] .siteWrapper .siteFooter { color: var(--ink-secondary); 
 
 @media (min-width: 761px) {
   html[data-theme] .siteWrapper > :is(.navbar, .mainContent) { width: min(1340px, calc(100% - 32px)); margin-inline: auto; box-sizing: border-box; }
-  html[data-theme="dark"] .siteWrapper > .mainContent { border: 1px solid #305b78; border-top: 0; border-radius: 0 0 25px 25px; }
-  html[data-theme="dark"] .siteWrapper > .navbar { border: 1px solid #305b78; border-bottom-color: #314354; }
+  html[data-theme="dark"] .siteWrapper > .mainContent { border-radius: 0 0 25px 25px; }
   .siteWrapper .navPlanPanel { display: none; }
 }
 @media (min-width: 1100px) {
@@ -145,7 +144,6 @@ html[data-theme="dark"] .siteWrapper .siteFooter { color: var(--ink-secondary); 
   .siteWrapper .navLogo { font-size: 1.2rem; }
 }
 @media (max-width: 760px) {
-  /* Tablet navigation is handled separately to keep the desktop frame intact. */
   html[data-theme] .siteWrapper > .navbar { height: 64px; border: 0; }
   html[data-theme="dark"] .siteWrapper > .navbar { background: linear-gradient(180deg, #08121f, #08121ff0); }
   html[data-theme] .siteWrapper > .navbar .navbarInner {
@@ -183,6 +181,11 @@ html[data-theme="dark"] .siteWrapper .siteFooter { color: var(--ink-secondary); 
     border-color: transparent;
     background: linear-gradient(135deg, #0d1824fa 0%, #08131efb 76%) padding-box, linear-gradient(180deg, #5a687e, #2c3848 34%, #19222d) border-box;
     box-shadow: inset 0 1px 0 #ffffff0d, 0 -10px 26px #000000a6;
+  }
+  .siteWrapper .homePage.mobileDiscoverMode:not(.homePageListing) > .mobileViewSwitcher { border-color: transparent; }
+  html[data-theme="dark"] .siteWrapper .homePage.mobileDiscoverMode:not(.homePageListing) > .mobileViewSwitcher {
+    background: linear-gradient(135deg, #0d1824fa 0%, #08131efb 76%);
+    box-shadow: 0 -10px 26px #000000a6;
   }
   .siteWrapper .mobileViewSwitcher :is(button, a) > svg { width: 25px; height: 25px; stroke-width: 1.7; }
   /* Odkryj / Mapa / Profil; an opened event adds a tab that returns to its detail view. */

@@ -593,6 +593,22 @@ html[data-theme="dark"] .discoverySearchCategoryOptions button[aria-pressed="tru
 }
 html[data-theme="dark"] .discoverySearchSubmit { box-shadow: inset 0 1px 0 rgb(255 210 165 / .3), 0 6px 20px rgb(255 98 9 / .42), 0 8px 18px rgb(0 0 0 / .28); }
 
+@media (max-width: 760px) {
+  .homePage.mobileDiscoverMode:not(.homePageListing) .discoverySearchCategories button:not([aria-pressed="true"]) {
+    border-color: transparent;
+    box-shadow: 0 3px 10px rgb(0 0 0 / .12);
+  }
+  html[data-theme="dark"] .homePage.mobileDiscoverMode:not(.homePageListing) .discoverySearchCategories button:not([aria-pressed="true"]):not(:hover) {
+    background: var(--search-tile-glass);
+    box-shadow: 0 8px 18px rgb(0 0 0 / .32);
+  }
+  html[data-theme="dark"] .homePage.mobileDiscoverMode:not(.homePageListing) .discoverySearchControls :is(.autocompleteContainer, .discoverySearchKeywordInput, .discoverySearchDatePicker):not(:focus-within) {
+    border-color: transparent !important;
+    background: var(--search-control-glass) !important;
+    box-shadow: 0 8px 20px rgb(0 0 0 / .3);
+  }
+}
+
 @media (min-width: 1100px) {
   html[data-theme] .homePage .discoverySearch { padding-inline: 0; }
   .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions { flex-wrap: nowrap; justify-content: space-between; overflow-x: auto; scrollbar-width: none; gap: 8px; padding: 2px 1px 4px; }
@@ -617,9 +633,7 @@ html[data-theme="dark"] .discoverySearchSubmit { box-shadow: inset 0 1px 0 rgb(2
   .discoverySearch .discoverySearchCategories .discoverySearchCategoryOptions button { gap: 5px; padding: 0 6px; }
 }
 
-/* Filter panel ("Więcej" / "Filtry"): one card per question, in the order people decide —
-   where, when, price, then the full category grid. Same navy glass, steel edges and
-   orange accents as the discovery page. */
+/* Filter panel ("Więcej" / "Filtry"): location, date, price and category groups. */
 .discoverySearchAdvanced { align-items: start; gap: 12px; padding: 14px 16px 16px; }
 .discoverySearchAdvanced .discoveryFilterSection {
   display: grid;
@@ -627,13 +641,11 @@ html[data-theme="dark"] .discoverySearchSubmit { box-shadow: inset 0 1px 0 rgb(2
   min-width: 0;
   margin: 0;
   padding: 13px 14px 14px;
-  border: 1px solid var(--border);
   border-radius: 16px;
   background: color-mix(in srgb, var(--bg-soft) 55%, transparent);
 }
 html[data-theme="dark"] .discoverySearchAdvanced .discoveryFilterSection {
-  border-color: transparent;
-  background: linear-gradient(165deg, #122233, #0d1926 78%) padding-box, linear-gradient(180deg, #34465a, #243241 60%, #1d2835) border-box;
+  background: linear-gradient(165deg, #122233, #0d1926 78%);
   box-shadow: inset 0 1px 0 rgb(255 255 255 / .04), 0 8px 20px rgb(0 0 0 / .22);
 }
 .discoverySearchAdvanced .discoveryFilterSectionTitle {

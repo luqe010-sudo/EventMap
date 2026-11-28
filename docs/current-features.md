@@ -1,5 +1,14 @@
 # Current Features
 
+## Karty wyników na telefonie — 2026-11-28
+
+- Lista wydarzeń na stronie głównej i listy na stronach kategorii oraz miast używają tego samego zwartego układu poziomego. Obok miniatury widać tytuł, termin, miejsce i cenę. Z karty można otworzyć szczegóły, zapisać wydarzenie oraz, jeśli ma współrzędne, pokazać je na mapie.
+
+## Obrysy w publicznym interfejsie — 2026-11-27
+
+- Odstępy i różnice w tle oddzielają karty i sekcje w publicznej części portalu. Obrysy pomagają rozpoznać pola formularzy, aktywny wybór i fokus klawiatury.
+- Na mobilnej stronie głównej tło odróżnia nieaktywne kafelki kategorii i dolny pasek nawigacji. W ciemnym motywie tło wyznacza także krawędzie pól wyszukiwarki. Aktywna zakładka, wybrana kategoria i fokus klawiatury nadal mają widoczne obrysy.
+
 ## Event Engine i strona /bot — 2026-11-26
 
 - Panel admina ma nową sekcję **Event Engine** (`/admin/engine`): status 13 agentów z pauzą, liczby nowych/aktualizowanych wydarzeń, mapa pokrycia województw, rejestr źródeł z podstawą prawną (wstrzymanie, ponowna weryfikacja, autopublikacja, wycofanie rekordów), kolejka decyzji właściciela, incydenty, historia działań, koszty i twarde limity budżetu, raport dzienny oraz globalny wyłącznik awaryjny. Bez skonfigurowanego silnika strona pokazuje instrukcję podłączenia. Szczegóły: [docs/event-engine](event-engine/AGENTS.md).

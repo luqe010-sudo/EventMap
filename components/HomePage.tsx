@@ -1411,7 +1411,7 @@ export default function HomePage({
                     key={group.key}
                     venue={group.venue}
                     events={group.events}
-                    listing={isListingPage}
+                    listing
                     onOpenEvent={openMobileEvent}
                     onShowOnMap={showMobileMap}
                   />
@@ -1420,7 +1420,7 @@ export default function HomePage({
                     key={event.id}
                     event={event}
                     distanceKm={isAllPoland ? Number.POSITIVE_INFINITY : distanceKm}
-                    listing={isListingPage}
+                    listing
                     onShowOnMap={showMobileMap}
                     onOpenEvent={openMobileEvent}
                   />

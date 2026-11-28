@@ -57,7 +57,6 @@
   flex-wrap: wrap;
   gap: 8px;
   padding: 4px 0 26px;
-  border-bottom: 1px solid var(--border);
 }
 
 .seasonalCityChip {
@@ -93,8 +92,8 @@
 
 .seasonalEmpty {
   padding: 24px;
-  border: 1px dashed var(--border-strong);
   border-radius: var(--radius-md);
+  background: var(--subpage-surface, var(--bg-card));
   color: var(--ink-secondary);
 }
 
